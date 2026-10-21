@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-53:word:gluten-free",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gluten-free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:word:gluten-free:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gluten-free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:word:gluten-free:audio",
+          "transcript": "gluten-free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:word:gluten-free:r1",
+            "targetText": "gluten-free",
+            "meaningByLocale": {
+              "ru": "без глютена.",
+              "uk": "без глютену."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gluten-free",
+          "definitionByLocale": {
+            "ru": "без глютена.",
+            "uk": "без глютену."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to. Скажите: «Я собираюсь купить хлеб без глютена».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to. Скажите: «Я собираюсь купить хлеб без глютена».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to buy gluten-free bread.",
+        "localizedMeaning": {
+          "ru": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to. Скажите: «Я собираюсь купить хлеб без глютена».",
+          "uk": "Ви вирішили купити хліб із написом «без глютену». Передайте намір через going to. Скажіть: «Я збираюся купити хліб без глютену»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "gluten-free",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i02:r1",
+          "text": "I am going to buy gluten-free bread."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i02:r2",
+          "text": "I am buying gluten-free bread."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i02:r3",
+          "text": "I is going to buy gluten-free bread."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i02:audio",
+          "transcript": "I am going to buy gluten-free bread."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:i02:r1",
+            "targetText": "I am going to buy gluten-free bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i02:r2",
+            "targetText": "I am buying gluten-free bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i02:r3",
+            "targetText": "I is going to buy gluten-free bread.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy gluten-free bread.",
+              "uk": "У записі звучить I am going to buy gluten-free bread."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy gluten-free bread.",
+              "uk": "У записі звучить I am going to buy gluten-free bread."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i03:r1",
+          "text": "am going to buy"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i03:r2",
+          "text": "am buying"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i03:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.",
+          "uk": "Ви вирішили купити хліб із написом «без глютену». Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ gluten-free bread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-53:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to buy.",
+              "uk": "Потрібна повна форма: am going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:word:lactose-free",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lactose-free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:word:lactose-free:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lactose-free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:word:lactose-free:audio",
+          "transcript": "lactose-free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:word:lactose-free:r1",
+            "targetText": "lactose-free",
+            "meaningByLocale": {
+              "ru": "без лактозы, молочного сахара.",
+              "uk": "без лактози, молочного цукру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lactose-free",
+          "definitionByLocale": {
+            "ru": "без лактозы, молочного сахара.",
+            "uk": "без лактози, молочного цукру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to. Скажите: «Она собирается купить молоко без лактозы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to. Скажите: «Она собирается купить молоко без лактозы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to buy lactose-free milk.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to. Скажите: «Она собирается купить молоко без лактозы».",
+          "uk": "Ваша сестра вирішила вибрати молоко з написом «без лактози». Передайте намір через going to. Скажіть: «Вона збирається купити молоко без лактози»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "buy",
+          "lactose-free",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i05:r1",
+          "text": "She is going to buy lactose-free milk."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i05:r2",
+          "text": "She is buying lactose-free milk."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i05:r3",
+          "text": "She are going to buy lactose-free milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i05:audio",
+          "transcript": "She is going to buy lactose-free milk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:i05:r1",
+            "targetText": "She is going to buy lactose-free milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i05:r2",
+            "targetText": "She is buying lactose-free milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i05:r3",
+            "targetText": "She are going to buy lactose-free milk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to buy lactose-free milk.",
+              "uk": "У записі звучить She is going to buy lactose-free milk."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to buy lactose-free milk.",
+              "uk": "У записі звучить She is going to buy lactose-free milk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i06:r1",
+          "text": "is going to buy"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i06:r2",
+          "text": "is buying"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i06:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила вибрати молоко з написом «без лактози». Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ lactose-free milk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-53:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to buy.",
+              "uk": "Потрібна повна форма: is going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:word:unsweetened",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unsweetened",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:word:unsweetened:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unsweetened",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:word:unsweetened:audio",
+          "transcript": "unsweetened"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:word:unsweetened:r1",
+            "targetText": "unsweetened",
+            "meaningByLocale": {
+              "ru": "без добавленного сахара или других подсластителей.",
+              "uk": "без доданого цукру або інших підсолоджувачів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unsweetened",
+          "definitionByLocale": {
+            "ru": "без добавленного сахара или других подсластителей.",
+            "uk": "без доданого цукру або інших підсолоджувачів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are collecting the unsweetened yoghurt tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».",
+          "uk": "Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо йогурт без доданого підсолоджування завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "unsweetened",
+          "yoghurt",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i08:r1",
+          "text": "We are collecting the unsweetened yoghurt tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i08:r2",
+          "text": "We are going to collect the unsweetened yoghurt tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i08:r3",
+          "text": "We is collecting the unsweetened yoghurt tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i08:audio",
+          "transcript": "We are collecting the unsweetened yoghurt tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:i08:r1",
+            "targetText": "We are collecting the unsweetened yoghurt tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i08:r2",
+            "targetText": "We are going to collect the unsweetened yoghurt tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i08:r3",
+            "targetText": "We is collecting the unsweetened yoghurt tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the unsweetened yoghurt tomorrow.",
+              "uk": "У записі звучить We are collecting the unsweetened yoghurt tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the unsweetened yoghurt tomorrow.",
+              "uk": "У записі звучить We are collecting the unsweetened yoghurt tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i09:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i09:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i09:r3",
+          "text": "collect"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ the unsweetened yoghurt tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-53:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "testedDimension": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are collecting.",
+              "uk": "Потрібна повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:word:unsalted",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unsalted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:word:unsalted:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unsalted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:word:unsalted:audio",
+          "transcript": "unsalted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:word:unsalted:r1",
+            "targetText": "unsalted",
+            "meaningByLocale": {
+              "ru": "без добавленной соли.",
+              "uk": "без доданої солі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unsalted",
+          "definitionByLocale": {
+            "ru": "без добавленной соли.",
+            "uk": "без доданої солі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают несолёное масло в пятницу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают несолёное масло в пятницу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are collecting the unsalted butter on Friday.",
+        "localizedMeaning": {
+          "ru": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают несолёное масло в пятницу».",
+          "uk": "Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають несолоне масло в п’ятницю»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "collecting",
+          "the",
+          "unsalted",
+          "butter",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i11:r1",
+          "text": "They are collecting the unsalted butter on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i11:r2",
+          "text": "They are going to collect the unsalted butter on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i11:r3",
+          "text": "They is collecting the unsalted butter on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i11:audio",
+          "transcript": "They are collecting the unsalted butter on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-53:i11:r1",
+            "targetText": "They are collecting the unsalted butter on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i11:r2",
+            "targetText": "They are going to collect the unsalted butter on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i11:r3",
+            "targetText": "They is collecting the unsalted butter on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are collecting the unsalted butter on Friday.",
+              "uk": "У записі звучить They are collecting the unsalted butter on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are collecting the unsalted butter on Friday.",
+              "uk": "У записі звучить They are collecting the unsalted butter on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-53:i12:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i12:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-15:session-53:i12:r3",
+          "text": "collect"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ the unsalted butter on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-53:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i12:r3",
+            "text": "collect"
+          }
+        ],
+        "testedDimension": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are collecting.",
+              "uk": "Потрібна повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-53:i13:p1",
+            "target": "gluten-free",
+            "meaningByLocale": {
+              "ru": "без глютена",
+              "uk": "без глютену"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-53:i13:p2",
+            "target": "lactose-free",
+            "meaningByLocale": {
+              "ru": "без лактозы, молочного сахара",
+              "uk": "без лактози, молочного цукру"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-53:i13:p3",
+            "target": "unsweetened",
+            "meaningByLocale": {
+              "ru": "без добавленного сахара или других подсластителей",
+              "uk": "без доданого цукру або інших підсолоджувачів"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-53:i13:p4",
+            "target": "unsalted",
+            "meaningByLocale": {
+              "ru": "без добавленной соли",
+              "uk": "без доданої солі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gluten-free",
+          "lactose-free",
+          "unsweetened",
+          "unsalted"
+        ],
+        "rightColumn": [
+          "без глютена",
+          "без лактозы, молочного сахара",
+          "без добавленного сахара или других подсластителей",
+          "без добавленной соли"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i14:audio",
+          "transcript": "I am going to buy some bread."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to buy some bread.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "some",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i15:audio",
+          "transcript": "We are collecting the food tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are collecting the food tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "food",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i16:audio",
+          "transcript": "I am buying gluten-free bread tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am buying gluten-free bread tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-53:i17:audio",
+          "transcript": "We are going to collect the unsweetened yoghurt tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to collect the unsweetened yoghurt tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c59214b066a3247f7f9896e89efc93eb25be4b9ba6fe824b5a52259e3f7b3694"
+}

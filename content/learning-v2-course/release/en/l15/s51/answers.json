@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-51:word:paisley",
+    "correctText": "paisley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i01",
+    "correctText": "I am going to buy a paisley scarf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i02",
+    "correctText": "I am going to buy a paisley scarf.",
+    "correctResponseId": "en:lesson-15:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:word:tartan",
+    "correctText": "tartan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i04",
+    "correctText": "She is going to buy a tartan skirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i05",
+    "correctText": "She is going to buy a tartan skirt.",
+    "correctResponseId": "en:lesson-15:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:word:polka-dots",
+    "correctText": "polka dots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i07",
+    "correctText": "We are collecting the dress with polka dots tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i08",
+    "correctText": "We are collecting the dress with polka dots tomorrow.",
+    "correctResponseId": "en:lesson-15:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:word:herringbone",
+    "correctText": "herringbone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i10",
+    "correctText": "They are collecting the herringbone coat on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i11",
+    "correctText": "They are collecting the herringbone coat on Friday.",
+    "correctResponseId": "en:lesson-15:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i13",
+    "correctText": "en:lesson-15:session-51:i13:p1=paisley\nen:lesson-15:session-51:i13:p2=tartan\nen:lesson-15:session-51:i13:p3=polka dots\nen:lesson-15:session-51:i13:p4=herringbone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i14",
+    "correctText": "I am going to buy a scarf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i15",
+    "correctText": "We are collecting the dress tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i16",
+    "correctText": "I am buying a paisley scarf tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-51:i17",
+    "correctText": "We are going to collect the dress with polka dots tomorrow.",
+    "correctResponseId": null
+  }
+]

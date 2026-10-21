@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-47:word:practical",
+    "correctText": "practical",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i01",
+    "correctText": "I am going to buy a practical coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i02",
+    "correctText": "I am going to buy a practical coat.",
+    "correctResponseId": "en:lesson-15:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:word:economical",
+    "correctText": "economical",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i04",
+    "correctText": "She is going to buy an economical car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i05",
+    "correctText": "She is going to buy an economical car.",
+    "correctResponseId": "en:lesson-15:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:word:affordable",
+    "correctText": "affordable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i07",
+    "correctText": "We are viewing an affordable flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i08",
+    "correctText": "We are viewing an affordable flat tomorrow.",
+    "correctResponseId": "en:lesson-15:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i09",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-15:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:word:overpriced",
+    "correctText": "overpriced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i10",
+    "correctText": "They are viewing an overpriced flat on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i11",
+    "correctText": "They are viewing an overpriced flat on Friday.",
+    "correctResponseId": "en:lesson-15:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i12",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-15:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i13",
+    "correctText": "en:lesson-15:session-47:i13:p1=practical\nen:lesson-15:session-47:i13:p2=economical\nen:lesson-15:session-47:i13:p3=affordable\nen:lesson-15:session-47:i13:p4=overpriced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i14",
+    "correctText": "I am going to buy a new coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i15",
+    "correctText": "We are viewing the flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i16",
+    "correctText": "I am buying a practical coat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-47:i17",
+    "correctText": "We are going to view an affordable flat tomorrow.",
+    "correctResponseId": null
+  }
+]

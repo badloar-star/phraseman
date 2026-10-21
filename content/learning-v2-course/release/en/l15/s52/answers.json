@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-52:word:tweed",
+    "correctText": "tweed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i01",
+    "correctText": "I am going to buy a tweed jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i02",
+    "correctText": "I am going to buy a tweed jacket.",
+    "correctResponseId": "en:lesson-15:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:word:corduroy",
+    "correctText": "corduroy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i04",
+    "correctText": "She is going to buy corduroy trousers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i05",
+    "correctText": "She is going to buy corduroy trousers.",
+    "correctResponseId": "en:lesson-15:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:word:flannel",
+    "correctText": "flannel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i07",
+    "correctText": "We are collecting the flannel shirt tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i08",
+    "correctText": "We are collecting the flannel shirt tomorrow.",
+    "correctResponseId": "en:lesson-15:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:word:muslin",
+    "correctText": "muslin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i10",
+    "correctText": "They are collecting the muslin cloth on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i11",
+    "correctText": "They are collecting the muslin cloth on Saturday.",
+    "correctResponseId": "en:lesson-15:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i13",
+    "correctText": "en:lesson-15:session-52:i13:p1=tweed\nen:lesson-15:session-52:i13:p2=corduroy\nen:lesson-15:session-52:i13:p3=flannel\nen:lesson-15:session-52:i13:p4=muslin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i14",
+    "correctText": "I am going to buy a jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i15",
+    "correctText": "We are collecting the shirt tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i16",
+    "correctText": "I am buying a tweed jacket tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-52:i17",
+    "correctText": "We are going to collect the flannel shirt tomorrow.",
+    "correctResponseId": null
+  }
+]

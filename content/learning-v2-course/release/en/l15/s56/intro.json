@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "shuffle — перемешать игральные карты. Повторим going to для намерения. Вы решили сначала перемешать колоду перед семейной игрой. I am going to shuffle the cards. — Я собираюсь перемешать карты. Передайте намерение через going to.",
+        "uk": "shuffle — перемішати гральні карти. Повторімо going to для наміру. Ви вирішили спочатку перемішати колоду перед сімейною грою. I am going to shuffle the cards. — Я збираюся перемішати карти. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-56:intro1:r1",
+              "text": "I am going to shuffle the cards."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro1:r2",
+              "text": "I am shuffling the cards."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro1:r3",
+              "text": "I is going to shuffle the cards."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-56:intro1:r1",
+              "text": "I am going to shuffle the cards."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro1:r2",
+              "text": "I am shuffling the cards."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro1:r3",
+              "text": "I is going to shuffle the cards."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "aim — целиться, направлять бросок в выбранную цель. deal — раздать игральные карты. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на завтрашнее занятие бросками мяча в цель. We are learning to aim tomorrow. — Мы учимся целиться завтра. Передайте договорённость через Present Continuous.",
+        "uk": "aim — цілитися, спрямовувати кидок у вибрану ціль. deal — роздати гральні карти. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на завтрашнє заняття кидками м’яча в ціль. We are learning to aim tomorrow. — Ми вчимося цілитися завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-56:intro2:r1",
+              "text": "We are learning to aim tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro2:r2",
+              "text": "We are going to learn to aim tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro2:r3",
+              "text": "We is learning to aim tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-56:intro2:r1",
+              "text": "We are learning to aim tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro2:r2",
+              "text": "We are going to learn to aim tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro2:r3",
+              "text": "We is learning to aim tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "bounce — отбивать мяч от пола или другой поверхности. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. They are learning to bounce a ball tomorrow. — Они учатся отбивать мяч от пола завтра. Передайте договорённость через Present Continuous.",
+        "uk": "bounce — відбивати м’яч від підлоги чи іншої поверхні. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші діти записані на завтрашнє заняття, де навчаться відбивати м’яч від підлоги. They are learning to bounce a ball tomorrow. — Вони вчаться відбивати м’яч від підлоги завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-56:intro3:r1",
+              "text": "They are learning to bounce a ball tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro3:r2",
+              "text": "They are going to learn to bounce a ball tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro3:r3",
+              "text": "They is learning to bounce a ball tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-56:intro3:r1",
+              "text": "They are learning to bounce a ball tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro3:r2",
+              "text": "They are going to learn to bounce a ball tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-56:intro3:r3",
+              "text": "They is learning to bounce a ball tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e1d7e5ebba48db9fdd4d3be09b29427d120707f521fd12f783865f48f12421b0"
+}

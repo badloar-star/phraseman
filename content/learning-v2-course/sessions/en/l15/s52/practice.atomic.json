@@ -1,0 +1,2345 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-52:word:tweed",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tweed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:tweed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tweed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:tweed:audio",
+            "transcript": "tweed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:tweed:r1",
+              "targetText": "tweed",
+              "meaningByLocale": {
+                "ru": "твид, плотная шерстяная ткань с заметной фактурой.",
+                "uk": "твід, щільна вовняна тканина з помітною фактурою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tweed",
+            "definitionByLocale": {
+              "ru": "твид, плотная шерстяная ткань с заметной фактурой.",
+              "uk": "твід, щільна вовняна тканина з помітною фактурою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to. Скажите: «Я собираюсь купить твидовый пиджак».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to. Скажите: «Я собираюсь купить твидовый пиджак».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a tweed jacket.",
+          "localizedMeaning": {
+            "ru": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to. Скажите: «Я собираюсь купить твидовый пиджак».",
+            "uk": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to. Скажіть: «Я збираюся купити твідовий піджак»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "tweed",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i02:r1",
+            "text": "I am going to buy a tweed jacket."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i02:r2",
+            "text": "I am buying a tweed jacket."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i02:r3",
+            "text": "I is going to buy a tweed jacket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i02:audio",
+            "transcript": "I am going to buy a tweed jacket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i02:r1",
+              "targetText": "I am going to buy a tweed jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i02:r2",
+              "targetText": "I am buying a tweed jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i02:r3",
+              "targetText": "I is going to buy a tweed jacket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a tweed jacket.",
+                "uk": "У записі звучить I am going to buy a tweed jacket."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a tweed jacket.",
+                "uk": "У записі звучить I am going to buy a tweed jacket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+            "uk": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a tweed jacket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i03:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i03:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i03:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to buy.",
+                "uk": "Потрібна повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:word:corduroy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — corduroy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:corduroy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — corduroy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:corduroy:audio",
+            "transcript": "corduroy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:corduroy:r1",
+              "targetText": "corduroy",
+              "meaningByLocale": {
+                "ru": "вельвет, ткань с продольными ворсистыми рубчиками.",
+                "uk": "вельвет, тканина з поздовжніми ворсистими рубчиками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "corduroy",
+            "definitionByLocale": {
+              "ru": "вельвет, ткань с продольными ворсистыми рубчиками.",
+              "uk": "вельвет, тканина з поздовжніми ворсистими рубчиками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to. Скажите: «Она собирается купить вельветовые брюки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to. Скажите: «Она собирается купить вельветовые брюки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to buy corduroy trousers.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to. Скажите: «Она собирается купить вельветовые брюки».",
+            "uk": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to. Скажіть: «Вона збирається купити вельветові штани»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "buy",
+            "corduroy",
+            "trousers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i05:r1",
+            "text": "She is going to buy corduroy trousers."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i05:r2",
+            "text": "She is buying corduroy trousers."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i05:r3",
+            "text": "She are going to buy corduroy trousers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i05:audio",
+            "transcript": "She is going to buy corduroy trousers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i05:r1",
+              "targetText": "She is going to buy corduroy trousers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i05:r2",
+              "targetText": "She is buying corduroy trousers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i05:r3",
+              "targetText": "She are going to buy corduroy trousers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy corduroy trousers.",
+                "uk": "У записі звучить She is going to buy corduroy trousers."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy corduroy trousers.",
+                "uk": "У записі звучить She is going to buy corduroy trousers."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ corduroy trousers.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i06:r1",
+              "text": "is going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i06:r2",
+              "text": "is buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i06:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to buy.",
+                "uk": "Потрібна повна форма: is going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:word:flannel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flannel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:flannel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flannel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:flannel:audio",
+            "transcript": "flannel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:flannel:r1",
+              "targetText": "flannel",
+              "meaningByLocale": {
+                "ru": "фланель, мягкая ткань с лёгким начёсом.",
+                "uk": "фланель, м’яка тканина з легким начосом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flannel",
+            "definitionByLocale": {
+              "ru": "фланель, мягкая ткань с лёгким начёсом.",
+              "uk": "фланель, м’яка тканина з легким начосом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем фланелевую рубашку завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем фланелевую рубашку завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting the flannel shirt tomorrow.",
+          "localizedMeaning": {
+            "ru": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем фланелевую рубашку завтра».",
+            "uk": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо фланелеву сорочку завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "flannel",
+            "shirt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i08:r1",
+            "text": "We are collecting the flannel shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i08:r2",
+            "text": "We are going to collect the flannel shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i08:r3",
+            "text": "We is collecting the flannel shirt tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i08:audio",
+            "transcript": "We are collecting the flannel shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i08:r1",
+              "targetText": "We are collecting the flannel shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i08:r2",
+              "targetText": "We are going to collect the flannel shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i08:r3",
+              "targetText": "We is collecting the flannel shirt tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the flannel shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the flannel shirt tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the flannel shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the flannel shirt tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+            "uk": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ the flannel shirt tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i09:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i09:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i09:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:word:muslin",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — muslin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:muslin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — muslin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:muslin:audio",
+            "transcript": "muslin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:muslin:r1",
+              "targetText": "muslin",
+              "meaningByLocale": {
+                "ru": "муслин, тонкая лёгкая ткань, часто хлопковая.",
+                "uk": "муслін, тонка легка тканина, часто бавовняна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "muslin",
+            "definitionByLocale": {
+              "ru": "муслин, тонкая лёгкая ткань, часто хлопковая.",
+              "uk": "муслін, тонка легка тканина, часто бавовняна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают муслиновую ткань в субботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают муслиновую ткань в субботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are collecting the muslin cloth on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают муслиновую ткань в субботу».",
+            "uk": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають муслінову тканину в суботу»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "collecting",
+            "the",
+            "muslin",
+            "cloth",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i11:r1",
+            "text": "They are collecting the muslin cloth on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i11:r2",
+            "text": "They are going to collect the muslin cloth on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i11:r3",
+            "text": "They is collecting the muslin cloth on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i11:audio",
+            "transcript": "They are collecting the muslin cloth on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i11:r1",
+              "targetText": "They are collecting the muslin cloth on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i11:r2",
+              "targetText": "They are going to collect the muslin cloth on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i11:r3",
+              "targetText": "They is collecting the muslin cloth on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the muslin cloth on Saturday.",
+                "uk": "У записі звучить They are collecting the muslin cloth on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the muslin cloth on Saturday.",
+                "uk": "У записі звучить They are collecting the muslin cloth on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i12:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ the muslin cloth on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i12:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i12:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i12:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-52:i13:p1",
+              "target": "tweed",
+              "meaningByLocale": {
+                "ru": "твид, плотная шерстяная ткань с заметной фактурой",
+                "uk": "твід, щільна вовняна тканина з помітною фактурою"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-52:i13:p2",
+              "target": "corduroy",
+              "meaningByLocale": {
+                "ru": "вельвет, ткань с продольными ворсистыми рубчиками",
+                "uk": "вельвет, тканина з поздовжніми ворсистими рубчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-52:i13:p3",
+              "target": "flannel",
+              "meaningByLocale": {
+                "ru": "фланель, мягкая ткань с лёгким начёсом",
+                "uk": "фланель, м’яка тканина з легким начосом"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-52:i13:p4",
+              "target": "muslin",
+              "meaningByLocale": {
+                "ru": "муслин, тонкая лёгкая ткань, часто хлопковая",
+                "uk": "муслін, тонка легка тканина, часто бавовняна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tweed",
+            "corduroy",
+            "flannel",
+            "muslin"
+          ],
+          "rightColumn": [
+            "твид, плотная шерстяная ткань с заметной фактурой",
+            "вельвет, ткань с продольными ворсистыми рубчиками",
+            "фланель, мягкая ткань с лёгким начёсом",
+            "муслин, тонкая лёгкая ткань, часто хлопковая"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i14:audio",
+            "transcript": "I am going to buy a jacket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a jacket.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i15:audio",
+            "transcript": "We are collecting the shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are collecting the shirt tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "shirt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i16:audio",
+            "transcript": "I am buying a tweed jacket tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am buying a tweed jacket tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i17:audio",
+            "transcript": "We are going to collect the flannel shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to collect the flannel shirt tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-52:word:tweed",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tweed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:tweed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tweed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:tweed:audio",
+            "transcript": "tweed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:tweed:r1",
+              "targetText": "tweed",
+              "meaningByLocale": {
+                "ru": "твид, плотная шерстяная ткань с заметной фактурой.",
+                "uk": "твід, щільна вовняна тканина з помітною фактурою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tweed",
+            "definitionByLocale": {
+              "ru": "твид, плотная шерстяная ткань с заметной фактурой.",
+              "uk": "твід, щільна вовняна тканина з помітною фактурою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to. Скажіть: «Я збираюся купити твідовий піджак».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to. Скажіть: «Я збираюся купити твідовий піджак».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a tweed jacket.",
+          "localizedMeaning": {
+            "ru": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to. Скажите: «Я собираюсь купить твидовый пиджак».",
+            "uk": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to. Скажіть: «Я збираюся купити твідовий піджак»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "tweed",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i02:r1",
+            "text": "I am going to buy a tweed jacket."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i02:r2",
+            "text": "I am buying a tweed jacket."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i02:r3",
+            "text": "I is going to buy a tweed jacket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i02:audio",
+            "transcript": "I am going to buy a tweed jacket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i02:r1",
+              "targetText": "I am going to buy a tweed jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i02:r2",
+              "targetText": "I am buying a tweed jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i02:r3",
+              "targetText": "I is going to buy a tweed jacket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a tweed jacket.",
+                "uk": "У записі звучить I am going to buy a tweed jacket."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a tweed jacket.",
+                "uk": "У записі звучить I am going to buy a tweed jacket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили купить пиджак из плотной фактурной шерстяной ткани. Передайте намерение через going to.",
+            "uk": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a tweed jacket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i03:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i03:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i03:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили купити піджак зі щільної фактурної вовняної тканини. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to buy.",
+                "uk": "Потрібна повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:word:corduroy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — corduroy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:corduroy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — corduroy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:corduroy:audio",
+            "transcript": "corduroy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:corduroy:r1",
+              "targetText": "corduroy",
+              "meaningByLocale": {
+                "ru": "вельвет, ткань с продольными ворсистыми рубчиками.",
+                "uk": "вельвет, тканина з поздовжніми ворсистими рубчиками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "corduroy",
+            "definitionByLocale": {
+              "ru": "вельвет, ткань с продольными ворсистыми рубчиками.",
+              "uk": "вельвет, тканина з поздовжніми ворсистими рубчиками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to. Скажіть: «Вона збирається купити вельветові штани».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to. Скажіть: «Вона збирається купити вельветові штани».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to buy corduroy trousers.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to. Скажите: «Она собирается купить вельветовые брюки».",
+            "uk": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to. Скажіть: «Вона збирається купити вельветові штани»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "buy",
+            "corduroy",
+            "trousers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i05:r1",
+            "text": "She is going to buy corduroy trousers."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i05:r2",
+            "text": "She is buying corduroy trousers."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i05:r3",
+            "text": "She are going to buy corduroy trousers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i05:audio",
+            "transcript": "She is going to buy corduroy trousers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i05:r1",
+              "targetText": "She is going to buy corduroy trousers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i05:r2",
+              "targetText": "She is buying corduroy trousers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i05:r3",
+              "targetText": "She are going to buy corduroy trousers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy corduroy trousers.",
+                "uk": "У записі звучить She is going to buy corduroy trousers."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy corduroy trousers.",
+                "uk": "У записі звучить She is going to buy corduroy trousers."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила купить брюки из ткани с мягкими продольными рубчиками. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ corduroy trousers.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i06:r1",
+              "text": "is going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i06:r2",
+              "text": "is buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i06:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила купити штани з тканини з м’якими поздовжніми рубчиками. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to buy.",
+                "uk": "Потрібна повна форма: is going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:word:flannel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flannel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:flannel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flannel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:flannel:audio",
+            "transcript": "flannel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:flannel:r1",
+              "targetText": "flannel",
+              "meaningByLocale": {
+                "ru": "фланель, мягкая ткань с лёгким начёсом.",
+                "uk": "фланель, м’яка тканина з легким начосом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flannel",
+            "definitionByLocale": {
+              "ru": "фланель, мягкая ткань с лёгким начёсом.",
+              "uk": "фланель, м’яка тканина з легким начосом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо фланелеву сорочку завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо фланелеву сорочку завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting the flannel shirt tomorrow.",
+          "localizedMeaning": {
+            "ru": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем фланелевую рубашку завтра».",
+            "uk": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо фланелеву сорочку завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "flannel",
+            "shirt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i08:r1",
+            "text": "We are collecting the flannel shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i08:r2",
+            "text": "We are going to collect the flannel shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i08:r3",
+            "text": "We is collecting the flannel shirt tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i08:audio",
+            "transcript": "We are collecting the flannel shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i08:r1",
+              "targetText": "We are collecting the flannel shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i08:r2",
+              "targetText": "We are going to collect the flannel shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i08:r3",
+              "targetText": "We is collecting the flannel shirt tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the flannel shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the flannel shirt tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the flannel shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the flannel shirt tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.",
+            "uk": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ the flannel shirt tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i09:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i09:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i09:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:word:muslin",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — muslin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:word:muslin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — muslin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:word:muslin:audio",
+            "transcript": "muslin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:word:muslin:r1",
+              "targetText": "muslin",
+              "meaningByLocale": {
+                "ru": "муслин, тонкая лёгкая ткань, часто хлопковая.",
+                "uk": "муслін, тонка легка тканина, часто бавовняна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "muslin",
+            "definitionByLocale": {
+              "ru": "муслин, тонкая лёгкая ткань, часто хлопковая.",
+              "uk": "муслін, тонка легка тканина, часто бавовняна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають муслінову тканину в суботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають муслінову тканину в суботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are collecting the muslin cloth on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают муслиновую ткань в субботу».",
+            "uk": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають муслінову тканину в суботу»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "collecting",
+            "the",
+            "muslin",
+            "cloth",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i11:r1",
+            "text": "They are collecting the muslin cloth on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i11:r2",
+            "text": "They are going to collect the muslin cloth on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i11:r3",
+            "text": "They is collecting the muslin cloth on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i11:audio",
+            "transcript": "They are collecting the muslin cloth on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-52:i11:r1",
+              "targetText": "They are collecting the muslin cloth on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i11:r2",
+              "targetText": "They are going to collect the muslin cloth on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i11:r3",
+              "targetText": "They is collecting the muslin cloth on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the muslin cloth on Saturday.",
+                "uk": "У записі звучить They are collecting the muslin cloth on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the muslin cloth on Saturday.",
+                "uk": "У записі звучить They are collecting the muslin cloth on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-52:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-52:i12:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ the muslin cloth on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-52:i12:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i12:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i12:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-52:i13:p1",
+              "target": "tweed",
+              "meaningByLocale": {
+                "ru": "твид, плотная шерстяная ткань с заметной фактурой",
+                "uk": "твід, щільна вовняна тканина з помітною фактурою"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-52:i13:p2",
+              "target": "corduroy",
+              "meaningByLocale": {
+                "ru": "вельвет, ткань с продольными ворсистыми рубчиками",
+                "uk": "вельвет, тканина з поздовжніми ворсистими рубчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-52:i13:p3",
+              "target": "flannel",
+              "meaningByLocale": {
+                "ru": "фланель, мягкая ткань с лёгким начёсом",
+                "uk": "фланель, м’яка тканина з легким начосом"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-52:i13:p4",
+              "target": "muslin",
+              "meaningByLocale": {
+                "ru": "муслин, тонкая лёгкая ткань, часто хлопковая",
+                "uk": "муслін, тонка легка тканина, часто бавовняна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tweed",
+            "corduroy",
+            "flannel",
+            "muslin"
+          ],
+          "rightColumn": [
+            "твід, щільна вовняна тканина з помітною фактурою",
+            "вельвет, тканина з поздовжніми ворсистими рубчиками",
+            "фланель, м’яка тканина з легким начосом",
+            "муслін, тонка легка тканина, часто бавовняна"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i14:audio",
+            "transcript": "I am going to buy a jacket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a jacket.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i15:audio",
+            "transcript": "We are collecting the shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are collecting the shirt tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "shirt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i16:audio",
+            "transcript": "I am buying a tweed jacket tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am buying a tweed jacket tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-52:i17:audio",
+            "transcript": "We are going to collect the flannel shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to collect the flannel shirt tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-52:word:tweed",
+      "correctText": "tweed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i01",
+      "correctText": "I am going to buy a tweed jacket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i02",
+      "correctText": "I am going to buy a tweed jacket.",
+      "correctResponseId": "en:lesson-15:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i03",
+      "correctText": "am going to buy",
+      "correctResponseId": "en:lesson-15:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:word:corduroy",
+      "correctText": "corduroy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i04",
+      "correctText": "She is going to buy corduroy trousers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i05",
+      "correctText": "She is going to buy corduroy trousers.",
+      "correctResponseId": "en:lesson-15:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i06",
+      "correctText": "is going to buy",
+      "correctResponseId": "en:lesson-15:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:word:flannel",
+      "correctText": "flannel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i07",
+      "correctText": "We are collecting the flannel shirt tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i08",
+      "correctText": "We are collecting the flannel shirt tomorrow.",
+      "correctResponseId": "en:lesson-15:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i09",
+      "correctText": "are collecting",
+      "correctResponseId": "en:lesson-15:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:word:muslin",
+      "correctText": "muslin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i10",
+      "correctText": "They are collecting the muslin cloth on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i11",
+      "correctText": "They are collecting the muslin cloth on Saturday.",
+      "correctResponseId": "en:lesson-15:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i12",
+      "correctText": "are collecting",
+      "correctResponseId": "en:lesson-15:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i14",
+      "correctText": "I am going to buy a jacket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i15",
+      "correctText": "We are collecting the shirt tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i16",
+      "correctText": "I am buying a tweed jacket tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-52:i17",
+      "correctText": "We are going to collect the flannel shirt tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

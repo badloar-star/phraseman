@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-56:word:shuffle",
+    "correctText": "shuffle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i01",
+    "correctText": "I am going to shuffle the cards.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i02",
+    "correctText": "I am going to shuffle the cards.",
+    "correctResponseId": "en:lesson-15:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i03",
+    "correctText": "am going to shuffle",
+    "correctResponseId": "en:lesson-15:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:word:deal",
+    "correctText": "deal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i04",
+    "correctText": "She is going to deal the cards.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i05",
+    "correctText": "She is going to deal the cards.",
+    "correctResponseId": "en:lesson-15:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i06",
+    "correctText": "is going to deal",
+    "correctResponseId": "en:lesson-15:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:word:aim",
+    "correctText": "aim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i07",
+    "correctText": "We are learning to aim tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i08",
+    "correctText": "We are learning to aim tomorrow.",
+    "correctResponseId": "en:lesson-15:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i09",
+    "correctText": "are learning",
+    "correctResponseId": "en:lesson-15:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:word:bounce",
+    "correctText": "bounce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i10",
+    "correctText": "They are learning to bounce a ball tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i11",
+    "correctText": "They are learning to bounce a ball tomorrow.",
+    "correctResponseId": "en:lesson-15:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i12",
+    "correctText": "are learning",
+    "correctResponseId": "en:lesson-15:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i13",
+    "correctText": "en:lesson-15:session-56:i13:p1=shuffle\nen:lesson-15:session-56:i13:p2=deal\nen:lesson-15:session-56:i13:p3=aim\nen:lesson-15:session-56:i13:p4=bounce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i14",
+    "correctText": "I am going to play with my family.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i15",
+    "correctText": "We are having a lesson tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i16",
+    "correctText": "I am shuffling the cards tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-56:i17",
+    "correctText": "We are going to learn to aim tomorrow.",
+    "correctResponseId": null
+  }
+]

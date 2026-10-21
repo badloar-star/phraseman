@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-47:word:practical",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — practical",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:word:practical:audio"
+      ],
+      "accessibilityLabel": "Картка слова — practical",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:word:practical:audio",
+          "transcript": "practical"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:word:practical:r1",
+            "targetText": "practical",
+            "meaningByLocale": {
+              "ru": "удобный и полезный в повседневном использовании.",
+              "uk": "зручний і корисний у повсякденному використанні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "practical",
+          "definitionByLocale": {
+            "ru": "удобный и полезный в повседневном использовании.",
+            "uk": "зручний і корисний у повсякденному використанні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to. Скажіть: «Я збираюся купити практичне пальто».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to. Скажіть: «Я збираюся купити практичне пальто».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to buy a practical coat.",
+        "localizedMeaning": {
+          "ru": "Вы решили выбрать удобное пальто для ежедневной носки, а не только для красоты. Передайте намерение через going to. Скажите: «Я собираюсь купить практичное пальто».",
+          "uk": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to. Скажіть: «Я збираюся купити практичне пальто»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "practical",
+          "coat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i02:r1",
+          "text": "I am going to buy a practical coat."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i02:r2",
+          "text": "I am buying a practical coat."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i02:r3",
+          "text": "I is going to buy a practical coat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i02:audio",
+          "transcript": "I am going to buy a practical coat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:i02:r1",
+            "targetText": "I am going to buy a practical coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i02:r2",
+            "targetText": "I am buying a practical coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i02:r3",
+            "targetText": "I is going to buy a practical coat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy a practical coat.",
+              "uk": "У записі звучить I am going to buy a practical coat."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy a practical coat.",
+              "uk": "У записі звучить I am going to buy a practical coat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i03:r1",
+          "text": "am going to buy"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i03:r2",
+          "text": "am buying"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i03:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили выбрать удобное пальто для ежедневной носки, а не только для красоты. Передайте намерение через going to.",
+          "uk": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a practical coat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-47:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to buy.",
+              "uk": "Потрібна повна форма: am going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:word:economical",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — economical",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:word:economical:audio"
+      ],
+      "accessibilityLabel": "Картка слова — economical",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:word:economical:audio",
+          "transcript": "economical"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:word:economical:r1",
+            "targetText": "economical",
+            "meaningByLocale": {
+              "ru": "экономичный, требующий мало ресурсов или затрат.",
+              "uk": "економний, який потребує мало ресурсів або витрат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "economical",
+          "definitionByLocale": {
+            "ru": "экономичный, требующий мало ресурсов или затрат.",
+            "uk": "економний, який потребує мало ресурсів або витрат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to. Скажіть: «Вона збирається купити економну машину».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to. Скажіть: «Вона збирається купити економну машину».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to buy an economical car.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила искать машину, которая расходует мало топлива. Передайте намерение через going to. Скажите: «Она собирается купить экономичную машину».",
+          "uk": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to. Скажіть: «Вона збирається купити економну машину»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "buy",
+          "an",
+          "economical",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i05:r1",
+          "text": "She is going to buy an economical car."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i05:r2",
+          "text": "She is buying an economical car."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i05:r3",
+          "text": "She are going to buy an economical car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i05:audio",
+          "transcript": "She is going to buy an economical car."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:i05:r1",
+            "targetText": "She is going to buy an economical car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i05:r2",
+            "targetText": "She is buying an economical car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i05:r3",
+            "targetText": "She are going to buy an economical car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to buy an economical car.",
+              "uk": "У записі звучить She is going to buy an economical car."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to buy an economical car.",
+              "uk": "У записі звучить She is going to buy an economical car."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i06:r1",
+          "text": "is going to buy"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i06:r2",
+          "text": "is buying"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i06:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила искать машину, которая расходует мало топлива. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ an economical car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-47:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to buy.",
+              "uk": "Потрібна повна форма: is going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:word:affordable",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — affordable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:word:affordable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — affordable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:word:affordable:audio",
+          "transcript": "affordable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:word:affordable:r1",
+            "targetText": "affordable",
+            "meaningByLocale": {
+              "ru": "доступный по цене для своего бюджета.",
+              "uk": "доступний за ціною для свого бюджету."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "affordable",
+          "definitionByLocale": {
+            "ru": "доступный по цене для своего бюджета.",
+            "uk": "доступний за ціною для свого бюджету."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми оглядаємо доступну нам за ціною квартиру завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми оглядаємо доступну нам за ціною квартиру завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are viewing an affordable flat tomorrow.",
+        "localizedMeaning": {
+          "ru": "Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы смотрим доступную нам по цене квартиру завтра».",
+          "uk": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми оглядаємо доступну нам за ціною квартиру завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "viewing",
+          "an",
+          "affordable",
+          "flat",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i08:r1",
+          "text": "We are viewing an affordable flat tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i08:r2",
+          "text": "We are going to view an affordable flat tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i08:r3",
+          "text": "We is viewing an affordable flat tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i08:audio",
+          "transcript": "We are viewing an affordable flat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:i08:r1",
+            "targetText": "We are viewing an affordable flat tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i08:r2",
+            "targetText": "We are going to view an affordable flat tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i08:r3",
+            "targetText": "We is viewing an affordable flat tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are viewing an affordable flat tomorrow.",
+              "uk": "У записі звучить We are viewing an affordable flat tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are viewing an affordable flat tomorrow.",
+              "uk": "У записі звучить We are viewing an affordable flat tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i09:r1",
+          "text": "are viewing"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i09:r2",
+          "text": "are going to view"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i09:r3",
+          "text": "view"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ an affordable flat tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-47:i09:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i09:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i09:r3",
+            "text": "view"
+          }
+        ],
+        "testedDimension": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are viewing.",
+              "uk": "Потрібна повна форма: are viewing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:word:overpriced",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overpriced",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:word:overpriced:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overpriced",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:word:overpriced:audio",
+          "transcript": "overpriced"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:word:overpriced:r1",
+            "targetText": "overpriced",
+            "meaningByLocale": {
+              "ru": "с завышенной ценой по сравнению с ценностью вещи.",
+              "uk": "із завищеною ціною порівняно з цінністю речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overpriced",
+          "definitionByLocale": {
+            "ru": "с завышенной ценой по сравнению с ценностью вещи.",
+            "uk": "із завищеною ціною порівняно з цінністю речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони оглядають квартиру із завищеною ціною в п’ятницю».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони оглядають квартиру із завищеною ціною в п’ятницю».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are viewing an overpriced flat on Friday.",
+        "localizedMeaning": {
+          "ru": "Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они смотрят квартиру с завышенной ценой в пятницу».",
+          "uk": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони оглядають квартиру із завищеною ціною в п’ятницю»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "viewing",
+          "an",
+          "overpriced",
+          "flat",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i11:r1",
+          "text": "They are viewing an overpriced flat on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i11:r2",
+          "text": "They are going to view an overpriced flat on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i11:r3",
+          "text": "They is viewing an overpriced flat on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i11:audio",
+          "transcript": "They are viewing an overpriced flat on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-47:i11:r1",
+            "targetText": "They are viewing an overpriced flat on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i11:r2",
+            "targetText": "They are going to view an overpriced flat on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i11:r3",
+            "targetText": "They is viewing an overpriced flat on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are viewing an overpriced flat on Friday.",
+              "uk": "У записі звучить They are viewing an overpriced flat on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are viewing an overpriced flat on Friday.",
+              "uk": "У записі звучить They are viewing an overpriced flat on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-47:i12:r1",
+          "text": "are viewing"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i12:r2",
+          "text": "are going to view"
+        },
+        {
+          "responseId": "en:lesson-15:session-47:i12:r3",
+          "text": "view"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Передайте договорённость через Present Continuous.",
+          "uk": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ an overpriced flat on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-47:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i12:r3",
+            "text": "view"
+          }
+        ],
+        "testedDimension": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are viewing.",
+              "uk": "Потрібна повна форма: are viewing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-47:i13:p1",
+            "target": "practical",
+            "meaningByLocale": {
+              "ru": "удобный и полезный в повседневном использовании",
+              "uk": "зручний і корисний у повсякденному використанні"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-47:i13:p2",
+            "target": "economical",
+            "meaningByLocale": {
+              "ru": "экономичный, требующий мало ресурсов или затрат",
+              "uk": "економний, який потребує мало ресурсів або витрат"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-47:i13:p3",
+            "target": "affordable",
+            "meaningByLocale": {
+              "ru": "доступный по цене для своего бюджета",
+              "uk": "доступний за ціною для свого бюджету"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-47:i13:p4",
+            "target": "overpriced",
+            "meaningByLocale": {
+              "ru": "с завышенной ценой по сравнению с ценностью вещи",
+              "uk": "із завищеною ціною порівняно з цінністю речі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "practical",
+          "economical",
+          "affordable",
+          "overpriced"
+        ],
+        "rightColumn": [
+          "зручний і корисний у повсякденному використанні",
+          "економний, який потребує мало ресурсів або витрат",
+          "доступний за ціною для свого бюджету",
+          "із завищеною ціною порівняно з цінністю речі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i14:audio",
+          "transcript": "I am going to buy a new coat."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to buy a new coat.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "new",
+          "coat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i15:audio",
+          "transcript": "We are viewing the flat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are viewing the flat tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "viewing",
+          "the",
+          "flat",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i16:audio",
+          "transcript": "I am buying a practical coat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am buying a practical coat tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-47:i17:audio",
+          "transcript": "We are going to view an affordable flat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to view an affordable flat tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "39e81eb802dc4336b7ffc01034af00c8820879b316f19b148a2ea787ac9761ba"
+}

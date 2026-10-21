@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "adventurous — любящий приключения и новые впечатления. Повторим going to для намерения. Вы решили отправиться в новую поездку с другом, любящим приключения; даты ещё нет. I am going to travel with my adventurous friend. — Я собираюсь поехать с другом, который любит приключения. Передайте намерение через going to.",
+        "uk": "adventurous — який любить пригоди й нові враження. Повторімо going to для наміру. Ви вирішили вирушити в нову поїздку з другом, який любить пригоди; дати ще немає. I am going to travel with my adventurous friend. — Я збираюся поїхати з другом, який любить пригоди. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-45:intro1:r1",
+              "text": "I am going to travel with my adventurous friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro1:r2",
+              "text": "I am travelling with my adventurous friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro1:r3",
+              "text": "I is going to travel with my adventurous friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-45:intro1:r1",
+              "text": "I am going to travel with my adventurous friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro1:r2",
+              "text": "I am travelling with my adventurous friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro1:r3",
+              "text": "I is going to travel with my adventurous friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "cooperative — готовый сотрудничать и делать дело вместе. resourceful — находчивый, умеющий найти выход и использовать доступные средства. Если время уже согласовано, потренируем Present Continuous. Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. We are working with our cooperative neighbour tomorrow. — Мы работаем с нашим готовым сотрудничать соседом завтра. Передайте договорённость через Present Continuous.",
+        "uk": "cooperative — готовий співпрацювати й робити справу разом. resourceful — винахідливий, який уміє знайти вихід і використати доступні засоби. Якщо час уже узгоджено, потренуймо Present Continuous. Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. We are working with our cooperative neighbour tomorrow. — Ми працюємо з нашим готовим співпрацювати сусідом завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-45:intro2:r1",
+              "text": "We are working with our cooperative neighbour tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro2:r2",
+              "text": "We are going to work with our cooperative neighbour tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro2:r3",
+              "text": "We is working with our cooperative neighbour tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-45:intro2:r1",
+              "text": "We are working with our cooperative neighbour tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro2:r2",
+              "text": "We are going to work with our cooperative neighbour tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro2:r3",
+              "text": "We is working with our cooperative neighbour tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "supportive — оказывающий поддержку и ободряющий. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. They are meeting their supportive teacher on Friday. — Они встречаются с учителем, который их поддерживает, в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "supportive — який надає підтримку й підбадьорює. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. They are meeting their supportive teacher on Friday. — Вони зустрічаються з учителем, який їх підтримує, у п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-45:intro3:r1",
+              "text": "They are meeting their supportive teacher on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro3:r2",
+              "text": "They are going to meet their supportive teacher on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro3:r3",
+              "text": "They is meeting their supportive teacher on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-45:intro3:r1",
+              "text": "They are meeting their supportive teacher on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro3:r2",
+              "text": "They are going to meet their supportive teacher on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-45:intro3:r3",
+              "text": "They is meeting their supportive teacher on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e24ba300636b807b03c16160d78ae0a8fed96868b00b749a7d30157d0cb171cc"
+}

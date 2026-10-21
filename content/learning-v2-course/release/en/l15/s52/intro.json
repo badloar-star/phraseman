@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "tweed — твид, плотная шерстяная ткань с заметной фактурой. Повторим going to для намерения. Вы решили купить пиджак из плотной фактурной шерстяной ткани. I am going to buy a tweed jacket. — Я собираюсь купить твидовый пиджак. Передайте намерение через going to.",
+        "uk": "tweed — твід, щільна вовняна тканина з помітною фактурою. Повторімо going to для наміру. Ви вирішили купити піджак зі щільної фактурної вовняної тканини. I am going to buy a tweed jacket. — Я збираюся купити твідовий піджак. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-52:intro1:r1",
+              "text": "I am going to buy a tweed jacket."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro1:r2",
+              "text": "I am buying a tweed jacket."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro1:r3",
+              "text": "I is going to buy a tweed jacket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-52:intro1:r1",
+              "text": "I am going to buy a tweed jacket."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro1:r2",
+              "text": "I am buying a tweed jacket."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro1:r3",
+              "text": "I is going to buy a tweed jacket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "flannel — фланель, мягкая ткань с лёгким начёсом. corduroy — вельвет, ткань с продольными ворсистыми рубчиками. Если время уже согласовано, потренируем Present Continuous. Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. We are collecting the flannel shirt tomorrow. — Мы забираем фланелевую рубашку завтра. Передайте договорённость через Present Continuous.",
+        "uk": "flannel — фланель, м’яка тканина з легким начосом. corduroy — вельвет, тканина з поздовжніми ворсистими рубчиками. Якщо час уже узгоджено, потренуймо Present Continuous. Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. We are collecting the flannel shirt tomorrow. — Ми забираємо фланелеву сорочку завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-52:intro2:r1",
+              "text": "We are collecting the flannel shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro2:r2",
+              "text": "We are going to collect the flannel shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro2:r3",
+              "text": "We is collecting the flannel shirt tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-52:intro2:r1",
+              "text": "We are collecting the flannel shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro2:r2",
+              "text": "We are going to collect the flannel shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro2:r3",
+              "text": "We is collecting the flannel shirt tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "muslin — муслин, тонкая лёгкая ткань, часто хлопковая. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. They are collecting the muslin cloth on Saturday. — Они забирают муслиновую ткань в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "muslin — муслін, тонка легка тканина, часто бавовняна. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. They are collecting the muslin cloth on Saturday. — Вони забирають муслінову тканину в суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-52:intro3:r1",
+              "text": "They are collecting the muslin cloth on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro3:r2",
+              "text": "They are going to collect the muslin cloth on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro3:r3",
+              "text": "They is collecting the muslin cloth on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-52:intro3:r1",
+              "text": "They are collecting the muslin cloth on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro3:r2",
+              "text": "They are going to collect the muslin cloth on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-52:intro3:r3",
+              "text": "They is collecting the muslin cloth on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd9ca3946ad60e6a88d6124dbdc36082191f060b2af7d871b11ce1c9e58a4a34"
+}

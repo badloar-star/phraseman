@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "optimistic — ожидающий хорошего, настроенный оптимистично. Повторим going to для намерения. Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. I am going to call my optimistic friend. — Я собираюсь позвонить другу-оптимисту. Передайте намерение через going to.",
+        "uk": "optimistic — який очікує доброго, налаштований оптимістично. Повторімо going to для наміру. Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. I am going to call my optimistic friend. — Я збираюся зателефонувати другові-оптимісту. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-42:intro1:r1",
+              "text": "I am going to call my optimistic friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro1:r2",
+              "text": "I am calling my optimistic friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro1:r3",
+              "text": "I is going to call my optimistic friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-42:intro1:r1",
+              "text": "I am going to call my optimistic friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro1:r2",
+              "text": "I am calling my optimistic friend."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro1:r3",
+              "text": "I is going to call my optimistic friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "indecisive — нерешительный, которому трудно сделать выбор. pessimistic — склонный ожидать плохого, настроенный пессимистично. Если время уже согласовано, потренируем Present Continuous. Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. We are meeting our indecisive cousin on Friday. — Мы встречаемся с нерешительным двоюродным братом в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "indecisive — нерішучий, якому важко зробити вибір. pessimistic — схильний очікувати поганого, налаштований песимістично. Якщо час уже узгоджено, потренуймо Present Continuous. Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. We are meeting our indecisive cousin on Friday. — Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-42:intro2:r1",
+              "text": "We are meeting our indecisive cousin on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro2:r2",
+              "text": "We are going to meet our indecisive cousin on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro2:r3",
+              "text": "We is meeting our indecisive cousin on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-42:intro2:r1",
+              "text": "We are meeting our indecisive cousin on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro2:r2",
+              "text": "We are going to meet our indecisive cousin on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro2:r3",
+              "text": "We is meeting our indecisive cousin on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "decisive — решительный, способный быстро принять ясное решение. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. They are meeting their decisive coach tomorrow. — Они встречаются с решительным тренером завтра. Передайте договорённость через Present Continuous.",
+        "uk": "decisive — рішучий, здатний швидко ухвалити чітке рішення. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. They are meeting their decisive coach tomorrow. — Вони зустрічаються з рішучим тренером завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-42:intro3:r1",
+              "text": "They are meeting their decisive coach tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro3:r2",
+              "text": "They are going to meet their decisive coach tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro3:r3",
+              "text": "They is meeting their decisive coach tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-42:intro3:r1",
+              "text": "They are meeting their decisive coach tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro3:r2",
+              "text": "They are going to meet their decisive coach tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-42:intro3:r3",
+              "text": "They is meeting their decisive coach tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b7f24789cf8df7692b79706a7aa728d9d78954bd2b35b2030f4799a6690f0f4b"
+}

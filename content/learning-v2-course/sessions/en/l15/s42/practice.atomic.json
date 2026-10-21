@@ -1,0 +1,2347 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-42:word:optimistic",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — optimistic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:optimistic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — optimistic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:optimistic:audio",
+            "transcript": "optimistic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:optimistic:r1",
+              "targetText": "optimistic",
+              "meaningByLocale": {
+                "ru": "ожидающий хорошего, настроенный оптимистично.",
+                "uk": "який очікує доброго, налаштований оптимістично."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "optimistic",
+            "definitionByLocale": {
+              "ru": "ожидающий хорошего, настроенный оптимистично.",
+              "uk": "який очікує доброго, налаштований оптимістично."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to. Скажите: «Я собираюсь позвонить другу-оптимисту».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to. Скажите: «Я собираюсь позвонить другу-оптимисту».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to call my optimistic friend.",
+          "localizedMeaning": {
+            "ru": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to. Скажите: «Я собираюсь позвонить другу-оптимисту».",
+            "uk": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати другові-оптимісту»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "call",
+            "my",
+            "optimistic",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i02:r1",
+            "text": "I am going to call my optimistic friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i02:r2",
+            "text": "I am calling my optimistic friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i02:r3",
+            "text": "I is going to call my optimistic friend."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i02:audio",
+            "transcript": "I am going to call my optimistic friend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i02:r1",
+              "targetText": "I am going to call my optimistic friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i02:r2",
+              "targetText": "I am calling my optimistic friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i02:r3",
+              "targetText": "I is going to call my optimistic friend.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to call my optimistic friend.",
+                "uk": "У записі звучить I am going to call my optimistic friend."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to call my optimistic friend.",
+                "uk": "У записі звучить I am going to call my optimistic friend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i03:r1",
+            "text": "am going to call"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i03:r2",
+            "text": "am calling"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i03:r3",
+            "text": "call"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+            "uk": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ my optimistic friend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i03:r1",
+              "text": "am going to call"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i03:r2",
+              "text": "am calling"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i03:r3",
+              "text": "call"
+            }
+          ],
+          "testedDimension": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to call.",
+                "uk": "Потрібна повна форма: am going to call."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:word:pessimistic",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pessimistic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:pessimistic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pessimistic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:pessimistic:audio",
+            "transcript": "pessimistic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:pessimistic:r1",
+              "targetText": "pessimistic",
+              "meaningByLocale": {
+                "ru": "склонный ожидать плохого, настроенный пессимистично.",
+                "uk": "схильний очікувати поганого, налаштований песимістично."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pessimistic",
+            "definitionByLocale": {
+              "ru": "склонный ожидать плохого, настроенный пессимистично.",
+              "uk": "схильний очікувати поганого, налаштований песимістично."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to. Скажите: «Она собирается помочь брату-пессимисту».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to. Скажите: «Она собирается помочь брату-пессимисту».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to help her pessimistic brother.",
+          "localizedMeaning": {
+            "ru": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to. Скажите: «Она собирается помочь брату-пессимисту».",
+            "uk": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to. Скажіть: «Вона збирається допомогти братові-песимісту»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "help",
+            "her",
+            "pessimistic",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i05:r1",
+            "text": "She is going to help her pessimistic brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i05:r2",
+            "text": "She is helping her pessimistic brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i05:r3",
+            "text": "She are going to help her pessimistic brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i05:audio",
+            "transcript": "She is going to help her pessimistic brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i05:r1",
+              "targetText": "She is going to help her pessimistic brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i05:r2",
+              "targetText": "She is helping her pessimistic brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i05:r3",
+              "targetText": "She are going to help her pessimistic brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her pessimistic brother.",
+                "uk": "У записі звучить She is going to help her pessimistic brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her pessimistic brother.",
+                "uk": "У записі звучить She is going to help her pessimistic brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i06:r1",
+            "text": "is going to help"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i06:r2",
+            "text": "is helping"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i06:r3",
+            "text": "help"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+            "uk": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ her pessimistic brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i06:r1",
+              "text": "is going to help"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i06:r2",
+              "text": "is helping"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i06:r3",
+              "text": "help"
+            }
+          ],
+          "testedDimension": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to help.",
+                "uk": "Потрібна повна форма: is going to help."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:word:indecisive",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — indecisive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:indecisive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — indecisive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:indecisive:audio",
+            "transcript": "indecisive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:indecisive:r1",
+              "targetText": "indecisive",
+              "meaningByLocale": {
+                "ru": "нерешительный, которому трудно сделать выбор.",
+                "uk": "нерішучий, якому важко зробити вибір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "indecisive",
+            "definitionByLocale": {
+              "ru": "нерешительный, которому трудно сделать выбор.",
+              "uk": "нерішучий, якому важко зробити вибір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting our indecisive cousin on Friday.",
+          "localizedMeaning": {
+            "ru": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».",
+            "uk": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "our",
+            "indecisive",
+            "cousin",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i08:r1",
+            "text": "We are meeting our indecisive cousin on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i08:r2",
+            "text": "We are going to meet our indecisive cousin on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i08:r3",
+            "text": "We is meeting our indecisive cousin on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i08:audio",
+            "transcript": "We are meeting our indecisive cousin on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i08:r1",
+              "targetText": "We are meeting our indecisive cousin on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i08:r2",
+              "targetText": "We are going to meet our indecisive cousin on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i08:r3",
+              "targetText": "We is meeting our indecisive cousin on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our indecisive cousin on Friday.",
+                "uk": "У записі звучить We are meeting our indecisive cousin on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our indecisive cousin on Friday.",
+                "uk": "У записі звучить We are meeting our indecisive cousin on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+            "uk": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ our indecisive cousin on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i09:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i09:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i09:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:word:decisive",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — decisive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:decisive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — decisive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:decisive:audio",
+            "transcript": "decisive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:decisive:r1",
+              "targetText": "decisive",
+              "meaningByLocale": {
+                "ru": "решительный, способный быстро принять ясное решение.",
+                "uk": "рішучий, здатний швидко ухвалити чітке рішення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "decisive",
+            "definitionByLocale": {
+              "ru": "решительный, способный быстро принять ясное решение.",
+              "uk": "рішучий, здатний швидко ухвалити чітке рішення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с решительным тренером завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с решительным тренером завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting their decisive coach tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с решительным тренером завтра».",
+            "uk": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з рішучим тренером завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "their",
+            "decisive",
+            "coach",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i11:r1",
+            "text": "They are meeting their decisive coach tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i11:r2",
+            "text": "They are going to meet their decisive coach tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i11:r3",
+            "text": "They is meeting their decisive coach tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i11:audio",
+            "transcript": "They are meeting their decisive coach tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i11:r1",
+              "targetText": "They are meeting their decisive coach tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i11:r2",
+              "targetText": "They are going to meet their decisive coach tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i11:r3",
+              "targetText": "They is meeting their decisive coach tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their decisive coach tomorrow.",
+                "uk": "У записі звучить They are meeting their decisive coach tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their decisive coach tomorrow.",
+                "uk": "У записі звучить They are meeting their decisive coach tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their decisive coach tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-42:i13:p1",
+              "target": "optimistic",
+              "meaningByLocale": {
+                "ru": "ожидающий хорошего, настроенный оптимистично",
+                "uk": "який очікує доброго, налаштований оптимістично"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-42:i13:p2",
+              "target": "pessimistic",
+              "meaningByLocale": {
+                "ru": "склонный ожидать плохого, настроенный пессимистично",
+                "uk": "схильний очікувати поганого, налаштований песимістично"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-42:i13:p3",
+              "target": "indecisive",
+              "meaningByLocale": {
+                "ru": "нерешительный, которому трудно сделать выбор",
+                "uk": "нерішучий, якому важко зробити вибір"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-42:i13:p4",
+              "target": "decisive",
+              "meaningByLocale": {
+                "ru": "решительный, способный быстро принять ясное решение",
+                "uk": "рішучий, здатний швидко ухвалити чітке рішення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "optimistic",
+            "pessimistic",
+            "indecisive",
+            "decisive"
+          ],
+          "rightColumn": [
+            "ожидающий хорошего, настроенный оптимистично",
+            "склонный ожидать плохого, настроенный пессимистично",
+            "нерешительный, которому трудно сделать выбор",
+            "решительный, способный быстро принять ясное решение"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i14:audio",
+            "transcript": "I am going to help my friend."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to help my friend.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "help",
+            "my",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i15:audio",
+            "transcript": "We are meeting on Friday afternoon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting on Friday afternoon.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "on",
+            "Friday",
+            "afternoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i16:audio",
+            "transcript": "I am calling my optimistic friend tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am calling my optimistic friend tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i17:audio",
+            "transcript": "We are going to meet our indecisive cousin on Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to meet our indecisive cousin on Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-42:word:optimistic",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — optimistic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:optimistic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — optimistic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:optimistic:audio",
+            "transcript": "optimistic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:optimistic:r1",
+              "targetText": "optimistic",
+              "meaningByLocale": {
+                "ru": "ожидающий хорошего, настроенный оптимистично.",
+                "uk": "який очікує доброго, налаштований оптимістично."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "optimistic",
+            "definitionByLocale": {
+              "ru": "ожидающий хорошего, настроенный оптимистично.",
+              "uk": "який очікує доброго, налаштований оптимістично."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати другові-оптимісту».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати другові-оптимісту».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to call my optimistic friend.",
+          "localizedMeaning": {
+            "ru": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to. Скажите: «Я собираюсь позвонить другу-оптимисту».",
+            "uk": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати другові-оптимісту»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "call",
+            "my",
+            "optimistic",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i02:r1",
+            "text": "I am going to call my optimistic friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i02:r2",
+            "text": "I am calling my optimistic friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i02:r3",
+            "text": "I is going to call my optimistic friend."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i02:audio",
+            "transcript": "I am going to call my optimistic friend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i02:r1",
+              "targetText": "I am going to call my optimistic friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i02:r2",
+              "targetText": "I am calling my optimistic friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i02:r3",
+              "targetText": "I is going to call my optimistic friend.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to call my optimistic friend.",
+                "uk": "У записі звучить I am going to call my optimistic friend."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to call my optimistic friend.",
+                "uk": "У записі звучить I am going to call my optimistic friend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i03:r1",
+            "text": "am going to call"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i03:r2",
+            "text": "am calling"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i03:r3",
+            "text": "call"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.",
+            "uk": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ my optimistic friend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i03:r1",
+              "text": "am going to call"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i03:r2",
+              "text": "am calling"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i03:r3",
+              "text": "call"
+            }
+          ],
+          "testedDimension": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to call.",
+                "uk": "Потрібна повна форма: am going to call."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:word:pessimistic",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pessimistic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:pessimistic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pessimistic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:pessimistic:audio",
+            "transcript": "pessimistic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:pessimistic:r1",
+              "targetText": "pessimistic",
+              "meaningByLocale": {
+                "ru": "склонный ожидать плохого, настроенный пессимистично.",
+                "uk": "схильний очікувати поганого, налаштований песимістично."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pessimistic",
+            "definitionByLocale": {
+              "ru": "склонный ожидать плохого, настроенный пессимистично.",
+              "uk": "схильний очікувати поганого, налаштований песимістично."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to. Скажіть: «Вона збирається допомогти братові-песимісту».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to. Скажіть: «Вона збирається допомогти братові-песимісту».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to help her pessimistic brother.",
+          "localizedMeaning": {
+            "ru": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to. Скажите: «Она собирается помочь брату-пессимисту».",
+            "uk": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to. Скажіть: «Вона збирається допомогти братові-песимісту»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "help",
+            "her",
+            "pessimistic",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i05:r1",
+            "text": "She is going to help her pessimistic brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i05:r2",
+            "text": "She is helping her pessimistic brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i05:r3",
+            "text": "She are going to help her pessimistic brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i05:audio",
+            "transcript": "She is going to help her pessimistic brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i05:r1",
+              "targetText": "She is going to help her pessimistic brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i05:r2",
+              "targetText": "She is helping her pessimistic brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i05:r3",
+              "targetText": "She are going to help her pessimistic brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her pessimistic brother.",
+                "uk": "У записі звучить She is going to help her pessimistic brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her pessimistic brother.",
+                "uk": "У записі звучить She is going to help her pessimistic brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i06:r1",
+            "text": "is going to help"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i06:r2",
+            "text": "is helping"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i06:r3",
+            "text": "help"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.",
+            "uk": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ her pessimistic brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i06:r1",
+              "text": "is going to help"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i06:r2",
+              "text": "is helping"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i06:r3",
+              "text": "help"
+            }
+          ],
+          "testedDimension": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to help.",
+                "uk": "Потрібна повна форма: is going to help."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:word:indecisive",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — indecisive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:indecisive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — indecisive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:indecisive:audio",
+            "transcript": "indecisive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:indecisive:r1",
+              "targetText": "indecisive",
+              "meaningByLocale": {
+                "ru": "нерешительный, которому трудно сделать выбор.",
+                "uk": "нерішучий, якому важко зробити вибір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "indecisive",
+            "definitionByLocale": {
+              "ru": "нерешительный, которому трудно сделать выбор.",
+              "uk": "нерішучий, якому важко зробити вибір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting our indecisive cousin on Friday.",
+          "localizedMeaning": {
+            "ru": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».",
+            "uk": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "our",
+            "indecisive",
+            "cousin",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i08:r1",
+            "text": "We are meeting our indecisive cousin on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i08:r2",
+            "text": "We are going to meet our indecisive cousin on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i08:r3",
+            "text": "We is meeting our indecisive cousin on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i08:audio",
+            "transcript": "We are meeting our indecisive cousin on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i08:r1",
+              "targetText": "We are meeting our indecisive cousin on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i08:r2",
+              "targetText": "We are going to meet our indecisive cousin on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i08:r3",
+              "targetText": "We is meeting our indecisive cousin on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our indecisive cousin on Friday.",
+                "uk": "У записі звучить We are meeting our indecisive cousin on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our indecisive cousin on Friday.",
+                "uk": "У записі звучить We are meeting our indecisive cousin on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.",
+            "uk": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ our indecisive cousin on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i09:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i09:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i09:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:word:decisive",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — decisive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:word:decisive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — decisive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:word:decisive:audio",
+            "transcript": "decisive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:word:decisive:r1",
+              "targetText": "decisive",
+              "meaningByLocale": {
+                "ru": "решительный, способный быстро принять ясное решение.",
+                "uk": "рішучий, здатний швидко ухвалити чітке рішення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "decisive",
+            "definitionByLocale": {
+              "ru": "решительный, способный быстро принять ясное решение.",
+              "uk": "рішучий, здатний швидко ухвалити чітке рішення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з рішучим тренером завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з рішучим тренером завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting their decisive coach tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с решительным тренером завтра».",
+            "uk": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з рішучим тренером завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "their",
+            "decisive",
+            "coach",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i11:r1",
+            "text": "They are meeting their decisive coach tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i11:r2",
+            "text": "They are going to meet their decisive coach tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i11:r3",
+            "text": "They is meeting their decisive coach tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i11:audio",
+            "transcript": "They are meeting their decisive coach tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-42:i11:r1",
+              "targetText": "They are meeting their decisive coach tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i11:r2",
+              "targetText": "They are going to meet their decisive coach tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i11:r3",
+              "targetText": "They is meeting their decisive coach tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their decisive coach tomorrow.",
+                "uk": "У записі звучить They are meeting their decisive coach tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their decisive coach tomorrow.",
+                "uk": "У записі звучить They are meeting their decisive coach tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-42:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-42:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their decisive coach tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-42:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-42:i13:p1",
+              "target": "optimistic",
+              "meaningByLocale": {
+                "ru": "ожидающий хорошего, настроенный оптимистично",
+                "uk": "який очікує доброго, налаштований оптимістично"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-42:i13:p2",
+              "target": "pessimistic",
+              "meaningByLocale": {
+                "ru": "склонный ожидать плохого, настроенный пессимистично",
+                "uk": "схильний очікувати поганого, налаштований песимістично"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-42:i13:p3",
+              "target": "indecisive",
+              "meaningByLocale": {
+                "ru": "нерешительный, которому трудно сделать выбор",
+                "uk": "нерішучий, якому важко зробити вибір"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-42:i13:p4",
+              "target": "decisive",
+              "meaningByLocale": {
+                "ru": "решительный, способный быстро принять ясное решение",
+                "uk": "рішучий, здатний швидко ухвалити чітке рішення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "optimistic",
+            "pessimistic",
+            "indecisive",
+            "decisive"
+          ],
+          "rightColumn": [
+            "який очікує доброго, налаштований оптимістично",
+            "схильний очікувати поганого, налаштований песимістично",
+            "нерішучий, якому важко зробити вибір",
+            "рішучий, здатний швидко ухвалити чітке рішення"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i14:audio",
+            "transcript": "I am going to help my friend."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to help my friend.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "help",
+            "my",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i15:audio",
+            "transcript": "We are meeting on Friday afternoon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting on Friday afternoon.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "on",
+            "Friday",
+            "afternoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i16:audio",
+            "transcript": "I am calling my optimistic friend tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am calling my optimistic friend tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-42:i17:audio",
+            "transcript": "We are going to meet our indecisive cousin on Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to meet our indecisive cousin on Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-42:word:optimistic",
+      "correctText": "optimistic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i01",
+      "correctText": "I am going to call my optimistic friend.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i02",
+      "correctText": "I am going to call my optimistic friend.",
+      "correctResponseId": "en:lesson-15:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i03",
+      "correctText": "am going to call",
+      "correctResponseId": "en:lesson-15:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:word:pessimistic",
+      "correctText": "pessimistic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i04",
+      "correctText": "She is going to help her pessimistic brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i05",
+      "correctText": "She is going to help her pessimistic brother.",
+      "correctResponseId": "en:lesson-15:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i06",
+      "correctText": "is going to help",
+      "correctResponseId": "en:lesson-15:session-42:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:word:indecisive",
+      "correctText": "indecisive",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i07",
+      "correctText": "We are meeting our indecisive cousin on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i08",
+      "correctText": "We are meeting our indecisive cousin on Friday.",
+      "correctResponseId": "en:lesson-15:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i09",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:word:decisive",
+      "correctText": "decisive",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i10",
+      "correctText": "They are meeting their decisive coach tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i11",
+      "correctText": "They are meeting their decisive coach tomorrow.",
+      "correctResponseId": "en:lesson-15:session-42:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i12",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i14",
+      "correctText": "I am going to help my friend.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i15",
+      "correctText": "We are meeting on Friday afternoon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i16",
+      "correctText": "I am calling my optimistic friend tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-42:i17",
+      "correctText": "We are going to meet our indecisive cousin on Friday.",
+      "correctResponseId": null
+    }
+  ]
+}

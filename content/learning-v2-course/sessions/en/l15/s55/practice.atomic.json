@@ -1,0 +1,2349 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-55:word:pinstripe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pinstripe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:pinstripe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pinstripe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:pinstripe:audio",
+            "transcript": "pinstripe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:pinstripe:r1",
+              "targetText": "pinstripe",
+              "meaningByLocale": {
+                "ru": "узор из очень тонких продольных полос.",
+                "uk": "візерунок із дуже тонких поздовжніх смуг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pinstripe",
+            "definitionByLocale": {
+              "ru": "узор из очень тонких продольных полос.",
+              "uk": "візерунок із дуже тонких поздовжніх смуг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to. Скажите: «Я собираюсь купить костюм в тонкую полоску».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to. Скажите: «Я собираюсь купить костюм в тонкую полоску».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a pinstripe suit.",
+          "localizedMeaning": {
+            "ru": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to. Скажите: «Я собираюсь купить костюм в тонкую полоску».",
+            "uk": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to. Скажіть: «Я збираюся купити костюм у тонку смужку»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "pinstripe",
+            "suit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i02:r1",
+            "text": "I am going to buy a pinstripe suit."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i02:r2",
+            "text": "I am buying a pinstripe suit."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i02:r3",
+            "text": "I is going to buy a pinstripe suit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i02:audio",
+            "transcript": "I am going to buy a pinstripe suit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i02:r1",
+              "targetText": "I am going to buy a pinstripe suit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i02:r2",
+              "targetText": "I am buying a pinstripe suit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i02:r3",
+              "targetText": "I is going to buy a pinstripe suit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a pinstripe suit.",
+                "uk": "У записі звучить I am going to buy a pinstripe suit."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a pinstripe suit.",
+                "uk": "У записі звучить I am going to buy a pinstripe suit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+            "uk": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a pinstripe suit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i03:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i03:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i03:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to buy.",
+                "uk": "Потрібна повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:word:patchwork",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — patchwork",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:patchwork:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — patchwork",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:patchwork:audio",
+            "transcript": "patchwork"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:patchwork:r1",
+              "targetText": "patchwork",
+              "meaningByLocale": {
+                "ru": "изделие или рисунок из соединённых разных лоскутов.",
+                "uk": "виріб або візерунок зі з’єднаних різних клаптиків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "patchwork",
+            "definitionByLocale": {
+              "ru": "изделие или рисунок из соединённых разных лоскутов.",
+              "uk": "виріб або візерунок зі з’єднаних різних клаптиків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to. Скажите: «Она собирается купить лоскутное одеяло».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to. Скажите: «Она собирается купить лоскутное одеяло».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to buy a patchwork blanket.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to. Скажите: «Она собирается купить лоскутное одеяло».",
+            "uk": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to. Скажіть: «Вона збирається купити клаптикову ковдру»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "patchwork",
+            "blanket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i05:r1",
+            "text": "She is going to buy a patchwork blanket."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i05:r2",
+            "text": "She is buying a patchwork blanket."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i05:r3",
+            "text": "She are going to buy a patchwork blanket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i05:audio",
+            "transcript": "She is going to buy a patchwork blanket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i05:r1",
+              "targetText": "She is going to buy a patchwork blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i05:r2",
+              "targetText": "She is buying a patchwork blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i05:r3",
+              "targetText": "She are going to buy a patchwork blanket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a patchwork blanket.",
+                "uk": "У записі звучить She is going to buy a patchwork blanket."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a patchwork blanket.",
+                "uk": "У записі звучить She is going to buy a patchwork blanket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ a patchwork blanket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i06:r1",
+              "text": "is going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i06:r2",
+              "text": "is buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i06:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to buy.",
+                "uk": "Потрібна повна форма: is going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:word:gingham",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gingham",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:gingham:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gingham",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:gingham:audio",
+            "transcript": "gingham"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:gingham:r1",
+              "targetText": "gingham",
+              "meaningByLocale": {
+                "ru": "мелкая ровная клетка, обычно цветная с белым.",
+                "uk": "дрібна рівна клітинка, зазвичай кольорова з білим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gingham",
+            "definitionByLocale": {
+              "ru": "мелкая ровная клетка, обычно цветная с белым.",
+              "uk": "дрібна рівна клітинка, зазвичай кольорова з білим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем рубашку в мелкую клетку завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем рубашку в мелкую клетку завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting the gingham shirt tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем рубашку в мелкую клетку завтра».",
+            "uk": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо сорочку в дрібну клітинку завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "gingham",
+            "shirt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i08:r1",
+            "text": "We are collecting the gingham shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i08:r2",
+            "text": "We are going to collect the gingham shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i08:r3",
+            "text": "We is collecting the gingham shirt tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i08:audio",
+            "transcript": "We are collecting the gingham shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i08:r1",
+              "targetText": "We are collecting the gingham shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i08:r2",
+              "targetText": "We are going to collect the gingham shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i08:r3",
+              "targetText": "We is collecting the gingham shirt tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the gingham shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the gingham shirt tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the gingham shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the gingham shirt tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+            "uk": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ the gingham shirt tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i09:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i09:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i09:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:word:houndstooth",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — houndstooth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:houndstooth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — houndstooth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:houndstooth:audio",
+            "transcript": "houndstooth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:houndstooth:r1",
+              "targetText": "houndstooth",
+              "meaningByLocale": {
+                "ru": "ломаный клетчатый узор «гусиная лапка».",
+                "uk": "ламаний картатий візерунок «гусяча лапка»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "houndstooth",
+            "definitionByLocale": {
+              "ru": "ломаный клетчатый узор «гусиная лапка».",
+              "uk": "ламаний картатий візерунок «гусяча лапка»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают пальто с узором «гусиная лапка» в субботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают пальто с узором «гусиная лапка» в субботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are collecting the houndstooth coat on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают пальто с узором «гусиная лапка» в субботу».",
+            "uk": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають пальто з візерунком «гусяча лапка» в суботу»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "collecting",
+            "the",
+            "houndstooth",
+            "coat",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i11:r1",
+            "text": "They are collecting the houndstooth coat on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i11:r2",
+            "text": "They are going to collect the houndstooth coat on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i11:r3",
+            "text": "They is collecting the houndstooth coat on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i11:audio",
+            "transcript": "They are collecting the houndstooth coat on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i11:r1",
+              "targetText": "They are collecting the houndstooth coat on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i11:r2",
+              "targetText": "They are going to collect the houndstooth coat on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i11:r3",
+              "targetText": "They is collecting the houndstooth coat on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the houndstooth coat on Saturday.",
+                "uk": "У записі звучить They are collecting the houndstooth coat on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the houndstooth coat on Saturday.",
+                "uk": "У записі звучить They are collecting the houndstooth coat on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i12:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ the houndstooth coat on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i12:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i12:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i12:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-55:i13:p1",
+              "target": "pinstripe",
+              "meaningByLocale": {
+                "ru": "узор из очень тонких продольных полос",
+                "uk": "візерунок із дуже тонких поздовжніх смуг"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-55:i13:p2",
+              "target": "patchwork",
+              "meaningByLocale": {
+                "ru": "изделие или рисунок из соединённых разных лоскутов",
+                "uk": "виріб або візерунок зі з’єднаних різних клаптиків"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-55:i13:p3",
+              "target": "gingham",
+              "meaningByLocale": {
+                "ru": "мелкая ровная клетка, обычно цветная с белым",
+                "uk": "дрібна рівна клітинка, зазвичай кольорова з білим"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-55:i13:p4",
+              "target": "houndstooth",
+              "meaningByLocale": {
+                "ru": "ломаный клетчатый узор «гусиная лапка»",
+                "uk": "ламаний картатий візерунок «гусяча лапка»"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pinstripe",
+            "patchwork",
+            "gingham",
+            "houndstooth"
+          ],
+          "rightColumn": [
+            "узор из очень тонких продольных полос",
+            "изделие или рисунок из соединённых разных лоскутов",
+            "мелкая ровная клетка, обычно цветная с белым",
+            "ломаный клетчатый узор «гусиная лапка»"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i14:audio",
+            "transcript": "I am going to buy a suit."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a suit.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "suit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i15:audio",
+            "transcript": "We are collecting the coat on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are collecting the coat on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "coat",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i16:audio",
+            "transcript": "I am buying a pinstripe suit tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am buying a pinstripe suit tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i17:audio",
+            "transcript": "We are going to collect the gingham shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to collect the gingham shirt tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-55:word:pinstripe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pinstripe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:pinstripe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pinstripe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:pinstripe:audio",
+            "transcript": "pinstripe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:pinstripe:r1",
+              "targetText": "pinstripe",
+              "meaningByLocale": {
+                "ru": "узор из очень тонких продольных полос.",
+                "uk": "візерунок із дуже тонких поздовжніх смуг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pinstripe",
+            "definitionByLocale": {
+              "ru": "узор из очень тонких продольных полос.",
+              "uk": "візерунок із дуже тонких поздовжніх смуг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to. Скажіть: «Я збираюся купити костюм у тонку смужку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to. Скажіть: «Я збираюся купити костюм у тонку смужку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a pinstripe suit.",
+          "localizedMeaning": {
+            "ru": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to. Скажите: «Я собираюсь купить костюм в тонкую полоску».",
+            "uk": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to. Скажіть: «Я збираюся купити костюм у тонку смужку»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "pinstripe",
+            "suit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i02:r1",
+            "text": "I am going to buy a pinstripe suit."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i02:r2",
+            "text": "I am buying a pinstripe suit."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i02:r3",
+            "text": "I is going to buy a pinstripe suit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i02:audio",
+            "transcript": "I am going to buy a pinstripe suit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i02:r1",
+              "targetText": "I am going to buy a pinstripe suit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i02:r2",
+              "targetText": "I am buying a pinstripe suit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i02:r3",
+              "targetText": "I is going to buy a pinstripe suit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a pinstripe suit.",
+                "uk": "У записі звучить I am going to buy a pinstripe suit."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a pinstripe suit.",
+                "uk": "У записі звучить I am going to buy a pinstripe suit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили выбрать костюм с очень тонкими продольными полосами. Передайте намерение через going to.",
+            "uk": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a pinstripe suit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i03:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i03:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i03:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to buy.",
+                "uk": "Потрібна повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:word:patchwork",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — patchwork",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:patchwork:audio"
+        ],
+        "accessibilityLabel": "Картка слова — patchwork",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:patchwork:audio",
+            "transcript": "patchwork"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:patchwork:r1",
+              "targetText": "patchwork",
+              "meaningByLocale": {
+                "ru": "изделие или рисунок из соединённых разных лоскутов.",
+                "uk": "виріб або візерунок зі з’єднаних різних клаптиків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "patchwork",
+            "definitionByLocale": {
+              "ru": "изделие или рисунок из соединённых разных лоскутов.",
+              "uk": "виріб або візерунок зі з’єднаних різних клаптиків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to. Скажіть: «Вона збирається купити клаптикову ковдру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to. Скажіть: «Вона збирається купити клаптикову ковдру».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to buy a patchwork blanket.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to. Скажите: «Она собирается купить лоскутное одеяло».",
+            "uk": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to. Скажіть: «Вона збирається купити клаптикову ковдру»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "patchwork",
+            "blanket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i05:r1",
+            "text": "She is going to buy a patchwork blanket."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i05:r2",
+            "text": "She is buying a patchwork blanket."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i05:r3",
+            "text": "She are going to buy a patchwork blanket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i05:audio",
+            "transcript": "She is going to buy a patchwork blanket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i05:r1",
+              "targetText": "She is going to buy a patchwork blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i05:r2",
+              "targetText": "She is buying a patchwork blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i05:r3",
+              "targetText": "She are going to buy a patchwork blanket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a patchwork blanket.",
+                "uk": "У записі звучить She is going to buy a patchwork blanket."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a patchwork blanket.",
+                "uk": "У записі звучить She is going to buy a patchwork blanket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила купить одеяло из разноцветных лоскутов. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ a patchwork blanket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i06:r1",
+              "text": "is going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i06:r2",
+              "text": "is buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i06:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to buy.",
+                "uk": "Потрібна повна форма: is going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:word:gingham",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gingham",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:gingham:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gingham",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:gingham:audio",
+            "transcript": "gingham"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:gingham:r1",
+              "targetText": "gingham",
+              "meaningByLocale": {
+                "ru": "мелкая ровная клетка, обычно цветная с белым.",
+                "uk": "дрібна рівна клітинка, зазвичай кольорова з білим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gingham",
+            "definitionByLocale": {
+              "ru": "мелкая ровная клетка, обычно цветная с белым.",
+              "uk": "дрібна рівна клітинка, зазвичай кольорова з білим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо сорочку в дрібну клітинку завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо сорочку в дрібну клітинку завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting the gingham shirt tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем рубашку в мелкую клетку завтра».",
+            "uk": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо сорочку в дрібну клітинку завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "gingham",
+            "shirt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i08:r1",
+            "text": "We are collecting the gingham shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i08:r2",
+            "text": "We are going to collect the gingham shirt tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i08:r3",
+            "text": "We is collecting the gingham shirt tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i08:audio",
+            "transcript": "We are collecting the gingham shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i08:r1",
+              "targetText": "We are collecting the gingham shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i08:r2",
+              "targetText": "We are going to collect the gingham shirt tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i08:r3",
+              "targetText": "We is collecting the gingham shirt tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the gingham shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the gingham shirt tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting the gingham shirt tomorrow.",
+                "uk": "У записі звучить We are collecting the gingham shirt tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+            "uk": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ the gingham shirt tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i09:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i09:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i09:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:word:houndstooth",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — houndstooth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:word:houndstooth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — houndstooth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:word:houndstooth:audio",
+            "transcript": "houndstooth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:word:houndstooth:r1",
+              "targetText": "houndstooth",
+              "meaningByLocale": {
+                "ru": "ломаный клетчатый узор «гусиная лапка».",
+                "uk": "ламаний картатий візерунок «гусяча лапка»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "houndstooth",
+            "definitionByLocale": {
+              "ru": "ломаный клетчатый узор «гусиная лапка».",
+              "uk": "ламаний картатий візерунок «гусяча лапка»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають пальто з візерунком «гусяча лапка» в суботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають пальто з візерунком «гусяча лапка» в суботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are collecting the houndstooth coat on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают пальто с узором «гусиная лапка» в субботу».",
+            "uk": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають пальто з візерунком «гусяча лапка» в суботу»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "collecting",
+            "the",
+            "houndstooth",
+            "coat",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i11:r1",
+            "text": "They are collecting the houndstooth coat on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i11:r2",
+            "text": "They are going to collect the houndstooth coat on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i11:r3",
+            "text": "They is collecting the houndstooth coat on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i11:audio",
+            "transcript": "They are collecting the houndstooth coat on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-55:i11:r1",
+              "targetText": "They are collecting the houndstooth coat on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i11:r2",
+              "targetText": "They are going to collect the houndstooth coat on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i11:r3",
+              "targetText": "They is collecting the houndstooth coat on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the houndstooth coat on Saturday.",
+                "uk": "У записі звучить They are collecting the houndstooth coat on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are collecting the houndstooth coat on Saturday.",
+                "uk": "У записі звучить They are collecting the houndstooth coat on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-55:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-55:i12:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ the houndstooth coat on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-55:i12:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i12:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i12:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-55:i13:p1",
+              "target": "pinstripe",
+              "meaningByLocale": {
+                "ru": "узор из очень тонких продольных полос",
+                "uk": "візерунок із дуже тонких поздовжніх смуг"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-55:i13:p2",
+              "target": "patchwork",
+              "meaningByLocale": {
+                "ru": "изделие или рисунок из соединённых разных лоскутов",
+                "uk": "виріб або візерунок зі з’єднаних різних клаптиків"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-55:i13:p3",
+              "target": "gingham",
+              "meaningByLocale": {
+                "ru": "мелкая ровная клетка, обычно цветная с белым",
+                "uk": "дрібна рівна клітинка, зазвичай кольорова з білим"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-55:i13:p4",
+              "target": "houndstooth",
+              "meaningByLocale": {
+                "ru": "ломаный клетчатый узор «гусиная лапка»",
+                "uk": "ламаний картатий візерунок «гусяча лапка»"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pinstripe",
+            "patchwork",
+            "gingham",
+            "houndstooth"
+          ],
+          "rightColumn": [
+            "візерунок із дуже тонких поздовжніх смуг",
+            "виріб або візерунок зі з’єднаних різних клаптиків",
+            "дрібна рівна клітинка, зазвичай кольорова з білим",
+            "ламаний картатий візерунок «гусяча лапка»"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i14:audio",
+            "transcript": "I am going to buy a suit."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a suit.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "suit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i15:audio",
+            "transcript": "We are collecting the coat on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are collecting the coat on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "coat",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i16:audio",
+            "transcript": "I am buying a pinstripe suit tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am buying a pinstripe suit tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-55:i17:audio",
+            "transcript": "We are going to collect the gingham shirt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to collect the gingham shirt tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-55:word:pinstripe",
+      "correctText": "pinstripe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i01",
+      "correctText": "I am going to buy a pinstripe suit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i02",
+      "correctText": "I am going to buy a pinstripe suit.",
+      "correctResponseId": "en:lesson-15:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i03",
+      "correctText": "am going to buy",
+      "correctResponseId": "en:lesson-15:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:word:patchwork",
+      "correctText": "patchwork",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i04",
+      "correctText": "She is going to buy a patchwork blanket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i05",
+      "correctText": "She is going to buy a patchwork blanket.",
+      "correctResponseId": "en:lesson-15:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i06",
+      "correctText": "is going to buy",
+      "correctResponseId": "en:lesson-15:session-55:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:word:gingham",
+      "correctText": "gingham",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i07",
+      "correctText": "We are collecting the gingham shirt tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i08",
+      "correctText": "We are collecting the gingham shirt tomorrow.",
+      "correctResponseId": "en:lesson-15:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i09",
+      "correctText": "are collecting",
+      "correctResponseId": "en:lesson-15:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:word:houndstooth",
+      "correctText": "houndstooth",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i10",
+      "correctText": "They are collecting the houndstooth coat on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i11",
+      "correctText": "They are collecting the houndstooth coat on Saturday.",
+      "correctResponseId": "en:lesson-15:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i12",
+      "correctText": "are collecting",
+      "correctResponseId": "en:lesson-15:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i14",
+      "correctText": "I am going to buy a suit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i15",
+      "correctText": "We are collecting the coat on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i16",
+      "correctText": "I am buying a pinstripe suit tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-55:i17",
+      "correctText": "We are going to collect the gingham shirt tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

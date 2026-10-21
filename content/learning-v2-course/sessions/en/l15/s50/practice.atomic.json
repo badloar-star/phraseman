@@ -1,0 +1,2355 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-50:word:secluded",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — secluded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:secluded:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — secluded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:secluded:audio",
+            "transcript": "secluded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:secluded:r1",
+              "targetText": "secluded",
+              "meaningByLocale": {
+                "ru": "уединённый, вдали от других людей и оживлённых мест.",
+                "uk": "відокремлений, далеко від інших людей і жвавих місць."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "secluded",
+            "definitionByLocale": {
+              "ru": "уединённый, вдали от других людей и оживлённых мест.",
+              "uk": "відокремлений, далеко від інших людей і жвавих місць."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to. Скажите: «Я собираюсь найти уединённый пляж».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to. Скажите: «Я собираюсь найти уединённый пляж».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to find a secluded beach.",
+          "localizedMeaning": {
+            "ru": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to. Скажите: «Я собираюсь найти уединённый пляж».",
+            "uk": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to. Скажіть: «Я збираюся знайти відокремлений пляж»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "find",
+            "a",
+            "secluded",
+            "beach"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i02:r1",
+            "text": "I am going to find a secluded beach."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i02:r2",
+            "text": "I am finding a secluded beach."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i02:r3",
+            "text": "I is going to find a secluded beach."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i02:audio",
+            "transcript": "I am going to find a secluded beach."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i02:r1",
+              "targetText": "I am going to find a secluded beach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i02:r2",
+              "targetText": "I am finding a secluded beach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i02:r3",
+              "targetText": "I is going to find a secluded beach.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to find a secluded beach.",
+                "uk": "У записі звучить I am going to find a secluded beach."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to find a secluded beach.",
+                "uk": "У записі звучить I am going to find a secluded beach."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i03:r1",
+            "text": "am going to find"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i03:r2",
+            "text": "am finding"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i03:r3",
+            "text": "find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+            "uk": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a secluded beach.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i03:r1",
+              "text": "am going to find"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i03:r2",
+              "text": "am finding"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i03:r3",
+              "text": "find"
+            }
+          ],
+          "testedDimension": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to find.",
+                "uk": "Потрібна повна форма: am going to find."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:word:airy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — airy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:airy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — airy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:airy:audio",
+            "transcript": "airy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:airy:r1",
+              "targetText": "airy",
+              "meaningByLocale": {
+                "ru": "светлый и хорошо проветриваемый.",
+                "uk": "світлий і добре провітрюваний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airy",
+            "definitionByLocale": {
+              "ru": "светлый и хорошо проветриваемый.",
+              "uk": "світлий і добре провітрюваний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to. Скажите: «Она собирается выбрать светлую комнату с хорошим воздухом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to. Скажите: «Она собирается выбрать светлую комнату с хорошим воздухом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to choose an airy room.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to. Скажите: «Она собирается выбрать светлую комнату с хорошим воздухом».",
+            "uk": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to. Скажіть: «Вона збирається вибрати світлу кімнату з добрим повітрям»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "choose",
+            "an",
+            "airy",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i05:r1",
+            "text": "She is going to choose an airy room."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i05:r2",
+            "text": "She is choosing an airy room."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i05:r3",
+            "text": "She are going to choose an airy room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i05:audio",
+            "transcript": "She is going to choose an airy room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i05:r1",
+              "targetText": "She is going to choose an airy room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i05:r2",
+              "targetText": "She is choosing an airy room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i05:r3",
+              "targetText": "She are going to choose an airy room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to choose an airy room.",
+                "uk": "У записі звучить She is going to choose an airy room."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to choose an airy room.",
+                "uk": "У записі звучить She is going to choose an airy room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i06:r1",
+            "text": "is going to choose"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i06:r2",
+            "text": "is choosing"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i06:r3",
+            "text": "choose"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ an airy room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i06:r1",
+              "text": "is going to choose"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i06:r2",
+              "text": "is choosing"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i06:r3",
+              "text": "choose"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to choose.",
+                "uk": "Потрібна повна форма: is going to choose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:word:leafy",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leafy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:leafy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leafy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:leafy:audio",
+            "transcript": "leafy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:leafy:r1",
+              "targetText": "leafy",
+              "meaningByLocale": {
+                "ru": "с множеством деревьев и зелени.",
+                "uk": "із багатьма деревами й зеленню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leafy",
+            "definitionByLocale": {
+              "ru": "с множеством деревьев и зелени.",
+              "uk": "із багатьма деревами й зеленню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are staying on a leafy street next week.",
+          "localizedMeaning": {
+            "ru": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».",
+            "uk": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося на зеленій вулиці з багатьма деревами наступного тижня»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "staying",
+            "on",
+            "a",
+            "leafy",
+            "street",
+            "next",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i08:r1",
+            "text": "We are staying on a leafy street next week."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i08:r2",
+            "text": "We are going to stay on a leafy street next week."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i08:r3",
+            "text": "We is staying on a leafy street next week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i08:audio",
+            "transcript": "We are staying on a leafy street next week."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i08:r1",
+              "targetText": "We are staying on a leafy street next week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i08:r2",
+              "targetText": "We are going to stay on a leafy street next week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i08:r3",
+              "targetText": "We is staying on a leafy street next week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are staying on a leafy street next week.",
+                "uk": "У записі звучить We are staying on a leafy street next week."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are staying on a leafy street next week.",
+                "uk": "У записі звучить We are staying on a leafy street next week."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i09:r1",
+            "text": "are staying"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i09:r2",
+            "text": "are going to stay"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i09:r3",
+            "text": "stay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+            "uk": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ on a leafy street next week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i09:r1",
+              "text": "are staying"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i09:r2",
+              "text": "are going to stay"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i09:r3",
+              "text": "stay"
+            }
+          ],
+          "testedDimension": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are staying.",
+                "uk": "Потрібна повна форма: are staying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:word:sheltered",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sheltered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:sheltered:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sheltered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:sheltered:audio",
+            "transcript": "sheltered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:sheltered:r1",
+              "targetText": "sheltered",
+              "meaningByLocale": {
+                "ru": "защищённый от ветра и непогоды.",
+                "uk": "захищений від вітру й негоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sheltered",
+            "definitionByLocale": {
+              "ru": "защищённый от ветра и непогоды.",
+              "uk": "захищений від вітру й негоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous. Скажите: «Они встречаются в защищённом от ветра саду завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous. Скажите: «Они встречаются в защищённом от ветра саду завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting in a sheltered garden tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous. Скажите: «Они встречаются в защищённом от ветра саду завтра».",
+            "uk": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються в захищеному від вітру саду завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "in",
+            "a",
+            "sheltered",
+            "garden",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i11:r1",
+            "text": "They are meeting in a sheltered garden tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i11:r2",
+            "text": "They are going to meet in a sheltered garden tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i11:r3",
+            "text": "They is meeting in a sheltered garden tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i11:audio",
+            "transcript": "They are meeting in a sheltered garden tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i11:r1",
+              "targetText": "They are meeting in a sheltered garden tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i11:r2",
+              "targetText": "They are going to meet in a sheltered garden tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i11:r3",
+              "targetText": "They is meeting in a sheltered garden tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting in a sheltered garden tomorrow.",
+                "uk": "У записі звучить They are meeting in a sheltered garden tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting in a sheltered garden tomorrow.",
+                "uk": "У записі звучить They are meeting in a sheltered garden tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ in a sheltered garden tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-50:i13:p1",
+              "target": "secluded",
+              "meaningByLocale": {
+                "ru": "уединённый, вдали от других людей и оживлённых мест",
+                "uk": "відокремлений, далеко від інших людей і жвавих місць"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-50:i13:p2",
+              "target": "airy",
+              "meaningByLocale": {
+                "ru": "светлый и хорошо проветриваемый",
+                "uk": "світлий і добре провітрюваний"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-50:i13:p3",
+              "target": "leafy",
+              "meaningByLocale": {
+                "ru": "с множеством деревьев и зелени",
+                "uk": "із багатьма деревами й зеленню"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-50:i13:p4",
+              "target": "sheltered",
+              "meaningByLocale": {
+                "ru": "защищённый от ветра и непогоды",
+                "uk": "захищений від вітру й негоди"
+              }
+            }
+          ],
+          "leftColumn": [
+            "secluded",
+            "airy",
+            "leafy",
+            "sheltered"
+          ],
+          "rightColumn": [
+            "уединённый, вдали от других людей и оживлённых мест",
+            "светлый и хорошо проветриваемый",
+            "с множеством деревьев и зелени",
+            "защищённый от ветра и непогоды"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i14:audio",
+            "transcript": "I am going to choose a room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to choose a room.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "choose",
+            "a",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i15:audio",
+            "transcript": "We are staying at the house next week."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are staying at the house next week.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "staying",
+            "at",
+            "the",
+            "house",
+            "next",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i16:audio",
+            "transcript": "I am finding a secluded beach tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am finding a secluded beach tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i17:audio",
+            "transcript": "We are going to stay on a leafy street next week."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to stay on a leafy street next week.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-50:word:secluded",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — secluded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:secluded:audio"
+        ],
+        "accessibilityLabel": "Картка слова — secluded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:secluded:audio",
+            "transcript": "secluded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:secluded:r1",
+              "targetText": "secluded",
+              "meaningByLocale": {
+                "ru": "уединённый, вдали от других людей и оживлённых мест.",
+                "uk": "відокремлений, далеко від інших людей і жвавих місць."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "secluded",
+            "definitionByLocale": {
+              "ru": "уединённый, вдали от других людей и оживлённых мест.",
+              "uk": "відокремлений, далеко від інших людей і жвавих місць."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to. Скажіть: «Я збираюся знайти відокремлений пляж».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to. Скажіть: «Я збираюся знайти відокремлений пляж».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to find a secluded beach.",
+          "localizedMeaning": {
+            "ru": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to. Скажите: «Я собираюсь найти уединённый пляж».",
+            "uk": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to. Скажіть: «Я збираюся знайти відокремлений пляж»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "find",
+            "a",
+            "secluded",
+            "beach"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i02:r1",
+            "text": "I am going to find a secluded beach."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i02:r2",
+            "text": "I am finding a secluded beach."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i02:r3",
+            "text": "I is going to find a secluded beach."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i02:audio",
+            "transcript": "I am going to find a secluded beach."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i02:r1",
+              "targetText": "I am going to find a secluded beach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i02:r2",
+              "targetText": "I am finding a secluded beach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i02:r3",
+              "targetText": "I is going to find a secluded beach.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to find a secluded beach.",
+                "uk": "У записі звучить I am going to find a secluded beach."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to find a secluded beach.",
+                "uk": "У записі звучить I am going to find a secluded beach."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i03:r1",
+            "text": "am going to find"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i03:r2",
+            "text": "am finding"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i03:r3",
+            "text": "find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. Передайте намерение через going to.",
+            "uk": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a secluded beach.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i03:r1",
+              "text": "am going to find"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i03:r2",
+              "text": "am finding"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i03:r3",
+              "text": "find"
+            }
+          ],
+          "testedDimension": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to find.",
+                "uk": "Потрібна повна форма: am going to find."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:word:airy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — airy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:airy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — airy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:airy:audio",
+            "transcript": "airy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:airy:r1",
+              "targetText": "airy",
+              "meaningByLocale": {
+                "ru": "светлый и хорошо проветриваемый.",
+                "uk": "світлий і добре провітрюваний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airy",
+            "definitionByLocale": {
+              "ru": "светлый и хорошо проветриваемый.",
+              "uk": "світлий і добре провітрюваний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to. Скажіть: «Вона збирається вибрати світлу кімнату з добрим повітрям».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to. Скажіть: «Вона збирається вибрати світлу кімнату з добрим повітрям».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to choose an airy room.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to. Скажите: «Она собирается выбрать светлую комнату с хорошим воздухом».",
+            "uk": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to. Скажіть: «Вона збирається вибрати світлу кімнату з добрим повітрям»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "choose",
+            "an",
+            "airy",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i05:r1",
+            "text": "She is going to choose an airy room."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i05:r2",
+            "text": "She is choosing an airy room."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i05:r3",
+            "text": "She are going to choose an airy room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i05:audio",
+            "transcript": "She is going to choose an airy room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i05:r1",
+              "targetText": "She is going to choose an airy room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i05:r2",
+              "targetText": "She is choosing an airy room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i05:r3",
+              "targetText": "She are going to choose an airy room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to choose an airy room.",
+                "uk": "У записі звучить She is going to choose an airy room."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to choose an airy room.",
+                "uk": "У записі звучить She is going to choose an airy room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i06:r1",
+            "text": "is going to choose"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i06:r2",
+            "text": "is choosing"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i06:r3",
+            "text": "choose"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ an airy room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i06:r1",
+              "text": "is going to choose"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i06:r2",
+              "text": "is choosing"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i06:r3",
+              "text": "choose"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to choose.",
+                "uk": "Потрібна повна форма: is going to choose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:word:leafy",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leafy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:leafy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leafy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:leafy:audio",
+            "transcript": "leafy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:leafy:r1",
+              "targetText": "leafy",
+              "meaningByLocale": {
+                "ru": "с множеством деревьев и зелени.",
+                "uk": "із багатьма деревами й зеленню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leafy",
+            "definitionByLocale": {
+              "ru": "с множеством деревьев и зелени.",
+              "uk": "із багатьма деревами й зеленню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося на зеленій вулиці з багатьма деревами наступного тижня».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося на зеленій вулиці з багатьма деревами наступного тижня».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are staying on a leafy street next week.",
+          "localizedMeaning": {
+            "ru": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».",
+            "uk": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося на зеленій вулиці з багатьма деревами наступного тижня»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "staying",
+            "on",
+            "a",
+            "leafy",
+            "street",
+            "next",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i08:r1",
+            "text": "We are staying on a leafy street next week."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i08:r2",
+            "text": "We are going to stay on a leafy street next week."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i08:r3",
+            "text": "We is staying on a leafy street next week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i08:audio",
+            "transcript": "We are staying on a leafy street next week."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i08:r1",
+              "targetText": "We are staying on a leafy street next week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i08:r2",
+              "targetText": "We are going to stay on a leafy street next week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i08:r3",
+              "targetText": "We is staying on a leafy street next week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are staying on a leafy street next week.",
+                "uk": "У записі звучить We are staying on a leafy street next week."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are staying on a leafy street next week.",
+                "uk": "У записі звучить We are staying on a leafy street next week."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i09:r1",
+            "text": "are staying"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i09:r2",
+            "text": "are going to stay"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i09:r3",
+            "text": "stay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.",
+            "uk": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ on a leafy street next week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i09:r1",
+              "text": "are staying"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i09:r2",
+              "text": "are going to stay"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i09:r3",
+              "text": "stay"
+            }
+          ],
+          "testedDimension": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are staying.",
+                "uk": "Потрібна повна форма: are staying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:word:sheltered",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sheltered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:word:sheltered:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sheltered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:word:sheltered:audio",
+            "transcript": "sheltered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:word:sheltered:r1",
+              "targetText": "sheltered",
+              "meaningByLocale": {
+                "ru": "защищённый от ветра и непогоды.",
+                "uk": "захищений від вітру й негоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sheltered",
+            "definitionByLocale": {
+              "ru": "защищённый от ветра и непогоды.",
+              "uk": "захищений від вітру й негоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються в захищеному від вітру саду завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються в захищеному від вітру саду завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting in a sheltered garden tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous. Скажите: «Они встречаются в защищённом от ветра саду завтра».",
+            "uk": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються в захищеному від вітру саду завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "in",
+            "a",
+            "sheltered",
+            "garden",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i11:r1",
+            "text": "They are meeting in a sheltered garden tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i11:r2",
+            "text": "They are going to meet in a sheltered garden tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i11:r3",
+            "text": "They is meeting in a sheltered garden tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i11:audio",
+            "transcript": "They are meeting in a sheltered garden tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-50:i11:r1",
+              "targetText": "They are meeting in a sheltered garden tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i11:r2",
+              "targetText": "They are going to meet in a sheltered garden tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i11:r3",
+              "targetText": "They is meeting in a sheltered garden tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting in a sheltered garden tomorrow.",
+                "uk": "У записі звучить They are meeting in a sheltered garden tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting in a sheltered garden tomorrow.",
+                "uk": "У записі звучить They are meeting in a sheltered garden tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-50:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-50:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ in a sheltered garden tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-50:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-50:i13:p1",
+              "target": "secluded",
+              "meaningByLocale": {
+                "ru": "уединённый, вдали от других людей и оживлённых мест",
+                "uk": "відокремлений, далеко від інших людей і жвавих місць"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-50:i13:p2",
+              "target": "airy",
+              "meaningByLocale": {
+                "ru": "светлый и хорошо проветриваемый",
+                "uk": "світлий і добре провітрюваний"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-50:i13:p3",
+              "target": "leafy",
+              "meaningByLocale": {
+                "ru": "с множеством деревьев и зелени",
+                "uk": "із багатьма деревами й зеленню"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-50:i13:p4",
+              "target": "sheltered",
+              "meaningByLocale": {
+                "ru": "защищённый от ветра и непогоды",
+                "uk": "захищений від вітру й негоди"
+              }
+            }
+          ],
+          "leftColumn": [
+            "secluded",
+            "airy",
+            "leafy",
+            "sheltered"
+          ],
+          "rightColumn": [
+            "відокремлений, далеко від інших людей і жвавих місць",
+            "світлий і добре провітрюваний",
+            "із багатьма деревами й зеленню",
+            "захищений від вітру й негоди"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i14:audio",
+            "transcript": "I am going to choose a room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to choose a room.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "choose",
+            "a",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i15:audio",
+            "transcript": "We are staying at the house next week."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are staying at the house next week.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "staying",
+            "at",
+            "the",
+            "house",
+            "next",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i16:audio",
+            "transcript": "I am finding a secluded beach tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am finding a secluded beach tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-50:i17:audio",
+            "transcript": "We are going to stay on a leafy street next week."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to stay on a leafy street next week.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-50:word:secluded",
+      "correctText": "secluded",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i01",
+      "correctText": "I am going to find a secluded beach.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i02",
+      "correctText": "I am going to find a secluded beach.",
+      "correctResponseId": "en:lesson-15:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i03",
+      "correctText": "am going to find",
+      "correctResponseId": "en:lesson-15:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:word:airy",
+      "correctText": "airy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i04",
+      "correctText": "She is going to choose an airy room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i05",
+      "correctText": "She is going to choose an airy room.",
+      "correctResponseId": "en:lesson-15:session-50:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i06",
+      "correctText": "is going to choose",
+      "correctResponseId": "en:lesson-15:session-50:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:word:leafy",
+      "correctText": "leafy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i07",
+      "correctText": "We are staying on a leafy street next week.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i08",
+      "correctText": "We are staying on a leafy street next week.",
+      "correctResponseId": "en:lesson-15:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i09",
+      "correctText": "are staying",
+      "correctResponseId": "en:lesson-15:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:word:sheltered",
+      "correctText": "sheltered",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i10",
+      "correctText": "They are meeting in a sheltered garden tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i11",
+      "correctText": "They are meeting in a sheltered garden tomorrow.",
+      "correctResponseId": "en:lesson-15:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i12",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-50:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i14",
+      "correctText": "I am going to choose a room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i15",
+      "correctText": "We are staying at the house next week.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i16",
+      "correctText": "I am finding a secluded beach tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-50:i17",
+      "correctText": "We are going to stay on a leafy street next week.",
+      "correctResponseId": null
+    }
+  ]
+}

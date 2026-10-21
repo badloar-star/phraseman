@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-45:word:adventurous",
+    "correctText": "adventurous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i01",
+    "correctText": "I am going to travel with my adventurous friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i02",
+    "correctText": "I am going to travel with my adventurous friend.",
+    "correctResponseId": "en:lesson-15:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i03",
+    "correctText": "am going to travel",
+    "correctResponseId": "en:lesson-15:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:word:resourceful",
+    "correctText": "resourceful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i04",
+    "correctText": "She is going to ask her resourceful brother for help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i05",
+    "correctText": "She is going to ask her resourceful brother for help.",
+    "correctResponseId": "en:lesson-15:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i06",
+    "correctText": "is going to ask",
+    "correctResponseId": "en:lesson-15:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:word:cooperative",
+    "correctText": "cooperative",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i07",
+    "correctText": "We are working with our cooperative neighbour tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i08",
+    "correctText": "We are working with our cooperative neighbour tomorrow.",
+    "correctResponseId": "en:lesson-15:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i09",
+    "correctText": "are working",
+    "correctResponseId": "en:lesson-15:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:word:supportive",
+    "correctText": "supportive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i10",
+    "correctText": "They are meeting their supportive teacher on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i11",
+    "correctText": "They are meeting their supportive teacher on Friday.",
+    "correctResponseId": "en:lesson-15:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i13",
+    "correctText": "en:lesson-15:session-45:i13:p1=adventurous\nen:lesson-15:session-45:i13:p2=resourceful\nen:lesson-15:session-45:i13:p3=cooperative\nen:lesson-15:session-45:i13:p4=supportive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i14",
+    "correctText": "I am going to travel with a friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i15",
+    "correctText": "We are working in the garden tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i16",
+    "correctText": "I am travelling with my adventurous friend tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-45:i17",
+    "correctText": "We are going to work with our cooperative neighbour tomorrow.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-48:word:clockwise",
+    "correctText": "clockwise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i01",
+    "correctText": "I am going to turn the handle clockwise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i02",
+    "correctText": "I am going to turn the handle clockwise.",
+    "correctResponseId": "en:lesson-15:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i03",
+    "correctText": "am going to turn",
+    "correctResponseId": "en:lesson-15:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:word:anticlockwise",
+    "correctText": "anticlockwise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i04",
+    "correctText": "She is going to turn the handle anticlockwise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i05",
+    "correctText": "She is going to turn the handle anticlockwise.",
+    "correctResponseId": "en:lesson-15:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i06",
+    "correctText": "is going to turn",
+    "correctResponseId": "en:lesson-15:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:word:downstairs",
+    "correctText": "downstairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i07",
+    "correctText": "We are meeting downstairs tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i08",
+    "correctText": "We are meeting downstairs tomorrow.",
+    "correctResponseId": "en:lesson-15:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i09",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:word:overhead",
+    "correctText": "overhead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i10",
+    "correctText": "They are hanging lights overhead tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i11",
+    "correctText": "They are hanging lights overhead tomorrow.",
+    "correctResponseId": "en:lesson-15:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i12",
+    "correctText": "are hanging",
+    "correctResponseId": "en:lesson-15:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i13",
+    "correctText": "en:lesson-15:session-48:i13:p1=clockwise\nen:lesson-15:session-48:i13:p2=anticlockwise\nen:lesson-15:session-48:i13:p3=downstairs\nen:lesson-15:session-48:i13:p4=overhead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i14",
+    "correctText": "I am going to turn the handle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i15",
+    "correctText": "We are meeting at the house tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i16",
+    "correctText": "I am turning the handle clockwise tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-48:i17",
+    "correctText": "We are going to meet downstairs tomorrow.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-56:word:shuffle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shuffle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:word:shuffle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shuffle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:word:shuffle:audio",
+          "transcript": "shuffle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:word:shuffle:r1",
+            "targetText": "shuffle",
+            "meaningByLocale": {
+              "ru": "перемешать игральные карты.",
+              "uk": "перемішати гральні карти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shuffle",
+          "definitionByLocale": {
+            "ru": "перемешать игральные карты.",
+            "uk": "перемішати гральні карти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to. Скажите: «Я собираюсь перемешать карты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to. Скажите: «Я собираюсь перемешать карты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to shuffle the cards.",
+        "localizedMeaning": {
+          "ru": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to. Скажите: «Я собираюсь перемешать карты».",
+          "uk": "Ви вирішили спочатку перемішати колоду перед сімейною грою. Передайте намір через going to. Скажіть: «Я збираюся перемішати карти»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "shuffle",
+          "the",
+          "cards"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i02:r1",
+          "text": "I am going to shuffle the cards."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i02:r2",
+          "text": "I am shuffling the cards."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i02:r3",
+          "text": "I is going to shuffle the cards."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i02:audio",
+          "transcript": "I am going to shuffle the cards."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:i02:r1",
+            "targetText": "I am going to shuffle the cards.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i02:r2",
+            "targetText": "I am shuffling the cards.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i02:r3",
+            "targetText": "I is going to shuffle the cards.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to shuffle the cards.",
+              "uk": "У записі звучить I am going to shuffle the cards."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to shuffle the cards.",
+              "uk": "У записі звучить I am going to shuffle the cards."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i03:r1",
+          "text": "am going to shuffle"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i03:r2",
+          "text": "am shuffling"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i03:r3",
+          "text": "shuffle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.",
+          "uk": "Ви вирішили спочатку перемішати колоду перед сімейною грою. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ the cards.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-56:i03:r1",
+            "text": "am going to shuffle"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i03:r2",
+            "text": "am shuffling"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i03:r3",
+            "text": "shuffle"
+          }
+        ],
+        "testedDimension": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to shuffle.",
+              "uk": "Потрібна повна форма: am going to shuffle."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:word:deal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — deal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:word:deal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:word:deal:audio",
+          "transcript": "deal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:word:deal:r1",
+            "targetText": "deal",
+            "meaningByLocale": {
+              "ru": "раздать игральные карты.",
+              "uk": "роздати гральні карти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deal",
+          "definitionByLocale": {
+            "ru": "раздать игральные карты.",
+            "uk": "роздати гральні карти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to. Скажите: «Она собирается раздать карты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to. Скажите: «Она собирается раздать карты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to deal the cards.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to. Скажите: «Она собирается раздать карты».",
+          "uk": "Ваша сестра вирішила роздати карти учасникам сімейної гри. Передайте намір через going to. Скажіть: «Вона збирається роздати карти»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "deal",
+          "the",
+          "cards"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i05:r1",
+          "text": "She is going to deal the cards."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i05:r2",
+          "text": "She is dealing the cards."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i05:r3",
+          "text": "She are going to deal the cards."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i05:audio",
+          "transcript": "She is going to deal the cards."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:i05:r1",
+            "targetText": "She is going to deal the cards.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i05:r2",
+            "targetText": "She is dealing the cards.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i05:r3",
+            "targetText": "She are going to deal the cards.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to deal the cards.",
+              "uk": "У записі звучить She is going to deal the cards."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to deal the cards.",
+              "uk": "У записі звучить She is going to deal the cards."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i06:r1",
+          "text": "is going to deal"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i06:r2",
+          "text": "is dealing"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i06:r3",
+          "text": "deal"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила роздати карти учасникам сімейної гри. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ the cards.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-56:i06:r1",
+            "text": "is going to deal"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i06:r2",
+            "text": "is dealing"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i06:r3",
+            "text": "deal"
+          }
+        ],
+        "testedDimension": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to deal.",
+              "uk": "Потрібна повна форма: is going to deal."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:word:aim",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — aim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:word:aim:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — aim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:word:aim:audio",
+          "transcript": "aim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:word:aim:r1",
+            "targetText": "aim",
+            "meaningByLocale": {
+              "ru": "целиться, направлять бросок в выбранную цель.",
+              "uk": "цілитися, спрямовувати кидок у вибрану ціль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aim",
+          "definitionByLocale": {
+            "ru": "целиться, направлять бросок в выбранную цель.",
+            "uk": "цілитися, спрямовувати кидок у вибрану ціль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous. Скажите: «Мы учимся целиться завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous. Скажите: «Мы учимся целиться завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are learning to aim tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous. Скажите: «Мы учимся целиться завтра».",
+          "uk": "Ви з другом записалися на завтрашнє заняття кидками м’яча в ціль. Передайте домовленість через Present Continuous. Скажіть: «Ми вчимося цілитися завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "learning",
+          "to",
+          "aim",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i08:r1",
+          "text": "We are learning to aim tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i08:r2",
+          "text": "We are going to learn to aim tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i08:r3",
+          "text": "We is learning to aim tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i08:audio",
+          "transcript": "We are learning to aim tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:i08:r1",
+            "targetText": "We are learning to aim tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i08:r2",
+            "targetText": "We are going to learn to aim tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i08:r3",
+            "targetText": "We is learning to aim tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are learning to aim tomorrow.",
+              "uk": "У записі звучить We are learning to aim tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are learning to aim tomorrow.",
+              "uk": "У записі звучить We are learning to aim tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i09:r1",
+          "text": "are learning"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i09:r2",
+          "text": "are going to learn"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i09:r3",
+          "text": "learn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.",
+          "uk": "Ви з другом записалися на завтрашнє заняття кидками м’яча в ціль. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ to aim tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-56:i09:r1",
+            "text": "are learning"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i09:r2",
+            "text": "are going to learn"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i09:r3",
+            "text": "learn"
+          }
+        ],
+        "testedDimension": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are learning.",
+              "uk": "Потрібна повна форма: are learning."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:word:bounce",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bounce",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:word:bounce:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bounce",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:word:bounce:audio",
+          "transcript": "bounce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:word:bounce:r1",
+            "targetText": "bounce",
+            "meaningByLocale": {
+              "ru": "отбивать мяч от пола или другой поверхности.",
+              "uk": "відбивати м’яч від підлоги чи іншої поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bounce",
+          "definitionByLocale": {
+            "ru": "отбивать мяч от пола или другой поверхности.",
+            "uk": "відбивати м’яч від підлоги чи іншої поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous. Скажите: «Они учатся отбивать мяч от пола завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous. Скажите: «Они учатся отбивать мяч от пола завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are learning to bounce a ball tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous. Скажите: «Они учатся отбивать мяч от пола завтра».",
+          "uk": "Ваші діти записані на завтрашнє заняття, де навчаться відбивати м’яч від підлоги. Передайте домовленість через Present Continuous. Скажіть: «Вони вчаться відбивати м’яч від підлоги завтра»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "learning",
+          "to",
+          "bounce",
+          "a",
+          "ball",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i11:r1",
+          "text": "They are learning to bounce a ball tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i11:r2",
+          "text": "They are going to learn to bounce a ball tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i11:r3",
+          "text": "They is learning to bounce a ball tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i11:audio",
+          "transcript": "They are learning to bounce a ball tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-56:i11:r1",
+            "targetText": "They are learning to bounce a ball tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i11:r2",
+            "targetText": "They are going to learn to bounce a ball tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i11:r3",
+            "targetText": "They is learning to bounce a ball tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are learning to bounce a ball tomorrow.",
+              "uk": "У записі звучить They are learning to bounce a ball tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are learning to bounce a ball tomorrow.",
+              "uk": "У записі звучить They are learning to bounce a ball tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-56:i12:r1",
+          "text": "are learning"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i12:r2",
+          "text": "are going to learn"
+        },
+        {
+          "responseId": "en:lesson-15:session-56:i12:r3",
+          "text": "learn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші діти записані на завтрашнє заняття, де навчаться відбивати м’яч від підлоги. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ to bounce a ball tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-56:i12:r1",
+            "text": "are learning"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i12:r2",
+            "text": "are going to learn"
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i12:r3",
+            "text": "learn"
+          }
+        ],
+        "testedDimension": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are learning.",
+              "uk": "Потрібна повна форма: are learning."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-56:i13:p1",
+            "target": "shuffle",
+            "meaningByLocale": {
+              "ru": "перемешать игральные карты",
+              "uk": "перемішати гральні карти"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-56:i13:p2",
+            "target": "deal",
+            "meaningByLocale": {
+              "ru": "раздать игральные карты",
+              "uk": "роздати гральні карти"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-56:i13:p3",
+            "target": "aim",
+            "meaningByLocale": {
+              "ru": "целиться, направлять бросок в выбранную цель",
+              "uk": "цілитися, спрямовувати кидок у вибрану ціль"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-56:i13:p4",
+            "target": "bounce",
+            "meaningByLocale": {
+              "ru": "отбивать мяч от пола или другой поверхности",
+              "uk": "відбивати м’яч від підлоги чи іншої поверхні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shuffle",
+          "deal",
+          "aim",
+          "bounce"
+        ],
+        "rightColumn": [
+          "перемешать игральные карты",
+          "раздать игральные карты",
+          "целиться, направлять бросок в выбранную цель",
+          "отбивать мяч от пола или другой поверхности"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i14:audio",
+          "transcript": "I am going to play with my family."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to play with my family.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "play",
+          "with",
+          "my",
+          "family"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i15:audio",
+          "transcript": "We are having a lesson tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are having a lesson tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "having",
+          "a",
+          "lesson",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i16:audio",
+          "transcript": "I am shuffling the cards tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am shuffling the cards tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-56:i17:audio",
+          "transcript": "We are going to learn to aim tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to learn to aim tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d7522a51a1016227462b1960e281ae4f9fa9612b096552f6ee4519cce1bab5ca"
+}

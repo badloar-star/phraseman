@@ -1,0 +1,2349 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-43:word:modest",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — modest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:modest:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — modest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:modest:audio",
+            "transcript": "modest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:modest:r1",
+              "targetText": "modest",
+              "meaningByLocale": {
+                "ru": "скромный, не хвастающий своими достоинствами.",
+                "uk": "скромний, який не вихваляється своїми чеснотами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "modest",
+            "definitionByLocale": {
+              "ru": "скромный, не хвастающий своими достоинствами.",
+              "uk": "скромний, який не вихваляється своїми чеснотами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to. Скажите: «Я собираюсь навестить скромного друга».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to. Скажите: «Я собираюсь навестить скромного друга».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to visit my modest friend.",
+          "localizedMeaning": {
+            "ru": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to. Скажите: «Я собираюсь навестить скромного друга».",
+            "uk": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to. Скажіть: «Я збираюся відвідати скромного друга»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "visit",
+            "my",
+            "modest",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i02:r1",
+            "text": "I am going to visit my modest friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i02:r2",
+            "text": "I am visiting my modest friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i02:r3",
+            "text": "I is going to visit my modest friend."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i02:audio",
+            "transcript": "I am going to visit my modest friend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i02:r1",
+              "targetText": "I am going to visit my modest friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i02:r2",
+              "targetText": "I am visiting my modest friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i02:r3",
+              "targetText": "I is going to visit my modest friend.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to visit my modest friend.",
+                "uk": "У записі звучить I am going to visit my modest friend."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to visit my modest friend.",
+                "uk": "У записі звучить I am going to visit my modest friend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i03:r1",
+            "text": "am going to visit"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i03:r2",
+            "text": "am visiting"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i03:r3",
+            "text": "visit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+            "uk": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ my modest friend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i03:r1",
+              "text": "am going to visit"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i03:r2",
+              "text": "am visiting"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i03:r3",
+              "text": "visit"
+            }
+          ],
+          "testedDimension": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to visit.",
+                "uk": "Потрібна повна форма: am going to visit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:word:ambitious",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ambitious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:ambitious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ambitious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:ambitious:audio",
+            "transcript": "ambitious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:ambitious:r1",
+              "targetText": "ambitious",
+              "meaningByLocale": {
+                "ru": "стремящийся к большим достижениям.",
+                "uk": "який прагне великих досягнень."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ambitious",
+            "definitionByLocale": {
+              "ru": "стремящийся к большим достижениям.",
+              "uk": "який прагне великих досягнень."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to. Скажите: «Она собирается помочь сыну с большими стремлениями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to. Скажите: «Она собирается помочь сыну с большими стремлениями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to help her ambitious son.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to. Скажите: «Она собирается помочь сыну с большими стремлениями».",
+            "uk": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to. Скажіть: «Вона збирається допомогти синові з великими прагненнями»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "help",
+            "her",
+            "ambitious",
+            "son"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i05:r1",
+            "text": "She is going to help her ambitious son."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i05:r2",
+            "text": "She is helping her ambitious son."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i05:r3",
+            "text": "She are going to help her ambitious son."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i05:audio",
+            "transcript": "She is going to help her ambitious son."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i05:r1",
+              "targetText": "She is going to help her ambitious son.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i05:r2",
+              "targetText": "She is helping her ambitious son.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i05:r3",
+              "targetText": "She are going to help her ambitious son.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her ambitious son.",
+                "uk": "У записі звучить She is going to help her ambitious son."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her ambitious son.",
+                "uk": "У записі звучить She is going to help her ambitious son."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i06:r1",
+            "text": "is going to help"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i06:r2",
+            "text": "is helping"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i06:r3",
+            "text": "help"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ her ambitious son.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i06:r1",
+              "text": "is going to help"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i06:r2",
+              "text": "is helping"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i06:r3",
+              "text": "help"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to help.",
+                "uk": "Потрібна повна форма: is going to help."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:word:easy-going",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — easy-going",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:easy-going:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — easy-going",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:easy-going:audio",
+            "transcript": "easy-going"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:easy-going:r1",
+              "targetText": "easy-going",
+              "meaningByLocale": {
+                "ru": "спокойный и непритязательный в общении.",
+                "uk": "спокійний і невибагливий у спілкуванні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "easy-going",
+            "definitionByLocale": {
+              "ru": "спокойный и непритязательный в общении.",
+              "uk": "спокійний і невибагливий у спілкуванні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous. Скажите: «Мы едем с нашим лёгким в общении другом в субботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous. Скажите: «Мы едем с нашим лёгким в общении другом в субботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are travelling with our easy-going friend on Saturday.",
+          "localizedMeaning": {
+            "ru": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous. Скажите: «Мы едем с нашим лёгким в общении другом в субботу».",
+            "uk": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "travelling",
+            "with",
+            "our",
+            "easy-going",
+            "friend",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i08:r1",
+            "text": "We are travelling with our easy-going friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i08:r2",
+            "text": "We are going to travel with our easy-going friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i08:r3",
+            "text": "We is travelling with our easy-going friend on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i08:audio",
+            "transcript": "We are travelling with our easy-going friend on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i08:r1",
+              "targetText": "We are travelling with our easy-going friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i08:r2",
+              "targetText": "We are going to travel with our easy-going friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i08:r3",
+              "targetText": "We is travelling with our easy-going friend on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are travelling with our easy-going friend on Saturday.",
+                "uk": "У записі звучить We are travelling with our easy-going friend on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are travelling with our easy-going friend on Saturday.",
+                "uk": "У записі звучить We are travelling with our easy-going friend on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i09:r1",
+            "text": "are travelling"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i09:r2",
+            "text": "are going to travel"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i09:r3",
+            "text": "travel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+            "uk": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ with our easy-going friend on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i09:r1",
+              "text": "are travelling"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i09:r2",
+              "text": "are going to travel"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i09:r3",
+              "text": "travel"
+            }
+          ],
+          "testedDimension": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are travelling.",
+                "uk": "Потрібна повна форма: are travelling."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:word:bossy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bossy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:bossy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bossy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:bossy:audio",
+            "transcript": "bossy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:bossy:r1",
+              "targetText": "bossy",
+              "meaningByLocale": {
+                "ru": "любящий командовать другими.",
+                "uk": "який любить командувати іншими."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bossy",
+            "definitionByLocale": {
+              "ru": "любящий командовать другими.",
+              "uk": "який любить командувати іншими."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с двоюродным братом, который любит командовать, завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с двоюродным братом, который любит командовать, завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting their bossy cousin tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с двоюродным братом, который любит командовать, завтра».",
+            "uk": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "their",
+            "bossy",
+            "cousin",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i11:r1",
+            "text": "They are meeting their bossy cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i11:r2",
+            "text": "They are going to meet their bossy cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i11:r3",
+            "text": "They is meeting their bossy cousin tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i11:audio",
+            "transcript": "They are meeting their bossy cousin tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i11:r1",
+              "targetText": "They are meeting their bossy cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i11:r2",
+              "targetText": "They are going to meet their bossy cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i11:r3",
+              "targetText": "They is meeting their bossy cousin tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their bossy cousin tomorrow.",
+                "uk": "У записі звучить They are meeting their bossy cousin tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their bossy cousin tomorrow.",
+                "uk": "У записі звучить They are meeting their bossy cousin tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their bossy cousin tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-43:i13:p1",
+              "target": "modest",
+              "meaningByLocale": {
+                "ru": "скромный, не хвастающий своими достоинствами",
+                "uk": "скромний, який не вихваляється своїми чеснотами"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-43:i13:p2",
+              "target": "ambitious",
+              "meaningByLocale": {
+                "ru": "стремящийся к большим достижениям",
+                "uk": "який прагне великих досягнень"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-43:i13:p3",
+              "target": "easy-going",
+              "meaningByLocale": {
+                "ru": "спокойный и непритязательный в общении",
+                "uk": "спокійний і невибагливий у спілкуванні"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-43:i13:p4",
+              "target": "bossy",
+              "meaningByLocale": {
+                "ru": "любящий командовать другими",
+                "uk": "який любить командувати іншими"
+              }
+            }
+          ],
+          "leftColumn": [
+            "modest",
+            "ambitious",
+            "easy-going",
+            "bossy"
+          ],
+          "rightColumn": [
+            "скромный, не хвастающий своими достоинствами",
+            "стремящийся к большим достижениям",
+            "спокойный и непритязательный в общении",
+            "любящий командовать другими"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i14:audio",
+            "transcript": "I am going to visit my friend."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to visit my friend.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "visit",
+            "my",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i15:audio",
+            "transcript": "We are travelling on Saturday morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are travelling on Saturday morning.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "travelling",
+            "on",
+            "Saturday",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i16:audio",
+            "transcript": "I am visiting my modest friend tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am visiting my modest friend tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i17:audio",
+            "transcript": "We are going to travel with our easy-going friend on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to travel with our easy-going friend on Saturday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-43:word:modest",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — modest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:modest:audio"
+        ],
+        "accessibilityLabel": "Картка слова — modest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:modest:audio",
+            "transcript": "modest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:modest:r1",
+              "targetText": "modest",
+              "meaningByLocale": {
+                "ru": "скромный, не хвастающий своими достоинствами.",
+                "uk": "скромний, який не вихваляється своїми чеснотами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "modest",
+            "definitionByLocale": {
+              "ru": "скромный, не хвастающий своими достоинствами.",
+              "uk": "скромний, який не вихваляється своїми чеснотами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to. Скажіть: «Я збираюся відвідати скромного друга».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to. Скажіть: «Я збираюся відвідати скромного друга».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to visit my modest friend.",
+          "localizedMeaning": {
+            "ru": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to. Скажите: «Я собираюсь навестить скромного друга».",
+            "uk": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to. Скажіть: «Я збираюся відвідати скромного друга»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "visit",
+            "my",
+            "modest",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i02:r1",
+            "text": "I am going to visit my modest friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i02:r2",
+            "text": "I am visiting my modest friend."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i02:r3",
+            "text": "I is going to visit my modest friend."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i02:audio",
+            "transcript": "I am going to visit my modest friend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i02:r1",
+              "targetText": "I am going to visit my modest friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i02:r2",
+              "targetText": "I am visiting my modest friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i02:r3",
+              "targetText": "I is going to visit my modest friend.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to visit my modest friend.",
+                "uk": "У записі звучить I am going to visit my modest friend."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to visit my modest friend.",
+                "uk": "У записі звучить I am going to visit my modest friend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i03:r1",
+            "text": "am going to visit"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i03:r2",
+            "text": "am visiting"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i03:r3",
+            "text": "visit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.",
+            "uk": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ my modest friend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i03:r1",
+              "text": "am going to visit"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i03:r2",
+              "text": "am visiting"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i03:r3",
+              "text": "visit"
+            }
+          ],
+          "testedDimension": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to visit.",
+                "uk": "Потрібна повна форма: am going to visit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:word:ambitious",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ambitious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:ambitious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ambitious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:ambitious:audio",
+            "transcript": "ambitious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:ambitious:r1",
+              "targetText": "ambitious",
+              "meaningByLocale": {
+                "ru": "стремящийся к большим достижениям.",
+                "uk": "який прагне великих досягнень."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ambitious",
+            "definitionByLocale": {
+              "ru": "стремящийся к большим достижениям.",
+              "uk": "який прагне великих досягнень."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to. Скажіть: «Вона збирається допомогти синові з великими прагненнями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to. Скажіть: «Вона збирається допомогти синові з великими прагненнями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to help her ambitious son.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to. Скажите: «Она собирается помочь сыну с большими стремлениями».",
+            "uk": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to. Скажіть: «Вона збирається допомогти синові з великими прагненнями»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "help",
+            "her",
+            "ambitious",
+            "son"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i05:r1",
+            "text": "She is going to help her ambitious son."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i05:r2",
+            "text": "She is helping her ambitious son."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i05:r3",
+            "text": "She are going to help her ambitious son."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i05:audio",
+            "transcript": "She is going to help her ambitious son."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i05:r1",
+              "targetText": "She is going to help her ambitious son.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i05:r2",
+              "targetText": "She is helping her ambitious son.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i05:r3",
+              "targetText": "She are going to help her ambitious son.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her ambitious son.",
+                "uk": "У записі звучить She is going to help her ambitious son."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to help her ambitious son.",
+                "uk": "У записі звучить She is going to help her ambitious son."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i06:r1",
+            "text": "is going to help"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i06:r2",
+            "text": "is helping"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i06:r3",
+            "text": "help"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ her ambitious son.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i06:r1",
+              "text": "is going to help"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i06:r2",
+              "text": "is helping"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i06:r3",
+              "text": "help"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to help.",
+                "uk": "Потрібна повна форма: is going to help."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:word:easy-going",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — easy-going",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:easy-going:audio"
+        ],
+        "accessibilityLabel": "Картка слова — easy-going",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:easy-going:audio",
+            "transcript": "easy-going"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:easy-going:r1",
+              "targetText": "easy-going",
+              "meaningByLocale": {
+                "ru": "спокойный и непритязательный в общении.",
+                "uk": "спокійний і невибагливий у спілкуванні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "easy-going",
+            "definitionByLocale": {
+              "ru": "спокойный и непритязательный в общении.",
+              "uk": "спокійний і невибагливий у спілкуванні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are travelling with our easy-going friend on Saturday.",
+          "localizedMeaning": {
+            "ru": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous. Скажите: «Мы едем с нашим лёгким в общении другом в субботу».",
+            "uk": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "travelling",
+            "with",
+            "our",
+            "easy-going",
+            "friend",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i08:r1",
+            "text": "We are travelling with our easy-going friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i08:r2",
+            "text": "We are going to travel with our easy-going friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i08:r3",
+            "text": "We is travelling with our easy-going friend on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i08:audio",
+            "transcript": "We are travelling with our easy-going friend on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i08:r1",
+              "targetText": "We are travelling with our easy-going friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i08:r2",
+              "targetText": "We are going to travel with our easy-going friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i08:r3",
+              "targetText": "We is travelling with our easy-going friend on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are travelling with our easy-going friend on Saturday.",
+                "uk": "У записі звучить We are travelling with our easy-going friend on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are travelling with our easy-going friend on Saturday.",
+                "uk": "У записі звучить We are travelling with our easy-going friend on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i09:r1",
+            "text": "are travelling"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i09:r2",
+            "text": "are going to travel"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i09:r3",
+            "text": "travel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.",
+            "uk": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ with our easy-going friend on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i09:r1",
+              "text": "are travelling"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i09:r2",
+              "text": "are going to travel"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i09:r3",
+              "text": "travel"
+            }
+          ],
+          "testedDimension": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are travelling.",
+                "uk": "Потрібна повна форма: are travelling."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:word:bossy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bossy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:word:bossy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bossy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:word:bossy:audio",
+            "transcript": "bossy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:word:bossy:r1",
+              "targetText": "bossy",
+              "meaningByLocale": {
+                "ru": "любящий командовать другими.",
+                "uk": "який любить командувати іншими."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bossy",
+            "definitionByLocale": {
+              "ru": "любящий командовать другими.",
+              "uk": "який любить командувати іншими."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting their bossy cousin tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с двоюродным братом, который любит командовать, завтра».",
+            "uk": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "their",
+            "bossy",
+            "cousin",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i11:r1",
+            "text": "They are meeting their bossy cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i11:r2",
+            "text": "They are going to meet their bossy cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i11:r3",
+            "text": "They is meeting their bossy cousin tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i11:audio",
+            "transcript": "They are meeting their bossy cousin tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-43:i11:r1",
+              "targetText": "They are meeting their bossy cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i11:r2",
+              "targetText": "They are going to meet their bossy cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i11:r3",
+              "targetText": "They is meeting their bossy cousin tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their bossy cousin tomorrow.",
+                "uk": "У записі звучить They are meeting their bossy cousin tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their bossy cousin tomorrow.",
+                "uk": "У записі звучить They are meeting their bossy cousin tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-43:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-43:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their bossy cousin tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-43:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-43:i13:p1",
+              "target": "modest",
+              "meaningByLocale": {
+                "ru": "скромный, не хвастающий своими достоинствами",
+                "uk": "скромний, який не вихваляється своїми чеснотами"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-43:i13:p2",
+              "target": "ambitious",
+              "meaningByLocale": {
+                "ru": "стремящийся к большим достижениям",
+                "uk": "який прагне великих досягнень"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-43:i13:p3",
+              "target": "easy-going",
+              "meaningByLocale": {
+                "ru": "спокойный и непритязательный в общении",
+                "uk": "спокійний і невибагливий у спілкуванні"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-43:i13:p4",
+              "target": "bossy",
+              "meaningByLocale": {
+                "ru": "любящий командовать другими",
+                "uk": "який любить командувати іншими"
+              }
+            }
+          ],
+          "leftColumn": [
+            "modest",
+            "ambitious",
+            "easy-going",
+            "bossy"
+          ],
+          "rightColumn": [
+            "скромний, який не вихваляється своїми чеснотами",
+            "який прагне великих досягнень",
+            "спокійний і невибагливий у спілкуванні",
+            "який любить командувати іншими"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i14:audio",
+            "transcript": "I am going to visit my friend."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to visit my friend.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "visit",
+            "my",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i15:audio",
+            "transcript": "We are travelling on Saturday morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are travelling on Saturday morning.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "travelling",
+            "on",
+            "Saturday",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i16:audio",
+            "transcript": "I am visiting my modest friend tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am visiting my modest friend tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-43:i17:audio",
+            "transcript": "We are going to travel with our easy-going friend on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to travel with our easy-going friend on Saturday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-43:word:modest",
+      "correctText": "modest",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i01",
+      "correctText": "I am going to visit my modest friend.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i02",
+      "correctText": "I am going to visit my modest friend.",
+      "correctResponseId": "en:lesson-15:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i03",
+      "correctText": "am going to visit",
+      "correctResponseId": "en:lesson-15:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:word:ambitious",
+      "correctText": "ambitious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i04",
+      "correctText": "She is going to help her ambitious son.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i05",
+      "correctText": "She is going to help her ambitious son.",
+      "correctResponseId": "en:lesson-15:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i06",
+      "correctText": "is going to help",
+      "correctResponseId": "en:lesson-15:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:word:easy-going",
+      "correctText": "easy-going",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i07",
+      "correctText": "We are travelling with our easy-going friend on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i08",
+      "correctText": "We are travelling with our easy-going friend on Saturday.",
+      "correctResponseId": "en:lesson-15:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i09",
+      "correctText": "are travelling",
+      "correctResponseId": "en:lesson-15:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:word:bossy",
+      "correctText": "bossy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i10",
+      "correctText": "They are meeting their bossy cousin tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i11",
+      "correctText": "They are meeting their bossy cousin tomorrow.",
+      "correctResponseId": "en:lesson-15:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i12",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i14",
+      "correctText": "I am going to visit my friend.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i15",
+      "correctText": "We are travelling on Saturday morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i16",
+      "correctText": "I am visiting my modest friend tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-43:i17",
+      "correctText": "We are going to travel with our easy-going friend on Saturday.",
+      "correctResponseId": null
+    }
+  ]
+}

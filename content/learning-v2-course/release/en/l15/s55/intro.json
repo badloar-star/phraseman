@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "pinstripe — узор из очень тонких продольных полос. Повторим going to для намерения. Вы решили выбрать костюм с очень тонкими продольными полосами. I am going to buy a pinstripe suit. — Я собираюсь купить костюм в тонкую полоску. Передайте намерение через going to.",
+        "uk": "pinstripe — візерунок із дуже тонких поздовжніх смуг. Повторімо going to для наміру. Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. I am going to buy a pinstripe suit. — Я збираюся купити костюм у тонку смужку. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-55:intro1:r1",
+              "text": "I am going to buy a pinstripe suit."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro1:r2",
+              "text": "I am buying a pinstripe suit."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro1:r3",
+              "text": "I is going to buy a pinstripe suit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-55:intro1:r1",
+              "text": "I am going to buy a pinstripe suit."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro1:r2",
+              "text": "I am buying a pinstripe suit."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro1:r3",
+              "text": "I is going to buy a pinstripe suit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "gingham — мелкая ровная клетка, обычно цветная с белым. patchwork — изделие или рисунок из соединённых разных лоскутов. Если время уже согласовано, потренируем Present Continuous. Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. We are collecting the gingham shirt tomorrow. — Мы забираем рубашку в мелкую клетку завтра. Передайте договорённость через Present Continuous.",
+        "uk": "gingham — дрібна рівна клітинка, зазвичай кольорова з білим. patchwork — виріб або візерунок зі з’єднаних різних клаптиків. Якщо час уже узгоджено, потренуймо Present Continuous. Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. We are collecting the gingham shirt tomorrow. — Ми забираємо сорочку в дрібну клітинку завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-55:intro2:r1",
+              "text": "We are collecting the gingham shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro2:r2",
+              "text": "We are going to collect the gingham shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro2:r3",
+              "text": "We is collecting the gingham shirt tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-55:intro2:r1",
+              "text": "We are collecting the gingham shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro2:r2",
+              "text": "We are going to collect the gingham shirt tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro2:r3",
+              "text": "We is collecting the gingham shirt tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "houndstooth — ломаный клетчатый узор «гусиная лапка». Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. They are collecting the houndstooth coat on Saturday. — Они забирают пальто с узором «гусиная лапка» в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "houndstooth — ламаний картатий візерунок «гусяча лапка». День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. They are collecting the houndstooth coat on Saturday. — Вони забирають пальто з візерунком «гусяча лапка» в суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-55:intro3:r1",
+              "text": "They are collecting the houndstooth coat on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro3:r2",
+              "text": "They are going to collect the houndstooth coat on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro3:r3",
+              "text": "They is collecting the houndstooth coat on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-55:intro3:r1",
+              "text": "They are collecting the houndstooth coat on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro3:r2",
+              "text": "They are going to collect the houndstooth coat on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-55:intro3:r3",
+              "text": "They is collecting the houndstooth coat on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ac9f882d865a5d43a86c0fcaa862b9b922977d26305fae37b76c94baeaa35e9"
+}

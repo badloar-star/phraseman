@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-46:word:reckless",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reckless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:reckless:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reckless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:reckless:audio",
+            "transcript": "reckless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:reckless:r1",
+              "targetText": "reckless",
+              "meaningByLocale": {
+                "ru": "безрассудный, не учитывающий опасность.",
+                "uk": "безрозсудний, який не зважає на небезпеку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reckless",
+            "definitionByLocale": {
+              "ru": "безрассудный, не учитывающий опасность.",
+              "uk": "безрозсудний, який не зважає на небезпеку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to. Скажите: «Я собираюсь поговорить с братом, который пренебрегает опасностью».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to. Скажите: «Я собираюсь поговорить с братом, который пренебрегает опасностью».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to talk to my reckless brother.",
+          "localizedMeaning": {
+            "ru": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to. Скажите: «Я собираюсь поговорить с братом, который пренебрегает опасностью».",
+            "uk": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to. Скажіть: «Я збираюся поговорити з братом, який нехтує небезпекою»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "talk",
+            "to",
+            "my",
+            "reckless",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i02:r1",
+            "text": "I am going to talk to my reckless brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i02:r2",
+            "text": "I am talking to my reckless brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i02:r3",
+            "text": "I is going to talk to my reckless brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i02:audio",
+            "transcript": "I am going to talk to my reckless brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i02:r1",
+              "targetText": "I am going to talk to my reckless brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i02:r2",
+              "targetText": "I am talking to my reckless brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i02:r3",
+              "targetText": "I is going to talk to my reckless brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to talk to my reckless brother.",
+                "uk": "У записі звучить I am going to talk to my reckless brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to talk to my reckless brother.",
+                "uk": "У записі звучить I am going to talk to my reckless brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i03:r1",
+            "text": "am going to talk"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i03:r2",
+            "text": "am talking"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i03:r3",
+            "text": "talk"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+            "uk": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ to my reckless brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i03:r1",
+              "text": "am going to talk"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i03:r2",
+              "text": "am talking"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i03:r3",
+              "text": "talk"
+            }
+          ],
+          "testedDimension": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to talk.",
+                "uk": "Потрібна повна форма: am going to talk."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:word:inflexible",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — inflexible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:inflexible:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — inflexible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:inflexible:audio",
+            "transcript": "inflexible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:inflexible:r1",
+              "targetText": "inflexible",
+              "meaningByLocale": {
+                "ru": "негибкий, не готовый менять решение или правило.",
+                "uk": "негнучкий, не готовий змінювати рішення чи правило."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "inflexible",
+            "definitionByLocale": {
+              "ru": "негибкий, не готовый менять решение или правило.",
+              "uk": "негнучкий, не готовий змінювати рішення чи правило."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to. Скажите: «Она собирается поговорить с руководителем, который не готов менять правила».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to. Скажите: «Она собирается поговорить с руководителем, который не готов менять правила».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to speak to her inflexible manager.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to. Скажите: «Она собирается поговорить с руководителем, который не готов менять правила».",
+            "uk": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to. Скажіть: «Вона збирається поговорити з керівником, який не готовий змінювати правила»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "speak",
+            "to",
+            "her",
+            "inflexible",
+            "manager"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i05:r1",
+            "text": "She is going to speak to her inflexible manager."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i05:r2",
+            "text": "She is speaking to her inflexible manager."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i05:r3",
+            "text": "She are going to speak to her inflexible manager."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i05:audio",
+            "transcript": "She is going to speak to her inflexible manager."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i05:r1",
+              "targetText": "She is going to speak to her inflexible manager.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i05:r2",
+              "targetText": "She is speaking to her inflexible manager.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i05:r3",
+              "targetText": "She are going to speak to her inflexible manager.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to speak to her inflexible manager.",
+                "uk": "У записі звучить She is going to speak to her inflexible manager."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to speak to her inflexible manager.",
+                "uk": "У записі звучить She is going to speak to her inflexible manager."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i06:r1",
+            "text": "is going to speak"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i06:r2",
+            "text": "is speaking"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i06:r3",
+            "text": "speak"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ to her inflexible manager.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i06:r1",
+              "text": "is going to speak"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i06:r2",
+              "text": "is speaking"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i06:r3",
+              "text": "speak"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to speak.",
+                "uk": "Потрібна повна форма: is going to speak."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:word:narrow-minded",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — narrow-minded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:narrow-minded:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — narrow-minded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:narrow-minded:audio",
+            "transcript": "narrow-minded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:narrow-minded:r1",
+              "targetText": "narrow-minded",
+              "meaningByLocale": {
+                "ru": "не желающий рассматривать другие взгляды.",
+                "uk": "який не бажає розглядати інші погляди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "narrow-minded",
+            "definitionByLocale": {
+              "ru": "не желающий рассматривать другие взгляды.",
+              "uk": "який не бажає розглядати інші погляди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting our narrow-minded cousin tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».",
+            "uk": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з двоюрідним братом, який не приймає інших поглядів, завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "our",
+            "narrow-minded",
+            "cousin",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i08:r1",
+            "text": "We are meeting our narrow-minded cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i08:r2",
+            "text": "We are going to meet our narrow-minded cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i08:r3",
+            "text": "We is meeting our narrow-minded cousin tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i08:audio",
+            "transcript": "We are meeting our narrow-minded cousin tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i08:r1",
+              "targetText": "We are meeting our narrow-minded cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i08:r2",
+              "targetText": "We are going to meet our narrow-minded cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i08:r3",
+              "targetText": "We is meeting our narrow-minded cousin tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our narrow-minded cousin tomorrow.",
+                "uk": "У записі звучить We are meeting our narrow-minded cousin tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our narrow-minded cousin tomorrow.",
+                "uk": "У записі звучить We are meeting our narrow-minded cousin tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+            "uk": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ our narrow-minded cousin tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i09:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i09:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i09:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:word:ungrateful",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ungrateful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:ungrateful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ungrateful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:ungrateful:audio",
+            "transcript": "ungrateful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:ungrateful:r1",
+              "targetText": "ungrateful",
+              "meaningByLocale": {
+                "ru": "неблагодарный, не ценящий сделанное для него.",
+                "uk": "невдячний, який не цінує зроблене для нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ungrateful",
+            "definitionByLocale": {
+              "ru": "неблагодарный, не ценящий сделанное для него.",
+              "uk": "невдячний, який не цінує зроблене для нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с неблагодарным другом в субботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с неблагодарным другом в субботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting their ungrateful friend on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с неблагодарным другом в субботу».",
+            "uk": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невдячним другом у суботу»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "their",
+            "ungrateful",
+            "friend",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i11:r1",
+            "text": "They are meeting their ungrateful friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i11:r2",
+            "text": "They are going to meet their ungrateful friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i11:r3",
+            "text": "They is meeting their ungrateful friend on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i11:audio",
+            "transcript": "They are meeting their ungrateful friend on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i11:r1",
+              "targetText": "They are meeting their ungrateful friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i11:r2",
+              "targetText": "They are going to meet their ungrateful friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i11:r3",
+              "targetText": "They is meeting their ungrateful friend on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their ungrateful friend on Saturday.",
+                "uk": "У записі звучить They are meeting their ungrateful friend on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their ungrateful friend on Saturday.",
+                "uk": "У записі звучить They are meeting their ungrateful friend on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their ungrateful friend on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-46:i13:p1",
+              "target": "reckless",
+              "meaningByLocale": {
+                "ru": "безрассудный, не учитывающий опасность",
+                "uk": "безрозсудний, який не зважає на небезпеку"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-46:i13:p2",
+              "target": "inflexible",
+              "meaningByLocale": {
+                "ru": "негибкий, не готовый менять решение или правило",
+                "uk": "негнучкий, не готовий змінювати рішення чи правило"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-46:i13:p3",
+              "target": "narrow-minded",
+              "meaningByLocale": {
+                "ru": "не желающий рассматривать другие взгляды",
+                "uk": "який не бажає розглядати інші погляди"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-46:i13:p4",
+              "target": "ungrateful",
+              "meaningByLocale": {
+                "ru": "неблагодарный, не ценящий сделанное для него",
+                "uk": "невдячний, який не цінує зроблене для нього"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reckless",
+            "inflexible",
+            "narrow-minded",
+            "ungrateful"
+          ],
+          "rightColumn": [
+            "безрассудный, не учитывающий опасность",
+            "негибкий, не готовый менять решение или правило",
+            "не желающий рассматривать другие взгляды",
+            "неблагодарный, не ценящий сделанное для него"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i14:audio",
+            "transcript": "I am going to talk to my brother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to talk to my brother.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "talk",
+            "to",
+            "my",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i15:audio",
+            "transcript": "We are meeting tomorrow afternoon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting tomorrow afternoon.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "tomorrow",
+            "afternoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i16:audio",
+            "transcript": "I am talking to my reckless brother tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am talking to my reckless brother tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i17:audio",
+            "transcript": "We are going to meet our narrow-minded cousin tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to meet our narrow-minded cousin tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-46:word:reckless",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reckless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:reckless:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reckless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:reckless:audio",
+            "transcript": "reckless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:reckless:r1",
+              "targetText": "reckless",
+              "meaningByLocale": {
+                "ru": "безрассудный, не учитывающий опасность.",
+                "uk": "безрозсудний, який не зважає на небезпеку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reckless",
+            "definitionByLocale": {
+              "ru": "безрассудный, не учитывающий опасность.",
+              "uk": "безрозсудний, який не зважає на небезпеку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to. Скажіть: «Я збираюся поговорити з братом, який нехтує небезпекою».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to. Скажіть: «Я збираюся поговорити з братом, який нехтує небезпекою».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to talk to my reckless brother.",
+          "localizedMeaning": {
+            "ru": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to. Скажите: «Я собираюсь поговорить с братом, который пренебрегает опасностью».",
+            "uk": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to. Скажіть: «Я збираюся поговорити з братом, який нехтує небезпекою»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "talk",
+            "to",
+            "my",
+            "reckless",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i02:r1",
+            "text": "I am going to talk to my reckless brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i02:r2",
+            "text": "I am talking to my reckless brother."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i02:r3",
+            "text": "I is going to talk to my reckless brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i02:audio",
+            "transcript": "I am going to talk to my reckless brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i02:r1",
+              "targetText": "I am going to talk to my reckless brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i02:r2",
+              "targetText": "I am talking to my reckless brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i02:r3",
+              "targetText": "I is going to talk to my reckless brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to talk to my reckless brother.",
+                "uk": "У записі звучить I am going to talk to my reckless brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to talk to my reckless brother.",
+                "uk": "У записі звучить I am going to talk to my reckless brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i03:r1",
+            "text": "am going to talk"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i03:r2",
+            "text": "am talking"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i03:r3",
+            "text": "talk"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.",
+            "uk": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ to my reckless brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i03:r1",
+              "text": "am going to talk"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i03:r2",
+              "text": "am talking"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i03:r3",
+              "text": "talk"
+            }
+          ],
+          "testedDimension": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to talk.",
+                "uk": "Потрібна повна форма: am going to talk."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:word:inflexible",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — inflexible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:inflexible:audio"
+        ],
+        "accessibilityLabel": "Картка слова — inflexible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:inflexible:audio",
+            "transcript": "inflexible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:inflexible:r1",
+              "targetText": "inflexible",
+              "meaningByLocale": {
+                "ru": "негибкий, не готовый менять решение или правило.",
+                "uk": "негнучкий, не готовий змінювати рішення чи правило."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "inflexible",
+            "definitionByLocale": {
+              "ru": "негибкий, не готовый менять решение или правило.",
+              "uk": "негнучкий, не готовий змінювати рішення чи правило."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to. Скажіть: «Вона збирається поговорити з керівником, який не готовий змінювати правила».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to. Скажіть: «Вона збирається поговорити з керівником, який не готовий змінювати правила».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to speak to her inflexible manager.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to. Скажите: «Она собирается поговорить с руководителем, который не готов менять правила».",
+            "uk": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to. Скажіть: «Вона збирається поговорити з керівником, який не готовий змінювати правила»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "speak",
+            "to",
+            "her",
+            "inflexible",
+            "manager"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i05:r1",
+            "text": "She is going to speak to her inflexible manager."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i05:r2",
+            "text": "She is speaking to her inflexible manager."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i05:r3",
+            "text": "She are going to speak to her inflexible manager."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i05:audio",
+            "transcript": "She is going to speak to her inflexible manager."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i05:r1",
+              "targetText": "She is going to speak to her inflexible manager.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i05:r2",
+              "targetText": "She is speaking to her inflexible manager.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i05:r3",
+              "targetText": "She are going to speak to her inflexible manager.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to speak to her inflexible manager.",
+                "uk": "У записі звучить She is going to speak to her inflexible manager."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to speak to her inflexible manager.",
+                "uk": "У записі звучить She is going to speak to her inflexible manager."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i06:r1",
+            "text": "is going to speak"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i06:r2",
+            "text": "is speaking"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i06:r3",
+            "text": "speak"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ to her inflexible manager.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i06:r1",
+              "text": "is going to speak"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i06:r2",
+              "text": "is speaking"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i06:r3",
+              "text": "speak"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to speak.",
+                "uk": "Потрібна повна форма: is going to speak."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:word:narrow-minded",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — narrow-minded",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:narrow-minded:audio"
+        ],
+        "accessibilityLabel": "Картка слова — narrow-minded",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:narrow-minded:audio",
+            "transcript": "narrow-minded"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:narrow-minded:r1",
+              "targetText": "narrow-minded",
+              "meaningByLocale": {
+                "ru": "не желающий рассматривать другие взгляды.",
+                "uk": "який не бажає розглядати інші погляди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "narrow-minded",
+            "definitionByLocale": {
+              "ru": "не желающий рассматривать другие взгляды.",
+              "uk": "який не бажає розглядати інші погляди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з двоюрідним братом, який не приймає інших поглядів, завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з двоюрідним братом, який не приймає інших поглядів, завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting our narrow-minded cousin tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».",
+            "uk": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з двоюрідним братом, який не приймає інших поглядів, завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "our",
+            "narrow-minded",
+            "cousin",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i08:r1",
+            "text": "We are meeting our narrow-minded cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i08:r2",
+            "text": "We are going to meet our narrow-minded cousin tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i08:r3",
+            "text": "We is meeting our narrow-minded cousin tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i08:audio",
+            "transcript": "We are meeting our narrow-minded cousin tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i08:r1",
+              "targetText": "We are meeting our narrow-minded cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i08:r2",
+              "targetText": "We are going to meet our narrow-minded cousin tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i08:r3",
+              "targetText": "We is meeting our narrow-minded cousin tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our narrow-minded cousin tomorrow.",
+                "uk": "У записі звучить We are meeting our narrow-minded cousin tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting our narrow-minded cousin tomorrow.",
+                "uk": "У записі звучить We are meeting our narrow-minded cousin tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.",
+            "uk": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ our narrow-minded cousin tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i09:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i09:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i09:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:word:ungrateful",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ungrateful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:word:ungrateful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ungrateful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:word:ungrateful:audio",
+            "transcript": "ungrateful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:word:ungrateful:r1",
+              "targetText": "ungrateful",
+              "meaningByLocale": {
+                "ru": "неблагодарный, не ценящий сделанное для него.",
+                "uk": "невдячний, який не цінує зроблене для нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ungrateful",
+            "definitionByLocale": {
+              "ru": "неблагодарный, не ценящий сделанное для него.",
+              "uk": "невдячний, який не цінує зроблене для нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невдячним другом у суботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невдячним другом у суботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting their ungrateful friend on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с неблагодарным другом в субботу».",
+            "uk": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невдячним другом у суботу»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "their",
+            "ungrateful",
+            "friend",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i11:r1",
+            "text": "They are meeting their ungrateful friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i11:r2",
+            "text": "They are going to meet their ungrateful friend on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i11:r3",
+            "text": "They is meeting their ungrateful friend on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i11:audio",
+            "transcript": "They are meeting their ungrateful friend on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-46:i11:r1",
+              "targetText": "They are meeting their ungrateful friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i11:r2",
+              "targetText": "They are going to meet their ungrateful friend on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i11:r3",
+              "targetText": "They is meeting their ungrateful friend on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their ungrateful friend on Saturday.",
+                "uk": "У записі звучить They are meeting their ungrateful friend on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting their ungrateful friend on Saturday.",
+                "uk": "У записі звучить They are meeting their ungrateful friend on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-46:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-46:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their ungrateful friend on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-46:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-46:i13:p1",
+              "target": "reckless",
+              "meaningByLocale": {
+                "ru": "безрассудный, не учитывающий опасность",
+                "uk": "безрозсудний, який не зважає на небезпеку"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-46:i13:p2",
+              "target": "inflexible",
+              "meaningByLocale": {
+                "ru": "негибкий, не готовый менять решение или правило",
+                "uk": "негнучкий, не готовий змінювати рішення чи правило"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-46:i13:p3",
+              "target": "narrow-minded",
+              "meaningByLocale": {
+                "ru": "не желающий рассматривать другие взгляды",
+                "uk": "який не бажає розглядати інші погляди"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-46:i13:p4",
+              "target": "ungrateful",
+              "meaningByLocale": {
+                "ru": "неблагодарный, не ценящий сделанное для него",
+                "uk": "невдячний, який не цінує зроблене для нього"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reckless",
+            "inflexible",
+            "narrow-minded",
+            "ungrateful"
+          ],
+          "rightColumn": [
+            "безрозсудний, який не зважає на небезпеку",
+            "негнучкий, не готовий змінювати рішення чи правило",
+            "який не бажає розглядати інші погляди",
+            "невдячний, який не цінує зроблене для нього"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i14:audio",
+            "transcript": "I am going to talk to my brother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to talk to my brother.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "talk",
+            "to",
+            "my",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i15:audio",
+            "transcript": "We are meeting tomorrow afternoon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting tomorrow afternoon.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "tomorrow",
+            "afternoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i16:audio",
+            "transcript": "I am talking to my reckless brother tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am talking to my reckless brother tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-46:i17:audio",
+            "transcript": "We are going to meet our narrow-minded cousin tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to meet our narrow-minded cousin tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-46:word:reckless",
+      "correctText": "reckless",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i01",
+      "correctText": "I am going to talk to my reckless brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i02",
+      "correctText": "I am going to talk to my reckless brother.",
+      "correctResponseId": "en:lesson-15:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i03",
+      "correctText": "am going to talk",
+      "correctResponseId": "en:lesson-15:session-46:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:word:inflexible",
+      "correctText": "inflexible",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i04",
+      "correctText": "She is going to speak to her inflexible manager.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i05",
+      "correctText": "She is going to speak to her inflexible manager.",
+      "correctResponseId": "en:lesson-15:session-46:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i06",
+      "correctText": "is going to speak",
+      "correctResponseId": "en:lesson-15:session-46:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:word:narrow-minded",
+      "correctText": "narrow-minded",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i07",
+      "correctText": "We are meeting our narrow-minded cousin tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i08",
+      "correctText": "We are meeting our narrow-minded cousin tomorrow.",
+      "correctResponseId": "en:lesson-15:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i09",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-46:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:word:ungrateful",
+      "correctText": "ungrateful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i10",
+      "correctText": "They are meeting their ungrateful friend on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i11",
+      "correctText": "They are meeting their ungrateful friend on Saturday.",
+      "correctResponseId": "en:lesson-15:session-46:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i12",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-46:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i14",
+      "correctText": "I am going to talk to my brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i15",
+      "correctText": "We are meeting tomorrow afternoon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i16",
+      "correctText": "I am talking to my reckless brother tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-46:i17",
+      "correctText": "We are going to meet our narrow-minded cousin tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

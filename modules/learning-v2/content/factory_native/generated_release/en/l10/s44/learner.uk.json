@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-44:word:quorum",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quorum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:word:quorum:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quorum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:word:quorum:audio",
+          "transcript": "quorum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:word:quorum:r1",
+            "targetText": "quorum",
+            "meaningByLocale": {
+              "ru": "«кворум». We have a quorum. — «У нас есть кворум». Минимальное число участников, необходимое для принятия решений на собрании.",
+              "uk": "«кворум». We have a quorum. — «У нас є кворум». Мінімальна кількість учасників, потрібна для ухвалення рішень на зборах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quorum",
+          "definitionByLocale": {
+            "ru": "«кворум». We have a quorum. — «У нас есть кворум». Минимальное число участников, необходимое для принятия решений на собрании.",
+            "uk": "«кворум». We have a quorum. — «У нас є кворум». Мінімальна кількість учасників, потрібна для ухвалення рішень на зборах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Для рішень клубу потрібні шість учасників. Усі шестеро прийшли. Повідомте: «У нас є кворум»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для рішень клубу потрібні шість учасників. Усі шестеро прийшли. Повідомте: «У нас є кворум»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have a quorum.",
+        "localizedMeaning": {
+          "ru": "Для решений клуба нужны шесть участников. Все шестеро пришли. Сообщите: «У нас есть кворум»",
+          "uk": "Для рішень клубу потрібні шість учасників. Усі шестеро прийшли. Повідомте: «У нас є кворум»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "quorum"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i02:r1",
+          "text": "The quorum is six members."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i02:r2",
+          "text": "The quorum is seven members."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i02:r3",
+          "text": "The quorum is six people."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i02:audio",
+          "transcript": "The quorum is six members."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:i02:r1",
+            "targetText": "The quorum is six members.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i02:r2",
+            "targetText": "The quorum is seven members.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i02:r3",
+            "targetText": "The quorum is six people.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The quorum is six members.",
+              "uk": "У записі звучить The quorum is six members."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The quorum is six members.",
+              "uk": "У записі звучить The quorum is six members."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Достатня кількість учасників уже тут. Виберіть have",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i03:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i03:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i03:r3",
+          "text": "are have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Достатня кількість учасників уже тут. Виберіть have",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Достаточное число участников уже здесь. Выберите have",
+          "uk": "Достатня кількість учасників уже тут. Виберіть have"
+        },
+        "gappedTargetPhrase": "We ___ a quorum.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-44:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i03:r3",
+            "text": "are have"
+          }
+        ],
+        "testedDimension": "Достатня кількість учасників уже тут. Виберіть have",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Достатня кількість учасників уже тут. Виберіть have",
+            "feedbackByLocale": {
+              "ru": "С we нужна have.",
+              "uk": "З we потрібна have."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Достатня кількість учасників уже тут. Виберіть have",
+            "feedbackByLocale": {
+              "ru": "Are have неверно; здесь нужна have.",
+              "uk": "Are have неправильно; тут потрібна have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:word:motion",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — motion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:word:motion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — motion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:word:motion:audio",
+          "transcript": "motion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:word:motion:r1",
+            "targetText": "motion",
+            "meaningByLocale": {
+              "ru": "«предложение для голосования». We are discussing the motion. — «Мы обсуждаем предложение для голосования». Здесь официальное предложение на заседании, не движение.",
+              "uk": "«пропозиція для голосування». We are discussing the motion. — «Ми обговорюємо пропозицію для голосування». Тут офіційна пропозиція на засіданні, не рух."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "motion",
+          "definitionByLocale": {
+            "ru": "«предложение для голосования». We are discussing the motion. — «Мы обсуждаем предложение для голосования». Здесь официальное предложение на заседании, не движение.",
+            "uk": "«пропозиція для голосування». We are discussing the motion. — «Ми обговорюємо пропозицію для голосування». Тут офіційна пропозиція на засіданні, не рух."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Учасник запропонував змінити час зустрічей. Обговорення триває зараз. Скажіть: «Ми обговорюємо пропозицію для голосування»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учасник запропонував змінити час зустрічей. Обговорення триває зараз. Скажіть: «Ми обговорюємо пропозицію для голосування»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are discussing the motion.",
+        "localizedMeaning": {
+          "ru": "Участник предложил изменить время встреч. Обсуждение идёт сейчас. Скажите: «Мы обсуждаем предложение для голосования»",
+          "uk": "Учасник запропонував змінити час зустрічей. Обговорення триває зараз. Скажіть: «Ми обговорюємо пропозицію для голосування»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "discussing",
+          "the",
+          "motion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i05:r1",
+          "text": "The motion is on the agenda."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i05:r2",
+          "text": "The motion is in the email."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i05:r3",
+          "text": "The question is on the agenda."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i05:audio",
+          "transcript": "The motion is on the agenda."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:i05:r1",
+            "targetText": "The motion is on the agenda.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i05:r2",
+            "targetText": "The motion is in the email.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i05:r3",
+            "targetText": "The question is on the agenda.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The motion is on the agenda.",
+              "uk": "У записі звучить The motion is on the agenda."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The motion is on the agenda.",
+              "uk": "У записі звучить The motion is on the agenda."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обсуждаете предложение сейчас. Выберите связку",
+          "uk": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "We ___ discussing the motion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-44:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "С we нужна are.",
+              "uk": "З we потрібна are."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; с we нужна are.",
+              "uk": "Am уживається з I; з we потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:word:amendment",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — amendment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:word:amendment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — amendment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:word:amendment:audio",
+          "transcript": "amendment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:word:amendment:r1",
+            "targetText": "amendment",
+            "meaningByLocale": {
+              "ru": "«поправка». The amendment is clear. — «Поправка понятна». Здесь предложенное изменение текста обсуждаемого предложения.",
+              "uk": "«поправка». The amendment is clear. — «Поправка зрозуміла». Тут запропонована зміна тексту обговорюваної пропозиції."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "amendment",
+          "definitionByLocale": {
+            "ru": "«поправка». The amendment is clear. — «Поправка понятна». Здесь предложенное изменение текста обсуждаемого предложения.",
+            "uk": "«поправка». The amendment is clear. — «Поправка зрозуміла». Тут запропонована зміна тексту обговорюваної пропозиції."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега уточнив зміну до пропозиції. Скажіть: «Поправка зрозуміла»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега уточнив зміну до пропозиції. Скажіть: «Поправка зрозуміла»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The amendment is clear.",
+        "localizedMeaning": {
+          "ru": "Коллега уточнил изменение к предложению. Скажите: «Поправка понятна»",
+          "uk": "Колега уточнив зміну до пропозиції. Скажіть: «Поправка зрозуміла»"
+        },
+        "orderedTokens": [
+          "The",
+          "amendment",
+          "is",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i08:r1",
+          "text": "I am reading the amendment."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i08:r2",
+          "text": "I am writing the amendment."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i08:r3",
+          "text": "I am reading the agenda."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i08:audio",
+          "transcript": "I am reading the amendment."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:i08:r1",
+            "targetText": "I am reading the amendment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i08:r2",
+            "targetText": "I am writing the amendment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i08:r3",
+            "targetText": "I am reading the agenda.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am reading the amendment.",
+              "uk": "У записі звучить I am reading the amendment."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am reading the amendment.",
+              "uk": "У записі звучить I am reading the amendment."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про одну поправку. Виберіть зв’язку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про одну поправку. Виберіть зв’язку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одной поправке. Выберите связку",
+          "uk": "Ідеться про одну поправку. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The amendment ___ clear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-44:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ідеться про одну поправку. Виберіть зв’язку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про одну поправку. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "Одна поправка: is.",
+              "uk": "Одна поправка: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про одну поправку. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:word:ballot",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ballot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:word:ballot:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ballot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:word:ballot:audio",
+          "transcript": "ballot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:word:ballot:r1",
+            "targetText": "ballot",
+            "meaningByLocale": {
+              "ru": "«голосование». We are holding a secret ballot. — «Мы проводим тайное голосование». Здесь процедура голосования, а не отдельный бюллетень.",
+              "uk": "«голосування». We are holding a secret ballot. — «Ми проводимо таємне голосування». Тут процедура голосування, а не окремий бюлетень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ballot",
+          "definitionByLocale": {
+            "ru": "«голосование». We are holding a secret ballot. — «Мы проводим тайное голосование». Здесь процедура голосования, а не отдельный бюллетень.",
+            "uk": "«голосування». We are holding a secret ballot. — «Ми проводимо таємне голосування». Тут процедура голосування, а не окремий бюлетень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Члени клубу зараз голосують, не розкриваючи свого вибору іншим. Скажіть: «Ми проводимо таємне голосування»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Члени клубу зараз голосують, не розкриваючи свого вибору іншим. Скажіть: «Ми проводимо таємне голосування»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are holding a secret ballot.",
+        "localizedMeaning": {
+          "ru": "Члены клуба сейчас голосуют, не раскрывая свой выбор другим. Скажите: «Мы проводим тайное голосование»",
+          "uk": "Члени клубу зараз голосують, не розкриваючи свого вибору іншим. Скажіть: «Ми проводимо таємне голосування»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "holding",
+          "a",
+          "secret",
+          "ballot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i11:r1",
+          "text": "The ballot is after the discussion."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i11:r2",
+          "text": "The ballot is before the discussion."
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i11:r3",
+          "text": "The break is after the discussion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i11:audio",
+          "transcript": "The ballot is after the discussion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-44:i11:r1",
+            "targetText": "The ballot is after the discussion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i11:r2",
+            "targetText": "The ballot is before the discussion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i11:r3",
+            "targetText": "The break is after the discussion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ballot is after the discussion.",
+              "uk": "У записі звучить The ballot is after the discussion."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ballot is after the discussion.",
+              "uk": "У записі звучить The ballot is after the discussion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Голосування триває зараз. Виберіть форму holding",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-44:i12:r1",
+          "text": "holding"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i12:r2",
+          "text": "hold"
+        },
+        {
+          "responseId": "en:lesson-10:session-44:i12:r3",
+          "text": "holds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Голосування триває зараз. Виберіть форму holding",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Голосование идёт сейчас. Выберите форму holding",
+          "uk": "Голосування триває зараз. Виберіть форму holding"
+        },
+        "gappedTargetPhrase": "We are ___ a secret ballot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-44:i12:r1",
+            "text": "holding"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i12:r2",
+            "text": "hold"
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i12:r3",
+            "text": "holds"
+          }
+        ],
+        "testedDimension": "Голосування триває зараз. Виберіть форму holding",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Голосування триває зараз. Виберіть форму holding",
+            "feedbackByLocale": {
+              "ru": "После are здесь нужна holding.",
+              "uk": "Після are тут потрібна holding."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Голосування триває зараз. Виберіть форму holding",
+            "feedbackByLocale": {
+              "ru": "Для действия сейчас нужна holding.",
+              "uk": "Для дії зараз потрібна holding."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-44:i13:p1",
+            "target": "quorum",
+            "meaningByLocale": {
+              "ru": "кворум",
+              "uk": "кворум"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-44:i13:p2",
+            "target": "motion",
+            "meaningByLocale": {
+              "ru": "предложение для голосования",
+              "uk": "пропозиція для голосування"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-44:i13:p3",
+            "target": "amendment",
+            "meaningByLocale": {
+              "ru": "поправка",
+              "uk": "поправка"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-44:i13:p4",
+            "target": "ballot",
+            "meaningByLocale": {
+              "ru": "голосование",
+              "uk": "голосування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "quorum",
+          "motion",
+          "amendment",
+          "ballot"
+        ],
+        "rightColumn": [
+          "кворум",
+          "пропозиція для голосування",
+          "поправка",
+          "голосування"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i14:audio",
+          "transcript": "We are discussing the motion."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are discussing the motion.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "discussing",
+          "the",
+          "motion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учасник запитує, як часто комітет розглядає порядок денний. Скажіть: «Ми розглядаємо порядок денний щомісяця»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Учасник запитує, як часто комітет розглядає порядок денний. Скажіть: «Ми розглядаємо порядок денний щомісяця»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i15:audio",
+          "transcript": "We review the agenda every month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We review the agenda every month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Потрібна кількість учасників зібралася. Скажіть: «У нас є кворум»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Потрібна кількість учасників зібралася. Скажіть: «У нас є кворум»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have a quorum.",
+        "localizedMeaning": {
+          "ru": "Нужное число участников собралось. Скажите: «У нас есть кворум»",
+          "uk": "Потрібна кількість учасників зібралася. Скажіть: «У нас є кворум»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "quorum"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега прийшов після початку засідання. Зараз учасники обговорюють офіційну пропозицію змінити час зустрічей. Поясніть: «Ми обговорюємо пропозицію для голосування»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Колега прийшов після початку засідання. Зараз учасники обговорюють офіційну пропозицію змінити час зустрічей. Поясніть: «Ми обговорюємо пропозицію для голосування»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i17:audio",
+          "transcript": "We are discussing the motion."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are discussing the motion.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "67679fac2c874c8fbe85619080bb89dc66535cfb9639f5de275256a0b0e797fd"
+}

@@ -3836,4 +3836,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We have a briefing every morning; I am reading the circular; She is giving us a rundown","uk":"We have a briefing every morning; I am reading the circular; She is giving us a rundown"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 44,
+    sourceFingerprint: "4c15d60cd9eca95624616354ce8bbfa43a692cdd0f485073930621b80f82ba2a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We review the agenda every month; We have a quorum; We are discussing the motion","uk":"We review the agenda every month; We have a quorum; We are discussing the motion"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

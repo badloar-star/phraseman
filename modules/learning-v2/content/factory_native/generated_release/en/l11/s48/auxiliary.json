@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-48:intro1:r2": {
+          "ru": "Один мяч: was.",
+          "uk": "Один м’яч: was."
+        },
+        "en:lesson-11:session-48:intro1:r3": {
+          "ru": "Under — под; on означало бы сверху на зонте.",
+          "uk": "Under — під; on означало б зверху на парасолі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-48:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-48:intro2:r3": {
+          "ru": "Одна сумка: was.",
+          "uk": "Одна сумка: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-48:intro3:r2": {
+          "ru": "Три ракушки: were.",
+          "uk": "Три мушлі: were."
+        },
+        "en:lesson-11:session-48:intro3:r3": {
+          "ru": "A seashell — одна, а нужно три.",
+          "uk": "A seashell — одна, а потрібно три."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aeebc69d65e1910bed252c4a8836fbf6468d4ef4849a924b90e0f72d623598e6"
+}

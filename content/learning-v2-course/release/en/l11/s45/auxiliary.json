@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-45:intro1:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-45:intro1:r3": {
+          "ru": "Одна корзина: was.",
+          "uk": "Один кошик: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-45:intro2:r2": {
+          "ru": "Одна сумка: was.",
+          "uk": "Одна сумка: was."
+        },
+        "en:lesson-11:session-45:intro2:r3": {
+          "ru": "Нужна машина, не кухня.",
+          "uk": "Потрібна машина, не кухня."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-45:intro3:r2": {
+          "ru": "Четыре предмета: were.",
+          "uk": "Чотири предмети: were."
+        },
+        "en:lesson-11:session-45:intro3:r3": {
+          "ru": "A paper plate — одна тарелка, а нужно четыре.",
+          "uk": "A paper plate — одна тарілка, а потрібно чотири."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f7891725fa709254772d51f0a618a9be58da0f779b5f66abb93eab4c5ad228f7"
+}

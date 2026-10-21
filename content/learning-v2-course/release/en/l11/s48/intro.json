@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мяч и зонт",
+        "uk": "М’яч і парасоля"
+      },
+      "bodyByLocale": {
+        "ru": "Beach ball — «пляжный мяч», обычно лёгкий надувной мяч. Beach umbrella — «пляжный зонт». Вчера мяч был под зонтом: The beach ball was under the beach umbrella. Выберите эту фразу.",
+        "uk": "Beach ball — «пляжний м’яч», зазвичай легкий надувний м’яч. Beach umbrella — «пляжна парасоля». Учора м’яч був під парасолею: The beach ball was under the beach umbrella. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-48:intro1:r1",
+              "text": "The beach ball was under the beach umbrella."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro1:r2",
+              "text": "The beach ball were under the beach umbrella."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro1:r3",
+              "text": "The beach ball was on the beach umbrella."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-48:intro1:r1",
+              "text": "The beach ball was under the beach umbrella."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro1:r2",
+              "text": "The beach ball were under the beach umbrella."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro1:r3",
+              "text": "The beach ball was on the beach umbrella."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пляжная сумка",
+        "uk": "Пляжна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Beach bag — «пляжная сумка». Вчера она была мокрой: The beach bag was wet yesterday. Сейчас она сухая: It is dry now. Выберите сообщение о вчерашнем состоянии сумки.",
+        "uk": "Beach bag — «пляжна сумка». Учора вона була мокра: The beach bag was wet yesterday. Зараз вона суха: It is dry now. Виберіть повідомлення про вчорашній стан сумки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-48:intro2:r1",
+              "text": "The beach bag was wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro2:r2",
+              "text": "The beach bag is wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro2:r3",
+              "text": "The beach bag were wet yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-48:intro2:r1",
+              "text": "The beach bag was wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro2:r2",
+              "text": "The beach bag is wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro2:r3",
+              "text": "The beach bag were wet yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Морская ракушка",
+        "uk": "Морська мушля"
+      },
+      "bodyByLocale": {
+        "ru": "Seashell — «морская ракушка». Одно слово пишется слитно. Вчера на песке лежали три ракушки: There were three seashells on the sand. Несколько предметов — were. Выберите эту фразу.",
+        "uk": "Seashell — «морська мушля». Одне слово пишеться разом. Учора на піску лежали три мушлі: There were three seashells on the sand. Кілька предметів — were. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-48:intro3:r1",
+              "text": "There were three seashells on the sand."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro3:r2",
+              "text": "There was three seashells on the sand."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro3:r3",
+              "text": "There were a seashell on the sand."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-48:intro3:r1",
+              "text": "There were three seashells on the sand."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro3:r2",
+              "text": "There was three seashells on the sand."
+            },
+            {
+              "responseId": "en:lesson-11:session-48:intro3:r3",
+              "text": "There were a seashell on the sand."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8e3641212a2e6bf05117a025ba8ce33f11f6c77bee996bbde8d6e32dcf169a65"
+}

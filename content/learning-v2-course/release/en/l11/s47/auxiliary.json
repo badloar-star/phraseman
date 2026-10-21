@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-47:intro1:r2": {
+          "ru": "Вы уже знакомы: приветствуем возвращение, а не знакомимся.",
+          "uk": "Ви вже знайомі: вітаємо повернення, а не знайомимося."
+        },
+        "en:lesson-11:session-47:intro1:r3": {
+          "ru": "Good night говорят перед сном; друг только что вернулся.",
+          "uk": "Good night кажуть перед сном; друг щойно повернувся."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-47:intro2:r2": {
+          "ru": "Друг ниоткуда не возвращался; он болен.",
+          "uk": "Друг нізвідки не повертався; він хворіє."
+        },
+        "en:lesson-11:session-47:intro2:r3": {
+          "ru": "Вы уже знакомы; сейчас нужно пожелать выздоровления.",
+          "uk": "Ви вже знайомі; зараз потрібно побажати одужання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-47:intro3:r2": {
+          "ru": "Welcome back говорят после возвращения.",
+          "uk": "Welcome back кажуть після повернення."
+        },
+        "en:lesson-11:session-47:intro3:r3": {
+          "ru": "Was спрашивает об уже прошедшей поездке.",
+          "uk": "Was запитує про подорож, що вже минула."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "02d11b40c6f62d8664f9ee7b2c59d01fc4a96656ff464068b055f772aa4a131e"
+}

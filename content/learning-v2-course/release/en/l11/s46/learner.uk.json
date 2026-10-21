@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-46:word:hand-cream",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hand cream",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:word:hand-cream:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hand cream",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:word:hand-cream:audio",
+          "transcript": "hand cream"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:word:hand-cream:r1",
+            "targetText": "hand cream",
+            "meaningByLocale": {
+              "ru": "крем для рук.",
+              "uk": "крем для рук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hand cream",
+          "definitionByLocale": {
+            "ru": "крем для рук.",
+            "uk": "крем для рук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був крем для рук у сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був крем для рук у сумці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the hand cream in the bag?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли крем для рук в сумке",
+          "uk": "Запитайте, чи був крем для рук у сумці"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "hand",
+          "cream",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i02:r1",
+          "text": "The hand cream was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i02:r2",
+          "text": "The hand cream is on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i02:r3",
+          "text": "The hand cream was on the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i02:audio",
+          "transcript": "The hand cream was on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:i02:r1",
+            "targetText": "The hand cream was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i02:r2",
+            "targetText": "The hand cream is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i02:r3",
+            "targetText": "The hand cream was on the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The hand cream was on the table.",
+              "uk": "У записі звучить The hand cream was on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The hand cream was on the table.",
+              "uk": "У записі звучить The hand cream was on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора крем для рук був у ванній. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора крем для рук був у ванній. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера крем для рук был в ванной. Выберите форму",
+          "uk": "Учора крем для рук був у ванній. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The hand cream ___ in the bathroom yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-46:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора крем для рук був у ванній. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора крем для рук був у ванній. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора крем для рук був у ванній. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С hand cream здесь нужна was.",
+              "uk": "З hand cream тут потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:word:lip-balm",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lip balm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:word:lip-balm:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lip balm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:word:lip-balm:audio",
+          "transcript": "lip balm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:word:lip-balm:r1",
+            "targetText": "lip balm",
+            "meaningByLocale": {
+              "ru": "бальзам для губ.",
+              "uk": "бальзам для губ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lip balm",
+          "definitionByLocale": {
+            "ru": "бальзам для губ.",
+            "uk": "бальзам для губ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: бальзам для губ був не в кишені",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: бальзам для губ був не в кишені",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The lip balm was not in my pocket.",
+        "localizedMeaning": {
+          "ru": "Сообщите: бальзам для губ был не в кармане",
+          "uk": "Повідомте: бальзам для губ був не в кишені"
+        },
+        "orderedTokens": [
+          "The",
+          "lip",
+          "balm",
+          "was",
+          "not",
+          "in",
+          "my",
+          "pocket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i05:r1",
+          "text": "The lip balm was near the mirror."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i05:r2",
+          "text": "The lip balm was in the bag."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i05:r3",
+          "text": "The lip balm is near the mirror."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i05:audio",
+          "transcript": "The lip balm was near the mirror."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:i05:r1",
+            "targetText": "The lip balm was near the mirror.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i05:r2",
+            "targetText": "The lip balm was in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i05:r3",
+            "targetText": "The lip balm is near the mirror.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lip balm was near the mirror.",
+              "uk": "У записі звучить The lip balm was near the mirror."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lip balm was near the mirror.",
+              "uk": "У записі звучить The lip balm was near the mirror."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз бальзам для губ тут. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз бальзам для губ тут. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас бальзам для губ здесь. Выберите форму",
+          "uk": "Зараз бальзам для губ тут. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The lip balm ___ here now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-46:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз бальзам для губ тут. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Зараз бальзам для губ тут. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Зараз бальзам для губ тут. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С lip balm здесь нужна is.",
+              "uk": "З lip balm тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:word:shaving-foam",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shaving foam",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:word:shaving-foam:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shaving foam",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:word:shaving-foam:audio",
+          "transcript": "shaving foam"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:word:shaving-foam:r1",
+            "targetText": "shaving foam",
+            "meaningByLocale": {
+              "ru": "пена для бритья.",
+              "uk": "піна для гоління."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shaving foam",
+          "definitionByLocale": {
+            "ru": "пена для бритья.",
+            "uk": "піна для гоління."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: піна для гоління була в шафі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: піна для гоління була в шафі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shaving foam was in the cupboard.",
+        "localizedMeaning": {
+          "ru": "Сообщите: пена для бритья была в шкафу",
+          "uk": "Повідомте: піна для гоління була в шафі"
+        },
+        "orderedTokens": [
+          "The",
+          "shaving",
+          "foam",
+          "was",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i08:r1",
+          "text": "The shaving foam was near the towel."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i08:r2",
+          "text": "The shaving foam is near the towel."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i08:r3",
+          "text": "The shaving foam was near the mirror."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i08:audio",
+          "transcript": "The shaving foam was near the towel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:i08:r1",
+            "targetText": "The shaving foam was near the towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i08:r2",
+            "targetText": "The shaving foam is near the towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i08:r3",
+            "targetText": "The shaving foam was near the mirror.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shaving foam was near the towel.",
+              "uk": "У записі звучить The shaving foam was near the towel."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shaving foam was near the towel.",
+              "uk": "У записі звучить The shaving foam was near the towel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора піна для гоління була у ванній. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора піна для гоління була у ванній. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера пена для бритья была в ванной. Выберите форму",
+          "uk": "Учора піна для гоління була у ванній. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The shaving foam ___ in the bathroom yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-46:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора піна для гоління була у ванній. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора піна для гоління була у ванній. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора піна для гоління була у ванній. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С shaving foam здесь нужна was.",
+              "uk": "З shaving foam тут потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:word:body-lotion",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — body lotion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:word:body-lotion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — body lotion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:word:body-lotion:audio",
+          "transcript": "body lotion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:word:body-lotion:r1",
+            "targetText": "body lotion",
+            "meaningByLocale": {
+              "ru": "лосьон для тела.",
+              "uk": "лосьйон для тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "body lotion",
+          "definitionByLocale": {
+            "ru": "лосьон для тела.",
+            "uk": "лосьйон для тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був лосьйон для тіла в сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був лосьйон для тіла в сумці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the body lotion in the bag?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли лосьон для тела в сумке",
+          "uk": "Запитайте, чи був лосьйон для тіла в сумці"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "body",
+          "lotion",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i11:r1",
+          "text": "The body lotion was on the shelf."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i11:r2",
+          "text": "The body lotion was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i11:r3",
+          "text": "The body lotion is on the shelf."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i11:audio",
+          "transcript": "The body lotion was on the shelf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-46:i11:r1",
+            "targetText": "The body lotion was on the shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i11:r2",
+            "targetText": "The body lotion was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i11:r3",
+            "targetText": "The body lotion is on the shelf.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The body lotion was on the shelf.",
+              "uk": "У записі звучить The body lotion was on the shelf."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The body lotion was on the shelf.",
+              "uk": "У записі звучить The body lotion was on the shelf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора лосьйон для тіла був біля дзеркала. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-46:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-46:i12:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора лосьйон для тіла був біля дзеркала. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера лосьон для тела был у зеркала. Выберите форму",
+          "uk": "Учора лосьйон для тіла був біля дзеркала. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The body lotion ___ near the mirror yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-46:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i12:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора лосьйон для тіла був біля дзеркала. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора лосьйон для тіла був біля дзеркала. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора лосьйон для тіла був біля дзеркала. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С body lotion здесь нужна was.",
+              "uk": "З body lotion тут потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте засоби з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте засоби з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-46:i13:p1",
+            "target": "hand cream",
+            "meaningByLocale": {
+              "ru": "крем для рук",
+              "uk": "крем для рук"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-46:i13:p2",
+            "target": "lip balm",
+            "meaningByLocale": {
+              "ru": "бальзам для губ",
+              "uk": "бальзам для губ"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-46:i13:p3",
+            "target": "shaving foam",
+            "meaningByLocale": {
+              "ru": "пена для бритья",
+              "uk": "піна для гоління"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-46:i13:p4",
+            "target": "body lotion",
+            "meaningByLocale": {
+              "ru": "лосьон для тела",
+              "uk": "лосьйон для тіла"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hand cream",
+          "lip balm",
+          "shaving foam",
+          "body lotion"
+        ],
+        "rightColumn": [
+          "крем для рук",
+          "бальзам для губ",
+          "піна для гоління",
+          "лосьйон для тіла"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i14:audio",
+          "transcript": "Please don't move my things."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my things.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "things"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i15:audio",
+          "transcript": "I am looking for my bag right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am looking for my bag right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "looking",
+          "for",
+          "my",
+          "bag",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що бальзам для губ був на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що бальзам для губ був на столі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i16:audio",
+          "transcript": "The lip balm was on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lip balm was on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що крем для рук і лосьйон для тіла були в сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що крем для рук і лосьйон для тіла були в сумці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-46:i17:audio",
+          "transcript": "The hand cream and the body lotion were in the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The hand cream and the body lotion were in the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a23ecb6e95de6a3a624c74cced278fb1240e7bca455c99e88107bb28e99b685e"
+}

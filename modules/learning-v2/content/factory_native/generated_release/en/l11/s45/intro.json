@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Корзина и плед",
+        "uk": "Кошик і плед"
+      },
+      "bodyByLocale": {
+        "ru": "Picnic basket — «корзина для пикника», picnic blanket — «плед для пикника», который расстилают на земле. Вчера корзина была полной: The picnic basket was full yesterday. Сейчас она пустая: It is empty now. Выберите вчерашнее состояние корзины.",
+        "uk": "Picnic basket — «кошик для пікніка», picnic blanket — «плед для пікніка», який розстеляють на землі. Учора кошик був повний: The picnic basket was full yesterday. Зараз він порожній: It is empty now. Виберіть учорашній стан кошика."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-45:intro1:r1",
+              "text": "The picnic basket was full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro1:r2",
+              "text": "The picnic basket is full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro1:r3",
+              "text": "The picnic basket were full yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-45:intro1:r1",
+              "text": "The picnic basket was full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro1:r2",
+              "text": "The picnic basket is full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro1:r3",
+              "text": "The picnic basket were full yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка для холодных продуктов",
+        "uk": "Сумка для холодних продуктів"
+      },
+      "bodyByLocale": {
+        "ru": "Cool bag — «сумка-холодильник»: сумка, которая помогает сохранять еду и напитки холодными. Вчера она была в машине: The cool bag was in the car. Спросите об этом: Was the cool bag in the car? Выберите этот вопрос.",
+        "uk": "Cool bag — «сумка-холодильник»: сумка, яка допомагає зберігати їжу й напої холодними. Учора вона була в машині: The cool bag was in the car. Запитайте про це: Was the cool bag in the car? Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-45:intro2:r1",
+              "text": "Was the cool bag in the car?"
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro2:r2",
+              "text": "Were the cool bag in the car?"
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro2:r3",
+              "text": "Was the cool bag in the kitchen?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-45:intro2:r1",
+              "text": "Was the cool bag in the car?"
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro2:r2",
+              "text": "Were the cool bag in the car?"
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro2:r3",
+              "text": "Was the cool bag in the kitchen?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бумажные тарелки",
+        "uk": "Паперові тарілки"
+      },
+      "bodyByLocale": {
+        "ru": "Paper plate — «бумажная тарелка». Вчера в корзине было четыре тарелки: There were four paper plates in the basket. Множественное число получает plate: plates. Выберите сообщение о четырёх тарелках.",
+        "uk": "Paper plate — «паперова тарілка». Учора в кошику було чотири тарілки: There were four paper plates in the basket. Множину отримує plate: plates. Виберіть повідомлення про чотири тарілки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-45:intro3:r1",
+              "text": "There were four paper plates in the basket."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro3:r2",
+              "text": "There was four paper plates in the basket."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro3:r3",
+              "text": "There were a paper plate in the basket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-45:intro3:r1",
+              "text": "There were four paper plates in the basket."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro3:r2",
+              "text": "There was four paper plates in the basket."
+            },
+            {
+              "responseId": "en:lesson-11:session-45:intro3:r3",
+              "text": "There were a paper plate in the basket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "69649e9618bfdf386364ca53d3626e30420617cbb0f9ac085f4bd2858c8eaa18"
+}

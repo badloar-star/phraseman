@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-45:word:picnic-basket",
+    "correctText": "picnic basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i01",
+    "correctText": "Was the picnic basket full?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i02",
+    "correctText": "The picnic basket was near the door.",
+    "correctResponseId": "en:lesson-11:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:word:picnic-blanket",
+    "correctText": "picnic blanket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i04",
+    "correctText": "The picnic blanket was not dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i05",
+    "correctText": "The picnic blanket was under the tree.",
+    "correctResponseId": "en:lesson-11:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:word:cool-bag",
+    "correctText": "cool bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i07",
+    "correctText": "There was a cool bag near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i08",
+    "correctText": "The cool bag was empty.",
+    "correctResponseId": "en:lesson-11:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:word:paper-plate",
+    "correctText": "paper plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i10",
+    "correctText": "Was the paper plate clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i11",
+    "correctText": "There were three paper plates on the table.",
+    "correctResponseId": "en:lesson-11:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i13",
+    "correctText": "en:lesson-11:session-45:i13:p1=picnic basket\nen:lesson-11:session-45:i13:p2=picnic blanket\nen:lesson-11:session-45:i13:p3=cool bag\nen:lesson-11:session-45:i13:p4=paper plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i14",
+    "correctText": "Please don't sit on my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i15",
+    "correctText": "I am eating outside right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i16",
+    "correctText": "The cool bag was not empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-45:i17",
+    "correctText": "Was the picnic blanket wet?",
+    "correctResponseId": null
+  }
+]

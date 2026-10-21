@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-46:word:hand-cream",
+    "correctText": "hand cream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i01",
+    "correctText": "Was the hand cream in the bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i02",
+    "correctText": "The hand cream was on the table.",
+    "correctResponseId": "en:lesson-11:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:word:lip-balm",
+    "correctText": "lip balm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i04",
+    "correctText": "The lip balm was not in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i05",
+    "correctText": "The lip balm was near the mirror.",
+    "correctResponseId": "en:lesson-11:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:word:shaving-foam",
+    "correctText": "shaving foam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i07",
+    "correctText": "The shaving foam was in the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i08",
+    "correctText": "The shaving foam was near the towel.",
+    "correctResponseId": "en:lesson-11:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:word:body-lotion",
+    "correctText": "body lotion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i10",
+    "correctText": "Was the body lotion in the bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i11",
+    "correctText": "The body lotion was on the shelf.",
+    "correctResponseId": "en:lesson-11:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i13",
+    "correctText": "en:lesson-11:session-46:i13:p1=hand cream\nen:lesson-11:session-46:i13:p2=lip balm\nen:lesson-11:session-46:i13:p3=shaving foam\nen:lesson-11:session-46:i13:p4=body lotion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i14",
+    "correctText": "Please don't move my things.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i15",
+    "correctText": "I am looking for my bag right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i16",
+    "correctText": "The lip balm was on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-46:i17",
+    "correctText": "The hand cream and the body lotion were in the bag.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-46:intro1:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-46:intro1:r3": {
+          "ru": "О креме здесь говорим was.",
+          "uk": "Про крем тут кажемо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-46:intro2:r2": {
+          "ru": "С foam здесь нужна was.",
+          "uk": "З foam тут потрібна was."
+        },
+        "en:lesson-11:session-46:intro2:r3": {
+          "ru": "Спрашиваем об умывальнике, не кухне.",
+          "uk": "Запитуємо про умивальник, не кухню."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-46:intro3:r2": {
+          "ru": "Нужно отрицание: was not.",
+          "uk": "Потрібне заперечення: was not."
+        },
+        "en:lesson-11:session-46:intro3:r3": {
+          "ru": "О лосьоне здесь говорим was.",
+          "uk": "Про лосьйон тут кажемо was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "35a22513ffc2c3f37d5c9ad86cc66d2dc1478c2f3398f592fb2b63fe02815346"
+}

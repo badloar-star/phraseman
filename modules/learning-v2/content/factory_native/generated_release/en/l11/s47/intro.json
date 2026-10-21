@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "polite expressions; was/were; questions",
+    "uk": "polite expressions; was/were; questions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первая встреча и возвращение",
+        "uk": "Перша зустріч і повернення"
+      },
+      "bodyByLocale": {
+        "ru": "Nice to meet you — «приятно познакомиться», когда человека представили вам впервые. Welcome back — «с возвращением», когда знакомый вернулся. Друг вернулся из поездки; вы уже знакомы. Скажите «С возвращением».",
+        "uk": "Nice to meet you — «приємно познайомитися», коли людину представили вам уперше. Welcome back — «з поверненням», коли знайомий повернувся. Друг повернувся з подорожі; ви вже знайомі. Скажіть «З поверненням»."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-47:intro1:r1",
+              "text": "Welcome back."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro1:r2",
+              "text": "Nice to meet you."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro1:r3",
+              "text": "Good night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-47:intro1:r1",
+              "text": "Welcome back."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro1:r2",
+              "text": "Nice to meet you."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro1:r3",
+              "text": "Good night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пожелать выздоровления",
+        "uk": "Побажати одужання"
+      },
+      "bodyByLocale": {
+        "ru": "Get well soon — «выздоравливай скорее». Это готовое пожелание заболевшему. Можно вспомнить вчерашнее состояние: You were ill yesterday. Are you better now? — «Вчера ты болел. Сейчас тебе лучше?» Друг всё ещё болен. Выберите пожелание выздоровления.",
+        "uk": "Get well soon — «одужуй швидше». Це готове побажання хворому. Можна згадати вчорашній стан: You were ill yesterday. Are you better now? — «Учора ти хворів. Зараз тобі краще?» Друг досі хворіє. Виберіть побажання одужання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-47:intro2:r1",
+              "text": "Get well soon."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro2:r2",
+              "text": "Welcome back."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro2:r3",
+              "text": "Nice to meet you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-47:intro2:r1",
+              "text": "Get well soon."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro2:r2",
+              "text": "Welcome back."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro2:r3",
+              "text": "Nice to meet you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перед поездкой",
+        "uk": "Перед подорожжю"
+      },
+      "bodyByLocale": {
+        "ru": "Have a good trip — «хорошей поездки». Говорим перед отъездом. После возвращения подойдёт Welcome back, а о прошедшей поездке можно спросить: Was your trip good? Друг сейчас уезжает. Выберите пожелание перед поездкой.",
+        "uk": "Have a good trip — «гарної подорожі». Кажемо перед від’їздом. Після повернення підійде Welcome back, а про минулу подорож можна запитати: Was your trip good? Друг зараз їде. Виберіть побажання перед подорожжю."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-47:intro3:r1",
+              "text": "Have a good trip."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro3:r2",
+              "text": "Welcome back."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro3:r3",
+              "text": "Was your trip good?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-47:intro3:r1",
+              "text": "Have a good trip."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro3:r2",
+              "text": "Welcome back."
+            },
+            {
+              "responseId": "en:lesson-11:session-47:intro3:r3",
+              "text": "Was your trip good?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d00c8dbe4acf04c642133d6b1c308943a564968b523203a2d8fabd915c455799"
+}

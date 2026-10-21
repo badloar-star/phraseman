@@ -1,0 +1,2309 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-47:word:nice-to-meet-you",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nice to meet you",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:nice-to-meet-you:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nice to meet you",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:nice-to-meet-you:audio",
+            "transcript": "nice to meet you"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:nice-to-meet-you:r1",
+              "targetText": "nice to meet you",
+              "meaningByLocale": {
+                "ru": "приятно познакомиться. При первой встрече.",
+                "uk": "приємно познайомитися. Під час першої зустрічі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nice to meet you",
+            "definitionByLocale": {
+              "ru": "приятно познакомиться. При первой встрече.",
+              "uk": "приємно познайомитися. Під час першої зустрічі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам впервые представили коллегу. Скажите: приятно познакомиться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам впервые представили коллегу. Скажите: приятно познакомиться",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Nice to meet you.",
+          "localizedMeaning": {
+            "ru": "Вам впервые представили коллегу. Скажите: приятно познакомиться",
+            "uk": "Вам уперше представили колегу. Скажіть: приємно познайомитися"
+          },
+          "orderedTokens": [
+            "Nice",
+            "to",
+            "meet",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i02:r1",
+            "text": "Nice to meet you."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i02:r2",
+            "text": "Nice to meet him."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i02:r3",
+            "text": "It is nice here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i02:audio",
+            "transcript": "Nice to meet you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i02:r1",
+              "targetText": "Nice to meet you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i02:r2",
+              "targetText": "Nice to meet him.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i02:r3",
+              "targetText": "It is nice here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Nice to meet you.",
+                "uk": "У записі звучить Nice to meet you."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Nice to meet you.",
+                "uk": "У записі звучить Nice to meet you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+            "uk": "На першій зустрічі скажіть: учора я був тут. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ here yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was, не am.",
+                "uk": "Учора: was, не am."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С I в прошлом нужна was.",
+                "uk": "З I у минулому потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:word:welcome-back",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — welcome back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:welcome-back:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — welcome back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:welcome-back:audio",
+            "transcript": "welcome back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:welcome-back:r1",
+              "targetText": "welcome back",
+              "meaningByLocale": {
+                "ru": "с возвращением.",
+                "uk": "з поверненням."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "welcome back",
+            "definitionByLocale": {
+              "ru": "с возвращением.",
+              "uk": "з поверненням."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг вернулся домой. Скажите: с возвращением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг вернулся домой. Скажите: с возвращением",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Welcome back.",
+          "localizedMeaning": {
+            "ru": "Друг вернулся домой. Скажите: с возвращением",
+            "uk": "Друг повернувся додому. Скажіть: з поверненням"
+          },
+          "orderedTokens": [
+            "Welcome",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i05:r1",
+            "text": "Welcome back, my friend."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i05:r2",
+            "text": "Welcome back, my sister."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i05:r3",
+            "text": "Welcome back."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i05:audio",
+            "transcript": "Welcome back, my friend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i05:r1",
+              "targetText": "Welcome back, my friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i05:r2",
+              "targetText": "Welcome back, my sister.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i05:r3",
+              "targetText": "Welcome back.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Welcome back, my friend.",
+                "uk": "У записі звучить Welcome back, my friend."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Welcome back, my friend.",
+                "uk": "У записі звучить Welcome back, my friend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+            "uk": "Друг розповідає: учора подорож була довга. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The trip ___ long yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна поездка: was.",
+                "uk": "Одна подорож: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:word:get-well-soon",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get well soon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:get-well-soon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get well soon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:get-well-soon:audio",
+            "transcript": "get well soon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:get-well-soon:r1",
+              "targetText": "get well soon",
+              "meaningByLocale": {
+                "ru": "выздоравливай скорее.",
+                "uk": "одужуй швидше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get well soon",
+            "definitionByLocale": {
+              "ru": "выздоравливай скорее.",
+              "uk": "одужуй швидше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг болен. Пожелайте ему скорее выздороветь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг болен. Пожелайте ему скорее выздороветь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Get well soon.",
+          "localizedMeaning": {
+            "ru": "Друг болен. Пожелайте ему скорее выздороветь",
+            "uk": "Друг хворіє. Побажайте йому швидше одужати"
+          },
+          "orderedTokens": [
+            "Get",
+            "well",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i08:r1",
+            "text": "Get well soon."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i08:r2",
+            "text": "Get here soon."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i08:r3",
+            "text": "Get there soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i08:audio",
+            "transcript": "Get well soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i08:r1",
+              "targetText": "Get well soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i08:r2",
+              "targetText": "Get here soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i08:r3",
+              "targetText": "Get there soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Get well soon.",
+                "uk": "У записі звучить Get well soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Get well soon.",
+                "uk": "У записі звучить Get well soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите другу: вчера ты болел. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите другу: вчера ты болел. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите другу: вчера ты болел. Выберите форму",
+            "uk": "Скажіть другові: учора ти хворів. Виберіть форму"
+          },
+          "gappedTargetPhrase": "You ___ ill yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скажите другу: вчера ты болел. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Скажите другу: вчера ты болел. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С you в прошлом нужна were.",
+                "uk": "З you у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Скажите другу: вчера ты болел. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:word:have-a-good-trip",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — have a good trip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:have-a-good-trip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — have a good trip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:have-a-good-trip:audio",
+            "transcript": "have a good trip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:have-a-good-trip:r1",
+              "targetText": "have a good trip",
+              "meaningByLocale": {
+                "ru": "хорошей поездки. Перед отъездом.",
+                "uk": "гарної подорожі. Перед від’їздом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a good trip",
+            "definitionByLocale": {
+              "ru": "хорошей поездки. Перед отъездом.",
+              "uk": "гарної подорожі. Перед від’їздом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг отправляется в поездку. Пожелайте хорошей поездки",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг отправляется в поездку. Пожелайте хорошей поездки",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have a good trip.",
+          "localizedMeaning": {
+            "ru": "Друг отправляется в поездку. Пожелайте хорошей поездки",
+            "uk": "Друг вирушає в подорож. Побажайте гарної подорожі"
+          },
+          "orderedTokens": [
+            "Have",
+            "a",
+            "good",
+            "trip"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i11:r1",
+            "text": "Have a good trip."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i11:r2",
+            "text": "Have a nice day."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i11:r3",
+            "text": "Have a good night."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i11:audio",
+            "transcript": "Have a good trip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i11:r1",
+              "targetText": "Have a good trip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i11:r2",
+              "targetText": "Have a nice day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i11:r3",
+              "targetText": "Have a good night.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a good trip.",
+                "uk": "У записі звучить Have a good trip."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a good trip.",
+                "uk": "У записі звучить Have a good trip."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+            "uk": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The tickets ___ in the bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Tickets — множественное число: were.",
+                "uk": "Tickets — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините пожелания и приветствия с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините пожелания и приветствия с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-47:i13:p1",
+              "target": "nice to meet you",
+              "meaningByLocale": {
+                "ru": "приятно познакомиться",
+                "uk": "приємно познайомитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-47:i13:p2",
+              "target": "welcome back",
+              "meaningByLocale": {
+                "ru": "с возвращением",
+                "uk": "з поверненням"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-47:i13:p3",
+              "target": "get well soon",
+              "meaningByLocale": {
+                "ru": "выздоравливай скорее",
+                "uk": "одужуй швидше"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-47:i13:p4",
+              "target": "have a good trip",
+              "meaningByLocale": {
+                "ru": "хорошей поездки",
+                "uk": "гарної подорожі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nice to meet you",
+            "welcome back",
+            "get well soon",
+            "have a good trip"
+          ],
+          "rightColumn": [
+            "приятно познакомиться",
+            "с возвращением",
+            "выздоравливай скорее",
+            "хорошей поездки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i14:audio",
+            "transcript": "Please don't leave yet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't leave yet.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "leave",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i15:audio",
+            "transcript": "I am waiting for my friend right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am waiting for my friend right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "waiting",
+            "for",
+            "my",
+            "friend",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите вернувшегося друга, была ли поездка долгой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите вернувшегося друга, была ли поездка долгой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i16:audio",
+            "transcript": "Was your trip long?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was your trip long?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новый коллега представился. Скажите: приятно познакомиться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Новый коллега представился. Скажите: приятно познакомиться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i17:audio",
+            "transcript": "Nice to meet you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Nice to meet you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-47:word:nice-to-meet-you",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nice to meet you",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:nice-to-meet-you:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nice to meet you",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:nice-to-meet-you:audio",
+            "transcript": "nice to meet you"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:nice-to-meet-you:r1",
+              "targetText": "nice to meet you",
+              "meaningByLocale": {
+                "ru": "приятно познакомиться. При первой встрече.",
+                "uk": "приємно познайомитися. Під час першої зустрічі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nice to meet you",
+            "definitionByLocale": {
+              "ru": "приятно познакомиться. При первой встрече.",
+              "uk": "приємно познайомитися. Під час першої зустрічі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам уперше представили колегу. Скажіть: приємно познайомитися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам уперше представили колегу. Скажіть: приємно познайомитися",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Nice to meet you.",
+          "localizedMeaning": {
+            "ru": "Вам впервые представили коллегу. Скажите: приятно познакомиться",
+            "uk": "Вам уперше представили колегу. Скажіть: приємно познайомитися"
+          },
+          "orderedTokens": [
+            "Nice",
+            "to",
+            "meet",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i02:r1",
+            "text": "Nice to meet you."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i02:r2",
+            "text": "Nice to meet him."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i02:r3",
+            "text": "It is nice here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i02:audio",
+            "transcript": "Nice to meet you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i02:r1",
+              "targetText": "Nice to meet you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i02:r2",
+              "targetText": "Nice to meet him.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i02:r3",
+              "targetText": "It is nice here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Nice to meet you.",
+                "uk": "У записі звучить Nice to meet you."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Nice to meet you.",
+                "uk": "У записі звучить Nice to meet you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На першій зустрічі скажіть: учора я був тут. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На першій зустрічі скажіть: учора я був тут. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На первой встрече скажите: вчера я был здесь. Выберите форму",
+            "uk": "На першій зустрічі скажіть: учора я був тут. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ here yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "На першій зустрічі скажіть: учора я був тут. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "На першій зустрічі скажіть: учора я був тут. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was, не am.",
+                "uk": "Учора: was, не am."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "На першій зустрічі скажіть: учора я був тут. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С I в прошлом нужна was.",
+                "uk": "З I у минулому потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:word:welcome-back",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — welcome back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:welcome-back:audio"
+        ],
+        "accessibilityLabel": "Картка слова — welcome back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:welcome-back:audio",
+            "transcript": "welcome back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:welcome-back:r1",
+              "targetText": "welcome back",
+              "meaningByLocale": {
+                "ru": "с возвращением.",
+                "uk": "з поверненням."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "welcome back",
+            "definitionByLocale": {
+              "ru": "с возвращением.",
+              "uk": "з поверненням."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг повернувся додому. Скажіть: з поверненням",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг повернувся додому. Скажіть: з поверненням",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Welcome back.",
+          "localizedMeaning": {
+            "ru": "Друг вернулся домой. Скажите: с возвращением",
+            "uk": "Друг повернувся додому. Скажіть: з поверненням"
+          },
+          "orderedTokens": [
+            "Welcome",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i05:r1",
+            "text": "Welcome back, my friend."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i05:r2",
+            "text": "Welcome back, my sister."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i05:r3",
+            "text": "Welcome back."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i05:audio",
+            "transcript": "Welcome back, my friend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i05:r1",
+              "targetText": "Welcome back, my friend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i05:r2",
+              "targetText": "Welcome back, my sister.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i05:r3",
+              "targetText": "Welcome back.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Welcome back, my friend.",
+                "uk": "У записі звучить Welcome back, my friend."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Welcome back, my friend.",
+                "uk": "У записі звучить Welcome back, my friend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг розповідає: учора подорож була довга. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг розповідає: учора подорож була довга. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг рассказывает: вчера поездка была долгой. Выберите форму",
+            "uk": "Друг розповідає: учора подорож була довга. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The trip ___ long yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Друг розповідає: учора подорож була довга. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг розповідає: учора подорож була довга. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг розповідає: учора подорож була довга. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна поездка: was.",
+                "uk": "Одна подорож: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:word:get-well-soon",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get well soon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:get-well-soon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get well soon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:get-well-soon:audio",
+            "transcript": "get well soon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:get-well-soon:r1",
+              "targetText": "get well soon",
+              "meaningByLocale": {
+                "ru": "выздоравливай скорее.",
+                "uk": "одужуй швидше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get well soon",
+            "definitionByLocale": {
+              "ru": "выздоравливай скорее.",
+              "uk": "одужуй швидше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хворіє. Побажайте йому швидше одужати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хворіє. Побажайте йому швидше одужати",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Get well soon.",
+          "localizedMeaning": {
+            "ru": "Друг болен. Пожелайте ему скорее выздороветь",
+            "uk": "Друг хворіє. Побажайте йому швидше одужати"
+          },
+          "orderedTokens": [
+            "Get",
+            "well",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i08:r1",
+            "text": "Get well soon."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i08:r2",
+            "text": "Get here soon."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i08:r3",
+            "text": "Get there soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i08:audio",
+            "transcript": "Get well soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i08:r1",
+              "targetText": "Get well soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i08:r2",
+              "targetText": "Get here soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i08:r3",
+              "targetText": "Get there soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Get well soon.",
+                "uk": "У записі звучить Get well soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Get well soon.",
+                "uk": "У записі звучить Get well soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть другові: учора ти хворів. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть другові: учора ти хворів. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите другу: вчера ты болел. Выберите форму",
+            "uk": "Скажіть другові: учора ти хворів. Виберіть форму"
+          },
+          "gappedTargetPhrase": "You ___ ill yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скажіть другові: учора ти хворів. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Скажіть другові: учора ти хворів. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С you в прошлом нужна were.",
+                "uk": "З you у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Скажіть другові: учора ти хворів. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:word:have-a-good-trip",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — have a good trip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:word:have-a-good-trip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — have a good trip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:word:have-a-good-trip:audio",
+            "transcript": "have a good trip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:word:have-a-good-trip:r1",
+              "targetText": "have a good trip",
+              "meaningByLocale": {
+                "ru": "хорошей поездки. Перед отъездом.",
+                "uk": "гарної подорожі. Перед від’їздом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a good trip",
+            "definitionByLocale": {
+              "ru": "хорошей поездки. Перед отъездом.",
+              "uk": "гарної подорожі. Перед від’їздом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг вирушає в подорож. Побажайте гарної подорожі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг вирушає в подорож. Побажайте гарної подорожі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have a good trip.",
+          "localizedMeaning": {
+            "ru": "Друг отправляется в поездку. Пожелайте хорошей поездки",
+            "uk": "Друг вирушає в подорож. Побажайте гарної подорожі"
+          },
+          "orderedTokens": [
+            "Have",
+            "a",
+            "good",
+            "trip"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i11:r1",
+            "text": "Have a good trip."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i11:r2",
+            "text": "Have a nice day."
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i11:r3",
+            "text": "Have a good night."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i11:audio",
+            "transcript": "Have a good trip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-47:i11:r1",
+              "targetText": "Have a good trip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i11:r2",
+              "targetText": "Have a nice day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i11:r3",
+              "targetText": "Have a good night.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a good trip.",
+                "uk": "У записі звучить Have a good trip."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a good trip.",
+                "uk": "У записі звучить Have a good trip."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-47:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-47:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
+            "uk": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The tickets ___ in the bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-47:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Tickets — множественное число: were.",
+                "uk": "Tickets — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте побажання й вітання з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте побажання й вітання з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-47:i13:p1",
+              "target": "nice to meet you",
+              "meaningByLocale": {
+                "ru": "приятно познакомиться",
+                "uk": "приємно познайомитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-47:i13:p2",
+              "target": "welcome back",
+              "meaningByLocale": {
+                "ru": "с возвращением",
+                "uk": "з поверненням"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-47:i13:p3",
+              "target": "get well soon",
+              "meaningByLocale": {
+                "ru": "выздоравливай скорее",
+                "uk": "одужуй швидше"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-47:i13:p4",
+              "target": "have a good trip",
+              "meaningByLocale": {
+                "ru": "хорошей поездки",
+                "uk": "гарної подорожі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nice to meet you",
+            "welcome back",
+            "get well soon",
+            "have a good trip"
+          ],
+          "rightColumn": [
+            "приємно познайомитися",
+            "з поверненням",
+            "одужуй швидше",
+            "гарної подорожі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i14:audio",
+            "transcript": "Please don't leave yet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't leave yet.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "leave",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i15:audio",
+            "transcript": "I am waiting for my friend right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am waiting for my friend right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "waiting",
+            "for",
+            "my",
+            "friend",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга після повернення, чи була подорож довга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга після повернення, чи була подорож довга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i16:audio",
+            "transcript": "Was your trip long?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was your trip long?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий колега представився. Скажіть: приємно познайомитися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Новий колега представився. Скажіть: приємно познайомитися",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-47:i17:audio",
+            "transcript": "Nice to meet you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Nice to meet you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-47:word:nice-to-meet-you",
+      "correctText": "nice to meet you",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i01",
+      "correctText": "Nice to meet you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i02",
+      "correctText": "Nice to meet you.",
+      "correctResponseId": "en:lesson-11:session-47:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-47:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:word:welcome-back",
+      "correctText": "welcome back",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i04",
+      "correctText": "Welcome back.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i05",
+      "correctText": "Welcome back, my friend.",
+      "correctResponseId": "en:lesson-11:session-47:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-47:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:word:get-well-soon",
+      "correctText": "get well soon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i07",
+      "correctText": "Get well soon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i08",
+      "correctText": "Get well soon.",
+      "correctResponseId": "en:lesson-11:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-47:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:word:have-a-good-trip",
+      "correctText": "have a good trip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i10",
+      "correctText": "Have a good trip.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i11",
+      "correctText": "Have a good trip.",
+      "correctResponseId": "en:lesson-11:session-47:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-47:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i14",
+      "correctText": "Please don't leave yet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i15",
+      "correctText": "I am waiting for my friend right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i16",
+      "correctText": "Was your trip long?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-47:i17",
+      "correctText": "Nice to meet you.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-47:word:nice-to-meet-you",
+    "correctText": "nice to meet you",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i01",
+    "correctText": "Nice to meet you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i02",
+    "correctText": "Nice to meet you.",
+    "correctResponseId": "en:lesson-11:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:word:welcome-back",
+    "correctText": "welcome back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i04",
+    "correctText": "Welcome back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i05",
+    "correctText": "Welcome back, my friend.",
+    "correctResponseId": "en:lesson-11:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:word:get-well-soon",
+    "correctText": "get well soon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i07",
+    "correctText": "Get well soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i08",
+    "correctText": "Get well soon.",
+    "correctResponseId": "en:lesson-11:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:word:have-a-good-trip",
+    "correctText": "have a good trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i10",
+    "correctText": "Have a good trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i11",
+    "correctText": "Have a good trip.",
+    "correctResponseId": "en:lesson-11:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i13",
+    "correctText": "en:lesson-11:session-47:i13:p1=nice to meet you\nen:lesson-11:session-47:i13:p2=welcome back\nen:lesson-11:session-47:i13:p3=get well soon\nen:lesson-11:session-47:i13:p4=have a good trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i14",
+    "correctText": "Please don't leave yet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i15",
+    "correctText": "I am waiting for my friend right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i16",
+    "correctText": "Was your trip long?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-47:i17",
+    "correctText": "Nice to meet you.",
+    "correctResponseId": null
+  }
+]

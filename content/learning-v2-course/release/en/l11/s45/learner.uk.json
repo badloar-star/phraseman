@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-45:word:picnic-basket",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — picnic basket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:word:picnic-basket:audio"
+      ],
+      "accessibilityLabel": "Картка слова — picnic basket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:word:picnic-basket:audio",
+          "transcript": "picnic basket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:word:picnic-basket:r1",
+            "targetText": "picnic basket",
+            "meaningByLocale": {
+              "ru": "корзина для пикника.",
+              "uk": "кошик для пікніка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "picnic basket",
+          "definitionByLocale": {
+            "ru": "корзина для пикника.",
+            "uk": "кошик для пікніка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був кошик для пікніка повний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був кошик для пікніка повний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the picnic basket full?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли корзина для пикника полной",
+          "uk": "Запитайте, чи був кошик для пікніка повний"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "picnic",
+          "basket",
+          "full"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i02:r1",
+          "text": "The picnic basket was near the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i02:r2",
+          "text": "The picnic basket is near the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i02:r3",
+          "text": "The picnic basket was in the car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i02:audio",
+          "transcript": "The picnic basket was near the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:i02:r1",
+            "targetText": "The picnic basket was near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i02:r2",
+            "targetText": "The picnic basket is near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i02:r3",
+            "targetText": "The picnic basket was in the car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The picnic basket was near the door.",
+              "uk": "У записі звучить The picnic basket was near the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The picnic basket was near the door.",
+              "uk": "У записі звучить The picnic basket was near the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора кошик для пікніка був у машині. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора кошик для пікніка був у машині. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера корзина для пикника была в машине. Выберите форму",
+          "uk": "Учора кошик для пікніка був у машині. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The picnic basket ___ in the car yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-45:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора кошик для пікніка був у машині. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора кошик для пікніка був у машині. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора кошик для пікніка був у машині. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна корзина: was.",
+              "uk": "Один кошик: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:word:picnic-blanket",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — picnic blanket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:word:picnic-blanket:audio"
+      ],
+      "accessibilityLabel": "Картка слова — picnic blanket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:word:picnic-blanket:audio",
+          "transcript": "picnic blanket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:word:picnic-blanket:r1",
+            "targetText": "picnic blanket",
+            "meaningByLocale": {
+              "ru": "плед для пикника.",
+              "uk": "плед для пікніка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "picnic blanket",
+          "definitionByLocale": {
+            "ru": "плед для пикника.",
+            "uk": "плед для пікніка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: плед для пікніка був не сухий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: плед для пікніка був не сухий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The picnic blanket was not dry.",
+        "localizedMeaning": {
+          "ru": "Сообщите: плед для пикника был не сухим",
+          "uk": "Повідомте: плед для пікніка був не сухий"
+        },
+        "orderedTokens": [
+          "The",
+          "picnic",
+          "blanket",
+          "was",
+          "not",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i05:r1",
+          "text": "The picnic blanket was under the tree."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i05:r2",
+          "text": "The picnic blanket was near the car."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i05:r3",
+          "text": "The picnic blanket is under the tree."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i05:audio",
+          "transcript": "The picnic blanket was under the tree."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:i05:r1",
+            "targetText": "The picnic blanket was under the tree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i05:r2",
+            "targetText": "The picnic blanket was near the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i05:r3",
+            "targetText": "The picnic blanket is under the tree.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The picnic blanket was under the tree.",
+              "uk": "У записі звучить The picnic blanket was under the tree."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The picnic blanket was under the tree.",
+              "uk": "У записі звучить The picnic blanket was under the tree."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз плед для пікніка чистий. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз плед для пікніка чистий. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас плед для пикника чистый. Выберите форму",
+          "uk": "Зараз плед для пікніка чистий. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The picnic blanket ___ clean now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-45:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз плед для пікніка чистий. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Зараз плед для пікніка чистий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Зараз плед для пікніка чистий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один плед: is.",
+              "uk": "Один плед: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:word:cool-bag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cool bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:word:cool-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cool bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:word:cool-bag:audio",
+          "transcript": "cool bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:word:cool-bag:r1",
+            "targetText": "cool bag",
+            "meaningByLocale": {
+              "ru": "сумка-холодильник.",
+              "uk": "сумка-холодильник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cool bag",
+          "definitionByLocale": {
+            "ru": "сумка-холодильник.",
+            "uk": "сумка-холодильник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: біля дверей була сумка-холодильник. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: біля дверей була сумка-холодильник. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a cool bag near the door.",
+        "localizedMeaning": {
+          "ru": "Сообщите: у двери была сумка-холодильник. Начните с There",
+          "uk": "Повідомте: біля дверей була сумка-холодильник. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "cool",
+          "bag",
+          "near",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i08:r1",
+          "text": "The cool bag was empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i08:r2",
+          "text": "The cool bag is empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i08:r3",
+          "text": "The cool bag was full."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i08:audio",
+          "transcript": "The cool bag was empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:i08:r1",
+            "targetText": "The cool bag was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i08:r2",
+            "targetText": "The cool bag is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i08:r3",
+            "targetText": "The cool bag was full.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cool bag was empty.",
+              "uk": "У записі звучить The cool bag was empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cool bag was empty.",
+              "uk": "У записі звучить The cool bag was empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У машині було дві сумки-холодильники. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У машині було дві сумки-холодильники. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В машине было две сумки-холодильника. Выберите форму",
+          "uk": "У машині було дві сумки-холодильники. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two cool bags in the car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-45:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У машині було дві сумки-холодильники. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "У машині було дві сумки-холодильники. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Две сумки: were.",
+              "uk": "Дві сумки: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "У машині було дві сумки-холодильники. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:word:paper-plate",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paper plate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:word:paper-plate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paper plate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:word:paper-plate:audio",
+          "transcript": "paper plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:word:paper-plate:r1",
+            "targetText": "paper plate",
+            "meaningByLocale": {
+              "ru": "бумажная тарелка.",
+              "uk": "паперова тарілка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paper plate",
+          "definitionByLocale": {
+            "ru": "бумажная тарелка.",
+            "uk": "паперова тарілка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була паперова тарілка чиста",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була паперова тарілка чиста",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the paper plate clean?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли бумажная тарелка чистой",
+          "uk": "Запитайте, чи була паперова тарілка чиста"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "paper",
+          "plate",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i11:r1",
+          "text": "There were three paper plates on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i11:r2",
+          "text": "There was a paper plate on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i11:r3",
+          "text": "There were three paper plates in the basket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i11:audio",
+          "transcript": "There were three paper plates on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-45:i11:r1",
+            "targetText": "There were three paper plates on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i11:r2",
+            "targetText": "There was a paper plate on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i11:r3",
+            "targetText": "There were three paper plates in the basket.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were three paper plates on the table.",
+              "uk": "У записі звучить There were three paper plates on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were three paper plates on the table.",
+              "uk": "У записі звучить There were three paper plates on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора паперова тарілка була порожня. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-45:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-45:i12:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора паперова тарілка була порожня. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера бумажная тарелка была пустой. Выберите форму",
+          "uk": "Учора паперова тарілка була порожня. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The paper plate ___ empty yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-45:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i12:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора паперова тарілка була порожня. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора паперова тарілка була порожня. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора паперова тарілка була порожня. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна тарелка: was.",
+              "uk": "Одна тарілка: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте речі з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте речі з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-45:i13:p1",
+            "target": "picnic basket",
+            "meaningByLocale": {
+              "ru": "корзина для пикника",
+              "uk": "кошик для пікніка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-45:i13:p2",
+            "target": "picnic blanket",
+            "meaningByLocale": {
+              "ru": "плед для пикника",
+              "uk": "плед для пікніка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-45:i13:p3",
+            "target": "cool bag",
+            "meaningByLocale": {
+              "ru": "сумка-холодильник",
+              "uk": "сумка-холодильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-45:i13:p4",
+            "target": "paper plate",
+            "meaningByLocale": {
+              "ru": "бумажная тарелка",
+              "uk": "паперова тарілка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "picnic basket",
+          "picnic blanket",
+          "cool bag",
+          "paper plate"
+        ],
+        "rightColumn": [
+          "кошик для пікніка",
+          "плед для пікніка",
+          "сумка-холодильник",
+          "паперова тарілка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i14:audio",
+          "transcript": "Please don't sit on my bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't sit on my bag.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "sit",
+          "on",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i15:audio",
+          "transcript": "I am eating outside right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am eating outside right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "eating",
+          "outside",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що сумка-холодильник була не порожня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що сумка-холодильник була не порожня",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i16:audio",
+          "transcript": "The cool bag was not empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cool bag was not empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-45:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був плед для пікніка мокрий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був плед для пікніка мокрий",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-45:i17:audio",
+          "transcript": "Was the picnic blanket wet?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the picnic blanket wet?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b07805a3c6ba3e94954e73a8ef9955d1b314b1e89e5b129da975a0ad7ad9cf56"
+}

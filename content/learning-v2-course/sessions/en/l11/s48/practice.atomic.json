@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-48:word:beach-ball",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beach ball",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:beach-ball:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beach ball",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:beach-ball:audio",
+            "transcript": "beach ball"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:beach-ball:r1",
+              "targetText": "beach ball",
+              "meaningByLocale": {
+                "ru": "пляжный мяч.",
+                "uk": "пляжний м’яч."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach ball",
+            "definitionByLocale": {
+              "ru": "пляжный мяч.",
+              "uk": "пляжний м’яч."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли пляжный мяч в машине",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли пляжный мяч в машине",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the beach ball in the car?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли пляжный мяч в машине",
+            "uk": "Запитайте, чи був пляжний м’яч у машині"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "beach",
+            "ball",
+            "in",
+            "the",
+            "car"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i02:r1",
+            "text": "The beach ball was near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i02:r2",
+            "text": "The beach ball is near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i02:r3",
+            "text": "The beach ball was under the tree."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i02:audio",
+            "transcript": "The beach ball was near the water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i02:r1",
+              "targetText": "The beach ball was near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i02:r2",
+              "targetText": "The beach ball is near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i02:r3",
+              "targetText": "The beach ball was under the tree.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach ball was near the water.",
+                "uk": "У записі звучить The beach ball was near the water."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach ball was near the water.",
+                "uk": "У записі звучить The beach ball was near the water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера пляжный мяч был на песке. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера пляжный мяч был на песке. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера пляжный мяч был на песке. Выберите форму",
+            "uk": "Учора пляжний м’яч був на піску. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The beach ball ___ on the sand yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера пляжный мяч был на песке. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера пляжный мяч был на песке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера пляжный мяч был на песке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один мяч: was.",
+                "uk": "Один м’яч: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:word:beach-umbrella",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beach umbrella",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:beach-umbrella:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beach umbrella",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:beach-umbrella:audio",
+            "transcript": "beach umbrella"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:beach-umbrella:r1",
+              "targetText": "beach umbrella",
+              "meaningByLocale": {
+                "ru": "пляжный зонт.",
+                "uk": "пляжна парасоля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach umbrella",
+            "definitionByLocale": {
+              "ru": "пляжный зонт.",
+              "uk": "пляжна парасоля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: пляжный зонт был не в машине",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: пляжный зонт был не в машине",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The beach umbrella was not in the car.",
+          "localizedMeaning": {
+            "ru": "Сообщите: пляжный зонт был не в машине",
+            "uk": "Повідомте: пляжна парасоля була не в машині"
+          },
+          "orderedTokens": [
+            "The",
+            "beach",
+            "umbrella",
+            "was",
+            "not",
+            "in",
+            "the",
+            "car"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i05:r1",
+            "text": "The beach umbrella was blue."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i05:r2",
+            "text": "The beach umbrella was green."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i05:r3",
+            "text": "The beach umbrella is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i05:audio",
+            "transcript": "The beach umbrella was blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i05:r1",
+              "targetText": "The beach umbrella was blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i05:r2",
+              "targetText": "The beach umbrella was green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i05:r3",
+              "targetText": "The beach umbrella is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach umbrella was blue.",
+                "uk": "У записі звучить The beach umbrella was blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach umbrella was blue.",
+                "uk": "У записі звучить The beach umbrella was blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На пляже было два пляжных зонта. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На пляже было два пляжных зонта. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На пляже было два пляжных зонта. Выберите форму",
+            "uk": "На пляжі було дві пляжні парасолі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two beach umbrellas on the beach.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "На пляже было два пляжных зонта. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "На пляже было два пляжных зонта. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два зонта: were.",
+                "uk": "Дві парасолі: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "На пляже было два пляжных зонта. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Было — прошлое: were.",
+                "uk": "Було — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:word:beach-bag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beach bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:beach-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beach bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:beach-bag:audio",
+            "transcript": "beach bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:beach-bag:r1",
+              "targetText": "beach bag",
+              "meaningByLocale": {
+                "ru": "пляжная сумка.",
+                "uk": "пляжна сумка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach bag",
+            "definitionByLocale": {
+              "ru": "пляжная сумка.",
+              "uk": "пляжна сумка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, была ли пляжная сумка сухой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, была ли пляжная сумка сухой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the beach bag dry?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли пляжная сумка сухой",
+            "uk": "Запитайте, чи була пляжна сумка суха"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "beach",
+            "bag",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i08:r1",
+            "text": "The beach bag was under the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i08:r2",
+            "text": "The beach bag is under the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i08:r3",
+            "text": "The beach bag was on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i08:audio",
+            "transcript": "The beach bag was under the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i08:r1",
+              "targetText": "The beach bag was under the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i08:r2",
+              "targetText": "The beach bag is under the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i08:r3",
+              "targetText": "The beach bag was on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach bag was under the chair.",
+                "uk": "У записі звучить The beach bag was under the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach bag was under the chair.",
+                "uk": "У записі звучить The beach bag was under the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас пляжная сумка пустая. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас пляжная сумка пустая. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас пляжная сумка пустая. Выберите форму",
+            "uk": "Зараз пляжна сумка порожня. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The beach bag ___ empty now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сейчас пляжная сумка пустая. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Сейчас пляжная сумка пустая. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: is.",
+                "uk": "Now — зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Сейчас пляжная сумка пустая. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна сумка: is.",
+                "uk": "Одна сумка: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:word:seashell",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — seashell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:seashell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — seashell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:seashell:audio",
+            "transcript": "seashell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:seashell:r1",
+              "targetText": "seashell",
+              "meaningByLocale": {
+                "ru": "морская ракушка.",
+                "uk": "морська мушля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seashell",
+            "definitionByLocale": {
+              "ru": "морская ракушка.",
+              "uk": "морська мушля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в сумке была морская ракушка. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в сумке была морская ракушка. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a seashell in the bag.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в сумке была морская ракушка. Начните с There",
+            "uk": "Повідомте: у сумці була морська мушля. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "seashell",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i11:r1",
+            "text": "There were two seashells near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i11:r2",
+            "text": "There was a seashell near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i11:r3",
+            "text": "There were two seashells in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i11:audio",
+            "transcript": "There were two seashells near the water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i11:r1",
+              "targetText": "There were two seashells near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i11:r2",
+              "targetText": "There was a seashell near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i11:r3",
+              "targetText": "There were two seashells in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two seashells near the water.",
+                "uk": "У записі звучить There were two seashells near the water."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two seashells near the water.",
+                "uk": "У записі звучить There were two seashells near the water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера ракушка была мокрой. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера ракушка была мокрой. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера ракушка была мокрой. Выберите форму",
+            "uk": "Учора мушля була мокра. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The seashell ___ wet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера ракушка была мокрой. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Вчера ракушка была мокрой. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Вчера ракушка была мокрой. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна ракушка: was.",
+                "uk": "Одна мушля: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-48:i13:p1",
+              "target": "beach ball",
+              "meaningByLocale": {
+                "ru": "пляжный мяч",
+                "uk": "пляжний м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-48:i13:p2",
+              "target": "beach umbrella",
+              "meaningByLocale": {
+                "ru": "пляжный зонт",
+                "uk": "пляжна парасоля"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-48:i13:p3",
+              "target": "beach bag",
+              "meaningByLocale": {
+                "ru": "пляжная сумка",
+                "uk": "пляжна сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-48:i13:p4",
+              "target": "seashell",
+              "meaningByLocale": {
+                "ru": "морская ракушка",
+                "uk": "морська мушля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beach ball",
+            "beach umbrella",
+            "beach bag",
+            "seashell"
+          ],
+          "rightColumn": [
+            "пляжный мяч",
+            "пляжный зонт",
+            "пляжная сумка",
+            "морская ракушка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i14:audio",
+            "transcript": "Please don't take my ball."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't take my ball.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "take",
+            "my",
+            "ball"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i15:audio",
+            "transcript": "I am looking for my towel right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am looking for my towel right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "for",
+            "my",
+            "towel",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что пляжная сумка была не мокрой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что пляжная сумка была не мокрой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i16:audio",
+            "transcript": "The beach bag was not wet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The beach bag was not wet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, была ли ракушка на песке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, была ли ракушка на песке",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i17:audio",
+            "transcript": "Was the seashell on the sand?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the seashell on the sand?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-48:word:beach-ball",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beach ball",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:beach-ball:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beach ball",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:beach-ball:audio",
+            "transcript": "beach ball"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:beach-ball:r1",
+              "targetText": "beach ball",
+              "meaningByLocale": {
+                "ru": "пляжный мяч.",
+                "uk": "пляжний м’яч."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach ball",
+            "definitionByLocale": {
+              "ru": "пляжный мяч.",
+              "uk": "пляжний м’яч."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи був пляжний м’яч у машині",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи був пляжний м’яч у машині",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the beach ball in the car?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли пляжный мяч в машине",
+            "uk": "Запитайте, чи був пляжний м’яч у машині"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "beach",
+            "ball",
+            "in",
+            "the",
+            "car"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i02:r1",
+            "text": "The beach ball was near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i02:r2",
+            "text": "The beach ball is near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i02:r3",
+            "text": "The beach ball was under the tree."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i02:audio",
+            "transcript": "The beach ball was near the water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i02:r1",
+              "targetText": "The beach ball was near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i02:r2",
+              "targetText": "The beach ball is near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i02:r3",
+              "targetText": "The beach ball was under the tree.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach ball was near the water.",
+                "uk": "У записі звучить The beach ball was near the water."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach ball was near the water.",
+                "uk": "У записі звучить The beach ball was near the water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора пляжний м’яч був на піску. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора пляжний м’яч був на піску. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера пляжный мяч был на песке. Выберите форму",
+            "uk": "Учора пляжний м’яч був на піску. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The beach ball ___ on the sand yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора пляжний м’яч був на піску. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора пляжний м’яч був на піску. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора пляжний м’яч був на піску. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один мяч: was.",
+                "uk": "Один м’яч: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:word:beach-umbrella",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beach umbrella",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:beach-umbrella:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beach umbrella",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:beach-umbrella:audio",
+            "transcript": "beach umbrella"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:beach-umbrella:r1",
+              "targetText": "beach umbrella",
+              "meaningByLocale": {
+                "ru": "пляжный зонт.",
+                "uk": "пляжна парасоля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach umbrella",
+            "definitionByLocale": {
+              "ru": "пляжный зонт.",
+              "uk": "пляжна парасоля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: пляжна парасоля була не в машині",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: пляжна парасоля була не в машині",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The beach umbrella was not in the car.",
+          "localizedMeaning": {
+            "ru": "Сообщите: пляжный зонт был не в машине",
+            "uk": "Повідомте: пляжна парасоля була не в машині"
+          },
+          "orderedTokens": [
+            "The",
+            "beach",
+            "umbrella",
+            "was",
+            "not",
+            "in",
+            "the",
+            "car"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i05:r1",
+            "text": "The beach umbrella was blue."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i05:r2",
+            "text": "The beach umbrella was green."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i05:r3",
+            "text": "The beach umbrella is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i05:audio",
+            "transcript": "The beach umbrella was blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i05:r1",
+              "targetText": "The beach umbrella was blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i05:r2",
+              "targetText": "The beach umbrella was green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i05:r3",
+              "targetText": "The beach umbrella is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach umbrella was blue.",
+                "uk": "У записі звучить The beach umbrella was blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach umbrella was blue.",
+                "uk": "У записі звучить The beach umbrella was blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На пляжі було дві пляжні парасолі. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На пляжі було дві пляжні парасолі. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На пляже было два пляжных зонта. Выберите форму",
+            "uk": "На пляжі було дві пляжні парасолі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two beach umbrellas on the beach.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "На пляжі було дві пляжні парасолі. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "На пляжі було дві пляжні парасолі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два зонта: were.",
+                "uk": "Дві парасолі: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "На пляжі було дві пляжні парасолі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Было — прошлое: were.",
+                "uk": "Було — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:word:beach-bag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beach bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:beach-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beach bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:beach-bag:audio",
+            "transcript": "beach bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:beach-bag:r1",
+              "targetText": "beach bag",
+              "meaningByLocale": {
+                "ru": "пляжная сумка.",
+                "uk": "пляжна сумка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach bag",
+            "definitionByLocale": {
+              "ru": "пляжная сумка.",
+              "uk": "пляжна сумка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи була пляжна сумка суха",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи була пляжна сумка суха",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the beach bag dry?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли пляжная сумка сухой",
+            "uk": "Запитайте, чи була пляжна сумка суха"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "beach",
+            "bag",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i08:r1",
+            "text": "The beach bag was under the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i08:r2",
+            "text": "The beach bag is under the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i08:r3",
+            "text": "The beach bag was on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i08:audio",
+            "transcript": "The beach bag was under the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i08:r1",
+              "targetText": "The beach bag was under the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i08:r2",
+              "targetText": "The beach bag is under the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i08:r3",
+              "targetText": "The beach bag was on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach bag was under the chair.",
+                "uk": "У записі звучить The beach bag was under the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beach bag was under the chair.",
+                "uk": "У записі звучить The beach bag was under the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз пляжна сумка порожня. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз пляжна сумка порожня. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас пляжная сумка пустая. Выберите форму",
+            "uk": "Зараз пляжна сумка порожня. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The beach bag ___ empty now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Зараз пляжна сумка порожня. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Зараз пляжна сумка порожня. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: is.",
+                "uk": "Now — зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Зараз пляжна сумка порожня. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна сумка: is.",
+                "uk": "Одна сумка: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:word:seashell",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — seashell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:word:seashell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — seashell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:word:seashell:audio",
+            "transcript": "seashell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:word:seashell:r1",
+              "targetText": "seashell",
+              "meaningByLocale": {
+                "ru": "морская ракушка.",
+                "uk": "морська мушля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "seashell",
+            "definitionByLocale": {
+              "ru": "морская ракушка.",
+              "uk": "морська мушля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у сумці була морська мушля. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у сумці була морська мушля. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a seashell in the bag.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в сумке была морская ракушка. Начните с There",
+            "uk": "Повідомте: у сумці була морська мушля. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "seashell",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i11:r1",
+            "text": "There were two seashells near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i11:r2",
+            "text": "There was a seashell near the water."
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i11:r3",
+            "text": "There were two seashells in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i11:audio",
+            "transcript": "There were two seashells near the water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-48:i11:r1",
+              "targetText": "There were two seashells near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i11:r2",
+              "targetText": "There was a seashell near the water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i11:r3",
+              "targetText": "There were two seashells in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two seashells near the water.",
+                "uk": "У записі звучить There were two seashells near the water."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two seashells near the water.",
+                "uk": "У записі звучить There were two seashells near the water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора мушля була мокра. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-48:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-48:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора мушля була мокра. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера ракушка была мокрой. Выберите форму",
+            "uk": "Учора мушля була мокра. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The seashell ___ wet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-48:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора мушля була мокра. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Учора мушля була мокра. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Учора мушля була мокра. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна ракушка: was.",
+                "uk": "Одна мушля: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-48:i13:p1",
+              "target": "beach ball",
+              "meaningByLocale": {
+                "ru": "пляжный мяч",
+                "uk": "пляжний м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-48:i13:p2",
+              "target": "beach umbrella",
+              "meaningByLocale": {
+                "ru": "пляжный зонт",
+                "uk": "пляжна парасоля"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-48:i13:p3",
+              "target": "beach bag",
+              "meaningByLocale": {
+                "ru": "пляжная сумка",
+                "uk": "пляжна сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-48:i13:p4",
+              "target": "seashell",
+              "meaningByLocale": {
+                "ru": "морская ракушка",
+                "uk": "морська мушля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beach ball",
+            "beach umbrella",
+            "beach bag",
+            "seashell"
+          ],
+          "rightColumn": [
+            "пляжний м’яч",
+            "пляжна парасоля",
+            "пляжна сумка",
+            "морська мушля"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i14:audio",
+            "transcript": "Please don't take my ball."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't take my ball.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "take",
+            "my",
+            "ball"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i15:audio",
+            "transcript": "I am looking for my towel right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am looking for my towel right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "for",
+            "my",
+            "towel",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що пляжна сумка була не мокра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що пляжна сумка була не мокра",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i16:audio",
+            "transcript": "The beach bag was not wet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The beach bag was not wet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи була мушля на піску",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи була мушля на піску",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-48:i17:audio",
+            "transcript": "Was the seashell on the sand?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the seashell on the sand?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-48:word:beach-ball",
+      "correctText": "beach ball",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i01",
+      "correctText": "Was the beach ball in the car?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i02",
+      "correctText": "The beach ball was near the water.",
+      "correctResponseId": "en:lesson-11:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:word:beach-umbrella",
+      "correctText": "beach umbrella",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i04",
+      "correctText": "The beach umbrella was not in the car.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i05",
+      "correctText": "The beach umbrella was blue.",
+      "correctResponseId": "en:lesson-11:session-48:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-48:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:word:beach-bag",
+      "correctText": "beach bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i07",
+      "correctText": "Was the beach bag dry?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i08",
+      "correctText": "The beach bag was under the chair.",
+      "correctResponseId": "en:lesson-11:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:word:seashell",
+      "correctText": "seashell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i10",
+      "correctText": "There was a seashell in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i11",
+      "correctText": "There were two seashells near the water.",
+      "correctResponseId": "en:lesson-11:session-48:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-48:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i14",
+      "correctText": "Please don't take my ball.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i15",
+      "correctText": "I am looking for my towel right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i16",
+      "correctText": "The beach bag was not wet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-48:i17",
+      "correctText": "Was the seashell on the sand?",
+      "correctResponseId": null
+    }
+  ]
+}

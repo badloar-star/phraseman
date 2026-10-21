@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-48:word:beach-ball",
+    "correctText": "beach ball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i01",
+    "correctText": "Was the beach ball in the car?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i02",
+    "correctText": "The beach ball was near the water.",
+    "correctResponseId": "en:lesson-11:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:word:beach-umbrella",
+    "correctText": "beach umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i04",
+    "correctText": "The beach umbrella was not in the car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i05",
+    "correctText": "The beach umbrella was blue.",
+    "correctResponseId": "en:lesson-11:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:word:beach-bag",
+    "correctText": "beach bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i07",
+    "correctText": "Was the beach bag dry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i08",
+    "correctText": "The beach bag was under the chair.",
+    "correctResponseId": "en:lesson-11:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:word:seashell",
+    "correctText": "seashell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i10",
+    "correctText": "There was a seashell in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i11",
+    "correctText": "There were two seashells near the water.",
+    "correctResponseId": "en:lesson-11:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i13",
+    "correctText": "en:lesson-11:session-48:i13:p1=beach ball\nen:lesson-11:session-48:i13:p2=beach umbrella\nen:lesson-11:session-48:i13:p3=beach bag\nen:lesson-11:session-48:i13:p4=seashell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i14",
+    "correctText": "Please don't take my ball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i15",
+    "correctText": "I am looking for my towel right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i16",
+    "correctText": "The beach bag was not wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-48:i17",
+    "correctText": "Was the seashell on the sand?",
+    "correctResponseId": null
+  }
+]

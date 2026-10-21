@@ -72,6 +72,20 @@ export const LearningV2HudPill = memo(function LearningV2HudPill({ pill }: Reado
   );
 });
 
+// ── плита-таблетка для готового HUD-узла плеера (энергия, руны) ──
+// зачем (вердикт «Сверки» 21.10): в макете все три значения HUD — таблетки высотой 34 на плите карточки. Энергию (EnergyBar) и счётчик рун
+// рисуют их собственные компоненты со своей логикой (поповер, измерение цели полёта монет) — мы их не переписываем, а кладём на плиту:
+// плита 34 высотой по центру, узел поверх; зона нажатия узла (44) может быть выше плиты.
+export const LearningV2HudPlate = memo(function LearningV2HudPlate({ children }: Readonly<{ children: React.ReactNode }>) {
+  const g = useLv2Glass();
+  return (
+    <View style={styles.hudPlateWrap}>
+      <View style={[styles.hudPlate, lv2TaskPlateStyle(g)]} pointerEvents="none" />
+      {children}
+    </View>
+  );
+});
+
 // ── верхняя панель (`.tvtop`) ──
 export const LearningV2TaskTopBar = memo(function LearningV2TaskTopBar({ closeLabel, onClose, progress, pills, paddingTop = 0 }: Readonly<{
   closeLabel: string;
@@ -197,6 +211,8 @@ const styles = StyleSheet.create({
   fill: { height: '100%', borderRadius: T.progress.radius },
   progressText: { marginTop: T.progress.labelGap, fontSize: T.progress.labelSize, lineHeight: T.progress.labelLine, fontWeight: '700' },
   hud: { flexDirection: 'row', alignItems: 'center', gap: T.hud.groupGap },
+  hudPlateWrap: { minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+  hudPlate: { position: 'absolute', left: 0, right: 0, height: T.hud.pillHeight, borderRadius: T.hud.pillHeight / 2 },
   pill: { height: T.hud.pillHeight, paddingHorizontal: T.hud.padH, borderRadius: T.hud.pillHeight / 2, flexDirection: 'row', alignItems: 'center', gap: T.hud.gap },
   pillCoin: { width: T.hud.coin, height: T.hud.coin, borderRadius: T.hud.coin / 2 },
   pillText: { fontSize: 16, lineHeight: T.hud.textLine, fontWeight: '700', fontVariant: ['tabular-nums'] },

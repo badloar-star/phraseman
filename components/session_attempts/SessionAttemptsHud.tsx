@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   useAnimatedStyle,
@@ -35,7 +35,15 @@ type Props = {
    * пилюлей стекла — светлые сердца на плите, потерянные гаснут до 22%. Остальные экраны
    * (карточки, слова) передают ничего и остаются на прежних красных сердцах.
    */
-  glassPill?: { readonly fill: string; readonly empty: string; readonly plate: string };
+  glassPill?: {
+    readonly fill: string;
+    readonly empty: string;
+    readonly plate: string;
+    /** Цвет сердца в одиночной таблетке «♥ N» (макет learning-v2-tasks-review.html: красное сердце); без него — `fill`. */
+    readonly heart?: string;
+    /** Тень плиты таблетки (стиль «Тень»). */
+    readonly shadow?: ViewStyle['boxShadow'];
+  };
 };
 
 type HeartSlotProps = {
@@ -194,6 +202,32 @@ function HeartSlot({ index, filled, activeColor, emptyColor }: HeartSlotProps) {
   );
 }
 
+/**
+ * зачем (вердикт «Сверки» 21.10, одобренный макет learning-v2-tasks-review.html): в шапке занятия попытки — одна таблетка «♥ 3» с красным
+ * сердцем и числом, а не три белых сердечка. Сердце (HeartSlot) сохраняет анимацию потери последней попытки, число «подпрыгивает» на каждой
+ * потере; звук потери и восстановления живёт в SessionAttemptsHud выше и не менялся.
+ */
+function GlassHeartCount({ remaining, heartColor, emptyColor, textColor }: Readonly<{ remaining: number; heartColor: string; emptyColor: string; textColor: string }>) {
+  const reduceMotion = useReduceMotion();
+  const pop = useSharedValue(1);
+  const previous = useRef(remaining);
+  useEffect(() => {
+    if (remaining < previous.current && !reduceMotion) {
+      pop.value = withSequence(withTiming(1.35, { duration: 90 }), withSpring(1, { damping: 12, stiffness: 220 }));
+    }
+    previous.current = remaining;
+  }, [pop, reduceMotion, remaining]);
+  const popStyle = useAnimatedStyle(() => ({ transform: [{ scale: pop.value }] }));
+  return (
+    <>
+      <HeartSlot index={0} filled={remaining > 0} activeColor={heartColor} emptyColor={emptyColor} />
+      <Reanimated.View style={popStyle}>
+        <Text style={[styles.heartCount, { color: textColor }]}>{remaining}</Text>
+      </Reanimated.View>
+    </>
+  );
+}
+
 function SessionAttemptsHud({
   remaining,
   attempts,
@@ -249,18 +283,20 @@ function SessionAttemptsHud({
   return (
     <View
       testID={testID}
-      style={[styles.row, glassPill ? styles.glassPill : null, glassPill ? { backgroundColor: glassPill.plate } : null]}
+      style={[styles.row, glassPill ? styles.glassPill : null, glassPill ? { backgroundColor: glassPill.plate, boxShadow: glassPill.shadow } : null]}
       accessible
       accessibilityRole="text"
       accessibilityLabel={accessibilityLabel}
     >
-      {Array.from({ length: safeTotal }, (_, index) => (
+      {glassPill ? (
+        <GlassHeartCount remaining={displayRemaining} heartColor={glassPill.heart ?? glassPill.fill} emptyColor={glassPill.empty} textColor={glassPill.fill} />
+      ) : Array.from({ length: safeTotal }, (_, index) => (
         <HeartSlot
           key={index}
           index={index}
           filled={index < displayRemaining}
-          activeColor={glassPill?.fill ?? t.wrong}
-          emptyColor={glassPill?.empty ?? t.textGhost}
+          activeColor={t.wrong}
+          emptyColor={t.textGhost}
         />
       ))}
     </View>
@@ -276,12 +312,15 @@ const styles = StyleSheet.create({
     gap: 4,
     paddingHorizontal: 6,
   },
+  // `.hp` макета: высота 34, радиус 17, поля 10, gap 4
   glassPill: {
-    minHeight: 30,
-    borderRadius: 15,
+    minHeight: 34,
+    borderRadius: 17,
     paddingHorizontal: 10,
+    gap: 4,
     alignSelf: 'center',
   },
+  heartCount: { fontSize: 16, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'] },
   slot: {
     width: 22,
     height: 24,

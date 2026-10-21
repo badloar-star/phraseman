@@ -275,7 +275,9 @@ import { resolveLearningV2SessionRouteCoordinatesV1 } from "./learning_v2_sessio
 import { isPulseLessonAuthored } from "../components/learning-v2/learningV2PulseGeometry";
 import { useLineScale } from "../hooks/useLineScale";
 import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
-import { actionBoxShadow, nestedBoxShadow } from "../components/v2/ShadowSurface";
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from "../components/v2/ShadowSurface";
+import { LearningV2HudPlate } from "../components/learning-v2/LearningV2TaskChrome";
+import { lv2TaskPlateStyle, lv2TaskTrackColor } from "../components/learning-v2/learning_v2_task_layout_tokens";
 import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint } from "../components/learning-v2/LearningV2SessionUnavailable";
 
 const first = (value: string | string[] | undefined) =>
@@ -477,9 +479,10 @@ export default function LearningV2DirectSessionPlayerV1() {
   // темы (`g`), а не разрозненными полями старой палитры; `t` остаётся только для
   // SpeakingPanel, чей общий тематический контракт живёт в другом модуле.
   const g = useLv2Glass();
+  // зачем (вердикт «Сверки» 21.10): таблетка «♥ N» с красным сердцем на плите карточки с тенью — как .hp в одобренном макете заданий V2
   const heartsPill = useMemo(
-    () => ({ fill: g.text, empty: lv2Alpha(g.text, 0.22), plate: g.opaqueControl }),
-    [g.text, g.opaqueControl],
+    () => ({ fill: g.text, empty: lv2Alpha(g.text, 0.22), plate: g.opaqueCard, heart: g.bad, shadow: plateBoxShadow(g) }),
+    [g],
   );
   const insets = useStableSafeAreaInsets();
   const lh = useLineScale();
@@ -3076,7 +3079,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             locale={lang}
             testID="learning-v2-checkpoint-attempts"
           />
-          {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
+          {sessionAttempts.mistakeChargeActive ? null : <LearningV2HudPlate><EnergyBar glass /></LearningV2HudPlate>}
         </View>
         <ScrollView
           style={styles.screen}
@@ -3133,7 +3136,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         testID="learning-v2-session-runes"
         accessible
         accessibilityLabel={learningV2RuneAccessibilityLabelV1(lang, sessionRunes)}
-        style={[styles.runeCounter, { backgroundColor: g.opaqueControl }]}
+        style={[styles.runeCounter, lv2TaskPlateStyle(g)]}
       >
         <Image
           source={HOME_RUNE_ICON_SOURCE}
@@ -3288,7 +3291,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 locale={lang}
                 testID="learning-v2-intro-attempts"
               />
-              {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
+              {sessionAttempts.mistakeChargeActive ? null : <LearningV2HudPlate><EnergyBar glass /></LearningV2HudPlate>}
               {/* зачем (координатор 15.10, макет learning-v2.html): в шапке ИНТРО только сердца и энергия — плашка монет отнимала место у подписи этапа («СМЫС»/«Л»). Монеты считаются как прежде (settleSessionRuneAward), видны в шапке заданий; без плашки не летит лишь декоративная монета. */}
               </View>
             }
@@ -3350,14 +3353,15 @@ export default function LearningV2DirectSessionPlayerV1() {
           onPress={() => requestEpisodeExit("close_button")}
           style={({ pressed }) => [
             styles.iconButton,
-            { backgroundColor: g.buttonFill, opacity: pressed ? 0.72 : 1 },
+            lv2TaskPlateStyle(g),
+            { opacity: pressed ? 0.72 : 1 },
           ]}
         >
           <Ionicons name="close" size={22} color={g.text} />
         </Pressable>
         <View style={styles.progressColumn}>
           <View
-            style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}
+            style={[styles.progressTrack, { backgroundColor: lv2TaskTrackColor(g) }]}
           >
             <View
               style={[
@@ -3382,7 +3386,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           />
           {/* зачем (learning-v2.html, шапка занятия): пилюля энергии рядом с попытками; у Plus
               EnergyBar сам не рисуется («Plus — энергии нет»). Только показ, трата — в гейте. */}
-          {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
+          {sessionAttempts.mistakeChargeActive ? null : <LearningV2HudPlate><EnergyBar glass /></LearningV2HudPlate>}
           {runeHud}
         </View>
       </View>
@@ -4011,7 +4015,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 { opacity: practiceIndex <= 0 ? 0.3 : pressed ? 0.62 : 1 },
               ]}
             >
-              <Ionicons name="arrow-undo-outline" size={26} color={g.secondary} />
+              <Ionicons name="arrow-undo" size={26} color={g.text} />
               <Text style={[styles.footerActionLabel, { color: g.secondary, fontSize: f.label }]}>
                 {footerBackLabel}
               </Text>
@@ -4035,26 +4039,16 @@ export default function LearningV2DirectSessionPlayerV1() {
                   { opacity: unlockedWords.length === 0 ? 0.3 : pressed ? 0.62 : 1 },
                 ]}
               >
-                <View style={styles.footerIconWrap}>
-                  <View
-                    ref={wordPocketTargetRef}
-                    collapsable={false}
-                    testID="learning-v2-word-pocket-miniature"
-                    pointerEvents="none"
-                    style={styles.wordPocketMiniature}
-                  >
-                    <View style={[styles.wordPocketMiniBack, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]} />{/* shadow-ok: миниатюра-иконка карточек в футере (арт 25×21), не контейнер */}
-                    <View style={[styles.wordPocketMiniFace, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}>{/* shadow-ok: миниатюра-иконка карточек (арт), не контейнер */}
-                      <Ionicons name="text-outline" size={14} color={g.text} />
-                    </View>
-                  </View>
-                  {unlockedWords.length > 0 ? (
-                    <View style={[styles.wordPocketBadge, { backgroundColor: g.ctaFill }]}>
-                      <Text style={[styles.wordPocketBadgeText, { color: g.ctaFillInk }]}>
-                        {unlockedWords.length}
-                      </Text>
-                    </View>
-                  ) : null}
+                {/* зачем (вердикт «Сверки» 21.10): «Слова» — значок-стопка без кружка-счётчика (макет: albums); число слов остаётся в a11y-подписи.
+                    Невидимая обёртка с ref остаётся целью измерения для полёта карточки в «Слова» (measureWordPocketTarget). */}
+                <View
+                  ref={wordPocketTargetRef}
+                  collapsable={false}
+                  testID="learning-v2-word-pocket-miniature"
+                  pointerEvents="none"
+                  style={styles.wordPocketMiniature}
+                >
+                  <Ionicons name="albums" size={26} color={g.text} />
                 </View>
                 <Text style={[styles.footerActionLabel, { color: g.secondary, fontSize: f.label }]}>
                   {footerWordsLabel}
@@ -4308,9 +4302,9 @@ const styles = StyleSheet.create({
   },
   runeCounter: {
     minWidth: 48,
-    minHeight: 36,
-    paddingHorizontal: 9,
-    borderRadius: 999,
+    minHeight: 34,
+    paddingHorizontal: 10,
+    borderRadius: 17,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -4560,7 +4554,8 @@ const styles = StyleSheet.create({
   skipText: { fontSize: 13, fontWeight: "700" },
   // №22б: карточка «Продолжить с задания N из M» — снизу поверх экрана, без обводки (тень/тон карточки 2.0).
   cantSpeak: { alignSelf: "center", minHeight: 44, justifyContent: "center", paddingHorizontal: 12, marginTop: 4 },
-  cantSpeakText: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  // зачем (просьба Learning V2 21.10, сторож typography_two_sizes): меньше 19 — только 13/16
+  cantSpeakText: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
   resumeOfferWrap: { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 16 },
   resumeOfferCard: { borderRadius: 24, padding: 20, gap: 12 },
   resumeOfferTitle: { fontSize: 20, lineHeight: 26, fontWeight: "700", marginBottom: 4 },

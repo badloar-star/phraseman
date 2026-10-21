@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-30:word:bank-transfer",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bank transfer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:word:bank-transfer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bank transfer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:word:bank-transfer:audio",
+          "transcript": "bank transfer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:word:bank-transfer:r1",
+            "targetText": "bank transfer",
+            "meaningByLocale": {
+              "ru": "банковский перевод.",
+              "uk": "банківський переказ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bank transfer",
+          "definitionByLocale": {
+            "ru": "банковский перевод.",
+            "uk": "банківський переказ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Скажіть: «Ми зробили кілька банківських переказів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Скажіть: «Ми зробили кілька банківських переказів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We made some bank transfers.",
+        "localizedMeaning": {
+          "ru": "Несколько переводов были сделаны. Подтвердите это. Bank transfer → bank transfers. Скажите: «Мы сделали несколько банковских переводов».",
+          "uk": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Скажіть: «Ми зробили кілька банківських переказів»."
+        },
+        "orderedTokens": [
+          "We",
+          "made",
+          "some",
+          "bank",
+          "transfers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i02:r1",
+          "text": "We made some bank transfers."
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i02:r2",
+          "text": "We made any bank transfers."
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i02:r3",
+          "text": "We made a bank transfers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i02:audio",
+          "transcript": "We made some bank transfers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:i02:r1",
+            "targetText": "We made some bank transfers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i02:r2",
+            "targetText": "We made any bank transfers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i02:r3",
+            "targetText": "We made a bank transfers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We made some bank transfers.",
+              "uk": "У записі звучить We made some bank transfers."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We made some bank transfers.",
+              "uk": "У записі звучить We made some bank transfers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Несколько переводов были сделаны. Подтвердите это. Bank transfer → bank transfers.",
+          "uk": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers."
+        },
+        "gappedTargetPhrase": "We made ___ bank transfers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-30:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:word:cash-withdrawal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cash withdrawal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:word:cash-withdrawal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cash withdrawal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:word:cash-withdrawal:audio",
+          "transcript": "cash withdrawal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:word:cash-withdrawal:r1",
+            "targetText": "cash withdrawal",
+            "meaningByLocale": {
+              "ru": "снятие наличных.",
+              "uk": "зняття готівки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cash withdrawal",
+          "definitionByLocale": {
+            "ru": "снятие наличных.",
+            "uk": "зняття готівки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals. Скажіть: «Ми жодного разу не знімали готівку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals. Скажіть: «Ми жодного разу не знімали готівку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We didn't make any cash withdrawals.",
+        "localizedMeaning": {
+          "ru": "В обсуждаемый период наличные не снимали ни разу. Cash withdrawal → cash withdrawals. Скажите: «Мы ни разу не снимали наличные».",
+          "uk": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals. Скажіть: «Ми жодного разу не знімали готівку»."
+        },
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "make",
+          "any",
+          "cash",
+          "withdrawals"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i05:r1",
+          "text": "We didn't make any cash withdrawals."
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i05:r2",
+          "text": "We didn't make some cash withdrawals."
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i05:r3",
+          "text": "We didn't make a cash withdrawals."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i05:audio",
+          "transcript": "We didn't make any cash withdrawals."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:i05:r1",
+            "targetText": "We didn't make any cash withdrawals.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i05:r2",
+            "targetText": "We didn't make some cash withdrawals.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i05:r3",
+            "targetText": "We didn't make a cash withdrawals.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We didn't make any cash withdrawals.",
+              "uk": "У записі звучить We didn't make any cash withdrawals."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We didn't make any cash withdrawals.",
+              "uk": "У записі звучить We didn't make any cash withdrawals."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В обсуждаемый период наличные не снимали ни разу. Cash withdrawal → cash withdrawals.",
+          "uk": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals."
+        },
+        "gappedTargetPhrase": "We didn't make ___ cash withdrawals.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-30:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "В обговорюваний період готівку не знімали жодного разу. Cash withdrawal → cash withdrawals.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:word:financial-support",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — financial support",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:word:financial-support:audio"
+      ],
+      "accessibilityLabel": "Картка слова — financial support",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:word:financial-support:audio",
+          "transcript": "financial support"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:word:financial-support:r1",
+            "targetText": "financial support",
+            "meaningByLocale": {
+              "ru": "финансовая поддержка.",
+              "uk": "фінансова підтримка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "financial support",
+          "definitionByLocale": {
+            "ru": "финансовая поддержка.",
+            "uk": "фінансова підтримка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви повідомляєте про потребу в певній грошовій допомозі. Скажіть: «Нам потрібна певна фінансова підтримка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте про потребу в певній грошовій допомозі. Скажіть: «Нам потрібна певна фінансова підтримка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need some financial support.",
+        "localizedMeaning": {
+          "ru": "Вы сообщаете о потребности в некоторой денежной помощи. Скажите: «Нам нужна некоторая финансовая поддержка».",
+          "uk": "Ви повідомляєте про потребу в певній грошовій допомозі. Скажіть: «Нам потрібна певна фінансова підтримка»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "some",
+          "financial",
+          "support"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i08:r1",
+          "text": "We need some financial support."
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i08:r2",
+          "text": "We need any financial support."
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i08:r3",
+          "text": "We need a financial support."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i08:audio",
+          "transcript": "We need some financial support."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:i08:r1",
+            "targetText": "We need some financial support.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i08:r2",
+            "targetText": "We need any financial support.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i08:r3",
+            "targetText": "We need a financial support.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some financial support.",
+              "uk": "У записі звучить We need some financial support."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some financial support.",
+              "uk": "У записі звучить We need some financial support."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повідомляєте про потребу в певній грошовій допомозі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте про потребу в певній грошовій допомозі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете о потребности в некоторой денежной помощи.",
+          "uk": "Ви повідомляєте про потребу в певній грошовій допомозі."
+        },
+        "gappedTargetPhrase": "We need ___ financial support.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-30:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви повідомляєте про потребу в певній грошовій допомозі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте про потребу в певній грошовій допомозі.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте про потребу в певній грошовій допомозі.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:word:online-banking",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — online banking",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:word:online-banking:audio"
+      ],
+      "accessibilityLabel": "Картка слова — online banking",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:word:online-banking:audio",
+          "transcript": "online banking"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:word:online-banking:r1",
+            "targetText": "online banking",
+            "meaningByLocale": {
+              "ru": "управление банковским счётом через интернет.",
+              "uk": "керування банківським рахунком через інтернет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "online banking",
+          "definitionByLocale": {
+            "ru": "управление банковским счётом через интернет.",
+            "uk": "керування банківським рахунком через інтернет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так». Скажіть: «Цей банк пропонує якесь обслуговування через інтернет».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так». Скажіть: «Цей банк пропонує якесь обслуговування через інтернет».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does this bank offer any online banking?",
+        "localizedMeaning": {
+          "ru": "Вы ничего не знаете об этой услуге банка. Задайте нейтральный вопрос без ожидания ответа «да». Скажите: «Этот банк предлагает какое-либо обслуживание через интернет».",
+          "uk": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так». Скажіть: «Цей банк пропонує якесь обслуговування через інтернет»."
+        },
+        "orderedTokens": [
+          "Does",
+          "this",
+          "bank",
+          "offer",
+          "any",
+          "online",
+          "banking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i11:r1",
+          "text": "Does this bank offer any online banking?"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i11:r2",
+          "text": "Does this bank offer some online banking?"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i11:r3",
+          "text": "Does this bank offer a online banking?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i11:audio",
+          "transcript": "Does this bank offer any online banking?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-30:i11:r1",
+            "targetText": "Does this bank offer any online banking?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i11:r2",
+            "targetText": "Does this bank offer some online banking?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i11:r3",
+            "targetText": "Does this bank offer a online banking?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does this bank offer any online banking?",
+              "uk": "У записі звучить Does this bank offer any online banking?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does this bank offer any online banking?",
+              "uk": "У записі звучить Does this bank offer any online banking?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-30:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-30:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ничего не знаете об этой услуге банка. Задайте нейтральный вопрос без ожидания ответа «да».",
+          "uk": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так»."
+        },
+        "gappedTargetPhrase": "Does this bank offer ___ online banking?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-30:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так».",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви нічого не знаєте про цю послугу банку. Поставте нейтральне запитання без очікування відповіді «так».",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-30:i13:p1",
+            "target": "bank transfer",
+            "meaningByLocale": {
+              "ru": "банковский перевод",
+              "uk": "банківський переказ"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-30:i13:p2",
+            "target": "cash withdrawal",
+            "meaningByLocale": {
+              "ru": "снятие наличных",
+              "uk": "зняття готівки"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-30:i13:p3",
+            "target": "financial support",
+            "meaningByLocale": {
+              "ru": "финансовая поддержка",
+              "uk": "фінансова підтримка"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-30:i13:p4",
+            "target": "online banking",
+            "meaningByLocale": {
+              "ru": "управление банковским счётом через интернет",
+              "uk": "керування банківським рахунком через інтернет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bank transfer",
+          "cash withdrawal",
+          "financial support",
+          "online banking"
+        ],
+        "rightColumn": [
+          "банківський переказ",
+          "зняття готівки",
+          "фінансова підтримка",
+          "керування банківським рахунком через інтернет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте твердження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте твердження",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i14:audio",
+          "transcript": "We made some bank transfers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We made some bank transfers.",
+        "orderedTokens": [
+          "We",
+          "made",
+          "some",
+          "bank",
+          "transfers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i15:audio",
+          "transcript": "Does this bank offer any online banking?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does this bank offer any online banking?",
+        "orderedTokens": [
+          "Does",
+          "this",
+          "bank",
+          "offer",
+          "any",
+          "online",
+          "banking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що певна кількість є",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що певна кількість є",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i16:audio",
+          "transcript": "We need some financial support."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need some financial support.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повністю заперечте наявність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Повністю заперечте наявність",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-30:i17:audio",
+          "transcript": "We didn't make any cash withdrawals."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We didn't make any cash withdrawals.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8ed038463a42832e879085ca63ed5b1679438fdc9e0421ee992b536f3c14c699"
+}

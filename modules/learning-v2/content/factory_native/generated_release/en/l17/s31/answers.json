@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-31:word:discount-code",
+    "correctText": "discount code",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i01",
+    "correctText": "We have some discount codes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i02",
+    "correctText": "We have some discount codes.",
+    "correctResponseId": "en:lesson-17:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:word:price-increase",
+    "correctText": "price increase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i04",
+    "correctText": "There aren't any price increases.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i05",
+    "correctText": "There aren't any price increases.",
+    "correctResponseId": "en:lesson-17:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:word:store-credit",
+    "correctText": "store credit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i07",
+    "correctText": "I have some store credit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i08",
+    "correctText": "I have some store credit.",
+    "correctResponseId": "en:lesson-17:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:word:home-delivery",
+    "correctText": "home delivery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i10",
+    "correctText": "Do you offer any home delivery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i11",
+    "correctText": "Do you offer any home delivery?",
+    "correctResponseId": "en:lesson-17:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i13",
+    "correctText": "en:lesson-17:session-31:i13:p1=discount code\nen:lesson-17:session-31:i13:p2=price increase\nen:lesson-17:session-31:i13:p3=store credit\nen:lesson-17:session-31:i13:p4=home delivery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i14",
+    "correctText": "We have some discount codes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i15",
+    "correctText": "Do you offer any home delivery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i16",
+    "correctText": "I have some store credit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-31:i17",
+    "correctText": "There aren't any price increases.",
+    "correctResponseId": null
+  }
+]

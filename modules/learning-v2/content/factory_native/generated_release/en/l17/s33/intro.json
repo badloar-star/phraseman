@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Считаем упаковки",
+        "uk": "Рахуємо упаковки"
+      },
+      "bodyByLocale": {
+        "ru": "Tube of toothpaste — тюбик зубной пасты. Пасту как вещество не считаем, зато считаем тюбики: one tube of toothpaste, two tubes of toothpaste. Порядок: число + упаковка + of + содержимое.",
+        "uk": "Tube of toothpaste — тюбик зубної пасти. Пасту як речовину не рахуємо, зате рахуємо тюбики: one tube of toothpaste, two tubes of toothpaste. Порядок: число + упаковка + of + вміст."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-33:intro1:r1",
+              "text": "We need two tubes of toothpaste."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro1:r2",
+              "text": "We need two tube of toothpaste."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro1:r3",
+              "text": "We need two tubes toothpaste."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-33:intro1:r1",
+              "text": "We need two tubes of toothpaste."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro1:r2",
+              "text": "We need two tube of toothpaste."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro1:r3",
+              "text": "We need two tubes toothpaste."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Единицы вещества",
+        "uk": "Одиниці речовини"
+      },
+      "bodyByLocale": {
+        "ru": "Bar of soap — кусок мыла. Roll of toilet paper — рулон туалетной бумаги. Мыло и бумагу считаем через единицы: two bars of soap, two rolls of toilet paper. Окончание множественного числа получает bar или roll, а не soap или paper.",
+        "uk": "Bar of soap — шматок мила. Roll of toilet paper — рулон туалетного паперу. Мило й папір рахуємо через одиниці: two bars of soap, two rolls of toilet paper. Закінчення множини отримує bar або roll, а не soap чи paper."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-33:intro2:r1",
+              "text": "We need two bars of soap."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro2:r2",
+              "text": "We need two bar of soap."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro2:r3",
+              "text": "We need two bars soap."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-33:intro2:r1",
+              "text": "We need two bars of soap."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro2:r2",
+              "text": "We need two bar of soap."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro2:r3",
+              "text": "We need two bars soap."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коробки и содержимое",
+        "uk": "Коробки й вміст"
+      },
+      "bodyByLocale": {
+        "ru": "Box of cereal — коробка хлопьев для завтрака. Множественное число box — boxes. Считаем коробки: two boxes of cereal. В этом примере cereal — содержимое коробки, а не разные виды зерновых.",
+        "uk": "Box of cereal — коробка пластівців для сніданку. Множина box — boxes. Рахуємо коробки: two boxes of cereal. У цьому прикладі cereal — вміст коробки, а не різні види зернових."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-33:intro3:r1",
+              "text": "We need two boxes of cereal."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro3:r2",
+              "text": "We need two box of cereal."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro3:r3",
+              "text": "We need two boxes cereal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-33:intro3:r1",
+              "text": "We need two boxes of cereal."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro3:r2",
+              "text": "We need two box of cereal."
+            },
+            {
+              "responseId": "en:lesson-17:session-33:intro3:r3",
+              "text": "We need two boxes cereal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ec4806fffb6f740a1f3ca2dadd32ec9da5af91615783fbde0bca4eae32b0f493"
+}

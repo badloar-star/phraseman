@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-26:word:delivery-charge",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delivery charge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:word:delivery-charge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delivery charge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:word:delivery-charge:audio",
+          "transcript": "delivery charge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:word:delivery-charge:r1",
+            "targetText": "delivery charge",
+            "meaningByLocale": {
+              "ru": "плата за доставку.",
+              "uk": "плата за доставку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delivery charge",
+          "definitionByLocale": {
+            "ru": "плата за доставку.",
+            "uk": "плата за доставку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Скажите: «Есть некоторые расходы на доставку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Скажите: «Есть некоторые расходы на доставку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are some delivery charges.",
+        "localizedMeaning": {
+          "ru": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Скажите: «Есть некоторые расходы на доставку».",
+          "uk": "У замовленнях є кілька доплат за доставку. Підтвердьте їхню наявність. Delivery charge → delivery charges. Скажіть: «Є певні витрати на доставку»."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "delivery",
+          "charges"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i02:r1",
+          "text": "There are some delivery charges."
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i02:r2",
+          "text": "There are any delivery charges."
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i02:r3",
+          "text": "There are a delivery charges."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i02:audio",
+          "transcript": "There are some delivery charges."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:i02:r1",
+            "targetText": "There are some delivery charges.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i02:r2",
+            "targetText": "There are any delivery charges.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i02:r3",
+            "targetText": "There are a delivery charges.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are some delivery charges.",
+              "uk": "У записі звучить There are some delivery charges."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are some delivery charges.",
+              "uk": "У записі звучить There are some delivery charges."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges.",
+          "uk": "У замовленнях є кілька доплат за доставку. Підтвердьте їхню наявність. Delivery charge → delivery charges."
+        },
+        "gappedTargetPhrase": "There are ___ delivery charges.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-26:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:word:service-charge",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — service charge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:word:service-charge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — service charge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:word:service-charge:audio",
+          "transcript": "service charge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:word:service-charge:r1",
+            "targetText": "service charge",
+            "meaningByLocale": {
+              "ru": "плата за обслуживание.",
+              "uk": "плата за обслуговування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "service charge",
+          "definitionByLocale": {
+            "ru": "плата за обслуживание.",
+            "uk": "плата за обслуговування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges. Скажите: «Никакой платы за обслуживание нет».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges. Скажите: «Никакой платы за обслуживание нет».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any service charges.",
+        "localizedMeaning": {
+          "ru": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges. Скажите: «Никакой платы за обслуживание нет».",
+          "uk": "Жодних доплат за обслуговування немає. Повністю заперечте їхню наявність. Service charge → service charges. Скажіть: «Жодної плати за обслуговування немає»."
+        },
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "service",
+          "charges"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i05:r1",
+          "text": "There aren't any service charges."
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i05:r2",
+          "text": "There aren't some service charges."
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i05:r3",
+          "text": "There aren't a service charges."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i05:audio",
+          "transcript": "There aren't any service charges."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:i05:r1",
+            "targetText": "There aren't any service charges.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i05:r2",
+            "targetText": "There aren't some service charges.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i05:r3",
+            "targetText": "There aren't a service charges.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There aren't any service charges.",
+              "uk": "У записі звучить There aren't any service charges."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There aren't any service charges.",
+              "uk": "У записі звучить There aren't any service charges."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges.",
+          "uk": "Жодних доплат за обслуговування немає. Повністю заперечте їхню наявність. Service charge → service charges."
+        },
+        "gappedTargetPhrase": "There aren't ___ service charges.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-26:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Никаких доплат за обслуживание нет. Отрицайте их наличие полностью. Service charge → service charges.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:word:cashback",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cashback",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:word:cashback:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cashback",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:word:cashback:audio",
+          "transcript": "cashback"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:word:cashback:r1",
+            "targetText": "cashback",
+            "meaningByLocale": {
+              "ru": "возврат части стоимости покупки деньгами.",
+              "uk": "повернення частини вартості покупки грошима."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cashback",
+          "definitionByLocale": {
+            "ru": "возврат части стоимости покупки деньгами.",
+            "uk": "повернення частини вартості покупки грошима."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности. Скажите: «Вы можете получить часть стоимости покупки обратно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности. Скажите: «Вы можете получить часть стоимости покупки обратно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can get some cashback.",
+        "localizedMeaning": {
+          "ru": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности. Скажите: «Вы можете получить часть стоимости покупки обратно».",
+          "uk": "За умовами цієї покупки частину грошей повернуть. Повідомте про таку можливість. Скажіть: «Ви можете отримати частину вартості покупки назад»."
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "get",
+          "some",
+          "cashback"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i08:r1",
+          "text": "You can get some cashback."
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i08:r2",
+          "text": "You can get any cashback."
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i08:r3",
+          "text": "You can get a cashback."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i08:audio",
+          "transcript": "You can get some cashback."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:i08:r1",
+            "targetText": "You can get some cashback.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i08:r2",
+            "targetText": "You can get any cashback.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i08:r3",
+            "targetText": "You can get a cashback.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can get some cashback.",
+              "uk": "У записі звучить You can get some cashback."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can get some cashback.",
+              "uk": "У записі звучить You can get some cashback."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности.",
+          "uk": "За умовами цієї покупки частину грошей повернуть. Повідомте про таку можливість."
+        },
+        "gappedTargetPhrase": "You can get ___ cashback.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-26:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "По условиям этой покупки часть денег вернут. Сообщите о такой возможности.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:word:customer-service",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — customer service",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:word:customer-service:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — customer service",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:word:customer-service:audio",
+          "transcript": "customer service"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:word:customer-service:r1",
+            "targetText": "customer service",
+            "meaningByLocale": {
+              "ru": "обслуживание покупателей, помощь клиентам.",
+              "uk": "обслуговування покупців, допомога клієнтам."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "customer service",
+          "definitionByLocale": {
+            "ru": "обслуживание покупателей, помощь клиентам.",
+            "uk": "обслуговування покупців, допомога клієнтам."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да». Скажите: «Здесь есть какое-либо обслуживание покупателей».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да». Скажите: «Здесь есть какое-либо обслуживание покупателей».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there any customer service here?",
+        "localizedMeaning": {
+          "ru": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да». Скажите: «Здесь есть какое-либо обслуживание покупателей».",
+          "uk": "Ви не знаєте, чи надають тут допомогу покупцям. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Тут є якесь обслуговування покупців»."
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "any",
+          "customer",
+          "service",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i11:r1",
+          "text": "Is there any customer service here?"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i11:r2",
+          "text": "Is there some customer service here?"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i11:r3",
+          "text": "Is there a customer service here?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i11:audio",
+          "transcript": "Is there any customer service here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-26:i11:r1",
+            "targetText": "Is there any customer service here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i11:r2",
+            "targetText": "Is there some customer service here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i11:r3",
+            "targetText": "Is there a customer service here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is there any customer service here?",
+              "uk": "У записі звучить Is there any customer service here?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is there any customer service here?",
+              "uk": "У записі звучить Is there any customer service here?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-26:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-26:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да».",
+          "uk": "Ви не знаєте, чи надають тут допомогу покупцям. Запитайте нейтрально, без очікування відповіді «так»."
+        },
+        "gappedTargetPhrase": "Is there ___ customer service here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-26:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да».",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете, оказывают ли здесь помощь покупателям. Спросите нейтрально, без ожидания ответа «да».",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-26:i13:p1",
+            "target": "delivery charge",
+            "meaningByLocale": {
+              "ru": "плата за доставку",
+              "uk": "плата за доставку"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-26:i13:p2",
+            "target": "service charge",
+            "meaningByLocale": {
+              "ru": "плата за обслуживание",
+              "uk": "плата за обслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-26:i13:p3",
+            "target": "cashback",
+            "meaningByLocale": {
+              "ru": "возврат части стоимости покупки деньгами",
+              "uk": "повернення частини вартості покупки грошима"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-26:i13:p4",
+            "target": "customer service",
+            "meaningByLocale": {
+              "ru": "обслуживание покупателей, помощь клиентам",
+              "uk": "обслуговування покупців, допомога клієнтам"
+            }
+          }
+        ],
+        "leftColumn": [
+          "delivery charge",
+          "service charge",
+          "cashback",
+          "customer service"
+        ],
+        "rightColumn": [
+          "плата за доставку",
+          "плата за обслуживание",
+          "возврат части стоимости покупки деньгами",
+          "обслуживание покупателей, помощь клиентам"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i14:audio",
+          "transcript": "There are some delivery charges."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are some delivery charges.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "delivery",
+          "charges"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i15:audio",
+          "transcript": "Is there any customer service here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there any customer service here?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "any",
+          "customer",
+          "service",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i16:audio",
+          "transcript": "You can get some cashback."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You can get some cashback.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-26:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-26:i17:audio",
+          "transcript": "There aren't any service charges."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There aren't any service charges.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "61310cc56f4ee37dda9b39dacc0e3c5aa5cff0845f9ddf53db0ff312c078f05b"
+}

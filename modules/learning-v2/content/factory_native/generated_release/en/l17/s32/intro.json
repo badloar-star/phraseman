@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "parking ticket — уведомление о штрафе за неправильную парковку. Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "parking ticket — повідомлення про штраф за неправильне паркування. Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-32:intro1:r1",
+              "text": "We received some parking tickets."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro1:r2",
+              "text": "We received any parking tickets."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro1:r3",
+              "text": "We received a parking tickets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-32:intro1:r1",
+              "text": "We received some parking tickets."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro1:r2",
+              "text": "We received any parking tickets."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro1:r3",
+              "text": "We received a parking tickets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "road closure — перекрытие дороги. На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures. street lighting — уличное освещение. Это неисчисляемое выражение, с ним тоже можно использовать some. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "road closure — перекриття дороги. На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures. street lighting — вуличне освітлення. Це незлічуваний вираз, із ним теж можна використовувати some. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-32:intro2:r1",
+              "text": "There aren't any road closures."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro2:r2",
+              "text": "There aren't some road closures."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro2:r3",
+              "text": "There aren't a road closures."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-32:intro2:r1",
+              "text": "There aren't any road closures."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro2:r2",
+              "text": "There aren't some road closures."
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro2:r3",
+              "text": "There aren't a road closures."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "public parking — парковка, доступная для общего пользования. Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "public parking — паркування, доступне для загального користування. Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-32:intro3:r1",
+              "text": "Is there any public parking here?"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro3:r2",
+              "text": "Is there some public parking here?"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro3:r3",
+              "text": "Is there a public parking here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-32:intro3:r1",
+              "text": "Is there any public parking here?"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro3:r2",
+              "text": "Is there some public parking here?"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:intro3:r3",
+              "text": "Is there a public parking here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9022718df1b6e685694c87ce6364d5de84eba14a19a6ed3b25e61a3d28254f76"
+}

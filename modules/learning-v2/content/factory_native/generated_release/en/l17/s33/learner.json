@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-33:word:tube-of-toothpaste",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tube of toothpaste",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:word:tube-of-toothpaste:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tube of toothpaste",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:word:tube-of-toothpaste:audio",
+          "transcript": "tube of toothpaste"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:word:tube-of-toothpaste:r1",
+            "targetText": "tube of toothpaste",
+            "meaningByLocale": {
+              "ru": "тюбик зубной пасты.",
+              "uk": "тюбик зубної пасти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tube of toothpaste",
+          "definitionByLocale": {
+            "ru": "тюбик зубной пасты.",
+            "uk": "тюбик зубної пасти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "tube of toothpaste → tubes of toothpaste. Скажите: «Нам нужны два тюбика зубной пасты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "tube of toothpaste → tubes of toothpaste. Скажите: «Нам нужны два тюбика зубной пасты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two tubes of toothpaste.",
+        "localizedMeaning": {
+          "ru": "tube of toothpaste → tubes of toothpaste. Скажите: «Нам нужны два тюбика зубной пасты».",
+          "uk": "tube of toothpaste → tubes of toothpaste. Скажіть: «Нам потрібні два тюбики зубної пасти»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "tubes",
+          "of",
+          "toothpaste"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i02:r1",
+          "text": "We need two tubes of toothpaste."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i02:r2",
+          "text": "We need two tube of toothpaste."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i02:r3",
+          "text": "We need two tubes toothpaste."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i02:audio",
+          "transcript": "We need two tubes of toothpaste."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:i02:r1",
+            "targetText": "We need two tubes of toothpaste.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i02:r2",
+            "targetText": "We need two tube of toothpaste.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i02:r3",
+            "targetText": "We need two tubes toothpaste.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two tubes of toothpaste.",
+              "uk": "У записі звучить We need two tubes of toothpaste."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two tubes of toothpaste.",
+              "uk": "У записі звучить We need two tubes of toothpaste."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму единицы после two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i03:r1",
+          "text": "tubes"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i03:r2",
+          "text": "tube"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i03:r3",
+          "text": "a tube"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму единицы после two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму единицы после two.",
+          "uk": "Виберіть форму одиниці після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of toothpaste.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-33:i03:r1",
+            "text": "tubes"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i03:r2",
+            "text": "tube"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i03:r3",
+            "text": "a tube"
+          }
+        ],
+        "testedDimension": "Выберите форму единицы после two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна множественная форма: tubes.",
+              "uk": "Після two потрібна форма множини: tubes."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two не ставим a; нужна множественная форма.",
+              "uk": "Після two не ставимо a; потрібна форма множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:word:bar-of-soap",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bar of soap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:word:bar-of-soap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bar of soap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:word:bar-of-soap:audio",
+          "transcript": "bar of soap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:word:bar-of-soap:r1",
+            "targetText": "bar of soap",
+            "meaningByLocale": {
+              "ru": "кусок мыла.",
+              "uk": "шматок мила."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bar of soap",
+          "definitionByLocale": {
+            "ru": "кусок мыла.",
+            "uk": "шматок мила."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "bar of soap → bars of soap. Скажите: «Нам нужны два куска мыла».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "bar of soap → bars of soap. Скажите: «Нам нужны два куска мыла».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two bars of soap.",
+        "localizedMeaning": {
+          "ru": "bar of soap → bars of soap. Скажите: «Нам нужны два куска мыла».",
+          "uk": "bar of soap → bars of soap. Скажіть: «Нам потрібні два шматки мила»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "bars",
+          "of",
+          "soap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i05:r1",
+          "text": "We need two bars of soap."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i05:r2",
+          "text": "We need two bar of soap."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i05:r3",
+          "text": "We need two bars soap."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i05:audio",
+          "transcript": "We need two bars of soap."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:i05:r1",
+            "targetText": "We need two bars of soap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i05:r2",
+            "targetText": "We need two bar of soap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i05:r3",
+            "targetText": "We need two bars soap.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two bars of soap.",
+              "uk": "У записі звучить We need two bars of soap."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two bars of soap.",
+              "uk": "У записі звучить We need two bars of soap."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму единицы после two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i06:r1",
+          "text": "bars"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i06:r2",
+          "text": "bar"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i06:r3",
+          "text": "a bar"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму единицы после two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму единицы после two.",
+          "uk": "Виберіть форму одиниці після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of soap.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-33:i06:r1",
+            "text": "bars"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i06:r2",
+            "text": "bar"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i06:r3",
+            "text": "a bar"
+          }
+        ],
+        "testedDimension": "Выберите форму единицы после two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна множественная форма: bars.",
+              "uk": "Після two потрібна форма множини: bars."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two не ставим a; нужна множественная форма.",
+              "uk": "Після two не ставимо a; потрібна форма множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:word:roll-of-toilet-paper",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — roll of toilet paper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:word:roll-of-toilet-paper:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — roll of toilet paper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:word:roll-of-toilet-paper:audio",
+          "transcript": "roll of toilet paper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:word:roll-of-toilet-paper:r1",
+            "targetText": "roll of toilet paper",
+            "meaningByLocale": {
+              "ru": "рулон туалетной бумаги.",
+              "uk": "рулон туалетного паперу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roll of toilet paper",
+          "definitionByLocale": {
+            "ru": "рулон туалетной бумаги.",
+            "uk": "рулон туалетного паперу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "roll of toilet paper → rolls of toilet paper. Скажите: «Нам нужны два рулона туалетной бумаги».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "roll of toilet paper → rolls of toilet paper. Скажите: «Нам нужны два рулона туалетной бумаги».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two rolls of toilet paper.",
+        "localizedMeaning": {
+          "ru": "roll of toilet paper → rolls of toilet paper. Скажите: «Нам нужны два рулона туалетной бумаги».",
+          "uk": "roll of toilet paper → rolls of toilet paper. Скажіть: «Нам потрібні два рулони туалетного паперу»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "rolls",
+          "of",
+          "toilet",
+          "paper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i08:r1",
+          "text": "We need two rolls of toilet paper."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i08:r2",
+          "text": "We need two roll of toilet paper."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i08:r3",
+          "text": "We need two rolls toilet paper."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i08:audio",
+          "transcript": "We need two rolls of toilet paper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:i08:r1",
+            "targetText": "We need two rolls of toilet paper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i08:r2",
+            "targetText": "We need two roll of toilet paper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i08:r3",
+            "targetText": "We need two rolls toilet paper.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two rolls of toilet paper.",
+              "uk": "У записі звучить We need two rolls of toilet paper."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two rolls of toilet paper.",
+              "uk": "У записі звучить We need two rolls of toilet paper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму единицы после two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i09:r1",
+          "text": "rolls"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i09:r2",
+          "text": "roll"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i09:r3",
+          "text": "a roll"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму единицы после two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму единицы после two.",
+          "uk": "Виберіть форму одиниці після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of toilet paper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-33:i09:r1",
+            "text": "rolls"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i09:r2",
+            "text": "roll"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i09:r3",
+            "text": "a roll"
+          }
+        ],
+        "testedDimension": "Выберите форму единицы после two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна множественная форма: rolls.",
+              "uk": "Після two потрібна форма множини: rolls."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two не ставим a; нужна множественная форма.",
+              "uk": "Після two не ставимо a; потрібна форма множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:word:box-of-cereal",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — box of cereal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:word:box-of-cereal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — box of cereal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:word:box-of-cereal:audio",
+          "transcript": "box of cereal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:word:box-of-cereal:r1",
+            "targetText": "box of cereal",
+            "meaningByLocale": {
+              "ru": "коробка хлопьев для завтрака.",
+              "uk": "коробка пластівців для сніданку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box of cereal",
+          "definitionByLocale": {
+            "ru": "коробка хлопьев для завтрака.",
+            "uk": "коробка пластівців для сніданку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "box of cereal → boxes of cereal. Скажите: «Нам нужны две коробки хлопьев для завтрака».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "box of cereal → boxes of cereal. Скажите: «Нам нужны две коробки хлопьев для завтрака».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two boxes of cereal.",
+        "localizedMeaning": {
+          "ru": "box of cereal → boxes of cereal. Скажите: «Нам нужны две коробки хлопьев для завтрака».",
+          "uk": "box of cereal → boxes of cereal. Скажіть: «Нам потрібні дві коробки пластівців для сніданку»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "boxes",
+          "of",
+          "cereal"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i11:r1",
+          "text": "We need two boxes of cereal."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i11:r2",
+          "text": "We need two box of cereal."
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i11:r3",
+          "text": "We need two boxes cereal."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i11:audio",
+          "transcript": "We need two boxes of cereal."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-33:i11:r1",
+            "targetText": "We need two boxes of cereal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i11:r2",
+            "targetText": "We need two box of cereal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i11:r3",
+            "targetText": "We need two boxes cereal.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two boxes of cereal.",
+              "uk": "У записі звучить We need two boxes of cereal."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two boxes of cereal.",
+              "uk": "У записі звучить We need two boxes of cereal."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму единицы после two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-33:i12:r1",
+          "text": "boxes"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i12:r2",
+          "text": "box"
+        },
+        {
+          "responseId": "en:lesson-17:session-33:i12:r3",
+          "text": "a box"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму единицы после two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму единицы после two.",
+          "uk": "Виберіть форму одиниці після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of cereal.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-33:i12:r1",
+            "text": "boxes"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i12:r2",
+            "text": "box"
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i12:r3",
+            "text": "a box"
+          }
+        ],
+        "testedDimension": "Выберите форму единицы после two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна множественная форма: boxes.",
+              "uk": "Після two потрібна форма множини: boxes."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму единицы после two.",
+            "feedbackByLocale": {
+              "ru": "После two не ставим a; нужна множественная форма.",
+              "uk": "Після two не ставимо a; потрібна форма множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-33:i13:p1",
+            "target": "tube of toothpaste",
+            "meaningByLocale": {
+              "ru": "тюбик зубной пасты",
+              "uk": "тюбик зубної пасти"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-33:i13:p2",
+            "target": "bar of soap",
+            "meaningByLocale": {
+              "ru": "кусок мыла",
+              "uk": "шматок мила"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-33:i13:p3",
+            "target": "roll of toilet paper",
+            "meaningByLocale": {
+              "ru": "рулон туалетной бумаги",
+              "uk": "рулон туалетного паперу"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-33:i13:p4",
+            "target": "box of cereal",
+            "meaningByLocale": {
+              "ru": "коробка хлопьев для завтрака",
+              "uk": "коробка пластівців для сніданку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tube of toothpaste",
+          "bar of soap",
+          "roll of toilet paper",
+          "box of cereal"
+        ],
+        "rightColumn": [
+          "тюбик зубной пасты",
+          "кусок мыла",
+          "рулон туалетной бумаги",
+          "коробка хлопьев для завтрака"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный список покупок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный список покупок",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i14:audio",
+          "transcript": "We need two tubes of toothpaste."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We need two tubes of toothpaste.",
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "tubes",
+          "of",
+          "toothpaste"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу о коробках",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу о коробках",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i15:audio",
+          "transcript": "We need two boxes of cereal."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We need two boxes of cereal.",
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "boxes",
+          "of",
+          "cereal"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите два куска мыла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Попросите два куска мыла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i16:audio",
+          "transcript": "We need two bars of soap."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bars of soap.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Назовите нужное количество рулонов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Назовите нужное количество рулонов",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-33:i17:audio",
+          "transcript": "We need two rolls of toilet paper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two rolls of toilet paper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "023611818ffcc2974049abe69bbae26e936ab34b771162a94aa8faaedd013f6c"
+}

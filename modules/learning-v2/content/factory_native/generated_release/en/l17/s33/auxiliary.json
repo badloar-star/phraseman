@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-33:intro1:r2": {
+          "ru": "После two нужно tubes во множественном числе.",
+          "uk": "Після two потрібне tubes у множині."
+        },
+        "en:lesson-17:session-33:intro1:r3": {
+          "ru": "Между упаковкой и содержимым нужно of.",
+          "uk": "Між упаковкою та вмістом потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-33:intro2:r2": {
+          "ru": "После two нужно bars.",
+          "uk": "Після two потрібне bars."
+        },
+        "en:lesson-17:session-33:intro2:r3": {
+          "ru": "Нужно bars of soap, не пропускайте of.",
+          "uk": "Потрібно bars of soap, не пропускайте of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-33:intro3:r2": {
+          "ru": "После two нужно boxes.",
+          "uk": "Після two потрібне boxes."
+        },
+        "en:lesson-17:session-33:intro3:r3": {
+          "ru": "Между boxes и cereal нужно of.",
+          "uk": "Між boxes і cereal потрібне of."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7f49dcea2d996b38aa99ab22f592d7b2d31dd1011a61e64a71d3d0ccca0bfb5f"
+}

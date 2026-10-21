@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-25:word:job-application",
+    "correctText": "job application",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i01",
+    "correctText": "We sent some job applications.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i02",
+    "correctText": "We sent some job applications.",
+    "correctResponseId": "en:lesson-17:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:word:contact-details",
+    "correctText": "contact details",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i04",
+    "correctText": "We don't have any contact details.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i05",
+    "correctText": "We don't have any contact details.",
+    "correctResponseId": "en:lesson-17:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:word:paid-leave",
+    "correctText": "paid leave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i07",
+    "correctText": "We offer some paid leave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i08",
+    "correctText": "We offer some paid leave.",
+    "correctResponseId": "en:lesson-17:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:word:childcare",
+    "correctText": "childcare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i10",
+    "correctText": "Do you need any childcare?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i11",
+    "correctText": "Do you need any childcare?",
+    "correctResponseId": "en:lesson-17:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i13",
+    "correctText": "en:lesson-17:session-25:i13:p1=job application\nen:lesson-17:session-25:i13:p2=contact details\nen:lesson-17:session-25:i13:p3=paid leave\nen:lesson-17:session-25:i13:p4=childcare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i14",
+    "correctText": "We sent some job applications.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i15",
+    "correctText": "Do you need any childcare?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i16",
+    "correctText": "We offer some paid leave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-25:i17",
+    "correctText": "We don't have any contact details.",
+    "correctResponseId": null
+  }
+]

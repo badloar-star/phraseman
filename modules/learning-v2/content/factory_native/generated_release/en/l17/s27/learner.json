@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-27:word:food-allergy",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — food allergy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:word:food-allergy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — food allergy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:word:food-allergy:audio",
+          "transcript": "food allergy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:word:food-allergy:r1",
+            "targetText": "food allergy",
+            "meaningByLocale": {
+              "ru": "пищевая аллергия.",
+              "uk": "харчова алергія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "food allergy",
+          "definitionByLocale": {
+            "ru": "пищевая аллергия.",
+            "uk": "харчова алергія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies. Скажите: «У меня есть несколько пищевых аллергий».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies. Скажите: «У меня есть несколько пищевых аллергий».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have some food allergies.",
+        "localizedMeaning": {
+          "ru": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies. Скажите: «У меня есть несколько пищевых аллергий».",
+          "uk": "У навчальному діалозі мовець має алергію на кілька продуктів. Повідомте про це. Food allergy → food allergies. Скажіть: «У мене є кілька харчових алергій»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "some",
+          "food",
+          "allergies"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i02:r1",
+          "text": "I have some food allergies."
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i02:r2",
+          "text": "I have any food allergies."
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i02:r3",
+          "text": "I have a food allergies."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i02:audio",
+          "transcript": "I have some food allergies."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:i02:r1",
+            "targetText": "I have some food allergies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i02:r2",
+            "targetText": "I have any food allergies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i02:r3",
+            "targetText": "I have a food allergies.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have some food allergies.",
+              "uk": "У записі звучить I have some food allergies."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have some food allergies.",
+              "uk": "У записі звучить I have some food allergies."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies.",
+          "uk": "У навчальному діалозі мовець має алергію на кілька продуктів. Повідомте про це. Food allergy → food allergies."
+        },
+        "gappedTargetPhrase": "I have ___ food allergies.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-27:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:word:sick-note",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sick note",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:word:sick-note:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sick note",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:word:sick-note:audio",
+          "transcript": "sick note"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:word:sick-note:r1",
+            "targetText": "sick note",
+            "meaningByLocale": {
+              "ru": "медицинская справка об отсутствии по болезни.",
+              "uk": "медична довідка про відсутність через хворобу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sick note",
+          "definitionByLocale": {
+            "ru": "медицинская справка об отсутствии по болезни.",
+            "uk": "медична довідка про відсутність через хворобу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes. Скажите: «У нас нет никаких медицинских справок об отсутствии по болезни».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes. Скажите: «У нас нет никаких медицинских справок об отсутствии по болезни».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have any sick notes.",
+        "localizedMeaning": {
+          "ru": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes. Скажите: «У нас нет никаких медицинских справок об отсутствии по болезни».",
+          "uk": "У папці немає жодної такої довідки. Повністю заперечте наявність. Sick note → sick notes. Скажіть: «У нас немає жодних медичних довідок про відсутність через хворобу»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "any",
+          "sick",
+          "notes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i05:r1",
+          "text": "We don't have any sick notes."
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i05:r2",
+          "text": "We don't have some sick notes."
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i05:r3",
+          "text": "We don't have a sick notes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i05:audio",
+          "transcript": "We don't have any sick notes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:i05:r1",
+            "targetText": "We don't have any sick notes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i05:r2",
+            "targetText": "We don't have some sick notes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i05:r3",
+            "targetText": "We don't have a sick notes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any sick notes.",
+              "uk": "У записі звучить We don't have any sick notes."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any sick notes.",
+              "uk": "У записі звучить We don't have any sick notes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes.",
+          "uk": "У папці немає жодної такої довідки. Повністю заперечте наявність. Sick note → sick notes."
+        },
+        "gappedTargetPhrase": "We don't have ___ sick notes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-27:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:word:pain-relief",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pain relief",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:word:pain-relief:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pain relief",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:word:pain-relief:audio",
+          "transcript": "pain relief"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:word:pain-relief:r1",
+            "targetText": "pain relief",
+            "meaningByLocale": {
+              "ru": "облегчение боли, обезболивание.",
+              "uk": "полегшення болю, знеболення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pain relief",
+          "definitionByLocale": {
+            "ru": "облегчение боли, обезболивание.",
+            "uk": "полегшення болю, знеболення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сообщаете о потребности в облегчении боли, не называя лекарство. Скажите: «Мне нужно облегчить боль».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сообщаете о потребности в облегчении боли, не называя лекарство. Скажите: «Мне нужно облегчить боль».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need some pain relief.",
+        "localizedMeaning": {
+          "ru": "Вы сообщаете о потребности в облегчении боли, не называя лекарство. Скажите: «Мне нужно облегчить боль».",
+          "uk": "Ви повідомляєте про потребу полегшити біль, не називаючи ліків. Скажіть: «Мені потрібно полегшити біль»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "some",
+          "pain",
+          "relief"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i08:r1",
+          "text": "I need some pain relief."
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i08:r2",
+          "text": "I need any pain relief."
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i08:r3",
+          "text": "I need a pain relief."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i08:audio",
+          "transcript": "I need some pain relief."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:i08:r1",
+            "targetText": "I need some pain relief.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i08:r2",
+            "targetText": "I need any pain relief.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i08:r3",
+            "targetText": "I need a pain relief.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need some pain relief.",
+              "uk": "У записі звучить I need some pain relief."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need some pain relief.",
+              "uk": "У записі звучить I need some pain relief."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сообщаете о потребности в облегчении боли, не называя лекарство.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сообщаете о потребности в облегчении боли, не называя лекарство.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете о потребности в облегчении боли, не называя лекарство.",
+          "uk": "Ви повідомляєте про потребу полегшити біль, не називаючи ліків."
+        },
+        "gappedTargetPhrase": "I need ___ pain relief.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-27:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы сообщаете о потребности в облегчении боли, не называя лекарство.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы сообщаете о потребности в облегчении боли, не называя лекарство.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы сообщаете о потребности в облегчении боли, не называя лекарство.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:word:medical-advice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — medical advice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:word:medical-advice:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — medical advice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:word:medical-advice:audio",
+          "transcript": "medical advice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:word:medical-advice:r1",
+            "targetText": "medical advice",
+            "meaningByLocale": {
+              "ru": "медицинская консультация, совет медицинского специалиста.",
+              "uk": "медична консультація, порада медичного фахівця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "medical advice",
+          "definitionByLocale": {
+            "ru": "медицинская консультация, совет медицинского специалиста.",
+            "uk": "медична консультація, порада медичного фахівця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да». Скажите: «Вам нужна какая-либо медицинская консультация».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да». Скажите: «Вам нужна какая-либо медицинская консультация».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you need any medical advice?",
+        "localizedMeaning": {
+          "ru": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да». Скажите: «Вам нужна какая-либо медицинская консультация».",
+          "uk": "Ви ще не знаєте, чи потрібна консультація. Поставте нейтральне запитання без очікування відповіді «так». Скажіть: «Вам потрібна якась медична консультація»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "need",
+          "any",
+          "medical",
+          "advice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i11:r1",
+          "text": "Do you need any medical advice?"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i11:r2",
+          "text": "Do you need some medical advice?"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i11:r3",
+          "text": "Do you need a medical advice?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i11:audio",
+          "transcript": "Do you need any medical advice?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-27:i11:r1",
+            "targetText": "Do you need any medical advice?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i11:r2",
+            "targetText": "Do you need some medical advice?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i11:r3",
+            "targetText": "Do you need a medical advice?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you need any medical advice?",
+              "uk": "У записі звучить Do you need any medical advice?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you need any medical advice?",
+              "uk": "У записі звучить Do you need any medical advice?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-27:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-27:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да».",
+          "uk": "Ви ще не знаєте, чи потрібна консультація. Поставте нейтральне запитання без очікування відповіді «так»."
+        },
+        "gappedTargetPhrase": "Do you need ___ medical advice?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-27:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да».",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да».",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-27:i13:p1",
+            "target": "food allergy",
+            "meaningByLocale": {
+              "ru": "пищевая аллергия",
+              "uk": "харчова алергія"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-27:i13:p2",
+            "target": "sick note",
+            "meaningByLocale": {
+              "ru": "медицинская справка об отсутствии по болезни",
+              "uk": "медична довідка про відсутність через хворобу"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-27:i13:p3",
+            "target": "pain relief",
+            "meaningByLocale": {
+              "ru": "облегчение боли, обезболивание",
+              "uk": "полегшення болю, знеболення"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-27:i13:p4",
+            "target": "medical advice",
+            "meaningByLocale": {
+              "ru": "медицинская консультация, совет медицинского специалиста",
+              "uk": "медична консультація, порада медичного фахівця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "food allergy",
+          "sick note",
+          "pain relief",
+          "medical advice"
+        ],
+        "rightColumn": [
+          "пищевая аллергия",
+          "медицинская справка об отсутствии по болезни",
+          "облегчение боли, обезболивание",
+          "медицинская консультация, совет медицинского специалиста"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i14:audio",
+          "transcript": "I have some food allergies."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have some food allergies.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "some",
+          "food",
+          "allergies"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i15:audio",
+          "transcript": "Do you need any medical advice?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you need any medical advice?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "need",
+          "any",
+          "medical",
+          "advice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i16:audio",
+          "transcript": "I need some pain relief."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need some pain relief.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-27:i17:audio",
+          "transcript": "We don't have any sick notes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have any sick notes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3da31ad86d23e0cd9e73782e184110753baf698fe6288c355e1e616db4aa243a"
+}

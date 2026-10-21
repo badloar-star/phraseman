@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-33:word:diet",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — diet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:word:diet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — diet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:word:diet:audio",
+          "transcript": "diet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:word:diet:r1",
+            "targetText": "diet",
+            "meaningByLocale": {
+              "ru": "рацион, режим питания.",
+              "uk": "раціон, режим харчування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diet",
+          "definitionByLocale": {
+            "ru": "рацион, режим питания.",
+            "uk": "раціон, режим харчування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне обсудить свой рацион?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне обсудить свой рацион?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I discuss my diet?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне обсудить свой рацион?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені обговорити свій раціон?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "discuss",
+          "my",
+          "diet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i02:r1",
+          "text": "Could I discuss my diet?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i02:r2",
+          "text": "Can I discuss my diet?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i02:r3",
+          "text": "Could we discuss our diet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i02:audio",
+          "transcript": "Could I discuss my diet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:i02:r1",
+            "targetText": "Could I discuss my diet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i02:r2",
+            "targetText": "Can I discuss my diet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i02:r3",
+            "targetText": "Could we discuss our diet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I discuss my diet?",
+              "uk": "У записі звучить Could I discuss my diet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I discuss my diet?",
+              "uk": "У записі звучить Could I discuss my diet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i03:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i03:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i03:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ discuss my diet?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-33:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:word:appetite",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — appetite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:word:appetite:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — appetite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:word:appetite:audio",
+          "transcript": "appetite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:word:appetite:r1",
+            "targetText": "appetite",
+            "meaningByLocale": {
+              "ru": "аппетит.",
+              "uk": "апетит."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appetite",
+          "definitionByLocale": {
+            "ru": "аппетит.",
+            "uk": "апетит."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне рассказать вам о своём аппетите?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне рассказать вам о своём аппетите?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I tell you about my appetite?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне рассказать вам о своём аппетите?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені розповісти вам про свій апетит?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "tell",
+          "you",
+          "about",
+          "my",
+          "appetite"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i05:r1",
+          "text": "Could I tell you about my appetite?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i05:r2",
+          "text": "Can I tell you about my appetite?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i05:r3",
+          "text": "Could we tell you about our appetite?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i05:audio",
+          "transcript": "Could I tell you about my appetite?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:i05:r1",
+            "targetText": "Could I tell you about my appetite?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i05:r2",
+            "targetText": "Can I tell you about my appetite?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i05:r3",
+            "targetText": "Could we tell you about our appetite?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I tell you about my appetite?",
+              "uk": "У записі звучить Could I tell you about my appetite?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I tell you about my appetite?",
+              "uk": "У записі звучить Could I tell you about my appetite?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i06:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i06:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i06:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ tell you about my appetite?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-33:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:word:treatment",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — treatment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:word:treatment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — treatment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:word:treatment:audio",
+          "transcript": "treatment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:word:treatment:r1",
+            "targetText": "treatment",
+            "meaningByLocale": {
+              "ru": "лечение.",
+              "uk": "лікування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "treatment",
+          "definitionByLocale": {
+            "ru": "лечение.",
+            "uk": "лікування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне спросить об этом лечении?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне спросить об этом лечении?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I ask about this treatment?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне спросить об этом лечении?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені запитати про це лікування?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "about",
+          "this",
+          "treatment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i08:r1",
+          "text": "Could I ask about this treatment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i08:r2",
+          "text": "Can I ask about this treatment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i08:r3",
+          "text": "Could we ask about this treatment?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i08:audio",
+          "transcript": "Could I ask about this treatment?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:i08:r1",
+            "targetText": "Could I ask about this treatment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i08:r2",
+            "targetText": "Can I ask about this treatment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i08:r3",
+            "targetText": "Could we ask about this treatment?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about this treatment?",
+              "uk": "У записі звучить Could I ask about this treatment?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about this treatment?",
+              "uk": "У записі звучить Could I ask about this treatment?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i09:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i09:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i09:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ ask about this treatment?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-33:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:word:diagnosis",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — diagnosis",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:word:diagnosis:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — diagnosis",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:word:diagnosis:audio",
+          "transcript": "diagnosis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:word:diagnosis:r1",
+            "targetText": "diagnosis",
+            "meaningByLocale": {
+              "ru": "диагноз.",
+              "uk": "діагноз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diagnosis",
+          "definitionByLocale": {
+            "ru": "диагноз.",
+            "uk": "діагноз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне спросить о диагнозе?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне спросить о диагнозе?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I ask about the diagnosis?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне спросить о диагнозе?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені запитати про діагноз?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "about",
+          "the",
+          "diagnosis"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i11:r1",
+          "text": "Could I ask about the diagnosis?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i11:r2",
+          "text": "Can I ask about the diagnosis?"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i11:r3",
+          "text": "Could we ask about the diagnosis?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i11:audio",
+          "transcript": "Could I ask about the diagnosis?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-33:i11:r1",
+            "targetText": "Could I ask about the diagnosis?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i11:r2",
+            "targetText": "Can I ask about the diagnosis?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i11:r3",
+            "targetText": "Could we ask about the diagnosis?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about the diagnosis?",
+              "uk": "У записі звучить Could I ask about the diagnosis?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about the diagnosis?",
+              "uk": "У записі звучить Could I ask about the diagnosis?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-33:i12:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i12:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-33:i12:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ ask about the diagnosis?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-33:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-33:i13:p1",
+            "target": "diet",
+            "meaningByLocale": {
+              "ru": "рацион, режим питания",
+              "uk": "раціон, режим харчування"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-33:i13:p2",
+            "target": "appetite",
+            "meaningByLocale": {
+              "ru": "аппетит",
+              "uk": "апетит"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-33:i13:p3",
+            "target": "treatment",
+            "meaningByLocale": {
+              "ru": "лечение",
+              "uk": "лікування"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-33:i13:p4",
+            "target": "diagnosis",
+            "meaningByLocale": {
+              "ru": "диагноз",
+              "uk": "діагноз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "diet",
+          "appetite",
+          "treatment",
+          "diagnosis"
+        ],
+        "rightColumn": [
+          "рацион, режим питания",
+          "аппетит",
+          "лечение",
+          "диагноз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанная будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанная будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i14:audio",
+          "transcript": "I will be able to explain this."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be able to explain this.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "able",
+          "to",
+          "explain",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: скажите, что умеете делать сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i16:audio",
+          "transcript": "I can describe my diet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can describe my diet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: подчеркните впечатление",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: подчеркните впечатление",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-33:i17:audio",
+          "transcript": "This meal is so good."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This meal is so good.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6e3a655d4c4947ea9d13a5eb08f7aac96a1c2eeed4b09e87c329dc6ef2ef6b2e"
+}

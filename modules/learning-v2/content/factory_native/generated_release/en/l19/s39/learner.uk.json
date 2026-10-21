@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-39:word:barely",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — barely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:word:barely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — barely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:word:barely:audio",
+          "transcript": "barely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:word:barely:r1",
+            "targetText": "barely",
+            "meaningByLocale": {
+              "ru": "едва, почти не.",
+              "uk": "ледве, майже не."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barely",
+          "definitionByLocale": {
+            "ru": "едва, почти не.",
+            "uk": "ледве, майже не."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із can: «Я вас ледве чую».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із can: «Я вас ледве чую».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can barely hear you.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я вас едва слышу».",
+          "uk": "Скажіть із can: «Я вас ледве чую»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "barely",
+          "hear",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i02:r1",
+          "text": "I can barely hear you."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i02:r2",
+          "text": "I could barely hear you."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i02:r3",
+          "text": "We can barely hear you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i02:audio",
+          "transcript": "I can barely hear you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:i02:r1",
+            "targetText": "I can barely hear you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i02:r2",
+            "targetText": "I could barely hear you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i02:r3",
+            "targetText": "We can barely hear you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can barely hear you.",
+              "uk": "У записі звучить I can barely hear you."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can barely hear you.",
+              "uk": "У записі звучить I can barely hear you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про можливість зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ barely hear you.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-39:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про можливість зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:word:mostly",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mostly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:word:mostly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mostly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:word:mostly:audio",
+          "transcript": "mostly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:word:mostly:r1",
+            "targetText": "mostly",
+            "meaningByLocale": {
+              "ru": "в основном, большей частью.",
+              "uk": "переважно, здебільшого."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mostly",
+          "definitionByLocale": {
+            "ru": "в основном, большей частью.",
+            "uk": "переважно, здебільшого."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із can: «Вона може працювати переважно з дому».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із can: «Вона може працювати переважно з дому».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can work mostly from home.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Она может работать в основном из дома».",
+          "uk": "Скажіть із can: «Вона може працювати переважно з дому»."
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "work",
+          "mostly",
+          "from",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i05:r1",
+          "text": "She can work mostly from home."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i05:r2",
+          "text": "She could work mostly from home."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i05:r3",
+          "text": "They can work mostly from home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i05:audio",
+          "transcript": "She can work mostly from home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:i05:r1",
+            "targetText": "She can work mostly from home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i05:r2",
+            "targetText": "She could work mostly from home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i05:r3",
+            "targetText": "They can work mostly from home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can work mostly from home.",
+              "uk": "У записі звучить She can work mostly from home."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can work mostly from home.",
+              "uk": "У записі звучить She can work mostly from home."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про можливість зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "She ___ work mostly from home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-39:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про можливість зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:word:especially",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — especially",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:word:especially:audio"
+      ],
+      "accessibilityLabel": "Картка слова — especially",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:word:especially:audio",
+          "transcript": "especially"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:word:especially:r1",
+            "targetText": "especially",
+            "meaningByLocale": {
+              "ru": "особенно.",
+              "uk": "особливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "especially",
+          "definitionByLocale": {
+            "ru": "особенно.",
+            "uk": "особливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із can: «Ми можемо допомогти, особливо з готуванням».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із can: «Ми можемо допомогти, особливо з готуванням».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can help, especially with cooking.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем помочь, особенно с готовкой».",
+          "uk": "Скажіть із can: «Ми можемо допомогти, особливо з готуванням»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "help,",
+          "especially",
+          "with",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i08:r1",
+          "text": "We can help, especially with cooking."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i08:r2",
+          "text": "We could help, especially with cooking."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i08:r3",
+          "text": "I can help, especially with cooking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i08:audio",
+          "transcript": "We can help, especially with cooking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:i08:r1",
+            "targetText": "We can help, especially with cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i08:r2",
+            "targetText": "We could help, especially with cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i08:r3",
+            "targetText": "I can help, especially with cooking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can help, especially with cooking.",
+              "uk": "У записі звучить We can help, especially with cooking."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can help, especially with cooking.",
+              "uk": "У записі звучить We can help, especially with cooking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про можливість зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ help, especially with cooking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-39:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про можливість зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:word:actually",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — actually",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:word:actually:audio"
+      ],
+      "accessibilityLabel": "Картка слова — actually",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:word:actually:audio",
+          "transcript": "actually"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:word:actually:r1",
+            "targetText": "actually",
+            "meaningByLocale": {
+              "ru": "на самом деле.",
+              "uk": "насправді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "actually",
+          "definitionByLocale": {
+            "ru": "на самом деле.",
+            "uk": "насправді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із can: «Насправді я вмію плавати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із can: «Насправді я вмію плавати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can actually swim.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «На самом деле я умею плавать».",
+          "uk": "Скажіть із can: «Насправді я вмію плавати»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "actually",
+          "swim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i11:r1",
+          "text": "I can actually swim."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i11:r2",
+          "text": "I could actually swim."
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i11:r3",
+          "text": "We can actually swim."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i11:audio",
+          "transcript": "I can actually swim."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-39:i11:r1",
+            "targetText": "I can actually swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i11:r2",
+            "targetText": "I could actually swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i11:r3",
+            "targetText": "We can actually swim.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can actually swim.",
+              "uk": "У записі звучить I can actually swim."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can actually swim.",
+              "uk": "У записі звучить I can actually swim."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про можливість зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-39:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-39:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ actually swim.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-39:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про можливість зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про можливість зараз.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-39:i13:p1",
+            "target": "barely",
+            "meaningByLocale": {
+              "ru": "едва, почти не",
+              "uk": "ледве, майже не"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-39:i13:p2",
+            "target": "mostly",
+            "meaningByLocale": {
+              "ru": "в основном, большей частью",
+              "uk": "переважно, здебільшого"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-39:i13:p3",
+            "target": "especially",
+            "meaningByLocale": {
+              "ru": "особенно",
+              "uk": "особливо"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-39:i13:p4",
+            "target": "actually",
+            "meaningByLocale": {
+              "ru": "на самом деле",
+              "uk": "насправді"
+            }
+          }
+        ],
+        "leftColumn": [
+          "barely",
+          "mostly",
+          "especially",
+          "actually"
+        ],
+        "rightColumn": [
+          "ледве, майже не",
+          "переважно, здебільшого",
+          "особливо",
+          "насправді"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ледве чуєте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ледве чуєте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i16:audio",
+          "transcript": "I can barely hear you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can barely hear you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Виправте співрозмовника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Виправте співрозмовника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-39:i17:audio",
+          "transcript": "I can actually swim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can actually swim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dc7ea556e256fbafdb62f849251e387753e90d8478f9e18273c74e0530179ba7"
+}

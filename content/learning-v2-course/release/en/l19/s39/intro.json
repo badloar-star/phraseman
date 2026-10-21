@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почти не слышно",
+        "uk": "Майже не чути"
+      },
+      "bodyByLocale": {
+        "ru": "Barely — едва, почти не. Связь плохая: вы слышите собеседника, но почти ничего не разбираете. Barely уже выражает очень малую степень; в этой фразе не добавляем not. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Наречие может уточнять смысл: can barely hear — едва слышать.",
+        "uk": "Barely — ледве, майже не. Зв’язок поганий: ви чуєте співрозмовника, але майже нічого не розбираєте. Barely вже виражає дуже малий ступінь; у цій фразі не додаємо not. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Прислівник може уточнювати зміст: can barely hear — ледве чути."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-39:intro1:r1",
+              "text": "I can barely hear you."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro1:r2",
+              "text": "I cans barely hear you."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro1:r3",
+              "text": "I can to barely hear you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-39:intro1:r1",
+              "text": "I can barely hear you."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro1:r2",
+              "text": "I cans barely hear you."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro1:r3",
+              "text": "I can to barely hear you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Большую часть недели",
+        "uk": "Більшу частину тижня"
+      },
+      "bodyByLocale": {
+        "ru": "Mostly — в основном, большей частью. Знакомая может работать дома четыре дня в неделю, а один день проводит в офисе. Mostly from home — в основном из дома, а не обязательно только дома. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Наречие может уточнять смысл: can barely hear — едва слышать.",
+        "uk": "Mostly — переважно, здебільшого. Знайома може працювати вдома чотири дні на тиждень, а один день проводить в офісі. Mostly from home — переважно з дому, а не обов’язково лише вдома. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Прислівник може уточнювати зміст: can barely hear — ледве чути."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-39:intro2:r1",
+              "text": "She can work mostly from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro2:r2",
+              "text": "She cans work mostly from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro2:r3",
+              "text": "She can to work mostly from home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-39:intro2:r1",
+              "text": "She can work mostly from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro2:r2",
+              "text": "She cans work mostly from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro2:r3",
+              "text": "She can to work mostly from home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить и поправить",
+        "uk": "Уточнити й виправити"
+      },
+      "bodyByLocale": {
+        "ru": "Especially — особенно: вы готовы помогать с праздником, прежде всего с готовкой. Actually — на самом деле: друг думает, что вы не умеете плавать, и вы поправляете его. Actually здесь не означает «актуально» или «сейчас». Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Наречие может уточнять смысл: can barely hear — едва слышать.",
+        "uk": "Especially — особливо: ви готові допомагати зі святом, передусім із готуванням. Actually — насправді: друг думає, що ви не вмієте плавати, і ви виправляєте його. Actually тут не означає «актуально» або «зараз». Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Прислівник може уточнювати зміст: can barely hear — ледве чути."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-39:intro3:r1",
+              "text": "I can actually swim."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro3:r2",
+              "text": "I cans actually swim."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro3:r3",
+              "text": "I can to actually swim."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-39:intro3:r1",
+              "text": "I can actually swim."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro3:r2",
+              "text": "I cans actually swim."
+            },
+            {
+              "responseId": "en:lesson-19:session-39:intro3:r3",
+              "text": "I can to actually swim."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "84afd1e0a9dac99b206e928342fd6cc68b4a15ab48b58ca7e8528be35075a71b"
+}

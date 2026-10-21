@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о работе",
+        "uk": "Запитати про роботу"
+      },
+      "bodyByLocale": {
+        "ru": "Employment — работа по найму, занятость. В центре помощи с поиском работы вы хотите узнать, какие возможности есть поблизости. В этом значении employment употребляют без a. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Employment — робота за наймом, зайнятість. У центрі допомоги з пошуком роботи ви хочете дізнатися, які можливості є поблизу. У цьому значенні employment уживають без a. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-38:intro1:r1",
+              "text": "Could I ask about employment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro1:r2",
+              "text": "Could I to ask about employment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro1:r3",
+              "text": "I could ask about employment?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-38:intro1:r1",
+              "text": "Could I ask about employment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro1:r2",
+              "text": "Could I to ask about employment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro1:r3",
+              "text": "I could ask about employment?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда работы нет",
+        "uk": "Коли роботи немає"
+      },
+      "bodyByLocale": {
+        "ru": "Unemployment — безработица. Знакомый потерял работу, и вы хотите спросить консультанта об этой ситуации. Здесь тоже нет a перед unemployment. Само слово не означает пособие или право на него. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Unemployment — безробіття. Знайомий утратив роботу, і ви хочете запитати консультанта про цю ситуацію. Тут також немає a перед unemployment. Саме слово не означає допомогу чи право на неї. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-38:intro2:r1",
+              "text": "Could I ask about unemployment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro2:r2",
+              "text": "Could I to ask about unemployment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro2:r3",
+              "text": "I could ask about unemployment?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-38:intro2:r1",
+              "text": "Could I ask about unemployment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro2:r2",
+              "text": "Could I to ask about unemployment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro2:r3",
+              "text": "I could ask about unemployment?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сверить доходы и расходы",
+        "uk": "Звірити доходи й витрати"
+      },
+      "bodyByLocale": {
+        "ru": "Profit — прибыль: от выручки остаются деньги после расходов. Loss здесь — убыток: расходы оказались больше выручки. Вы с другом продавали домашнюю выпечку на ярмарке и теперь сверяете суммы. В других ситуациях loss также означает потерю. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Profit — прибуток: із виторгу залишаються гроші після витрат. Loss тут — збиток: витрати виявилися більшими за виторг. Ви з другом продавали домашню випічку на ярмарку й тепер звіряєте суми. В інших ситуаціях loss також означає втрату. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-38:intro3:r1",
+              "text": "Could I explain this loss?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro3:r2",
+              "text": "Could I to explain this loss?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro3:r3",
+              "text": "I could explain this loss?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-38:intro3:r1",
+              "text": "Could I explain this loss?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro3:r2",
+              "text": "Could I to explain this loss?"
+            },
+            {
+              "responseId": "en:lesson-19:session-38:intro3:r3",
+              "text": "I could explain this loss?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eb0b58799bc0781e5023d74c9e67f4a5fe86b074cb22b1f8e8052af2e97b71c5"
+}

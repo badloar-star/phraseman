@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Братья и сёстры",
+        "uk": "Брати й сестри"
+      },
+      "bodyByLocale": {
+        "ru": "Sibling — брат или сестра, без уточнения пола. Siblings — братья и сёстры. В этой сцене вы спрашиваете, можно ли привести на встречу брата или сестру. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Sibling — брат або сестра, без уточнення статі. Siblings — брати й сестри. У цій сцені ви питаєте, чи можна привести на зустріч брата або сестру. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-34:intro1:r1",
+              "text": "Could I bring my sibling?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro1:r2",
+              "text": "Could I to bring my sibling?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro1:r3",
+              "text": "I could bring my sibling?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-34:intro1:r1",
+              "text": "Could I bring my sibling?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro1:r2",
+              "text": "Could I to bring my sibling?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro1:r3",
+              "text": "I could bring my sibling?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Прийти с внуком или внучкой",
+        "uk": "Прийти з онуком або онукою"
+      },
+      "bodyByLocale": {
+        "ru": "Grandchild — внук или внучка. Вы уточняете у организатора, можно ли прийти с ребёнком вашего сына или дочери. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Grandchild — онук або онука. Ви уточнюєте в організатора, чи можна прийти з дитиною вашого сина або доньки. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-34:intro2:r1",
+              "text": "Could I bring my grandchild?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro2:r2",
+              "text": "Could I to bring my grandchild?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro2:r3",
+              "text": "I could bring my grandchild?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-34:intro2:r1",
+              "text": "Could I bring my grandchild?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro2:r2",
+              "text": "Could I to bring my grandchild?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro2:r3",
+              "text": "I could bring my grandchild?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Родственники супруга",
+        "uk": "Родичі чоловіка або дружини"
+      },
+      "bodyByLocale": {
+        "ru": "Sister-in-law здесь — сестра мужа или жены, а brother-in-law — брат мужа или жены. Эти слова также могут означать жену брата и мужа сестры. В этой сцене вы хотите пригласить родственников супруга. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Sister-in-law тут — сестра чоловіка або дружини, а brother-in-law — брат чоловіка або дружини. Ці слова також можуть означати дружину брата й чоловіка сестри. У цій сцені ви хочете запросити родичів чоловіка або дружини. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-34:intro3:r1",
+              "text": "Could I invite my brother-in-law?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro3:r2",
+              "text": "Could I to invite my brother-in-law?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro3:r3",
+              "text": "I could invite my brother-in-law?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-34:intro3:r1",
+              "text": "Could I invite my brother-in-law?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro3:r2",
+              "text": "Could I to invite my brother-in-law?"
+            },
+            {
+              "responseId": "en:lesson-19:session-34:intro3:r3",
+              "text": "I could invite my brother-in-law?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c584716e1e522c367604cde1858cd3e44887a5c5cea6ca05b67c59971f7060ad"
+}

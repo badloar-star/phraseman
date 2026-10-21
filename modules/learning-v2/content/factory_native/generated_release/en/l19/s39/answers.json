@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-39:word:barely",
+    "correctText": "barely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i01",
+    "correctText": "I can barely hear you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i02",
+    "correctText": "I can barely hear you.",
+    "correctResponseId": "en:lesson-19:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:word:mostly",
+    "correctText": "mostly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i04",
+    "correctText": "She can work mostly from home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i05",
+    "correctText": "She can work mostly from home.",
+    "correctResponseId": "en:lesson-19:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:word:especially",
+    "correctText": "especially",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i07",
+    "correctText": "We can help, especially with cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i08",
+    "correctText": "We can help, especially with cooking.",
+    "correctResponseId": "en:lesson-19:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:word:actually",
+    "correctText": "actually",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i10",
+    "correctText": "I can actually swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i11",
+    "correctText": "I can actually swim.",
+    "correctResponseId": "en:lesson-19:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i13",
+    "correctText": "en:lesson-19:session-39:i13:p1=barely\nen:lesson-19:session-39:i13:p2=mostly\nen:lesson-19:session-39:i13:p3=especially\nen:lesson-19:session-39:i13:p4=actually",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i16",
+    "correctText": "I can barely hear you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-39:i17",
+    "correctText": "I can actually swim.",
+    "correctResponseId": null
+  }
+]

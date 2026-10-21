@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-33:word:diet",
+    "correctText": "diet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i01",
+    "correctText": "Could I discuss my diet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i02",
+    "correctText": "Could I discuss my diet?",
+    "correctResponseId": "en:lesson-19:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:word:appetite",
+    "correctText": "appetite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i04",
+    "correctText": "Could I tell you about my appetite?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i05",
+    "correctText": "Could I tell you about my appetite?",
+    "correctResponseId": "en:lesson-19:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:word:treatment",
+    "correctText": "treatment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i07",
+    "correctText": "Could I ask about this treatment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i08",
+    "correctText": "Could I ask about this treatment?",
+    "correctResponseId": "en:lesson-19:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:word:diagnosis",
+    "correctText": "diagnosis",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i10",
+    "correctText": "Could I ask about the diagnosis?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i11",
+    "correctText": "Could I ask about the diagnosis?",
+    "correctResponseId": "en:lesson-19:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i13",
+    "correctText": "en:lesson-19:session-33:i13:p1=diet\nen:lesson-19:session-33:i13:p2=appetite\nen:lesson-19:session-33:i13:p3=treatment\nen:lesson-19:session-33:i13:p4=diagnosis",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i16",
+    "correctText": "I can describe my diet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-33:i17",
+    "correctText": "This meal is so good.",
+    "correctResponseId": null
+  }
+]

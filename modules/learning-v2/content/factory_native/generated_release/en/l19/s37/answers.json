@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-37:word:inconvenient",
+    "correctText": "inconvenient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i01",
+    "correctText": "This time is so inconvenient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i02",
+    "correctText": "This time is so inconvenient.",
+    "correctResponseId": "en:lesson-19:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-19:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:word:dishonest",
+    "correctText": "dishonest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i04",
+    "correctText": "That is such a dishonest answer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i05",
+    "correctText": "That is such a dishonest answer.",
+    "correctResponseId": "en:lesson-19:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-19:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:word:unhealthy",
+    "correctText": "unhealthy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i07",
+    "correctText": "This habit is so unhealthy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i08",
+    "correctText": "This habit is so unhealthy.",
+    "correctResponseId": "en:lesson-19:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-19:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:word:unlikely",
+    "correctText": "unlikely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i10",
+    "correctText": "That result is so unlikely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i11",
+    "correctText": "That result is so unlikely.",
+    "correctResponseId": "en:lesson-19:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-19:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i13",
+    "correctText": "en:lesson-19:session-37:i13:p1=inconvenient\nen:lesson-19:session-37:i13:p2=dishonest\nen:lesson-19:session-37:i13:p3=unhealthy\nen:lesson-19:session-37:i13:p4=unlikely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i14",
+    "correctText": "We are going to suggest another time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i15",
+    "correctText": "We are meeting at six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i16",
+    "correctText": "This time is more convenient than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-37:i17",
+    "correctText": "Could I suggest another time?",
+    "correctResponseId": null
+  }
+]

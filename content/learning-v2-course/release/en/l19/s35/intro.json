@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить об изменении",
+        "uk": "Повідомити про зміну"
+      },
+      "bodyByLocale": {
+        "ru": "Inform — сообщить кому-то информацию. Это более формальное слово, чем tell. Вы узнали новое время встречи и спрашиваете знакомого, можно ли сообщить об изменении его семье. После inform указываем человека без to: inform your family. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Inform — повідомити комусь інформацію. Це формальніше слово, ніж tell. Ви дізналися новий час зустрічі й питаєте знайомого, чи можна повідомити про зміну його родині. Після inform указуємо людину без to: inform your family. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-35:intro1:r1",
+              "text": "Could I inform your family?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro1:r2",
+              "text": "Could I to inform your family?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro1:r3",
+              "text": "I could inform your family?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-35:intro1:r1",
+              "text": "Could I inform your family?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro1:r2",
+              "text": "Could I to inform your family?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro1:r3",
+              "text": "I could inform your family?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предупредить водителей",
+        "uk": "Попередити водіїв"
+      },
+      "bodyByLocale": {
+        "ru": "Warn — предупредить о возможной опасности или проблеме. На парковке заметили разбитое стекло. Вы спрашиваете у сотрудника, можно ли предупредить других водителей. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Warn — попередити про можливу небезпеку або проблему. На парковці помітили розбите скло. Ви питаєте у працівника, чи можна попередити інших водіїв. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-35:intro2:r1",
+              "text": "Could I warn the other drivers?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro2:r2",
+              "text": "Could I to warn the other drivers?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro2:r3",
+              "text": "I could warn the other drivers?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-35:intro2:r1",
+              "text": "Could I warn the other drivers?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro2:r2",
+              "text": "Could I to warn the other drivers?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro2:r3",
+              "text": "I could warn the other drivers?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить и напомнить",
+        "uk": "Уточнити й нагадати"
+      },
+      "bodyByLocale": {
+        "ru": "Fact — факт: например, точная дата встречи, которую можно проверить. Reminder — напоминание о том, что нужно сделать или не забыть. Вы уточняете дату и спрашиваете, можно ли позже прислать напоминание. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Fact — факт: наприклад, точна дата зустрічі, яку можна перевірити. Reminder — нагадування про те, що потрібно зробити або не забути. Ви уточнюєте дату й питаєте, чи можна пізніше надіслати нагадування. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-35:intro3:r1",
+              "text": "Could I send you a reminder?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro3:r2",
+              "text": "Could I to send you a reminder?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro3:r3",
+              "text": "I could send you a reminder?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-35:intro3:r1",
+              "text": "Could I send you a reminder?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro3:r2",
+              "text": "Could I to send you a reminder?"
+            },
+            {
+              "responseId": "en:lesson-19:session-35:intro3:r3",
+              "text": "I could send you a reminder?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "88593925f5e856562104b31a82b8c46b0d3404f4b70bc7ab1f62df252c709862"
+}

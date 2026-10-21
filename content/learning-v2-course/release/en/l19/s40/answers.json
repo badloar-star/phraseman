@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-40:word:in-person",
+    "correctText": "in person",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i01",
+    "correctText": "Could I speak to you in person?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i02",
+    "correctText": "Could I speak to you in person?",
+    "correctResponseId": "en:lesson-19:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:word:in-advance",
+    "correctText": "in advance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i04",
+    "correctText": "Could I pay in advance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i05",
+    "correctText": "Could I pay in advance?",
+    "correctResponseId": "en:lesson-19:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:word:at-once",
+    "correctText": "at once",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i07",
+    "correctText": "Could I leave at once?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i08",
+    "correctText": "Could I leave at once?",
+    "correctResponseId": "en:lesson-19:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:word:at-least",
+    "correctText": "at least",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i10",
+    "correctText": "Could I at least try?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i11",
+    "correctText": "Could I at least try?",
+    "correctResponseId": "en:lesson-19:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i13",
+    "correctText": "en:lesson-19:session-40:i13:p1=in person\nen:lesson-19:session-40:i13:p2=in advance\nen:lesson-19:session-40:i13:p3=at once\nen:lesson-19:session-40:i13:p4=at least",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i16",
+    "correctText": "I can pay in advance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-40:i17",
+    "correctText": "This is such a useful idea.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-36:word:regularly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — regularly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:regularly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — regularly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:regularly:audio",
+            "transcript": "regularly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:regularly:r1",
+              "targetText": "regularly",
+              "meaningByLocale": {
+                "ru": "регулярно.",
+                "uk": "регулярно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "regularly",
+            "definitionByLocale": {
+              "ru": "регулярно.",
+              "uk": "регулярно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Я могу заниматься регулярно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Я могу заниматься регулярно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to practise regularly.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу заниматься регулярно».",
+            "uk": "Скажіть із be able to: «Я можу займатися регулярно»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "practise",
+            "regularly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i02:r1",
+            "text": "I am able to practise regularly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i02:r2",
+            "text": "I am not able to practise regularly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i02:r3",
+            "text": "We are able to practise regularly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i02:audio",
+            "transcript": "I am able to practise regularly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i02:r1",
+              "targetText": "I am able to practise regularly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i02:r2",
+              "targetText": "I am not able to practise regularly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i02:r3",
+              "targetText": "We are able to practise regularly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to practise regularly.",
+                "uk": "У записі звучить I am able to practise regularly."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to practise regularly.",
+                "uk": "У записі звучить I am able to practise regularly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ practise regularly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:word:normally",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — normally",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:normally:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — normally",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:normally:audio",
+            "transcript": "normally"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:normally:r1",
+              "targetText": "normally",
+              "meaningByLocale": {
+                "ru": "нормально, обычным образом.",
+                "uk": "нормально, звичним чином."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "normally",
+            "definitionByLocale": {
+              "ru": "нормально, обычным образом.",
+              "uk": "нормально, звичним чином."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Она может говорить нормально».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Она может говорить нормально».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to speak normally.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может говорить нормально».",
+            "uk": "Скажіть із be able to: «Вона може говорити нормально»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "speak",
+            "normally"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i05:r1",
+            "text": "She is able to speak normally."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i05:r2",
+            "text": "She is not able to speak normally."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i05:r3",
+            "text": "They are able to speak normally."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i05:audio",
+            "transcript": "She is able to speak normally."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i05:r1",
+              "targetText": "She is able to speak normally.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i05:r2",
+              "targetText": "She is not able to speak normally.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i05:r3",
+              "targetText": "They are able to speak normally.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to speak normally.",
+                "uk": "У записі звучить She is able to speak normally."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to speak normally.",
+                "uk": "У записі звучить She is able to speak normally."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ speak normally.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:word:perfectly",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — perfectly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:perfectly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — perfectly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:perfectly:audio",
+            "transcript": "perfectly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:perfectly:r1",
+              "targetText": "perfectly",
+              "meaningByLocale": {
+                "ru": "прекрасно, без каких-либо проблем.",
+                "uk": "чудово, без жодних проблем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "perfectly",
+            "definitionByLocale": {
+              "ru": "прекрасно, без каких-либо проблем.",
+              "uk": "чудово, без жодних проблем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Мы сможем прекрасно вас слышать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Мы сможем прекрасно вас слышать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to hear you perfectly.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем прекрасно вас слышать».",
+            "uk": "Скажіть із be able to: «Ми зможемо чудово вас чути»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "hear",
+            "you",
+            "perfectly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i08:r1",
+            "text": "We will be able to hear you perfectly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i08:r2",
+            "text": "We will not be able to hear you perfectly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i08:r3",
+            "text": "I will be able to hear you perfectly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i08:audio",
+            "transcript": "We will be able to hear you perfectly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i08:r1",
+              "targetText": "We will be able to hear you perfectly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i08:r2",
+              "targetText": "We will not be able to hear you perfectly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i08:r3",
+              "targetText": "I will be able to hear you perfectly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to hear you perfectly.",
+                "uk": "У записі звучить We will be able to hear you perfectly."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to hear you perfectly.",
+                "uk": "У записі звучить We will be able to hear you perfectly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ hear you perfectly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:word:successfully",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — successfully",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:successfully:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — successfully",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:successfully:audio",
+            "transcript": "successfully"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:successfully:r1",
+              "targetText": "successfully",
+              "meaningByLocale": {
+                "ru": "успешно.",
+                "uk": "успішно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "successfully",
+            "definitionByLocale": {
+              "ru": "успешно.",
+              "uk": "успішно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Они смогут успешно закончить».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Они смогут успешно закончить».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to finish successfully.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут успешно закончить».",
+            "uk": "Скажіть із be able to: «Вони зможуть успішно закінчити»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "finish",
+            "successfully"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i11:r1",
+            "text": "They will be able to finish successfully."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i11:r2",
+            "text": "They will not be able to finish successfully."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i11:r3",
+            "text": "She will be able to finish successfully."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i11:audio",
+            "transcript": "They will be able to finish successfully."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i11:r1",
+              "targetText": "They will be able to finish successfully.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i11:r2",
+              "targetText": "They will not be able to finish successfully.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i11:r3",
+              "targetText": "She will be able to finish successfully.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to finish successfully.",
+                "uk": "У записі звучить They will be able to finish successfully."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to finish successfully.",
+                "uk": "У записі звучить They will be able to finish successfully."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ finish successfully.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-36:i13:p1",
+              "target": "regularly",
+              "meaningByLocale": {
+                "ru": "регулярно",
+                "uk": "регулярно"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-36:i13:p2",
+              "target": "normally",
+              "meaningByLocale": {
+                "ru": "нормально, обычным образом",
+                "uk": "нормально, звичним чином"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-36:i13:p3",
+              "target": "perfectly",
+              "meaningByLocale": {
+                "ru": "прекрасно, без каких-либо проблем",
+                "uk": "чудово, без жодних проблем"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-36:i13:p4",
+              "target": "successfully",
+              "meaningByLocale": {
+                "ru": "успешно",
+                "uk": "успішно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "regularly",
+            "normally",
+            "perfectly",
+            "successfully"
+          ],
+          "rightColumn": [
+            "регулярно",
+            "нормально, обычным образом",
+            "прекрасно, без каких-либо проблем",
+            "успешно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите о возможности",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите о возможности",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i16:audio",
+            "transcript": "I can practise regularly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can practise regularly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-36:word:regularly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — regularly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:regularly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — regularly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:regularly:audio",
+            "transcript": "regularly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:regularly:r1",
+              "targetText": "regularly",
+              "meaningByLocale": {
+                "ru": "регулярно.",
+                "uk": "регулярно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "regularly",
+            "definitionByLocale": {
+              "ru": "регулярно.",
+              "uk": "регулярно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Я можу займатися регулярно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Я можу займатися регулярно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to practise regularly.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу заниматься регулярно».",
+            "uk": "Скажіть із be able to: «Я можу займатися регулярно»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "practise",
+            "regularly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i02:r1",
+            "text": "I am able to practise regularly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i02:r2",
+            "text": "I am not able to practise regularly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i02:r3",
+            "text": "We are able to practise regularly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i02:audio",
+            "transcript": "I am able to practise regularly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i02:r1",
+              "targetText": "I am able to practise regularly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i02:r2",
+              "targetText": "I am not able to practise regularly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i02:r3",
+              "targetText": "We are able to practise regularly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to practise regularly.",
+                "uk": "У записі звучить I am able to practise regularly."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to practise regularly.",
+                "uk": "У записі звучить I am able to practise regularly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ practise regularly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:word:normally",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — normally",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:normally:audio"
+        ],
+        "accessibilityLabel": "Картка слова — normally",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:normally:audio",
+            "transcript": "normally"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:normally:r1",
+              "targetText": "normally",
+              "meaningByLocale": {
+                "ru": "нормально, обычным образом.",
+                "uk": "нормально, звичним чином."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "normally",
+            "definitionByLocale": {
+              "ru": "нормально, обычным образом.",
+              "uk": "нормально, звичним чином."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вона може говорити нормально».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вона може говорити нормально».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to speak normally.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может говорить нормально».",
+            "uk": "Скажіть із be able to: «Вона може говорити нормально»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "speak",
+            "normally"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i05:r1",
+            "text": "She is able to speak normally."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i05:r2",
+            "text": "She is not able to speak normally."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i05:r3",
+            "text": "They are able to speak normally."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i05:audio",
+            "transcript": "She is able to speak normally."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i05:r1",
+              "targetText": "She is able to speak normally.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i05:r2",
+              "targetText": "She is not able to speak normally.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i05:r3",
+              "targetText": "They are able to speak normally.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to speak normally.",
+                "uk": "У записі звучить She is able to speak normally."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to speak normally.",
+                "uk": "У записі звучить She is able to speak normally."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ speak normally.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:word:perfectly",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — perfectly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:perfectly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — perfectly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:perfectly:audio",
+            "transcript": "perfectly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:perfectly:r1",
+              "targetText": "perfectly",
+              "meaningByLocale": {
+                "ru": "прекрасно, без каких-либо проблем.",
+                "uk": "чудово, без жодних проблем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "perfectly",
+            "definitionByLocale": {
+              "ru": "прекрасно, без каких-либо проблем.",
+              "uk": "чудово, без жодних проблем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Ми зможемо чудово вас чути».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Ми зможемо чудово вас чути».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to hear you perfectly.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем прекрасно вас слышать».",
+            "uk": "Скажіть із be able to: «Ми зможемо чудово вас чути»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "hear",
+            "you",
+            "perfectly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i08:r1",
+            "text": "We will be able to hear you perfectly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i08:r2",
+            "text": "We will not be able to hear you perfectly."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i08:r3",
+            "text": "I will be able to hear you perfectly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i08:audio",
+            "transcript": "We will be able to hear you perfectly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i08:r1",
+              "targetText": "We will be able to hear you perfectly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i08:r2",
+              "targetText": "We will not be able to hear you perfectly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i08:r3",
+              "targetText": "I will be able to hear you perfectly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to hear you perfectly.",
+                "uk": "У записі звучить We will be able to hear you perfectly."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to hear you perfectly.",
+                "uk": "У записі звучить We will be able to hear you perfectly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ hear you perfectly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:word:successfully",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — successfully",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:word:successfully:audio"
+        ],
+        "accessibilityLabel": "Картка слова — successfully",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:word:successfully:audio",
+            "transcript": "successfully"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:word:successfully:r1",
+              "targetText": "successfully",
+              "meaningByLocale": {
+                "ru": "успешно.",
+                "uk": "успішно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "successfully",
+            "definitionByLocale": {
+              "ru": "успешно.",
+              "uk": "успішно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вони зможуть успішно закінчити».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вони зможуть успішно закінчити».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to finish successfully.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут успешно закончить».",
+            "uk": "Скажіть із be able to: «Вони зможуть успішно закінчити»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "finish",
+            "successfully"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i11:r1",
+            "text": "They will be able to finish successfully."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i11:r2",
+            "text": "They will not be able to finish successfully."
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i11:r3",
+            "text": "She will be able to finish successfully."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i11:audio",
+            "transcript": "They will be able to finish successfully."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-36:i11:r1",
+              "targetText": "They will be able to finish successfully.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i11:r2",
+              "targetText": "They will not be able to finish successfully.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i11:r3",
+              "targetText": "She will be able to finish successfully.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to finish successfully.",
+                "uk": "У записі звучить They will be able to finish successfully."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to finish successfully.",
+                "uk": "У записі звучить They will be able to finish successfully."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-36:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-36:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ finish successfully.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-36:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-36:i13:p1",
+              "target": "regularly",
+              "meaningByLocale": {
+                "ru": "регулярно",
+                "uk": "регулярно"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-36:i13:p2",
+              "target": "normally",
+              "meaningByLocale": {
+                "ru": "нормально, обычным образом",
+                "uk": "нормально, звичним чином"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-36:i13:p3",
+              "target": "perfectly",
+              "meaningByLocale": {
+                "ru": "прекрасно, без каких-либо проблем",
+                "uk": "чудово, без жодних проблем"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-36:i13:p4",
+              "target": "successfully",
+              "meaningByLocale": {
+                "ru": "успешно",
+                "uk": "успішно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "regularly",
+            "normally",
+            "perfectly",
+            "successfully"
+          ],
+          "rightColumn": [
+            "регулярно",
+            "нормально, звичним чином",
+            "чудово, без жодних проблем",
+            "успішно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть про можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть про можливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i16:audio",
+            "transcript": "I can practise regularly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can practise regularly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-36:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-36:word:regularly",
+      "correctText": "regularly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i01",
+      "correctText": "I am able to practise regularly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i02",
+      "correctText": "I am able to practise regularly.",
+      "correctResponseId": "en:lesson-19:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i03",
+      "correctText": "am able to",
+      "correctResponseId": "en:lesson-19:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:word:normally",
+      "correctText": "normally",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i04",
+      "correctText": "She is able to speak normally.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i05",
+      "correctText": "She is able to speak normally.",
+      "correctResponseId": "en:lesson-19:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i06",
+      "correctText": "is able to",
+      "correctResponseId": "en:lesson-19:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:word:perfectly",
+      "correctText": "perfectly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i07",
+      "correctText": "We will be able to hear you perfectly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i08",
+      "correctText": "We will be able to hear you perfectly.",
+      "correctResponseId": "en:lesson-19:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i09",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:word:successfully",
+      "correctText": "successfully",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i10",
+      "correctText": "They will be able to finish successfully.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i11",
+      "correctText": "They will be able to finish successfully.",
+      "correctResponseId": "en:lesson-19:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i12",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i14",
+      "correctText": "At twenty, I could speak confidently.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i16",
+      "correctText": "I can practise regularly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-36:i17",
+      "correctText": "This is such a useful skill.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-38:word:employment",
+    "correctText": "employment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i01",
+    "correctText": "Could I ask about employment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i02",
+    "correctText": "Could I ask about employment?",
+    "correctResponseId": "en:lesson-19:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:word:unemployment",
+    "correctText": "unemployment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i04",
+    "correctText": "Could I ask about unemployment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i05",
+    "correctText": "Could I ask about unemployment?",
+    "correctResponseId": "en:lesson-19:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:word:profit",
+    "correctText": "profit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i07",
+    "correctText": "Could I check the profit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i08",
+    "correctText": "Could I check the profit?",
+    "correctResponseId": "en:lesson-19:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:word:loss",
+    "correctText": "loss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i10",
+    "correctText": "Could I explain this loss?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i11",
+    "correctText": "Could I explain this loss?",
+    "correctResponseId": "en:lesson-19:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i13",
+    "correctText": "en:lesson-19:session-38:i13:p1=employment\nen:lesson-19:session-38:i13:p2=unemployment\nen:lesson-19:session-38:i13:p3=profit\nen:lesson-19:session-38:i13:p4=loss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i16",
+    "correctText": "I can explain this loss.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-38:i17",
+    "correctText": "This is such a small profit.",
+    "correctResponseId": null
+  }
+]

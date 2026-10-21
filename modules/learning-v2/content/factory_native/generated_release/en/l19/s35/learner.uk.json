@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-35:word:inform",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inform",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:word:inform:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inform",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:word:inform:audio",
+          "transcript": "inform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:word:inform:r1",
+            "targetText": "inform",
+            "meaningByLocale": {
+              "ru": "сообщить, проинформировать.",
+              "uk": "повідомити, поінформувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inform",
+          "definitionByLocale": {
+            "ru": "сообщить, проинформировать.",
+            "uk": "повідомити, поінформувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені повідомити вашій родині?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені повідомити вашій родині?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I inform your family?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне сообщить вашей семье?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені повідомити вашій родині?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "inform",
+          "your",
+          "family"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i02:r1",
+          "text": "Could I inform your family?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i02:r2",
+          "text": "Can I inform your family?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i02:r3",
+          "text": "Could we inform your family?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i02:audio",
+          "transcript": "Could I inform your family?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:i02:r1",
+            "targetText": "Could I inform your family?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i02:r2",
+            "targetText": "Can I inform your family?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i02:r3",
+            "targetText": "Could we inform your family?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I inform your family?",
+              "uk": "У записі звучить Could I inform your family?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I inform your family?",
+              "uk": "У записі звучить Could I inform your family?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i03:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i03:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i03:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ inform your family?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-35:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:word:warn",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — warn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:word:warn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — warn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:word:warn:audio",
+          "transcript": "warn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:word:warn:r1",
+            "targetText": "warn",
+            "meaningByLocale": {
+              "ru": "предупредить об опасности или проблеме.",
+              "uk": "попередити про небезпеку або проблему."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "warn",
+          "definitionByLocale": {
+            "ru": "предупредить об опасности или проблеме.",
+            "uk": "попередити про небезпеку або проблему."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені попередити інших водіїв?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені попередити інших водіїв?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I warn the other drivers?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне предупредить других водителей?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені попередити інших водіїв?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "warn",
+          "the",
+          "other",
+          "drivers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i05:r1",
+          "text": "Could I warn the other drivers?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i05:r2",
+          "text": "Can I warn the other drivers?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i05:r3",
+          "text": "Could we warn the other drivers?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i05:audio",
+          "transcript": "Could I warn the other drivers?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:i05:r1",
+            "targetText": "Could I warn the other drivers?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i05:r2",
+            "targetText": "Can I warn the other drivers?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i05:r3",
+            "targetText": "Could we warn the other drivers?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I warn the other drivers?",
+              "uk": "У записі звучить Could I warn the other drivers?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I warn the other drivers?",
+              "uk": "У записі звучить Could I warn the other drivers?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i06:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i06:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i06:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ warn the other drivers?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-35:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:word:fact",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fact",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:word:fact:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fact",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:word:fact:audio",
+          "transcript": "fact"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:word:fact:r1",
+            "targetText": "fact",
+            "meaningByLocale": {
+              "ru": "факт.",
+              "uk": "факт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fact",
+          "definitionByLocale": {
+            "ru": "факт.",
+            "uk": "факт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені перевірити цей факт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені перевірити цей факт?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I check this fact?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне проверить этот факт?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені перевірити цей факт?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "check",
+          "this",
+          "fact"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i08:r1",
+          "text": "Could I check this fact?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i08:r2",
+          "text": "Can I check this fact?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i08:r3",
+          "text": "Could we check this fact?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i08:audio",
+          "transcript": "Could I check this fact?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:i08:r1",
+            "targetText": "Could I check this fact?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i08:r2",
+            "targetText": "Can I check this fact?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i08:r3",
+            "targetText": "Could we check this fact?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check this fact?",
+              "uk": "У записі звучить Could I check this fact?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check this fact?",
+              "uk": "У записі звучить Could I check this fact?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i09:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i09:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i09:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ check this fact?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-35:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:word:reminder",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reminder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:word:reminder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reminder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:word:reminder:audio",
+          "transcript": "reminder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:word:reminder:r1",
+            "targetText": "reminder",
+            "meaningByLocale": {
+              "ru": "напоминание.",
+              "uk": "нагадування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reminder",
+          "definitionByLocale": {
+            "ru": "напоминание.",
+            "uk": "нагадування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені надіслати вам нагадування?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені надіслати вам нагадування?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I send you a reminder?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне отправить вам напоминание?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені надіслати вам нагадування?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "send",
+          "you",
+          "a",
+          "reminder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i11:r1",
+          "text": "Could I send you a reminder?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i11:r2",
+          "text": "Can I send you a reminder?"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i11:r3",
+          "text": "Could we send you a reminder?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i11:audio",
+          "transcript": "Could I send you a reminder?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-35:i11:r1",
+            "targetText": "Could I send you a reminder?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i11:r2",
+            "targetText": "Can I send you a reminder?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i11:r3",
+            "targetText": "Could we send you a reminder?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I send you a reminder?",
+              "uk": "У записі звучить Could I send you a reminder?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I send you a reminder?",
+              "uk": "У записі звучить Could I send you a reminder?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-35:i12:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i12:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-35:i12:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ send you a reminder?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-35:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-35:i13:p1",
+            "target": "inform",
+            "meaningByLocale": {
+              "ru": "сообщить, проинформировать",
+              "uk": "повідомити, поінформувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-35:i13:p2",
+            "target": "warn",
+            "meaningByLocale": {
+              "ru": "предупредить об опасности или проблеме",
+              "uk": "попередити про небезпеку або проблему"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-35:i13:p3",
+            "target": "fact",
+            "meaningByLocale": {
+              "ru": "факт",
+              "uk": "факт"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-35:i13:p4",
+            "target": "reminder",
+            "meaningByLocale": {
+              "ru": "напоминание",
+              "uk": "нагадування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "inform",
+          "warn",
+          "fact",
+          "reminder"
+        ],
+        "rightColumn": [
+          "повідомити, поінформувати",
+          "попередити про небезпеку або проблему",
+          "факт",
+          "нагадування"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почута майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почута майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i14:audio",
+          "transcript": "I will be able to explain this."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be able to explain this.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "able",
+          "to",
+          "explain",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i16:audio",
+          "transcript": "I can send you a reminder."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can send you a reminder.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-35:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть враження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть враження",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-35:i17:audio",
+          "transcript": "This is such an important fact."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such an important fact.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a169189aea946f74c99d7073450cf643e7c9a11cb4b279c9df81081dcb1d6975"
+}

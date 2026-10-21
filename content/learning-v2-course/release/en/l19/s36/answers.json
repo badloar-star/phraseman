@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-36:word:regularly",
+    "correctText": "regularly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i01",
+    "correctText": "I am able to practise regularly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i02",
+    "correctText": "I am able to practise regularly.",
+    "correctResponseId": "en:lesson-19:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:word:normally",
+    "correctText": "normally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i04",
+    "correctText": "She is able to speak normally.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i05",
+    "correctText": "She is able to speak normally.",
+    "correctResponseId": "en:lesson-19:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:word:perfectly",
+    "correctText": "perfectly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i07",
+    "correctText": "We will be able to hear you perfectly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i08",
+    "correctText": "We will be able to hear you perfectly.",
+    "correctResponseId": "en:lesson-19:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:word:successfully",
+    "correctText": "successfully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i10",
+    "correctText": "They will be able to finish successfully.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i11",
+    "correctText": "They will be able to finish successfully.",
+    "correctResponseId": "en:lesson-19:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i13",
+    "correctText": "en:lesson-19:session-36:i13:p1=regularly\nen:lesson-19:session-36:i13:p2=normally\nen:lesson-19:session-36:i13:p3=perfectly\nen:lesson-19:session-36:i13:p4=successfully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i16",
+    "correctText": "I can practise regularly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-36:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

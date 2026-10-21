@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-37:word:inconvenient",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inconvenient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:word:inconvenient:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inconvenient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:word:inconvenient:audio",
+          "transcript": "inconvenient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:word:inconvenient:r1",
+            "targetText": "inconvenient",
+            "meaningByLocale": {
+              "ru": "неудобный по времени или обстоятельствам.",
+              "uk": "незручний за часом або обставинами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inconvenient",
+          "definitionByLocale": {
+            "ru": "неудобный по времени или обстоятельствам.",
+            "uk": "незручний за часом або обставинами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Цей час такий незручний».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Цей час такий незручний».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This time is so inconvenient.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это время такое неудобное».",
+          "uk": "Скажіть із сильним враженням: «Цей час такий незручний»."
+        },
+        "orderedTokens": [
+          "This",
+          "time",
+          "is",
+          "so",
+          "inconvenient"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i02:r1",
+          "text": "This time is so inconvenient."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i02:r2",
+          "text": "This time is such inconvenient."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i02:r3",
+          "text": "This time is much inconvenient."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i02:audio",
+          "transcript": "This time is so inconvenient."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:i02:r1",
+            "targetText": "This time is so inconvenient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i02:r2",
+            "targetText": "This time is such inconvenient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i02:r3",
+            "targetText": "This time is much inconvenient.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This time is so inconvenient.",
+              "uk": "У записі звучить This time is so inconvenient."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This time is so inconvenient.",
+              "uk": "У записі звучить This time is so inconvenient."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This time is ___ inconvenient.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-37:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:word:dishonest",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dishonest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:word:dishonest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dishonest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:word:dishonest:audio",
+          "transcript": "dishonest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:word:dishonest:r1",
+            "targetText": "dishonest",
+            "meaningByLocale": {
+              "ru": "нечестный.",
+              "uk": "нечесний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dishonest",
+          "definitionByLocale": {
+            "ru": "нечестный.",
+            "uk": "нечесний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Це така нечесна відповідь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Це така нечесна відповідь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is such a dishonest answer.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такой нечестный ответ».",
+          "uk": "Скажіть із сильним враженням: «Це така нечесна відповідь»."
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "such",
+          "a",
+          "dishonest",
+          "answer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i05:r1",
+          "text": "That is such a dishonest answer."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i05:r2",
+          "text": "That is so a dishonest answer."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i05:r3",
+          "text": "That is much a dishonest answer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i05:audio",
+          "transcript": "That is such a dishonest answer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:i05:r1",
+            "targetText": "That is such a dishonest answer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i05:r2",
+            "targetText": "That is so a dishonest answer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i05:r3",
+            "targetText": "That is much a dishonest answer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That is such a dishonest answer.",
+              "uk": "У записі звучить That is such a dishonest answer."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That is such a dishonest answer.",
+              "uk": "У записі звучить That is such a dishonest answer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "That is ___ a dishonest answer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-37:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:word:unhealthy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unhealthy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:word:unhealthy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unhealthy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:word:unhealthy:audio",
+          "transcript": "unhealthy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:word:unhealthy:r1",
+            "targetText": "unhealthy",
+            "meaningByLocale": {
+              "ru": "вредный для здоровья, нездоровый.",
+              "uk": "шкідливий для здоров’я, нездоровий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unhealthy",
+          "definitionByLocale": {
+            "ru": "вредный для здоровья, нездоровый.",
+            "uk": "шкідливий для здоров’я, нездоровий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Ця звичка така шкідлива для здоров’я».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Ця звичка така шкідлива для здоров’я».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This habit is so unhealthy.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Эта привычка такая вредная для здоровья».",
+          "uk": "Скажіть із сильним враженням: «Ця звичка така шкідлива для здоров’я»."
+        },
+        "orderedTokens": [
+          "This",
+          "habit",
+          "is",
+          "so",
+          "unhealthy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i08:r1",
+          "text": "This habit is so unhealthy."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i08:r2",
+          "text": "This habit is such unhealthy."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i08:r3",
+          "text": "This habit is much unhealthy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i08:audio",
+          "transcript": "This habit is so unhealthy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:i08:r1",
+            "targetText": "This habit is so unhealthy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i08:r2",
+            "targetText": "This habit is such unhealthy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i08:r3",
+            "targetText": "This habit is much unhealthy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This habit is so unhealthy.",
+              "uk": "У записі звучить This habit is so unhealthy."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This habit is so unhealthy.",
+              "uk": "У записі звучить This habit is so unhealthy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This habit is ___ unhealthy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-37:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:word:unlikely",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unlikely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:word:unlikely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unlikely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:word:unlikely:audio",
+          "transcript": "unlikely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:word:unlikely:r1",
+            "targetText": "unlikely",
+            "meaningByLocale": {
+              "ru": "маловероятный.",
+              "uk": "малоймовірний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unlikely",
+          "definitionByLocale": {
+            "ru": "маловероятный.",
+            "uk": "малоймовірний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Такий результат настільки малоймовірний».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Такий результат настільки малоймовірний».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That result is so unlikely.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Такой результат настолько маловероятен».",
+          "uk": "Скажіть із сильним враженням: «Такий результат настільки малоймовірний»."
+        },
+        "orderedTokens": [
+          "That",
+          "result",
+          "is",
+          "so",
+          "unlikely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i11:r1",
+          "text": "That result is so unlikely."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i11:r2",
+          "text": "That result is such unlikely."
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i11:r3",
+          "text": "That result is much unlikely."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i11:audio",
+          "transcript": "That result is so unlikely."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-37:i11:r1",
+            "targetText": "That result is so unlikely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i11:r2",
+            "targetText": "That result is such unlikely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i11:r3",
+            "targetText": "That result is much unlikely.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That result is so unlikely.",
+              "uk": "У записі звучить That result is so unlikely."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That result is so unlikely.",
+              "uk": "У записі звучить That result is so unlikely."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-37:i12:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i12:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-19:session-37:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "That result is ___ unlikely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-37:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-37:i13:p1",
+            "target": "inconvenient",
+            "meaningByLocale": {
+              "ru": "неудобный по времени или обстоятельствам",
+              "uk": "незручний за часом або обставинами"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-37:i13:p2",
+            "target": "dishonest",
+            "meaningByLocale": {
+              "ru": "нечестный",
+              "uk": "нечесний"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-37:i13:p3",
+            "target": "unhealthy",
+            "meaningByLocale": {
+              "ru": "вредный для здоровья, нездоровый",
+              "uk": "шкідливий для здоров’я, нездоровий"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-37:i13:p4",
+            "target": "unlikely",
+            "meaningByLocale": {
+              "ru": "маловероятный",
+              "uk": "малоймовірний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "inconvenient",
+          "dishonest",
+          "unhealthy",
+          "unlikely"
+        ],
+        "rightColumn": [
+          "незручний за часом або обставинами",
+          "нечесний",
+          "шкідливий для здоров’я, нездоровий",
+          "малоймовірний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i14:audio",
+          "transcript": "We are going to suggest another time."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to suggest another time.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "suggest",
+          "another",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i15:audio",
+          "transcript": "We are meeting at six."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at six.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i16:audio",
+          "transcript": "This time is more convenient than before."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This time is more convenient than before.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: ввічливо запропонуйте інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: ввічливо запропонуйте інший варіант",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-37:i17:audio",
+          "transcript": "Could I suggest another time?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I suggest another time?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e3e5ff02b1136913b6130660e1fe027eca79e1e7a49debe80dc9ac6407762469"
+}

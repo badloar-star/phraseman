@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-38:word:employment",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — employment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:word:employment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — employment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:word:employment:audio",
+          "transcript": "employment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:word:employment:r1",
+            "targetText": "employment",
+            "meaningByLocale": {
+              "ru": "работа по найму, занятость.",
+              "uk": "робота за наймом, зайнятість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "employment",
+          "definitionByLocale": {
+            "ru": "работа по найму, занятость.",
+            "uk": "робота за наймом, зайнятість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені запитати про роботу за наймом?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені запитати про роботу за наймом?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I ask about employment?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне спросить о работе по найму?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені запитати про роботу за наймом?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "about",
+          "employment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i02:r1",
+          "text": "Could I ask about employment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i02:r2",
+          "text": "Can I ask about employment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i02:r3",
+          "text": "Could we ask about employment?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i02:audio",
+          "transcript": "Could I ask about employment?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:i02:r1",
+            "targetText": "Could I ask about employment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i02:r2",
+            "targetText": "Can I ask about employment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i02:r3",
+            "targetText": "Could we ask about employment?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about employment?",
+              "uk": "У записі звучить Could I ask about employment?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about employment?",
+              "uk": "У записі звучить Could I ask about employment?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i03:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i03:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i03:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ ask about employment?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-38:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:word:unemployment",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unemployment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:word:unemployment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unemployment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:word:unemployment:audio",
+          "transcript": "unemployment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:word:unemployment:r1",
+            "targetText": "unemployment",
+            "meaningByLocale": {
+              "ru": "безработица.",
+              "uk": "безробіття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unemployment",
+          "definitionByLocale": {
+            "ru": "безработица.",
+            "uk": "безробіття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені запитати про безробіття?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені запитати про безробіття?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I ask about unemployment?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне спросить о безработице?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені запитати про безробіття?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "about",
+          "unemployment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i05:r1",
+          "text": "Could I ask about unemployment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i05:r2",
+          "text": "Can I ask about unemployment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i05:r3",
+          "text": "Could we ask about unemployment?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i05:audio",
+          "transcript": "Could I ask about unemployment?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:i05:r1",
+            "targetText": "Could I ask about unemployment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i05:r2",
+            "targetText": "Can I ask about unemployment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i05:r3",
+            "targetText": "Could we ask about unemployment?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about unemployment?",
+              "uk": "У записі звучить Could I ask about unemployment?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask about unemployment?",
+              "uk": "У записі звучить Could I ask about unemployment?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i06:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i06:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i06:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ ask about unemployment?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-38:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:word:profit",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — profit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:word:profit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — profit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:word:profit:audio",
+          "transcript": "profit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:word:profit:r1",
+            "targetText": "profit",
+            "meaningByLocale": {
+              "ru": "прибыль.",
+              "uk": "прибуток."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "profit",
+          "definitionByLocale": {
+            "ru": "прибыль.",
+            "uk": "прибуток."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені перевірити прибуток?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені перевірити прибуток?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I check the profit?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне проверить прибыль?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені перевірити прибуток?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "check",
+          "the",
+          "profit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i08:r1",
+          "text": "Could I check the profit?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i08:r2",
+          "text": "Can I check the profit?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i08:r3",
+          "text": "Could we check the profit?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i08:audio",
+          "transcript": "Could I check the profit?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:i08:r1",
+            "targetText": "Could I check the profit?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i08:r2",
+            "targetText": "Can I check the profit?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i08:r3",
+            "targetText": "Could we check the profit?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check the profit?",
+              "uk": "У записі звучить Could I check the profit?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check the profit?",
+              "uk": "У записі звучить Could I check the profit?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i09:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i09:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i09:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ check the profit?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-38:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:word:loss",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:word:loss:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:word:loss:audio",
+          "transcript": "loss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:word:loss:r1",
+            "targetText": "loss",
+            "meaningByLocale": {
+              "ru": "убыток, потеря.",
+              "uk": "збиток, втрата."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loss",
+          "definitionByLocale": {
+            "ru": "убыток, потеря.",
+            "uk": "збиток, втрата."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені пояснити цей збиток?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені пояснити цей збиток?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I explain this loss?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне объяснить этот убыток?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені пояснити цей збиток?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "explain",
+          "this",
+          "loss"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i11:r1",
+          "text": "Could I explain this loss?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i11:r2",
+          "text": "Can I explain this loss?"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i11:r3",
+          "text": "Could we explain this loss?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i11:audio",
+          "transcript": "Could I explain this loss?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-38:i11:r1",
+            "targetText": "Could I explain this loss?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i11:r2",
+            "targetText": "Can I explain this loss?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i11:r3",
+            "targetText": "Could we explain this loss?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain this loss?",
+              "uk": "У записі звучить Could I explain this loss?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain this loss?",
+              "uk": "У записі звучить Could I explain this loss?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-38:i12:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i12:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-38:i12:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ explain this loss?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-38:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-38:i12:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-38:i12:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-38:i13:p1",
+            "target": "employment",
+            "meaningByLocale": {
+              "ru": "работа по найму, занятость",
+              "uk": "робота за наймом, зайнятість"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-38:i13:p2",
+            "target": "unemployment",
+            "meaningByLocale": {
+              "ru": "безработица",
+              "uk": "безробіття"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-38:i13:p3",
+            "target": "profit",
+            "meaningByLocale": {
+              "ru": "прибыль",
+              "uk": "прибуток"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-38:i13:p4",
+            "target": "loss",
+            "meaningByLocale": {
+              "ru": "убыток, потеря",
+              "uk": "збиток, втрата"
+            }
+          }
+        ],
+        "leftColumn": [
+          "employment",
+          "unemployment",
+          "profit",
+          "loss"
+        ],
+        "rightColumn": [
+          "робота за наймом, зайнятість",
+          "безробіття",
+          "прибуток",
+          "збиток, втрата"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почута майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почута майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i14:audio",
+          "transcript": "I will be able to explain this."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be able to explain this.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "able",
+          "to",
+          "explain",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i16:audio",
+          "transcript": "I can explain this loss."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can explain this loss.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-38:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть враження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть враження",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-38:i17:audio",
+          "transcript": "This is such a small profit."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a small profit.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cd63640388af92f31281e98cbf26d5d60716e2b3c04e887c53beae66240cdac7"
+}

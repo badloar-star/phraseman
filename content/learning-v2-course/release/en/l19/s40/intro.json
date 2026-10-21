@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "При личной встрече",
+        "uk": "Під час особистої зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "In person — лично, при встрече, а не по телефону. Вы хотите объяснить сложный вопрос знакомому при личной встрече. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In person — особисто, під час зустрічі, а не телефоном. Ви хочете пояснити складне питання знайомому під час особистої зустрічі. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-40:intro1:r1",
+              "text": "Could I speak to you in person?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro1:r2",
+              "text": "Could I to speak to you in person?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro1:r3",
+              "text": "I could speak to you in person?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-40:intro1:r1",
+              "text": "Could I speak to you in person?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro1:r2",
+              "text": "Could I to speak to you in person?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro1:r3",
+              "text": "I could speak to you in person?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заплатить до начала",
+        "uk": "Заплатити до початку"
+      },
+      "bodyByLocale": {
+        "ru": "In advance — заранее, до события или получения услуги. Вы записались на занятие и спрашиваете, можно ли заплатить до его начала. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In advance — заздалегідь, до події або отримання послуги. Ви записалися на заняття й питаєте, чи можна заплатити до його початку. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-40:intro2:r1",
+              "text": "Could I pay in advance?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro2:r2",
+              "text": "Could I to pay in advance?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro2:r3",
+              "text": "I could pay in advance?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-40:intro2:r1",
+              "text": "Could I pay in advance?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro2:r2",
+              "text": "Could I to pay in advance?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro2:r3",
+              "text": "I could pay in advance?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сразу или хотя бы попробовать",
+        "uk": "Одразу або хоча б спробувати"
+      },
+      "bodyByLocale": {
+        "ru": "At once — сразу, немедленно: вам нужно уйти со встречи сейчас. At least здесь — хотя бы: собеседник сомневается, что вы справитесь, а вы просите дать вам попробовать. В выражении at least two это уже «не меньше двух». Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "At once — одразу, негайно: вам потрібно піти із зустрічі зараз. At least тут — хоча б: співрозмовник сумнівається, що ви впораєтеся, а ви просите дати вам спробувати. У виразі at least two це вже «не менше двох». Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-40:intro3:r1",
+              "text": "Could I at least try?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro3:r2",
+              "text": "Could I to at least try?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro3:r3",
+              "text": "I could at least try?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-40:intro3:r1",
+              "text": "Could I at least try?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro3:r2",
+              "text": "Could I to at least try?"
+            },
+            {
+              "responseId": "en:lesson-19:session-40:intro3:r3",
+              "text": "I could at least try?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7083d9cdf4d8db77134aff8821f76149ea18c9c5c83adbae48b7254feb451b60"
+}

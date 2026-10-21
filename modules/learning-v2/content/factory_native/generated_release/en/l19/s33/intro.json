@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обсудить питание",
+        "uk": "Обговорити харчування"
+      },
+      "bodyByLocale": {
+        "ru": "Diet — рацион, то, как и чем вы питаетесь. Это не обязательно питание для похудения. На приёме вы хотите обсудить свой рацион. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Diet — раціон, те, як і чим ви харчуєтеся. Це не обов’язково харчування для схуднення. На прийомі ви хочете обговорити свій раціон. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-33:intro1:r1",
+              "text": "Could I discuss my diet?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro1:r2",
+              "text": "Could I to discuss my diet?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro1:r3",
+              "text": "I could discuss my diet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-33:intro1:r1",
+              "text": "Could I discuss my diet?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro1:r2",
+              "text": "Could I to discuss my diet?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro1:r3",
+              "text": "I could discuss my diet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рассказать об аппетите",
+        "uk": "Розповісти про апетит"
+      },
+      "bodyByLocale": {
+        "ru": "Appetite — аппетит, желание есть. Вы заметили изменение и хотите рассказать об этом врачу. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Appetite — апетит, бажання їсти. Ви помітили зміну й хочете розповісти про це лікареві. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-33:intro2:r1",
+              "text": "Could I tell you about my appetite?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro2:r2",
+              "text": "Could I to tell you about my appetite?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro2:r3",
+              "text": "I could tell you about my appetite?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-33:intro2:r1",
+              "text": "Could I tell you about my appetite?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro2:r2",
+              "text": "Could I to tell you about my appetite?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro2:r3",
+              "text": "I could tell you about my appetite?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понять объяснение врача",
+        "uk": "Зрозуміти пояснення лікаря"
+      },
+      "bodyByLocale": {
+        "ru": "Treatment — лечение, а diagnosis — диагноз, определение заболевания или состояния врачом. Вы просите объяснить непонятные слова и предложенное лечение. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Treatment — лікування, а diagnosis — діагноз, визначення захворювання або стану лікарем. Ви просите пояснити незрозумілі слова й запропоноване лікування. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-33:intro3:r1",
+              "text": "Could I ask about the diagnosis?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro3:r2",
+              "text": "Could I to ask about the diagnosis?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro3:r3",
+              "text": "I could ask about the diagnosis?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-33:intro3:r1",
+              "text": "Could I ask about the diagnosis?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro3:r2",
+              "text": "Could I to ask about the diagnosis?"
+            },
+            {
+              "responseId": "en:lesson-19:session-33:intro3:r3",
+              "text": "I could ask about the diagnosis?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "922613b8da5c9fa9a98528105a8afe04d520a8fdc1e6c9e6f5ab743200ff4f06"
+}

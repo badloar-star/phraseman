@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-35:word:inform",
+    "correctText": "inform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i01",
+    "correctText": "Could I inform your family?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i02",
+    "correctText": "Could I inform your family?",
+    "correctResponseId": "en:lesson-19:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:word:warn",
+    "correctText": "warn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i04",
+    "correctText": "Could I warn the other drivers?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i05",
+    "correctText": "Could I warn the other drivers?",
+    "correctResponseId": "en:lesson-19:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:word:fact",
+    "correctText": "fact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i07",
+    "correctText": "Could I check this fact?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i08",
+    "correctText": "Could I check this fact?",
+    "correctResponseId": "en:lesson-19:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:word:reminder",
+    "correctText": "reminder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i10",
+    "correctText": "Could I send you a reminder?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i11",
+    "correctText": "Could I send you a reminder?",
+    "correctResponseId": "en:lesson-19:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i13",
+    "correctText": "en:lesson-19:session-35:i13:p1=inform\nen:lesson-19:session-35:i13:p2=warn\nen:lesson-19:session-35:i13:p3=fact\nen:lesson-19:session-35:i13:p4=reminder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i16",
+    "correctText": "I can send you a reminder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-35:i17",
+    "correctText": "This is such an important fact.",
+    "correctResponseId": null
+  }
+]

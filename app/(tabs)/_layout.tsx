@@ -19,7 +19,7 @@ import { createTapLatencyProfilerHandler, noteTapAction, TAP_LATENCY_TRACE_ENABL
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { isLiteModeOn } from '../../constants/lite_mode_flag';
-import { initLiteMode } from '../lite_mode';
+import { initLiteMode, useLiteMode } from '../lite_mode';
 
 // зачем (Сверка 21.10, «Лёгкий режим»): флаг выставляем при загрузке слоя вкладок — до первого рендера плашек с тенями. Дёшево:
 // чтение ОЗУ из кэша expo-device + один getItem (его и так делает low_power.ts), повтор безопасен.
@@ -1492,6 +1492,10 @@ function isDisabledTournamentTabPath(pathnameRaw: string): boolean {
 
 export default function TabLayout() {
   const pathname = usePathname();
+  // зачем (Ревизор к c0bfb85b7, 21.10): тени читают флаг «Лёгкого режима» при рендере, но экраны на него не подписаны — после
+  // переключения в Настройках открытые вкладки оставались с тенями. Ключ у корня вкладок меняется вместе с флагом и пересоздаёт
+  // дерево (переключатель редкий). Хук стоит ДО раннего return — порядок хуков не должен зависеть от пути.
+  const liteModeOn = useLiteMode();
   if (isDisabledTournamentTabPath(pathname)) {
     return <DeferredRedirect href="/(tabs)/home" />;
   }
@@ -1501,7 +1505,7 @@ export default function TabLayout() {
     <TabBarVisibilityProvider>
       {/* зачем (координатор 14.10, [PAYWALL-CLOSE-JS]): замер всей разметки вкладок (перелистыватель, обёртки панелей) отдельно от
           содержимого панелей — после крестика пейвола «stack» дорогой, а tab:* дешёвые. Без флага [TAP-LAT] — пустышка. */}
-      <TabRenderProbe id="layout:tabs"><ReleasedTabLayout /></TabRenderProbe>
+      <TabRenderProbe id="layout:tabs"><ReleasedTabLayout key={liteModeOn ? 'lite-on' : 'lite-off'} /></TabRenderProbe>
     </TabBarVisibilityProvider>
   );
 }

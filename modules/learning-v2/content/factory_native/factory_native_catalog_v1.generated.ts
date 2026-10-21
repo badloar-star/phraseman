@@ -4039,4 +4039,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Was…? Were…? was not; were not","uk":"Was…? Were…? was not; were not"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 17,
+    sourceFingerprint: "2ad2e7aa1043833669260f22947125023fe881c94c0ed7444d2d239ae11aa66d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"there was + один предмет; there were + несколько предметов","uk":"there was + один предмет; there were + кілька предметів"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

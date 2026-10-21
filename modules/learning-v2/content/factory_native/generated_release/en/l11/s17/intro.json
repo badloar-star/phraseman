@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "there was + один предмет; there were + несколько предметов",
+    "uk": "there was + один предмет; there were + кілька предметів"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В комнате что-то было",
+        "uk": "У кімнаті щось було"
+      },
+      "bodyByLocale": {
+        "ru": "Bed sheet — «простыня». Раньше мы говорили, где был известный предмет: The bed sheet was on the bed — «Простыня была на кровати». Чтобы сообщить, что в каком-то месте вообще был предмет, используем there was: There was a bed sheet on the bed — «На кровати была простыня». Здесь there не переводится отдельным словом «там»: вся конструкция сообщает о наличии предмета в прошлом. Перед одним исчисляемым предметом ставим a. Выберите фразу «На кровати была простыня».",
+        "uk": "Bed sheet — «простирадло». Раніше ми говорили, де був відомий предмет: The bed sheet was on the bed — «Простирадло було на ліжку». Щоб повідомити, що в якомусь місці взагалі був предмет, використовуємо there was: There was a bed sheet on the bed — «На ліжку було простирадло». Тут there не перекладається окремим словом «там»: уся конструкція повідомляє про наявність предмета в минулому. Перед одним злічуваним предметом ставимо a. Виберіть фразу «На ліжку було простирадло»."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-17:intro1:r1",
+              "text": "There was a bed sheet on the bed."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro1:r2",
+              "text": "There were a bed sheet on the bed."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro1:r3",
+              "text": "There a bed sheet on the bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-17:intro1:r1",
+              "text": "There was a bed sheet on the bed."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro1:r2",
+              "text": "There were a bed sheet on the bed."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro1:r3",
+              "text": "There a bed sheet on the bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько предметов",
+        "uk": "Кілька предметів"
+      },
+      "bodyByLocale": {
+        "ru": "Bath mat — «коврик для ванной». Clothes peg — «прищепка для белья». С несколькими предметами используем there were: There were two clothes pegs in the bag — «В сумке были две прищепки». После two существительное во множественном числе: pegs, без a. С одним ковриком: There was a bath mat on the floor. Выберите фразу о двух прищепках в сумке.",
+        "uk": "Bath mat — «килимок для ванної». Clothes peg — «прищіпка для білизни». Із кількома предметами використовуємо there were: There were two clothes pegs in the bag — «У сумці були дві прищіпки». Після two іменник у множині: pegs, без a. З одним килимком: There was a bath mat on the floor. Виберіть фразу про дві прищіпки в сумці."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-17:intro2:r1",
+              "text": "There were two clothes pegs in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro2:r2",
+              "text": "There was two clothes pegs in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro2:r3",
+              "text": "There were a two clothes pegs in the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-17:intro2:r1",
+              "text": "There were two clothes pegs in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro2:r2",
+              "text": "There was two clothes pegs in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro2:r3",
+              "text": "There were a two clothes pegs in the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не только положение, но и наличие",
+        "uk": "Не лише розташування, а й наявність"
+      },
+      "bodyByLocale": {
+        "ru": "Towel rail — «перекладина для полотенец», на которую вешают полотенце; она не обязательно нагревается. There was a towel rail in the bathroom — «В ванной была перекладина для полотенец». Сейчас: There is a towel rail. В прошлом: There was a towel rail. В этом занятии вспоминаем вчерашнюю комнату. Выберите сообщение о прошлом.",
+        "uk": "Towel rail — «перекладина для рушників», на яку вішають рушник; вона не обов’язково нагрівається. There was a towel rail in the bathroom — «У ванній була перекладина для рушників». Зараз: There is a towel rail. У минулому: There was a towel rail. У цьому занятті згадуємо вчорашню кімнату. Виберіть повідомлення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-17:intro3:r1",
+              "text": "There was a towel rail in the bathroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro3:r2",
+              "text": "There is a towel rail in the bathroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro3:r3",
+              "text": "There were a towel rail in the bathroom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-17:intro3:r1",
+              "text": "There was a towel rail in the bathroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro3:r2",
+              "text": "There is a towel rail in the bathroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-17:intro3:r3",
+              "text": "There were a towel rail in the bathroom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "92b457f65fa65211b3223267d80d3ca294f1ac666d32a9358d9080da330d8511"
+}

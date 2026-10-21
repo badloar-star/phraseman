@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-17:intro1:r2": {
+          "ru": "Одна простыня: there was.",
+          "uk": "Одне простирадло: there was."
+        },
+        "en:lesson-11:session-17:intro1:r3": {
+          "ru": "После there нужна форма was.",
+          "uk": "Після there потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-17:intro2:r2": {
+          "ru": "Два предмета: there were.",
+          "uk": "Два предмети: there were."
+        },
+        "en:lesson-11:session-17:intro2:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-17:intro3:r2": {
+          "ru": "Is сообщает о настоящем, здесь нужно was.",
+          "uk": "Is повідомляє про теперішнє, тут потрібно was."
+        },
+        "en:lesson-11:session-17:intro3:r3": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d3b60c798beadf7310302bd497aa242db76a84c0daa52731f5c65887786df56"
+}

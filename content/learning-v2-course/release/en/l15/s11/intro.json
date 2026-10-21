@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "wobble — шататься, качаться из стороны в сторону. Одна ножка стула заметно короче остальных. Вы собираетесь сесть. The chair is going to wobble. — Стул будет шататься. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "wobble — хитатися з боку в бік. Одна ніжка стільця помітно коротша за решту. Ви збираєтеся сісти. The chair is going to wobble. — Стілець буде хитатися. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-11:intro1:r1",
+              "text": "The chair is going to wobble."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro1:r2",
+              "text": "The chair is going wobble."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro1:r3",
+              "text": "The chair are going to wobble."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-11:intro1:r1",
+              "text": "The chair is going to wobble."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro1:r2",
+              "text": "The chair is going wobble."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro1:r3",
+              "text": "The chair are going to wobble."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "tilt — наклониться, перекоситься; sag — провиснуть, прогнуться под весом. Один крючок картины начал выходить из стены. The picture is going to tilt. — Картина сейчас перекосится. Выберите прогноз.",
+        "uk": "tilt — нахилитися, перекоситися; sag — провиснути, прогнутися під вагою. Один гачок картини почав виходити зі стіни. The picture is going to tilt. — Картина зараз перекоситься. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-11:intro2:r1",
+              "text": "The picture is going to tilt."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro2:r2",
+              "text": "The picture is going tilt."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro2:r3",
+              "text": "The picture are going to tilt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-11:intro2:r1",
+              "text": "The picture is going to tilt."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro2:r2",
+              "text": "The picture is going tilt."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro2:r3",
+              "text": "The picture are going to tilt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "darken — стать темнее, потемнеть. К окну подходит большая туча; свет уже тускнеет. The room is going to darken. — В комнате сейчас станет темнее. После going to форма глагола не меняется.",
+        "uk": "darken — стати темнішим, потемніти. До вікна підходить велика хмара; світло вже тьмяніє. The room is going to darken. — У кімнаті зараз стане темніше. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-11:intro3:r1",
+              "text": "The room is going to darken."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro3:r2",
+              "text": "The room is going darken."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro3:r3",
+              "text": "The room are going to darken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-11:intro3:r1",
+              "text": "The room is going to darken."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro3:r2",
+              "text": "The room is going darken."
+            },
+            {
+              "responseId": "en:lesson-15:session-11:intro3:r3",
+              "text": "The room are going to darken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f6a3f661495d98bb13cfacc7a92f0d8655d37a419525f7f4b9ae73fc79687b49"
+}

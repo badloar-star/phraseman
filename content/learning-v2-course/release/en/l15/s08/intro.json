@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Под землёй",
+        "uk": "Під землею"
+      },
+      "bodyByLocale": {
+        "ru": "Root — корень растения. I am going to draw a root. — Я собираюсь нарисовать корень. Going to сообщает о вашем намерении. Вы ещё не рисуете.",
+        "uk": "Root — корінь рослини. I am going to draw a root. — Я збираюся намалювати корінь. Going to повідомляє про ваш намір. Ви ще не малюєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-08:intro1:r1",
+              "text": "I am going to draw a root."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro1:r2",
+              "text": "I am going to drew a root."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro1:r3",
+              "text": "I are going to draw a root."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-08:intro1:r1",
+              "text": "I am going to draw a root."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro1:r2",
+              "text": "I am going to drew a root."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro1:r3",
+              "text": "I are going to draw a root."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стебель и пыльца",
+        "uk": "Стебло й пилок"
+      },
+      "bodyByLocale": {
+        "ru": "Stem — стебель растения; pollen — пыльца цветов. She is going to look at the pollen. — Она собирается рассмотреть пыльцу. Pollen — неисчисляемое слово.",
+        "uk": "Stem — стебло рослини; pollen — пилок квітів. She is going to look at the pollen. — Вона збирається роздивитися пилок. Pollen — незлічуване слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-08:intro2:r1",
+              "text": "She is going to look at the pollen."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro2:r2",
+              "text": "She is going to look at the stem."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro2:r3",
+              "text": "She are going to look at the pollen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-08:intro2:r1",
+              "text": "She is going to look at the pollen."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro2:r2",
+              "text": "She is going to look at the stem."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro2:r3",
+              "text": "She are going to look at the pollen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Острый шип",
+        "uk": "Гострий шип"
+      },
+      "bodyByLocale": {
+        "ru": "Thorn — шип на растении, например на розе. We are going to draw a thorn. — Мы собираемся нарисовать шип. С we нужна are; после going to — draw.",
+        "uk": "Thorn — шип на рослині, наприклад на троянді. We are going to draw a thorn. — Ми збираємося намалювати шип. З we потрібна are; після going to — draw."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-08:intro3:r1",
+              "text": "We are going to draw a thorn."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro3:r2",
+              "text": "We is going to draw a thorn."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro3:r3",
+              "text": "We are going to drawing a thorn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-08:intro3:r1",
+              "text": "We are going to draw a thorn."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro3:r2",
+              "text": "We is going to draw a thorn."
+            },
+            {
+              "responseId": "en:lesson-15:session-08:intro3:r3",
+              "text": "We are going to drawing a thorn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "546a4df3933bfbad1e0620126fb866080b26bbd55c22d8b8d0a0562c01ff3864"
+}

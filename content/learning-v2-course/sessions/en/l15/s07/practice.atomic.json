@@ -1,0 +1,2349 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-07:word:bunting",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bunting",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:bunting:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bunting",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:bunting:audio",
+            "transcript": "bunting"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:bunting:r1",
+              "targetText": "bunting",
+              "meaningByLocale": {
+                "ru": "гирлянда из флажков.",
+                "uk": "гірлянда з прапорців."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bunting",
+            "definitionByLocale": {
+              "ru": "гирлянда из флажков.",
+              "uk": "гірлянда з прапорців."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я собираюсь повесить гирлянду из флажков",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я собираюсь повесить гирлянду из флажков",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to hang the bunting.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собираюсь повесить гирлянду из флажков",
+            "uk": "Скажіть: Я збираюся повісити гірлянду з прапорців"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "hang",
+            "the",
+            "bunting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i02:r1",
+            "text": "You are going to hang the bunting."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i02:r2",
+            "text": "I am going to hang the bunting."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i02:r3",
+            "text": "They are going to hang the bunting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i02:audio",
+            "transcript": "You are going to hang the bunting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i02:r1",
+              "targetText": "You are going to hang the bunting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i02:r2",
+              "targetText": "I am going to hang the bunting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i02:r3",
+              "targetText": "They are going to hang the bunting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to hang the bunting.",
+                "uk": "У записі звучить You are going to hang the bunting."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to hang the bunting.",
+                "uk": "У записі звучить You are going to hang the bunting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ going to hang the bunting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:word:balloon-pump",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — balloon pump",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:balloon-pump:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — balloon pump",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:balloon-pump:audio",
+            "transcript": "balloon pump"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:balloon-pump:r1",
+              "targetText": "balloon pump",
+              "meaningByLocale": {
+                "ru": "насос для воздушных шариков.",
+                "uk": "насос для повітряних кульок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "balloon pump",
+            "definitionByLocale": {
+              "ru": "насос для воздушных шариков.",
+              "uk": "насос для повітряних кульок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они собираются пользоваться насосом для шариков",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они собираются пользоваться насосом для шариков",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going to use a balloon pump.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собираются пользоваться насосом для шариков",
+            "uk": "Скажіть: Вони збираються користуватися насосом для кульок"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "use",
+            "a",
+            "balloon",
+            "pump"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i05:r1",
+            "text": "You are going to use a balloon pump."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i05:r2",
+            "text": "They are going to use a balloon pump."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i05:r3",
+            "text": "She is going to use a balloon pump."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i05:audio",
+            "transcript": "You are going to use a balloon pump."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i05:r1",
+              "targetText": "You are going to use a balloon pump.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i05:r2",
+              "targetText": "They are going to use a balloon pump.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i05:r3",
+              "targetText": "She is going to use a balloon pump.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to use a balloon pump.",
+                "uk": "У записі звучить You are going to use a balloon pump."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to use a balloon pump.",
+                "uk": "У записі звучить You are going to use a balloon pump."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ going to use a balloon pump.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:word:gift-tag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gift tag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:gift-tag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gift tag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:gift-tag:audio",
+            "transcript": "gift tag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:gift-tag:r1",
+              "targetText": "gift tag",
+              "meaningByLocale": {
+                "ru": "ярлычок на подарок для имени или пожелания.",
+                "uk": "ярличок на подарунок для імені або побажання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gift tag",
+            "definitionByLocale": {
+              "ru": "ярлычок на подарок для имени или пожелания.",
+              "uk": "ярличок на подарунок для імені або побажання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она собирается подписать ярлычок на подарок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она собирается подписать ярлычок на подарок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to write a gift tag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирается подписать ярлычок на подарок",
+            "uk": "Скажіть: Вона збирається підписати ярличок на подарунок"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "write",
+            "a",
+            "gift",
+            "tag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i08:r1",
+            "text": "You are going to write a gift tag."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i08:r2",
+            "text": "She is going to write a gift tag."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i08:r3",
+            "text": "They are going to write a gift tag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i08:audio",
+            "transcript": "You are going to write a gift tag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i08:r1",
+              "targetText": "You are going to write a gift tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i08:r2",
+              "targetText": "She is going to write a gift tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i08:r3",
+              "targetText": "They are going to write a gift tag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to write a gift tag.",
+                "uk": "У записі звучить You are going to write a gift tag."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to write a gift tag.",
+                "uk": "У записі звучить You are going to write a gift tag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to write a gift tag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:word:party-popper",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — party popper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:party-popper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — party popper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:party-popper:audio",
+            "transcript": "party popper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:party-popper:r1",
+              "targetText": "party popper",
+              "meaningByLocale": {
+                "ru": "праздничная хлопушка с конфетти.",
+                "uk": "святкова хлопавка з конфеті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "party popper",
+            "definitionByLocale": {
+              "ru": "праздничная хлопушка с конфетти.",
+              "uk": "святкова хлопавка з конфеті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы собираемся купить праздничную хлопушку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы собираемся купить праздничную хлопушку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going to buy a party popper.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы собираемся купить праздничную хлопушку",
+            "uk": "Скажіть: Ми збираємося купити святкову хлопавку"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "party",
+            "popper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i11:r1",
+            "text": "You are going to buy a party popper."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i11:r2",
+            "text": "We are going to buy a party popper."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i11:r3",
+            "text": "She is going to buy a party popper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i11:audio",
+            "transcript": "You are going to buy a party popper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i11:r1",
+              "targetText": "You are going to buy a party popper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i11:r2",
+              "targetText": "We are going to buy a party popper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i11:r3",
+              "targetText": "She is going to buy a party popper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to buy a party popper.",
+                "uk": "У записі звучить You are going to buy a party popper."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to buy a party popper.",
+                "uk": "У записі звучить You are going to buy a party popper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ going to buy a party popper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-07:i13:p1",
+              "target": "bunting",
+              "meaningByLocale": {
+                "ru": "гирлянда из флажков",
+                "uk": "гірлянда з прапорців"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-07:i13:p2",
+              "target": "balloon pump",
+              "meaningByLocale": {
+                "ru": "насос для воздушных шариков",
+                "uk": "насос для повітряних кульок"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-07:i13:p3",
+              "target": "gift tag",
+              "meaningByLocale": {
+                "ru": "ярлычок на подарок для имени или пожелания",
+                "uk": "ярличок на подарунок для імені або побажання"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-07:i13:p4",
+              "target": "party popper",
+              "meaningByLocale": {
+                "ru": "праздничная хлопушка с конфетти",
+                "uk": "святкова хлопавка з конфеті"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bunting",
+            "balloon pump",
+            "gift tag",
+            "party popper"
+          ],
+          "rightColumn": [
+            "гирлянда из флажков",
+            "насос для воздушных шариков",
+            "ярлычок на подарок для имени или пожелания",
+            "праздничная хлопушка с конфетти"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i14:audio",
+            "transcript": "I am going to make a cake."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to make a cake.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "make",
+            "a",
+            "cake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i15:audio",
+            "transcript": "They are going to decorate the room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are going to decorate the room.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "decorate",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: завтра она собирается повесить гирлянду из флажков",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: завтра она собирается повесить гирлянду из флажков",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i16:audio",
+            "transcript": "She is going to hang the bunting tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to hang the bunting tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: завтра я собираюсь купить насос для шариков",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: завтра я собираюсь купить насос для шариков",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i17:audio",
+            "transcript": "I am going to buy a balloon pump tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to buy a balloon pump tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-07:word:bunting",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bunting",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:bunting:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bunting",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:bunting:audio",
+            "transcript": "bunting"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:bunting:r1",
+              "targetText": "bunting",
+              "meaningByLocale": {
+                "ru": "гирлянда из флажков.",
+                "uk": "гірлянда з прапорців."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bunting",
+            "definitionByLocale": {
+              "ru": "гирлянда из флажков.",
+              "uk": "гірлянда з прапорців."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я збираюся повісити гірлянду з прапорців",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я збираюся повісити гірлянду з прапорців",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to hang the bunting.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собираюсь повесить гирлянду из флажков",
+            "uk": "Скажіть: Я збираюся повісити гірлянду з прапорців"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "hang",
+            "the",
+            "bunting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i02:r1",
+            "text": "You are going to hang the bunting."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i02:r2",
+            "text": "I am going to hang the bunting."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i02:r3",
+            "text": "They are going to hang the bunting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i02:audio",
+            "transcript": "You are going to hang the bunting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i02:r1",
+              "targetText": "You are going to hang the bunting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i02:r2",
+              "targetText": "I am going to hang the bunting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i02:r3",
+              "targetText": "They are going to hang the bunting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to hang the bunting.",
+                "uk": "У записі звучить You are going to hang the bunting."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to hang the bunting.",
+                "uk": "У записі звучить You are going to hang the bunting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ going to hang the bunting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:word:balloon-pump",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — balloon pump",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:balloon-pump:audio"
+        ],
+        "accessibilityLabel": "Картка слова — balloon pump",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:balloon-pump:audio",
+            "transcript": "balloon pump"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:balloon-pump:r1",
+              "targetText": "balloon pump",
+              "meaningByLocale": {
+                "ru": "насос для воздушных шариков.",
+                "uk": "насос для повітряних кульок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "balloon pump",
+            "definitionByLocale": {
+              "ru": "насос для воздушных шариков.",
+              "uk": "насос для повітряних кульок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони збираються користуватися насосом для кульок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони збираються користуватися насосом для кульок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going to use a balloon pump.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собираются пользоваться насосом для шариков",
+            "uk": "Скажіть: Вони збираються користуватися насосом для кульок"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "use",
+            "a",
+            "balloon",
+            "pump"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i05:r1",
+            "text": "You are going to use a balloon pump."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i05:r2",
+            "text": "They are going to use a balloon pump."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i05:r3",
+            "text": "She is going to use a balloon pump."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i05:audio",
+            "transcript": "You are going to use a balloon pump."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i05:r1",
+              "targetText": "You are going to use a balloon pump.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i05:r2",
+              "targetText": "They are going to use a balloon pump.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i05:r3",
+              "targetText": "She is going to use a balloon pump.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to use a balloon pump.",
+                "uk": "У записі звучить You are going to use a balloon pump."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to use a balloon pump.",
+                "uk": "У записі звучить You are going to use a balloon pump."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ going to use a balloon pump.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:word:gift-tag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gift tag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:gift-tag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gift tag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:gift-tag:audio",
+            "transcript": "gift tag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:gift-tag:r1",
+              "targetText": "gift tag",
+              "meaningByLocale": {
+                "ru": "ярлычок на подарок для имени или пожелания.",
+                "uk": "ярличок на подарунок для імені або побажання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gift tag",
+            "definitionByLocale": {
+              "ru": "ярлычок на подарок для имени или пожелания.",
+              "uk": "ярличок на подарунок для імені або побажання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона збирається підписати ярличок на подарунок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона збирається підписати ярличок на подарунок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to write a gift tag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирается подписать ярлычок на подарок",
+            "uk": "Скажіть: Вона збирається підписати ярличок на подарунок"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "write",
+            "a",
+            "gift",
+            "tag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i08:r1",
+            "text": "You are going to write a gift tag."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i08:r2",
+            "text": "She is going to write a gift tag."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i08:r3",
+            "text": "They are going to write a gift tag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i08:audio",
+            "transcript": "You are going to write a gift tag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i08:r1",
+              "targetText": "You are going to write a gift tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i08:r2",
+              "targetText": "She is going to write a gift tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i08:r3",
+              "targetText": "They are going to write a gift tag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to write a gift tag.",
+                "uk": "У записі звучить You are going to write a gift tag."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to write a gift tag.",
+                "uk": "У записі звучить You are going to write a gift tag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to write a gift tag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:word:party-popper",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — party popper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:word:party-popper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — party popper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:word:party-popper:audio",
+            "transcript": "party popper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:word:party-popper:r1",
+              "targetText": "party popper",
+              "meaningByLocale": {
+                "ru": "праздничная хлопушка с конфетти.",
+                "uk": "святкова хлопавка з конфеті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "party popper",
+            "definitionByLocale": {
+              "ru": "праздничная хлопушка с конфетти.",
+              "uk": "святкова хлопавка з конфеті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми збираємося купити святкову хлопавку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми збираємося купити святкову хлопавку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going to buy a party popper.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы собираемся купить праздничную хлопушку",
+            "uk": "Скажіть: Ми збираємося купити святкову хлопавку"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "party",
+            "popper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i11:r1",
+            "text": "You are going to buy a party popper."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i11:r2",
+            "text": "We are going to buy a party popper."
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i11:r3",
+            "text": "She is going to buy a party popper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i11:audio",
+            "transcript": "You are going to buy a party popper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-07:i11:r1",
+              "targetText": "You are going to buy a party popper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i11:r2",
+              "targetText": "We are going to buy a party popper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i11:r3",
+              "targetText": "She is going to buy a party popper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to buy a party popper.",
+                "uk": "У записі звучить You are going to buy a party popper."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to buy a party popper.",
+                "uk": "У записі звучить You are going to buy a party popper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-07:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-07:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ going to buy a party popper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-07:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-07:i13:p1",
+              "target": "bunting",
+              "meaningByLocale": {
+                "ru": "гирлянда из флажков",
+                "uk": "гірлянда з прапорців"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-07:i13:p2",
+              "target": "balloon pump",
+              "meaningByLocale": {
+                "ru": "насос для воздушных шариков",
+                "uk": "насос для повітряних кульок"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-07:i13:p3",
+              "target": "gift tag",
+              "meaningByLocale": {
+                "ru": "ярлычок на подарок для имени или пожелания",
+                "uk": "ярличок на подарунок для імені або побажання"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-07:i13:p4",
+              "target": "party popper",
+              "meaningByLocale": {
+                "ru": "праздничная хлопушка с конфетти",
+                "uk": "святкова хлопавка з конфеті"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bunting",
+            "balloon pump",
+            "gift tag",
+            "party popper"
+          ],
+          "rightColumn": [
+            "гірлянда з прапорців",
+            "насос для повітряних кульок",
+            "ярличок на подарунок для імені або побажання",
+            "святкова хлопавка з конфеті"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i14:audio",
+            "transcript": "I am going to make a cake."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to make a cake.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "make",
+            "a",
+            "cake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i15:audio",
+            "transcript": "They are going to decorate the room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are going to decorate the room.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "decorate",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: завтра вона збирається повісити гірлянду з прапорців",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: завтра вона збирається повісити гірлянду з прапорців",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i16:audio",
+            "transcript": "She is going to hang the bunting tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to hang the bunting tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: завтра я збираюся купити насос для кульок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: завтра я збираюся купити насос для кульок",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-07:i17:audio",
+            "transcript": "I am going to buy a balloon pump tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to buy a balloon pump tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-07:word:bunting",
+      "correctText": "bunting",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i01",
+      "correctText": "I am going to hang the bunting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i02",
+      "correctText": "You are going to hang the bunting.",
+      "correctResponseId": "en:lesson-15:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:word:balloon-pump",
+      "correctText": "balloon pump",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i04",
+      "correctText": "They are going to use a balloon pump.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i05",
+      "correctText": "You are going to use a balloon pump.",
+      "correctResponseId": "en:lesson-15:session-07:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i06",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-07:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:word:gift-tag",
+      "correctText": "gift tag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i07",
+      "correctText": "She is going to write a gift tag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i08",
+      "correctText": "You are going to write a gift tag.",
+      "correctResponseId": "en:lesson-15:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:word:party-popper",
+      "correctText": "party popper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i10",
+      "correctText": "We are going to buy a party popper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i11",
+      "correctText": "You are going to buy a party popper.",
+      "correctResponseId": "en:lesson-15:session-07:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-07:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i14",
+      "correctText": "I am going to make a cake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i15",
+      "correctText": "They are going to decorate the room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i16",
+      "correctText": "She is going to hang the bunting tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-07:i17",
+      "correctText": "I am going to buy a balloon pump tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

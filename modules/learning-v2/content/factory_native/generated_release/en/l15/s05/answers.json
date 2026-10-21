@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-05:word:en-suite",
+    "correctText": "en-suite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i01",
+    "correctText": "I am going to book a room with an en-suite.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i02",
+    "correctText": "You are going to book a room with an en-suite.",
+    "correctResponseId": "en:lesson-15:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:word:all-inclusive",
+    "correctText": "all-inclusive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i04",
+    "correctText": "They are going to book an all-inclusive holiday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i05",
+    "correctText": "You are going to book an all-inclusive holiday.",
+    "correctResponseId": "en:lesson-15:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:word:connecting-room",
+    "correctText": "connecting room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i07",
+    "correctText": "She is going to book a connecting room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i08",
+    "correctText": "You are going to book a connecting room.",
+    "correctResponseId": "en:lesson-15:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:word:walk-in-shower",
+    "correctText": "walk-in shower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i10",
+    "correctText": "We are going to choose a room with a walk-in shower.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i11",
+    "correctText": "You are going to choose a room with a walk-in shower.",
+    "correctResponseId": "en:lesson-15:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i13",
+    "correctText": "en:lesson-15:session-05:i13:p1=en-suite\nen:lesson-15:session-05:i13:p2=all-inclusive\nen:lesson-15:session-05:i13:p3=connecting room\nen:lesson-15:session-05:i13:p4=walk-in shower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i14",
+    "correctText": "I am going to book a room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i15",
+    "correctText": "They are going to stay for a week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i16",
+    "correctText": "I am going to book a connecting room tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-05:i17",
+    "correctText": "She is going to book an all-inclusive holiday tomorrow.",
+    "correctResponseId": null
+  }
+]

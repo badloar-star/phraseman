@@ -1,0 +1,1137 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-05:word:en-suite",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — en-suite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:word:en-suite:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — en-suite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:word:en-suite:audio",
+          "transcript": "en-suite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:word:en-suite:r1",
+            "targetText": "en-suite",
+            "meaningByLocale": {
+              "ru": "собственная ванная комната с входом из спальни.",
+              "uk": "власна ванна кімната з входом зі спальні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "en-suite",
+          "definitionByLocale": {
+            "ru": "собственная ванная комната с входом из спальни.",
+            "uk": "власна ванна кімната з входом зі спальні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я собираюсь забронировать номер с собственной ванной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я собираюсь забронировать номер с собственной ванной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to book a room with an en-suite.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я собираюсь забронировать номер с собственной ванной",
+          "uk": "Скажіть: Я збираюся забронювати номер із власною ванною"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "book",
+          "a",
+          "room",
+          "with",
+          "an",
+          "en-suite"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i02:r1",
+          "text": "You are going to book a room with an en-suite."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i02:r2",
+          "text": "I am going to book a room with an en-suite."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i02:r3",
+          "text": "They are going to book a room with an en-suite."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i02:audio",
+          "transcript": "You are going to book a room with an en-suite."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:i02:r1",
+            "targetText": "You are going to book a room with an en-suite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i02:r2",
+            "targetText": "I am going to book a room with an en-suite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i02:r3",
+            "targetText": "They are going to book a room with an en-suite.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to book a room with an en-suite.",
+              "uk": "У записі звучить You are going to book a room with an en-suite."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to book a room with an en-suite.",
+              "uk": "У записі звучить You are going to book a room with an en-suite."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ going to book a room with an en-suite.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-05:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:word:all-inclusive",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — all-inclusive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:word:all-inclusive:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — all-inclusive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:word:all-inclusive:audio",
+          "transcript": "all-inclusive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:word:all-inclusive:r1",
+            "targetText": "all-inclusive",
+            "meaningByLocale": {
+              "ru": "по системе «всё включено».",
+              "uk": "за системою «усе включено»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "all-inclusive",
+          "definitionByLocale": {
+            "ru": "по системе «всё включено».",
+            "uk": "за системою «усе включено»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они собираются забронировать отдых «всё включено»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они собираются забронировать отдых «всё включено»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are going to book an all-inclusive holiday.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они собираются забронировать отдых «всё включено»",
+          "uk": "Скажіть: Вони збираються забронювати відпочинок «усе включено»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "going",
+          "to",
+          "book",
+          "an",
+          "all-inclusive",
+          "holiday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i05:r1",
+          "text": "You are going to book an all-inclusive holiday."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i05:r2",
+          "text": "They are going to book an all-inclusive holiday."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i05:r3",
+          "text": "She is going to book an all-inclusive holiday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i05:audio",
+          "transcript": "You are going to book an all-inclusive holiday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:i05:r1",
+            "targetText": "You are going to book an all-inclusive holiday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i05:r2",
+            "targetText": "They are going to book an all-inclusive holiday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i05:r3",
+            "targetText": "She is going to book an all-inclusive holiday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to book an all-inclusive holiday.",
+              "uk": "У записі звучить You are going to book an all-inclusive holiday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to book an all-inclusive holiday.",
+              "uk": "У записі звучить You are going to book an all-inclusive holiday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ going to book an all-inclusive holiday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-05:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:word:connecting-room",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — connecting room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:word:connecting-room:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — connecting room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:word:connecting-room:audio",
+          "transcript": "connecting room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:word:connecting-room:r1",
+            "targetText": "connecting room",
+            "meaningByLocale": {
+              "ru": "номер с дверью в соседний номер.",
+              "uk": "номер із дверима до сусіднього номера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "connecting room",
+          "definitionByLocale": {
+            "ru": "номер с дверью в соседний номер.",
+            "uk": "номер із дверима до сусіднього номера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она собирается забронировать смежный номер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она собирается забронировать смежный номер",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to book a connecting room.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она собирается забронировать смежный номер",
+          "uk": "Скажіть: Вона збирається забронювати суміжний номер"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "book",
+          "a",
+          "connecting",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i08:r1",
+          "text": "You are going to book a connecting room."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i08:r2",
+          "text": "She is going to book a connecting room."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i08:r3",
+          "text": "They are going to book a connecting room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i08:audio",
+          "transcript": "You are going to book a connecting room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:i08:r1",
+            "targetText": "You are going to book a connecting room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i08:r2",
+            "targetText": "She is going to book a connecting room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i08:r3",
+            "targetText": "They are going to book a connecting room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to book a connecting room.",
+              "uk": "У записі звучить You are going to book a connecting room."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to book a connecting room.",
+              "uk": "У записі звучить You are going to book a connecting room."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ going to book a connecting room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-05:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:word:walk-in-shower",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — walk-in shower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:word:walk-in-shower:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — walk-in shower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:word:walk-in-shower:audio",
+          "transcript": "walk-in shower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:word:walk-in-shower:r1",
+            "targetText": "walk-in shower",
+            "meaningByLocale": {
+              "ru": "душ без высокого бортика на входе.",
+              "uk": "душ без високого бортика на вході."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walk-in shower",
+          "definitionByLocale": {
+            "ru": "душ без высокого бортика на входе.",
+            "uk": "душ без високого бортика на вході."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы собираемся выбрать номер с душем без высокого бортика",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы собираемся выбрать номер с душем без высокого бортика",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are going to choose a room with a walk-in shower.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы собираемся выбрать номер с душем без высокого бортика",
+          "uk": "Скажіть: Ми збираємося вибрати номер із душем без високого бортика"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "choose",
+          "a",
+          "room",
+          "with",
+          "a",
+          "walk-in",
+          "shower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i11:r1",
+          "text": "You are going to choose a room with a walk-in shower."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i11:r2",
+          "text": "We are going to choose a room with a walk-in shower."
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i11:r3",
+          "text": "She is going to choose a room with a walk-in shower."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i11:audio",
+          "transcript": "You are going to choose a room with a walk-in shower."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-05:i11:r1",
+            "targetText": "You are going to choose a room with a walk-in shower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i11:r2",
+            "targetText": "We are going to choose a room with a walk-in shower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i11:r3",
+            "targetText": "She is going to choose a room with a walk-in shower.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to choose a room with a walk-in shower.",
+              "uk": "У записі звучить You are going to choose a room with a walk-in shower."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to choose a room with a walk-in shower.",
+              "uk": "У записі звучить You are going to choose a room with a walk-in shower."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-05:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-05:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ going to choose a room with a walk-in shower.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-05:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-05:i13:p1",
+            "target": "en-suite",
+            "meaningByLocale": {
+              "ru": "собственная ванная комната с входом из спальни",
+              "uk": "власна ванна кімната з входом зі спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-05:i13:p2",
+            "target": "all-inclusive",
+            "meaningByLocale": {
+              "ru": "по системе «всё включено»",
+              "uk": "за системою «усе включено»"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-05:i13:p3",
+            "target": "connecting room",
+            "meaningByLocale": {
+              "ru": "номер с дверью в соседний номер",
+              "uk": "номер із дверима до сусіднього номера"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-05:i13:p4",
+            "target": "walk-in shower",
+            "meaningByLocale": {
+              "ru": "душ без высокого бортика на входе",
+              "uk": "душ без високого бортика на вході"
+            }
+          }
+        ],
+        "leftColumn": [
+          "en-suite",
+          "all-inclusive",
+          "connecting room",
+          "walk-in shower"
+        ],
+        "rightColumn": [
+          "собственная ванная комната с входом из спальни",
+          "по системе «всё включено»",
+          "номер с дверью в соседний номер",
+          "душ без высокого бортика на входе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i14:audio",
+          "transcript": "I am going to book a room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to book a room.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "book",
+          "a",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i15:audio",
+          "transcript": "They are going to stay for a week."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are going to stay for a week.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "going",
+          "to",
+          "stay",
+          "for",
+          "a",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: завтра я собираюсь забронировать смежный номер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: завтра я собираюсь забронировать смежный номер",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i16:audio",
+          "transcript": "I am going to book a connecting room tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am going to book a connecting room tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: завтра она собирается забронировать отдых «всё включено»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: завтра она собирается забронировать отдых «всё включено»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-05:i17:audio",
+          "transcript": "She is going to book an all-inclusive holiday tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is going to book an all-inclusive holiday tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b47b88d0c77e7bb0a3f7e90ce19d9779aefdb349192ed40d99ea33da87d75782"
+}

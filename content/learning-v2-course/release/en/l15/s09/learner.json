@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-09:word:overflow",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overflow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:word:overflow:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overflow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:word:overflow:audio",
+          "transcript": "overflow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:word:overflow:r1",
+            "targetText": "overflow",
+            "meaningByLocale": {
+              "ru": "переполниться и перелиться через край.",
+              "uk": "переповнитися й перелитися через край."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overflow",
+          "definitionByLocale": {
+            "ru": "переполниться и перелиться через край.",
+            "uk": "переповнитися й перелитися через край."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Вода уже у края раковины, а кран открыт. Скажите: «Раковина вот-вот переполнится»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Вода уже у края раковины, а кран открыт. Скажите: «Раковина вот-вот переполнится»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sink is going to overflow.",
+        "localizedMeaning": {
+          "ru": "Скажите: Вода уже у края раковины, а кран открыт. Скажите: «Раковина вот-вот переполнится»",
+          "uk": "Скажіть: Вода вже біля краю раковини, а кран відкритий. Скажіть: «Раковина ось-ось переповниться»"
+        },
+        "orderedTokens": [
+          "The",
+          "sink",
+          "is",
+          "going",
+          "to",
+          "overflow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i02:r1",
+          "text": "The sink is going to overflow."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i02:r2",
+          "text": "The sink is going overflow."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i02:r3",
+          "text": "The sink are going to overflow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i02:audio",
+          "transcript": "The sink is going to overflow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:i02:r1",
+            "targetText": "The sink is going to overflow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i02:r2",
+            "targetText": "The sink is going overflow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i02:r3",
+            "targetText": "The sink are going to overflow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sink is going to overflow.",
+              "uk": "У записі звучить The sink is going to overflow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sink is going to overflow.",
+              "uk": "У записі звучить The sink is going to overflow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The sink ___ going to overflow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-09:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:word:topple",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — topple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:word:topple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — topple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:word:topple:audio",
+          "transcript": "topple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:word:topple:r1",
+            "targetText": "topple",
+            "meaningByLocale": {
+              "ru": "опрокинуться, потеряв равновесие.",
+              "uk": "перекинутися, втративши рівновагу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "topple",
+          "definitionByLocale": {
+            "ru": "опрокинуться, потеряв равновесие.",
+            "uk": "перекинутися, втративши рівновагу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Башня из кубиков сильно наклонилась. Скажите: «Башня вот-вот опрокинется»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Башня из кубиков сильно наклонилась. Скажите: «Башня вот-вот опрокинется»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tower is going to topple.",
+        "localizedMeaning": {
+          "ru": "Скажите: Башня из кубиков сильно наклонилась. Скажите: «Башня вот-вот опрокинется»",
+          "uk": "Скажіть: Вежа з кубиків сильно нахилилася. Скажіть: «Вежа ось-ось перекинеться»"
+        },
+        "orderedTokens": [
+          "The",
+          "tower",
+          "is",
+          "going",
+          "to",
+          "topple"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i05:r1",
+          "text": "The tower is going to topple."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i05:r2",
+          "text": "The tower is going topple."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i05:r3",
+          "text": "The tower are going to topple."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i05:audio",
+          "transcript": "The tower is going to topple."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:i05:r1",
+            "targetText": "The tower is going to topple.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i05:r2",
+            "targetText": "The tower is going topple.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i05:r3",
+            "targetText": "The tower are going to topple.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tower is going to topple.",
+              "uk": "У записі звучить The tower is going to topple."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tower is going to topple.",
+              "uk": "У записі звучить The tower is going to topple."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The tower ___ going to topple.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-09:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:word:burst",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — burst",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:word:burst:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — burst",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:word:burst:audio",
+          "transcript": "burst"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:word:burst:r1",
+            "targetText": "burst",
+            "meaningByLocale": {
+              "ru": "лопнуть.",
+              "uk": "луснути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "burst",
+          "definitionByLocale": {
+            "ru": "лопнуть.",
+            "uk": "луснути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Шарики уже слишком тугие, а в них продолжают накачивать воздух. Скажите: «Шарики вот-вот лопнут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Шарики уже слишком тугие, а в них продолжают накачивать воздух. Скажите: «Шарики вот-вот лопнут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The balloons are going to burst.",
+        "localizedMeaning": {
+          "ru": "Скажите: Шарики уже слишком тугие, а в них продолжают накачивать воздух. Скажите: «Шарики вот-вот лопнут»",
+          "uk": "Скажіть: Кульки вже надто тугі, а в них продовжують накачувати повітря. Скажіть: «Кульки ось-ось луснуть»"
+        },
+        "orderedTokens": [
+          "The",
+          "balloons",
+          "are",
+          "going",
+          "to",
+          "burst"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i08:r1",
+          "text": "The balloons are going to burst."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i08:r2",
+          "text": "The balloons are going burst."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i08:r3",
+          "text": "The balloons is going to burst."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i08:audio",
+          "transcript": "The balloons are going to burst."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:i08:r1",
+            "targetText": "The balloons are going to burst.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i08:r2",
+            "targetText": "The balloons are going burst.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i08:r3",
+            "targetText": "The balloons is going to burst.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The balloons are going to burst.",
+              "uk": "У записі звучить The balloons are going to burst."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The balloons are going to burst.",
+              "uk": "У записі звучить The balloons are going to burst."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The balloons ___ going to burst.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-09:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:word:collapse",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — collapse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:word:collapse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — collapse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:word:collapse:audio",
+          "transcript": "collapse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:word:collapse:r1",
+            "targetText": "collapse",
+            "meaningByLocale": {
+              "ru": "обрушиться, сложиться под тяжестью.",
+              "uk": "обвалитися, скластися під вагою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collapse",
+          "definitionByLocale": {
+            "ru": "обрушиться, сложиться под тяжестью.",
+            "uk": "обвалитися, скластися під вагою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Полка трещит под тяжёлыми книгами. Скажите: «Полка вот-вот обрушится»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Полка трещит под тяжёлыми книгами. Скажите: «Полка вот-вот обрушится»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shelf is going to collapse.",
+        "localizedMeaning": {
+          "ru": "Скажите: Полка трещит под тяжёлыми книгами. Скажите: «Полка вот-вот обрушится»",
+          "uk": "Скажіть: Полиця тріщить під важкими книжками. Скажіть: «Полиця ось-ось обвалиться»"
+        },
+        "orderedTokens": [
+          "The",
+          "shelf",
+          "is",
+          "going",
+          "to",
+          "collapse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i11:r1",
+          "text": "The shelf is going to collapse."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i11:r2",
+          "text": "The shelf is going collapse."
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i11:r3",
+          "text": "The shelf are going to collapse."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i11:audio",
+          "transcript": "The shelf is going to collapse."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-09:i11:r1",
+            "targetText": "The shelf is going to collapse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i11:r2",
+            "targetText": "The shelf is going collapse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i11:r3",
+            "targetText": "The shelf are going to collapse.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shelf is going to collapse.",
+              "uk": "У записі звучить The shelf is going to collapse."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shelf is going to collapse.",
+              "uk": "У записі звучить The shelf is going to collapse."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-09:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-09:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The shelf ___ going to collapse.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-09:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-09:i13:p1",
+            "target": "overflow",
+            "meaningByLocale": {
+              "ru": "переполниться и перелиться через край",
+              "uk": "переповнитися й перелитися через край"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-09:i13:p2",
+            "target": "topple",
+            "meaningByLocale": {
+              "ru": "опрокинуться, потеряв равновесие",
+              "uk": "перекинутися, втративши рівновагу"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-09:i13:p3",
+            "target": "burst",
+            "meaningByLocale": {
+              "ru": "лопнуть",
+              "uk": "луснути"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-09:i13:p4",
+            "target": "collapse",
+            "meaningByLocale": {
+              "ru": "обрушиться, сложиться под тяжестью",
+              "uk": "обвалитися, скластися під вагою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "overflow",
+          "topple",
+          "burst",
+          "collapse"
+        ],
+        "rightColumn": [
+          "переполниться и перелиться через край",
+          "опрокинуться, потеряв равновесие",
+          "лопнуть",
+          "обрушиться, сложиться под тяжестью"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i14:audio",
+          "transcript": "The glass is going to fall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The glass is going to fall.",
+        "orderedTokens": [
+          "The",
+          "glass",
+          "is",
+          "going",
+          "to",
+          "fall"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i15:audio",
+          "transcript": "The water is going to spill."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The water is going to spill.",
+        "orderedTokens": [
+          "The",
+          "water",
+          "is",
+          "going",
+          "to",
+          "spill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вода поднимается к краю ванны. Предупредите: ванна сейчас переполнится",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Вода поднимается к краю ванны. Предупредите: ванна сейчас переполнится",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i16:audio",
+          "transcript": "The bath is going to overflow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bath is going to overflow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-09:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Воздуха в шарике уже слишком много. Предупредите: он сейчас лопнет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Воздуха в шарике уже слишком много. Предупредите: он сейчас лопнет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-09:i17:audio",
+          "transcript": "It is going to burst."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is going to burst.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b0e97d439cda957a0fee5c8924fb65b7e01698f1185419ffdc748bda9da3381c"
+}

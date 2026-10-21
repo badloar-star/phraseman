@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-10:word:thaw",
+    "correctText": "thaw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i01",
+    "correctText": "The fish is going to thaw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i02",
+    "correctText": "The fish is going to thaw.",
+    "correctResponseId": "en:lesson-15:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:word:soften",
+    "correctText": "soften",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i04",
+    "correctText": "The butter is going to soften.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i05",
+    "correctText": "The butter is going to soften.",
+    "correctResponseId": "en:lesson-15:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:word:harden",
+    "correctText": "harden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i07",
+    "correctText": "The chocolate is going to harden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i08",
+    "correctText": "The chocolate is going to harden.",
+    "correctResponseId": "en:lesson-15:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:word:crumble",
+    "correctText": "crumble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i10",
+    "correctText": "The biscuits are going to crumble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i11",
+    "correctText": "The biscuits are going to crumble.",
+    "correctResponseId": "en:lesson-15:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i13",
+    "correctText": "en:lesson-15:session-10:i13:p1=thaw\nen:lesson-15:session-10:i13:p2=soften\nen:lesson-15:session-10:i13:p3=harden\nen:lesson-15:session-10:i13:p4=crumble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i14",
+    "correctText": "The butter is going to melt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i15",
+    "correctText": "The cake is going to fall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i16",
+    "correctText": "The berries are going to thaw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-10:i17",
+    "correctText": "It is going to crumble.",
+    "correctResponseId": null
+  }
+]

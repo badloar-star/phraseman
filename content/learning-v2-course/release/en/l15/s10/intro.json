@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "thaw — оттаять, разморозиться. Замороженная рыба уже оттаивает в холодильнике: края стали мягкими. The fish is going to thaw. — Рыба скоро разморозится. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "thaw — відтанути, розморозитися. Заморожена риба вже відтає в холодильнику: краї стали м’якими. The fish is going to thaw. — Риба скоро розморозиться. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-10:intro1:r1",
+              "text": "The fish is going to thaw."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro1:r2",
+              "text": "The fish is going thaw."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro1:r3",
+              "text": "The fish are going to thaw."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-10:intro1:r1",
+              "text": "The fish is going to thaw."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro1:r2",
+              "text": "The fish is going thaw."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro1:r3",
+              "text": "The fish are going to thaw."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "soften — стать мягче, размягчиться; harden — затвердеть, стать твёрже. Масло стоит в тёплой кухне и уже немного поддаётся ножу. The butter is going to soften. — Масло скоро станет мягче. Выберите прогноз.",
+        "uk": "soften — стати м’якшим, розм’якнути; harden — затвердіти, стати твердішим. Масло стоїть у теплій кухні й уже трохи піддається ножу. The butter is going to soften. — Масло скоро стане м’якшим. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-10:intro2:r1",
+              "text": "The butter is going to soften."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro2:r2",
+              "text": "The butter is going soften."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro2:r3",
+              "text": "The butter are going to soften."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-10:intro2:r1",
+              "text": "The butter is going to soften."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro2:r2",
+              "text": "The butter is going soften."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro2:r3",
+              "text": "The butter are going to soften."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "crumble — раскрошиться. Вы сжимаете очень хрупкое печенье; уже сыплются крошки. The biscuits are going to crumble. — Печенье сейчас раскрошится. После going to форма глагола не меняется.",
+        "uk": "crumble — розкришитися. Ви стискаєте дуже крихке печиво; уже сиплються крихти. The biscuits are going to crumble. — Печиво зараз розкришиться. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-10:intro3:r1",
+              "text": "The biscuits are going to crumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro3:r2",
+              "text": "The biscuits are going crumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro3:r3",
+              "text": "The biscuits is going to crumble."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-10:intro3:r1",
+              "text": "The biscuits are going to crumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro3:r2",
+              "text": "The biscuits are going crumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-10:intro3:r3",
+              "text": "The biscuits is going to crumble."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d4f2acc7c69088b29b75cf7a287953959f411fcbaa82ac5aca1370e51d72ecca"
+}

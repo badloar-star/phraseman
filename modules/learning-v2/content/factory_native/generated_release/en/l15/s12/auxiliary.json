@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-12:intro1:r2": {
+          "ru": "После going нужна to.",
+          "uk": "Після going потрібна to."
+        },
+        "en:lesson-15:session-12:intro1:r3": {
+          "ru": "Здесь один предмет: нужна is.",
+          "uk": "Тут один предмет: потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-12:intro2:r2": {
+          "ru": "После going нужна to.",
+          "uk": "Після going потрібна to."
+        },
+        "en:lesson-15:session-12:intro2:r3": {
+          "ru": "Здесь один предмет: нужна is.",
+          "uk": "Тут один предмет: потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-12:intro3:r2": {
+          "ru": "После going нужна to.",
+          "uk": "Після going потрібна to."
+        },
+        "en:lesson-15:session-12:intro3:r3": {
+          "ru": "Здесь несколько предметов: нужна are.",
+          "uk": "Тут кілька предметів: потрібна are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ac753b7c78584afbd12c3cf64bb1b2ff0dd2f2a141d658eeb66da2d300f87aa1"
+}

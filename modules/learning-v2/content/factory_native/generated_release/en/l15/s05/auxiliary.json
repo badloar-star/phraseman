@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-05:intro1:r2": {
+          "ru": "После going нужна to.",
+          "uk": "Після going потрібна to."
+        },
+        "en:lesson-15:session-05:intro1:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-05:intro2:r2": {
+          "ru": "Это план забронировать отдых «всё включено», а не смежный номер.",
+          "uk": "Це план забронювати відпочинок «усе включено», а не суміжний номер."
+        },
+        "en:lesson-15:session-05:intro2:r3": {
+          "ru": "С they нужна are.",
+          "uk": "З they потрібна are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-05:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-15:session-05:intro3:r3": {
+          "ru": "Chose — прошлое; после going to нужна choose.",
+          "uk": "Chose — минуле; після going to потрібна choose."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7ea1281131cc737b33f2d64cf6dcc688feb93469adecc424c8d933df6ebbd7a9"
+}

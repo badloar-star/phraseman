@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-12:word:shrink",
+    "correctText": "shrink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i01",
+    "correctText": "The jumper is going to shrink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i02",
+    "correctText": "The jumper is going to shrink.",
+    "correctResponseId": "en:lesson-15:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:word:unravel",
+    "correctText": "unravel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i04",
+    "correctText": "The scarf is going to unravel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i05",
+    "correctText": "The scarf is going to unravel.",
+    "correctResponseId": "en:lesson-15:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:word:scorch",
+    "correctText": "scorch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i07",
+    "correctText": "The iron is going to scorch the shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i08",
+    "correctText": "The iron is going to scorch the shirt.",
+    "correctResponseId": "en:lesson-15:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:word:rot",
+    "correctText": "rot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i10",
+    "correctText": "The boards are going to rot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i11",
+    "correctText": "The boards are going to rot.",
+    "correctResponseId": "en:lesson-15:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i13",
+    "correctText": "en:lesson-15:session-12:i13:p1=shrink\nen:lesson-15:session-12:i13:p2=unravel\nen:lesson-15:session-12:i13:p3=scorch\nen:lesson-15:session-12:i13:p4=rot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i14",
+    "correctText": "The shirt is going to burn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i15",
+    "correctText": "The box is going to fall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i16",
+    "correctText": "The socks are going to shrink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-12:i17",
+    "correctText": "The blanket is going to unravel.",
+    "correctResponseId": null
+  }
+]

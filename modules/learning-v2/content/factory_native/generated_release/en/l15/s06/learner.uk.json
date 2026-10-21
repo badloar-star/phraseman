@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-06:word:bunk-bed",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bunk bed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:word:bunk-bed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bunk bed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:word:bunk-bed:audio",
+          "transcript": "bunk bed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:word:bunk-bed:r1",
+            "targetText": "bunk bed",
+            "meaningByLocale": {
+              "ru": "двухъярусная кровать.",
+              "uk": "двоярусне ліжко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bunk bed",
+          "definitionByLocale": {
+            "ru": "двухъярусная кровать.",
+            "uk": "двоярусне ліжко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я збираюся спати на двоярусному ліжку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я збираюся спати на двоярусному ліжку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to sleep in a bunk bed.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я собираюсь спать на двухъярусной кровати",
+          "uk": "Скажіть: Я збираюся спати на двоярусному ліжку"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "sleep",
+          "in",
+          "a",
+          "bunk",
+          "bed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i02:r1",
+          "text": "You are going to sleep in a bunk bed."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i02:r2",
+          "text": "I am going to sleep in a bunk bed."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i02:r3",
+          "text": "They are going to sleep in a bunk bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i02:audio",
+          "transcript": "You are going to sleep in a bunk bed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:i02:r1",
+            "targetText": "You are going to sleep in a bunk bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i02:r2",
+            "targetText": "I am going to sleep in a bunk bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i02:r3",
+            "targetText": "They are going to sleep in a bunk bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to sleep in a bunk bed.",
+              "uk": "У записі звучить You are going to sleep in a bunk bed."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to sleep in a bunk bed.",
+              "uk": "У записі звучить You are going to sleep in a bunk bed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ going to sleep in a bunk bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-06:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:word:sleeping-mat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sleeping mat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:word:sleeping-mat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sleeping mat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:word:sleeping-mat:audio",
+          "transcript": "sleeping mat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:word:sleeping-mat:r1",
+            "targetText": "sleeping mat",
+            "meaningByLocale": {
+              "ru": "коврик для сна.",
+              "uk": "килимок для сну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleeping mat",
+          "definitionByLocale": {
+            "ru": "коврик для сна.",
+            "uk": "килимок для сну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона збирається взяти килимок для сну",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона збирається взяти килимок для сну",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to take a sleeping mat.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она собирается взять коврик для сна",
+          "uk": "Скажіть: Вона збирається взяти килимок для сну"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "take",
+          "a",
+          "sleeping",
+          "mat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i05:r1",
+          "text": "You are going to take a sleeping mat."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i05:r2",
+          "text": "She is going to take a sleeping mat."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i05:r3",
+          "text": "They are going to take a sleeping mat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i05:audio",
+          "transcript": "You are going to take a sleeping mat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:i05:r1",
+            "targetText": "You are going to take a sleeping mat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i05:r2",
+            "targetText": "She is going to take a sleeping mat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i05:r3",
+            "targetText": "They are going to take a sleeping mat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to take a sleeping mat.",
+              "uk": "У записі звучить You are going to take a sleeping mat."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to take a sleeping mat.",
+              "uk": "У записі звучить You are going to take a sleeping mat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ going to take a sleeping mat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-06:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:word:groundsheet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — groundsheet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:word:groundsheet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — groundsheet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:word:groundsheet:audio",
+          "transcript": "groundsheet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:word:groundsheet:r1",
+            "targetText": "groundsheet",
+            "meaningByLocale": {
+              "ru": "непромокаемая подстилка под палатку или спальное место.",
+              "uk": "непромокальна підстилка під намет або спальне місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "groundsheet",
+          "definitionByLocale": {
+            "ru": "непромокаемая подстилка под палатку или спальное место.",
+            "uk": "непромокальна підстилка під намет або спальне місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони збираються купити непромокальну підстилку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони збираються купити непромокальну підстилку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are going to buy a groundsheet.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они собираются купить непромокаемую подстилку",
+          "uk": "Скажіть: Вони збираються купити непромокальну підстилку"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "groundsheet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i08:r1",
+          "text": "You are going to buy a groundsheet."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i08:r2",
+          "text": "They are going to buy a groundsheet."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i08:r3",
+          "text": "She is going to buy a groundsheet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i08:audio",
+          "transcript": "You are going to buy a groundsheet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:i08:r1",
+            "targetText": "You are going to buy a groundsheet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i08:r2",
+            "targetText": "They are going to buy a groundsheet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i08:r3",
+            "targetText": "She is going to buy a groundsheet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to buy a groundsheet.",
+              "uk": "У записі звучить You are going to buy a groundsheet."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to buy a groundsheet.",
+              "uk": "У записі звучить You are going to buy a groundsheet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ going to buy a groundsheet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-06:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:word:cool-box",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cool box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:word:cool-box:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cool box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:word:cool-box:audio",
+          "transcript": "cool box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:word:cool-box:r1",
+            "targetText": "cool box",
+            "meaningByLocale": {
+              "ru": "переносной термоконтейнер для еды и напитков.",
+              "uk": "переносний термоконтейнер для їжі та напоїв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cool box",
+          "definitionByLocale": {
+            "ru": "переносной термоконтейнер для еды и напитков.",
+            "uk": "переносний термоконтейнер для їжі та напоїв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми збираємося покласти напої в термоконтейнер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми збираємося покласти напої в термоконтейнер",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are going to put the drinks in a cool box.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы собираемся положить напитки в термоконтейнер",
+          "uk": "Скажіть: Ми збираємося покласти напої в термоконтейнер"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "put",
+          "the",
+          "drinks",
+          "in",
+          "a",
+          "cool",
+          "box"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i11:r1",
+          "text": "You are going to put the drinks in a cool box."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i11:r2",
+          "text": "We are going to put the drinks in a cool box."
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i11:r3",
+          "text": "She is going to put the drinks in a cool box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i11:audio",
+          "transcript": "You are going to put the drinks in a cool box."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-06:i11:r1",
+            "targetText": "You are going to put the drinks in a cool box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i11:r2",
+            "targetText": "We are going to put the drinks in a cool box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i11:r3",
+            "targetText": "She is going to put the drinks in a cool box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to put the drinks in a cool box.",
+              "uk": "У записі звучить You are going to put the drinks in a cool box."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to put the drinks in a cool box.",
+              "uk": "У записі звучить You are going to put the drinks in a cool box."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-06:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-06:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ going to put the drinks in a cool box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-06:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-06:i13:p1",
+            "target": "bunk bed",
+            "meaningByLocale": {
+              "ru": "двухъярусная кровать",
+              "uk": "двоярусне ліжко"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-06:i13:p2",
+            "target": "sleeping mat",
+            "meaningByLocale": {
+              "ru": "коврик для сна",
+              "uk": "килимок для сну"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-06:i13:p3",
+            "target": "groundsheet",
+            "meaningByLocale": {
+              "ru": "непромокаемая подстилка под палатку или спальное место",
+              "uk": "непромокальна підстилка під намет або спальне місце"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-06:i13:p4",
+            "target": "cool box",
+            "meaningByLocale": {
+              "ru": "переносной термоконтейнер для еды и напитков",
+              "uk": "переносний термоконтейнер для їжі та напоїв"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bunk bed",
+          "sleeping mat",
+          "groundsheet",
+          "cool box"
+        ],
+        "rightColumn": [
+          "двоярусне ліжко",
+          "килимок для сну",
+          "непромокальна підстилка під намет або спальне місце",
+          "переносний термоконтейнер для їжі та напоїв"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i14:audio",
+          "transcript": "She is going to take a blanket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is going to take a blanket.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "take",
+          "a",
+          "blanket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i15:audio",
+          "transcript": "We are going to buy some food."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy some food.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "some",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: завтра я збираюся купити килимок для сну",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: завтра я збираюся купити килимок для сну",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i16:audio",
+          "transcript": "I am going to buy a sleeping mat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am going to buy a sleeping mat tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-06:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: завтра вона збирається взяти термоконтейнер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: завтра вона збирається взяти термоконтейнер",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-06:i17:audio",
+          "transcript": "She is going to take a cool box tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is going to take a cool box tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9dc222169efd1945cd58cbf8ce208ad007b4450aaba06326a89a97a111958fbd"
+}

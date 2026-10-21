@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ванная при номере",
+        "uk": "Ванна кімната при номері"
+      },
+      "bodyByLocale": {
+        "ru": "En-suite — ванная комната, в которую входят прямо из спальни. I am going to book a room with an en-suite. — Я собираюсь забронировать номер с собственной ванной. Это уже выбранный план.",
+        "uk": "En-suite — ванна кімната, до якої входять просто зі спальні. I am going to book a room with an en-suite. — Я збираюся забронювати номер із власною ванною. Це вже вибраний план."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-05:intro1:r1",
+              "text": "I am going to book a room with an en-suite."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro1:r2",
+              "text": "I am going book a room with an en-suite."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro1:r3",
+              "text": "I are going to book a room with an en-suite."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-05:intro1:r1",
+              "text": "I am going to book a room with an en-suite."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro1:r2",
+              "text": "I am going book a room with an en-suite."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro1:r3",
+              "text": "I are going to book a room with an en-suite."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что включено и как связаны номера",
+        "uk": "Що включено і як сполучені номери"
+      },
+      "bodyByLocale": {
+        "ru": "All-inclusive — «всё включено»; connecting room — номер с дверью в соседний номер. They are going to book a connecting room. — Они собираются забронировать смежный номер. Выберите именно этот план.",
+        "uk": "All-inclusive — «усе включено»; connecting room — номер із дверима до сусіднього номера. They are going to book a connecting room. — Вони збираються забронювати суміжний номер. Виберіть саме цей план."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-05:intro2:r1",
+              "text": "They are going to book a connecting room."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro2:r2",
+              "text": "They are going to book an all-inclusive holiday."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro2:r3",
+              "text": "They is going to book a connecting room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-05:intro2:r1",
+              "text": "They are going to book a connecting room."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro2:r2",
+              "text": "They are going to book an all-inclusive holiday."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro2:r3",
+              "text": "They is going to book a connecting room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Душ без высокого бортика",
+        "uk": "Душ без високого бортика"
+      },
+      "bodyByLocale": {
+        "ru": "Walk-in shower — душ, в который заходят без высокого бортика или края ванны. We are going to choose a room with a walk-in shower. — Мы собираемся выбрать номер с таким душем. После going to нужна choose.",
+        "uk": "Walk-in shower — душ, до якого заходять без високого бортика чи краю ванни. We are going to choose a room with a walk-in shower. — Ми збираємося вибрати номер із таким душем. Після going to потрібна choose."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-05:intro3:r1",
+              "text": "We are going to choose a room with a walk-in shower."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro3:r2",
+              "text": "We is going to choose a room with a walk-in shower."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro3:r3",
+              "text": "We are going to chose a room with a walk-in shower."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-05:intro3:r1",
+              "text": "We are going to choose a room with a walk-in shower."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro3:r2",
+              "text": "We is going to choose a room with a walk-in shower."
+            },
+            {
+              "responseId": "en:lesson-15:session-05:intro3:r3",
+              "text": "We are going to chose a room with a walk-in shower."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1efcf762c7aef8d6fd666253760741e6c8b4e91a9cdb1f489d9c764751e6f2fc"
+}

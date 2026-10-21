@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-08:intro1:r2": {
+          "ru": "После going to нужна draw.",
+          "uk": "Після going to потрібна draw."
+        },
+        "en:lesson-15:session-08:intro1:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-08:intro2:r2": {
+          "ru": "Stem — стебель, а не пыльца.",
+          "uk": "Stem — стебло, а не пилок."
+        },
+        "en:lesson-15:session-08:intro2:r3": {
+          "ru": "С she нужна is.",
+          "uk": "З she потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-08:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-15:session-08:intro3:r3": {
+          "ru": "После going to нужна draw, без -ing.",
+          "uk": "Після going to потрібна draw, без -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bfa294f4708b058d93b44e9fa2cd2274fc8b91c0f7d48fd5b41a18438816dbb6"
+}

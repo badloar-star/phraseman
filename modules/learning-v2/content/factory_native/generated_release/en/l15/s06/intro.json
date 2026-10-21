@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два спальных места",
+        "uk": "Два спальні місця"
+      },
+      "bodyByLocale": {
+        "ru": "Bunk bed — двухъярусная кровать. I am going to sleep in a bunk bed. — Я собираюсь спать на двухъярусной кровати. Вы уже выбрали спальное место.",
+        "uk": "Bunk bed — двоярусне ліжко. I am going to sleep in a bunk bed. — Я збираюся спати на двоярусному ліжку. Ви вже вибрали спальне місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-06:intro1:r1",
+              "text": "I am going to sleep in a bunk bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro1:r2",
+              "text": "I am going to slept in a bunk bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro1:r3",
+              "text": "I is going to sleep in a bunk bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-06:intro1:r1",
+              "text": "I am going to sleep in a bunk bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro1:r2",
+              "text": "I am going to slept in a bunk bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro1:r3",
+              "text": "I is going to sleep in a bunk bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что положить на землю",
+        "uk": "Що покласти на землю"
+      },
+      "bodyByLocale": {
+        "ru": "Sleeping mat — коврик для сна; groundsheet — непромокаемая подстилка под палатку или под спальное место. She is going to take a sleeping mat. — Она собирается взять коврик для сна.",
+        "uk": "Sleeping mat — килимок для сну; groundsheet — непромокальна підстилка під намет або спальне місце. She is going to take a sleeping mat. — Вона збирається взяти килимок для сну."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-06:intro2:r1",
+              "text": "She is going to take a sleeping mat."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro2:r2",
+              "text": "She is going to take a groundsheet."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro2:r3",
+              "text": "She are going to take a sleeping mat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-06:intro2:r1",
+              "text": "She is going to take a sleeping mat."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro2:r2",
+              "text": "She is going to take a groundsheet."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro2:r3",
+              "text": "She are going to take a sleeping mat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сохранить продукты холодными",
+        "uk": "Зберегти продукти холодними"
+      },
+      "bodyByLocale": {
+        "ru": "Cool box — переносной термоконтейнер для еды и напитков. We are going to put the drinks in a cool box. — Мы собираемся положить напитки в термоконтейнер. Выберите правильную форму с we.",
+        "uk": "Cool box — переносний термоконтейнер для їжі та напоїв. We are going to put the drinks in a cool box. — Ми збираємося покласти напої в термоконтейнер. Виберіть правильну форму з we."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-06:intro3:r1",
+              "text": "We are going to put the drinks in a cool box."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro3:r2",
+              "text": "We is going to put the drinks in a cool box."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro3:r3",
+              "text": "We are going put the drinks in a cool box."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-06:intro3:r1",
+              "text": "We are going to put the drinks in a cool box."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro3:r2",
+              "text": "We is going to put the drinks in a cool box."
+            },
+            {
+              "responseId": "en:lesson-15:session-06:intro3:r3",
+              "text": "We are going put the drinks in a cool box."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cac2d7bd6664fc68abe899832b00ea06bfb2acd55cbda1e3913e8803461d37b1"
+}

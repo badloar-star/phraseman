@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-10:word:thaw",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thaw",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:thaw:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thaw",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:thaw:audio",
+            "transcript": "thaw"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:thaw:r1",
+              "targetText": "thaw",
+              "meaningByLocale": {
+                "ru": "оттаять, разморозиться.",
+                "uk": "відтанути, розморозитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thaw",
+            "definitionByLocale": {
+              "ru": "оттаять, разморозиться.",
+              "uk": "відтанути, розморозитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Замороженная рыба уже оттаивает в холодильнике: края стали мягкими. Скажите: «Рыба скоро разморозится»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Замороженная рыба уже оттаивает в холодильнике: края стали мягкими. Скажите: «Рыба скоро разморозится»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fish is going to thaw.",
+          "localizedMeaning": {
+            "ru": "Скажите: Замороженная рыба уже оттаивает в холодильнике: края стали мягкими. Скажите: «Рыба скоро разморозится»",
+            "uk": "Скажіть: Заморожена риба вже відтає в холодильнику: краї стали м’якими. Скажіть: «Риба скоро розморозиться»"
+          },
+          "orderedTokens": [
+            "The",
+            "fish",
+            "is",
+            "going",
+            "to",
+            "thaw"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i02:r1",
+            "text": "The fish is going to thaw."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i02:r2",
+            "text": "The fish is going thaw."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i02:r3",
+            "text": "The fish are going to thaw."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i02:audio",
+            "transcript": "The fish is going to thaw."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i02:r1",
+              "targetText": "The fish is going to thaw.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i02:r2",
+              "targetText": "The fish is going thaw.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i02:r3",
+              "targetText": "The fish are going to thaw.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fish is going to thaw.",
+                "uk": "У записі звучить The fish is going to thaw."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fish is going to thaw.",
+                "uk": "У записі звучить The fish is going to thaw."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The fish ___ going to thaw.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:word:soften",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soften",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:soften:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soften",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:soften:audio",
+            "transcript": "soften"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:soften:r1",
+              "targetText": "soften",
+              "meaningByLocale": {
+                "ru": "стать мягче, размягчиться.",
+                "uk": "стати м’якшим, розм’якнути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soften",
+            "definitionByLocale": {
+              "ru": "стать мягче, размягчиться.",
+              "uk": "стати м’якшим, розм’якнути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Масло стоит в тёплой кухне и уже немного поддаётся ножу. Скажите: «Масло скоро станет мягче»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Масло стоит в тёплой кухне и уже немного поддаётся ножу. Скажите: «Масло скоро станет мягче»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The butter is going to soften.",
+          "localizedMeaning": {
+            "ru": "Скажите: Масло стоит в тёплой кухне и уже немного поддаётся ножу. Скажите: «Масло скоро станет мягче»",
+            "uk": "Скажіть: Масло стоїть у теплій кухні й уже трохи піддається ножу. Скажіть: «Масло скоро стане м’якшим»"
+          },
+          "orderedTokens": [
+            "The",
+            "butter",
+            "is",
+            "going",
+            "to",
+            "soften"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i05:r1",
+            "text": "The butter is going to soften."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i05:r2",
+            "text": "The butter is going soften."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i05:r3",
+            "text": "The butter are going to soften."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i05:audio",
+            "transcript": "The butter is going to soften."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i05:r1",
+              "targetText": "The butter is going to soften.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i05:r2",
+              "targetText": "The butter is going soften.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i05:r3",
+              "targetText": "The butter are going to soften.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The butter is going to soften.",
+                "uk": "У записі звучить The butter is going to soften."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The butter is going to soften.",
+                "uk": "У записі звучить The butter is going to soften."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The butter ___ going to soften.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:word:harden",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — harden",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:harden:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — harden",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:harden:audio",
+            "transcript": "harden"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:harden:r1",
+              "targetText": "harden",
+              "meaningByLocale": {
+                "ru": "затвердеть, стать твёрже.",
+                "uk": "затвердіти, стати твердішим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "harden",
+            "definitionByLocale": {
+              "ru": "затвердеть, стать твёрже.",
+              "uk": "затвердіти, стати твердішим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Растопленный шоколад остывает, его край уже твёрдый. Скажите: «Шоколад скоро затвердеет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Растопленный шоколад остывает, его край уже твёрдый. Скажите: «Шоколад скоро затвердеет»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The chocolate is going to harden.",
+          "localizedMeaning": {
+            "ru": "Скажите: Растопленный шоколад остывает, его край уже твёрдый. Скажите: «Шоколад скоро затвердеет»",
+            "uk": "Скажіть: Розтоплений шоколад остигає, його край уже твердий. Скажіть: «Шоколад скоро затвердіє»"
+          },
+          "orderedTokens": [
+            "The",
+            "chocolate",
+            "is",
+            "going",
+            "to",
+            "harden"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i08:r1",
+            "text": "The chocolate is going to harden."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i08:r2",
+            "text": "The chocolate is going harden."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i08:r3",
+            "text": "The chocolate are going to harden."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i08:audio",
+            "transcript": "The chocolate is going to harden."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i08:r1",
+              "targetText": "The chocolate is going to harden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i08:r2",
+              "targetText": "The chocolate is going harden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i08:r3",
+              "targetText": "The chocolate are going to harden.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chocolate is going to harden.",
+                "uk": "У записі звучить The chocolate is going to harden."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chocolate is going to harden.",
+                "uk": "У записі звучить The chocolate is going to harden."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The chocolate ___ going to harden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:word:crumble",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crumble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:crumble:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crumble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:crumble:audio",
+            "transcript": "crumble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:crumble:r1",
+              "targetText": "crumble",
+              "meaningByLocale": {
+                "ru": "раскрошиться.",
+                "uk": "розкришитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crumble",
+            "definitionByLocale": {
+              "ru": "раскрошиться.",
+              "uk": "розкришитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Вы сжимаете очень хрупкое печенье; уже сыплются крошки. Скажите: «Печенье сейчас раскрошится»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Вы сжимаете очень хрупкое печенье; уже сыплются крошки. Скажите: «Печенье сейчас раскрошится»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The biscuits are going to crumble.",
+          "localizedMeaning": {
+            "ru": "Скажите: Вы сжимаете очень хрупкое печенье; уже сыплются крошки. Скажите: «Печенье сейчас раскрошится»",
+            "uk": "Скажіть: Ви стискаєте дуже крихке печиво; уже сиплються крихти. Скажіть: «Печиво зараз розкришиться»"
+          },
+          "orderedTokens": [
+            "The",
+            "biscuits",
+            "are",
+            "going",
+            "to",
+            "crumble"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i11:r1",
+            "text": "The biscuits are going to crumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i11:r2",
+            "text": "The biscuits are going crumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i11:r3",
+            "text": "The biscuits is going to crumble."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i11:audio",
+            "transcript": "The biscuits are going to crumble."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i11:r1",
+              "targetText": "The biscuits are going to crumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i11:r2",
+              "targetText": "The biscuits are going crumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i11:r3",
+              "targetText": "The biscuits is going to crumble.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The biscuits are going to crumble.",
+                "uk": "У записі звучить The biscuits are going to crumble."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The biscuits are going to crumble.",
+                "uk": "У записі звучить The biscuits are going to crumble."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The biscuits ___ going to crumble.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-10:i13:p1",
+              "target": "thaw",
+              "meaningByLocale": {
+                "ru": "оттаять, разморозиться",
+                "uk": "відтанути, розморозитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-10:i13:p2",
+              "target": "soften",
+              "meaningByLocale": {
+                "ru": "стать мягче, размягчиться",
+                "uk": "стати м’якшим, розм’якнути"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-10:i13:p3",
+              "target": "harden",
+              "meaningByLocale": {
+                "ru": "затвердеть, стать твёрже",
+                "uk": "затвердіти, стати твердішим"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-10:i13:p4",
+              "target": "crumble",
+              "meaningByLocale": {
+                "ru": "раскрошиться",
+                "uk": "розкришитися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thaw",
+            "soften",
+            "harden",
+            "crumble"
+          ],
+          "rightColumn": [
+            "оттаять, разморозиться",
+            "стать мягче, размягчиться",
+            "затвердеть, стать твёрже",
+            "раскрошиться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i14:audio",
+            "transcript": "The butter is going to melt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The butter is going to melt.",
+          "orderedTokens": [
+            "The",
+            "butter",
+            "is",
+            "going",
+            "to",
+            "melt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i15:audio",
+            "transcript": "The cake is going to fall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cake is going to fall.",
+          "orderedTokens": [
+            "The",
+            "cake",
+            "is",
+            "going",
+            "to",
+            "fall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Края замороженных ягод уже мягкие. Скажите: ягоды скоро разморозятся",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i16:audio"
+        ],
+        "accessibilityLabel": "Края замороженных ягод уже мягкие. Скажите: ягоды скоро разморозятся",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i16:audio",
+            "transcript": "The berries are going to thaw."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The berries are going to thaw.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кусочек хлеба очень сухой и уже крошится. Скажите: он сейчас раскрошится",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Кусочек хлеба очень сухой и уже крошится. Скажите: он сейчас раскрошится",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i17:audio",
+            "transcript": "It is going to crumble."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is going to crumble.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-10:word:thaw",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thaw",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:thaw:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thaw",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:thaw:audio",
+            "transcript": "thaw"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:thaw:r1",
+              "targetText": "thaw",
+              "meaningByLocale": {
+                "ru": "оттаять, разморозиться.",
+                "uk": "відтанути, розморозитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thaw",
+            "definitionByLocale": {
+              "ru": "оттаять, разморозиться.",
+              "uk": "відтанути, розморозитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Заморожена риба вже відтає в холодильнику: краї стали м’якими. Скажіть: «Риба скоро розморозиться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Заморожена риба вже відтає в холодильнику: краї стали м’якими. Скажіть: «Риба скоро розморозиться»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fish is going to thaw.",
+          "localizedMeaning": {
+            "ru": "Скажите: Замороженная рыба уже оттаивает в холодильнике: края стали мягкими. Скажите: «Рыба скоро разморозится»",
+            "uk": "Скажіть: Заморожена риба вже відтає в холодильнику: краї стали м’якими. Скажіть: «Риба скоро розморозиться»"
+          },
+          "orderedTokens": [
+            "The",
+            "fish",
+            "is",
+            "going",
+            "to",
+            "thaw"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i02:r1",
+            "text": "The fish is going to thaw."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i02:r2",
+            "text": "The fish is going thaw."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i02:r3",
+            "text": "The fish are going to thaw."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i02:audio",
+            "transcript": "The fish is going to thaw."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i02:r1",
+              "targetText": "The fish is going to thaw.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i02:r2",
+              "targetText": "The fish is going thaw.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i02:r3",
+              "targetText": "The fish are going to thaw.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fish is going to thaw.",
+                "uk": "У записі звучить The fish is going to thaw."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fish is going to thaw.",
+                "uk": "У записі звучить The fish is going to thaw."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The fish ___ going to thaw.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:word:soften",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soften",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:soften:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soften",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:soften:audio",
+            "transcript": "soften"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:soften:r1",
+              "targetText": "soften",
+              "meaningByLocale": {
+                "ru": "стать мягче, размягчиться.",
+                "uk": "стати м’якшим, розм’якнути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soften",
+            "definitionByLocale": {
+              "ru": "стать мягче, размягчиться.",
+              "uk": "стати м’якшим, розм’якнути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Масло стоїть у теплій кухні й уже трохи піддається ножу. Скажіть: «Масло скоро стане м’якшим»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Масло стоїть у теплій кухні й уже трохи піддається ножу. Скажіть: «Масло скоро стане м’якшим»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The butter is going to soften.",
+          "localizedMeaning": {
+            "ru": "Скажите: Масло стоит в тёплой кухне и уже немного поддаётся ножу. Скажите: «Масло скоро станет мягче»",
+            "uk": "Скажіть: Масло стоїть у теплій кухні й уже трохи піддається ножу. Скажіть: «Масло скоро стане м’якшим»"
+          },
+          "orderedTokens": [
+            "The",
+            "butter",
+            "is",
+            "going",
+            "to",
+            "soften"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i05:r1",
+            "text": "The butter is going to soften."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i05:r2",
+            "text": "The butter is going soften."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i05:r3",
+            "text": "The butter are going to soften."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i05:audio",
+            "transcript": "The butter is going to soften."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i05:r1",
+              "targetText": "The butter is going to soften.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i05:r2",
+              "targetText": "The butter is going soften.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i05:r3",
+              "targetText": "The butter are going to soften.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The butter is going to soften.",
+                "uk": "У записі звучить The butter is going to soften."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The butter is going to soften.",
+                "uk": "У записі звучить The butter is going to soften."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The butter ___ going to soften.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:word:harden",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — harden",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:harden:audio"
+        ],
+        "accessibilityLabel": "Картка слова — harden",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:harden:audio",
+            "transcript": "harden"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:harden:r1",
+              "targetText": "harden",
+              "meaningByLocale": {
+                "ru": "затвердеть, стать твёрже.",
+                "uk": "затвердіти, стати твердішим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "harden",
+            "definitionByLocale": {
+              "ru": "затвердеть, стать твёрже.",
+              "uk": "затвердіти, стати твердішим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Розтоплений шоколад остигає, його край уже твердий. Скажіть: «Шоколад скоро затвердіє»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Розтоплений шоколад остигає, його край уже твердий. Скажіть: «Шоколад скоро затвердіє»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The chocolate is going to harden.",
+          "localizedMeaning": {
+            "ru": "Скажите: Растопленный шоколад остывает, его край уже твёрдый. Скажите: «Шоколад скоро затвердеет»",
+            "uk": "Скажіть: Розтоплений шоколад остигає, його край уже твердий. Скажіть: «Шоколад скоро затвердіє»"
+          },
+          "orderedTokens": [
+            "The",
+            "chocolate",
+            "is",
+            "going",
+            "to",
+            "harden"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i08:r1",
+            "text": "The chocolate is going to harden."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i08:r2",
+            "text": "The chocolate is going harden."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i08:r3",
+            "text": "The chocolate are going to harden."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i08:audio",
+            "transcript": "The chocolate is going to harden."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i08:r1",
+              "targetText": "The chocolate is going to harden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i08:r2",
+              "targetText": "The chocolate is going harden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i08:r3",
+              "targetText": "The chocolate are going to harden.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chocolate is going to harden.",
+                "uk": "У записі звучить The chocolate is going to harden."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chocolate is going to harden.",
+                "uk": "У записі звучить The chocolate is going to harden."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The chocolate ___ going to harden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:word:crumble",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crumble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:word:crumble:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crumble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:word:crumble:audio",
+            "transcript": "crumble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:word:crumble:r1",
+              "targetText": "crumble",
+              "meaningByLocale": {
+                "ru": "раскрошиться.",
+                "uk": "розкришитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crumble",
+            "definitionByLocale": {
+              "ru": "раскрошиться.",
+              "uk": "розкришитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ви стискаєте дуже крихке печиво; уже сиплються крихти. Скажіть: «Печиво зараз розкришиться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ви стискаєте дуже крихке печиво; уже сиплються крихти. Скажіть: «Печиво зараз розкришиться»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The biscuits are going to crumble.",
+          "localizedMeaning": {
+            "ru": "Скажите: Вы сжимаете очень хрупкое печенье; уже сыплются крошки. Скажите: «Печенье сейчас раскрошится»",
+            "uk": "Скажіть: Ви стискаєте дуже крихке печиво; уже сиплються крихти. Скажіть: «Печиво зараз розкришиться»"
+          },
+          "orderedTokens": [
+            "The",
+            "biscuits",
+            "are",
+            "going",
+            "to",
+            "crumble"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i11:r1",
+            "text": "The biscuits are going to crumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i11:r2",
+            "text": "The biscuits are going crumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i11:r3",
+            "text": "The biscuits is going to crumble."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i11:audio",
+            "transcript": "The biscuits are going to crumble."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-10:i11:r1",
+              "targetText": "The biscuits are going to crumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i11:r2",
+              "targetText": "The biscuits are going crumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i11:r3",
+              "targetText": "The biscuits is going to crumble.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The biscuits are going to crumble.",
+                "uk": "У записі звучить The biscuits are going to crumble."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The biscuits are going to crumble.",
+                "uk": "У записі звучить The biscuits are going to crumble."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-10:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-10:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "The biscuits ___ going to crumble.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-10:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-10:i13:p1",
+              "target": "thaw",
+              "meaningByLocale": {
+                "ru": "оттаять, разморозиться",
+                "uk": "відтанути, розморозитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-10:i13:p2",
+              "target": "soften",
+              "meaningByLocale": {
+                "ru": "стать мягче, размягчиться",
+                "uk": "стати м’якшим, розм’якнути"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-10:i13:p3",
+              "target": "harden",
+              "meaningByLocale": {
+                "ru": "затвердеть, стать твёрже",
+                "uk": "затвердіти, стати твердішим"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-10:i13:p4",
+              "target": "crumble",
+              "meaningByLocale": {
+                "ru": "раскрошиться",
+                "uk": "розкришитися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thaw",
+            "soften",
+            "harden",
+            "crumble"
+          ],
+          "rightColumn": [
+            "відтанути, розморозитися",
+            "стати м’якшим, розм’якнути",
+            "затвердіти, стати твердішим",
+            "розкришитися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i14:audio",
+            "transcript": "The butter is going to melt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The butter is going to melt.",
+          "orderedTokens": [
+            "The",
+            "butter",
+            "is",
+            "going",
+            "to",
+            "melt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i15:audio",
+            "transcript": "The cake is going to fall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cake is going to fall.",
+          "orderedTokens": [
+            "The",
+            "cake",
+            "is",
+            "going",
+            "to",
+            "fall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Краї заморожених ягід уже м’які. Скажіть: ягоди скоро розморозяться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i16:audio"
+        ],
+        "accessibilityLabel": "Краї заморожених ягід уже м’які. Скажіть: ягоди скоро розморозяться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i16:audio",
+            "transcript": "The berries are going to thaw."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The berries are going to thaw.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-10:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Шматочок хліба дуже сухий і вже кришиться. Скажіть: він зараз розкришиться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Шматочок хліба дуже сухий і вже кришиться. Скажіть: він зараз розкришиться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-10:i17:audio",
+            "transcript": "It is going to crumble."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is going to crumble.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-10:word:thaw",
+      "correctText": "thaw",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i01",
+      "correctText": "The fish is going to thaw.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i02",
+      "correctText": "The fish is going to thaw.",
+      "correctResponseId": "en:lesson-15:session-10:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:word:soften",
+      "correctText": "soften",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i04",
+      "correctText": "The butter is going to soften.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i05",
+      "correctText": "The butter is going to soften.",
+      "correctResponseId": "en:lesson-15:session-10:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-10:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:word:harden",
+      "correctText": "harden",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i07",
+      "correctText": "The chocolate is going to harden.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i08",
+      "correctText": "The chocolate is going to harden.",
+      "correctResponseId": "en:lesson-15:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:word:crumble",
+      "correctText": "crumble",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i10",
+      "correctText": "The biscuits are going to crumble.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i11",
+      "correctText": "The biscuits are going to crumble.",
+      "correctResponseId": "en:lesson-15:session-10:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-10:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i14",
+      "correctText": "The butter is going to melt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i15",
+      "correctText": "The cake is going to fall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i16",
+      "correctText": "The berries are going to thaw.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-10:i17",
+      "correctText": "It is going to crumble.",
+      "correctResponseId": null
+    }
+  ]
+}

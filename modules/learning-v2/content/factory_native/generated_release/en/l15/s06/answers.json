@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-06:word:bunk-bed",
+    "correctText": "bunk bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i01",
+    "correctText": "I am going to sleep in a bunk bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i02",
+    "correctText": "You are going to sleep in a bunk bed.",
+    "correctResponseId": "en:lesson-15:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:word:sleeping-mat",
+    "correctText": "sleeping mat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i04",
+    "correctText": "She is going to take a sleeping mat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i05",
+    "correctText": "You are going to take a sleeping mat.",
+    "correctResponseId": "en:lesson-15:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:word:groundsheet",
+    "correctText": "groundsheet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i07",
+    "correctText": "They are going to buy a groundsheet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i08",
+    "correctText": "You are going to buy a groundsheet.",
+    "correctResponseId": "en:lesson-15:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:word:cool-box",
+    "correctText": "cool box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i10",
+    "correctText": "We are going to put the drinks in a cool box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i11",
+    "correctText": "You are going to put the drinks in a cool box.",
+    "correctResponseId": "en:lesson-15:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i13",
+    "correctText": "en:lesson-15:session-06:i13:p1=bunk bed\nen:lesson-15:session-06:i13:p2=sleeping mat\nen:lesson-15:session-06:i13:p3=groundsheet\nen:lesson-15:session-06:i13:p4=cool box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i14",
+    "correctText": "She is going to take a blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i15",
+    "correctText": "We are going to buy some food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i16",
+    "correctText": "I am going to buy a sleeping mat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-06:i17",
+    "correctText": "She is going to take a cool box tomorrow.",
+    "correctResponseId": null
+  }
+]

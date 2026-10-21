@@ -1,0 +1,2347 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-08:word:root",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — root",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:root:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — root",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:root:audio",
+            "transcript": "root"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:root:r1",
+              "targetText": "root",
+              "meaningByLocale": {
+                "ru": "корень растения.",
+                "uk": "корінь рослини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "root",
+            "definitionByLocale": {
+              "ru": "корень растения.",
+              "uk": "корінь рослини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я собираюсь нарисовать корень",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я собираюсь нарисовать корень",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to draw a root.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собираюсь нарисовать корень",
+            "uk": "Скажіть: Я збираюся намалювати корінь"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "root"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i02:r1",
+            "text": "You are going to draw a root."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i02:r2",
+            "text": "I am going to draw a root."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i02:r3",
+            "text": "They are going to draw a root."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i02:audio",
+            "transcript": "You are going to draw a root."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i02:r1",
+              "targetText": "You are going to draw a root.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i02:r2",
+              "targetText": "I am going to draw a root.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i02:r3",
+              "targetText": "They are going to draw a root.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a root.",
+                "uk": "У записі звучить You are going to draw a root."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a root.",
+                "uk": "У записі звучить You are going to draw a root."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ going to draw a root.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:word:stem",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stem",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:stem:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stem",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:stem:audio",
+            "transcript": "stem"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:stem:r1",
+              "targetText": "stem",
+              "meaningByLocale": {
+                "ru": "стебель растения.",
+                "uk": "стебло рослини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stem",
+            "definitionByLocale": {
+              "ru": "стебель растения.",
+              "uk": "стебло рослини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они собираются нарисовать стебель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они собираются нарисовать стебель",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going to draw the stem.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собираются нарисовать стебель",
+            "uk": "Скажіть: Вони збираються намалювати стебло"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "draw",
+            "the",
+            "stem"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i05:r1",
+            "text": "You are going to draw the stem."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i05:r2",
+            "text": "They are going to draw the stem."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i05:r3",
+            "text": "She is going to draw the stem."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i05:audio",
+            "transcript": "You are going to draw the stem."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i05:r1",
+              "targetText": "You are going to draw the stem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i05:r2",
+              "targetText": "They are going to draw the stem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i05:r3",
+              "targetText": "She is going to draw the stem.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw the stem.",
+                "uk": "У записі звучить You are going to draw the stem."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw the stem.",
+                "uk": "У записі звучить You are going to draw the stem."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ going to draw the stem.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:word:pollen",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pollen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:pollen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pollen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:pollen:audio",
+            "transcript": "pollen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:pollen:r1",
+              "targetText": "pollen",
+              "meaningByLocale": {
+                "ru": "пыльца цветов.",
+                "uk": "пилок квітів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pollen",
+            "definitionByLocale": {
+              "ru": "пыльца цветов.",
+              "uk": "пилок квітів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она собирается рассмотреть пыльцу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она собирается рассмотреть пыльцу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to look at the pollen.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирается рассмотреть пыльцу",
+            "uk": "Скажіть: Вона збирається роздивитися пилок"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "look",
+            "at",
+            "the",
+            "pollen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i08:r1",
+            "text": "You are going to look at the pollen."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i08:r2",
+            "text": "She is going to look at the pollen."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i08:r3",
+            "text": "They are going to look at the pollen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i08:audio",
+            "transcript": "You are going to look at the pollen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i08:r1",
+              "targetText": "You are going to look at the pollen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i08:r2",
+              "targetText": "She is going to look at the pollen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i08:r3",
+              "targetText": "They are going to look at the pollen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to look at the pollen.",
+                "uk": "У записі звучить You are going to look at the pollen."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to look at the pollen.",
+                "uk": "У записі звучить You are going to look at the pollen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to look at the pollen.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:word:thorn",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thorn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:thorn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thorn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:thorn:audio",
+            "transcript": "thorn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:thorn:r1",
+              "targetText": "thorn",
+              "meaningByLocale": {
+                "ru": "шип на растении.",
+                "uk": "шип на рослині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thorn",
+            "definitionByLocale": {
+              "ru": "шип на растении.",
+              "uk": "шип на рослині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы собираемся нарисовать шип",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы собираемся нарисовать шип",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going to draw a thorn.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы собираемся нарисовать шип",
+            "uk": "Скажіть: Ми збираємося намалювати шип"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "thorn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i11:r1",
+            "text": "You are going to draw a thorn."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i11:r2",
+            "text": "We are going to draw a thorn."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i11:r3",
+            "text": "She is going to draw a thorn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i11:audio",
+            "transcript": "You are going to draw a thorn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i11:r1",
+              "targetText": "You are going to draw a thorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i11:r2",
+              "targetText": "We are going to draw a thorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i11:r3",
+              "targetText": "She is going to draw a thorn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a thorn.",
+                "uk": "У записі звучить You are going to draw a thorn."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a thorn.",
+                "uk": "У записі звучить You are going to draw a thorn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ going to draw a thorn.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-08:i13:p1",
+              "target": "root",
+              "meaningByLocale": {
+                "ru": "корень растения",
+                "uk": "корінь рослини"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-08:i13:p2",
+              "target": "stem",
+              "meaningByLocale": {
+                "ru": "стебель растения",
+                "uk": "стебло рослини"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-08:i13:p3",
+              "target": "pollen",
+              "meaningByLocale": {
+                "ru": "пыльца цветов",
+                "uk": "пилок квітів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-08:i13:p4",
+              "target": "thorn",
+              "meaningByLocale": {
+                "ru": "шип на растении",
+                "uk": "шип на рослині"
+              }
+            }
+          ],
+          "leftColumn": [
+            "root",
+            "stem",
+            "pollen",
+            "thorn"
+          ],
+          "rightColumn": [
+            "корень растения",
+            "стебель растения",
+            "пыльца цветов",
+            "шип на растении"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i14:audio",
+            "transcript": "She is going to draw a flower."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is going to draw a flower.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "flower"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i15:audio",
+            "transcript": "We are going to look at the plants."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to look at the plants.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "look",
+            "at",
+            "the",
+            "plants"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: завтра она собирается нарисовать корень",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: завтра она собирается нарисовать корень",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i16:audio",
+            "transcript": "She is going to draw a root tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to draw a root tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: завтра я собираюсь нарисовать стебель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: завтра я собираюсь нарисовать стебель",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i17:audio",
+            "transcript": "I am going to draw the stem tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to draw the stem tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-08:word:root",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — root",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:root:audio"
+        ],
+        "accessibilityLabel": "Картка слова — root",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:root:audio",
+            "transcript": "root"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:root:r1",
+              "targetText": "root",
+              "meaningByLocale": {
+                "ru": "корень растения.",
+                "uk": "корінь рослини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "root",
+            "definitionByLocale": {
+              "ru": "корень растения.",
+              "uk": "корінь рослини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я збираюся намалювати корінь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я збираюся намалювати корінь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to draw a root.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собираюсь нарисовать корень",
+            "uk": "Скажіть: Я збираюся намалювати корінь"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "root"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i02:r1",
+            "text": "You are going to draw a root."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i02:r2",
+            "text": "I am going to draw a root."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i02:r3",
+            "text": "They are going to draw a root."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i02:audio",
+            "transcript": "You are going to draw a root."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i02:r1",
+              "targetText": "You are going to draw a root.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i02:r2",
+              "targetText": "I am going to draw a root.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i02:r3",
+              "targetText": "They are going to draw a root.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a root.",
+                "uk": "У записі звучить You are going to draw a root."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a root.",
+                "uk": "У записі звучить You are going to draw a root."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ going to draw a root.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:word:stem",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stem",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:stem:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stem",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:stem:audio",
+            "transcript": "stem"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:stem:r1",
+              "targetText": "stem",
+              "meaningByLocale": {
+                "ru": "стебель растения.",
+                "uk": "стебло рослини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stem",
+            "definitionByLocale": {
+              "ru": "стебель растения.",
+              "uk": "стебло рослини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони збираються намалювати стебло",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони збираються намалювати стебло",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going to draw the stem.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собираются нарисовать стебель",
+            "uk": "Скажіть: Вони збираються намалювати стебло"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "draw",
+            "the",
+            "stem"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i05:r1",
+            "text": "You are going to draw the stem."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i05:r2",
+            "text": "They are going to draw the stem."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i05:r3",
+            "text": "She is going to draw the stem."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i05:audio",
+            "transcript": "You are going to draw the stem."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i05:r1",
+              "targetText": "You are going to draw the stem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i05:r2",
+              "targetText": "They are going to draw the stem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i05:r3",
+              "targetText": "She is going to draw the stem.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw the stem.",
+                "uk": "У записі звучить You are going to draw the stem."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw the stem.",
+                "uk": "У записі звучить You are going to draw the stem."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ going to draw the stem.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:word:pollen",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pollen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:pollen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pollen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:pollen:audio",
+            "transcript": "pollen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:pollen:r1",
+              "targetText": "pollen",
+              "meaningByLocale": {
+                "ru": "пыльца цветов.",
+                "uk": "пилок квітів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pollen",
+            "definitionByLocale": {
+              "ru": "пыльца цветов.",
+              "uk": "пилок квітів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона збирається роздивитися пилок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона збирається роздивитися пилок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to look at the pollen.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирается рассмотреть пыльцу",
+            "uk": "Скажіть: Вона збирається роздивитися пилок"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "look",
+            "at",
+            "the",
+            "pollen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i08:r1",
+            "text": "You are going to look at the pollen."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i08:r2",
+            "text": "She is going to look at the pollen."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i08:r3",
+            "text": "They are going to look at the pollen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i08:audio",
+            "transcript": "You are going to look at the pollen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i08:r1",
+              "targetText": "You are going to look at the pollen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i08:r2",
+              "targetText": "She is going to look at the pollen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i08:r3",
+              "targetText": "They are going to look at the pollen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to look at the pollen.",
+                "uk": "У записі звучить You are going to look at the pollen."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to look at the pollen.",
+                "uk": "У записі звучить You are going to look at the pollen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to look at the pollen.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:word:thorn",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thorn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:word:thorn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thorn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:word:thorn:audio",
+            "transcript": "thorn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:word:thorn:r1",
+              "targetText": "thorn",
+              "meaningByLocale": {
+                "ru": "шип на растении.",
+                "uk": "шип на рослині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thorn",
+            "definitionByLocale": {
+              "ru": "шип на растении.",
+              "uk": "шип на рослині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми збираємося намалювати шип",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми збираємося намалювати шип",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going to draw a thorn.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы собираемся нарисовать шип",
+            "uk": "Скажіть: Ми збираємося намалювати шип"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "thorn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i11:r1",
+            "text": "You are going to draw a thorn."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i11:r2",
+            "text": "We are going to draw a thorn."
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i11:r3",
+            "text": "She is going to draw a thorn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i11:audio",
+            "transcript": "You are going to draw a thorn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-08:i11:r1",
+              "targetText": "You are going to draw a thorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i11:r2",
+              "targetText": "We are going to draw a thorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i11:r3",
+              "targetText": "She is going to draw a thorn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a thorn.",
+                "uk": "У записі звучить You are going to draw a thorn."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to draw a thorn.",
+                "uk": "У записі звучить You are going to draw a thorn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-08:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-08:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ going to draw a thorn.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-08:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-08:i13:p1",
+              "target": "root",
+              "meaningByLocale": {
+                "ru": "корень растения",
+                "uk": "корінь рослини"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-08:i13:p2",
+              "target": "stem",
+              "meaningByLocale": {
+                "ru": "стебель растения",
+                "uk": "стебло рослини"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-08:i13:p3",
+              "target": "pollen",
+              "meaningByLocale": {
+                "ru": "пыльца цветов",
+                "uk": "пилок квітів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-08:i13:p4",
+              "target": "thorn",
+              "meaningByLocale": {
+                "ru": "шип на растении",
+                "uk": "шип на рослині"
+              }
+            }
+          ],
+          "leftColumn": [
+            "root",
+            "stem",
+            "pollen",
+            "thorn"
+          ],
+          "rightColumn": [
+            "корінь рослини",
+            "стебло рослини",
+            "пилок квітів",
+            "шип на рослині"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i14:audio",
+            "transcript": "She is going to draw a flower."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is going to draw a flower.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "flower"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i15:audio",
+            "transcript": "We are going to look at the plants."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to look at the plants.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "look",
+            "at",
+            "the",
+            "plants"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: завтра вона збирається намалювати корінь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: завтра вона збирається намалювати корінь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i16:audio",
+            "transcript": "She is going to draw a root tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to draw a root tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: завтра я збираюся намалювати стебло",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: завтра я збираюся намалювати стебло",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-08:i17:audio",
+            "transcript": "I am going to draw the stem tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to draw the stem tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-08:word:root",
+      "correctText": "root",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i01",
+      "correctText": "I am going to draw a root.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i02",
+      "correctText": "You are going to draw a root.",
+      "correctResponseId": "en:lesson-15:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:word:stem",
+      "correctText": "stem",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i04",
+      "correctText": "They are going to draw the stem.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i05",
+      "correctText": "You are going to draw the stem.",
+      "correctResponseId": "en:lesson-15:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i06",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-08:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:word:pollen",
+      "correctText": "pollen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i07",
+      "correctText": "She is going to look at the pollen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i08",
+      "correctText": "You are going to look at the pollen.",
+      "correctResponseId": "en:lesson-15:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:word:thorn",
+      "correctText": "thorn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i10",
+      "correctText": "We are going to draw a thorn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i11",
+      "correctText": "You are going to draw a thorn.",
+      "correctResponseId": "en:lesson-15:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-08:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i14",
+      "correctText": "She is going to draw a flower.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i15",
+      "correctText": "We are going to look at the plants.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i16",
+      "correctText": "She is going to draw a root tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-08:i17",
+      "correctText": "I am going to draw the stem tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

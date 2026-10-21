@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "shrink — сесть, уменьшиться в размере. Шерстяной свитер уже лежит в слишком горячей воде. The jumper is going to shrink. — Свитер сядет. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "shrink — сісти, зменшитися в розмірі. Вовняний светр уже лежить у надто гарячій воді. The jumper is going to shrink. — Светр сяде. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-12:intro1:r1",
+              "text": "The jumper is going to shrink."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro1:r2",
+              "text": "The jumper is going shrink."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro1:r3",
+              "text": "The jumper are going to shrink."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-12:intro1:r1",
+              "text": "The jumper is going to shrink."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro1:r2",
+              "text": "The jumper is going shrink."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro1:r3",
+              "text": "The jumper are going to shrink."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "unravel — распуститься, разойтись на нити; scorch — подпалить, повредить сильным жаром. Вы тянете свободную нитку шарфа; петли уже расходятся. The scarf is going to unravel. — Шарф сейчас распустится. Выберите прогноз.",
+        "uk": "unravel — розпуститися, розійтися на нитки; scorch — підпалити, пошкодити сильним жаром. Ви тягнете вільну нитку шарфа; петлі вже розходяться. The scarf is going to unravel. — Шарф зараз розпуститься. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-12:intro2:r1",
+              "text": "The scarf is going to unravel."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro2:r2",
+              "text": "The scarf is going unravel."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro2:r3",
+              "text": "The scarf are going to unravel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-12:intro2:r1",
+              "text": "The scarf is going to unravel."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro2:r2",
+              "text": "The scarf is going unravel."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro2:r3",
+              "text": "The scarf are going to unravel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "rot — сгнить. Доски лежат в воде; дерево уже становится мягким. The boards are going to rot. — Доски сгниют. После going to форма глагола не меняется.",
+        "uk": "rot — згнити. Дошки лежать у воді; дерево вже стає м’яким. The boards are going to rot. — Дошки згниють. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-12:intro3:r1",
+              "text": "The boards are going to rot."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro3:r2",
+              "text": "The boards are going rot."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro3:r3",
+              "text": "The boards is going to rot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-12:intro3:r1",
+              "text": "The boards are going to rot."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro3:r2",
+              "text": "The boards are going rot."
+            },
+            {
+              "responseId": "en:lesson-15:session-12:intro3:r3",
+              "text": "The boards is going to rot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f8dff08f4bba6751710bb835869b0da648298cb7e23a8a2b31ee3c6660cddb4c"
+}

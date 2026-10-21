@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Флажки на верёвке",
+        "uk": "Прапорці на мотузці"
+      },
+      "bodyByLocale": {
+        "ru": "Bunting — гирлянда из флажков. I am going to hang the bunting. — Я собираюсь повесить гирлянду из флажков. Здесь bunting — неисчисляемое: не добавляем a.",
+        "uk": "Bunting — гірлянда з прапорців. I am going to hang the bunting. — Я збираюся повісити гірлянду з прапорців. Тут bunting — незлічуване: не додаємо a."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-07:intro1:r1",
+              "text": "I am going to hang the bunting."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro1:r2",
+              "text": "I am going hang the bunting."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro1:r3",
+              "text": "I are going to hang the bunting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-07:intro1:r1",
+              "text": "I am going to hang the bunting."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro1:r2",
+              "text": "I am going hang the bunting."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro1:r3",
+              "text": "I are going to hang the bunting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шарики и подарки",
+        "uk": "Кульки й подарунки"
+      },
+      "bodyByLocale": {
+        "ru": "Balloon pump — насос для воздушных шариков; gift tag — ярлычок на подарок с именем или пожеланием. She is going to write a gift tag. — Она собирается подписать ярлычок на подарок.",
+        "uk": "Balloon pump — насос для повітряних кульок; gift tag — ярличок на подарунок з ім’ям або побажанням. She is going to write a gift tag. — Вона збирається підписати ярличок на подарунок."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-07:intro2:r1",
+              "text": "She is going to write a gift tag."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro2:r2",
+              "text": "She is going to buy a balloon pump."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro2:r3",
+              "text": "She are going to write a gift tag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-07:intro2:r1",
+              "text": "She is going to write a gift tag."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro2:r2",
+              "text": "She is going to buy a balloon pump."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro2:r3",
+              "text": "She are going to write a gift tag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Праздничная хлопушка",
+        "uk": "Святкова хлопавка"
+      },
+      "bodyByLocale": {
+        "ru": "Party popper — маленькая праздничная хлопушка с конфетти. We are going to buy a party popper. — Мы собираемся купить хлопушку. После going to используйте buy, не bought.",
+        "uk": "Party popper — маленька святкова хлопавка з конфеті. We are going to buy a party popper. — Ми збираємося купити хлопавку. Після going to використовуйте buy, не bought."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-07:intro3:r1",
+              "text": "We are going to buy a party popper."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro3:r2",
+              "text": "We is going to buy a party popper."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro3:r3",
+              "text": "We are going to bought a party popper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-07:intro3:r1",
+              "text": "We are going to buy a party popper."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro3:r2",
+              "text": "We is going to buy a party popper."
+            },
+            {
+              "responseId": "en:lesson-15:session-07:intro3:r3",
+              "text": "We are going to bought a party popper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a9e0ab05c95f3e1ee2ae90c7962f7d5ebc0e411bf4e445ad642d5d65fc361e80"
+}

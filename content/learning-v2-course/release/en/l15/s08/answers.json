@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-08:word:root",
+    "correctText": "root",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i01",
+    "correctText": "I am going to draw a root.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i02",
+    "correctText": "You are going to draw a root.",
+    "correctResponseId": "en:lesson-15:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:word:stem",
+    "correctText": "stem",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i04",
+    "correctText": "They are going to draw the stem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i05",
+    "correctText": "You are going to draw the stem.",
+    "correctResponseId": "en:lesson-15:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:word:pollen",
+    "correctText": "pollen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i07",
+    "correctText": "She is going to look at the pollen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i08",
+    "correctText": "You are going to look at the pollen.",
+    "correctResponseId": "en:lesson-15:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:word:thorn",
+    "correctText": "thorn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i10",
+    "correctText": "We are going to draw a thorn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i11",
+    "correctText": "You are going to draw a thorn.",
+    "correctResponseId": "en:lesson-15:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i13",
+    "correctText": "en:lesson-15:session-08:i13:p1=root\nen:lesson-15:session-08:i13:p2=stem\nen:lesson-15:session-08:i13:p3=pollen\nen:lesson-15:session-08:i13:p4=thorn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i14",
+    "correctText": "She is going to draw a flower.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i15",
+    "correctText": "We are going to look at the plants.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i16",
+    "correctText": "She is going to draw a root tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-08:i17",
+    "correctText": "I am going to draw the stem tomorrow.",
+    "correctResponseId": null
+  }
+]

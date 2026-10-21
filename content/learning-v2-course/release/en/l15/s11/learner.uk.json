@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-11:word:wobble",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wobble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:word:wobble:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wobble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:word:wobble:audio",
+          "transcript": "wobble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:word:wobble:r1",
+            "targetText": "wobble",
+            "meaningByLocale": {
+              "ru": "шататься, качаться из стороны в сторону.",
+              "uk": "хитатися з боку в бік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wobble",
+          "definitionByLocale": {
+            "ru": "шататься, качаться из стороны в сторону.",
+            "uk": "хитатися з боку в бік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Одна ніжка стільця помітно коротша за решту. Ви збираєтеся сісти. Скажіть: «Стілець буде хитатися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Одна ніжка стільця помітно коротша за решту. Ви збираєтеся сісти. Скажіть: «Стілець буде хитатися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chair is going to wobble.",
+        "localizedMeaning": {
+          "ru": "Скажите: Одна ножка стула заметно короче остальных. Вы собираетесь сесть. Скажите: «Стул будет шататься»",
+          "uk": "Скажіть: Одна ніжка стільця помітно коротша за решту. Ви збираєтеся сісти. Скажіть: «Стілець буде хитатися»"
+        },
+        "orderedTokens": [
+          "The",
+          "chair",
+          "is",
+          "going",
+          "to",
+          "wobble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i02:r1",
+          "text": "The chair is going to wobble."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i02:r2",
+          "text": "The chair is going wobble."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i02:r3",
+          "text": "The chair are going to wobble."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i02:audio",
+          "transcript": "The chair is going to wobble."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:i02:r1",
+            "targetText": "The chair is going to wobble.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i02:r2",
+            "targetText": "The chair is going wobble.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i02:r3",
+            "targetText": "The chair are going to wobble.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair is going to wobble.",
+              "uk": "У записі звучить The chair is going to wobble."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair is going to wobble.",
+              "uk": "У записі звучить The chair is going to wobble."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The chair ___ going to wobble.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-11:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:word:tilt",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tilt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:word:tilt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tilt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:word:tilt:audio",
+          "transcript": "tilt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:word:tilt:r1",
+            "targetText": "tilt",
+            "meaningByLocale": {
+              "ru": "наклониться, перекоситься.",
+              "uk": "нахилитися, перекоситися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tilt",
+          "definitionByLocale": {
+            "ru": "наклониться, перекоситься.",
+            "uk": "нахилитися, перекоситися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Один гачок картини почав виходити зі стіни. Скажіть: «Картина зараз перекоситься»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Один гачок картини почав виходити зі стіни. Скажіть: «Картина зараз перекоситься»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The picture is going to tilt.",
+        "localizedMeaning": {
+          "ru": "Скажите: Один крючок картины начал выходить из стены. Скажите: «Картина сейчас перекосится»",
+          "uk": "Скажіть: Один гачок картини почав виходити зі стіни. Скажіть: «Картина зараз перекоситься»"
+        },
+        "orderedTokens": [
+          "The",
+          "picture",
+          "is",
+          "going",
+          "to",
+          "tilt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i05:r1",
+          "text": "The picture is going to tilt."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i05:r2",
+          "text": "The picture is going tilt."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i05:r3",
+          "text": "The picture are going to tilt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i05:audio",
+          "transcript": "The picture is going to tilt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:i05:r1",
+            "targetText": "The picture is going to tilt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i05:r2",
+            "targetText": "The picture is going tilt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i05:r3",
+            "targetText": "The picture are going to tilt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The picture is going to tilt.",
+              "uk": "У записі звучить The picture is going to tilt."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The picture is going to tilt.",
+              "uk": "У записі звучить The picture is going to tilt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The picture ___ going to tilt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-11:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:word:sag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:word:sag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:word:sag:audio",
+          "transcript": "sag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:word:sag:r1",
+            "targetText": "sag",
+            "meaningByLocale": {
+              "ru": "провиснуть, прогнуться под весом.",
+              "uk": "провиснути, прогнутися під вагою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sag",
+          "definitionByLocale": {
+            "ru": "провиснуть, прогнуться под весом.",
+            "uk": "провиснути, прогнутися під вагою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: На тонкі полиці вже ставлять надто важкі коробки. Скажіть: «Полиці прогнуться під вагою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: На тонкі полиці вже ставлять надто важкі коробки. Скажіть: «Полиці прогнуться під вагою»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shelves are going to sag.",
+        "localizedMeaning": {
+          "ru": "Скажите: На тонкие полки уже ставят слишком тяжёлые коробки. Скажите: «Полки прогнутся под весом»",
+          "uk": "Скажіть: На тонкі полиці вже ставлять надто важкі коробки. Скажіть: «Полиці прогнуться під вагою»"
+        },
+        "orderedTokens": [
+          "The",
+          "shelves",
+          "are",
+          "going",
+          "to",
+          "sag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i08:r1",
+          "text": "The shelves are going to sag."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i08:r2",
+          "text": "The shelves are going sag."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i08:r3",
+          "text": "The shelves is going to sag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i08:audio",
+          "transcript": "The shelves are going to sag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:i08:r1",
+            "targetText": "The shelves are going to sag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i08:r2",
+            "targetText": "The shelves are going sag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i08:r3",
+            "targetText": "The shelves is going to sag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shelves are going to sag.",
+              "uk": "У записі звучить The shelves are going to sag."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shelves are going to sag.",
+              "uk": "У записі звучить The shelves are going to sag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The shelves ___ going to sag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-11:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:word:darken",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — darken",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:word:darken:audio"
+      ],
+      "accessibilityLabel": "Картка слова — darken",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:word:darken:audio",
+          "transcript": "darken"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:word:darken:r1",
+            "targetText": "darken",
+            "meaningByLocale": {
+              "ru": "стать темнее, потемнеть.",
+              "uk": "стати темнішим, потемніти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "darken",
+          "definitionByLocale": {
+            "ru": "стать темнее, потемнеть.",
+            "uk": "стати темнішим, потемніти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: До вікна підходить велика хмара; світло вже тьмяніє. Скажіть: «У кімнаті зараз стане темніше»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: До вікна підходить велика хмара; світло вже тьмяніє. Скажіть: «У кімнаті зараз стане темніше»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The room is going to darken.",
+        "localizedMeaning": {
+          "ru": "Скажите: К окну подходит большая туча; свет уже тускнеет. Скажите: «В комнате сейчас станет темнее»",
+          "uk": "Скажіть: До вікна підходить велика хмара; світло вже тьмяніє. Скажіть: «У кімнаті зараз стане темніше»"
+        },
+        "orderedTokens": [
+          "The",
+          "room",
+          "is",
+          "going",
+          "to",
+          "darken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i11:r1",
+          "text": "The room is going to darken."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i11:r2",
+          "text": "The room is going darken."
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i11:r3",
+          "text": "The room are going to darken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i11:audio",
+          "transcript": "The room is going to darken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-11:i11:r1",
+            "targetText": "The room is going to darken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i11:r2",
+            "targetText": "The room is going darken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i11:r3",
+            "targetText": "The room are going to darken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room is going to darken.",
+              "uk": "У записі звучить The room is going to darken."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room is going to darken.",
+              "uk": "У записі звучить The room is going to darken."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-11:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-11:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The room ___ going to darken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-11:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-11:i13:p1",
+            "target": "wobble",
+            "meaningByLocale": {
+              "ru": "шататься, качаться из стороны в сторону",
+              "uk": "хитатися з боку в бік"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-11:i13:p2",
+            "target": "tilt",
+            "meaningByLocale": {
+              "ru": "наклониться, перекоситься",
+              "uk": "нахилитися, перекоситися"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-11:i13:p3",
+            "target": "sag",
+            "meaningByLocale": {
+              "ru": "провиснуть, прогнуться под весом",
+              "uk": "провиснути, прогнутися під вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-11:i13:p4",
+            "target": "darken",
+            "meaningByLocale": {
+              "ru": "стать темнее, потемнеть",
+              "uk": "стати темнішим, потемніти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wobble",
+          "tilt",
+          "sag",
+          "darken"
+        ],
+        "rightColumn": [
+          "хитатися з боку в бік",
+          "нахилитися, перекоситися",
+          "провиснути, прогнутися під вагою",
+          "стати темнішим, потемніти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i14:audio",
+          "transcript": "The chair is going to break."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The chair is going to break.",
+        "orderedTokens": [
+          "The",
+          "chair",
+          "is",
+          "going",
+          "to",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i15:audio",
+          "transcript": "The picture is going to fall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The picture is going to fall.",
+        "orderedTokens": [
+          "The",
+          "picture",
+          "is",
+          "going",
+          "to",
+          "fall"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ніжки столу різної довжини. Скажіть: стіл буде хитатися",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Ніжки столу різної довжини. Скажіть: стіл буде хитатися",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i16:audio",
+          "transcript": "The table is going to wobble."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The table is going to wobble.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Важкий мокрий одяг уже тягне мотузку вниз. Скажіть: мотузка провисне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Важкий мокрий одяг уже тягне мотузку вниз. Скажіть: мотузка провисне",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-11:i17:audio",
+          "transcript": "The line is going to sag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The line is going to sag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "31a294479362b152c3bde2bf4a8a80e401380bde00b17ae7e7f3566e68929625"
+}

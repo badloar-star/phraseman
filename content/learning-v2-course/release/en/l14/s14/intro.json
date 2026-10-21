@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous questions and negatives",
+    "uk": "review: Past Continuous questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дельфин",
+        "uk": "Дельфін"
+      },
+      "bodyByLocale": {
+        "ru": "Dolphin — дельфин. Were you watching a dolphin? — Ты наблюдал за дельфином? Здесь речь о животном на экране вчера вечером. Выберите вопрос.",
+        "uk": "Dolphin — дельфін. Were you watching a dolphin? — Ти спостерігав за дельфіном? Тут ідеться про тварину на екрані вчора ввечері. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-14:intro1:r1",
+              "text": "Were you watching a dolphin?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro1:r2",
+              "text": "Are you watching a dolphin?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro1:r3",
+              "text": "Did you watching a dolphin?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-14:intro1:r1",
+              "text": "Were you watching a dolphin?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro1:r2",
+              "text": "Are you watching a dolphin?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro1:r3",
+              "text": "Did you watching a dolphin?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кит и акула",
+        "uk": "Кит та акула"
+      },
+      "bodyByLocale": {
+        "ru": "Whale — кит; shark — акула. Was he watching a whale? — Он наблюдал за китом? Выберите кита.",
+        "uk": "Whale — кит; shark — акула. Was he watching a whale? — Він спостерігав за китом? Виберіть кита."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-14:intro2:r1",
+              "text": "Was he watching a whale?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro2:r2",
+              "text": "Was he watching a shark?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro2:r3",
+              "text": "Were he watching a whale?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-14:intro2:r1",
+              "text": "Was he watching a whale?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro2:r2",
+              "text": "Was he watching a shark?"
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro2:r3",
+              "text": "Were he watching a whale?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пингвин",
+        "uk": "Пінгвін"
+      },
+      "bodyByLocale": {
+        "ru": "Penguin — пингвин. I wasn’t watching a penguin. — Я не наблюдал за пингвином. Выберите отрицание о том моменте фильма.",
+        "uk": "Penguin — пінгвін. I wasn’t watching a penguin. — Я не спостерігав за пінгвіном. Виберіть заперечення про той момент фільму."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-14:intro3:r1",
+              "text": "I wasn’t watching a penguin."
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro3:r2",
+              "text": "I was watching a penguin."
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro3:r3",
+              "text": "I weren’t watching a penguin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-14:intro3:r1",
+              "text": "I wasn’t watching a penguin."
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro3:r2",
+              "text": "I was watching a penguin."
+            },
+            {
+              "responseId": "en:lesson-14:session-14:intro3:r3",
+              "text": "I weren’t watching a penguin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ba30b3d058ffc065cd469b8ad92e37b3f926c835cceb687422d55b3cc70dcb59"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-19:word:spinach",
+    "correctText": "spinach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i01",
+    "correctText": "I was washing spinach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i02",
+    "correctText": "You were washing spinach.",
+    "correctResponseId": "en:lesson-14:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:word:kale",
+    "correctText": "kale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i04",
+    "correctText": "They were washing kale.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i05",
+    "correctText": "You were washing kale.",
+    "correctResponseId": "en:lesson-14:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:word:asparagus",
+    "correctText": "asparagus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i07",
+    "correctText": "She was cooking asparagus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i08",
+    "correctText": "You were cooking asparagus.",
+    "correctResponseId": "en:lesson-14:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:word:red-cabbage",
+    "correctText": "red cabbage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i10",
+    "correctText": "We were cutting red cabbage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i11",
+    "correctText": "You were cutting red cabbage.",
+    "correctResponseId": "en:lesson-14:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i13",
+    "correctText": "en:lesson-14:session-19:i13:p1=spinach\nen:lesson-14:session-19:i13:p2=kale\nen:lesson-14:session-19:i13:p3=asparagus\nen:lesson-14:session-19:i13:p4=red cabbage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i14",
+    "correctText": "Everyone was working in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i15",
+    "correctText": "I was cooking dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i16",
+    "correctText": "I was cooking asparagus at six yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-19:i17",
+    "correctText": "She was washing spinach at six yesterday.",
+    "correctResponseId": null
+  }
+]

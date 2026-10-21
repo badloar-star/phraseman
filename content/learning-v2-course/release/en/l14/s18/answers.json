@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-18:word:passion-fruit",
+    "correctText": "passion fruit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i01",
+    "correctText": "I was cutting a passion fruit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i02",
+    "correctText": "You were cutting a passion fruit.",
+    "correctResponseId": "en:lesson-14:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:word:dragon-fruit",
+    "correctText": "dragon fruit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i04",
+    "correctText": "We were cutting a dragon fruit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i05",
+    "correctText": "You were cutting a dragon fruit.",
+    "correctResponseId": "en:lesson-14:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:word:lychee",
+    "correctText": "lychee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i07",
+    "correctText": "She was peeling a lychee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i08",
+    "correctText": "You were peeling a lychee.",
+    "correctResponseId": "en:lesson-14:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:word:papaya",
+    "correctText": "papaya",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i10",
+    "correctText": "They were washing a papaya.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i11",
+    "correctText": "You were washing a papaya.",
+    "correctResponseId": "en:lesson-14:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i13",
+    "correctText": "en:lesson-14:session-18:i13:p1=passion fruit\nen:lesson-14:session-18:i13:p2=dragon fruit\nen:lesson-14:session-18:i13:p3=lychee\nen:lesson-14:session-18:i13:p4=papaya",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i14",
+    "correctText": "The kitchen was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i15",
+    "correctText": "We were preparing the food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i16",
+    "correctText": "I was peeling a lychee at five yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-18:i17",
+    "correctText": "She was washing a papaya at five yesterday.",
+    "correctResponseId": null
+  }
+]

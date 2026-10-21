@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-13:intro1:r2": {
+          "ru": "Are looking — сейчас.",
+          "uk": "Are looking — зараз."
+        },
+        "en:lesson-14:session-13:intro1:r3": {
+          "ru": "Нужна Were you looking.",
+          "uk": "Потрібна Were you looking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-13:intro2:r2": {
+          "ru": "Это проход через сугроб.",
+          "uk": "Це прохід крізь замет."
+        },
+        "en:lesson-14:session-13:intro2:r3": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-13:intro3:r2": {
+          "ru": "Was driving утверждает действие.",
+          "uk": "Was driving стверджує дію."
+        },
+        "en:lesson-14:session-13:intro3:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4b4ad490b1a63af151fb90e0f8b04e2275e84f4f3e051e2c37d9fa12ea68dfdf"
+}

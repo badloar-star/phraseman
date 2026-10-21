@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-16:word:guitar-string",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guitar string",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:guitar-string:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guitar string",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:guitar-string:audio",
+            "transcript": "guitar string"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:guitar-string:r1",
+              "targetText": "guitar string",
+              "meaningByLocale": {
+                "ru": "гитарная струна.",
+                "uk": "гітарна струна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guitar string",
+            "definitionByLocale": {
+              "ru": "гитарная струна.",
+              "uk": "гітарна струна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты менял гитарную струну?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты менял гитарную струну?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were you changing a guitar string?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты менял гитарную струну?",
+            "uk": "Скажіть: Ти міняв гітарну струну?"
+          },
+          "orderedTokens": [
+            "Were",
+            "you",
+            "changing",
+            "a",
+            "guitar",
+            "string"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i02:r1",
+            "text": "Were you changing a guitar string?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i02:r2",
+            "text": "Were we changing a guitar string?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i02:r3",
+            "text": "Was she changing a guitar string?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i02:audio",
+            "transcript": "Were you changing a guitar string?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i02:r1",
+              "targetText": "Were you changing a guitar string?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i02:r2",
+              "targetText": "Were we changing a guitar string?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i02:r3",
+              "targetText": "Was she changing a guitar string?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you changing a guitar string?",
+                "uk": "У записі звучить Were you changing a guitar string?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you changing a guitar string?",
+                "uk": "У записі звучить Were you changing a guitar string?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Ты менял гитарную струну?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Ты менял гитарную струну?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Ты менял гитарную струну?",
+            "uk": "Виберіть форму для змісту: Ти міняв гітарну струну?"
+          },
+          "gappedTargetPhrase": "___ you changing a guitar string?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i03:r1",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i03:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i03:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Ты менял гитарную струну?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Ты менял гитарную струну?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Were.",
+                "uk": "Йдеться про минулий момент. Потрібно Were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Ты менял гитарную струну?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Were.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:word:guitar-case",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guitar case",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:guitar-case:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guitar case",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:guitar-case:audio",
+            "transcript": "guitar case"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:guitar-case:r1",
+              "targetText": "guitar case",
+              "meaningByLocale": {
+                "ru": "футляр для гитары.",
+                "uk": "футляр для гітари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guitar case",
+            "definitionByLocale": {
+              "ru": "футляр для гитары.",
+              "uk": "футляр для гітари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Он нёс футляр для гитары?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Он нёс футляр для гитары?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was he carrying the guitar case?",
+          "localizedMeaning": {
+            "ru": "Скажите: Он нёс футляр для гитары?",
+            "uk": "Скажіть: Він ніс футляр для гітари?"
+          },
+          "orderedTokens": [
+            "Was",
+            "he",
+            "carrying",
+            "the",
+            "guitar",
+            "case"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i05:r1",
+            "text": "Was he carrying the guitar case?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i05:r2",
+            "text": "Was I carrying the guitar case?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i05:r3",
+            "text": "Was she carrying the guitar case?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i05:audio",
+            "transcript": "Was he carrying the guitar case?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i05:r1",
+              "targetText": "Was he carrying the guitar case?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i05:r2",
+              "targetText": "Was I carrying the guitar case?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i05:r3",
+              "targetText": "Was she carrying the guitar case?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he carrying the guitar case?",
+                "uk": "У записі звучить Was he carrying the guitar case?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he carrying the guitar case?",
+                "uk": "У записі звучить Was he carrying the guitar case?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Он нёс футляр для гитары?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Он нёс футляр для гитары?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Он нёс футляр для гитары?",
+            "uk": "Виберіть форму для змісту: Він ніс футляр для гітари?"
+          },
+          "gappedTargetPhrase": "___ he carrying the guitar case?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i06:r1",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i06:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i06:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Он нёс футляр для гитары?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Он нёс футляр для гитары?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Was.",
+                "uk": "Йдеться про минулий момент. Потрібно Was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Он нёс футляр для гитары?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Was.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:word:music-stand",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — music stand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:music-stand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — music stand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:music-stand:audio",
+            "transcript": "music stand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:music-stand:r1",
+              "targetText": "music stand",
+              "meaningByLocale": {
+                "ru": "подставка для нот.",
+                "uk": "підставка для нот."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "music stand",
+            "definitionByLocale": {
+              "ru": "подставка для нот.",
+              "uk": "підставка для нот."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они не пользовались подставкой для нот",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они не пользовались подставкой для нот",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They weren’t using the music stand.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они не пользовались подставкой для нот",
+            "uk": "Скажіть: Вони не користувалися підставкою для нот"
+          },
+          "orderedTokens": [
+            "They",
+            "weren’t",
+            "using",
+            "the",
+            "music",
+            "stand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i08:r1",
+            "text": "They weren’t using the music stand."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i08:r2",
+            "text": "We weren’t using the music stand."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i08:r3",
+            "text": "They were using the music stand."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i08:audio",
+            "transcript": "They weren’t using the music stand."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i08:r1",
+              "targetText": "They weren’t using the music stand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i08:r2",
+              "targetText": "We weren’t using the music stand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i08:r3",
+              "targetText": "They were using the music stand.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t using the music stand.",
+                "uk": "У записі звучить They weren’t using the music stand."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t using the music stand.",
+                "uk": "У записі звучить They weren’t using the music stand."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i09:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i09:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+            "uk": "Виберіть форму для змісту: Вони не користувалися підставкою для нот"
+          },
+          "gappedTargetPhrase": "They ___ using the music stand.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i09:r1",
+              "text": "weren’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i09:r3",
+              "text": "wasn’t"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна weren’t.",
+                "uk": "З цим підметом потрібна weren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:word:sheet-music",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sheet music",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:sheet-music:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sheet music",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:sheet-music:audio",
+            "transcript": "sheet music"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:sheet-music:r1",
+              "targetText": "sheet music",
+              "meaningByLocale": {
+                "ru": "ноты — записанная на бумаге музыка.",
+                "uk": "ноти — записана на папері музика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sheet music",
+            "definitionByLocale": {
+              "ru": "ноты — записанная на бумаге музыка.",
+              "uk": "ноти — записана на папері музика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не читал ноты",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не читал ноты",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wasn’t reading the sheet music.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не читал ноты",
+            "uk": "Скажіть: Я не читав ноти"
+          },
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "reading",
+            "the",
+            "sheet",
+            "music"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i11:r1",
+            "text": "I wasn’t reading the sheet music."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i11:r2",
+            "text": "She wasn’t reading the sheet music."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i11:r3",
+            "text": "I was reading the sheet music."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i11:audio",
+            "transcript": "I wasn’t reading the sheet music."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i11:r1",
+              "targetText": "I wasn’t reading the sheet music.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i11:r2",
+              "targetText": "She wasn’t reading the sheet music.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i11:r3",
+              "targetText": "I was reading the sheet music.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t reading the sheet music.",
+                "uk": "У записі звучить I wasn’t reading the sheet music."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t reading the sheet music.",
+                "uk": "У записі звучить I wasn’t reading the sheet music."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Я не читал ноты",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i12:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i12:r3",
+            "text": "weren’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Я не читал ноты",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Я не читал ноты",
+            "uk": "Виберіть форму для змісту: Я не читав ноти"
+          },
+          "gappedTargetPhrase": "I ___ reading the sheet music.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i12:r1",
+              "text": "wasn’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i12:r3",
+              "text": "weren’t"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Я не читал ноты",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Я не читал ноты",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Я не читал ноты",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна wasn’t.",
+                "uk": "З цим підметом потрібна wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-16:i13:p1",
+              "target": "guitar string",
+              "meaningByLocale": {
+                "ru": "гитарная струна",
+                "uk": "гітарна струна"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-16:i13:p2",
+              "target": "guitar case",
+              "meaningByLocale": {
+                "ru": "футляр для гитары",
+                "uk": "футляр для гітари"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-16:i13:p3",
+              "target": "music stand",
+              "meaningByLocale": {
+                "ru": "подставка для нот",
+                "uk": "підставка для нот"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-16:i13:p4",
+              "target": "sheet music",
+              "meaningByLocale": {
+                "ru": "ноты",
+                "uk": "ноти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guitar string",
+            "guitar case",
+            "music stand",
+            "sheet music"
+          ],
+          "rightColumn": [
+            "гитарная струна",
+            "футляр для гитары",
+            "подставка для нот",
+            "ноты"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i14:audio",
+            "transcript": "Were you playing at seven?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Were you playing at seven?",
+          "orderedTokens": [
+            "Were",
+            "you",
+            "playing",
+            "at",
+            "seven"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i15:audio",
+            "transcript": "I wasn’t carrying the guitar."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I wasn’t carrying the guitar.",
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "carrying",
+            "the",
+            "guitar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: ты вчера в семь читал ноты?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: ты вчера в семь читал ноты?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i16:audio",
+            "transcript": "Were you reading the sheet music at seven yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were you reading the sheet music at seven yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера в семь я не пользовался подставкой для нот",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера в семь я не пользовался подставкой для нот",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i17:audio",
+            "transcript": "I wasn’t using the music stand at seven yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wasn’t using the music stand at seven yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-16:word:guitar-string",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guitar string",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:guitar-string:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guitar string",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:guitar-string:audio",
+            "transcript": "guitar string"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:guitar-string:r1",
+              "targetText": "guitar string",
+              "meaningByLocale": {
+                "ru": "гитарная струна.",
+                "uk": "гітарна струна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guitar string",
+            "definitionByLocale": {
+              "ru": "гитарная струна.",
+              "uk": "гітарна струна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти міняв гітарну струну?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти міняв гітарну струну?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were you changing a guitar string?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты менял гитарную струну?",
+            "uk": "Скажіть: Ти міняв гітарну струну?"
+          },
+          "orderedTokens": [
+            "Were",
+            "you",
+            "changing",
+            "a",
+            "guitar",
+            "string"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i02:r1",
+            "text": "Were you changing a guitar string?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i02:r2",
+            "text": "Were we changing a guitar string?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i02:r3",
+            "text": "Was she changing a guitar string?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i02:audio",
+            "transcript": "Were you changing a guitar string?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i02:r1",
+              "targetText": "Were you changing a guitar string?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i02:r2",
+              "targetText": "Were we changing a guitar string?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i02:r3",
+              "targetText": "Was she changing a guitar string?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you changing a guitar string?",
+                "uk": "У записі звучить Were you changing a guitar string?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you changing a guitar string?",
+                "uk": "У записі звучить Were you changing a guitar string?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Ти міняв гітарну струну?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Ти міняв гітарну струну?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Ты менял гитарную струну?",
+            "uk": "Виберіть форму для змісту: Ти міняв гітарну струну?"
+          },
+          "gappedTargetPhrase": "___ you changing a guitar string?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i03:r1",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i03:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i03:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Ти міняв гітарну струну?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Ти міняв гітарну струну?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Were.",
+                "uk": "Йдеться про минулий момент. Потрібно Were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Ти міняв гітарну струну?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Were.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:word:guitar-case",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guitar case",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:guitar-case:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guitar case",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:guitar-case:audio",
+            "transcript": "guitar case"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:guitar-case:r1",
+              "targetText": "guitar case",
+              "meaningByLocale": {
+                "ru": "футляр для гитары.",
+                "uk": "футляр для гітари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guitar case",
+            "definitionByLocale": {
+              "ru": "футляр для гитары.",
+              "uk": "футляр для гітари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Він ніс футляр для гітари?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Він ніс футляр для гітари?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was he carrying the guitar case?",
+          "localizedMeaning": {
+            "ru": "Скажите: Он нёс футляр для гитары?",
+            "uk": "Скажіть: Він ніс футляр для гітари?"
+          },
+          "orderedTokens": [
+            "Was",
+            "he",
+            "carrying",
+            "the",
+            "guitar",
+            "case"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i05:r1",
+            "text": "Was he carrying the guitar case?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i05:r2",
+            "text": "Was I carrying the guitar case?"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i05:r3",
+            "text": "Was she carrying the guitar case?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i05:audio",
+            "transcript": "Was he carrying the guitar case?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i05:r1",
+              "targetText": "Was he carrying the guitar case?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i05:r2",
+              "targetText": "Was I carrying the guitar case?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i05:r3",
+              "targetText": "Was she carrying the guitar case?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he carrying the guitar case?",
+                "uk": "У записі звучить Was he carrying the guitar case?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he carrying the guitar case?",
+                "uk": "У записі звучить Was he carrying the guitar case?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Він ніс футляр для гітари?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Він ніс футляр для гітари?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Он нёс футляр для гитары?",
+            "uk": "Виберіть форму для змісту: Він ніс футляр для гітари?"
+          },
+          "gappedTargetPhrase": "___ he carrying the guitar case?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i06:r1",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i06:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i06:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Він ніс футляр для гітари?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Він ніс футляр для гітари?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Was.",
+                "uk": "Йдеться про минулий момент. Потрібно Was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Він ніс футляр для гітари?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Was.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:word:music-stand",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — music stand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:music-stand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — music stand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:music-stand:audio",
+            "transcript": "music stand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:music-stand:r1",
+              "targetText": "music stand",
+              "meaningByLocale": {
+                "ru": "подставка для нот.",
+                "uk": "підставка для нот."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "music stand",
+            "definitionByLocale": {
+              "ru": "подставка для нот.",
+              "uk": "підставка для нот."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони не користувалися підставкою для нот",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони не користувалися підставкою для нот",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They weren’t using the music stand.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они не пользовались подставкой для нот",
+            "uk": "Скажіть: Вони не користувалися підставкою для нот"
+          },
+          "orderedTokens": [
+            "They",
+            "weren’t",
+            "using",
+            "the",
+            "music",
+            "stand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i08:r1",
+            "text": "They weren’t using the music stand."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i08:r2",
+            "text": "We weren’t using the music stand."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i08:r3",
+            "text": "They were using the music stand."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i08:audio",
+            "transcript": "They weren’t using the music stand."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i08:r1",
+              "targetText": "They weren’t using the music stand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i08:r2",
+              "targetText": "We weren’t using the music stand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i08:r3",
+              "targetText": "They were using the music stand.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t using the music stand.",
+                "uk": "У записі звучить They weren’t using the music stand."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t using the music stand.",
+                "uk": "У записі звучить They weren’t using the music stand."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Вони не користувалися підставкою для нот",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i09:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i09:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Вони не користувалися підставкою для нот",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Они не пользовались подставкой для нот",
+            "uk": "Виберіть форму для змісту: Вони не користувалися підставкою для нот"
+          },
+          "gappedTargetPhrase": "They ___ using the music stand.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i09:r1",
+              "text": "weren’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i09:r3",
+              "text": "wasn’t"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Вони не користувалися підставкою для нот",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Вони не користувалися підставкою для нот",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Вони не користувалися підставкою для нот",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна weren’t.",
+                "uk": "З цим підметом потрібна weren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:word:sheet-music",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sheet music",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:word:sheet-music:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sheet music",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:word:sheet-music:audio",
+            "transcript": "sheet music"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:word:sheet-music:r1",
+              "targetText": "sheet music",
+              "meaningByLocale": {
+                "ru": "ноты — записанная на бумаге музыка.",
+                "uk": "ноти — записана на папері музика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sheet music",
+            "definitionByLocale": {
+              "ru": "ноты — записанная на бумаге музыка.",
+              "uk": "ноти — записана на папері музика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не читав ноти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не читав ноти",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wasn’t reading the sheet music.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не читал ноты",
+            "uk": "Скажіть: Я не читав ноти"
+          },
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "reading",
+            "the",
+            "sheet",
+            "music"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i11:r1",
+            "text": "I wasn’t reading the sheet music."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i11:r2",
+            "text": "She wasn’t reading the sheet music."
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i11:r3",
+            "text": "I was reading the sheet music."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i11:audio",
+            "transcript": "I wasn’t reading the sheet music."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-16:i11:r1",
+              "targetText": "I wasn’t reading the sheet music.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i11:r2",
+              "targetText": "She wasn’t reading the sheet music.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i11:r3",
+              "targetText": "I was reading the sheet music.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t reading the sheet music.",
+                "uk": "У записі звучить I wasn’t reading the sheet music."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t reading the sheet music.",
+                "uk": "У записі звучить I wasn’t reading the sheet music."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Я не читав ноти",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-16:i12:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-16:i12:r3",
+            "text": "weren’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Я не читав ноти",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Я не читал ноты",
+            "uk": "Виберіть форму для змісту: Я не читав ноти"
+          },
+          "gappedTargetPhrase": "I ___ reading the sheet music.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-16:i12:r1",
+              "text": "wasn’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i12:r3",
+              "text": "weren’t"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Я не читав ноти",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Я не читав ноти",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Я не читав ноти",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна wasn’t.",
+                "uk": "З цим підметом потрібна wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-16:i13:p1",
+              "target": "guitar string",
+              "meaningByLocale": {
+                "ru": "гитарная струна",
+                "uk": "гітарна струна"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-16:i13:p2",
+              "target": "guitar case",
+              "meaningByLocale": {
+                "ru": "футляр для гитары",
+                "uk": "футляр для гітари"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-16:i13:p3",
+              "target": "music stand",
+              "meaningByLocale": {
+                "ru": "подставка для нот",
+                "uk": "підставка для нот"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-16:i13:p4",
+              "target": "sheet music",
+              "meaningByLocale": {
+                "ru": "ноты",
+                "uk": "ноти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guitar string",
+            "guitar case",
+            "music stand",
+            "sheet music"
+          ],
+          "rightColumn": [
+            "гітарна струна",
+            "футляр для гітари",
+            "підставка для нот",
+            "ноти"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i14:audio",
+            "transcript": "Were you playing at seven?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Were you playing at seven?",
+          "orderedTokens": [
+            "Were",
+            "you",
+            "playing",
+            "at",
+            "seven"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i15:audio",
+            "transcript": "I wasn’t carrying the guitar."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I wasn’t carrying the guitar.",
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "carrying",
+            "the",
+            "guitar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: ти вчора о сьомій читав ноти?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: ти вчора о сьомій читав ноти?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i16:audio",
+            "transcript": "Were you reading the sheet music at seven yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were you reading the sheet music at seven yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора о сьомій я не користувався підставкою для нот",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора о сьомій я не користувався підставкою для нот",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-16:i17:audio",
+            "transcript": "I wasn’t using the music stand at seven yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wasn’t using the music stand at seven yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-16:word:guitar-string",
+      "correctText": "guitar string",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i01",
+      "correctText": "Were you changing a guitar string?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i02",
+      "correctText": "Were you changing a guitar string?",
+      "correctResponseId": "en:lesson-14:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i03",
+      "correctText": "Were",
+      "correctResponseId": "en:lesson-14:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:word:guitar-case",
+      "correctText": "guitar case",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i04",
+      "correctText": "Was he carrying the guitar case?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i05",
+      "correctText": "Was he carrying the guitar case?",
+      "correctResponseId": "en:lesson-14:session-16:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i06",
+      "correctText": "Was",
+      "correctResponseId": "en:lesson-14:session-16:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:word:music-stand",
+      "correctText": "music stand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i07",
+      "correctText": "They weren’t using the music stand.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i08",
+      "correctText": "They weren’t using the music stand.",
+      "correctResponseId": "en:lesson-14:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i09",
+      "correctText": "weren’t",
+      "correctResponseId": "en:lesson-14:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:word:sheet-music",
+      "correctText": "sheet music",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i10",
+      "correctText": "I wasn’t reading the sheet music.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i11",
+      "correctText": "I wasn’t reading the sheet music.",
+      "correctResponseId": "en:lesson-14:session-16:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i12",
+      "correctText": "wasn’t",
+      "correctResponseId": "en:lesson-14:session-16:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i14",
+      "correctText": "Were you playing at seven?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i15",
+      "correctText": "I wasn’t carrying the guitar.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i16",
+      "correctText": "Were you reading the sheet music at seven yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:i17",
+      "correctText": "I wasn’t using the music stand at seven yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

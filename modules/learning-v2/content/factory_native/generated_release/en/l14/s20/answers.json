@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-20:word:changing-mat",
+    "correctText": "changing mat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i01",
+    "correctText": "I was cleaning the changing mat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i02",
+    "correctText": "You were cleaning the changing mat.",
+    "correctResponseId": "en:lesson-14:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:word:nappy-bag",
+    "correctText": "nappy bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i04",
+    "correctText": "She was packing the nappy bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i05",
+    "correctText": "You were packing the nappy bag.",
+    "correctResponseId": "en:lesson-14:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:word:changing-table",
+    "correctText": "changing table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i07",
+    "correctText": "They were cleaning the changing table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i08",
+    "correctText": "You were cleaning the changing table.",
+    "correctResponseId": "en:lesson-14:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:word:baby-monitor",
+    "correctText": "baby monitor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i10",
+    "correctText": "We were checking the baby monitor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i11",
+    "correctText": "You were checking the baby monitor.",
+    "correctResponseId": "en:lesson-14:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i13",
+    "correctText": "en:lesson-14:session-20:i13:p1=changing mat\nen:lesson-14:session-20:i13:p2=nappy bag\nen:lesson-14:session-20:i13:p3=changing table\nen:lesson-14:session-20:i13:p4=baby monitor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i14",
+    "correctText": "The baby was sleeping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i15",
+    "correctText": "We were getting ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i16",
+    "correctText": "I was packing the nappy bag at nine yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-20:i17",
+    "correctText": "She was checking the baby monitor at nine yesterday.",
+    "correctResponseId": null
+  }
+]

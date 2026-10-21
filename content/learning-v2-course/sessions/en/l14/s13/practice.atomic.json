@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-13",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowflake",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snowflake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowflake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snowflake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowflake:audio",
+            "transcript": "snowflake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowflake:r1",
+              "targetText": "snowflake",
+              "meaningByLocale": {
+                "ru": "снежинка.",
+                "uk": "сніжинка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowflake",
+            "definitionByLocale": {
+              "ru": "снежинка.",
+              "uk": "сніжинка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты рассматривал снежинку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты рассматривал снежинку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were you looking at a snowflake?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты рассматривал снежинку?",
+            "uk": "Скажіть: Ти розглядав сніжинку?"
+          },
+          "orderedTokens": [
+            "Were",
+            "you",
+            "looking",
+            "at",
+            "a",
+            "snowflake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i02:r1",
+            "text": "Were you looking at a snowflake?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i02:r2",
+            "text": "Were we looking at a snowflake?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i02:r3",
+            "text": "Was she looking at a snowflake?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i02:audio",
+            "transcript": "Were you looking at a snowflake?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i02:r1",
+              "targetText": "Were you looking at a snowflake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i02:r2",
+              "targetText": "Were we looking at a snowflake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i02:r3",
+              "targetText": "Was she looking at a snowflake?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you looking at a snowflake?",
+                "uk": "У записі звучить Were you looking at a snowflake?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you looking at a snowflake?",
+                "uk": "У записі звучить Were you looking at a snowflake?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Ты рассматривал снежинку?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Ты рассматривал снежинку?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Ты рассматривал снежинку?",
+            "uk": "Виберіть форму для змісту: Ти розглядав сніжинку?"
+          },
+          "gappedTargetPhrase": "___ you looking at a snowflake?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i03:r1",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i03:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i03:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Ты рассматривал снежинку?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Ты рассматривал снежинку?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Were.",
+                "uk": "Йдеться про минулий момент. Потрібно Were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Ты рассматривал снежинку?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Were.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowman",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snowman",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowman:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snowman",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowman:audio",
+            "transcript": "snowman"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowman:r1",
+              "targetText": "snowman",
+              "meaningByLocale": {
+                "ru": "снеговик.",
+                "uk": "сніговик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowman",
+            "definitionByLocale": {
+              "ru": "снеговик.",
+              "uk": "сніговик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Он лепил снеговика?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Он лепил снеговика?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was he building a snowman?",
+          "localizedMeaning": {
+            "ru": "Скажите: Он лепил снеговика?",
+            "uk": "Скажіть: Він ліпив сніговика?"
+          },
+          "orderedTokens": [
+            "Was",
+            "he",
+            "building",
+            "a",
+            "snowman"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i05:r1",
+            "text": "Was he building a snowman?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i05:r2",
+            "text": "Was I building a snowman?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i05:r3",
+            "text": "Was she building a snowman?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i05:audio",
+            "transcript": "Was he building a snowman?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i05:r1",
+              "targetText": "Was he building a snowman?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i05:r2",
+              "targetText": "Was I building a snowman?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i05:r3",
+              "targetText": "Was she building a snowman?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he building a snowman?",
+                "uk": "У записі звучить Was he building a snowman?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he building a snowman?",
+                "uk": "У записі звучить Was he building a snowman?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Он лепил снеговика?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Он лепил снеговика?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Он лепил снеговика?",
+            "uk": "Виберіть форму для змісту: Він ліпив сніговика?"
+          },
+          "gappedTargetPhrase": "___ he building a snowman?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i06:r1",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i06:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i06:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Он лепил снеговика?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Он лепил снеговика?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Was.",
+                "uk": "Йдеться про минулий момент. Потрібно Was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Он лепил снеговика?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Was.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowdrift",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snowdrift",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowdrift:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snowdrift",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowdrift:audio",
+            "transcript": "snowdrift"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowdrift:r1",
+              "targetText": "snowdrift",
+              "meaningByLocale": {
+                "ru": "сугроб.",
+                "uk": "замет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowdrift",
+            "definitionByLocale": {
+              "ru": "сугроб.",
+              "uk": "замет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они не шли через сугроб",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они не шли через сугроб",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They weren’t walking through the snowdrift.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они не шли через сугроб",
+            "uk": "Скажіть: Вони не йшли крізь замет"
+          },
+          "orderedTokens": [
+            "They",
+            "weren’t",
+            "walking",
+            "through",
+            "the",
+            "snowdrift"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i08:r1",
+            "text": "They weren’t walking through the snowdrift."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i08:r2",
+            "text": "We weren’t walking through the snowdrift."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i08:r3",
+            "text": "They were walking through the snowdrift."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i08:audio",
+            "transcript": "They weren’t walking through the snowdrift."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i08:r1",
+              "targetText": "They weren’t walking through the snowdrift.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i08:r2",
+              "targetText": "We weren’t walking through the snowdrift.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i08:r3",
+              "targetText": "They were walking through the snowdrift.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t walking through the snowdrift.",
+                "uk": "У записі звучить They weren’t walking through the snowdrift."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t walking through the snowdrift.",
+                "uk": "У записі звучить They weren’t walking through the snowdrift."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Они не шли через сугроб",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i09:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i09:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Они не шли через сугроб",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Они не шли через сугроб",
+            "uk": "Виберіть форму для змісту: Вони не йшли крізь замет"
+          },
+          "gappedTargetPhrase": "They ___ walking through the snowdrift.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i09:r1",
+              "text": "weren’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i09:r3",
+              "text": "wasn’t"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Они не шли через сугроб",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Они не шли через сугроб",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Они не шли через сугроб",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна weren’t.",
+                "uk": "З цим підметом потрібна weren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowstorm",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snowstorm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowstorm:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snowstorm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowstorm:audio",
+            "transcript": "snowstorm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowstorm:r1",
+              "targetText": "snowstorm",
+              "meaningByLocale": {
+                "ru": "сильная снежная буря, метель.",
+                "uk": "сильна снігова буря, заметіль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowstorm",
+            "definitionByLocale": {
+              "ru": "сильная снежная буря, метель.",
+              "uk": "сильна снігова буря, заметіль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не ехал за рулём в метель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не ехал за рулём в метель",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wasn’t driving in the snowstorm.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не ехал за рулём в метель",
+            "uk": "Скажіть: Я не їхав за кермом у заметіль"
+          },
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "driving",
+            "in",
+            "the",
+            "snowstorm"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i11:r1",
+            "text": "I wasn’t driving in the snowstorm."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i11:r2",
+            "text": "She wasn’t driving in the snowstorm."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i11:r3",
+            "text": "I was driving in the snowstorm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i11:audio",
+            "transcript": "I wasn’t driving in the snowstorm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i11:r1",
+              "targetText": "I wasn’t driving in the snowstorm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i11:r2",
+              "targetText": "She wasn’t driving in the snowstorm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i11:r3",
+              "targetText": "I was driving in the snowstorm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t driving in the snowstorm.",
+                "uk": "У записі звучить I wasn’t driving in the snowstorm."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t driving in the snowstorm.",
+                "uk": "У записі звучить I wasn’t driving in the snowstorm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для смысла: Я не ехал за рулём в метель",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i12:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i12:r3",
+            "text": "weren’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для смысла: Я не ехал за рулём в метель",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Я не ехал за рулём в метель",
+            "uk": "Виберіть форму для змісту: Я не їхав за кермом у заметіль"
+          },
+          "gappedTargetPhrase": "I ___ driving in the snowstorm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i12:r1",
+              "text": "wasn’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i12:r3",
+              "text": "weren’t"
+            }
+          ],
+          "testedDimension": "Выберите форму для смысла: Я не ехал за рулём в метель",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Я не ехал за рулём в метель",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для смысла: Я не ехал за рулём в метель",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна wasn’t.",
+                "uk": "З цим підметом потрібна wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-13:i13:p1",
+              "target": "snowflake",
+              "meaningByLocale": {
+                "ru": "снежинка",
+                "uk": "сніжинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-13:i13:p2",
+              "target": "snowman",
+              "meaningByLocale": {
+                "ru": "снеговик",
+                "uk": "сніговик"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-13:i13:p3",
+              "target": "snowdrift",
+              "meaningByLocale": {
+                "ru": "сугроб",
+                "uk": "замет"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-13:i13:p4",
+              "target": "snowstorm",
+              "meaningByLocale": {
+                "ru": "сильная снежная буря, метель",
+                "uk": "сильна снігова буря, заметіль"
+              }
+            }
+          ],
+          "leftColumn": [
+            "snowflake",
+            "snowman",
+            "snowdrift",
+            "snowstorm"
+          ],
+          "rightColumn": [
+            "снежинка",
+            "снеговик",
+            "сугроб",
+            "сильная снежная буря, метель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i14:audio",
+            "transcript": "Were you walking at two?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Were you walking at two?",
+          "orderedTokens": [
+            "Were",
+            "you",
+            "walking",
+            "at",
+            "two"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i15:audio",
+            "transcript": "I wasn’t driving at two."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I wasn’t driving at two.",
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "driving",
+            "at",
+            "two"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: ты вчера в два лепил снеговика?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: ты вчера в два лепил снеговика?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i16:audio",
+            "transcript": "Were you building a snowman at two yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were you building a snowman at two yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера в два я не шёл через сугроб",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера в два я не шёл через сугроб",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i17:audio",
+            "transcript": "I wasn’t walking through the snowdrift at two yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wasn’t walking through the snowdrift at two yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowflake",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snowflake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowflake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snowflake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowflake:audio",
+            "transcript": "snowflake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowflake:r1",
+              "targetText": "snowflake",
+              "meaningByLocale": {
+                "ru": "снежинка.",
+                "uk": "сніжинка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowflake",
+            "definitionByLocale": {
+              "ru": "снежинка.",
+              "uk": "сніжинка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти розглядав сніжинку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти розглядав сніжинку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were you looking at a snowflake?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты рассматривал снежинку?",
+            "uk": "Скажіть: Ти розглядав сніжинку?"
+          },
+          "orderedTokens": [
+            "Were",
+            "you",
+            "looking",
+            "at",
+            "a",
+            "snowflake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i02:r1",
+            "text": "Were you looking at a snowflake?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i02:r2",
+            "text": "Were we looking at a snowflake?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i02:r3",
+            "text": "Was she looking at a snowflake?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i02:audio",
+            "transcript": "Were you looking at a snowflake?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i02:r1",
+              "targetText": "Were you looking at a snowflake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i02:r2",
+              "targetText": "Were we looking at a snowflake?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i02:r3",
+              "targetText": "Was she looking at a snowflake?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you looking at a snowflake?",
+                "uk": "У записі звучить Were you looking at a snowflake?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Were you looking at a snowflake?",
+                "uk": "У записі звучить Were you looking at a snowflake?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Ти розглядав сніжинку?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Ти розглядав сніжинку?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Ты рассматривал снежинку?",
+            "uk": "Виберіть форму для змісту: Ти розглядав сніжинку?"
+          },
+          "gappedTargetPhrase": "___ you looking at a snowflake?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i03:r1",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i03:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i03:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Ти розглядав сніжинку?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Ти розглядав сніжинку?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Were.",
+                "uk": "Йдеться про минулий момент. Потрібно Were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Ти розглядав сніжинку?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Were.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowman",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snowman",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowman:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snowman",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowman:audio",
+            "transcript": "snowman"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowman:r1",
+              "targetText": "snowman",
+              "meaningByLocale": {
+                "ru": "снеговик.",
+                "uk": "сніговик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowman",
+            "definitionByLocale": {
+              "ru": "снеговик.",
+              "uk": "сніговик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Він ліпив сніговика?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Він ліпив сніговика?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was he building a snowman?",
+          "localizedMeaning": {
+            "ru": "Скажите: Он лепил снеговика?",
+            "uk": "Скажіть: Він ліпив сніговика?"
+          },
+          "orderedTokens": [
+            "Was",
+            "he",
+            "building",
+            "a",
+            "snowman"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i05:r1",
+            "text": "Was he building a snowman?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i05:r2",
+            "text": "Was I building a snowman?"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i05:r3",
+            "text": "Was she building a snowman?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i05:audio",
+            "transcript": "Was he building a snowman?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i05:r1",
+              "targetText": "Was he building a snowman?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i05:r2",
+              "targetText": "Was I building a snowman?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i05:r3",
+              "targetText": "Was she building a snowman?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he building a snowman?",
+                "uk": "У записі звучить Was he building a snowman?"
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was he building a snowman?",
+                "uk": "У записі звучить Was he building a snowman?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Він ліпив сніговика?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Він ліпив сніговика?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Он лепил снеговика?",
+            "uk": "Виберіть форму для змісту: Він ліпив сніговика?"
+          },
+          "gappedTargetPhrase": "___ he building a snowman?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i06:r1",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i06:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i06:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Він ліпив сніговика?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Він ліпив сніговика?",
+              "feedbackByLocale": {
+                "ru": "Речь о прошлом моменте. Нужно Was.",
+                "uk": "Йдеться про минулий момент. Потрібно Was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Він ліпив сніговика?",
+              "feedbackByLocale": {
+                "ru": "Did не используется с этой формой действия. Нужно Was.",
+                "uk": "Did не вживається з цією формою дії. Потрібно Was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowdrift",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snowdrift",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowdrift:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snowdrift",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowdrift:audio",
+            "transcript": "snowdrift"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowdrift:r1",
+              "targetText": "snowdrift",
+              "meaningByLocale": {
+                "ru": "сугроб.",
+                "uk": "замет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowdrift",
+            "definitionByLocale": {
+              "ru": "сугроб.",
+              "uk": "замет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони не йшли крізь замет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони не йшли крізь замет",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They weren’t walking through the snowdrift.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они не шли через сугроб",
+            "uk": "Скажіть: Вони не йшли крізь замет"
+          },
+          "orderedTokens": [
+            "They",
+            "weren’t",
+            "walking",
+            "through",
+            "the",
+            "snowdrift"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i08:r1",
+            "text": "They weren’t walking through the snowdrift."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i08:r2",
+            "text": "We weren’t walking through the snowdrift."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i08:r3",
+            "text": "They were walking through the snowdrift."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i08:audio",
+            "transcript": "They weren’t walking through the snowdrift."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i08:r1",
+              "targetText": "They weren’t walking through the snowdrift.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i08:r2",
+              "targetText": "We weren’t walking through the snowdrift.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i08:r3",
+              "targetText": "They were walking through the snowdrift.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t walking through the snowdrift.",
+                "uk": "У записі звучить They weren’t walking through the snowdrift."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They weren’t walking through the snowdrift.",
+                "uk": "У записі звучить They weren’t walking through the snowdrift."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Вони не йшли крізь замет",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i09:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i09:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Вони не йшли крізь замет",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Они не шли через сугроб",
+            "uk": "Виберіть форму для змісту: Вони не йшли крізь замет"
+          },
+          "gappedTargetPhrase": "They ___ walking through the snowdrift.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i09:r1",
+              "text": "weren’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i09:r3",
+              "text": "wasn’t"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Вони не йшли крізь замет",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Вони не йшли крізь замет",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Вони не йшли крізь замет",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна weren’t.",
+                "uk": "З цим підметом потрібна weren’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:word:snowstorm",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snowstorm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:word:snowstorm:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snowstorm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:word:snowstorm:audio",
+            "transcript": "snowstorm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:word:snowstorm:r1",
+              "targetText": "snowstorm",
+              "meaningByLocale": {
+                "ru": "сильная снежная буря, метель.",
+                "uk": "сильна снігова буря, заметіль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snowstorm",
+            "definitionByLocale": {
+              "ru": "сильная снежная буря, метель.",
+              "uk": "сильна снігова буря, заметіль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не їхав за кермом у заметіль",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не їхав за кермом у заметіль",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wasn’t driving in the snowstorm.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не ехал за рулём в метель",
+            "uk": "Скажіть: Я не їхав за кермом у заметіль"
+          },
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "driving",
+            "in",
+            "the",
+            "snowstorm"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i11:r1",
+            "text": "I wasn’t driving in the snowstorm."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i11:r2",
+            "text": "She wasn’t driving in the snowstorm."
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i11:r3",
+            "text": "I was driving in the snowstorm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i11:audio",
+            "transcript": "I wasn’t driving in the snowstorm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-13:i11:r1",
+              "targetText": "I wasn’t driving in the snowstorm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i11:r2",
+              "targetText": "She wasn’t driving in the snowstorm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i11:r3",
+              "targetText": "I was driving in the snowstorm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t driving in the snowstorm.",
+                "uk": "У записі звучить I wasn’t driving in the snowstorm."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I wasn’t driving in the snowstorm.",
+                "uk": "У записі звучить I wasn’t driving in the snowstorm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для змісту: Я не їхав за кермом у заметіль",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-13:i12:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-13:i12:r3",
+            "text": "weren’t"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для змісту: Я не їхав за кермом у заметіль",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для смысла: Я не ехал за рулём в метель",
+            "uk": "Виберіть форму для змісту: Я не їхав за кермом у заметіль"
+          },
+          "gappedTargetPhrase": "I ___ driving in the snowstorm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-13:i12:r1",
+              "text": "wasn’t"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i12:r3",
+              "text": "weren’t"
+            }
+          ],
+          "testedDimension": "Виберіть форму для змісту: Я не їхав за кермом у заметіль",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Я не їхав за кермом у заметіль",
+              "feedbackByLocale": {
+                "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+                "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для змісту: Я не їхав за кермом у заметіль",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна wasn’t.",
+                "uk": "З цим підметом потрібна wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-13:i13:p1",
+              "target": "snowflake",
+              "meaningByLocale": {
+                "ru": "снежинка",
+                "uk": "сніжинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-13:i13:p2",
+              "target": "snowman",
+              "meaningByLocale": {
+                "ru": "снеговик",
+                "uk": "сніговик"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-13:i13:p3",
+              "target": "snowdrift",
+              "meaningByLocale": {
+                "ru": "сугроб",
+                "uk": "замет"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-13:i13:p4",
+              "target": "snowstorm",
+              "meaningByLocale": {
+                "ru": "сильная снежная буря, метель",
+                "uk": "сильна снігова буря, заметіль"
+              }
+            }
+          ],
+          "leftColumn": [
+            "snowflake",
+            "snowman",
+            "snowdrift",
+            "snowstorm"
+          ],
+          "rightColumn": [
+            "сніжинка",
+            "сніговик",
+            "замет",
+            "сильна снігова буря, заметіль"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i14:audio",
+            "transcript": "Were you walking at two?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Were you walking at two?",
+          "orderedTokens": [
+            "Were",
+            "you",
+            "walking",
+            "at",
+            "two"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i15:audio",
+            "transcript": "I wasn’t driving at two."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I wasn’t driving at two.",
+          "orderedTokens": [
+            "I",
+            "wasn’t",
+            "driving",
+            "at",
+            "two"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: ти вчора о другій ліпив сніговика?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: ти вчора о другій ліпив сніговика?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i16:audio",
+            "transcript": "Were you building a snowman at two yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were you building a snowman at two yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-13:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора о другій я не йшов крізь замет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора о другій я не йшов крізь замет",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-13:i17:audio",
+            "transcript": "I wasn’t walking through the snowdrift at two yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I wasn’t walking through the snowdrift at two yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-13:word:snowflake",
+      "correctText": "snowflake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i01",
+      "correctText": "Were you looking at a snowflake?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i02",
+      "correctText": "Were you looking at a snowflake?",
+      "correctResponseId": "en:lesson-14:session-13:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i03",
+      "correctText": "Were",
+      "correctResponseId": "en:lesson-14:session-13:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:word:snowman",
+      "correctText": "snowman",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i04",
+      "correctText": "Was he building a snowman?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i05",
+      "correctText": "Was he building a snowman?",
+      "correctResponseId": "en:lesson-14:session-13:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i06",
+      "correctText": "Was",
+      "correctResponseId": "en:lesson-14:session-13:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:word:snowdrift",
+      "correctText": "snowdrift",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i07",
+      "correctText": "They weren’t walking through the snowdrift.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i08",
+      "correctText": "They weren’t walking through the snowdrift.",
+      "correctResponseId": "en:lesson-14:session-13:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i09",
+      "correctText": "weren’t",
+      "correctResponseId": "en:lesson-14:session-13:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:word:snowstorm",
+      "correctText": "snowstorm",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i10",
+      "correctText": "I wasn’t driving in the snowstorm.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i11",
+      "correctText": "I wasn’t driving in the snowstorm.",
+      "correctResponseId": "en:lesson-14:session-13:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i12",
+      "correctText": "wasn’t",
+      "correctResponseId": "en:lesson-14:session-13:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i14",
+      "correctText": "Were you walking at two?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i15",
+      "correctText": "I wasn’t driving at two.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i16",
+      "correctText": "Were you building a snowman at two yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-13:i17",
+      "correctText": "I wasn’t walking through the snowdrift at two yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

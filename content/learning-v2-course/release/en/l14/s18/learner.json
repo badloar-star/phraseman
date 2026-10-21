@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-18:word:passion-fruit",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — passion fruit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:word:passion-fruit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — passion fruit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:word:passion-fruit:audio",
+          "transcript": "passion fruit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:word:passion-fruit:r1",
+            "targetText": "passion fruit",
+            "meaningByLocale": {
+              "ru": "маракуйя.",
+              "uk": "маракуя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "passion fruit",
+          "definitionByLocale": {
+            "ru": "маракуйя.",
+            "uk": "маракуя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я разрезал маракуйю в тот момент",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я разрезал маракуйю в тот момент",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was cutting a passion fruit.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я разрезал маракуйю в тот момент",
+          "uk": "Скажіть: Я розрізав маракую в той момент"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "cutting",
+          "a",
+          "passion",
+          "fruit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i02:r1",
+          "text": "You were cutting a passion fruit."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i02:r2",
+          "text": "I was cutting a passion fruit."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i02:r3",
+          "text": "They were cutting a passion fruit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i02:audio",
+          "transcript": "You were cutting a passion fruit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:i02:r1",
+            "targetText": "You were cutting a passion fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i02:r2",
+            "targetText": "I was cutting a passion fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i02:r3",
+            "targetText": "They were cutting a passion fruit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting a passion fruit.",
+              "uk": "У записі звучить You were cutting a passion fruit."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting a passion fruit.",
+              "uk": "У записі звучить You were cutting a passion fruit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ cutting a passion fruit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-18:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:word:dragon-fruit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dragon fruit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:word:dragon-fruit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dragon fruit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:word:dragon-fruit:audio",
+          "transcript": "dragon fruit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:word:dragon-fruit:r1",
+            "targetText": "dragon fruit",
+            "meaningByLocale": {
+              "ru": "питахайя.",
+              "uk": "пітахая."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dragon fruit",
+          "definitionByLocale": {
+            "ru": "питахайя.",
+            "uk": "пітахая."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы разрезали питахайю в тот момент",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы разрезали питахайю в тот момент",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were cutting a dragon fruit.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы разрезали питахайю в тот момент",
+          "uk": "Скажіть: Ми розрізали пітахаю в той момент"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "cutting",
+          "a",
+          "dragon",
+          "fruit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i05:r1",
+          "text": "You were cutting a dragon fruit."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i05:r2",
+          "text": "We were cutting a dragon fruit."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i05:r3",
+          "text": "She was cutting a dragon fruit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i05:audio",
+          "transcript": "You were cutting a dragon fruit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:i05:r1",
+            "targetText": "You were cutting a dragon fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i05:r2",
+            "targetText": "We were cutting a dragon fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i05:r3",
+            "targetText": "She was cutting a dragon fruit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting a dragon fruit.",
+              "uk": "У записі звучить You were cutting a dragon fruit."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting a dragon fruit.",
+              "uk": "У записі звучить You were cutting a dragon fruit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ cutting a dragon fruit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-18:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:word:lychee",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lychee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:word:lychee:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lychee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:word:lychee:audio",
+          "transcript": "lychee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:word:lychee:r1",
+            "targetText": "lychee",
+            "meaningByLocale": {
+              "ru": "личи.",
+              "uk": "лічі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lychee",
+          "definitionByLocale": {
+            "ru": "личи.",
+            "uk": "лічі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она чистила личи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она чистила личи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was peeling a lychee.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она чистила личи",
+          "uk": "Скажіть: Вона чистила лічі"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "peeling",
+          "a",
+          "lychee"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i08:r1",
+          "text": "You were peeling a lychee."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i08:r2",
+          "text": "She was peeling a lychee."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i08:r3",
+          "text": "They were peeling a lychee."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i08:audio",
+          "transcript": "You were peeling a lychee."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:i08:r1",
+            "targetText": "You were peeling a lychee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i08:r2",
+            "targetText": "She was peeling a lychee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i08:r3",
+            "targetText": "They were peeling a lychee.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were peeling a lychee.",
+              "uk": "У записі звучить You were peeling a lychee."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were peeling a lychee.",
+              "uk": "У записі звучить You were peeling a lychee."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ peeling a lychee.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-18:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:word:papaya",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — papaya",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:word:papaya:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — papaya",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:word:papaya:audio",
+          "transcript": "papaya"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:word:papaya:r1",
+            "targetText": "papaya",
+            "meaningByLocale": {
+              "ru": "папайя.",
+              "uk": "папая."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "papaya",
+          "definitionByLocale": {
+            "ru": "папайя.",
+            "uk": "папая."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они мыли папайю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они мыли папайю",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were washing a papaya.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они мыли папайю",
+          "uk": "Скажіть: Вони мили папаю"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "washing",
+          "a",
+          "papaya"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i11:r1",
+          "text": "You were washing a papaya."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i11:r2",
+          "text": "They were washing a papaya."
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i11:r3",
+          "text": "She was washing a papaya."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i11:audio",
+          "transcript": "You were washing a papaya."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-18:i11:r1",
+            "targetText": "You were washing a papaya.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i11:r2",
+            "targetText": "They were washing a papaya.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i11:r3",
+            "targetText": "She was washing a papaya.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were washing a papaya.",
+              "uk": "У записі звучить You were washing a papaya."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were washing a papaya.",
+              "uk": "У записі звучить You were washing a papaya."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-18:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-18:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ washing a papaya.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-18:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-18:i13:p1",
+            "target": "passion fruit",
+            "meaningByLocale": {
+              "ru": "маракуйя",
+              "uk": "маракуя"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-18:i13:p2",
+            "target": "dragon fruit",
+            "meaningByLocale": {
+              "ru": "питахайя",
+              "uk": "пітахая"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-18:i13:p3",
+            "target": "lychee",
+            "meaningByLocale": {
+              "ru": "личи",
+              "uk": "лічі"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-18:i13:p4",
+            "target": "papaya",
+            "meaningByLocale": {
+              "ru": "папайя",
+              "uk": "папая"
+            }
+          }
+        ],
+        "leftColumn": [
+          "passion fruit",
+          "dragon fruit",
+          "lychee",
+          "papaya"
+        ],
+        "rightColumn": [
+          "маракуйя",
+          "питахайя",
+          "личи",
+          "папайя"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i14:audio",
+          "transcript": "The kitchen was busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The kitchen was busy.",
+        "orderedTokens": [
+          "The",
+          "kitchen",
+          "was",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i15:audio",
+          "transcript": "We were preparing the food."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We were preparing the food.",
+        "orderedTokens": [
+          "We",
+          "were",
+          "preparing",
+          "the",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишите фон: вчера в пять я чистил личи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Опишите фон: вчера в пять я чистил личи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i16:audio",
+          "transcript": "I was peeling a lychee at five yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was peeling a lychee at five yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишите фон: вчера в пять она мыла папайю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Опишите фон: вчера в пять она мыла папайю",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-18:i17:audio",
+          "transcript": "She was washing a papaya at five yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was washing a papaya at five yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "641185767017414e32e651605bb6277fb7c13566a7618f5d7e4fde943c948ff9"
+}

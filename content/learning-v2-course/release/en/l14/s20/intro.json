@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous as background",
+    "uk": "review: Past Continuous as background"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пеленальный коврик",
+        "uk": "Сповивальний килимок"
+      },
+      "bodyByLocale": {
+        "ru": "Changing mat — мягкий коврик для смены подгузника. I was cleaning the changing mat. — Я чистил пеленальный коврик. Выберите описание процесса в прошлом.",
+        "uk": "Changing mat — м’який килимок для зміни підгузка. I was cleaning the changing mat. — Я чистив сповивальний килимок. Виберіть опис процесу в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-20:intro1:r1",
+              "text": "I was cleaning the changing mat."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro1:r2",
+              "text": "I am cleaning the changing mat."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro1:r3",
+              "text": "I were cleaning the changing mat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-20:intro1:r1",
+              "text": "I was cleaning the changing mat."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro1:r2",
+              "text": "I am cleaning the changing mat."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro1:r3",
+              "text": "I were cleaning the changing mat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка и столик",
+        "uk": "Сумка й столик"
+      },
+      "bodyByLocale": {
+        "ru": "Nappy bag — сумка для подгузников и детских вещей на прогулку; changing table — пеленальный столик. She was packing the nappy bag. — Она собирала сумку с детскими вещами. Выберите сумку.",
+        "uk": "Nappy bag — сумка для підгузків і дитячих речей на прогулянку; changing table — сповивальний столик. She was packing the nappy bag. — Вона збирала сумку з дитячими речами. Виберіть сумку."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-20:intro2:r1",
+              "text": "She was packing the nappy bag."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro2:r2",
+              "text": "She was cleaning the changing table."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro2:r3",
+              "text": "She were packing the nappy bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-20:intro2:r1",
+              "text": "She was packing the nappy bag."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro2:r2",
+              "text": "She was cleaning the changing table."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro2:r3",
+              "text": "She were packing the nappy bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Радионяня",
+        "uk": "Радіоняня"
+      },
+      "bodyByLocale": {
+        "ru": "Baby monitor — радионяня или видеоняня, прибор для наблюдения за малышом из другой комнаты. We were checking the baby monitor. — Мы проверяли радионяню. Здесь говорим о бытовом действии, которое шло в тот момент.",
+        "uk": "Baby monitor — радіоняня або відеоняня, прилад для спостереження за малюком з іншої кімнати. We were checking the baby monitor. — Ми перевіряли радіоняню. Тут говоримо про побутову дію, яка тривала в той момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-20:intro3:r1",
+              "text": "We were checking the baby monitor."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro3:r2",
+              "text": "We are checking the baby monitor."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro3:r3",
+              "text": "We was checking the baby monitor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-20:intro3:r1",
+              "text": "We were checking the baby monitor."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro3:r2",
+              "text": "We are checking the baby monitor."
+            },
+            {
+              "responseId": "en:lesson-14:session-20:intro3:r3",
+              "text": "We was checking the baby monitor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2917776490bee64317f19c8408a4a3dfee563596eca4e7f6a25cce6972a08825"
+}

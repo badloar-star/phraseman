@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-16:word:guitar-string",
+    "correctText": "guitar string",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i01",
+    "correctText": "Were you changing a guitar string?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i02",
+    "correctText": "Were you changing a guitar string?",
+    "correctResponseId": "en:lesson-14:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:word:guitar-case",
+    "correctText": "guitar case",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i04",
+    "correctText": "Was he carrying the guitar case?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i05",
+    "correctText": "Was he carrying the guitar case?",
+    "correctResponseId": "en:lesson-14:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:word:music-stand",
+    "correctText": "music stand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i07",
+    "correctText": "They weren’t using the music stand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i08",
+    "correctText": "They weren’t using the music stand.",
+    "correctResponseId": "en:lesson-14:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i09",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:word:sheet-music",
+    "correctText": "sheet music",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i10",
+    "correctText": "I wasn’t reading the sheet music.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i11",
+    "correctText": "I wasn’t reading the sheet music.",
+    "correctResponseId": "en:lesson-14:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i12",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i13",
+    "correctText": "en:lesson-14:session-16:i13:p1=guitar string\nen:lesson-14:session-16:i13:p2=guitar case\nen:lesson-14:session-16:i13:p3=music stand\nen:lesson-14:session-16:i13:p4=sheet music",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i14",
+    "correctText": "Were you playing at seven?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i15",
+    "correctText": "I wasn’t carrying the guitar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i16",
+    "correctText": "Were you reading the sheet music at seven yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-16:i17",
+    "correctText": "I wasn’t using the music stand at seven yesterday.",
+    "correctResponseId": null
+  }
+]

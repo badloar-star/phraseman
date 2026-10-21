@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-15:intro1:r2": {
+          "ru": "Are taking — сейчас.",
+          "uk": "Are taking — зараз."
+        },
+        "en:lesson-14:session-15:intro1:r3": {
+          "ru": "Нужна Were you taking.",
+          "uk": "Потрібна Were you taking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-15:intro2:r2": {
+          "ru": "Это сорока.",
+          "uk": "Це сорока."
+        },
+        "en:lesson-14:session-15:intro2:r3": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-15:intro3:r2": {
+          "ru": "Was watching утверждает действие.",
+          "uk": "Was watching стверджує дію."
+        },
+        "en:lesson-14:session-15:intro3:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "04f3b2650872fbd17c8330dd00bf39baed6b206129c048c7eae68a7ff9703dbc"
+}

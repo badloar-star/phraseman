@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous questions and negatives",
+    "uk": "review: Past Continuous questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дятел",
+        "uk": "Дятел"
+      },
+      "bodyByLocale": {
+        "ru": "Woodpecker — дятел. Were you taking a photo of the woodpecker? — Ты фотографировал дятла? Выберите вопрос о том моменте прошлого.",
+        "uk": "Woodpecker — дятел. Were you taking a photo of the woodpecker? — Ти фотографував дятла? Виберіть запитання про той момент минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-15:intro1:r1",
+              "text": "Were you taking a photo of the woodpecker?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro1:r2",
+              "text": "Are you taking a photo of the woodpecker?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro1:r3",
+              "text": "Did you taking a photo of the woodpecker?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-15:intro1:r1",
+              "text": "Were you taking a photo of the woodpecker?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro1:r2",
+              "text": "Are you taking a photo of the woodpecker?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro1:r3",
+              "text": "Did you taking a photo of the woodpecker?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сова и сорока",
+        "uk": "Сова й сорока"
+      },
+      "bodyByLocale": {
+        "ru": "Owl — сова; magpie — сорока. Was he watching the owl? — Он наблюдал за совой? Выберите сову.",
+        "uk": "Owl — сова; magpie — сорока. Was he watching the owl? — Він спостерігав за совою? Виберіть сову."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-15:intro2:r1",
+              "text": "Was he watching the owl?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro2:r2",
+              "text": "Was he watching the magpie?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro2:r3",
+              "text": "Were he watching the owl?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-15:intro2:r1",
+              "text": "Was he watching the owl?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro2:r2",
+              "text": "Was he watching the magpie?"
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro2:r3",
+              "text": "Were he watching the owl?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Малиновка",
+        "uk": "Вільшанка"
+      },
+      "bodyByLocale": {
+        "ru": "Robin — малиновка, небольшая птица с оранжево-красной грудкой. I wasn’t watching the robin. — Я не наблюдал за малиновкой. Выберите отрицание.",
+        "uk": "Robin — вільшанка, невеликий птах із помаранчево-червоною грудкою. I wasn’t watching the robin. — Я не спостерігав за вільшанкою. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-15:intro3:r1",
+              "text": "I wasn’t watching the robin."
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro3:r2",
+              "text": "I was watching the robin."
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro3:r3",
+              "text": "I weren’t watching the robin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-15:intro3:r1",
+              "text": "I wasn’t watching the robin."
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro3:r2",
+              "text": "I was watching the robin."
+            },
+            {
+              "responseId": "en:lesson-14:session-15:intro3:r3",
+              "text": "I weren’t watching the robin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7f8cfbdd716429d04a5f3e718663d27afeb7c3ff43df3456c541bb06ba127da2"
+}

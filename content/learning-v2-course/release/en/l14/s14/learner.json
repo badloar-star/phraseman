@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-14:word:dolphin",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dolphin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:word:dolphin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dolphin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:word:dolphin:audio",
+          "transcript": "dolphin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:word:dolphin:r1",
+            "targetText": "dolphin",
+            "meaningByLocale": {
+              "ru": "дельфин.",
+              "uk": "дельфін."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dolphin",
+          "definitionByLocale": {
+            "ru": "дельфин.",
+            "uk": "дельфін."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты наблюдал за дельфином?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты наблюдал за дельфином?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Were you watching a dolphin?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты наблюдал за дельфином?",
+          "uk": "Скажіть: Ти спостерігав за дельфіном?"
+        },
+        "orderedTokens": [
+          "Were",
+          "you",
+          "watching",
+          "a",
+          "dolphin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i02:r1",
+          "text": "Were you watching a dolphin?"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i02:r2",
+          "text": "Were we watching a dolphin?"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i02:r3",
+          "text": "Was she watching a dolphin?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i02:audio",
+          "transcript": "Were you watching a dolphin?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:i02:r1",
+            "targetText": "Were you watching a dolphin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i02:r2",
+            "targetText": "Were we watching a dolphin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i02:r3",
+            "targetText": "Was she watching a dolphin?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you watching a dolphin?",
+              "uk": "У записі звучить Were you watching a dolphin?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you watching a dolphin?",
+              "uk": "У записі звучить Were you watching a dolphin?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Ты наблюдал за дельфином?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i03:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i03:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Ты наблюдал за дельфином?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Ты наблюдал за дельфином?",
+          "uk": "Виберіть форму для змісту: Ти спостерігав за дельфіном?"
+        },
+        "gappedTargetPhrase": "___ you watching a dolphin?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-14:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Ты наблюдал за дельфином?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Ты наблюдал за дельфином?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Were.",
+              "uk": "Йдеться про минулий момент. Потрібно Were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Ты наблюдал за дельфином?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Were.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:word:whale",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — whale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:word:whale:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — whale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:word:whale:audio",
+          "transcript": "whale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:word:whale:r1",
+            "targetText": "whale",
+            "meaningByLocale": {
+              "ru": "кит.",
+              "uk": "кит."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "whale",
+          "definitionByLocale": {
+            "ru": "кит.",
+            "uk": "кит."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Он наблюдал за китом?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Он наблюдал за китом?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was he watching a whale?",
+        "localizedMeaning": {
+          "ru": "Скажите: Он наблюдал за китом?",
+          "uk": "Скажіть: Він спостерігав за китом?"
+        },
+        "orderedTokens": [
+          "Was",
+          "he",
+          "watching",
+          "a",
+          "whale"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i05:r1",
+          "text": "Was he watching a whale?"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i05:r2",
+          "text": "Was I watching a whale?"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i05:r3",
+          "text": "Was she watching a whale?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i05:audio",
+          "transcript": "Was he watching a whale?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:i05:r1",
+            "targetText": "Was he watching a whale?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i05:r2",
+            "targetText": "Was I watching a whale?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i05:r3",
+            "targetText": "Was she watching a whale?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he watching a whale?",
+              "uk": "У записі звучить Was he watching a whale?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he watching a whale?",
+              "uk": "У записі звучить Was he watching a whale?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Он наблюдал за китом?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i06:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i06:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i06:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Он наблюдал за китом?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Он наблюдал за китом?",
+          "uk": "Виберіть форму для змісту: Він спостерігав за китом?"
+        },
+        "gappedTargetPhrase": "___ he watching a whale?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-14:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Он наблюдал за китом?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Он наблюдал за китом?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Was.",
+              "uk": "Йдеться про минулий момент. Потрібно Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Он наблюдал за китом?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Was.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:word:shark",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:word:shark:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:word:shark:audio",
+          "transcript": "shark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:word:shark:r1",
+            "targetText": "shark",
+            "meaningByLocale": {
+              "ru": "акула.",
+              "uk": "акула."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shark",
+          "definitionByLocale": {
+            "ru": "акула.",
+            "uk": "акула."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они не наблюдали за акулой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они не наблюдали за акулой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They weren’t watching a shark.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они не наблюдали за акулой",
+          "uk": "Скажіть: Вони не спостерігали за акулою"
+        },
+        "orderedTokens": [
+          "They",
+          "weren’t",
+          "watching",
+          "a",
+          "shark"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i08:r1",
+          "text": "They weren’t watching a shark."
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i08:r2",
+          "text": "We weren’t watching a shark."
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i08:r3",
+          "text": "They were watching a shark."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i08:audio",
+          "transcript": "They weren’t watching a shark."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:i08:r1",
+            "targetText": "They weren’t watching a shark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i08:r2",
+            "targetText": "We weren’t watching a shark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i08:r3",
+            "targetText": "They were watching a shark.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t watching a shark.",
+              "uk": "У записі звучить They weren’t watching a shark."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t watching a shark.",
+              "uk": "У записі звучить They weren’t watching a shark."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Они не наблюдали за акулой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i09:r1",
+          "text": "weren’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i09:r3",
+          "text": "wasn’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Они не наблюдали за акулой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Они не наблюдали за акулой",
+          "uk": "Виберіть форму для змісту: Вони не спостерігали за акулою"
+        },
+        "gappedTargetPhrase": "They ___ watching a shark.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-14:i09:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i09:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Они не наблюдали за акулой",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Они не наблюдали за акулой",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Они не наблюдали за акулой",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна weren’t.",
+              "uk": "З цим підметом потрібна weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:word:penguin",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — penguin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:word:penguin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — penguin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:word:penguin:audio",
+          "transcript": "penguin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:word:penguin:r1",
+            "targetText": "penguin",
+            "meaningByLocale": {
+              "ru": "пингвин.",
+              "uk": "пінгвін."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "penguin",
+          "definitionByLocale": {
+            "ru": "пингвин.",
+            "uk": "пінгвін."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не наблюдал за пингвином",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не наблюдал за пингвином",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wasn’t watching a penguin.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не наблюдал за пингвином",
+          "uk": "Скажіть: Я не спостерігав за пінгвіном"
+        },
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "watching",
+          "a",
+          "penguin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i11:r1",
+          "text": "I wasn’t watching a penguin."
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i11:r2",
+          "text": "She wasn’t watching a penguin."
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i11:r3",
+          "text": "I was watching a penguin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i11:audio",
+          "transcript": "I wasn’t watching a penguin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-14:i11:r1",
+            "targetText": "I wasn’t watching a penguin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i11:r2",
+            "targetText": "She wasn’t watching a penguin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i11:r3",
+            "targetText": "I was watching a penguin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t watching a penguin.",
+              "uk": "У записі звучить I wasn’t watching a penguin."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t watching a penguin.",
+              "uk": "У записі звучить I wasn’t watching a penguin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Я не наблюдал за пингвином",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-14:i12:r1",
+          "text": "wasn’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-14:i12:r3",
+          "text": "weren’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Я не наблюдал за пингвином",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Я не наблюдал за пингвином",
+          "uk": "Виберіть форму для змісту: Я не спостерігав за пінгвіном"
+        },
+        "gappedTargetPhrase": "I ___ watching a penguin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-14:i12:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i12:r3",
+            "text": "weren’t"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Я не наблюдал за пингвином",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Я не наблюдал за пингвином",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Я не наблюдал за пингвином",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна wasn’t.",
+              "uk": "З цим підметом потрібна wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-14:i13:p1",
+            "target": "dolphin",
+            "meaningByLocale": {
+              "ru": "дельфин",
+              "uk": "дельфін"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-14:i13:p2",
+            "target": "whale",
+            "meaningByLocale": {
+              "ru": "кит",
+              "uk": "кит"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-14:i13:p3",
+            "target": "shark",
+            "meaningByLocale": {
+              "ru": "акула",
+              "uk": "акула"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-14:i13:p4",
+            "target": "penguin",
+            "meaningByLocale": {
+              "ru": "пингвин",
+              "uk": "пінгвін"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dolphin",
+          "whale",
+          "shark",
+          "penguin"
+        ],
+        "rightColumn": [
+          "дельфин",
+          "кит",
+          "акула",
+          "пингвин"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i14:audio",
+          "transcript": "Were you watching the film?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Were you watching the film?",
+        "orderedTokens": [
+          "Were",
+          "you",
+          "watching",
+          "the",
+          "film"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i15:audio",
+          "transcript": "I wasn’t watching TV at eight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wasn’t watching TV at eight.",
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "watching",
+          "TV",
+          "at",
+          "eight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера в восемь наблюдал за китом?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера в восемь наблюдал за китом?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i16:audio",
+          "transcript": "Were you watching a whale at eight yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were you watching a whale at eight yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-14:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в восемь я не наблюдал за акулой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в восемь я не наблюдал за акулой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-14:i17:audio",
+          "transcript": "I wasn’t watching a shark at eight yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wasn’t watching a shark at eight yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7aaa92f503776158b15fa913add59100d6db82c926ad04ee2fb7ad0f4bd15e11"
+}

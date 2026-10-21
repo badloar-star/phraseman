@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-15:word:woodpecker",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — woodpecker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:word:woodpecker:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — woodpecker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:word:woodpecker:audio",
+          "transcript": "woodpecker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:word:woodpecker:r1",
+            "targetText": "woodpecker",
+            "meaningByLocale": {
+              "ru": "дятел.",
+              "uk": "дятел."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "woodpecker",
+          "definitionByLocale": {
+            "ru": "дятел.",
+            "uk": "дятел."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты фотографировал дятла?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты фотографировал дятла?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Were you taking a photo of the woodpecker?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты фотографировал дятла?",
+          "uk": "Скажіть: Ти фотографував дятла?"
+        },
+        "orderedTokens": [
+          "Were",
+          "you",
+          "taking",
+          "a",
+          "photo",
+          "of",
+          "the",
+          "woodpecker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i02:r1",
+          "text": "Were you taking a photo of the woodpecker?"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i02:r2",
+          "text": "Were we taking a photo of the woodpecker?"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i02:r3",
+          "text": "Was she taking a photo of the woodpecker?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i02:audio",
+          "transcript": "Were you taking a photo of the woodpecker?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:i02:r1",
+            "targetText": "Were you taking a photo of the woodpecker?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i02:r2",
+            "targetText": "Were we taking a photo of the woodpecker?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i02:r3",
+            "targetText": "Was she taking a photo of the woodpecker?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you taking a photo of the woodpecker?",
+              "uk": "У записі звучить Were you taking a photo of the woodpecker?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you taking a photo of the woodpecker?",
+              "uk": "У записі звучить Were you taking a photo of the woodpecker?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Ты фотографировал дятла?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i03:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i03:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Ты фотографировал дятла?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Ты фотографировал дятла?",
+          "uk": "Виберіть форму для змісту: Ти фотографував дятла?"
+        },
+        "gappedTargetPhrase": "___ you taking a photo of the woodpecker?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-15:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Ты фотографировал дятла?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Ты фотографировал дятла?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Were.",
+              "uk": "Йдеться про минулий момент. Потрібно Were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Ты фотографировал дятла?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Were.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:word:owl",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — owl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:word:owl:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — owl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:word:owl:audio",
+          "transcript": "owl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:word:owl:r1",
+            "targetText": "owl",
+            "meaningByLocale": {
+              "ru": "сова.",
+              "uk": "сова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "owl",
+          "definitionByLocale": {
+            "ru": "сова.",
+            "uk": "сова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Он наблюдал за совой?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Он наблюдал за совой?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was he watching the owl?",
+        "localizedMeaning": {
+          "ru": "Скажите: Он наблюдал за совой?",
+          "uk": "Скажіть: Він спостерігав за совою?"
+        },
+        "orderedTokens": [
+          "Was",
+          "he",
+          "watching",
+          "the",
+          "owl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i05:r1",
+          "text": "Was he watching the owl?"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i05:r2",
+          "text": "Was I watching the owl?"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i05:r3",
+          "text": "Was she watching the owl?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i05:audio",
+          "transcript": "Was he watching the owl?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:i05:r1",
+            "targetText": "Was he watching the owl?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i05:r2",
+            "targetText": "Was I watching the owl?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i05:r3",
+            "targetText": "Was she watching the owl?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he watching the owl?",
+              "uk": "У записі звучить Was he watching the owl?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he watching the owl?",
+              "uk": "У записі звучить Was he watching the owl?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Он наблюдал за совой?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i06:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i06:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i06:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Он наблюдал за совой?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Он наблюдал за совой?",
+          "uk": "Виберіть форму для змісту: Він спостерігав за совою?"
+        },
+        "gappedTargetPhrase": "___ he watching the owl?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-15:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Он наблюдал за совой?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Он наблюдал за совой?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Was.",
+              "uk": "Йдеться про минулий момент. Потрібно Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Он наблюдал за совой?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Was.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:word:magpie",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — magpie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:word:magpie:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — magpie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:word:magpie:audio",
+          "transcript": "magpie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:word:magpie:r1",
+            "targetText": "magpie",
+            "meaningByLocale": {
+              "ru": "сорока.",
+              "uk": "сорока."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "magpie",
+          "definitionByLocale": {
+            "ru": "сорока.",
+            "uk": "сорока."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они не наблюдали за сорокой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они не наблюдали за сорокой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They weren’t watching the magpie.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они не наблюдали за сорокой",
+          "uk": "Скажіть: Вони не спостерігали за сорокою"
+        },
+        "orderedTokens": [
+          "They",
+          "weren’t",
+          "watching",
+          "the",
+          "magpie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i08:r1",
+          "text": "They weren’t watching the magpie."
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i08:r2",
+          "text": "We weren’t watching the magpie."
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i08:r3",
+          "text": "They were watching the magpie."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i08:audio",
+          "transcript": "They weren’t watching the magpie."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:i08:r1",
+            "targetText": "They weren’t watching the magpie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i08:r2",
+            "targetText": "We weren’t watching the magpie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i08:r3",
+            "targetText": "They were watching the magpie.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t watching the magpie.",
+              "uk": "У записі звучить They weren’t watching the magpie."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t watching the magpie.",
+              "uk": "У записі звучить They weren’t watching the magpie."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Они не наблюдали за сорокой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i09:r1",
+          "text": "weren’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i09:r3",
+          "text": "wasn’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Они не наблюдали за сорокой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Они не наблюдали за сорокой",
+          "uk": "Виберіть форму для змісту: Вони не спостерігали за сорокою"
+        },
+        "gappedTargetPhrase": "They ___ watching the magpie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-15:i09:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i09:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Они не наблюдали за сорокой",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Они не наблюдали за сорокой",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Они не наблюдали за сорокой",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна weren’t.",
+              "uk": "З цим підметом потрібна weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:word:robin",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — robin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:word:robin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — robin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:word:robin:audio",
+          "transcript": "robin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:word:robin:r1",
+            "targetText": "robin",
+            "meaningByLocale": {
+              "ru": "малиновка — птица с оранжево-красной грудкой.",
+              "uk": "вільшанка — птах із помаранчево-червоною грудкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "robin",
+          "definitionByLocale": {
+            "ru": "малиновка — птица с оранжево-красной грудкой.",
+            "uk": "вільшанка — птах із помаранчево-червоною грудкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не наблюдал за малиновкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не наблюдал за малиновкой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wasn’t watching the robin.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не наблюдал за малиновкой",
+          "uk": "Скажіть: Я не спостерігав за вільшанкою"
+        },
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "watching",
+          "the",
+          "robin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i11:r1",
+          "text": "I wasn’t watching the robin."
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i11:r2",
+          "text": "She wasn’t watching the robin."
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i11:r3",
+          "text": "I was watching the robin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i11:audio",
+          "transcript": "I wasn’t watching the robin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-15:i11:r1",
+            "targetText": "I wasn’t watching the robin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i11:r2",
+            "targetText": "She wasn’t watching the robin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i11:r3",
+            "targetText": "I was watching the robin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t watching the robin.",
+              "uk": "У записі звучить I wasn’t watching the robin."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t watching the robin.",
+              "uk": "У записі звучить I wasn’t watching the robin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Я не наблюдал за малиновкой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-15:i12:r1",
+          "text": "wasn’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-15:i12:r3",
+          "text": "weren’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Я не наблюдал за малиновкой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Я не наблюдал за малиновкой",
+          "uk": "Виберіть форму для змісту: Я не спостерігав за вільшанкою"
+        },
+        "gappedTargetPhrase": "I ___ watching the robin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-15:i12:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i12:r3",
+            "text": "weren’t"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Я не наблюдал за малиновкой",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Я не наблюдал за малиновкой",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Я не наблюдал за малиновкой",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна wasn’t.",
+              "uk": "З цим підметом потрібна wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-15:i13:p1",
+            "target": "woodpecker",
+            "meaningByLocale": {
+              "ru": "дятел",
+              "uk": "дятел"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-15:i13:p2",
+            "target": "owl",
+            "meaningByLocale": {
+              "ru": "сова",
+              "uk": "сова"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-15:i13:p3",
+            "target": "magpie",
+            "meaningByLocale": {
+              "ru": "сорока",
+              "uk": "сорока"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-15:i13:p4",
+            "target": "robin",
+            "meaningByLocale": {
+              "ru": "малиновка",
+              "uk": "вільшанка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "woodpecker",
+          "owl",
+          "magpie",
+          "robin"
+        ],
+        "rightColumn": [
+          "дятел",
+          "сова",
+          "сорока",
+          "малиновка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i14:audio",
+          "transcript": "Were you taking photos at ten?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Were you taking photos at ten?",
+        "orderedTokens": [
+          "Were",
+          "you",
+          "taking",
+          "photos",
+          "at",
+          "ten"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i15:audio",
+          "transcript": "I wasn’t watching the birds."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wasn’t watching the birds.",
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "watching",
+          "the",
+          "birds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера в десять фотографировал сову?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера в десять фотографировал сову?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i16:audio",
+          "transcript": "Were you taking a photo of the owl at ten yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were you taking a photo of the owl at ten yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в десять я не наблюдал за сорокой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в десять я не наблюдал за сорокой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-15:i17:audio",
+          "transcript": "I wasn’t watching the magpie at ten yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wasn’t watching the magpie at ten yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4f468d0fa23f524cc9eb28e36a3fcc44039891c7da3af19a8a429231736a5f72"
+}

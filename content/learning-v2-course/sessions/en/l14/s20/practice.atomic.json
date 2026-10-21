@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-20",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-20:word:changing-mat",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — changing mat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:changing-mat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — changing mat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:changing-mat:audio",
+            "transcript": "changing mat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:changing-mat:r1",
+              "targetText": "changing mat",
+              "meaningByLocale": {
+                "ru": "мягкий пеленальный коврик.",
+                "uk": "м’який сповивальний килимок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "changing mat",
+            "definitionByLocale": {
+              "ru": "мягкий пеленальный коврик.",
+              "uk": "м’який сповивальний килимок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я чистил пеленальный коврик",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я чистил пеленальный коврик",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was cleaning the changing mat.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я чистил пеленальный коврик",
+            "uk": "Скажіть: Я чистив сповивальний килимок"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "cleaning",
+            "the",
+            "changing",
+            "mat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i02:r1",
+            "text": "You were cleaning the changing mat."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i02:r2",
+            "text": "I was cleaning the changing mat."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i02:r3",
+            "text": "They were cleaning the changing mat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i02:audio",
+            "transcript": "You were cleaning the changing mat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i02:r1",
+              "targetText": "You were cleaning the changing mat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i02:r2",
+              "targetText": "I was cleaning the changing mat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i02:r3",
+              "targetText": "They were cleaning the changing mat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing mat.",
+                "uk": "У записі звучить You were cleaning the changing mat."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing mat.",
+                "uk": "У записі звучить You were cleaning the changing mat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ cleaning the changing mat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:word:nappy-bag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nappy bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:nappy-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nappy bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:nappy-bag:audio",
+            "transcript": "nappy bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:nappy-bag:r1",
+              "targetText": "nappy bag",
+              "meaningByLocale": {
+                "ru": "сумка для подгузников и детских вещей.",
+                "uk": "сумка для підгузків і дитячих речей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nappy bag",
+            "definitionByLocale": {
+              "ru": "сумка для подгузников и детских вещей.",
+              "uk": "сумка для підгузків і дитячих речей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она собирала сумку с детскими вещами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она собирала сумку с детскими вещами",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was packing the nappy bag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирала сумку с детскими вещами",
+            "uk": "Скажіть: Вона збирала сумку з дитячими речами"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "packing",
+            "the",
+            "nappy",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i05:r1",
+            "text": "You were packing the nappy bag."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i05:r2",
+            "text": "She was packing the nappy bag."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i05:r3",
+            "text": "They were packing the nappy bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i05:audio",
+            "transcript": "You were packing the nappy bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i05:r1",
+              "targetText": "You were packing the nappy bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i05:r2",
+              "targetText": "She was packing the nappy bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i05:r3",
+              "targetText": "They were packing the nappy bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were packing the nappy bag.",
+                "uk": "У записі звучить You were packing the nappy bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were packing the nappy bag.",
+                "uk": "У записі звучить You were packing the nappy bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ packing the nappy bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:word:changing-table",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — changing table",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:changing-table:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — changing table",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:changing-table:audio",
+            "transcript": "changing table"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:changing-table:r1",
+              "targetText": "changing table",
+              "meaningByLocale": {
+                "ru": "пеленальный столик.",
+                "uk": "сповивальний столик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "changing table",
+            "definitionByLocale": {
+              "ru": "пеленальный столик.",
+              "uk": "сповивальний столик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они чистили пеленальный столик",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они чистили пеленальный столик",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were cleaning the changing table.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они чистили пеленальный столик",
+            "uk": "Скажіть: Вони чистили сповивальний столик"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "cleaning",
+            "the",
+            "changing",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i08:r1",
+            "text": "You were cleaning the changing table."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i08:r2",
+            "text": "They were cleaning the changing table."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i08:r3",
+            "text": "She was cleaning the changing table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i08:audio",
+            "transcript": "You were cleaning the changing table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i08:r1",
+              "targetText": "You were cleaning the changing table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i08:r2",
+              "targetText": "They were cleaning the changing table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i08:r3",
+              "targetText": "She was cleaning the changing table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing table.",
+                "uk": "У записі звучить You were cleaning the changing table."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing table.",
+                "uk": "У записі звучить You were cleaning the changing table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ cleaning the changing table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:word:baby-monitor",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baby monitor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:baby-monitor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baby monitor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:baby-monitor:audio",
+            "transcript": "baby monitor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:baby-monitor:r1",
+              "targetText": "baby monitor",
+              "meaningByLocale": {
+                "ru": "радионяня или видеоняня.",
+                "uk": "радіоняня або відеоняня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baby monitor",
+            "definitionByLocale": {
+              "ru": "радионяня или видеоняня.",
+              "uk": "радіоняня або відеоняня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы проверяли радионяню",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы проверяли радионяню",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were checking the baby monitor.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы проверяли радионяню",
+            "uk": "Скажіть: Ми перевіряли радіоняню"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "checking",
+            "the",
+            "baby",
+            "monitor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i11:r1",
+            "text": "You were checking the baby monitor."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i11:r2",
+            "text": "We were checking the baby monitor."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i11:r3",
+            "text": "She was checking the baby monitor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i11:audio",
+            "transcript": "You were checking the baby monitor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i11:r1",
+              "targetText": "You were checking the baby monitor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i11:r2",
+              "targetText": "We were checking the baby monitor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i11:r3",
+              "targetText": "She was checking the baby monitor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were checking the baby monitor.",
+                "uk": "У записі звучить You were checking the baby monitor."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were checking the baby monitor.",
+                "uk": "У записі звучить You were checking the baby monitor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ checking the baby monitor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-20:i13:p1",
+              "target": "changing mat",
+              "meaningByLocale": {
+                "ru": "мягкий пеленальный коврик",
+                "uk": "м’який сповивальний килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-20:i13:p2",
+              "target": "nappy bag",
+              "meaningByLocale": {
+                "ru": "сумка для подгузников и детских вещей",
+                "uk": "сумка для підгузків і дитячих речей"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-20:i13:p3",
+              "target": "changing table",
+              "meaningByLocale": {
+                "ru": "пеленальный столик",
+                "uk": "сповивальний столик"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-20:i13:p4",
+              "target": "baby monitor",
+              "meaningByLocale": {
+                "ru": "радионяня или видеоняня",
+                "uk": "радіоняня або відеоняня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "changing mat",
+            "nappy bag",
+            "changing table",
+            "baby monitor"
+          ],
+          "rightColumn": [
+            "мягкий пеленальный коврик",
+            "сумка для подгузников и детских вещей",
+            "пеленальный столик",
+            "радионяня или видеоняня"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i14:audio",
+            "transcript": "The baby was sleeping."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The baby was sleeping.",
+          "orderedTokens": [
+            "The",
+            "baby",
+            "was",
+            "sleeping"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i15:audio",
+            "transcript": "We were getting ready."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We were getting ready.",
+          "orderedTokens": [
+            "We",
+            "were",
+            "getting",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в девять я собирал сумку с детскими вещами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i16:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в девять я собирал сумку с детскими вещами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i16:audio",
+            "transcript": "I was packing the nappy bag at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was packing the nappy bag at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в девять она проверяла радионяню",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в девять она проверяла радионяню",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i17:audio",
+            "transcript": "She was checking the baby monitor at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was checking the baby monitor at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-20:word:changing-mat",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — changing mat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:changing-mat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — changing mat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:changing-mat:audio",
+            "transcript": "changing mat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:changing-mat:r1",
+              "targetText": "changing mat",
+              "meaningByLocale": {
+                "ru": "мягкий пеленальный коврик.",
+                "uk": "м’який сповивальний килимок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "changing mat",
+            "definitionByLocale": {
+              "ru": "мягкий пеленальный коврик.",
+              "uk": "м’який сповивальний килимок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я чистив сповивальний килимок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я чистив сповивальний килимок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was cleaning the changing mat.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я чистил пеленальный коврик",
+            "uk": "Скажіть: Я чистив сповивальний килимок"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "cleaning",
+            "the",
+            "changing",
+            "mat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i02:r1",
+            "text": "You were cleaning the changing mat."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i02:r2",
+            "text": "I was cleaning the changing mat."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i02:r3",
+            "text": "They were cleaning the changing mat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i02:audio",
+            "transcript": "You were cleaning the changing mat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i02:r1",
+              "targetText": "You were cleaning the changing mat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i02:r2",
+              "targetText": "I was cleaning the changing mat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i02:r3",
+              "targetText": "They were cleaning the changing mat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing mat.",
+                "uk": "У записі звучить You were cleaning the changing mat."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing mat.",
+                "uk": "У записі звучить You were cleaning the changing mat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ cleaning the changing mat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:word:nappy-bag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nappy bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:nappy-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nappy bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:nappy-bag:audio",
+            "transcript": "nappy bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:nappy-bag:r1",
+              "targetText": "nappy bag",
+              "meaningByLocale": {
+                "ru": "сумка для подгузников и детских вещей.",
+                "uk": "сумка для підгузків і дитячих речей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nappy bag",
+            "definitionByLocale": {
+              "ru": "сумка для подгузников и детских вещей.",
+              "uk": "сумка для підгузків і дитячих речей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона збирала сумку з дитячими речами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона збирала сумку з дитячими речами",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was packing the nappy bag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирала сумку с детскими вещами",
+            "uk": "Скажіть: Вона збирала сумку з дитячими речами"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "packing",
+            "the",
+            "nappy",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i05:r1",
+            "text": "You were packing the nappy bag."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i05:r2",
+            "text": "She was packing the nappy bag."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i05:r3",
+            "text": "They were packing the nappy bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i05:audio",
+            "transcript": "You were packing the nappy bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i05:r1",
+              "targetText": "You were packing the nappy bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i05:r2",
+              "targetText": "She was packing the nappy bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i05:r3",
+              "targetText": "They were packing the nappy bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were packing the nappy bag.",
+                "uk": "У записі звучить You were packing the nappy bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were packing the nappy bag.",
+                "uk": "У записі звучить You were packing the nappy bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ packing the nappy bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:word:changing-table",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — changing table",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:changing-table:audio"
+        ],
+        "accessibilityLabel": "Картка слова — changing table",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:changing-table:audio",
+            "transcript": "changing table"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:changing-table:r1",
+              "targetText": "changing table",
+              "meaningByLocale": {
+                "ru": "пеленальный столик.",
+                "uk": "сповивальний столик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "changing table",
+            "definitionByLocale": {
+              "ru": "пеленальный столик.",
+              "uk": "сповивальний столик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони чистили сповивальний столик",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони чистили сповивальний столик",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were cleaning the changing table.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они чистили пеленальный столик",
+            "uk": "Скажіть: Вони чистили сповивальний столик"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "cleaning",
+            "the",
+            "changing",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i08:r1",
+            "text": "You were cleaning the changing table."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i08:r2",
+            "text": "They were cleaning the changing table."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i08:r3",
+            "text": "She was cleaning the changing table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i08:audio",
+            "transcript": "You were cleaning the changing table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i08:r1",
+              "targetText": "You were cleaning the changing table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i08:r2",
+              "targetText": "They were cleaning the changing table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i08:r3",
+              "targetText": "She was cleaning the changing table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing table.",
+                "uk": "У записі звучить You were cleaning the changing table."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the changing table.",
+                "uk": "У записі звучить You were cleaning the changing table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ cleaning the changing table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:word:baby-monitor",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baby monitor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:word:baby-monitor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baby monitor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:word:baby-monitor:audio",
+            "transcript": "baby monitor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:word:baby-monitor:r1",
+              "targetText": "baby monitor",
+              "meaningByLocale": {
+                "ru": "радионяня или видеоняня.",
+                "uk": "радіоняня або відеоняня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baby monitor",
+            "definitionByLocale": {
+              "ru": "радионяня или видеоняня.",
+              "uk": "радіоняня або відеоняня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми перевіряли радіоняню",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми перевіряли радіоняню",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were checking the baby monitor.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы проверяли радионяню",
+            "uk": "Скажіть: Ми перевіряли радіоняню"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "checking",
+            "the",
+            "baby",
+            "monitor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i11:r1",
+            "text": "You were checking the baby monitor."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i11:r2",
+            "text": "We were checking the baby monitor."
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i11:r3",
+            "text": "She was checking the baby monitor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i11:audio",
+            "transcript": "You were checking the baby monitor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-20:i11:r1",
+              "targetText": "You were checking the baby monitor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i11:r2",
+              "targetText": "We were checking the baby monitor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i11:r3",
+              "targetText": "She was checking the baby monitor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were checking the baby monitor.",
+                "uk": "У записі звучить You were checking the baby monitor."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were checking the baby monitor.",
+                "uk": "У записі звучить You were checking the baby monitor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-20:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-20:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ checking the baby monitor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-20:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-20:i13:p1",
+              "target": "changing mat",
+              "meaningByLocale": {
+                "ru": "мягкий пеленальный коврик",
+                "uk": "м’який сповивальний килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-20:i13:p2",
+              "target": "nappy bag",
+              "meaningByLocale": {
+                "ru": "сумка для подгузников и детских вещей",
+                "uk": "сумка для підгузків і дитячих речей"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-20:i13:p3",
+              "target": "changing table",
+              "meaningByLocale": {
+                "ru": "пеленальный столик",
+                "uk": "сповивальний столик"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-20:i13:p4",
+              "target": "baby monitor",
+              "meaningByLocale": {
+                "ru": "радионяня или видеоняня",
+                "uk": "радіоняня або відеоняня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "changing mat",
+            "nappy bag",
+            "changing table",
+            "baby monitor"
+          ],
+          "rightColumn": [
+            "м’який сповивальний килимок",
+            "сумка для підгузків і дитячих речей",
+            "сповивальний столик",
+            "радіоняня або відеоняня"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i14:audio",
+            "transcript": "The baby was sleeping."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The baby was sleeping.",
+          "orderedTokens": [
+            "The",
+            "baby",
+            "was",
+            "sleeping"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i15:audio",
+            "transcript": "We were getting ready."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We were getting ready.",
+          "orderedTokens": [
+            "We",
+            "were",
+            "getting",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о дев’ятій я збирав сумку з дитячими речами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i16:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о дев’ятій я збирав сумку з дитячими речами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i16:audio",
+            "transcript": "I was packing the nappy bag at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was packing the nappy bag at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-20:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о дев’ятій вона перевіряла радіоняню",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о дев’ятій вона перевіряла радіоняню",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-20:i17:audio",
+            "transcript": "She was checking the baby monitor at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was checking the baby monitor at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-20:word:changing-mat",
+      "correctText": "changing mat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i01",
+      "correctText": "I was cleaning the changing mat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i02",
+      "correctText": "You were cleaning the changing mat.",
+      "correctResponseId": "en:lesson-14:session-20:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-20:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:word:nappy-bag",
+      "correctText": "nappy bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i04",
+      "correctText": "She was packing the nappy bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i05",
+      "correctText": "You were packing the nappy bag.",
+      "correctResponseId": "en:lesson-14:session-20:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-20:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:word:changing-table",
+      "correctText": "changing table",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i07",
+      "correctText": "They were cleaning the changing table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i08",
+      "correctText": "You were cleaning the changing table.",
+      "correctResponseId": "en:lesson-14:session-20:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-20:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:word:baby-monitor",
+      "correctText": "baby monitor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i10",
+      "correctText": "We were checking the baby monitor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i11",
+      "correctText": "You were checking the baby monitor.",
+      "correctResponseId": "en:lesson-14:session-20:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-20:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i14",
+      "correctText": "The baby was sleeping.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i15",
+      "correctText": "We were getting ready.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i16",
+      "correctText": "I was packing the nappy bag at nine yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:i17",
+      "correctText": "She was checking the baby monitor at nine yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

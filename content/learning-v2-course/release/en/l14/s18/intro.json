@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous as background",
+    "uk": "review: Past Continuous as background"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маракуйя",
+        "uk": "Маракуя"
+      },
+      "bodyByLocale": {
+        "ru": "Passion fruit — маракуйя. На кухне все были заняты: I was cutting a passion fruit. — Я разрезал маракуйю в тот момент. Выберите описание процесса в прошлом.",
+        "uk": "Passion fruit — маракуя. На кухні всі були зайняті: I was cutting a passion fruit. — Я розрізав маракую в той момент. Виберіть опис процесу в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-18:intro1:r1",
+              "text": "I was cutting a passion fruit."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro1:r2",
+              "text": "I am cutting a passion fruit."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro1:r3",
+              "text": "I were cutting a passion fruit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-18:intro1:r1",
+              "text": "I was cutting a passion fruit."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro1:r2",
+              "text": "I am cutting a passion fruit."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro1:r3",
+              "text": "I were cutting a passion fruit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Питахайя и личи",
+        "uk": "Пітахая й лічі"
+      },
+      "bodyByLocale": {
+        "ru": "Dragon fruit — питахайя, яркий плод с чешуйчатой кожурой; lychee — личи, маленький плод с белой мякотью под тонкой твёрдой кожурой. She was peeling a lychee. — Она чистила личи. Выберите личи.",
+        "uk": "Dragon fruit — пітахая, яскравий плід із лускатою шкіркою; lychee — лічі, невеликий плід із білим м’якушем під тонкою твердою шкіркою. She was peeling a lychee. — Вона чистила лічі. Виберіть лічі."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-18:intro2:r1",
+              "text": "She was peeling a lychee."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro2:r2",
+              "text": "She was cutting a dragon fruit."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro2:r3",
+              "text": "She were peeling a lychee."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-18:intro2:r1",
+              "text": "She was peeling a lychee."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro2:r2",
+              "text": "She was cutting a dragon fruit."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro2:r3",
+              "text": "She were peeling a lychee."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Папайя",
+        "uk": "Папая"
+      },
+      "bodyByLocale": {
+        "ru": "Papaya — папайя. They were washing a papaya. — Они мыли папайю. Это фон: что было в процессе на кухне перед приходом гостей. Выберите прошлый процесс.",
+        "uk": "Papaya — папая. They were washing a papaya. — Вони мили папаю. Це тло: що тривало на кухні перед приходом гостей. Виберіть минулий процес."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-18:intro3:r1",
+              "text": "They were washing a papaya."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro3:r2",
+              "text": "They are washing a papaya."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro3:r3",
+              "text": "They was washing a papaya."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-18:intro3:r1",
+              "text": "They were washing a papaya."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro3:r2",
+              "text": "They are washing a papaya."
+            },
+            {
+              "responseId": "en:lesson-14:session-18:intro3:r3",
+              "text": "They was washing a papaya."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "28dabf272008b276270321c6877af8cf9a621e474728156955f61c14a0725b63"
+}

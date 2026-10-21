@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-14:word:dolphin",
+    "correctText": "dolphin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i01",
+    "correctText": "Were you watching a dolphin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i02",
+    "correctText": "Were you watching a dolphin?",
+    "correctResponseId": "en:lesson-14:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:word:whale",
+    "correctText": "whale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i04",
+    "correctText": "Was he watching a whale?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i05",
+    "correctText": "Was he watching a whale?",
+    "correctResponseId": "en:lesson-14:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:word:shark",
+    "correctText": "shark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i07",
+    "correctText": "They weren’t watching a shark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i08",
+    "correctText": "They weren’t watching a shark.",
+    "correctResponseId": "en:lesson-14:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i09",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:word:penguin",
+    "correctText": "penguin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i10",
+    "correctText": "I wasn’t watching a penguin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i11",
+    "correctText": "I wasn’t watching a penguin.",
+    "correctResponseId": "en:lesson-14:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i12",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i13",
+    "correctText": "en:lesson-14:session-14:i13:p1=dolphin\nen:lesson-14:session-14:i13:p2=whale\nen:lesson-14:session-14:i13:p3=shark\nen:lesson-14:session-14:i13:p4=penguin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i14",
+    "correctText": "Were you watching the film?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i15",
+    "correctText": "I wasn’t watching TV at eight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i16",
+    "correctText": "Were you watching a whale at eight yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-14:i17",
+    "correctText": "I wasn’t watching a shark at eight yesterday.",
+    "correctResponseId": null
+  }
+]

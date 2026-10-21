@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-13:word:snowflake",
+    "correctText": "snowflake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i01",
+    "correctText": "Were you looking at a snowflake?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i02",
+    "correctText": "Were you looking at a snowflake?",
+    "correctResponseId": "en:lesson-14:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:word:snowman",
+    "correctText": "snowman",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i04",
+    "correctText": "Was he building a snowman?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i05",
+    "correctText": "Was he building a snowman?",
+    "correctResponseId": "en:lesson-14:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:word:snowdrift",
+    "correctText": "snowdrift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i07",
+    "correctText": "They weren’t walking through the snowdrift.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i08",
+    "correctText": "They weren’t walking through the snowdrift.",
+    "correctResponseId": "en:lesson-14:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i09",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:word:snowstorm",
+    "correctText": "snowstorm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i10",
+    "correctText": "I wasn’t driving in the snowstorm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i11",
+    "correctText": "I wasn’t driving in the snowstorm.",
+    "correctResponseId": "en:lesson-14:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i12",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i13",
+    "correctText": "en:lesson-14:session-13:i13:p1=snowflake\nen:lesson-14:session-13:i13:p2=snowman\nen:lesson-14:session-13:i13:p3=snowdrift\nen:lesson-14:session-13:i13:p4=snowstorm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i14",
+    "correctText": "Were you walking at two?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i15",
+    "correctText": "I wasn’t driving at two.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i16",
+    "correctText": "Were you building a snowman at two yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-13:i17",
+    "correctText": "I wasn’t walking through the snowdrift at two yesterday.",
+    "correctResponseId": null
+  }
+]

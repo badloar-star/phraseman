@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-15:word:woodpecker",
+    "correctText": "woodpecker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i01",
+    "correctText": "Were you taking a photo of the woodpecker?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i02",
+    "correctText": "Were you taking a photo of the woodpecker?",
+    "correctResponseId": "en:lesson-14:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:word:owl",
+    "correctText": "owl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i04",
+    "correctText": "Was he watching the owl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i05",
+    "correctText": "Was he watching the owl?",
+    "correctResponseId": "en:lesson-14:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:word:magpie",
+    "correctText": "magpie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i07",
+    "correctText": "They weren’t watching the magpie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i08",
+    "correctText": "They weren’t watching the magpie.",
+    "correctResponseId": "en:lesson-14:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i09",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:word:robin",
+    "correctText": "robin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i10",
+    "correctText": "I wasn’t watching the robin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i11",
+    "correctText": "I wasn’t watching the robin.",
+    "correctResponseId": "en:lesson-14:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i12",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i13",
+    "correctText": "en:lesson-14:session-15:i13:p1=woodpecker\nen:lesson-14:session-15:i13:p2=owl\nen:lesson-14:session-15:i13:p3=magpie\nen:lesson-14:session-15:i13:p4=robin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i14",
+    "correctText": "Were you taking photos at ten?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i15",
+    "correctText": "I wasn’t watching the birds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i16",
+    "correctText": "Were you taking a photo of the owl at ten yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-15:i17",
+    "correctText": "I wasn’t watching the magpie at ten yesterday.",
+    "correctResponseId": null
+  }
+]

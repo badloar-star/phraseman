@@ -1,0 +1,2313 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-19:word:spinach",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spinach",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:spinach:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spinach",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:spinach:audio",
+            "transcript": "spinach"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:spinach:r1",
+              "targetText": "spinach",
+              "meaningByLocale": {
+                "ru": "шпинат.",
+                "uk": "шпинат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spinach",
+            "definitionByLocale": {
+              "ru": "шпинат.",
+              "uk": "шпинат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я мыл шпинат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я мыл шпинат",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was washing spinach.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я мыл шпинат",
+            "uk": "Скажіть: Я мив шпинат"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "washing",
+            "spinach"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i02:r1",
+            "text": "You were washing spinach."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i02:r2",
+            "text": "I was washing spinach."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i02:r3",
+            "text": "They were washing spinach."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i02:audio",
+            "transcript": "You were washing spinach."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i02:r1",
+              "targetText": "You were washing spinach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i02:r2",
+              "targetText": "I was washing spinach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i02:r3",
+              "targetText": "They were washing spinach.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing spinach.",
+                "uk": "У записі звучить You were washing spinach."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing spinach.",
+                "uk": "У записі звучить You were washing spinach."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ washing spinach.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:word:kale",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kale",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:kale:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kale",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:kale:audio",
+            "transcript": "kale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:kale:r1",
+              "targetText": "kale",
+              "meaningByLocale": {
+                "ru": "листовая кудрявая капуста.",
+                "uk": "листова кучерява капуста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kale",
+            "definitionByLocale": {
+              "ru": "листовая кудрявая капуста.",
+              "uk": "листова кучерява капуста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они мыли листовую капусту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они мыли листовую капусту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were washing kale.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они мыли листовую капусту",
+            "uk": "Скажіть: Вони мили листову капусту"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "washing",
+            "kale"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i05:r1",
+            "text": "You were washing kale."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i05:r2",
+            "text": "They were washing kale."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i05:r3",
+            "text": "She was washing kale."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i05:audio",
+            "transcript": "You were washing kale."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i05:r1",
+              "targetText": "You were washing kale.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i05:r2",
+              "targetText": "They were washing kale.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i05:r3",
+              "targetText": "She was washing kale.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing kale.",
+                "uk": "У записі звучить You were washing kale."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing kale.",
+                "uk": "У записі звучить You were washing kale."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ washing kale.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:word:asparagus",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — asparagus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:asparagus:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — asparagus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:asparagus:audio",
+            "transcript": "asparagus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:asparagus:r1",
+              "targetText": "asparagus",
+              "meaningByLocale": {
+                "ru": "спаржа.",
+                "uk": "спаржа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "asparagus",
+            "definitionByLocale": {
+              "ru": "спаржа.",
+              "uk": "спаржа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она готовила спаржу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она готовила спаржу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was cooking asparagus.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она готовила спаржу",
+            "uk": "Скажіть: Вона готувала спаржу"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "cooking",
+            "asparagus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i08:r1",
+            "text": "You were cooking asparagus."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i08:r2",
+            "text": "She was cooking asparagus."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i08:r3",
+            "text": "They were cooking asparagus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i08:audio",
+            "transcript": "You were cooking asparagus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i08:r1",
+              "targetText": "You were cooking asparagus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i08:r2",
+              "targetText": "She was cooking asparagus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i08:r3",
+              "targetText": "They were cooking asparagus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking asparagus.",
+                "uk": "У записі звучить You were cooking asparagus."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking asparagus.",
+                "uk": "У записі звучить You were cooking asparagus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ cooking asparagus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:word:red-cabbage",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — red cabbage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:red-cabbage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — red cabbage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:red-cabbage:audio",
+            "transcript": "red cabbage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:red-cabbage:r1",
+              "targetText": "red cabbage",
+              "meaningByLocale": {
+                "ru": "краснокочанная капуста.",
+                "uk": "червонокачанна капуста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "red cabbage",
+            "definitionByLocale": {
+              "ru": "краснокочанная капуста.",
+              "uk": "червонокачанна капуста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы резали краснокочанную капусту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы резали краснокочанную капусту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were cutting red cabbage.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы резали краснокочанную капусту",
+            "uk": "Скажіть: Ми різали червонокачанну капусту"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "cutting",
+            "red",
+            "cabbage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i11:r1",
+            "text": "You were cutting red cabbage."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i11:r2",
+            "text": "We were cutting red cabbage."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i11:r3",
+            "text": "She was cutting red cabbage."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i11:audio",
+            "transcript": "You were cutting red cabbage."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i11:r1",
+              "targetText": "You were cutting red cabbage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i11:r2",
+              "targetText": "We were cutting red cabbage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i11:r3",
+              "targetText": "She was cutting red cabbage.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting red cabbage.",
+                "uk": "У записі звучить You were cutting red cabbage."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting red cabbage.",
+                "uk": "У записі звучить You were cutting red cabbage."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ cutting red cabbage.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-19:i13:p1",
+              "target": "spinach",
+              "meaningByLocale": {
+                "ru": "шпинат",
+                "uk": "шпинат"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-19:i13:p2",
+              "target": "kale",
+              "meaningByLocale": {
+                "ru": "листовая кудрявая капуста",
+                "uk": "листова кучерява капуста"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-19:i13:p3",
+              "target": "asparagus",
+              "meaningByLocale": {
+                "ru": "спаржа",
+                "uk": "спаржа"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-19:i13:p4",
+              "target": "red cabbage",
+              "meaningByLocale": {
+                "ru": "краснокочанная капуста",
+                "uk": "червонокачанна капуста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spinach",
+            "kale",
+            "asparagus",
+            "red cabbage"
+          ],
+          "rightColumn": [
+            "шпинат",
+            "листовая кудрявая капуста",
+            "спаржа",
+            "краснокочанная капуста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i14:audio",
+            "transcript": "Everyone was working in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Everyone was working in the kitchen.",
+          "orderedTokens": [
+            "Everyone",
+            "was",
+            "working",
+            "in",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i15:audio",
+            "transcript": "I was cooking dinner."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was cooking dinner.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "cooking",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в шесть я готовил спаржу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в шесть я готовил спаржу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i16:audio",
+            "transcript": "I was cooking asparagus at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was cooking asparagus at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в шесть она мыла шпинат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в шесть она мыла шпинат",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i17:audio",
+            "transcript": "She was washing spinach at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was washing spinach at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-19:word:spinach",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spinach",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:spinach:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spinach",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:spinach:audio",
+            "transcript": "spinach"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:spinach:r1",
+              "targetText": "spinach",
+              "meaningByLocale": {
+                "ru": "шпинат.",
+                "uk": "шпинат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spinach",
+            "definitionByLocale": {
+              "ru": "шпинат.",
+              "uk": "шпинат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я мив шпинат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я мив шпинат",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was washing spinach.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я мыл шпинат",
+            "uk": "Скажіть: Я мив шпинат"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "washing",
+            "spinach"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i02:r1",
+            "text": "You were washing spinach."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i02:r2",
+            "text": "I was washing spinach."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i02:r3",
+            "text": "They were washing spinach."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i02:audio",
+            "transcript": "You were washing spinach."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i02:r1",
+              "targetText": "You were washing spinach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i02:r2",
+              "targetText": "I was washing spinach.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i02:r3",
+              "targetText": "They were washing spinach.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing spinach.",
+                "uk": "У записі звучить You were washing spinach."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing spinach.",
+                "uk": "У записі звучить You were washing spinach."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ washing spinach.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:word:kale",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kale",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:kale:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kale",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:kale:audio",
+            "transcript": "kale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:kale:r1",
+              "targetText": "kale",
+              "meaningByLocale": {
+                "ru": "листовая кудрявая капуста.",
+                "uk": "листова кучерява капуста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kale",
+            "definitionByLocale": {
+              "ru": "листовая кудрявая капуста.",
+              "uk": "листова кучерява капуста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони мили листову капусту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони мили листову капусту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were washing kale.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они мыли листовую капусту",
+            "uk": "Скажіть: Вони мили листову капусту"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "washing",
+            "kale"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i05:r1",
+            "text": "You were washing kale."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i05:r2",
+            "text": "They were washing kale."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i05:r3",
+            "text": "She was washing kale."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i05:audio",
+            "transcript": "You were washing kale."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i05:r1",
+              "targetText": "You were washing kale.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i05:r2",
+              "targetText": "They were washing kale.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i05:r3",
+              "targetText": "She was washing kale.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing kale.",
+                "uk": "У записі звучить You were washing kale."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing kale.",
+                "uk": "У записі звучить You were washing kale."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ washing kale.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:word:asparagus",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — asparagus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:asparagus:audio"
+        ],
+        "accessibilityLabel": "Картка слова — asparagus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:asparagus:audio",
+            "transcript": "asparagus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:asparagus:r1",
+              "targetText": "asparagus",
+              "meaningByLocale": {
+                "ru": "спаржа.",
+                "uk": "спаржа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "asparagus",
+            "definitionByLocale": {
+              "ru": "спаржа.",
+              "uk": "спаржа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона готувала спаржу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона готувала спаржу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was cooking asparagus.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она готовила спаржу",
+            "uk": "Скажіть: Вона готувала спаржу"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "cooking",
+            "asparagus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i08:r1",
+            "text": "You were cooking asparagus."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i08:r2",
+            "text": "She was cooking asparagus."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i08:r3",
+            "text": "They were cooking asparagus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i08:audio",
+            "transcript": "You were cooking asparagus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i08:r1",
+              "targetText": "You were cooking asparagus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i08:r2",
+              "targetText": "She was cooking asparagus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i08:r3",
+              "targetText": "They were cooking asparagus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking asparagus.",
+                "uk": "У записі звучить You were cooking asparagus."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking asparagus.",
+                "uk": "У записі звучить You were cooking asparagus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ cooking asparagus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:word:red-cabbage",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — red cabbage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:word:red-cabbage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — red cabbage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:word:red-cabbage:audio",
+            "transcript": "red cabbage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:word:red-cabbage:r1",
+              "targetText": "red cabbage",
+              "meaningByLocale": {
+                "ru": "краснокочанная капуста.",
+                "uk": "червонокачанна капуста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "red cabbage",
+            "definitionByLocale": {
+              "ru": "краснокочанная капуста.",
+              "uk": "червонокачанна капуста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми різали червонокачанну капусту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми різали червонокачанну капусту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were cutting red cabbage.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы резали краснокочанную капусту",
+            "uk": "Скажіть: Ми різали червонокачанну капусту"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "cutting",
+            "red",
+            "cabbage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i11:r1",
+            "text": "You were cutting red cabbage."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i11:r2",
+            "text": "We were cutting red cabbage."
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i11:r3",
+            "text": "She was cutting red cabbage."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i11:audio",
+            "transcript": "You were cutting red cabbage."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-19:i11:r1",
+              "targetText": "You were cutting red cabbage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i11:r2",
+              "targetText": "We were cutting red cabbage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i11:r3",
+              "targetText": "She was cutting red cabbage.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting red cabbage.",
+                "uk": "У записі звучить You were cutting red cabbage."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting red cabbage.",
+                "uk": "У записі звучить You were cutting red cabbage."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-19:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-19:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ cutting red cabbage.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-19:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-19:i13:p1",
+              "target": "spinach",
+              "meaningByLocale": {
+                "ru": "шпинат",
+                "uk": "шпинат"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-19:i13:p2",
+              "target": "kale",
+              "meaningByLocale": {
+                "ru": "листовая кудрявая капуста",
+                "uk": "листова кучерява капуста"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-19:i13:p3",
+              "target": "asparagus",
+              "meaningByLocale": {
+                "ru": "спаржа",
+                "uk": "спаржа"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-19:i13:p4",
+              "target": "red cabbage",
+              "meaningByLocale": {
+                "ru": "краснокочанная капуста",
+                "uk": "червонокачанна капуста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spinach",
+            "kale",
+            "asparagus",
+            "red cabbage"
+          ],
+          "rightColumn": [
+            "шпинат",
+            "листова кучерява капуста",
+            "спаржа",
+            "червонокачанна капуста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i14:audio",
+            "transcript": "Everyone was working in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Everyone was working in the kitchen.",
+          "orderedTokens": [
+            "Everyone",
+            "was",
+            "working",
+            "in",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i15:audio",
+            "transcript": "I was cooking dinner."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was cooking dinner.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "cooking",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о шостій я готував спаржу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о шостій я готував спаржу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i16:audio",
+            "transcript": "I was cooking asparagus at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was cooking asparagus at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о шостій вона мила шпинат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о шостій вона мила шпинат",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-19:i17:audio",
+            "transcript": "She was washing spinach at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was washing spinach at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-19:word:spinach",
+      "correctText": "spinach",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i01",
+      "correctText": "I was washing spinach.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i02",
+      "correctText": "You were washing spinach.",
+      "correctResponseId": "en:lesson-14:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:word:kale",
+      "correctText": "kale",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i04",
+      "correctText": "They were washing kale.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i05",
+      "correctText": "You were washing kale.",
+      "correctResponseId": "en:lesson-14:session-19:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-19:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:word:asparagus",
+      "correctText": "asparagus",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i07",
+      "correctText": "She was cooking asparagus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i08",
+      "correctText": "You were cooking asparagus.",
+      "correctResponseId": "en:lesson-14:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:word:red-cabbage",
+      "correctText": "red cabbage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i10",
+      "correctText": "We were cutting red cabbage.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i11",
+      "correctText": "You were cutting red cabbage.",
+      "correctResponseId": "en:lesson-14:session-19:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i14",
+      "correctText": "Everyone was working in the kitchen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i15",
+      "correctText": "I was cooking dinner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i16",
+      "correctText": "I was cooking asparagus at six yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-19:i17",
+      "correctText": "She was washing spinach at six yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

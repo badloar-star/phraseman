@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-17:word:flat-tyre",
+    "correctText": "flat tyre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i01",
+    "correctText": "I was changing a flat tyre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i02",
+    "correctText": "You were changing a flat tyre.",
+    "correctResponseId": "en:lesson-14:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:word:spare-tyre",
+    "correctText": "spare tyre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i04",
+    "correctText": "They were looking for the spare tyre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i05",
+    "correctText": "You were looking for the spare tyre.",
+    "correctResponseId": "en:lesson-14:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:word:windscreen-wiper",
+    "correctText": "windscreen wiper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i07",
+    "correctText": "He was checking the windscreen wiper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i08",
+    "correctText": "You were checking the windscreen wiper.",
+    "correctResponseId": "en:lesson-14:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:word:rear-view-mirror",
+    "correctText": "rear-view mirror",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i10",
+    "correctText": "We were cleaning the rear-view mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i11",
+    "correctText": "You were cleaning the rear-view mirror.",
+    "correctResponseId": "en:lesson-14:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i13",
+    "correctText": "en:lesson-14:session-17:i13:p1=flat tyre\nen:lesson-14:session-17:i13:p2=spare tyre\nen:lesson-14:session-17:i13:p3=windscreen wiper\nen:lesson-14:session-17:i13:p4=rear-view mirror",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i14",
+    "correctText": "It was raining that morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i15",
+    "correctText": "People were waiting outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i16",
+    "correctText": "I was changing a flat tyre at six yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-17:i17",
+    "correctText": "She was looking for the spare tyre at six yesterday.",
+    "correctResponseId": null
+  }
+]

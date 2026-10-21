@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "Past Continuous as background of a past story",
+    "uk": "Past Continuous as background of a past story"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже происходило",
+        "uk": "Що вже відбувалося"
+      },
+      "bodyByLocale": {
+        "ru": "Flat tyre — спущенная шина. Начало истории: It was raining. I was changing a flat tyre. A taxi stopped. — Шёл дождь. Я менял спущенную шину. Остановилось такси. Was changing описывает действие, которое уже шло, — фон для остановки такси. Выберите фон: я был занят заменой.",
+        "uk": "Flat tyre — спущена шина. Початок історії: It was raining. I was changing a flat tyre. A taxi stopped. — Ішов дощ. Я міняв спущену шину. Зупинилося таксі. Was changing описує дію, яка вже тривала, — тло для зупинки таксі. Виберіть тло: я був зайнятий заміною."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-17:intro1:r1",
+              "text": "I was changing a flat tyre."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro1:r2",
+              "text": "I changed a flat tyre."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro1:r3",
+              "text": "I am changing a flat tyre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-17:intro1:r1",
+              "text": "I was changing a flat tyre."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro1:r2",
+              "text": "I changed a flat tyre."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro1:r3",
+              "text": "I am changing a flat tyre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Запасная шина и дворник",
+        "uk": "Запасна шина й двірник"
+      },
+      "bodyByLocale": {
+        "ru": "Spare tyre — запасная шина; windscreen wiper — стеклоочиститель, «дворник» на лобовом стекле. He was checking the windscreen wiper. — Он проверял дворник. Это ещё одна часть картины того момента. Выберите дворник, а не запасную шину.",
+        "uk": "Spare tyre — запасна шина; windscreen wiper — склоочисник, «двірник» на лобовому склі. He was checking the windscreen wiper. — Він перевіряв двірник. Це ще одна частина картини того моменту. Виберіть двірник, а не запасну шину."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-17:intro2:r1",
+              "text": "He was checking the windscreen wiper."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro2:r2",
+              "text": "He was checking the spare tyre."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro2:r3",
+              "text": "He were checking the windscreen wiper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-17:intro2:r1",
+              "text": "He was checking the windscreen wiper."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro2:r2",
+              "text": "He was checking the spare tyre."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro2:r3",
+              "text": "He were checking the windscreen wiper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Зеркало в салоне",
+        "uk": "Дзеркало в салоні"
+      },
+      "bodyByLocale": {
+        "ru": "Rear-view mirror — зеркало заднего вида в салоне машины. We were cleaning the rear-view mirror. — Мы протирали зеркало в салоне. С were cleaning представляем действие в процессе; затем можно рассказать, что произошло. Выберите фон в прошлом.",
+        "uk": "Rear-view mirror — дзеркало заднього виду в салоні машини. We were cleaning the rear-view mirror. — Ми протирали дзеркало в салоні. З were cleaning уявляємо дію в процесі; потім можна розповісти, що сталося. Виберіть тло в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-17:intro3:r1",
+              "text": "We were cleaning the rear-view mirror."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro3:r2",
+              "text": "We are cleaning the rear-view mirror."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro3:r3",
+              "text": "We was cleaning the rear-view mirror."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-17:intro3:r1",
+              "text": "We were cleaning the rear-view mirror."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro3:r2",
+              "text": "We are cleaning the rear-view mirror."
+            },
+            {
+              "responseId": "en:lesson-14:session-17:intro3:r3",
+              "text": "We was cleaning the rear-view mirror."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "673ece57cfe9fc4ef5f8b202f421ac132cbf4189c44db5df0e31384bf5407a4c"
+}

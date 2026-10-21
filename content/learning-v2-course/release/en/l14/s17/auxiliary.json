@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-17:intro1:r2": {
+          "ru": "Changed сообщает о действии целиком, а здесь нужен процесс в тот момент.",
+          "uk": "Changed повідомляє про дію цілком, а тут потрібен процес у той момент."
+        },
+        "en:lesson-14:session-17:intro1:r3": {
+          "ru": "Am changing — сейчас, история в прошлом.",
+          "uk": "Am changing — зараз, історія в минулому."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-17:intro2:r2": {
+          "ru": "Это запасная шина.",
+          "uk": "Це запасна шина."
+        },
+        "en:lesson-14:session-17:intro2:r3": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-17:intro3:r2": {
+          "ru": "Are cleaning — сейчас.",
+          "uk": "Are cleaning — зараз."
+        },
+        "en:lesson-14:session-17:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dccfc71e18bafc157a900885e9c19ea638d0a42118988d329ebf29afbb93749a"
+}

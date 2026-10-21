@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-18:intro1:r2": {
+          "ru": "Am cutting — сейчас.",
+          "uk": "Am cutting — зараз."
+        },
+        "en:lesson-14:session-18:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-18:intro2:r2": {
+          "ru": "Это разрезание питахайи.",
+          "uk": "Це розрізання пітахаї."
+        },
+        "en:lesson-14:session-18:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-18:intro3:r2": {
+          "ru": "Are washing — сейчас.",
+          "uk": "Are washing — зараз."
+        },
+        "en:lesson-14:session-18:intro3:r3": {
+          "ru": "С they нужна were.",
+          "uk": "З they потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6ca939c12dfb01b638332c825a3158305e5b743b3bfedc97a00d8b91338814d5"
+}

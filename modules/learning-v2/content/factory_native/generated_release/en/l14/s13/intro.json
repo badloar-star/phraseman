@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous questions and negatives",
+    "uk": "review: Past Continuous questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Снежинка",
+        "uk": "Сніжинка"
+      },
+      "bodyByLocale": {
+        "ru": "Snowflake — снежинка. Were you looking at a snowflake? — Ты рассматривал снежинку? Выберите вопрос о вчерашнем моменте.",
+        "uk": "Snowflake — сніжинка. Were you looking at a snowflake? — Ти розглядав сніжинку? Виберіть запитання про вчорашній момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-13:intro1:r1",
+              "text": "Were you looking at a snowflake?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro1:r2",
+              "text": "Are you looking at a snowflake?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro1:r3",
+              "text": "Did you looking at a snowflake?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-13:intro1:r1",
+              "text": "Were you looking at a snowflake?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro1:r2",
+              "text": "Are you looking at a snowflake?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro1:r3",
+              "text": "Did you looking at a snowflake?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Снеговик и сугроб",
+        "uk": "Сніговик і замет"
+      },
+      "bodyByLocale": {
+        "ru": "Snowman — снеговик; snowdrift — сугроб. Was he building a snowman? — Он лепил снеговика? Выберите вопрос о снеговике.",
+        "uk": "Snowman — сніговик; snowdrift — замет. Was he building a snowman? — Він ліпив сніговика? Виберіть запитання про сніговика."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-13:intro2:r1",
+              "text": "Was he building a snowman?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro2:r2",
+              "text": "Was he walking through a snowdrift?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro2:r3",
+              "text": "Were he building a snowman?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-13:intro2:r1",
+              "text": "Was he building a snowman?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro2:r2",
+              "text": "Was he walking through a snowdrift?"
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro2:r3",
+              "text": "Were he building a snowman?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Метель",
+        "uk": "Заметіль"
+      },
+      "bodyByLocale": {
+        "ru": "Snowstorm — сильная снежная буря, метель. I wasn’t driving in the snowstorm. — Я не ехал за рулём в метель. Выберите отрицание.",
+        "uk": "Snowstorm — сильна снігова буря, заметіль. I wasn’t driving in the snowstorm. — Я не їхав за кермом у заметіль. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-13:intro3:r1",
+              "text": "I wasn’t driving in the snowstorm."
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro3:r2",
+              "text": "I was driving in the snowstorm."
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro3:r3",
+              "text": "I weren’t driving in the snowstorm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-13:intro3:r1",
+              "text": "I wasn’t driving in the snowstorm."
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro3:r2",
+              "text": "I was driving in the snowstorm."
+            },
+            {
+              "responseId": "en:lesson-14:session-13:intro3:r3",
+              "text": "I weren’t driving in the snowstorm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "696f6c72c475575c28359a5f0f78769813ba0144cad6dbcfc1309143c5207594"
+}

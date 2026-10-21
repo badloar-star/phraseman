@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-20:intro1:r2": {
+          "ru": "Am cleaning — сейчас.",
+          "uk": "Am cleaning — зараз."
+        },
+        "en:lesson-14:session-20:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-20:intro2:r2": {
+          "ru": "Это чистка столика.",
+          "uk": "Це чищення столика."
+        },
+        "en:lesson-14:session-20:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-20:intro3:r2": {
+          "ru": "Are checking — сейчас.",
+          "uk": "Are checking — зараз."
+        },
+        "en:lesson-14:session-20:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e4e146b267432714d0ca12e2eb76845a3e0081a448c34c68ab04ae30446d4c30"
+}

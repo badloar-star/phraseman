@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-16:intro1:r2": {
+          "ru": "Are changing — сейчас.",
+          "uk": "Are changing — зараз."
+        },
+        "en:lesson-14:session-16:intro1:r3": {
+          "ru": "Нужна Were you changing.",
+          "uk": "Потрібна Were you changing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-16:intro2:r2": {
+          "ru": "Это подставка для нот.",
+          "uk": "Це підставка для нот."
+        },
+        "en:lesson-14:session-16:intro2:r3": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-16:intro3:r2": {
+          "ru": "Was reading утверждает действие.",
+          "uk": "Was reading стверджує дію."
+        },
+        "en:lesson-14:session-16:intro3:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "94db6df0737d1784c4d6dc847e859c86af79fe6ecc61ad6691afb5259ff21e43"
+}

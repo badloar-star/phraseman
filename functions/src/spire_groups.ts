@@ -33,7 +33,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 import { normalizeStars, starsWeekEarned } from './stars_ledger';
-import { isAdminGrantActive, isStorePremiumActive, isVipActive } from './premium_status';
+import { isRealPlusActive } from './premium_status';
 import {
   SPIRE_ROOM_SIZE,
   spireCohortDay,
@@ -77,8 +77,8 @@ type SpireMember = {
  * вводный 72-часовой доступ (isGiftAccessActive) кольца НЕ даёт — так же решает клиент (isPremium || isVip || isPro).
  */
 export function spireIsPlusOf(userData: Record<string, unknown> | undefined, nowMs: number): boolean {
-  const progress = (userData?.progress ?? {}) as Record<string, unknown>;
-  return isStorePremiumActive(progress, nowMs) || isAdminGrantActive(progress, nowMs) || isVipActive(progress, nowMs);
+  // Одно правило на сервере: isRealPlusActive (premium_status.ts) — его же пишет public_profiles.isPlus.
+  return isRealPlusActive((userData?.progress ?? {}) as Record<string, unknown>, nowMs);
 }
 
 /** D162: монеты недели игрока по уже прочитанному users/{uid} — 0 лишних чтений. */

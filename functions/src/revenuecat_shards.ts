@@ -26,6 +26,7 @@ import {
 import { recordPaymentWebhookFailure } from './payment_webhook_alert';
 import { markRefereeQualified } from './referral';
 import { writeAccessProjection, writeAccessProjectionFromPatch } from './access_projection';
+import { syncPublicProfilePlusAfterCommit } from './public_profile_plus_sync';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
@@ -560,7 +561,12 @@ export async function applyVerifiedPremiumSubscriptionEvent(
   const processedRef = db.collection('revenuecat_premium_events').doc(receiptId);
   const denialRef = db.collection('revenuecat_premium_denials').doc(receiptId);
 
+  // зачем (владелец 21.10, Ревизор 21.10): прогресс ПОСЛЕ записи — для кольца Plus в публичном профиле. Живёт вне
+  // транзакции (возврат транзакции целиком уходит в HTTP-ответ — прогресс туда класть нельзя) и сбрасывается на
+  // каждой попытке, чтобы ретрай не подхватил значение несостоявшейся попытки.
+  const ring: { progress: Record<string, unknown> | null } = { progress: null };
   const out = await db.runTransaction(async (tx) => {
+      ring.progress = null;
       // All denial/idempotency/deletion reads happen before any user, lineage,
       // projection, or receipt write in this transaction.
       const processedSnap = await tx.get(processedRef);
@@ -708,6 +714,8 @@ export async function applyVerifiedPremiumSubscriptionEvent(
         last_active_at: projectionNow,
       }, { merge: true });
       writeAccessProjection(tx, userRef, aggregate.progressPatch, projectionNow);
+      // Полный прогресс (VIP и прочее + новый патч подписки), чтобы кольцо не погасло у человека с активным VIP.
+      ring.progress = { ...progress, ...aggregate.progressPatch };
 
       return {
         updated: reduced.status === 'applied',
@@ -720,6 +728,10 @@ export async function applyVerifiedPremiumSubscriptionEvent(
   });
 
   await qualifyReferralFromVerifiedPremiumOutcome(db, out);
+  // Кольцо Plus — ПОСЛЕ денежной транзакции и лучшей попыткой: никогда не бросает, деньги уже записаны (Ревизор 21.10).
+  if (ring.progress && out.uid) {
+    await syncPublicProfilePlusAfterCommit({ db, stableUid: String(out.uid), progress: ring.progress, nowMs: Date.now(), source: 'revenuecat_webhook' });
+  }
 
   return { statusCode: 200, body: { ok: true, kind: 'premium', ...out } };
 }

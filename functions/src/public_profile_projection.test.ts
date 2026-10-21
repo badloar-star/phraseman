@@ -97,3 +97,42 @@ describe('server-authoritative public profile projection', () => {
     });
   });
 });
+
+// зачем (владелец 21.10, Ревизор 🟡): кольцо Plus для других — только настоящий Plus. Вводный 72-часовой доступ даёт функции
+// (isPremium=true), но НЕ кольцо (isPlus=false). plusUntilMs — срок, чтобы истёкший Plus гас без открытия приложения.
+describe('public profile isPlus (ring for others)', () => {
+  const NOW = Date.parse('2026-10-21T12:00:00Z');
+  const project = (progress: Record<string, unknown>) =>
+    buildAuthoritativePublicProfileProjection('stable-a', { progress }, cosmetic, NOW);
+
+  it('intro 72-hour access: features on (isPremium) but no ring (isPlus=false)', () => {
+    const result = project({ intro_access_granted_at_ms: String(NOW - 3_600_000), intro_access_until_ms: String(NOW + 3_600_000) });
+    expect(result.isPremium).toBe(true);
+    expect(result.isPlus).toBe(false);
+    expect(result.plusUntilMs).toBeNull(); // «нет Plus» ≠ «бессрочно» (Ревизор 21.10)
+  });
+
+  it('store purchase: ring with its expiry; lifetime: ring without expiry', () => {
+    const yearly = project({ premium_plan: 'yearly', premium_expiry: String(NOW + 86_400_000) });
+    expect(yearly.isPlus).toBe(true);
+    expect(yearly.plusUntilMs).toBe(NOW + 86_400_000);
+    const lifetime = project({ premium_plan: 'lifetime', premium_expiry: '0' });
+    expect(lifetime.isPlus).toBe(true);
+    expect(lifetime.plusUntilMs).toBe(0);
+  });
+
+  it('admin grant and VIP give the ring; expired purchase does not', () => {
+    expect(project({ premium_plan: 'admin_grant', admin_premium_override: 'true' }).isPlus).toBe(true);
+    const vip = project({ vip_plan: 'referral', vip_until: String(NOW + 1_000) });
+    expect(vip.isPlus).toBe(true);
+    expect(vip.plusUntilMs).toBe(NOW + 1_000);
+    const expired = project({ premium_plan: 'monthly', premium_expiry: String(NOW - 1) });
+    expect(expired.isPlus).toBe(false);
+    expect(expired.plusUntilMs).toBeNull();
+  });
+
+  it('two sources: the later expiry wins; one without expiry means no expiry', () => {
+    expect(project({ premium_plan: 'yearly', premium_expiry: String(NOW + 10), vip_plan: 'referral', vip_until: String(NOW + 50) }).plusUntilMs).toBe(NOW + 50);
+    expect(project({ premium_plan: 'lifetime', premium_expiry: '0', vip_plan: 'referral', vip_until: String(NOW + 50) }).plusUntilMs).toBe(0);
+  });
+});

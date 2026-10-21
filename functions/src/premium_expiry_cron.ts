@@ -37,6 +37,7 @@ import {
   type PremiumLineageState,
 } from './revenuecat_premium_lineage';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { syncPublicProfilePlusAfterCommit } from './public_profile_plus_sync';
 
 const REGION = 'us-central1';
 
@@ -223,8 +224,12 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
       const scannedProgress = (doc.data()?.progress ?? {}) as Record<string, unknown>;
       if (!planExpiryDeactivation(scannedProgress, now)) continue;
 
+      // зачем (владелец 21.10, Ревизор 21.10): прогресс после истечения — для кольца Plus в публичном профиле;
+      // держатель на документ, сбрасывается на каждой попытке транзакции.
+      const ring: { progress: Record<string, unknown> | null } = { progress: null };
       writes.push(
         db.runTransaction(async (tx) => {
+          ring.progress = null;
           const current = await tx.get(doc.ref);
           const tombstone = await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(doc.id));
           const permanentDenial = await tx.get(
@@ -253,13 +258,18 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
           }
           tx.update(doc.ref, update);
           writeAccessProjectionFromPatch(tx, doc.ref, currentProgress, decision.patch, now);
+          ring.progress = { ...currentProgress, ...decision.patch };
           return decision;
         })
-          .then((decision) => {
+          .then(async (decision) => {
             if (!decision) return;
             if (decision.reasons.length > 0) stats.deactivated += 1;
             for (const r of decision.reasons) {
               stats.byReason[r] = (stats.byReason[r] ?? 0) + 1;
+            }
+            // Кольцо гаснет записью, а не только сроком у читателя — ПОСЛЕ своей транзакции, лучшей попыткой (никогда не бросает).
+            if (ring.progress) {
+              await syncPublicProfilePlusAfterCommit({ db, stableUid: doc.id, progress: ring.progress, nowMs: now, source: 'premium_expiry_cron' });
             }
           })
           .catch((e) => {

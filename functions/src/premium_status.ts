@@ -237,6 +237,31 @@ async function resolveOwnedHiddenAliasAccess(
   }) ?? false;
 }
 
+/**
+ * Настоящий Plus — для ЗНАКА Plus, который видят другие (кольцо у аватара): покупка (вкл. пожизненный), выдача админом, VIP.
+ * зачем (владелец 21.10): вводный 72-часовой доступ (isGiftAccessActive) открывает функции, но кольца НЕ даёт.
+ * Для доступа к функциям по-прежнему isPremiumAccessActive.
+ */
+export function isRealPlusActive(progress: ProgressLike, now: number = Date.now()): boolean {
+  return isStorePremiumActive(progress, now) || isAdminGrantActive(progress, now) || isVipActive(progress, now);
+}
+
+/**
+ * До какого момента действует настоящий Plus: 0 — бессрочно (пожизненный, грант без срока); null — Plus НЕТ.
+ * зачем: публичный профиль обновляется не на каждом событии — со сроком кольцо у истёкшего Plus гаснет само.
+ * Ревизор 21.10: «нет Plus» обязано отличаться от «бессрочно» (null ≠ 0), иначе правило читателя
+ * «plusUntilMs === 0 → вечный Plus» зажгло бы кольцо всем без Plus.
+ */
+export function realPlusUntilMs(progress: ProgressLike, now: number = Date.now()): number | null {
+  const data = progress ?? {};
+  const untils: number[] = [];
+  if (isStorePremiumActive(progress, now) || isAdminGrantActive(progress, now)) untils.push(parseProgressMs(data.premium_expiry));
+  if (isVipActive(progress, now)) untils.push(parseProgressMs(data.vip_until ?? data.vip_expiry));
+  if (untils.length === 0) return null;
+  if (untils.some((ms) => !(ms > 0))) return 0;
+  return Math.max(...untils);
+}
+
 /** TRUE если у пользователя сейчас активен ЛЮБОЙ премиум-доступ (store / admin / VIP / подарок 72ч). */
 export function isPremiumAccessActive(progress: ProgressLike, now: number = Date.now()): boolean {
   return isStorePremiumActive(progress, now)

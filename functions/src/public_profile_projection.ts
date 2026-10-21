@@ -6,7 +6,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
-import { isLifetimePlanActive, isPremiumAccessActive, isVipActive } from './premium_status';
+import { isLifetimePlanActive, isPremiumAccessActive, isRealPlusActive, isVipActive, realPlusUntilMs } from './premium_status';
 type ProfileReason = 'display_change' | 'entitlement_change';
 
 export type PublicProfileProjectionInput = {
@@ -112,6 +112,10 @@ export function buildAuthoritativePublicProfileProjection(
     isPremium: isPremiumAccessActive(progress, nowMs),
     isVip: isVipActive(progress, nowMs),
     isLifetime: isLifetimePlanActive(progress, nowMs),
+    // зачем (владелец 21.10, Ревизор 🟡): кольцо Plus для других — только настоящий Plus, без вводного 72-часового доступа.
+    // isPremium не трогаем (его читают другие экраны). plusUntilMs: 0 — бессрочно; иначе кольцо гаснет само по сроку.
+    isPlus: isRealPlusActive(progress, nowMs),
+    plusUntilMs: realPlusUntilMs(progress, nowMs),
   };
 
   const legendNo = nonnegativeInt(input.profileCardLegendNo);

@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-27:word:ridge",
-    "correctText": "ridge",
+    "interactionId": "en:lesson-10:session-27:word:uphill",
+    "correctText": "uphill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i01",
-    "correctText": "We are walking along the ridge.",
+    "correctText": "We are walking uphill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i02",
-    "correctText": "The ridge is above the village.",
+    "correctText": "They are walking uphill.",
     "correctResponseId": "en:lesson-10:session-27:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-27:i03",
-    "correctText": "watch",
+    "correctText": "walking",
     "correctResponseId": "en:lesson-10:session-27:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-27:word:foothills",
-    "correctText": "foothills",
+    "interactionId": "en:lesson-10:session-27:word:downhill",
+    "correctText": "downhill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i04",
-    "correctText": "We are walking through the foothills.",
+    "correctText": "We are walking downhill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i05",
-    "correctText": "The foothills are green.",
+    "correctText": "She is walking downhill.",
     "correctResponseId": "en:lesson-10:session-27:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-27:i06",
-    "correctText": "are",
+    "correctText": "downhill",
     "correctResponseId": "en:lesson-10:session-27:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-27:word:lookout",
-    "correctText": "lookout",
+    "interactionId": "en:lesson-10:session-27:word:straight-ahead",
+    "correctText": "straight ahead",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i07",
-    "correctText": "We are sitting at the lookout.",
+    "correctText": "Go straight ahead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i08",
-    "correctText": "The lookout is near the village.",
+    "correctText": "Go straight ahead.",
     "correctResponseId": "en:lesson-10:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-27:i09",
-    "correctText": "sitting",
+    "correctText": "Go",
     "correctResponseId": "en:lesson-10:session-27:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-27:word:headland",
-    "correctText": "headland",
+    "interactionId": "en:lesson-10:session-27:word:on-foot",
+    "correctText": "on foot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i10",
-    "correctText": "I can see the headland.",
+    "correctText": "I go to work on foot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i11",
-    "correctText": "The headland is in the distance.",
+    "correctText": "She goes to work on foot.",
     "correctResponseId": "en:lesson-10:session-27:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-27:i12",
-    "correctText": "see",
+    "correctText": "on",
     "correctResponseId": "en:lesson-10:session-27:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-27:i13",
-    "correctText": "en:lesson-10:session-27:i13:p1=ridge\nen:lesson-10:session-27:i13:p2=foothills\nen:lesson-10:session-27:i13:p3=lookout\nen:lesson-10:session-27:i13:p4=headland",
+    "correctText": "en:lesson-10:session-27:i13:p1=uphill\nen:lesson-10:session-27:i13:p2=downhill\nen:lesson-10:session-27:i13:p3=straight ahead\nen:lesson-10:session-27:i13:p4=on foot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i14",
-    "correctText": "We are sitting at the lookout.",
+    "correctText": "We are walking downhill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i15",
-    "correctText": "We are watching the sunrise now.",
+    "correctText": "I go to work on foot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i16",
-    "correctText": "We usually watch the sunrise here.",
+    "correctText": "I am walking uphill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-27:i17",
-    "correctText": "I can see the headland.",
+    "correctText": "I go to school on foot.",
     "correctResponseId": null
   }
 ]

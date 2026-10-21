@@ -3719,16 +3719,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 27,
-    sourceFingerprint: "e4d00ce567e36877fb5c74d7b62006679968364f321ecb4f5fa6b9c8d6397933",
+    sourceFingerprint: "3ba735e9eb08fb756bb149254604158e9c50138e47c2ee8a1e63df6bcb0134eb",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually watch the sunrise here; We are walking along the ridge; I can see the headland","uk":"We usually watch the sunrise here; We are walking along the ridge; I can see the headland"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot","uk":"We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 28,
-    sourceFingerprint: "1f6c15299bd45f39d8ced166a1b4d626576dc81f0d7944d9de0f741f67fe9afe",
+    sourceFingerprint: "4fd10226f7eb28ad9018c38e8e98120960e5f111a3c92e2406887dff612f497a",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually walk at dusk; The afterglow is fading; We are walking along the waterfront","uk":"We usually walk at dusk; The afterglow is fading; We are walking along the waterfront"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am working tonight; I walk daily; We meet weekly; I pay monthly","uk":"I am working tonight; I walk daily; We meet weekly; I pay monthly"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

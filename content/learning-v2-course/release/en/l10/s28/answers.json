@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-28:word:dusk",
-    "correctText": "dusk",
+    "interactionId": "en:lesson-10:session-28:word:tonight",
+    "correctText": "tonight",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i01",
-    "correctText": "We usually walk at dusk.",
+    "correctText": "I am working tonight.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i02",
-    "correctText": "We meet at dusk.",
+    "correctText": "She is working tonight.",
     "correctResponseId": "en:lesson-10:session-28:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-28:i03",
-    "correctText": "at",
+    "correctText": "working",
     "correctResponseId": "en:lesson-10:session-28:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-28:word:afterglow",
-    "correctText": "afterglow",
+    "interactionId": "en:lesson-10:session-28:word:daily",
+    "correctText": "daily",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i04",
-    "correctText": "The afterglow is fading.",
+    "correctText": "I walk daily.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i05",
-    "correctText": "The afterglow is orange.",
+    "correctText": "She walks daily.",
     "correctResponseId": "en:lesson-10:session-28:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-28:i06",
-    "correctText": "fading",
+    "correctText": "walk",
     "correctResponseId": "en:lesson-10:session-28:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-28:word:waterfront",
-    "correctText": "waterfront",
+    "interactionId": "en:lesson-10:session-28:word:weekly",
+    "correctText": "weekly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i07",
-    "correctText": "We are walking along the waterfront.",
+    "correctText": "We meet weekly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i08",
-    "correctText": "The waterfront is busy.",
+    "correctText": "They meet weekly.",
     "correctResponseId": "en:lesson-10:session-28:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-28:i09",
-    "correctText": "are",
+    "correctText": "weekly",
     "correctResponseId": "en:lesson-10:session-28:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-28:word:boardwalk",
-    "correctText": "boardwalk",
+    "interactionId": "en:lesson-10:session-28:word:monthly",
+    "correctText": "monthly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i10",
-    "correctText": "We are walking on the boardwalk.",
+    "correctText": "I pay monthly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i11",
-    "correctText": "The boardwalk is long.",
+    "correctText": "We pay monthly.",
     "correctResponseId": "en:lesson-10:session-28:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-28:i12",
-    "correctText": "walk",
+    "correctText": "pay",
     "correctResponseId": "en:lesson-10:session-28:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-28:i13",
-    "correctText": "en:lesson-10:session-28:i13:p1=dusk\nen:lesson-10:session-28:i13:p2=afterglow\nen:lesson-10:session-28:i13:p3=waterfront\nen:lesson-10:session-28:i13:p4=boardwalk",
+    "correctText": "en:lesson-10:session-28:i13:p1=tonight\nen:lesson-10:session-28:i13:p2=daily\nen:lesson-10:session-28:i13:p3=weekly\nen:lesson-10:session-28:i13:p4=monthly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i14",
-    "correctText": "The afterglow is fading.",
+    "correctText": "We meet weekly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i15",
-    "correctText": "We are watching the sunset now.",
+    "correctText": "I pay monthly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i16",
-    "correctText": "We usually walk at dusk.",
+    "correctText": "I am cooking tonight.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-28:i17",
-    "correctText": "The afterglow is fading.",
+    "correctText": "I read daily.",
     "correctResponseId": null
   }
 ]

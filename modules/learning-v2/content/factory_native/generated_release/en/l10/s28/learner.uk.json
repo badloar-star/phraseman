@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-28:word:dusk",
+      "interactionId": "en:lesson-10:session-28:word:tonight",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — dusk",
+      "prompt": "Картка слова — tonight",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-28:word:dusk:audio"
+        "en:lesson-10:session-28:word:tonight:audio"
       ],
-      "accessibilityLabel": "Картка слова — dusk",
+      "accessibilityLabel": "Картка слова — tonight",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-28:word:dusk:audio",
-          "transcript": "dusk"
+          "audioTargetId": "en:lesson-10:session-28:word:tonight:audio",
+          "transcript": "tonight"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-28:word:dusk:r1",
-            "targetText": "dusk",
+            "responseId": "en:lesson-10:session-28:word:tonight:r1",
+            "targetText": "tonight",
             "meaningByLocale": {
-              "ru": "«вечерние сумерки». We usually walk at dusk. — «Мы обычно гуляем в сумерках». Время после заката, когда темнеет.",
-              "uk": "«вечірні сутінки». We usually walk at dusk. — «Ми зазвичай гуляємо в сутінках». Час після заходу сонця, коли темніє."
+              "ru": "«сегодня вечером, сегодня ночью». I am working tonight. — «Сегодня вечером я работаю».",
+              "uk": "«сьогодні ввечері, сьогодні вночі». I am working tonight. — «Сьогодні ввечері я працюю»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "dusk",
+          "word": "tonight",
           "definitionByLocale": {
-            "ru": "«вечерние сумерки». We usually walk at dusk. — «Мы обычно гуляем в сумерках». Время после заката, когда темнеет.",
-            "uk": "«вечірні сутінки». We usually walk at dusk. — «Ми зазвичай гуляємо в сутінках». Час після заходу сонця, коли темніє."
+            "ru": "«сегодня вечером, сегодня ночью». I am working tonight. — «Сегодня вечером я работаю».",
+            "uk": "«сьогодні ввечері, сьогодні вночі». I am working tonight. — «Сьогодні ввечері я працюю»."
           }
         }
       },
@@ -52,24 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці",
+      "prompt": "Ви зараз на вечірній зміні. Скажіть, що працюєте сьогодні ввечері. Tonight поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці",
+      "accessibilityLabel": "Ви зараз на вечірній зміні. Скажіть, що працюєте сьогодні ввечері. Tonight поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We usually walk at dusk.",
+        "targetPhrase": "I am working tonight.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Мы обычно гуляем в сумерках». Поставьте at dusk в конце",
-          "uk": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці"
+          "ru": "Вы сейчас на вечерней смене. Скажите, что работаете сегодня вечером. Tonight поставьте в конце",
+          "uk": "Ви зараз на вечірній зміні. Скажіть, що працюєте сьогодні ввечері. Tonight поставте в кінці"
         },
         "orderedTokens": [
-          "We",
-          "usually",
-          "walk",
-          "at",
-          "dusk"
+          "I",
+          "am",
+          "working",
+          "tonight"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i02:r1",
-          "text": "We meet at dusk."
+          "text": "She is working tonight."
         },
         {
           "responseId": "en:lesson-10:session-28:i02:r2",
-          "text": "We walk at dusk."
+          "text": "He is working tonight."
         },
         {
           "responseId": "en:lesson-10:session-28:i02:r3",
-          "text": "They meet at dusk."
+          "text": "We are working tonight."
         }
       ],
       "mediaIds": [],
@@ -110,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-28:i02:audio",
-          "transcript": "We meet at dusk."
+          "transcript": "She is working tonight."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-28:i02:r1",
-            "targetText": "We meet at dusk.",
+            "targetText": "She is working tonight.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i02:r2",
-            "targetText": "We walk at dusk.",
+            "targetText": "He is working tonight.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i02:r3",
-            "targetText": "They meet at dusk.",
+            "targetText": "We are working tonight.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We meet at dusk.",
-              "uk": "У записі звучить We meet at dusk."
+              "ru": "В записи звучит She is working tonight.",
+              "uk": "У записі звучить She is working tonight."
             }
           },
           {
@@ -146,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We meet at dusk.",
-              "uk": "У записі звучить We meet at dusk."
+              "ru": "В записи звучит She is working tonight.",
+              "uk": "У записі звучить She is working tonight."
             }
           }
         ],
@@ -162,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть прийменник для «в сутінках»",
+      "prompt": "Виберіть форму work після am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i03:r1",
-          "text": "at"
+          "text": "working"
         },
         {
           "responseId": "en:lesson-10:session-28:i03:r2",
-          "text": "on"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-10:session-28:i03:r3",
-          "text": "in"
+          "text": "works"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть прийменник для «в сутінках»",
+      "accessibilityLabel": "Виберіть форму work після am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите предлог для «в сумерках»",
-          "uk": "Виберіть прийменник для «в сутінках»"
+          "ru": "Выберите форму work после am",
+          "uk": "Виберіть форму work після am"
         },
-        "gappedTargetPhrase": "We walk ___ dusk.",
+        "gappedTargetPhrase": "I am ___ tonight.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-28:i03:r1",
-            "text": "at"
+            "text": "working"
           },
           {
             "responseId": "en:lesson-10:session-28:i03:r2",
-            "text": "on"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-10:session-28:i03:r3",
-            "text": "in"
+            "text": "works"
           }
         ],
-        "testedDimension": "Виберіть прийменник для «в сутінках»",
+        "testedDimension": "Виберіть форму work після am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть прийменник для «в сутінках»",
+            "testedDimension": "Виберіть форму work після am",
             "feedbackByLocale": {
-              "ru": "Перед dusk нужно at.",
-              "uk": "Перед dusk потрібне at."
+              "ru": "После am нужна working.",
+              "uk": "Після am потрібна working."
             }
           },
           {
             "responseId": "en:lesson-10:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть прийменник для «в сутінках»",
+            "testedDimension": "Виберіть форму work після am",
             "feedbackByLocale": {
-              "ru": "Перед dusk нужно at.",
-              "uk": "Перед dusk потрібне at."
+              "ru": "После am нужна working, не works.",
+              "uk": "Після am потрібна working, не works."
             }
           }
         ]
@@ -226,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-28:word:afterglow",
+      "interactionId": "en:lesson-10:session-28:word:daily",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — afterglow",
+      "prompt": "Картка слова — daily",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-28:word:afterglow:audio"
+        "en:lesson-10:session-28:word:daily:audio"
       ],
-      "accessibilityLabel": "Картка слова — afterglow",
+      "accessibilityLabel": "Картка слова — daily",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-28:word:afterglow:audio",
-          "transcript": "afterglow"
+          "audioTargetId": "en:lesson-10:session-28:word:daily:audio",
+          "transcript": "daily"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-28:word:afterglow:r1",
-            "targetText": "afterglow",
+            "responseId": "en:lesson-10:session-28:word:daily:r1",
+            "targetText": "daily",
             "meaningByLocale": {
-              "ru": "«зарево после заката». The afterglow is fading. — «Зарево после заката угасает». Здесь мягкий свет на небе после захода солнца.",
-              "uk": "«заграва після заходу сонця». The afterglow is fading. — «Заграва після заходу сонця згасає». Тут м’яке світло на небі після заходу сонця."
+              "ru": "«ежедневно». I walk daily. — «Я гуляю каждый день».",
+              "uk": "«щодня». I walk daily. — «Я гуляю щодня»."
             }
           }
         ],
@@ -259,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "afterglow",
+          "word": "daily",
           "definitionByLocale": {
-            "ru": "«зарево после заката». The afterglow is fading. — «Зарево после заката угасает». Здесь мягкий свет на небе после захода солнца.",
-            "uk": "«заграва після заходу сонця». The afterglow is fading. — «Заграва після заходу сонця згасає». Тут м’яке світло на небі після заходу сонця."
+            "ru": "«ежедневно». I walk daily. — «Я гуляю каждый день».",
+            "uk": "«щодня». I walk daily. — «Я гуляю щодня»."
           }
         }
       },
@@ -274,23 +273,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви бачите, як світло на небі після заходу поступово зникає. Скажіть: «Заграва після заходу сонця згасає»",
+      "prompt": "Скажіть, що гуляєте щодня. Daily поставте після walk",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви бачите, як світло на небі після заходу поступово зникає. Скажіть: «Заграва після заходу сонця згасає»",
+      "accessibilityLabel": "Скажіть, що гуляєте щодня. Daily поставте після walk",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The afterglow is fading.",
+        "targetPhrase": "I walk daily.",
         "localizedMeaning": {
-          "ru": "Вы видите, как свет на небе после заката постепенно исчезает. Скажите: «Зарево после заката угасает»",
-          "uk": "Ви бачите, як світло на небі після заходу поступово зникає. Скажіть: «Заграва після заходу сонця згасає»"
+          "ru": "Скажите, что гуляете ежедневно. Daily поставьте после walk",
+          "uk": "Скажіть, що гуляєте щодня. Daily поставте після walk"
         },
         "orderedTokens": [
-          "The",
-          "afterglow",
-          "is",
-          "fading"
+          "I",
+          "walk",
+          "daily"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +309,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i05:r1",
-          "text": "The afterglow is orange."
+          "text": "She walks daily."
         },
         {
           "responseId": "en:lesson-10:session-28:i05:r2",
-          "text": "The afterglow is pink."
+          "text": "He walks daily."
         },
         {
           "responseId": "en:lesson-10:session-28:i05:r3",
-          "text": "The sky is orange."
+          "text": "We walk daily."
         }
       ],
       "mediaIds": [],
@@ -331,23 +329,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-28:i05:audio",
-          "transcript": "The afterglow is orange."
+          "transcript": "She walks daily."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-28:i05:r1",
-            "targetText": "The afterglow is orange.",
+            "targetText": "She walks daily.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i05:r2",
-            "targetText": "The afterglow is pink.",
+            "targetText": "He walks daily.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i05:r3",
-            "targetText": "The sky is orange.",
+            "targetText": "We walk daily.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +356,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The afterglow is orange.",
-              "uk": "У записі звучить The afterglow is orange."
+              "ru": "В записи звучит She walks daily.",
+              "uk": "У записі звучить She walks daily."
             }
           },
           {
@@ -367,8 +365,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The afterglow is orange.",
-              "uk": "У записі звучить The afterglow is orange."
+              "ru": "В записи звучит She walks daily.",
+              "uk": "У записі звучить She walks daily."
             }
           }
         ],
@@ -383,63 +381,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть правильне написання форми fade",
+      "prompt": "Виберіть форму walk для звички з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i06:r1",
-          "text": "fading"
+          "text": "walk"
         },
         {
           "responseId": "en:lesson-10:session-28:i06:r2",
-          "text": "fadeing"
+          "text": "walks"
         },
         {
           "responseId": "en:lesson-10:session-28:i06:r3",
-          "text": "fade"
+          "text": "walking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть правильне написання форми fade",
+      "accessibilityLabel": "Виберіть форму walk для звички з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите правильное написание формы fade",
-          "uk": "Виберіть правильне написання форми fade"
+          "ru": "Выберите форму walk для привычки с I",
+          "uk": "Виберіть форму walk для звички з I"
         },
-        "gappedTargetPhrase": "The afterglow is ___.",
+        "gappedTargetPhrase": "I ___ daily.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-28:i06:r1",
-            "text": "fading"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-28:i06:r2",
-            "text": "fadeing"
+            "text": "walks"
           },
           {
             "responseId": "en:lesson-10:session-28:i06:r3",
-            "text": "fade"
+            "text": "walking"
           }
         ],
-        "testedDimension": "Виберіть правильне написання форми fade",
+        "testedDimension": "Виберіть форму walk для звички з I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-28:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми fade",
+            "testedDimension": "Виберіть форму walk для звички з I",
             "feedbackByLocale": {
-              "ru": "Перед ing конечная e исчезает: fading.",
-              "uk": "Перед ing кінцева e зникає: fading."
+              "ru": "С I нужна walk без s.",
+              "uk": "З I потрібна walk без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-28:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми fade",
+            "testedDimension": "Виберіть форму walk для звички з I",
             "feedbackByLocale": {
-              "ru": "После is для происходящего изменения нужна fading.",
-              "uk": "Після is для зміни, що відбувається, потрібна fading."
+              "ru": "Для привычки здесь нужна walk.",
+              "uk": "Для звички тут потрібна walk."
             }
           }
         ]
@@ -447,32 +445,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-28:word:waterfront",
+      "interactionId": "en:lesson-10:session-28:word:weekly",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — waterfront",
+      "prompt": "Картка слова — weekly",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-28:word:waterfront:audio"
+        "en:lesson-10:session-28:word:weekly:audio"
       ],
-      "accessibilityLabel": "Картка слова — waterfront",
+      "accessibilityLabel": "Картка слова — weekly",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-28:word:waterfront:audio",
-          "transcript": "waterfront"
+          "audioTargetId": "en:lesson-10:session-28:word:weekly:audio",
+          "transcript": "weekly"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-28:word:waterfront:r1",
-            "targetText": "waterfront",
+            "responseId": "en:lesson-10:session-28:word:weekly:r1",
+            "targetText": "weekly",
             "meaningByLocale": {
-              "ru": "«прибрежная часть города». We are walking along the waterfront. — «Мы идём вдоль городской набережной». Городская территория у воды.",
-              "uk": "«прибережна частина міста». We are walking along the waterfront. — «Ми йдемо вздовж міської набережної». Міська територія біля води."
+              "ru": "«еженедельно». We meet weekly. — «Мы встречаемся каждую неделю».",
+              "uk": "«щотижня». We meet weekly. — «Ми зустрічаємося щотижня»."
             }
           }
         ],
@@ -480,10 +478,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "waterfront",
+          "word": "weekly",
           "definitionByLocale": {
-            "ru": "«прибрежная часть города». We are walking along the waterfront. — «Мы идём вдоль городской набережной». Городская территория у воды.",
-            "uk": "«прибережна частина міста». We are walking along the waterfront. — «Ми йдемо вздовж міської набережної». Міська територія біля води."
+            "ru": "«еженедельно». We meet weekly. — «Мы встречаемся каждую неделю».",
+            "uk": "«щотижня». We meet weekly. — «Ми зустрічаємося щотижня»."
           }
         }
       },
@@ -495,25 +493,22 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг телефонує під час вашої прогулянки містом біля води. Скажіть: «Ми йдемо вздовж міської набережної»",
+      "prompt": "Ви зустрічаєтеся з друзями щотижня. Weekly поставте після meet",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг телефонує під час вашої прогулянки містом біля води. Скажіть: «Ми йдемо вздовж міської набережної»",
+      "accessibilityLabel": "Ви зустрічаєтеся з друзями щотижня. Weekly поставте після meet",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are walking along the waterfront.",
+        "targetPhrase": "We meet weekly.",
         "localizedMeaning": {
-          "ru": "Друг звонит во время вашей прогулки по городу у воды. Скажите: «Мы идём вдоль городской набережной»",
-          "uk": "Друг телефонує під час вашої прогулянки містом біля води. Скажіть: «Ми йдемо вздовж міської набережної»"
+          "ru": "Вы встречаетесь с друзьями каждую неделю. Weekly поставьте после meet",
+          "uk": "Ви зустрічаєтеся з друзями щотижня. Weekly поставте після meet"
         },
         "orderedTokens": [
           "We",
-          "are",
-          "walking",
-          "along",
-          "the",
-          "waterfront"
+          "meet",
+          "weekly"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +529,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i08:r1",
-          "text": "The waterfront is busy."
+          "text": "They meet weekly."
         },
         {
           "responseId": "en:lesson-10:session-28:i08:r2",
-          "text": "The waterfront is quiet."
+          "text": "We meet weekly."
         },
         {
           "responseId": "en:lesson-10:session-28:i08:r3",
-          "text": "The market is busy."
+          "text": "They meet daily."
         }
       ],
       "mediaIds": [],
@@ -554,23 +549,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-28:i08:audio",
-          "transcript": "The waterfront is busy."
+          "transcript": "They meet weekly."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-28:i08:r1",
-            "targetText": "The waterfront is busy.",
+            "targetText": "They meet weekly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i08:r2",
-            "targetText": "The waterfront is quiet.",
+            "targetText": "We meet weekly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i08:r3",
-            "targetText": "The market is busy.",
+            "targetText": "They meet daily.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +576,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The waterfront is busy.",
-              "uk": "У записі звучить The waterfront is busy."
+              "ru": "В записи звучит They meet weekly.",
+              "uk": "У записі звучить They meet weekly."
             }
           },
           {
@@ -590,8 +585,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The waterfront is busy.",
-              "uk": "У записі звучить The waterfront is busy."
+              "ru": "В записи звучит They meet weekly.",
+              "uk": "У записі звучить They meet weekly."
             }
           }
         ],
@@ -606,63 +601,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово",
+      "prompt": "Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i09:r1",
-          "text": "are"
+          "text": "weekly"
         },
         {
           "responseId": "en:lesson-10:session-28:i09:r2",
-          "text": "is"
+          "text": "daily"
         },
         {
           "responseId": "en:lesson-10:session-28:i09:r3",
-          "text": "do"
+          "text": "tonight"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово",
+      "accessibilityLabel": "Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы описываете прогулку, которая идёт сейчас. Выберите вспомогательный глагол",
-          "uk": "Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово"
+          "ru": "Вы встречаетесь каждую неделю, не каждый день. Выберите частоту",
+          "uk": "Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту"
         },
-        "gappedTargetPhrase": "We ___ walking along the waterfront.",
+        "gappedTargetPhrase": "We meet ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-28:i09:r1",
-            "text": "are"
+            "text": "weekly"
           },
           {
             "responseId": "en:lesson-10:session-28:i09:r2",
-            "text": "is"
+            "text": "daily"
           },
           {
             "responseId": "en:lesson-10:session-28:i09:r3",
-            "text": "do"
+            "text": "tonight"
           }
         ],
-        "testedDimension": "Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово",
+        "testedDimension": "Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-28:i09:r2",
             "correct": false,
-            "testedDimension": "Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово",
+            "testedDimension": "Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту",
             "feedbackByLocale": {
-              "ru": "С we нужно are.",
-              "uk": "З we потрібне are."
+              "ru": "Daily — каждый день, а здесь каждую неделю.",
+              "uk": "Daily — щодня, а тут щотижня."
             }
           },
           {
             "responseId": "en:lesson-10:session-28:i09:r3",
             "correct": false,
-            "testedDimension": "Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово",
+            "testedDimension": "Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту",
             "feedbackByLocale": {
-              "ru": "Перед walking здесь нужно are.",
-              "uk": "Перед walking тут потрібне are."
+              "ru": "Tonight — сегодня вечером, не еженедельная частота.",
+              "uk": "Tonight — сьогодні ввечері, не щотижнева частота."
             }
           }
         ]
@@ -670,32 +665,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-28:word:boardwalk",
+      "interactionId": "en:lesson-10:session-28:word:monthly",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — boardwalk",
+      "prompt": "Картка слова — monthly",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-28:word:boardwalk:audio"
+        "en:lesson-10:session-28:word:monthly:audio"
       ],
-      "accessibilityLabel": "Картка слова — boardwalk",
+      "accessibilityLabel": "Картка слова — monthly",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-28:word:boardwalk:audio",
-          "transcript": "boardwalk"
+          "audioTargetId": "en:lesson-10:session-28:word:monthly:audio",
+          "transcript": "monthly"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-28:word:boardwalk:r1",
-            "targetText": "boardwalk",
+            "responseId": "en:lesson-10:session-28:word:monthly:r1",
+            "targetText": "monthly",
             "meaningByLocale": {
-              "ru": "«деревянная прогулочная дорожка». We are walking on the boardwalk. — «Мы идём по деревянной прогулочной дорожке». Здесь настил из досок у берега.",
-              "uk": "«дерев’яна прогулянкова доріжка». We are walking on the boardwalk. — «Ми йдемо дерев’яною прогулянковою доріжкою». Тут настил із дощок біля берега."
+              "ru": "«ежемесячно». I pay monthly. — «Я плачу каждый месяц».",
+              "uk": "«щомісяця». I pay monthly. — «Я плачу щомісяця»."
             }
           }
         ],
@@ -703,10 +698,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "boardwalk",
+          "word": "monthly",
           "definitionByLocale": {
-            "ru": "«деревянная прогулочная дорожка». We are walking on the boardwalk. — «Мы идём по деревянной прогулочной дорожке». Здесь настил из досок у берега.",
-            "uk": "«дерев’яна прогулянкова доріжка». We are walking on the boardwalk. — «Ми йдемо дерев’яною прогулянковою доріжкою». Тут настил із дощок біля берега."
+            "ru": "«ежемесячно». I pay monthly. — «Я плачу каждый месяц».",
+            "uk": "«щомісяця». I pay monthly. — «Я плачу щомісяця»."
           }
         }
       },
@@ -718,25 +713,22 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви вийшли на настил із дощок біля берега. Скажіть другу: «Ми йдемо дерев’яною прогулянковою доріжкою»",
+      "prompt": "За абонемент ви платите щомісяця. Monthly поставте після pay",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вийшли на настил із дощок біля берега. Скажіть другу: «Ми йдемо дерев’яною прогулянковою доріжкою»",
+      "accessibilityLabel": "За абонемент ви платите щомісяця. Monthly поставте після pay",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are walking on the boardwalk.",
+        "targetPhrase": "I pay monthly.",
         "localizedMeaning": {
-          "ru": "Вы вышли на настил из досок у берега. Скажите другу: «Мы идём по деревянной прогулочной дорожке»",
-          "uk": "Ви вийшли на настил із дощок біля берега. Скажіть другу: «Ми йдемо дерев’яною прогулянковою доріжкою»"
+          "ru": "За абонемент вы платите каждый месяц. Monthly поставьте после pay",
+          "uk": "За абонемент ви платите щомісяця. Monthly поставте після pay"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "walking",
-          "on",
-          "the",
-          "boardwalk"
+          "I",
+          "pay",
+          "monthly"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,15 +749,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i11:r1",
-          "text": "The boardwalk is long."
+          "text": "We pay monthly."
         },
         {
           "responseId": "en:lesson-10:session-28:i11:r2",
-          "text": "The boardwalk is short."
+          "text": "I pay monthly."
         },
         {
           "responseId": "en:lesson-10:session-28:i11:r3",
-          "text": "The bridge is long."
+          "text": "We pay weekly."
         }
       ],
       "mediaIds": [],
@@ -777,23 +769,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-28:i11:audio",
-          "transcript": "The boardwalk is long."
+          "transcript": "We pay monthly."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-28:i11:r1",
-            "targetText": "The boardwalk is long.",
+            "targetText": "We pay monthly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i11:r2",
-            "targetText": "The boardwalk is short.",
+            "targetText": "I pay monthly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-28:i11:r3",
-            "targetText": "The bridge is long.",
+            "targetText": "We pay weekly.",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +796,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The boardwalk is long.",
-              "uk": "У записі звучить The boardwalk is long."
+              "ru": "В записи звучит We pay monthly.",
+              "uk": "У записі звучить We pay monthly."
             }
           },
           {
@@ -813,8 +805,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The boardwalk is long.",
-              "uk": "У записі звучить The boardwalk is long."
+              "ru": "В записи звучит We pay monthly.",
+              "uk": "У записі звучить We pay monthly."
             }
           }
         ],
@@ -829,63 +821,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви розповідаєте про звичку. Виберіть форму walk",
+      "prompt": "Виберіть форму pay з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-28:i12:r1",
-          "text": "walk"
+          "text": "pay"
         },
         {
           "responseId": "en:lesson-10:session-28:i12:r2",
-          "text": "walks"
+          "text": "pays"
         },
         {
           "responseId": "en:lesson-10:session-28:i12:r3",
-          "text": "walking"
+          "text": "paying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви розповідаєте про звичку. Виберіть форму walk",
+      "accessibilityLabel": "Виберіть форму pay з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы рассказываете о привычке. Выберите форму walk",
-          "uk": "Ви розповідаєте про звичку. Виберіть форму walk"
+          "ru": "Выберите форму pay с I",
+          "uk": "Виберіть форму pay з I"
         },
-        "gappedTargetPhrase": "We usually ___ on the boardwalk.",
+        "gappedTargetPhrase": "I ___ monthly.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-28:i12:r1",
-            "text": "walk"
+            "text": "pay"
           },
           {
             "responseId": "en:lesson-10:session-28:i12:r2",
-            "text": "walks"
+            "text": "pays"
           },
           {
             "responseId": "en:lesson-10:session-28:i12:r3",
-            "text": "walking"
+            "text": "paying"
           }
         ],
-        "testedDimension": "Ви розповідаєте про звичку. Виберіть форму walk",
+        "testedDimension": "Виберіть форму pay з I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-28:i12:r2",
             "correct": false,
-            "testedDimension": "Ви розповідаєте про звичку. Виберіть форму walk",
+            "testedDimension": "Виберіть форму pay з I",
             "feedbackByLocale": {
-              "ru": "С we нужна walk без s.",
-              "uk": "З we потрібна walk без s."
+              "ru": "С I нужна pay без s.",
+              "uk": "З I потрібна pay без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-28:i12:r3",
             "correct": false,
-            "testedDimension": "Ви розповідаєте про звичку. Виберіть форму walk",
+            "testedDimension": "Виберіть форму pay з I",
             "feedbackByLocale": {
-              "ru": "Для этой привычки нужна walk.",
-              "uk": "Для цієї звички потрібна walk."
+              "ru": "Для привычки здесь нужна pay.",
+              "uk": "Для звички тут потрібна pay."
             }
           }
         ]
@@ -898,58 +890,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте слова з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-28:i13:p1",
-            "target": "dusk",
+            "target": "tonight",
             "meaningByLocale": {
-              "ru": "вечерние сумерки",
-              "uk": "вечірні сутінки"
+              "ru": "сегодня вечером",
+              "uk": "сьогодні ввечері"
             }
           },
           {
             "pairId": "en:lesson-10:session-28:i13:p2",
-            "target": "afterglow",
+            "target": "daily",
             "meaningByLocale": {
-              "ru": "зарево после заката",
-              "uk": "заграва після заходу сонця"
+              "ru": "ежедневно",
+              "uk": "щодня"
             }
           },
           {
             "pairId": "en:lesson-10:session-28:i13:p3",
-            "target": "waterfront",
+            "target": "weekly",
             "meaningByLocale": {
-              "ru": "прибрежная часть города",
-              "uk": "прибережна частина міста"
+              "ru": "еженедельно",
+              "uk": "щотижня"
             }
           },
           {
             "pairId": "en:lesson-10:session-28:i13:p4",
-            "target": "boardwalk",
+            "target": "monthly",
             "meaningByLocale": {
-              "ru": "деревянная прогулочная дорожка",
-              "uk": "дерев’яна прогулянкова доріжка"
+              "ru": "ежемесячно",
+              "uk": "щомісяця"
             }
           }
         ],
         "leftColumn": [
-          "dusk",
-          "afterglow",
-          "waterfront",
-          "boardwalk"
+          "tonight",
+          "daily",
+          "weekly",
+          "monthly"
         ],
         "rightColumn": [
-          "вечірні сутінки",
-          "заграва після заходу сонця",
-          "прибережна частина міста",
-          "дерев’яна прогулянкова доріжка"
+          "сьогодні ввечері",
+          "щодня",
+          "щотижня",
+          "щомісяця"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -971,26 +963,25 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-28:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-28:i14:audio",
-          "transcript": "The afterglow is fading."
+          "transcript": "We meet weekly."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The afterglow is fading.",
+        "hiddenTargetPhrase": "We meet weekly.",
         "orderedTokens": [
-          "The",
-          "afterglow",
-          "is",
-          "fading"
+          "We",
+          "meet",
+          "weekly"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1004,24 +995,59 @@
     {
       "interactionId": "en:lesson-10:session-28:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг телефонує в мить заходу сонця й запитує, що ви робите. Скажіть: «Ми зараз спостерігаємо захід сонця»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-28:i15:audio"
       ],
-      "accessibilityLabel": "Друг телефонує в мить заходу сонця й запитує, що ви робите. Скажіть: «Ми зараз спостерігаємо захід сонця»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-28:i15:audio",
+          "transcript": "I pay monthly."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I pay monthly.",
+        "orderedTokens": [
+          "I",
+          "pay",
+          "monthly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вечір, ви готуєте вечерю. Скажіть, що готуєте сьогодні ввечері",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Вечір, ви готуєте вечерю. Скажіть, що готуєте сьогодні ввечері",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-28:i15:audio",
-          "transcript": "We are watching the sunset now."
+          "audioTargetId": "en:lesson-10:session-28:i16:audio",
+          "transcript": "I am cooking tonight."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are watching the sunset now.",
+        "targetPhrase": "I am cooking tonight.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1035,71 +1061,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-28:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує про ваш звичний час прогулянки. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує про ваш звичний час прогулянки. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We usually walk at dusk.",
-        "localizedMeaning": {
-          "ru": "Друг спрашивает о вашем обычном времени прогулки. Скажите: «Мы обычно гуляем в сумерках». Поставьте at dusk в конце",
-          "uk": "Друг запитує про ваш звичний час прогулянки. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці"
-        },
-        "orderedTokens": [
-          "We",
-          "usually",
-          "walk",
-          "at",
-          "dusk"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-28:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, що відбувається зі світлом, яке залишилося на небі. Воно поступово зникає. Скажіть: «Заграва після заходу сонця згасає»",
+      "prompt": "Скажіть, що читаєте щодня",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-28:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, що відбувається зі світлом, яке залишилося на небі. Воно поступово зникає. Скажіть: «Заграва після заходу сонця згасає»",
+      "accessibilityLabel": "Скажіть, що читаєте щодня",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-28:i17:audio",
-          "transcript": "The afterglow is fading."
+          "transcript": "I read daily."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The afterglow is fading.",
+        "targetPhrase": "I read daily.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1116,5 +1100,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f590c6b87a1490900d08a480275a07a0713604372910be455f7992525ecbb64e"
+  "learnerFingerprint": "6ca0bb4382298f5ff4b1a83fe02b1ff3d57369d7c8d82deb7945e458583ee977"
 }

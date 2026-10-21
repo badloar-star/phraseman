@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-27",
   "learningOutcomeByLocale": {
-    "ru": "We usually watch the sunrise here; We are walking along the ridge; I can see the headland",
-    "uk": "We usually watch the sunrise here; We are walking along the ridge; I can see the headland"
+    "ru": "We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot",
+    "uk": "We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обычное место для восхода",
-        "uk": "Звичне місце для сходу сонця"
+        "ru": "Вверх и вниз по склону",
+        "uk": "Угору й униз схилом"
       },
       "bodyByLocale": {
-        "ru": "Повторим sunrise — «восход солнца». Вы рассказываете о привычной прогулке: We usually watch the sunrise here — «Мы обычно наблюдаем восход солнца здесь». Usually стоит перед watch. Для привычки используем Present Simple. Если вы наблюдаете восход прямо сейчас: We are watching the sunrise now.",
-        "uk": "Повторімо sunrise — «схід сонця». Ви розповідаєте про звичну прогулянку: We usually watch the sunrise here — «Ми зазвичай спостерігаємо схід сонця тут». Usually стоїть перед watch. Для звички використовуємо Present Simple. Якщо ви спостерігаєте схід просто зараз: We are watching the sunrise now."
+        "ru": "Дорога поднимается по склону, и вы идёте вверх. Uphill — «в гору, вверх по склону»: We are walking uphill — «Мы идём в гору». На спуске: We are walking downhill — «Мы идём вниз по склону». Downhill — «под гору, вниз по склону». Вы описываете движение сейчас: are walking.",
+        "uk": "Дорога піднімається схилом, і ви йдете вгору. Uphill — «угору, вгору схилом»: We are walking uphill — «Ми йдемо вгору схилом». На спуску: We are walking downhill — «Ми йдемо вниз схилом». Downhill — «під гору, вниз схилом». Ви описуєте рух зараз: are walking."
       },
       "question": {
         "interactionId": "en:lesson-10:session-27:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-27:intro1:r1",
-              "text": "We usually watch the sunrise here."
+              "text": "We are walking uphill."
             },
             {
               "responseId": "en:lesson-10:session-27:intro1:r2",
-              "text": "We usually watches the sunrise here."
+              "text": "We walking uphill."
             },
             {
               "responseId": "en:lesson-10:session-27:intro1:r3",
-              "text": "We usually watching the sunrise here."
+              "text": "We are walk uphill."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-27:intro1:r1",
-              "text": "We usually watch the sunrise here."
+              "text": "We are walking uphill."
             },
             {
               "responseId": "en:lesson-10:session-27:intro1:r2",
-              "text": "We usually watches the sunrise here."
+              "text": "We walking uphill."
             },
             {
               "responseId": "en:lesson-10:session-27:intro1:r3",
-              "text": "We usually watching the sunrise here."
+              "text": "We are walk uphill."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Идём по гребню холма",
-        "uk": "Йдемо гребенем пагорба"
+        "ru": "Идите прямо",
+        "uk": "Ідіть прямо"
       },
       "bodyByLocale": {
-        "ru": "Ridge — «гребень холма», узкая вытянутая верхняя часть холма или горной цепи. Друг звонит во время прогулки: We are walking along the ridge — «Мы идём вдоль гребня холма». Для движения сейчас используем are + walking. Along указывает движение вдоль чего-либо.",
-        "uk": "Ridge — «гребінь пагорба», вузька видовжена верхня частина пагорба або гірського хребта. Друг телефонує під час прогулянки: We are walking along the ridge — «Ми йдемо вздовж гребеня пагорба». Для руху зараз використовуємо are + walking. Along указує рух уздовж чогось."
+        "ru": "Прохожий спрашивает дорогу к станции. Поворачивать не нужно. Straight ahead — «прямо вперёд»: Go straight ahead — «Идите прямо». Вы даёте простое указание: go без to и без s. Straight ahead учим как цельное выражение.",
+        "uk": "Перехожий запитує дорогу до станції. Повертати не потрібно. Straight ahead — «прямо вперед»: Go straight ahead — «Ідіть прямо». Ви даєте просту вказівку: go без to і без s. Straight ahead учимо як цілісний вислів."
       },
       "question": {
         "interactionId": "en:lesson-10:session-27:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-27:intro2:r1",
-              "text": "We are walking along the ridge."
+              "text": "Go straight ahead."
             },
             {
               "responseId": "en:lesson-10:session-27:intro2:r2",
-              "text": "We walking along the ridge."
+              "text": "Goes straight ahead."
             },
             {
               "responseId": "en:lesson-10:session-27:intro2:r3",
-              "text": "We is walking along the ridge."
+              "text": "To go straight ahead."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-27:intro2:r1",
-              "text": "We are walking along the ridge."
+              "text": "Go straight ahead."
             },
             {
               "responseId": "en:lesson-10:session-27:intro2:r2",
-              "text": "We walking along the ridge."
+              "text": "Goes straight ahead."
             },
             {
               "responseId": "en:lesson-10:session-27:intro2:r3",
-              "text": "We is walking along the ridge."
+              "text": "To go straight ahead."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что видно отсюда",
-        "uk": "Що видно звідси"
+        "ru": "Без автобуса и машины",
+        "uk": "Без автобуса й машини"
       },
       "bodyByLocale": {
-        "ru": "Headland — «мыс», участок суши, выступающий в море. Вы смотрите на побережье: I can see the headland — «Я вижу мыс». Can see естественно передаёт то, что вам сейчас видно. После can нужна базовая форма see. Слово «сейчас» в ситуации не требует Continuous для каждого глагола.",
-        "uk": "Headland — «мис», ділянка суходолу, що виступає в море. Ви дивитеся на узбережжя: I can see the headland — «Я бачу мис». Can see природно передає те, що вам зараз видно. Після can потрібна початкова форма see. Слово «зараз» у ситуації не вимагає Continuous для кожного дієслова."
+        "ru": "Ваша работа недалеко от дома, и вы ходите туда пешком. On foot — «пешком»: I go to work on foot — «Я хожу на работу пешком». Это обычный способ добираться: go. В выражении on foot нужен on; foot остаётся в единственном числе.",
+        "uk": "Ваша робота недалеко від дому, і ви ходите туди пішки. On foot — «пішки»: I go to work on foot — «Я ходжу на роботу пішки». Це звичайний спосіб діставатися: go. У вислові on foot потрібне on; foot залишається в однині."
       },
       "question": {
         "interactionId": "en:lesson-10:session-27:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-27:intro3:r1",
-              "text": "I can see the headland."
+              "text": "I go to work on foot."
             },
             {
               "responseId": "en:lesson-10:session-27:intro3:r2",
-              "text": "I can sees the headland."
+              "text": "I goes to work on foot."
             },
             {
               "responseId": "en:lesson-10:session-27:intro3:r3",
-              "text": "I can seeing the headland."
+              "text": "I go to work on foots."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-27:intro3:r1",
-              "text": "I can see the headland."
+              "text": "I go to work on foot."
             },
             {
               "responseId": "en:lesson-10:session-27:intro3:r2",
-              "text": "I can sees the headland."
+              "text": "I goes to work on foot."
             },
             {
               "responseId": "en:lesson-10:session-27:intro3:r3",
-              "text": "I can seeing the headland."
+              "text": "I go to work on foots."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1bda079a0b41600362e56386310cfea8ad31ebc37acacb83999ba510c1e5d123"
+  "introFingerprint": "d08dfcd8ba1e3e91140d441752fb6039c49c2b799e2540dcc9eb914abb9f3d7b"
 }

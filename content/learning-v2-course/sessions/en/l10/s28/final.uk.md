@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 28 — Увечері біля води
+# Англійська · Урок 10 · Заняття 28 — Сьогодні ввечері й за розкладом
 
-**Ситуація.** Розповісти про звичні вечірні прогулянки й про те, що ви бачите зараз після заходу сонця.
+**Ситуація.** Сказати про сьогоднішній вечір і частоту звичних справ.
 
-**Що ви опануєте:** We usually walk at dusk; The afterglow is fading; We are walking along the waterfront
-**Нові слова:** dusk, afterglow, waterfront, boardwalk
+**Що ви опануєте:** I am working tonight; I walk daily; We meet weekly; I pay monthly
+**Нові слова:** tonight, daily, weekly, monthly
 
 ## Інтро 1
 
-### Прогулянка в сутінках
+### Саме сьогодні ввечері
 
-Sunset — знайоме слово «захід сонця». Dusk — «вечірні сутінки», час, коли після заходу темніє. We usually walk at dusk — «Ми зазвичай гуляємо в сутінках». Usually показує звичку, тому використовуємо Present Simple. At dusk називає час доби; воно саме по собі не вимагає певного граматичного часу.
+Уже вечір. Друг телефонує й кличе гуляти, але ви зараз на роботі. Tonight — «сьогодні ввечері, сьогодні вночі»: I am working tonight — «Сьогодні ввечері я працюю». Тут ви описуєте поточну зміну: am working. Tonight стосується сьогоднішнього вечора, не всіх вечорів.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We usually walk at dusk.**
-- ❌ We usually walks at dusk. — *З we потрібна walk без s.*
-- ❌ We usually walk on dusk. — *Кажемо at dusk, не on dusk.*
+- ✅ **I am working tonight.**
+- ❌ I working tonight. — *Перед working потрібна am.*
+- ❌ I am work tonight. — *Після am потрібна working.*
 
 ---
 
 ## Інтро 2
 
-### Небо поступово темніє
+### Щодня й щотижня
 
-Afterglow — «заграва після заходу сонця», м’яке світло, що залишилося на небі. Ви дивитеся, як воно поступово зникає: The afterglow is fading — «Заграва після заходу сонця згасає». Для зміни, яка відбувається зараз, використовуємо is + fading. У fade → fading кінцева e зникає.
+Друг запитує про ваші звички. Daily — «щодня»: I walk daily — «Я гуляю щодня». Weekly — «щотижня»: We meet weekly — «Ми зустрічаємося щотижня». У цих фразах daily і weekly стоять після дієслова й відповідають на запитання «як часто?». Ви описуєте звички: walk, meet.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The afterglow is fading.**
-- ❌ The afterglow is fadeing. — *Fade → fading, без e.*
-- ❌ The afterglow fading. — *Перед fading потрібне is.*
+- ✅ **We meet weekly.**
+- ❌ We meets weekly. — *З we потрібна meet без s.*
+- ❌ We meeting weekly. — *Для звички тут потрібна meet.*
 
 ---
 
 ## Інтро 3
 
-### Де ви зараз
+### Один платіж на місяць
 
-Waterfront — «прибережна частина міста», територія біля річки, озера або моря. Друг телефонує під час вашої прогулянки: We are walking along the waterfront — «Ми йдемо вздовж міської набережної». Для поточної дії використовуємо are + walking. Порівняйте звичку: We usually walk here — «Ми зазвичай гуляємо тут».
+Друг запитує, як часто ви платите за абонемент до басейну. Monthly — «щомісяця»: I pay monthly — «Я плачу щомісяця». Це регулярний платіж, тому pay. Monthly — частота, а не конкретний місяць.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We are walking along the waterfront.**
-- ❌ We walking along the waterfront. — *Перед walking потрібне are.*
-- ❌ We is walking along the waterfront. — *З we потрібне are.*
+- ✅ **I pay monthly.**
+- ❌ I pays monthly. — *З I потрібна pay без s.*
+- ❌ I am pay monthly. — *Для звички тут pay без am.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — dusk**
-<!-- interaction_id: en:lesson-10:session-28:word:dusk; family: word_card -->
-> **dusk** — «вечірні сутінки». We usually walk at dusk. — «Ми зазвичай гуляємо в сутінках». Час після заходу сонця, коли темніє.
+**1 · Картка слова — tonight**
+<!-- interaction_id: en:lesson-10:session-28:word:tonight; family: word_card -->
+> **tonight** — «сьогодні ввечері, сьогодні вночі». I am working tonight. — «Сьогодні ввечері я працюю».
 
-**2 · Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці**
+**2 · Ви зараз на вечірній зміні. Скажіть, що працюєте сьогодні ввечері. Tonight поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-28:i01; family: phrase_builder -->
-Плитки: `dusk` `at` `walk` `usually` `We` → **We usually walk at dusk.**
+Плитки: `tonight` `working` `am` `I` → **I am working tonight.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-28:i02; family: listen_choose -->
-🔊 *We meet at dusk.* → **We meet at dusk.** · We walk at dusk. · They meet at dusk.
-- We walk at dusk. — *У записі звучить We meet at dusk.*
-- They meet at dusk. — *У записі звучить We meet at dusk.*
+🔊 *She is working tonight.* → **She is working tonight.** · He is working tonight. · We are working tonight.
+- He is working tonight. — *У записі звучить She is working tonight.*
+- We are working tonight. — *У записі звучить She is working tonight.*
 
-**4 · Виберіть прийменник для «в сутінках»**
+**4 · Виберіть форму work після am**
 <!-- interaction_id: en:lesson-10:session-28:i03; family: context_gap_grammar -->
-We walk ___ dusk. → **at** · on · in
-- on — *Перед dusk потрібне at.*
-- in — *Перед dusk потрібне at.*
+I am ___ tonight. → **working** · work · works
+- work — *Після am потрібна working.*
+- works — *Після am потрібна working, не works.*
 
-**5 · Картка слова — afterglow**
-<!-- interaction_id: en:lesson-10:session-28:word:afterglow; family: word_card -->
-> **afterglow** — «заграва після заходу сонця». The afterglow is fading. — «Заграва після заходу сонця згасає». Тут м’яке світло на небі після заходу сонця.
+**5 · Картка слова — daily**
+<!-- interaction_id: en:lesson-10:session-28:word:daily; family: word_card -->
+> **daily** — «щодня». I walk daily. — «Я гуляю щодня».
 
-**6 · Ви бачите, як світло на небі після заходу поступово зникає. Скажіть: «Заграва після заходу сонця згасає»**
+**6 · Скажіть, що гуляєте щодня. Daily поставте після walk**
 <!-- interaction_id: en:lesson-10:session-28:i04; family: phrase_builder -->
-Плитки: `fading` `is` `afterglow` `The` → **The afterglow is fading.**
+Плитки: `daily` `walk` `I` → **I walk daily.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-28:i05; family: listen_choose -->
-🔊 *The afterglow is orange.* → **The afterglow is orange.** · The afterglow is pink. · The sky is orange.
-- The afterglow is pink. — *У записі звучить The afterglow is orange.*
-- The sky is orange. — *У записі звучить The afterglow is orange.*
+🔊 *She walks daily.* → **She walks daily.** · He walks daily. · We walk daily.
+- He walks daily. — *У записі звучить She walks daily.*
+- We walk daily. — *У записі звучить She walks daily.*
 
-**8 · Виберіть правильне написання форми fade**
+**8 · Виберіть форму walk для звички з I**
 <!-- interaction_id: en:lesson-10:session-28:i06; family: context_gap_grammar -->
-The afterglow is ___. → **fading** · fadeing · fade
-- fadeing — *Перед ing кінцева e зникає: fading.*
-- fade — *Після is для зміни, що відбувається, потрібна fading.*
+I ___ daily. → **walk** · walks · walking
+- walks — *З I потрібна walk без s.*
+- walking — *Для звички тут потрібна walk.*
 
-**9 · Картка слова — waterfront**
-<!-- interaction_id: en:lesson-10:session-28:word:waterfront; family: word_card -->
-> **waterfront** — «прибережна частина міста». We are walking along the waterfront. — «Ми йдемо вздовж міської набережної». Міська територія біля води.
+**9 · Картка слова — weekly**
+<!-- interaction_id: en:lesson-10:session-28:word:weekly; family: word_card -->
+> **weekly** — «щотижня». We meet weekly. — «Ми зустрічаємося щотижня».
 
-**10 · Друг телефонує під час вашої прогулянки містом біля води. Скажіть: «Ми йдемо вздовж міської набережної»**
+**10 · Ви зустрічаєтеся з друзями щотижня. Weekly поставте після meet**
 <!-- interaction_id: en:lesson-10:session-28:i07; family: phrase_builder -->
-Плитки: `waterfront` `the` `along` `walking` `are` `We` → **We are walking along the waterfront.**
+Плитки: `weekly` `meet` `We` → **We meet weekly.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-28:i08; family: listen_choose -->
-🔊 *The waterfront is busy.* → **The waterfront is busy.** · The waterfront is quiet. · The market is busy.
-- The waterfront is quiet. — *У записі звучить The waterfront is busy.*
-- The market is busy. — *У записі звучить The waterfront is busy.*
+🔊 *They meet weekly.* → **They meet weekly.** · We meet weekly. · They meet daily.
+- We meet weekly. — *У записі звучить They meet weekly.*
+- They meet daily. — *У записі звучить They meet weekly.*
 
-**12 · Ви описуєте прогулянку, яка триває зараз. Виберіть допоміжне дієслово**
+**12 · Ви зустрічаєтеся щотижня, не щодня. Виберіть частоту**
 <!-- interaction_id: en:lesson-10:session-28:i09; family: context_gap_grammar -->
-We ___ walking along the waterfront. → **are** · is · do
-- is — *З we потрібне are.*
-- do — *Перед walking тут потрібне are.*
+We meet ___. → **weekly** · daily · tonight
+- daily — *Daily — щодня, а тут щотижня.*
+- tonight — *Tonight — сьогодні ввечері, не щотижнева частота.*
 
-**13 · Картка слова — boardwalk**
-<!-- interaction_id: en:lesson-10:session-28:word:boardwalk; family: word_card -->
-> **boardwalk** — «дерев’яна прогулянкова доріжка». We are walking on the boardwalk. — «Ми йдемо дерев’яною прогулянковою доріжкою». Тут настил із дощок біля берега.
+**13 · Картка слова — monthly**
+<!-- interaction_id: en:lesson-10:session-28:word:monthly; family: word_card -->
+> **monthly** — «щомісяця». I pay monthly. — «Я плачу щомісяця».
 
-**14 · Ви вийшли на настил із дощок біля берега. Скажіть другу: «Ми йдемо дерев’яною прогулянковою доріжкою»**
+**14 · За абонемент ви платите щомісяця. Monthly поставте після pay**
 <!-- interaction_id: en:lesson-10:session-28:i10; family: phrase_builder -->
-Плитки: `boardwalk` `the` `on` `walking` `are` `We` → **We are walking on the boardwalk.**
+Плитки: `monthly` `pay` `I` → **I pay monthly.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-28:i11; family: listen_choose -->
-🔊 *The boardwalk is long.* → **The boardwalk is long.** · The boardwalk is short. · The bridge is long.
-- The boardwalk is short. — *У записі звучить The boardwalk is long.*
-- The bridge is long. — *У записі звучить The boardwalk is long.*
+🔊 *We pay monthly.* → **We pay monthly.** · I pay monthly. · We pay weekly.
+- I pay monthly. — *У записі звучить We pay monthly.*
+- We pay weekly. — *У записі звучить We pay monthly.*
 
-**16 · Ви розповідаєте про звичку. Виберіть форму walk**
+**16 · Виберіть форму pay з I**
 <!-- interaction_id: en:lesson-10:session-28:i12; family: context_gap_grammar -->
-We usually ___ on the boardwalk. → **walk** · walks · walking
-- walks — *З we потрібна walk без s.*
-- walking — *Для цієї звички потрібна walk.*
+I ___ monthly. → **pay** · pays · paying
+- pays — *З I потрібна pay без s.*
+- paying — *Для звички тут потрібна pay.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-28:i13; family: speed_match -->
-dusk — вечірні сутінки · afterglow — заграва після заходу сонця · waterfront — прибережна частина міста · boardwalk — дерев’яна прогулянкова доріжка
+tonight — сьогодні ввечері · daily — щодня · weekly — щотижня · monthly — щомісяця
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-28:i14; family: listen_build_dictation -->
-🔊 *The afterglow is fading.* Плитки: `fading` `is` `afterglow` `The` → **The afterglow is fading.**
+🔊 *We meet weekly.* Плитки: `weekly` `meet` `We` → **We meet weekly.**
 
-**19 · Друг телефонує в мить заходу сонця й запитує, що ви робите. Скажіть: «Ми зараз спостерігаємо захід сонця»**
-<!-- interaction_id: en:lesson-10:session-28:i15; family: scripted_repeat_compare -->
-🎙 **We are watching the sunset now.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-28:i15; family: listen_build_dictation -->
+🔊 *I pay monthly.* Плитки: `monthly` `pay` `I` → **I pay monthly.**
 
-**20 · Друг запитує про ваш звичний час прогулянки. Скажіть: «Ми зазвичай гуляємо в сутінках». Поставте at dusk у кінці**
-<!-- interaction_id: en:lesson-10:session-28:i16; family: phrase_builder -->
-Плитки: `dusk` `at` `walk` `usually` `We` → **We usually walk at dusk.**
+**20 · Вечір, ви готуєте вечерю. Скажіть, що готуєте сьогодні ввечері**
+<!-- interaction_id: en:lesson-10:session-28:i16; family: scripted_repeat_compare -->
+🎙 **I am cooking tonight.**
 
-**21 · Друг запитує, що відбувається зі світлом, яке залишилося на небі. Воно поступово зникає. Скажіть: «Заграва після заходу сонця згасає»**
-<!-- interaction_id: en:lesson-10:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The afterglow is fading.**
+**21 · Скажіть, що читаєте щодня**
+<!-- interaction_id: en:lesson-10:session-28:i17; family: scripted_repeat_compare -->
+🎙 **I read daily.**
 

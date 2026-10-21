@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-28",
   "learningOutcomeByLocale": {
-    "ru": "We usually walk at dusk; The afterglow is fading; We are walking along the waterfront",
-    "uk": "We usually walk at dusk; The afterglow is fading; We are walking along the waterfront"
+    "ru": "I am working tonight; I walk daily; We meet weekly; I pay monthly",
+    "uk": "I am working tonight; I walk daily; We meet weekly; I pay monthly"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Прогулка в сумерках",
-        "uk": "Прогулянка в сутінках"
+        "ru": "Именно сегодня вечером",
+        "uk": "Саме сьогодні ввечері"
       },
       "bodyByLocale": {
-        "ru": "Sunset — знакомое слово «закат». Dusk — «вечерние сумерки», время, когда после заката темнеет. We usually walk at dusk — «Мы обычно гуляем в сумерках». Usually показывает привычку, поэтому используем Present Simple. At dusk называет время суток; оно само по себе не требует определённого грамматического времени.",
-        "uk": "Sunset — знайоме слово «захід сонця». Dusk — «вечірні сутінки», час, коли після заходу темніє. We usually walk at dusk — «Ми зазвичай гуляємо в сутінках». Usually показує звичку, тому використовуємо Present Simple. At dusk називає час доби; воно саме по собі не вимагає певного граматичного часу."
+        "ru": "Уже вечер. Друг звонит и зовёт гулять, но вы сейчас на работе. Tonight — «сегодня вечером, сегодня ночью»: I am working tonight — «Сегодня вечером я работаю». Здесь вы описываете текущую смену: am working. Tonight относится к сегодняшнему вечеру, не ко всем вечерам.",
+        "uk": "Уже вечір. Друг телефонує й кличе гуляти, але ви зараз на роботі. Tonight — «сьогодні ввечері, сьогодні вночі»: I am working tonight — «Сьогодні ввечері я працюю». Тут ви описуєте поточну зміну: am working. Tonight стосується сьогоднішнього вечора, не всіх вечорів."
       },
       "question": {
         "interactionId": "en:lesson-10:session-28:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-28:intro1:r1",
-              "text": "We usually walk at dusk."
+              "text": "I am working tonight."
             },
             {
               "responseId": "en:lesson-10:session-28:intro1:r2",
-              "text": "We usually walks at dusk."
+              "text": "I working tonight."
             },
             {
               "responseId": "en:lesson-10:session-28:intro1:r3",
-              "text": "We usually walk on dusk."
+              "text": "I am work tonight."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-28:intro1:r1",
-              "text": "We usually walk at dusk."
+              "text": "I am working tonight."
             },
             {
               "responseId": "en:lesson-10:session-28:intro1:r2",
-              "text": "We usually walks at dusk."
+              "text": "I working tonight."
             },
             {
               "responseId": "en:lesson-10:session-28:intro1:r3",
-              "text": "We usually walk on dusk."
+              "text": "I am work tonight."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Небо постепенно темнеет",
-        "uk": "Небо поступово темніє"
+        "ru": "Каждый день и каждую неделю",
+        "uk": "Щодня й щотижня"
       },
       "bodyByLocale": {
-        "ru": "Afterglow — «зарево после заката», оставшийся на небе мягкий свет. Вы смотрите, как он постепенно исчезает: The afterglow is fading — «Зарево после заката угасает». Для изменения, которое происходит сейчас, используем is + fading. В fade → fading конечная e исчезает.",
-        "uk": "Afterglow — «заграва після заходу сонця», м’яке світло, що залишилося на небі. Ви дивитеся, як воно поступово зникає: The afterglow is fading — «Заграва після заходу сонця згасає». Для зміни, яка відбувається зараз, використовуємо is + fading. У fade → fading кінцева e зникає."
+        "ru": "Друг спрашивает о ваших привычках. Daily — «ежедневно»: I walk daily — «Я гуляю каждый день». Weekly — «еженедельно»: We meet weekly — «Мы встречаемся каждую неделю». В этих фразах daily и weekly стоят после глагола и отвечают на вопрос «как часто?». Вы описываете привычки: walk, meet.",
+        "uk": "Друг запитує про ваші звички. Daily — «щодня»: I walk daily — «Я гуляю щодня». Weekly — «щотижня»: We meet weekly — «Ми зустрічаємося щотижня». У цих фразах daily і weekly стоять після дієслова й відповідають на запитання «як часто?». Ви описуєте звички: walk, meet."
       },
       "question": {
         "interactionId": "en:lesson-10:session-28:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-28:intro2:r1",
-              "text": "The afterglow is fading."
+              "text": "We meet weekly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro2:r2",
-              "text": "The afterglow is fadeing."
+              "text": "We meets weekly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro2:r3",
-              "text": "The afterglow fading."
+              "text": "We meeting weekly."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-28:intro2:r1",
-              "text": "The afterglow is fading."
+              "text": "We meet weekly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro2:r2",
-              "text": "The afterglow is fadeing."
+              "text": "We meets weekly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro2:r3",
-              "text": "The afterglow fading."
+              "text": "We meeting weekly."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где вы сейчас",
-        "uk": "Де ви зараз"
+        "ru": "Один платёж в месяц",
+        "uk": "Один платіж на місяць"
       },
       "bodyByLocale": {
-        "ru": "Waterfront — «прибрежная часть города», территория у реки, озера или моря. Друг звонит во время вашей прогулки: We are walking along the waterfront — «Мы идём вдоль городской набережной». Для текущего действия используем are + walking. Сравните привычку: We usually walk here — «Мы обычно гуляем здесь».",
-        "uk": "Waterfront — «прибережна частина міста», територія біля річки, озера або моря. Друг телефонує під час вашої прогулянки: We are walking along the waterfront — «Ми йдемо вздовж міської набережної». Для поточної дії використовуємо are + walking. Порівняйте звичку: We usually walk here — «Ми зазвичай гуляємо тут»."
+        "ru": "Друг спрашивает, как часто вы платите за абонемент в бассейн. Monthly — «ежемесячно»: I pay monthly — «Я плачу каждый месяц». Это регулярный платёж, поэтому pay. Monthly — частота, а не конкретный месяц.",
+        "uk": "Друг запитує, як часто ви платите за абонемент до басейну. Monthly — «щомісяця»: I pay monthly — «Я плачу щомісяця». Це регулярний платіж, тому pay. Monthly — частота, а не конкретний місяць."
       },
       "question": {
         "interactionId": "en:lesson-10:session-28:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-28:intro3:r1",
-              "text": "We are walking along the waterfront."
+              "text": "I pay monthly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro3:r2",
-              "text": "We walking along the waterfront."
+              "text": "I pays monthly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro3:r3",
-              "text": "We is walking along the waterfront."
+              "text": "I am pay monthly."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-28:intro3:r1",
-              "text": "We are walking along the waterfront."
+              "text": "I pay monthly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro3:r2",
-              "text": "We walking along the waterfront."
+              "text": "I pays monthly."
             },
             {
               "responseId": "en:lesson-10:session-28:intro3:r3",
-              "text": "We is walking along the waterfront."
+              "text": "I am pay monthly."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "db59491ba7e3f8238571a7f7e2dc5d4137495b63970302e21bf3cf27217ddd64"
+  "introFingerprint": "4c87d1f89c44c9d86c81ef7ceb8ba088a80203e7a18180f93f87cf4268a852aa"
 }

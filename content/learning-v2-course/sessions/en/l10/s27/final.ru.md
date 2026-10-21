@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 27 — Встретить восход
+# Английский · Урок 10 · Занятие 27 — Найти дорогу пешком
 
-**Ситуация.** Рассказать о прогулках на природе и описать, где вы сейчас встречаете восход солнца.
+**Ситуация.** Описать прогулку и объяснить, куда идти.
 
-**Что вы освоите:** We usually watch the sunrise here; We are walking along the ridge; I can see the headland
-**Новые слова:** ridge, foothills, lookout, headland
+**Что вы освоите:** We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot
+**Новые слова:** uphill, downhill, straight ahead, on foot
 
 ## Интро 1
 
-### Обычное место для восхода
+### Вверх и вниз по склону
 
-Повторим sunrise — «восход солнца». Вы рассказываете о привычной прогулке: We usually watch the sunrise here — «Мы обычно наблюдаем восход солнца здесь». Usually стоит перед watch. Для привычки используем Present Simple. Если вы наблюдаете восход прямо сейчас: We are watching the sunrise now.
+Дорога поднимается по склону, и вы идёте вверх. Uphill — «в гору, вверх по склону»: We are walking uphill — «Мы идём в гору». На спуске: We are walking downhill — «Мы идём вниз по склону». Downhill — «под гору, вниз по склону». Вы описываете движение сейчас: are walking.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We usually watch the sunrise here.**
-- ❌ We usually watches the sunrise here. — *С we нужна watch без s.*
-- ❌ We usually watching the sunrise here. — *Для этой привычки нужна watch.*
+- ✅ **We are walking uphill.**
+- ❌ We walking uphill. — *Перед walking нужна are.*
+- ❌ We are walk uphill. — *После are нужна walking.*
 
 ---
 
 ## Интро 2
 
-### Идём по гребню холма
+### Идите прямо
 
-Ridge — «гребень холма», узкая вытянутая верхняя часть холма или горной цепи. Друг звонит во время прогулки: We are walking along the ridge — «Мы идём вдоль гребня холма». Для движения сейчас используем are + walking. Along указывает движение вдоль чего-либо.
+Прохожий спрашивает дорогу к станции. Поворачивать не нужно. Straight ahead — «прямо вперёд»: Go straight ahead — «Идите прямо». Вы даёте простое указание: go без to и без s. Straight ahead учим как цельное выражение.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are walking along the ridge.**
-- ❌ We walking along the ridge. — *Перед walking нужно are.*
-- ❌ We is walking along the ridge. — *С we нужно are, не is.*
+- ✅ **Go straight ahead.**
+- ❌ Goes straight ahead. — *В указании нужна Go без s.*
+- ❌ To go straight ahead. — *Прямое указание начинаем с Go, без to.*
 
 ---
 
 ## Интро 3
 
-### Что видно отсюда
+### Без автобуса и машины
 
-Headland — «мыс», участок суши, выступающий в море. Вы смотрите на побережье: I can see the headland — «Я вижу мыс». Can see естественно передаёт то, что вам сейчас видно. После can нужна базовая форма see. Слово «сейчас» в ситуации не требует Continuous для каждого глагола.
+Ваша работа недалеко от дома, и вы ходите туда пешком. On foot — «пешком»: I go to work on foot — «Я хожу на работу пешком». Это обычный способ добираться: go. В выражении on foot нужен on; foot остаётся в единственном числе.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I can see the headland.**
-- ❌ I can sees the headland. — *После can нужна see без s.*
-- ❌ I can seeing the headland. — *После can нужна базовая форма see.*
+- ✅ **I go to work on foot.**
+- ❌ I goes to work on foot. — *С I нужна go без s.*
+- ❌ I go to work on foots. — *В выражении on foot слово foot без окончания s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — ridge**
-<!-- interaction_id: en:lesson-10:session-27:word:ridge; family: word_card -->
-> **ridge** — «гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.
+**1 · Карточка слова — uphill**
+<!-- interaction_id: en:lesson-10:session-27:word:uphill; family: word_card -->
+> **uphill** — «в гору, вверх по склону». We are walking uphill. — «Мы идём в гору».
 
-**2 · Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»**
+**2 · Вы с другом поднимаетесь по склону. Скажите: «Мы идём в гору»**
 <!-- interaction_id: en:lesson-10:session-27:i01; family: phrase_builder -->
-Плитки: `ridge` `the` `along` `walking` `are` `We` → **We are walking along the ridge.**
+Плитки: `uphill` `walking` `are` `We` → **We are walking uphill.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-27:i02; family: listen_choose -->
-🔊 *The ridge is above the village.* → **The ridge is above the village.** · The ridge is behind the village. · The hill is above the village.
-- The ridge is behind the village. — *В записи звучит The ridge is above the village.*
-- The hill is above the village. — *В записи звучит The ridge is above the village.*
+🔊 *They are walking uphill.* → **They are walking uphill.** · We are walking uphill. · He is walking uphill.
+- We are walking uphill. — *В записи звучит They are walking uphill.*
+- He is walking uphill. — *В записи звучит They are walking uphill.*
 
-**4 · Вы рассказываете о привычке. Выберите форму watch**
+**4 · Выберите форму walk после are**
 <!-- interaction_id: en:lesson-10:session-27:i03; family: context_gap_grammar -->
-We usually ___ the sunrise here. → **watch** · watches · watching
-- watches — *С we нужна watch без s.*
-- watching — *Для этой привычки нужна watch.*
+We are ___ uphill. → **walking** · walk · walks
+- walk — *После are нужна walking.*
+- walks — *После are нужна walking, не walks.*
 
-**5 · Карточка слова — foothills**
-<!-- interaction_id: en:lesson-10:session-27:word:foothills; family: word_card -->
-> **foothills** — «предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.
+**5 · Карточка слова — downhill**
+<!-- interaction_id: en:lesson-10:session-27:word:downhill; family: word_card -->
+> **downhill** — «вниз по склону». We are walking downhill. — «Мы идём вниз по склону».
 
-**6 · Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»**
+**6 · Теперь вы спускаетесь. Скажите: «Мы идём вниз по склону»**
 <!-- interaction_id: en:lesson-10:session-27:i04; family: phrase_builder -->
-Плитки: `foothills` `the` `through` `walking` `are` `We` → **We are walking through the foothills.**
+Плитки: `downhill` `walking` `are` `We` → **We are walking downhill.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-27:i05; family: listen_choose -->
-🔊 *The foothills are green.* → **The foothills are green.** · The foothills are brown. · The fields are green.
-- The foothills are brown. — *В записи звучит The foothills are green.*
-- The fields are green. — *В записи звучит The foothills are green.*
+🔊 *She is walking downhill.* → **She is walking downhill.** · He is walking downhill. · She is walking uphill.
+- He is walking downhill. — *В записи звучит She is walking downhill.*
+- She is walking uphill. — *В записи звучит She is walking downhill.*
 
-**8 · Выберите связку для foothills во множественном числе**
+**8 · Вы спускаетесь по склону. Выберите направление**
 <!-- interaction_id: en:lesson-10:session-27:i06; family: context_gap_grammar -->
-The foothills ___ green. → **are** · is · am
-- is — *Foothills — множественное число: are.*
-- am — *Am используется с I; здесь нужно are.*
+We are walking ___. → **downhill** · uphill · indoors
+- uphill — *Uphill — вверх, а здесь спуск.*
+- indoors — *Indoors — в помещении, а здесь склон.*
 
-**9 · Карточка слова — lookout**
-<!-- interaction_id: en:lesson-10:session-27:word:lookout; family: word_card -->
-> **lookout** — «смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.
+**9 · Карточка слова — straight ahead**
+<!-- interaction_id: en:lesson-10:session-27:word:straight-ahead; family: word_card -->
+> **straight ahead** — «прямо вперёд». Go straight ahead. — «Идите прямо».
 
-**10 · Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»**
+**10 · Поворачивать не нужно. Скажите прохожему идти прямо**
 <!-- interaction_id: en:lesson-10:session-27:i07; family: phrase_builder -->
-Плитки: `lookout` `the` `at` `sitting` `are` `We` → **We are sitting at the lookout.**
+Плитки: `ahead` `straight` `Go` → **Go straight ahead.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-27:i08; family: listen_choose -->
-🔊 *The lookout is near the village.* → **The lookout is near the village.** · The lookout is near the river. · The path is near the village.
-- The lookout is near the river. — *В записи звучит The lookout is near the village.*
-- The path is near the village. — *В записи звучит The lookout is near the village.*
+🔊 *Go straight ahead.* → **Go straight ahead.** · Walk straight ahead. · Look straight ahead.
+- Walk straight ahead. — *В записи звучит Go straight ahead.*
+- Look straight ahead. — *В записи звучит Go straight ahead.*
 
-**12 · Вы сидите на площадке сейчас. Выберите написание формы sit**
+**12 · Выберите форму go для прямого указания**
 <!-- interaction_id: en:lesson-10:session-27:i09; family: context_gap_grammar -->
-We are ___ at the lookout. → **sitting** · siting · sit
-- siting — *В sitting удваиваем t.*
-- sit — *После are для действия сейчас нужна sitting.*
+___ straight ahead. → **Go** · Goes · Going
+- Goes — *В указании нужна Go без s.*
+- Going — *В указании нужна Go.*
 
-**13 · Карточка слова — headland**
-<!-- interaction_id: en:lesson-10:session-27:word:headland; family: word_card -->
-> **headland** — «мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.
+**13 · Карточка слова — on foot**
+<!-- interaction_id: en:lesson-10:session-27:word:on-foot; family: word_card -->
+> **on foot** — «пешком». I go to work on foot. — «Я хожу на работу пешком».
 
-**14 · Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»**
+**14 · Скажите, что ходите на работу пешком. On foot поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-27:i10; family: phrase_builder -->
-Плитки: `headland` `the` `see` `can` `I` → **I can see the headland.**
+Плитки: `foot` `on` `work` `to` `go` `I` → **I go to work on foot.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-27:i11; family: listen_choose -->
-🔊 *The headland is in the distance.* → **The headland is in the distance.** · The village is in the distance. · The headland is on the left.
-- The village is in the distance. — *В записи звучит The headland is in the distance.*
-- The headland is on the left. — *В записи звучит The headland is in the distance.*
+🔊 *She goes to work on foot.* → **She goes to work on foot.** · He goes to work on foot. · She goes to school on foot.
+- He goes to work on foot. — *В записи звучит She goes to work on foot.*
+- She goes to school on foot. — *В записи звучит She goes to work on foot.*
 
-**16 · Выберите форму see после can**
+**16 · Выберите предлог в выражении «пешком»**
 <!-- interaction_id: en:lesson-10:session-27:i12; family: context_gap_grammar -->
-We can ___ the headland. → **see** · sees · seeing
-- sees — *После can нужна see без s.*
-- seeing — *После can нужна базовая форма see.*
+I go to work ___ foot. → **on** · at · with
+- at — *Выражение: on foot.*
+- with — *В этом выражении нужен on.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-10:session-27:i13; family: speed_match -->
-ridge — гребень холма · foothills — предгорья · lookout — смотровая площадка · headland — мыс
+uphill — вверх по склону · downhill — вниз по склону · straight ahead — прямо вперёд · on foot — пешком
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-27:i14; family: listen_build_dictation -->
-🔊 *We are sitting at the lookout.* Плитки: `lookout` `the` `at` `sitting` `are` `We` → **We are sitting at the lookout.**
+🔊 *We are walking downhill.* Плитки: `downhill` `walking` `are` `We` → **We are walking downhill.**
 
-**19 · Друг звонит в момент восхода. Скажите, что вы делаете: «Мы сейчас наблюдаем восход солнца»**
-<!-- interaction_id: en:lesson-10:session-27:i15; family: scripted_repeat_compare -->
-🎙 **We are watching the sunrise now.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-27:i15; family: listen_build_dictation -->
+🔊 *I go to work on foot.* Плитки: `foot` `on` `work` `to` `go` `I` → **I go to work on foot.**
 
-**20 · Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце**
-<!-- interaction_id: en:lesson-10:session-27:i16; family: phrase_builder -->
-Плитки: `here` `sunrise` `the` `watch` `usually` `We` → **We usually watch the sunrise here.**
+**20 · Вы один поднимаетесь по склону. Скажите: «Я иду в гору»**
+<!-- interaction_id: en:lesson-10:session-27:i16; family: scripted_repeat_compare -->
+🎙 **I am walking uphill.**
 
-**21 · Друг спрашивает, что вы видите с площадки. Вы различаете выступающий в море участок суши. Скажите: «Я вижу мыс»**
-<!-- interaction_id: en:lesson-10:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I can see the headland.**
+**21 · Скажите, что ходите в школу пешком**
+<!-- interaction_id: en:lesson-10:session-27:i17; family: scripted_repeat_compare -->
+🎙 **I go to school on foot.**
 

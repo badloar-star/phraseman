@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-27:word:ridge",
+        "interactionId": "en:lesson-10:session-27:word:uphill",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — ridge",
+        "prompt": "Карточка слова — uphill",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:ridge:audio"
+          "en:lesson-10:session-27:word:uphill:audio"
         ],
-        "accessibilityLabel": "Карточка слова — ridge",
+        "accessibilityLabel": "Карточка слова — uphill",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:ridge:audio",
-            "transcript": "ridge"
+            "audioTargetId": "en:lesson-10:session-27:word:uphill:audio",
+            "transcript": "uphill"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:ridge:r1",
-              "targetText": "ridge",
+              "responseId": "en:lesson-10:session-27:word:uphill:r1",
+              "targetText": "uphill",
               "meaningByLocale": {
-                "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
-                "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+                "ru": "«в гору, вверх по склону». We are walking uphill. — «Мы идём в гору».",
+                "uk": "«угору схилом». We are walking uphill. — «Ми йдемо вгору схилом»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "ridge",
+            "word": "uphill",
             "definitionByLocale": {
-              "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
-              "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+              "ru": "«в гору, вверх по склону». We are walking uphill. — «Мы идём в гору».",
+              "uk": "«угору схилом». We are walking uphill. — «Ми йдемо вгору схилом»."
             }
           }
         },
@@ -52,25 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
+        "prompt": "Вы с другом поднимаетесь по склону. Скажите: «Мы идём в гору»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
+        "accessibilityLabel": "Вы с другом поднимаетесь по склону. Скажите: «Мы идём в гору»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are walking along the ridge.",
+          "targetPhrase": "We are walking uphill.",
           "localizedMeaning": {
-            "ru": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
-            "uk": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»"
+            "ru": "Вы с другом поднимаетесь по склону. Скажите: «Мы идём в гору»",
+            "uk": "Ви з другом піднімаєтеся схилом. Скажіть: «Ми йдемо вгору схилом»"
           },
           "orderedTokens": [
             "We",
             "are",
             "walking",
-            "along",
-            "the",
-            "ridge"
+            "uphill"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -91,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i02:r1",
-            "text": "The ridge is above the village."
+            "text": "They are walking uphill."
           },
           {
             "responseId": "en:lesson-10:session-27:i02:r2",
-            "text": "The ridge is behind the village."
+            "text": "We are walking uphill."
           },
           {
             "responseId": "en:lesson-10:session-27:i02:r3",
-            "text": "The hill is above the village."
+            "text": "He is walking uphill."
           }
         ],
         "mediaIds": [],
@@ -111,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i02:audio",
-            "transcript": "The ridge is above the village."
+            "transcript": "They are walking uphill."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i02:r1",
-              "targetText": "The ridge is above the village.",
+              "targetText": "They are walking uphill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i02:r2",
-              "targetText": "The ridge is behind the village.",
+              "targetText": "We are walking uphill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i02:r3",
-              "targetText": "The hill is above the village.",
+              "targetText": "He is walking uphill.",
               "meaningByLocale": null
             }
           ],
@@ -138,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The ridge is above the village.",
-                "uk": "У записі звучить The ridge is above the village."
+                "ru": "В записи звучит They are walking uphill.",
+                "uk": "У записі звучить They are walking uphill."
               }
             },
             {
@@ -147,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The ridge is above the village.",
-                "uk": "У записі звучить The ridge is above the village."
+                "ru": "В записи звучит They are walking uphill.",
+                "uk": "У записі звучить They are walking uphill."
               }
             }
           ],
@@ -163,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы рассказываете о привычке. Выберите форму watch",
+        "prompt": "Выберите форму walk после are",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i03:r1",
-            "text": "watch"
+            "text": "walking"
           },
           {
             "responseId": "en:lesson-10:session-27:i03:r2",
-            "text": "watches"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-27:i03:r3",
-            "text": "watching"
+            "text": "walks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы рассказываете о привычке. Выберите форму watch",
+        "accessibilityLabel": "Выберите форму walk после are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы рассказываете о привычке. Выберите форму watch",
-            "uk": "Ви розповідаєте про звичку. Виберіть форму watch"
+            "ru": "Выберите форму walk после are",
+            "uk": "Виберіть форму walk після are"
           },
-          "gappedTargetPhrase": "We usually ___ the sunrise here.",
+          "gappedTargetPhrase": "We are ___ uphill.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i03:r1",
-              "text": "watch"
+              "text": "walking"
             },
             {
               "responseId": "en:lesson-10:session-27:i03:r2",
-              "text": "watches"
+              "text": "walk"
             },
             {
               "responseId": "en:lesson-10:session-27:i03:r3",
-              "text": "watching"
+              "text": "walks"
             }
           ],
-          "testedDimension": "Вы рассказываете о привычке. Выберите форму watch",
+          "testedDimension": "Выберите форму walk после are",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i03:r2",
               "correct": false,
-              "testedDimension": "Вы рассказываете о привычке. Выберите форму watch",
+              "testedDimension": "Выберите форму walk после are",
               "feedbackByLocale": {
-                "ru": "С we нужна watch без s.",
-                "uk": "З we потрібна watch без s."
+                "ru": "После are нужна walking.",
+                "uk": "Після are потрібна walking."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i03:r3",
               "correct": false,
-              "testedDimension": "Вы рассказываете о привычке. Выберите форму watch",
+              "testedDimension": "Выберите форму walk после are",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна watch.",
-                "uk": "Для цієї звички потрібна watch."
+                "ru": "После are нужна walking, не walks.",
+                "uk": "Після are потрібна walking, не walks."
               }
             }
           ]
@@ -227,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:word:foothills",
+        "interactionId": "en:lesson-10:session-27:word:downhill",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — foothills",
+        "prompt": "Карточка слова — downhill",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:foothills:audio"
+          "en:lesson-10:session-27:word:downhill:audio"
         ],
-        "accessibilityLabel": "Карточка слова — foothills",
+        "accessibilityLabel": "Карточка слова — downhill",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:foothills:audio",
-            "transcript": "foothills"
+            "audioTargetId": "en:lesson-10:session-27:word:downhill:audio",
+            "transcript": "downhill"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:foothills:r1",
-              "targetText": "foothills",
+              "responseId": "en:lesson-10:session-27:word:downhill:r1",
+              "targetText": "downhill",
               "meaningByLocale": {
-                "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
-                "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+                "ru": "«вниз по склону». We are walking downhill. — «Мы идём вниз по склону».",
+                "uk": "«униз схилом». We are walking downhill. — «Ми йдемо вниз схилом»."
               }
             }
           ],
@@ -260,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "foothills",
+            "word": "downhill",
             "definitionByLocale": {
-              "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
-              "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+              "ru": "«вниз по склону». We are walking downhill. — «Мы идём вниз по склону».",
+              "uk": "«униз схилом». We are walking downhill. — «Ми йдемо вниз схилом»."
             }
           }
         },
@@ -275,25 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
+        "prompt": "Теперь вы спускаетесь. Скажите: «Мы идём вниз по склону»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
+        "accessibilityLabel": "Теперь вы спускаетесь. Скажите: «Мы идём вниз по склону»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are walking through the foothills.",
+          "targetPhrase": "We are walking downhill.",
           "localizedMeaning": {
-            "ru": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
-            "uk": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»"
+            "ru": "Теперь вы спускаетесь. Скажите: «Мы идём вниз по склону»",
+            "uk": "Тепер ви спускаєтеся. Скажіть: «Ми йдемо вниз схилом»"
           },
           "orderedTokens": [
             "We",
             "are",
             "walking",
-            "through",
-            "the",
-            "foothills"
+            "downhill"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -314,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i05:r1",
-            "text": "The foothills are green."
+            "text": "She is walking downhill."
           },
           {
             "responseId": "en:lesson-10:session-27:i05:r2",
-            "text": "The foothills are brown."
+            "text": "He is walking downhill."
           },
           {
             "responseId": "en:lesson-10:session-27:i05:r3",
-            "text": "The fields are green."
+            "text": "She is walking uphill."
           }
         ],
         "mediaIds": [],
@@ -334,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i05:audio",
-            "transcript": "The foothills are green."
+            "transcript": "She is walking downhill."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i05:r1",
-              "targetText": "The foothills are green.",
+              "targetText": "She is walking downhill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i05:r2",
-              "targetText": "The foothills are brown.",
+              "targetText": "He is walking downhill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i05:r3",
-              "targetText": "The fields are green.",
+              "targetText": "She is walking uphill.",
               "meaningByLocale": null
             }
           ],
@@ -361,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The foothills are green.",
-                "uk": "У записі звучить The foothills are green."
+                "ru": "В записи звучит She is walking downhill.",
+                "uk": "У записі звучить She is walking downhill."
               }
             },
             {
@@ -370,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The foothills are green.",
-                "uk": "У записі звучить The foothills are green."
+                "ru": "В записи звучит She is walking downhill.",
+                "uk": "У записі звучить She is walking downhill."
               }
             }
           ],
@@ -386,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для foothills во множественном числе",
+        "prompt": "Вы спускаетесь по склону. Выберите направление",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i06:r1",
-            "text": "are"
+            "text": "downhill"
           },
           {
             "responseId": "en:lesson-10:session-27:i06:r2",
-            "text": "is"
+            "text": "uphill"
           },
           {
             "responseId": "en:lesson-10:session-27:i06:r3",
-            "text": "am"
+            "text": "indoors"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для foothills во множественном числе",
+        "accessibilityLabel": "Вы спускаетесь по склону. Выберите направление",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для foothills во множественном числе",
-            "uk": "Виберіть зв’язку для foothills у множині"
+            "ru": "Вы спускаетесь по склону. Выберите направление",
+            "uk": "Ви спускаєтеся схилом. Виберіть напрямок"
           },
-          "gappedTargetPhrase": "The foothills ___ green.",
+          "gappedTargetPhrase": "We are walking ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i06:r1",
-              "text": "are"
+              "text": "downhill"
             },
             {
               "responseId": "en:lesson-10:session-27:i06:r2",
-              "text": "is"
+              "text": "uphill"
             },
             {
               "responseId": "en:lesson-10:session-27:i06:r3",
-              "text": "am"
+              "text": "indoors"
             }
           ],
-          "testedDimension": "Выберите связку для foothills во множественном числе",
+          "testedDimension": "Вы спускаетесь по склону. Выберите направление",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите связку для foothills во множественном числе",
+              "testedDimension": "Вы спускаетесь по склону. Выберите направление",
               "feedbackByLocale": {
-                "ru": "Foothills — множественное число: are.",
-                "uk": "Foothills — множина: are."
+                "ru": "Uphill — вверх, а здесь спуск.",
+                "uk": "Uphill — угору, а тут спуск."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите связку для foothills во множественном числе",
+              "testedDimension": "Вы спускаетесь по склону. Выберите направление",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужно are.",
-                "uk": "Am використовуємо з I; тут потрібне are."
+                "ru": "Indoors — в помещении, а здесь склон.",
+                "uk": "Indoors — у приміщенні, а тут схил."
               }
             }
           ]
@@ -450,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:word:lookout",
+        "interactionId": "en:lesson-10:session-27:word:straight-ahead",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — lookout",
+        "prompt": "Карточка слова — straight ahead",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:lookout:audio"
+          "en:lesson-10:session-27:word:straight-ahead:audio"
         ],
-        "accessibilityLabel": "Карточка слова — lookout",
+        "accessibilityLabel": "Карточка слова — straight ahead",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:lookout:audio",
-            "transcript": "lookout"
+            "audioTargetId": "en:lesson-10:session-27:word:straight-ahead:audio",
+            "transcript": "straight ahead"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:lookout:r1",
-              "targetText": "lookout",
+              "responseId": "en:lesson-10:session-27:word:straight-ahead:r1",
+              "targetText": "straight ahead",
               "meaningByLocale": {
-                "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
-                "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+                "ru": "«прямо вперёд». Go straight ahead. — «Идите прямо».",
+                "uk": "«прямо вперед». Go straight ahead. — «Ідіть прямо»."
               }
             }
           ],
@@ -483,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "lookout",
+            "word": "straight ahead",
             "definitionByLocale": {
-              "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
-              "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+              "ru": "«прямо вперёд». Go straight ahead. — «Идите прямо».",
+              "uk": "«прямо вперед». Go straight ahead. — «Ідіть прямо»."
             }
           }
         },
@@ -498,25 +494,22 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
+        "prompt": "Поворачивать не нужно. Скажите прохожему идти прямо",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
+        "accessibilityLabel": "Поворачивать не нужно. Скажите прохожему идти прямо",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are sitting at the lookout.",
+          "targetPhrase": "Go straight ahead.",
           "localizedMeaning": {
-            "ru": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
-            "uk": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»"
+            "ru": "Поворачивать не нужно. Скажите прохожему идти прямо",
+            "uk": "Повертати не потрібно. Скажіть перехожому йти прямо"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "sitting",
-            "at",
-            "the",
-            "lookout"
+            "Go",
+            "straight",
+            "ahead"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -537,15 +530,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i08:r1",
-            "text": "The lookout is near the village."
+            "text": "Go straight ahead."
           },
           {
             "responseId": "en:lesson-10:session-27:i08:r2",
-            "text": "The lookout is near the river."
+            "text": "Walk straight ahead."
           },
           {
             "responseId": "en:lesson-10:session-27:i08:r3",
-            "text": "The path is near the village."
+            "text": "Look straight ahead."
           }
         ],
         "mediaIds": [],
@@ -557,23 +550,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i08:audio",
-            "transcript": "The lookout is near the village."
+            "transcript": "Go straight ahead."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i08:r1",
-              "targetText": "The lookout is near the village.",
+              "targetText": "Go straight ahead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i08:r2",
-              "targetText": "The lookout is near the river.",
+              "targetText": "Walk straight ahead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i08:r3",
-              "targetText": "The path is near the village.",
+              "targetText": "Look straight ahead.",
               "meaningByLocale": null
             }
           ],
@@ -584,8 +577,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The lookout is near the village.",
-                "uk": "У записі звучить The lookout is near the village."
+                "ru": "В записи звучит Go straight ahead.",
+                "uk": "У записі звучить Go straight ahead."
               }
             },
             {
@@ -593,8 +586,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The lookout is near the village.",
-                "uk": "У записі звучить The lookout is near the village."
+                "ru": "В записи звучит Go straight ahead.",
+                "uk": "У записі звучить Go straight ahead."
               }
             }
           ],
@@ -609,63 +602,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+        "prompt": "Выберите форму go для прямого указания",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i09:r1",
-            "text": "sitting"
+            "text": "Go"
           },
           {
             "responseId": "en:lesson-10:session-27:i09:r2",
-            "text": "siting"
+            "text": "Goes"
           },
           {
             "responseId": "en:lesson-10:session-27:i09:r3",
-            "text": "sit"
+            "text": "Going"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+        "accessibilityLabel": "Выберите форму go для прямого указания",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сидите на площадке сейчас. Выберите написание формы sit",
-            "uk": "Ви сидите на майданчику зараз. Виберіть написання форми sit"
+            "ru": "Выберите форму go для прямого указания",
+            "uk": "Виберіть форму go для прямої вказівки"
           },
-          "gappedTargetPhrase": "We are ___ at the lookout.",
+          "gappedTargetPhrase": "___ straight ahead.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i09:r1",
-              "text": "sitting"
+              "text": "Go"
             },
             {
               "responseId": "en:lesson-10:session-27:i09:r2",
-              "text": "siting"
+              "text": "Goes"
             },
             {
               "responseId": "en:lesson-10:session-27:i09:r3",
-              "text": "sit"
+              "text": "Going"
             }
           ],
-          "testedDimension": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+          "testedDimension": "Выберите форму go для прямого указания",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i09:r2",
               "correct": false,
-              "testedDimension": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+              "testedDimension": "Выберите форму go для прямого указания",
               "feedbackByLocale": {
-                "ru": "В sitting удваиваем t.",
-                "uk": "У sitting подвоюємо t."
+                "ru": "В указании нужна Go без s.",
+                "uk": "У вказівці потрібна Go без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i09:r3",
               "correct": false,
-              "testedDimension": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+              "testedDimension": "Выберите форму go для прямого указания",
               "feedbackByLocale": {
-                "ru": "После are для действия сейчас нужна sitting.",
-                "uk": "Після are для дії зараз потрібна sitting."
+                "ru": "В указании нужна Go.",
+                "uk": "У вказівці потрібна Go."
               }
             }
           ]
@@ -673,32 +666,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:word:headland",
+        "interactionId": "en:lesson-10:session-27:word:on-foot",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — headland",
+        "prompt": "Карточка слова — on foot",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:headland:audio"
+          "en:lesson-10:session-27:word:on-foot:audio"
         ],
-        "accessibilityLabel": "Карточка слова — headland",
+        "accessibilityLabel": "Карточка слова — on foot",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:headland:audio",
-            "transcript": "headland"
+            "audioTargetId": "en:lesson-10:session-27:word:on-foot:audio",
+            "transcript": "on foot"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:headland:r1",
-              "targetText": "headland",
+              "responseId": "en:lesson-10:session-27:word:on-foot:r1",
+              "targetText": "on foot",
               "meaningByLocale": {
-                "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
-                "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+                "ru": "«пешком». I go to work on foot. — «Я хожу на работу пешком».",
+                "uk": "«пішки». I go to work on foot. — «Я ходжу на роботу пішки»."
               }
             }
           ],
@@ -706,10 +699,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "headland",
+            "word": "on foot",
             "definitionByLocale": {
-              "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
-              "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+              "ru": "«пешком». I go to work on foot. — «Я хожу на работу пешком».",
+              "uk": "«пішки». I go to work on foot. — «Я ходжу на роботу пішки»."
             }
           }
         },
@@ -721,24 +714,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
+        "prompt": "Скажите, что ходите на работу пешком. On foot поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
+        "accessibilityLabel": "Скажите, что ходите на работу пешком. On foot поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I can see the headland.",
+          "targetPhrase": "I go to work on foot.",
           "localizedMeaning": {
-            "ru": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
-            "uk": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»"
+            "ru": "Скажите, что ходите на работу пешком. On foot поставьте в конце",
+            "uk": "Скажіть, що ходите на роботу пішки. On foot поставте в кінці"
           },
           "orderedTokens": [
             "I",
-            "can",
-            "see",
-            "the",
-            "headland"
+            "go",
+            "to",
+            "work",
+            "on",
+            "foot"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -759,15 +753,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i11:r1",
-            "text": "The headland is in the distance."
+            "text": "She goes to work on foot."
           },
           {
             "responseId": "en:lesson-10:session-27:i11:r2",
-            "text": "The village is in the distance."
+            "text": "He goes to work on foot."
           },
           {
             "responseId": "en:lesson-10:session-27:i11:r3",
-            "text": "The headland is on the left."
+            "text": "She goes to school on foot."
           }
         ],
         "mediaIds": [],
@@ -779,23 +773,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i11:audio",
-            "transcript": "The headland is in the distance."
+            "transcript": "She goes to work on foot."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i11:r1",
-              "targetText": "The headland is in the distance.",
+              "targetText": "She goes to work on foot.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i11:r2",
-              "targetText": "The village is in the distance.",
+              "targetText": "He goes to work on foot.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i11:r3",
-              "targetText": "The headland is on the left.",
+              "targetText": "She goes to school on foot.",
               "meaningByLocale": null
             }
           ],
@@ -806,8 +800,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The headland is in the distance.",
-                "uk": "У записі звучить The headland is in the distance."
+                "ru": "В записи звучит She goes to work on foot.",
+                "uk": "У записі звучить She goes to work on foot."
               }
             },
             {
@@ -815,8 +809,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The headland is in the distance.",
-                "uk": "У записі звучить The headland is in the distance."
+                "ru": "В записи звучит She goes to work on foot.",
+                "uk": "У записі звучить She goes to work on foot."
               }
             }
           ],
@@ -831,63 +825,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму see после can",
+        "prompt": "Выберите предлог в выражении «пешком»",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i12:r1",
-            "text": "see"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-27:i12:r2",
-            "text": "sees"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-27:i12:r3",
-            "text": "seeing"
+            "text": "with"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму see после can",
+        "accessibilityLabel": "Выберите предлог в выражении «пешком»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму see после can",
-            "uk": "Виберіть форму see після can"
+            "ru": "Выберите предлог в выражении «пешком»",
+            "uk": "Виберіть прийменник у вислові «пішки»"
           },
-          "gappedTargetPhrase": "We can ___ the headland.",
+          "gappedTargetPhrase": "I go to work ___ foot.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i12:r1",
-              "text": "see"
+              "text": "on"
             },
             {
               "responseId": "en:lesson-10:session-27:i12:r2",
-              "text": "sees"
+              "text": "at"
             },
             {
               "responseId": "en:lesson-10:session-27:i12:r3",
-              "text": "seeing"
+              "text": "with"
             }
           ],
-          "testedDimension": "Выберите форму see после can",
+          "testedDimension": "Выберите предлог в выражении «пешком»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите форму see после can",
+              "testedDimension": "Выберите предлог в выражении «пешком»",
               "feedbackByLocale": {
-                "ru": "После can нужна see без s.",
-                "uk": "Після can потрібна see без s."
+                "ru": "Выражение: on foot.",
+                "uk": "Вислів: on foot."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите форму see после can",
+              "testedDimension": "Выберите предлог в выражении «пешком»",
               "feedbackByLocale": {
-                "ru": "После can нужна базовая форма see.",
-                "uk": "Після can потрібна початкова форма see."
+                "ru": "В этом выражении нужен on.",
+                "uk": "У цьому вислові потрібне on."
               }
             }
           ]
@@ -900,58 +894,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините выражения с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините выражения с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-27:i13:p1",
-              "target": "ridge",
+              "target": "uphill",
               "meaningByLocale": {
-                "ru": "гребень холма",
-                "uk": "гребінь пагорба"
+                "ru": "вверх по склону",
+                "uk": "угору схилом"
               }
             },
             {
               "pairId": "en:lesson-10:session-27:i13:p2",
-              "target": "foothills",
+              "target": "downhill",
               "meaningByLocale": {
-                "ru": "предгорья",
-                "uk": "передгір’я"
+                "ru": "вниз по склону",
+                "uk": "униз схилом"
               }
             },
             {
               "pairId": "en:lesson-10:session-27:i13:p3",
-              "target": "lookout",
+              "target": "straight ahead",
               "meaningByLocale": {
-                "ru": "смотровая площадка",
-                "uk": "оглядовий майданчик"
+                "ru": "прямо вперёд",
+                "uk": "прямо вперед"
               }
             },
             {
               "pairId": "en:lesson-10:session-27:i13:p4",
-              "target": "headland",
+              "target": "on foot",
               "meaningByLocale": {
-                "ru": "мыс",
-                "uk": "мис"
+                "ru": "пешком",
+                "uk": "пішки"
               }
             }
           ],
           "leftColumn": [
-            "ridge",
-            "foothills",
-            "lookout",
-            "headland"
+            "uphill",
+            "downhill",
+            "straight ahead",
+            "on foot"
           ],
           "rightColumn": [
-            "гребень холма",
-            "предгорья",
-            "смотровая площадка",
-            "мыс"
+            "вверх по склону",
+            "вниз по склону",
+            "прямо вперёд",
+            "пешком"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -973,28 +967,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-27:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i14:audio",
-            "transcript": "We are sitting at the lookout."
+            "transcript": "We are walking downhill."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are sitting at the lookout.",
+          "hiddenTargetPhrase": "We are walking downhill.",
           "orderedTokens": [
             "We",
             "are",
-            "sitting",
-            "at",
-            "the",
-            "lookout"
+            "walking",
+            "downhill"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1008,24 +1000,62 @@
       {
         "interactionId": "en:lesson-10:session-27:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг звонит в момент восхода. Скажите, что вы делаете: «Мы сейчас наблюдаем восход солнца»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-27:i15:audio"
         ],
-        "accessibilityLabel": "Друг звонит в момент восхода. Скажите, что вы делаете: «Мы сейчас наблюдаем восход солнца»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i15:audio",
+            "transcript": "I go to work on foot."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I go to work on foot.",
+          "orderedTokens": [
+            "I",
+            "go",
+            "to",
+            "work",
+            "on",
+            "foot"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы один поднимаетесь по склону. Скажите: «Я иду в гору»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Вы один поднимаетесь по склону. Скажите: «Я иду в гору»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:i15:audio",
-            "transcript": "We are watching the sunrise now."
+            "audioTargetId": "en:lesson-10:session-27:i16:audio",
+            "transcript": "I am walking uphill."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are watching the sunrise now.",
+          "targetPhrase": "I am walking uphill.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1039,72 +1069,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We usually watch the sunrise here.",
-          "localizedMeaning": {
-            "ru": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
-            "uk": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці"
-          },
-          "orderedTokens": [
-            "We",
-            "usually",
-            "watch",
-            "the",
-            "sunrise",
-            "here"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-27:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, что вы видите с площадки. Вы различаете выступающий в море участок суши. Скажите: «Я вижу мыс»",
+        "prompt": "Скажите, что ходите в школу пешком",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-27:i17:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, что вы видите с площадки. Вы различаете выступающий в море участок суши. Скажите: «Я вижу мыс»",
+        "accessibilityLabel": "Скажите, что ходите в школу пешком",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i17:audio",
-            "transcript": "I can see the headland."
+            "transcript": "I go to school on foot."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I can see the headland.",
+          "targetPhrase": "I go to school on foot.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1117,32 +1104,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-27:word:ridge",
+        "interactionId": "en:lesson-10:session-27:word:uphill",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — ridge",
+        "prompt": "Картка слова — uphill",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:ridge:audio"
+          "en:lesson-10:session-27:word:uphill:audio"
         ],
-        "accessibilityLabel": "Картка слова — ridge",
+        "accessibilityLabel": "Картка слова — uphill",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:ridge:audio",
-            "transcript": "ridge"
+            "audioTargetId": "en:lesson-10:session-27:word:uphill:audio",
+            "transcript": "uphill"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:ridge:r1",
-              "targetText": "ridge",
+              "responseId": "en:lesson-10:session-27:word:uphill:r1",
+              "targetText": "uphill",
               "meaningByLocale": {
-                "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
-                "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+                "ru": "«в гору, вверх по склону». We are walking uphill. — «Мы идём в гору».",
+                "uk": "«угору схилом». We are walking uphill. — «Ми йдемо вгору схилом»."
               }
             }
           ],
@@ -1150,10 +1137,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "ridge",
+            "word": "uphill",
             "definitionByLocale": {
-              "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
-              "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+              "ru": "«в гору, вверх по склону». We are walking uphill. — «Мы идём в гору».",
+              "uk": "«угору схилом». We are walking uphill. — «Ми йдемо вгору схилом»."
             }
           }
         },
@@ -1165,25 +1152,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»",
+        "prompt": "Ви з другом піднімаєтеся схилом. Скажіть: «Ми йдемо вгору схилом»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»",
+        "accessibilityLabel": "Ви з другом піднімаєтеся схилом. Скажіть: «Ми йдемо вгору схилом»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are walking along the ridge.",
+          "targetPhrase": "We are walking uphill.",
           "localizedMeaning": {
-            "ru": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
-            "uk": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»"
+            "ru": "Вы с другом поднимаетесь по склону. Скажите: «Мы идём в гору»",
+            "uk": "Ви з другом піднімаєтеся схилом. Скажіть: «Ми йдемо вгору схилом»"
           },
           "orderedTokens": [
             "We",
             "are",
             "walking",
-            "along",
-            "the",
-            "ridge"
+            "uphill"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1204,15 +1189,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i02:r1",
-            "text": "The ridge is above the village."
+            "text": "They are walking uphill."
           },
           {
             "responseId": "en:lesson-10:session-27:i02:r2",
-            "text": "The ridge is behind the village."
+            "text": "We are walking uphill."
           },
           {
             "responseId": "en:lesson-10:session-27:i02:r3",
-            "text": "The hill is above the village."
+            "text": "He is walking uphill."
           }
         ],
         "mediaIds": [],
@@ -1224,23 +1209,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i02:audio",
-            "transcript": "The ridge is above the village."
+            "transcript": "They are walking uphill."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i02:r1",
-              "targetText": "The ridge is above the village.",
+              "targetText": "They are walking uphill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i02:r2",
-              "targetText": "The ridge is behind the village.",
+              "targetText": "We are walking uphill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i02:r3",
-              "targetText": "The hill is above the village.",
+              "targetText": "He is walking uphill.",
               "meaningByLocale": null
             }
           ],
@@ -1251,8 +1236,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The ridge is above the village.",
-                "uk": "У записі звучить The ridge is above the village."
+                "ru": "В записи звучит They are walking uphill.",
+                "uk": "У записі звучить They are walking uphill."
               }
             },
             {
@@ -1260,8 +1245,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The ridge is above the village.",
-                "uk": "У записі звучить The ridge is above the village."
+                "ru": "В записи звучит They are walking uphill.",
+                "uk": "У записі звучить They are walking uphill."
               }
             }
           ],
@@ -1276,63 +1261,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви розповідаєте про звичку. Виберіть форму watch",
+        "prompt": "Виберіть форму walk після are",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i03:r1",
-            "text": "watch"
+            "text": "walking"
           },
           {
             "responseId": "en:lesson-10:session-27:i03:r2",
-            "text": "watches"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-27:i03:r3",
-            "text": "watching"
+            "text": "walks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви розповідаєте про звичку. Виберіть форму watch",
+        "accessibilityLabel": "Виберіть форму walk після are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы рассказываете о привычке. Выберите форму watch",
-            "uk": "Ви розповідаєте про звичку. Виберіть форму watch"
+            "ru": "Выберите форму walk после are",
+            "uk": "Виберіть форму walk після are"
           },
-          "gappedTargetPhrase": "We usually ___ the sunrise here.",
+          "gappedTargetPhrase": "We are ___ uphill.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i03:r1",
-              "text": "watch"
+              "text": "walking"
             },
             {
               "responseId": "en:lesson-10:session-27:i03:r2",
-              "text": "watches"
+              "text": "walk"
             },
             {
               "responseId": "en:lesson-10:session-27:i03:r3",
-              "text": "watching"
+              "text": "walks"
             }
           ],
-          "testedDimension": "Ви розповідаєте про звичку. Виберіть форму watch",
+          "testedDimension": "Виберіть форму walk після are",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i03:r2",
               "correct": false,
-              "testedDimension": "Ви розповідаєте про звичку. Виберіть форму watch",
+              "testedDimension": "Виберіть форму walk після are",
               "feedbackByLocale": {
-                "ru": "С we нужна watch без s.",
-                "uk": "З we потрібна watch без s."
+                "ru": "После are нужна walking.",
+                "uk": "Після are потрібна walking."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i03:r3",
               "correct": false,
-              "testedDimension": "Ви розповідаєте про звичку. Виберіть форму watch",
+              "testedDimension": "Виберіть форму walk після are",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна watch.",
-                "uk": "Для цієї звички потрібна watch."
+                "ru": "После are нужна walking, не walks.",
+                "uk": "Після are потрібна walking, не walks."
               }
             }
           ]
@@ -1340,32 +1325,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:word:foothills",
+        "interactionId": "en:lesson-10:session-27:word:downhill",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — foothills",
+        "prompt": "Картка слова — downhill",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:foothills:audio"
+          "en:lesson-10:session-27:word:downhill:audio"
         ],
-        "accessibilityLabel": "Картка слова — foothills",
+        "accessibilityLabel": "Картка слова — downhill",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:foothills:audio",
-            "transcript": "foothills"
+            "audioTargetId": "en:lesson-10:session-27:word:downhill:audio",
+            "transcript": "downhill"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:foothills:r1",
-              "targetText": "foothills",
+              "responseId": "en:lesson-10:session-27:word:downhill:r1",
+              "targetText": "downhill",
               "meaningByLocale": {
-                "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
-                "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+                "ru": "«вниз по склону». We are walking downhill. — «Мы идём вниз по склону».",
+                "uk": "«униз схилом». We are walking downhill. — «Ми йдемо вниз схилом»."
               }
             }
           ],
@@ -1373,10 +1358,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "foothills",
+            "word": "downhill",
             "definitionByLocale": {
-              "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
-              "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+              "ru": "«вниз по склону». We are walking downhill. — «Мы идём вниз по склону».",
+              "uk": "«униз схилом». We are walking downhill. — «Ми йдемо вниз схилом»."
             }
           }
         },
@@ -1388,25 +1373,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»",
+        "prompt": "Тепер ви спускаєтеся. Скажіть: «Ми йдемо вниз схилом»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»",
+        "accessibilityLabel": "Тепер ви спускаєтеся. Скажіть: «Ми йдемо вниз схилом»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are walking through the foothills.",
+          "targetPhrase": "We are walking downhill.",
           "localizedMeaning": {
-            "ru": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
-            "uk": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»"
+            "ru": "Теперь вы спускаетесь. Скажите: «Мы идём вниз по склону»",
+            "uk": "Тепер ви спускаєтеся. Скажіть: «Ми йдемо вниз схилом»"
           },
           "orderedTokens": [
             "We",
             "are",
             "walking",
-            "through",
-            "the",
-            "foothills"
+            "downhill"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1427,15 +1410,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i05:r1",
-            "text": "The foothills are green."
+            "text": "She is walking downhill."
           },
           {
             "responseId": "en:lesson-10:session-27:i05:r2",
-            "text": "The foothills are brown."
+            "text": "He is walking downhill."
           },
           {
             "responseId": "en:lesson-10:session-27:i05:r3",
-            "text": "The fields are green."
+            "text": "She is walking uphill."
           }
         ],
         "mediaIds": [],
@@ -1447,23 +1430,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i05:audio",
-            "transcript": "The foothills are green."
+            "transcript": "She is walking downhill."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i05:r1",
-              "targetText": "The foothills are green.",
+              "targetText": "She is walking downhill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i05:r2",
-              "targetText": "The foothills are brown.",
+              "targetText": "He is walking downhill.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i05:r3",
-              "targetText": "The fields are green.",
+              "targetText": "She is walking uphill.",
               "meaningByLocale": null
             }
           ],
@@ -1474,8 +1457,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The foothills are green.",
-                "uk": "У записі звучить The foothills are green."
+                "ru": "В записи звучит She is walking downhill.",
+                "uk": "У записі звучить She is walking downhill."
               }
             },
             {
@@ -1483,8 +1466,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The foothills are green.",
-                "uk": "У записі звучить The foothills are green."
+                "ru": "В записи звучит She is walking downhill.",
+                "uk": "У записі звучить She is walking downhill."
               }
             }
           ],
@@ -1499,63 +1482,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для foothills у множині",
+        "prompt": "Ви спускаєтеся схилом. Виберіть напрямок",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i06:r1",
-            "text": "are"
+            "text": "downhill"
           },
           {
             "responseId": "en:lesson-10:session-27:i06:r2",
-            "text": "is"
+            "text": "uphill"
           },
           {
             "responseId": "en:lesson-10:session-27:i06:r3",
-            "text": "am"
+            "text": "indoors"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для foothills у множині",
+        "accessibilityLabel": "Ви спускаєтеся схилом. Виберіть напрямок",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для foothills во множественном числе",
-            "uk": "Виберіть зв’язку для foothills у множині"
+            "ru": "Вы спускаетесь по склону. Выберите направление",
+            "uk": "Ви спускаєтеся схилом. Виберіть напрямок"
           },
-          "gappedTargetPhrase": "The foothills ___ green.",
+          "gappedTargetPhrase": "We are walking ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i06:r1",
-              "text": "are"
+              "text": "downhill"
             },
             {
               "responseId": "en:lesson-10:session-27:i06:r2",
-              "text": "is"
+              "text": "uphill"
             },
             {
               "responseId": "en:lesson-10:session-27:i06:r3",
-              "text": "am"
+              "text": "indoors"
             }
           ],
-          "testedDimension": "Виберіть зв’язку для foothills у множині",
+          "testedDimension": "Ви спускаєтеся схилом. Виберіть напрямок",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для foothills у множині",
+              "testedDimension": "Ви спускаєтеся схилом. Виберіть напрямок",
               "feedbackByLocale": {
-                "ru": "Foothills — множественное число: are.",
-                "uk": "Foothills — множина: are."
+                "ru": "Uphill — вверх, а здесь спуск.",
+                "uk": "Uphill — угору, а тут спуск."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для foothills у множині",
+              "testedDimension": "Ви спускаєтеся схилом. Виберіть напрямок",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужно are.",
-                "uk": "Am використовуємо з I; тут потрібне are."
+                "ru": "Indoors — в помещении, а здесь склон.",
+                "uk": "Indoors — у приміщенні, а тут схил."
               }
             }
           ]
@@ -1563,32 +1546,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:word:lookout",
+        "interactionId": "en:lesson-10:session-27:word:straight-ahead",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — lookout",
+        "prompt": "Картка слова — straight ahead",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:lookout:audio"
+          "en:lesson-10:session-27:word:straight-ahead:audio"
         ],
-        "accessibilityLabel": "Картка слова — lookout",
+        "accessibilityLabel": "Картка слова — straight ahead",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:lookout:audio",
-            "transcript": "lookout"
+            "audioTargetId": "en:lesson-10:session-27:word:straight-ahead:audio",
+            "transcript": "straight ahead"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:lookout:r1",
-              "targetText": "lookout",
+              "responseId": "en:lesson-10:session-27:word:straight-ahead:r1",
+              "targetText": "straight ahead",
               "meaningByLocale": {
-                "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
-                "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+                "ru": "«прямо вперёд». Go straight ahead. — «Идите прямо».",
+                "uk": "«прямо вперед». Go straight ahead. — «Ідіть прямо»."
               }
             }
           ],
@@ -1596,10 +1579,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "lookout",
+            "word": "straight ahead",
             "definitionByLocale": {
-              "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
-              "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+              "ru": "«прямо вперёд». Go straight ahead. — «Идите прямо».",
+              "uk": "«прямо вперед». Go straight ahead. — «Ідіть прямо»."
             }
           }
         },
@@ -1611,25 +1594,22 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»",
+        "prompt": "Повертати не потрібно. Скажіть перехожому йти прямо",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»",
+        "accessibilityLabel": "Повертати не потрібно. Скажіть перехожому йти прямо",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are sitting at the lookout.",
+          "targetPhrase": "Go straight ahead.",
           "localizedMeaning": {
-            "ru": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
-            "uk": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»"
+            "ru": "Поворачивать не нужно. Скажите прохожему идти прямо",
+            "uk": "Повертати не потрібно. Скажіть перехожому йти прямо"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "sitting",
-            "at",
-            "the",
-            "lookout"
+            "Go",
+            "straight",
+            "ahead"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1650,15 +1630,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i08:r1",
-            "text": "The lookout is near the village."
+            "text": "Go straight ahead."
           },
           {
             "responseId": "en:lesson-10:session-27:i08:r2",
-            "text": "The lookout is near the river."
+            "text": "Walk straight ahead."
           },
           {
             "responseId": "en:lesson-10:session-27:i08:r3",
-            "text": "The path is near the village."
+            "text": "Look straight ahead."
           }
         ],
         "mediaIds": [],
@@ -1670,23 +1650,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i08:audio",
-            "transcript": "The lookout is near the village."
+            "transcript": "Go straight ahead."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i08:r1",
-              "targetText": "The lookout is near the village.",
+              "targetText": "Go straight ahead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i08:r2",
-              "targetText": "The lookout is near the river.",
+              "targetText": "Walk straight ahead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i08:r3",
-              "targetText": "The path is near the village.",
+              "targetText": "Look straight ahead.",
               "meaningByLocale": null
             }
           ],
@@ -1697,8 +1677,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The lookout is near the village.",
-                "uk": "У записі звучить The lookout is near the village."
+                "ru": "В записи звучит Go straight ahead.",
+                "uk": "У записі звучить Go straight ahead."
               }
             },
             {
@@ -1706,8 +1686,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The lookout is near the village.",
-                "uk": "У записі звучить The lookout is near the village."
+                "ru": "В записи звучит Go straight ahead.",
+                "uk": "У записі звучить Go straight ahead."
               }
             }
           ],
@@ -1722,63 +1702,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+        "prompt": "Виберіть форму go для прямої вказівки",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i09:r1",
-            "text": "sitting"
+            "text": "Go"
           },
           {
             "responseId": "en:lesson-10:session-27:i09:r2",
-            "text": "siting"
+            "text": "Goes"
           },
           {
             "responseId": "en:lesson-10:session-27:i09:r3",
-            "text": "sit"
+            "text": "Going"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+        "accessibilityLabel": "Виберіть форму go для прямої вказівки",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сидите на площадке сейчас. Выберите написание формы sit",
-            "uk": "Ви сидите на майданчику зараз. Виберіть написання форми sit"
+            "ru": "Выберите форму go для прямого указания",
+            "uk": "Виберіть форму go для прямої вказівки"
           },
-          "gappedTargetPhrase": "We are ___ at the lookout.",
+          "gappedTargetPhrase": "___ straight ahead.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i09:r1",
-              "text": "sitting"
+              "text": "Go"
             },
             {
               "responseId": "en:lesson-10:session-27:i09:r2",
-              "text": "siting"
+              "text": "Goes"
             },
             {
               "responseId": "en:lesson-10:session-27:i09:r3",
-              "text": "sit"
+              "text": "Going"
             }
           ],
-          "testedDimension": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+          "testedDimension": "Виберіть форму go для прямої вказівки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i09:r2",
               "correct": false,
-              "testedDimension": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+              "testedDimension": "Виберіть форму go для прямої вказівки",
               "feedbackByLocale": {
-                "ru": "В sitting удваиваем t.",
-                "uk": "У sitting подвоюємо t."
+                "ru": "В указании нужна Go без s.",
+                "uk": "У вказівці потрібна Go без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i09:r3",
               "correct": false,
-              "testedDimension": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+              "testedDimension": "Виберіть форму go для прямої вказівки",
               "feedbackByLocale": {
-                "ru": "После are для действия сейчас нужна sitting.",
-                "uk": "Після are для дії зараз потрібна sitting."
+                "ru": "В указании нужна Go.",
+                "uk": "У вказівці потрібна Go."
               }
             }
           ]
@@ -1786,32 +1766,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:word:headland",
+        "interactionId": "en:lesson-10:session-27:word:on-foot",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — headland",
+        "prompt": "Картка слова — on foot",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-27:word:headland:audio"
+          "en:lesson-10:session-27:word:on-foot:audio"
         ],
-        "accessibilityLabel": "Картка слова — headland",
+        "accessibilityLabel": "Картка слова — on foot",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:word:headland:audio",
-            "transcript": "headland"
+            "audioTargetId": "en:lesson-10:session-27:word:on-foot:audio",
+            "transcript": "on foot"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-27:word:headland:r1",
-              "targetText": "headland",
+              "responseId": "en:lesson-10:session-27:word:on-foot:r1",
+              "targetText": "on foot",
               "meaningByLocale": {
-                "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
-                "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+                "ru": "«пешком». I go to work on foot. — «Я хожу на работу пешком».",
+                "uk": "«пішки». I go to work on foot. — «Я ходжу на роботу пішки»."
               }
             }
           ],
@@ -1819,10 +1799,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "headland",
+            "word": "on foot",
             "definitionByLocale": {
-              "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
-              "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+              "ru": "«пешком». I go to work on foot. — «Я хожу на работу пешком».",
+              "uk": "«пішки». I go to work on foot. — «Я ходжу на роботу пішки»."
             }
           }
         },
@@ -1834,24 +1814,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»",
+        "prompt": "Скажіть, що ходите на роботу пішки. On foot поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»",
+        "accessibilityLabel": "Скажіть, що ходите на роботу пішки. On foot поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I can see the headland.",
+          "targetPhrase": "I go to work on foot.",
           "localizedMeaning": {
-            "ru": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
-            "uk": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»"
+            "ru": "Скажите, что ходите на работу пешком. On foot поставьте в конце",
+            "uk": "Скажіть, що ходите на роботу пішки. On foot поставте в кінці"
           },
           "orderedTokens": [
             "I",
-            "can",
-            "see",
-            "the",
-            "headland"
+            "go",
+            "to",
+            "work",
+            "on",
+            "foot"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1872,15 +1853,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i11:r1",
-            "text": "The headland is in the distance."
+            "text": "She goes to work on foot."
           },
           {
             "responseId": "en:lesson-10:session-27:i11:r2",
-            "text": "The village is in the distance."
+            "text": "He goes to work on foot."
           },
           {
             "responseId": "en:lesson-10:session-27:i11:r3",
-            "text": "The headland is on the left."
+            "text": "She goes to school on foot."
           }
         ],
         "mediaIds": [],
@@ -1892,23 +1873,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i11:audio",
-            "transcript": "The headland is in the distance."
+            "transcript": "She goes to work on foot."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-27:i11:r1",
-              "targetText": "The headland is in the distance.",
+              "targetText": "She goes to work on foot.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i11:r2",
-              "targetText": "The village is in the distance.",
+              "targetText": "He goes to work on foot.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-27:i11:r3",
-              "targetText": "The headland is on the left.",
+              "targetText": "She goes to school on foot.",
               "meaningByLocale": null
             }
           ],
@@ -1919,8 +1900,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The headland is in the distance.",
-                "uk": "У записі звучить The headland is in the distance."
+                "ru": "В записи звучит She goes to work on foot.",
+                "uk": "У записі звучить She goes to work on foot."
               }
             },
             {
@@ -1928,8 +1909,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The headland is in the distance.",
-                "uk": "У записі звучить The headland is in the distance."
+                "ru": "В записи звучит She goes to work on foot.",
+                "uk": "У записі звучить She goes to work on foot."
               }
             }
           ],
@@ -1944,63 +1925,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму see після can",
+        "prompt": "Виберіть прийменник у вислові «пішки»",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-27:i12:r1",
-            "text": "see"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-27:i12:r2",
-            "text": "sees"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-27:i12:r3",
-            "text": "seeing"
+            "text": "with"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму see після can",
+        "accessibilityLabel": "Виберіть прийменник у вислові «пішки»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму see после can",
-            "uk": "Виберіть форму see після can"
+            "ru": "Выберите предлог в выражении «пешком»",
+            "uk": "Виберіть прийменник у вислові «пішки»"
           },
-          "gappedTargetPhrase": "We can ___ the headland.",
+          "gappedTargetPhrase": "I go to work ___ foot.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-27:i12:r1",
-              "text": "see"
+              "text": "on"
             },
             {
               "responseId": "en:lesson-10:session-27:i12:r2",
-              "text": "sees"
+              "text": "at"
             },
             {
               "responseId": "en:lesson-10:session-27:i12:r3",
-              "text": "seeing"
+              "text": "with"
             }
           ],
-          "testedDimension": "Виберіть форму see після can",
+          "testedDimension": "Виберіть прийменник у вислові «пішки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-27:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму see після can",
+              "testedDimension": "Виберіть прийменник у вислові «пішки»",
               "feedbackByLocale": {
-                "ru": "После can нужна see без s.",
-                "uk": "Після can потрібна see без s."
+                "ru": "Выражение: on foot.",
+                "uk": "Вислів: on foot."
               }
             },
             {
               "responseId": "en:lesson-10:session-27:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму see після can",
+              "testedDimension": "Виберіть прийменник у вислові «пішки»",
               "feedbackByLocale": {
-                "ru": "После can нужна базовая форма see.",
-                "uk": "Після can потрібна початкова форма see."
+                "ru": "В этом выражении нужен on.",
+                "uk": "У цьому вислові потрібне on."
               }
             }
           ]
@@ -2013,58 +1994,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте вислови з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-27:i13:p1",
-              "target": "ridge",
+              "target": "uphill",
               "meaningByLocale": {
-                "ru": "гребень холма",
-                "uk": "гребінь пагорба"
+                "ru": "вверх по склону",
+                "uk": "угору схилом"
               }
             },
             {
               "pairId": "en:lesson-10:session-27:i13:p2",
-              "target": "foothills",
+              "target": "downhill",
               "meaningByLocale": {
-                "ru": "предгорья",
-                "uk": "передгір’я"
+                "ru": "вниз по склону",
+                "uk": "униз схилом"
               }
             },
             {
               "pairId": "en:lesson-10:session-27:i13:p3",
-              "target": "lookout",
+              "target": "straight ahead",
               "meaningByLocale": {
-                "ru": "смотровая площадка",
-                "uk": "оглядовий майданчик"
+                "ru": "прямо вперёд",
+                "uk": "прямо вперед"
               }
             },
             {
               "pairId": "en:lesson-10:session-27:i13:p4",
-              "target": "headland",
+              "target": "on foot",
               "meaningByLocale": {
-                "ru": "мыс",
-                "uk": "мис"
+                "ru": "пешком",
+                "uk": "пішки"
               }
             }
           ],
           "leftColumn": [
-            "ridge",
-            "foothills",
-            "lookout",
-            "headland"
+            "uphill",
+            "downhill",
+            "straight ahead",
+            "on foot"
           ],
           "rightColumn": [
-            "гребінь пагорба",
-            "передгір’я",
-            "оглядовий майданчик",
-            "мис"
+            "угору схилом",
+            "униз схилом",
+            "прямо вперед",
+            "пішки"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2086,28 +2067,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-27:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i14:audio",
-            "transcript": "We are sitting at the lookout."
+            "transcript": "We are walking downhill."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are sitting at the lookout.",
+          "hiddenTargetPhrase": "We are walking downhill.",
           "orderedTokens": [
             "We",
             "are",
-            "sitting",
-            "at",
-            "the",
-            "lookout"
+            "walking",
+            "downhill"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2121,24 +2100,62 @@
       {
         "interactionId": "en:lesson-10:session-27:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг телефонує в мить сходу сонця. Скажіть, що ви робите: «Ми зараз спостерігаємо схід сонця»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-27:i15:audio"
         ],
-        "accessibilityLabel": "Друг телефонує в мить сходу сонця. Скажіть, що ви робите: «Ми зараз спостерігаємо схід сонця»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i15:audio",
+            "transcript": "I go to work on foot."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I go to work on foot.",
+          "orderedTokens": [
+            "I",
+            "go",
+            "to",
+            "work",
+            "on",
+            "foot"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви самі піднімаєтеся схилом. Скажіть: «Я йду вгору схилом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Ви самі піднімаєтеся схилом. Скажіть: «Я йду вгору схилом»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-27:i15:audio",
-            "transcript": "We are watching the sunrise now."
+            "audioTargetId": "en:lesson-10:session-27:i16:audio",
+            "transcript": "I am walking uphill."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are watching the sunrise now.",
+          "targetPhrase": "I am walking uphill.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2152,72 +2169,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-27:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We usually watch the sunrise here.",
-          "localizedMeaning": {
-            "ru": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
-            "uk": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці"
-          },
-          "orderedTokens": [
-            "We",
-            "usually",
-            "watch",
-            "the",
-            "sunrise",
-            "here"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-27:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, що ви бачите з майданчика. Ви розрізняєте ділянку суходолу, що виступає в море. Скажіть: «Я бачу мис»",
+        "prompt": "Скажіть, що ходите до школи пішки",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-27:i17:audio"
         ],
-        "accessibilityLabel": "Друг запитує, що ви бачите з майданчика. Ви розрізняєте ділянку суходолу, що виступає в море. Скажіть: «Я бачу мис»",
+        "accessibilityLabel": "Скажіть, що ходите до школи пішки",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-27:i17:audio",
-            "transcript": "I can see the headland."
+            "transcript": "I go to school on foot."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I can see the headland.",
+          "targetPhrase": "I go to school on foot.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2231,83 +2205,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-27:word:ridge",
-      "correctText": "ridge",
+      "interactionId": "en:lesson-10:session-27:word:uphill",
+      "correctText": "uphill",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i01",
-      "correctText": "We are walking along the ridge.",
+      "correctText": "We are walking uphill.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i02",
-      "correctText": "The ridge is above the village.",
+      "correctText": "They are walking uphill.",
       "correctResponseId": "en:lesson-10:session-27:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-27:i03",
-      "correctText": "watch",
+      "correctText": "walking",
       "correctResponseId": "en:lesson-10:session-27:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-27:word:foothills",
-      "correctText": "foothills",
+      "interactionId": "en:lesson-10:session-27:word:downhill",
+      "correctText": "downhill",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i04",
-      "correctText": "We are walking through the foothills.",
+      "correctText": "We are walking downhill.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i05",
-      "correctText": "The foothills are green.",
+      "correctText": "She is walking downhill.",
       "correctResponseId": "en:lesson-10:session-27:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-27:i06",
-      "correctText": "are",
+      "correctText": "downhill",
       "correctResponseId": "en:lesson-10:session-27:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-27:word:lookout",
-      "correctText": "lookout",
+      "interactionId": "en:lesson-10:session-27:word:straight-ahead",
+      "correctText": "straight ahead",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i07",
-      "correctText": "We are sitting at the lookout.",
+      "correctText": "Go straight ahead.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i08",
-      "correctText": "The lookout is near the village.",
+      "correctText": "Go straight ahead.",
       "correctResponseId": "en:lesson-10:session-27:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-27:i09",
-      "correctText": "sitting",
+      "correctText": "Go",
       "correctResponseId": "en:lesson-10:session-27:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-27:word:headland",
-      "correctText": "headland",
+      "interactionId": "en:lesson-10:session-27:word:on-foot",
+      "correctText": "on foot",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i10",
-      "correctText": "I can see the headland.",
+      "correctText": "I go to work on foot.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i11",
-      "correctText": "The headland is in the distance.",
+      "correctText": "She goes to work on foot.",
       "correctResponseId": "en:lesson-10:session-27:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-27:i12",
-      "correctText": "see",
+      "correctText": "on",
       "correctResponseId": "en:lesson-10:session-27:i12:r1"
     },
     {
@@ -2317,22 +2291,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-27:i14",
-      "correctText": "We are sitting at the lookout.",
+      "correctText": "We are walking downhill.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i15",
-      "correctText": "We are watching the sunrise now.",
+      "correctText": "I go to work on foot.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i16",
-      "correctText": "We usually watch the sunrise here.",
+      "correctText": "I am walking uphill.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-27:i17",
-      "correctText": "I can see the headland.",
+      "correctText": "I go to school on foot.",
       "correctResponseId": null
     }
   ]

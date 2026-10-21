@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-27:intro1:r2": {
-          "ru": "С we нужна watch без s.",
-          "uk": "З we потрібна watch без s."
+          "ru": "Перед walking нужна are.",
+          "uk": "Перед walking потрібна are."
         },
         "en:lesson-10:session-27:intro1:r3": {
-          "ru": "Для этой привычки нужна watch.",
-          "uk": "Для цієї звички потрібна watch."
+          "ru": "После are нужна walking.",
+          "uk": "Після are потрібна walking."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-27:intro2:r2": {
-          "ru": "Перед walking нужно are.",
-          "uk": "Перед walking потрібне are."
+          "ru": "В указании нужна Go без s.",
+          "uk": "У вказівці потрібна Go без s."
         },
         "en:lesson-10:session-27:intro2:r3": {
-          "ru": "С we нужно are, не is.",
-          "uk": "З we потрібне are, не is."
+          "ru": "Прямое указание начинаем с Go, без to.",
+          "uk": "Пряму вказівку починаємо з Go, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-27:intro3:r2": {
-          "ru": "После can нужна see без s.",
-          "uk": "Після can потрібна see без s."
+          "ru": "С I нужна go без s.",
+          "uk": "З I потрібна go без s."
         },
         "en:lesson-10:session-27:intro3:r3": {
-          "ru": "После can нужна базовая форма see.",
-          "uk": "Після can потрібна початкова форма see."
+          "ru": "В выражении on foot слово foot без окончания s.",
+          "uk": "У вислові on foot слово foot без закінчення s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "86d4cc1299e5cb1cf8b55b586f8aa1811f4a7ffb59f524d1fbbde730629a7d1b"
+  "auxiliaryFingerprint": "5f82f90340d4c197fd36a95277825c012def791ea6ad371e86a71f02491bd34d"
 }

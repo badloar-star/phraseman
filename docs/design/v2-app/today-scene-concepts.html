@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сегодня: язык Сцены</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · экран курса Learning V2 · 5 новых концепций (№40, владелец 21.10) ─────────
+   зачем: владелец отклонил прежние 5 вариантов («старые макеты переделанные») и просит ПРИНЦИПИАЛЬНО новые подачи экрана «Обучение»:
+   уроки → главы → эпизоды, «Продолжить», входной тест, закрытые эпизоды можно посмотреть, теория, прогресс. Язык 2.0 сохраняем:
+   темы «Сумерки» (ink) и «Океан» (marine), Inter, стекло, плавающий таббар, кольцо Plus. Без старой карты кружков 4×2 и плашек глав.
+   Веса шрифта только 400 и 700 (DESIGN.md). Обводок контейнеров нет (стиль «Тень»: тон, тень, скругление). */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+
+/* ── темы ── */
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --top: #F3F4FD; --bot: #ECE4F7; --tx: #17181E; --sec: #595A63;
+  --card: #FCFCFF; --ctl: #E6E7F4; --ctl2: #D8D9EA; --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --sh2: 0 26px 50px -22px rgba(51, 51, 87, .55); --acc: oklch(.52 .14 282); --solid: #17181E; --on-solid: #FFFFFF; --good: #2B8A5E;
+  --sb: #111; --dimc: rgba(23, 24, 30, .38); --lz: .55; --cz: .15; --lw: .58; --cw: .14; }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --top: #002936; --bot: #001B17; --tx: #F6FBFD; --sec: #B8CFD6;
+  --card: #002027; --ctl: #123037; --ctl2: #1D3F47; --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06);
+  --sh2: 0 30px 60px -24px rgba(0, 0, 0, .9); --acc: oklch(.82 .11 215); --solid: #F6FBFD; --on-solid: #00131A; --good: #4CC98C;
+  --sb: #fff; --dimc: rgba(0, 0, 0, .55); --lz: .40; --cz: .11; --lw: .78; --cw: .11; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+/* статус-бар поверх обложки — белый в обеих темах */
+.ph.onart .sb { color: #fff; } .ph.onart .sb .sys svg { filter: none !important; }
+
+/* ── общие детали ── */
+.qhd { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qhd .tt { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; display: flex; align-items: center; gap: 6px; }
+.qhd .tt .io { font-size: 17px; color: var(--sec); margin-top: 3px; }
+.qhd .sp { flex: 1; }
+.qsub { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 2px; }
+.qround { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--sh); font-size: 20px; color: var(--tx); flex: none; }
+.qround.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; padding: 0 22px; white-space: nowrap; }
+.qbtn .io { font-size: 18px; }
+.qbtn.solid { background: var(--solid); color: var(--on-solid); }
+.qbtn.white { background: #FFFFFF; color: #121318; }
+.qbtn.ctl { background: var(--ctl); color: var(--tx); height: 50px; border-radius: 25px; font-size: 16px; }
+.qbtn.glass { background: rgba(255, 255, 255, .16); color: #fff; height: 50px; border-radius: 25px; font-size: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn + .qbtn { margin-top: 12px; }
+.qnote { font-size: 13px; line-height: 17px; color: var(--sec); text-align: center; margin-top: 8px; }
+.qchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.qchip { height: 34px; padding: 0 12px; border-radius: 17px; background: var(--ctl); font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; color: var(--tx); }
+.qchip.glass { background: rgba(255, 255, 255, .16); color: #fff; }
+.qcard { border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.qk { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.qk .io { font-size: 14px; }
+.qt { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; text-wrap: balance; margin-top: 4px; }
+.qm { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qsay { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.qsay .sp { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; color: var(--tx); }
+.qsay .sp.on { background: var(--solid); color: var(--on-solid); }
+.qsay .en { font-size: 19px; line-height: 24px; font-weight: 700; }
+.qsay .ru { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qlock { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 20px; color: var(--sec); }
+.qlock .io { font-size: 15px; }
+.stars { display: inline-flex; gap: 2px; font-size: 12px; color: var(--acc); vertical-align: middle; }
+.stars .off { opacity: .28; }
+.rbar { height: 4px; border-radius: 2px; background: var(--ctl); overflow: hidden; }
+.rbar i { display: block; height: 100%; background: var(--acc); border-radius: 2px; }
+
+/* аватар с кольцом Plus (эталон plus-ring-etalon.html): зазор — подложкой, чтобы его не снимала страховка обводок */
+.pav { position: relative; display: inline-flex; border-radius: 50%; padding: 2.5px; flex: none; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pav .gap { display: flex; padding: 2px; border-radius: 50%; background: var(--top); }
+.pav .gap img { display: block; border-radius: 50%; }
+.pav .pin { position: absolute; right: -2px; bottom: -2px; width: 15px; height: 15px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 8.5px; box-shadow: 0 0 0 2px var(--top); }
+.onart .pav .gap { background: rgba(0, 0, 0, .25); } .onart .pav .pin { box-shadow: 0 0 0 2px rgba(0, 0, 0, .25); }
+
+/* плавающий таббар 2.0 (как в эталоне Главной), подписи из кода: Главная · Обучение · Видео · Сообщество · Настройки */
+.qfade { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; z-index: 30; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--bot) 0%, transparent), var(--bot) 72%); }
+.tbar { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .tbar { background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(246, 246, 253, .92)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 20px 40px -18px rgba(51, 51, 87, .5); }
+.th-marine .tbar { background: linear-gradient(180deg, rgba(6, 56, 70, .84), rgba(0, 28, 36, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.tbar .cap { position: absolute; top: 9px; bottom: 9px; left: calc(9px + (100% - 18px) / 5); width: calc((100% - 18px) / 5); border-radius: 18px; }
+.th-ink .tbar .cap { background: rgba(23, 24, 30, .07); }
+.th-marine .tbar .cap { background: rgba(255, 255, 255, .11); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .14); }
+.tbar .ti { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 10.5px; line-height: 12px; position: relative; z-index: 1; color: var(--sec); }
+.tbar .ti .io { font-size: 22px; }
+.tbar .ti.on { color: var(--tx); font-weight: 700; }
+
+/* шторка и затемнение */
+.qdim { position: absolute; inset: 0; z-index: 40; background: var(--dimc); }
+.qsheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 45; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -20px 50px -20px rgba(0, 0, 0, .45); padding: 10px 20px 34px; }
+.qgrab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl2); margin: 0 auto 14px; }
+
+/* кадр эпизода: градиент главы + фраза эпизода (вместо стоп-кадра сериала) */
+.still { position: relative; border-radius: 18px; overflow: hidden; color: #fff; }
+.still .gl { position: absolute; right: -14px; top: -10px; font-size: 120px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.still .ph1 { position: absolute; left: 14px; right: 14px; bottom: 12px; font-size: 21px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
+.still .no { position: absolute; left: 10px; top: 10px; height: 26px; padding: 0 9px; border-radius: 13px; background: rgba(0, 0, 0, .24); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.still .no .io { font-size: 12px; }
+.still .st { position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 13px; background: rgba(255, 255, 255, .24); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.still .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .26); }
+.still .prog i { display: block; height: 100%; background: #fff; }
+.still.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .40); }
+.still.lock .no, .still.lock .ph1 { z-index: 1; }
+.still.lock .ph1 { opacity: .78; }
+
+/* ═════ 1 · Сезон ═════ */
+.c1hero { position: relative; height: 512px; border-radius: 0 0 34px 34px; overflow: hidden; color: #fff; }
+.c1hero .gl { position: absolute; right: -54px; top: 64px; font-size: 310px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.c1hero .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 320px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .36)); }
+.c1top { position: absolute; left: 20px; right: 20px; top: 58px; display: flex; align-items: center; gap: 10px; }
+.c1pill { height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-size: 16px; font-weight: 700; }
+.c1pill .io { font-size: 13px; }
+.c1body { position: absolute; left: 20px; right: 20px; bottom: 22px; }
+.c1kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.c1title { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; margin-top: 6px; text-wrap: balance; }
+.c1desc { font-size: 16px; line-height: 22px; color: rgba(255, 255, 255, .88); margin-top: 8px; text-wrap: pretty; }
+.c1body .qbtn { margin-top: 16px; }
+.c1res { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.c1res .bar { flex: 0 0 64px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.c1res .bar i { display: block; height: 100%; background: #fff; }
+.c1sec { display: flex; align-items: flex-end; gap: 8px; padding: 22px 20px 0; }
+.c1sec .r { padding-bottom: 3px; }
+.c1sec .h { font-size: 21px; line-height: 26px; font-weight: 700; display: flex; align-items: center; gap: 6px; letter-spacing: -.2px; }
+.c1sec .h .io { font-size: 14px; color: var(--sec); }
+.c1sec .r { margin-left: auto; font-size: 15px; color: var(--sec); white-space: nowrap; }
+.c1shelf { display: flex; gap: 12px; padding: 14px 20px 0; overflow: hidden; }
+.c1ep { flex: none; width: 236px; }
+.c1ep .still { height: 133px; box-shadow: var(--sh); }
+.c1ep .t { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.c1ep .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+.c1ep .m .io { font-size: 13px; }
+.c1extra { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; padding: 18px 20px 0; }
+.c1x { border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 14px; }
+.c1x .io { font-size: 24px; color: var(--acc); }
+.c1x b { display: block; font-size: 16px; line-height: 21px; margin-top: 10px; }
+.c1x span { font-size: 14px; color: var(--sec); }
+.c1exam { flex: none; width: 300px; }
+.c1exam .still { height: 300px; border-radius: 22px; box-shadow: var(--sh2); }
+.c1exam .ex { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+.c1exam .ex .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.c1exam .ex .h { font-size: 26px; line-height: 31px; font-weight: 700; margin-top: 4px; }
+.c1exam .ex .f { display: flex; gap: 8px; margin-top: 12px; }
+.c1exam .ex .f span { height: 30px; padding: 0 10px; border-radius: 15px; background: rgba(255, 255, 255, .18); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; }
+.c1exam .ex .qbtn { margin-top: 14px; height: 48px; border-radius: 24px; font-size: 16px; }
+.c1exam .seal { position: absolute; left: 18px; top: 18px; width: 52px; height: 52px; border-radius: 16px; background: rgba(255, 255, 255, .18); display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 1; }
+.c1after { padding: 14px 20px 0; font-size: 15px; line-height: 21px; color: var(--sec); }
+.c1nav { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qpills { display: flex; gap: 8px; overflow: hidden; margin: 16px -20px 0; padding: 0 20px; }
+.qpill { flex: none; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--ctl); display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: var(--tx); }
+.qpill.on { background: var(--solid); color: var(--on-solid); }
+.qpill.lock { color: var(--sec); }
+.qpill .io { font-size: 13px; }
+.c1row { display: flex; gap: 14px; align-items: center; padding: 9px 0; }
+.c1row .still { width: 132px; height: 74px; border-radius: 13px; flex: none; }
+.c1row .still .ph1 { font-size: 14px; line-height: 17px; left: 10px; right: 8px; bottom: 8px; }
+.c1row .still .st { width: 22px; height: 22px; top: 7px; right: 7px; font-size: 12px; }
+.c1row .n { font-size: 13px; line-height: 17px; color: var(--sec); }
+.c1row .t { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 1px; text-wrap: balance; }
+.c1row .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 3px; display: flex; gap: 6px; align-items: center; }
+.c1row .m .io { font-size: 13px; }
+.c1row.cur .n { color: var(--acc); font-weight: 700; }
+.c1sheetart { height: 196px; border-radius: 20px; }
+.c1sheetart .ph1 { font-size: 30px; line-height: 34px; }
+
+/* ═════ 2 · Циферблат ═════ */
+.c2wrap { position: relative; width: 370px; height: 370px; margin: 8px auto 0; }
+.c2wrap.sm { width: 300px; height: 300px; }
+.c2wrap svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.c2center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 86px; }
+.c2wrap.sm .c2center { padding: 0 70px; }
+.c2center .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.c2center .h { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.3px; margin-top: 4px; text-wrap: balance; }
+.c2wrap.sm .c2center .h { font-size: 19px; line-height: 24px; }
+.c2center .m { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 6px; }
+.tk { stroke-linecap: round; stroke-width: 5; }
+.tk.done { stroke: var(--acc); } .tk.fut { stroke: var(--sec); opacity: .38; } .tk.far { stroke: var(--sec); opacity: .2; } .tk.open { stroke: var(--acc); opacity: .42; }
+.band { fill: none; stroke: var(--acc); stroke-opacity: .14; stroke-width: 36; stroke-linecap: round; }
+.dm.pass { fill: var(--acc); } .dm.open { fill: none; stroke: var(--tx); stroke-width: 2.2; } .dm.lock { fill: var(--sec); opacity: .22; }
+.cur { fill: var(--acc); } .curg { fill: var(--acc); fill-opacity: .22; }
+.knob { fill: none; stroke: var(--tx); stroke-width: 2.6; }
+.chi { font-family: IoniconsApp; font-size: 20px; fill: var(--sec); text-anchor: middle; dominant-baseline: central; }
+.chi.sel { fill: var(--tx); } .chi.lk { opacity: .45; }
+.c2lbl { font-size: 15px; font-weight: 700; fill: var(--sec); text-anchor: middle; dominant-baseline: central; font-family: Inter, system-ui, sans-serif; }
+.c2lbl.cur { fill: var(--acc); } .c2lbl.lk { opacity: .55; }
+.c2card { margin-top: 10px; }
+.c2card .top { display: flex; align-items: center; gap: 8px; }
+.c2card .top .r { margin-left: auto; font-size: 14px; color: var(--sec); white-space: nowrap; }
+.c2card .qbtn { margin-top: 16px; }
+.c2facts { display: flex; gap: 8px; margin-top: 14px; }
+.c2facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 10px 8px; text-align: center; }
+.c2facts b { display: block; font-size: 20px; line-height: 24px; } .c2facts span { font-size: 13px; color: var(--sec); }
+.c2list { margin-top: 4px; }
+.c2li { display: flex; align-items: center; gap: 12px; padding: 11px 0; box-shadow: inset 0 -1px 0 var(--ctl); }
+.c2li:last-child { box-shadow: none; }
+.c2li .n { width: 28px; font-size: 15px; font-weight: 700; color: var(--sec); text-align: center; flex: none; }
+.c2li .t { flex: 1; font-size: 16px; line-height: 21px; font-weight: 700; }
+.c2li .s { font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.c2li.cur .n, .c2li.cur .s { color: var(--acc); }
+.c2li.lk .t { color: var(--sec); font-weight: 400; }
+
+/* ═════ 3 · Волна ═════ */
+.c3card { position: relative; border-radius: 28px; overflow: hidden; color: #fff; padding: 16px; margin-top: 14px; box-shadow: var(--sh2); }
+.c3card .gl { position: absolute; right: -30px; top: -26px; font-size: 190px; color: rgba(255, 255, 255, .11); transform: rotate(-8deg); }
+.c3card > * { position: relative; }
+.c3card .top { display: flex; align-items: center; gap: 8px; }
+.c3card .top .r { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); white-space: nowrap; }
+.c3card .h { font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; margin-top: 14px; text-wrap: balance; }
+.c3card .qsay .sp { background: rgba(255, 255, 255, .18); color: #fff; }
+.c3card .qsay .ru { color: rgba(255, 255, 255, .84); }
+.c3card .qbtn { margin-top: 16px; }
+.c3card .qchips { margin-top: 12px; }
+.c3card .lk { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 15px; color: rgba(255, 255, 255, .88); }
+.c3card.mute::before { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .30); }
+.c3sec { display: flex; align-items: baseline; gap: 8px; margin-top: 22px; }
+.c3sec .h { font-size: 18px; line-height: 23px; font-weight: 700; }
+.c3sec .r { margin-left: auto; font-size: 15px; color: var(--sec); white-space: nowrap; }
+.c3wave { position: relative; margin-top: 10px; }
+.c3wave svg { display: block; width: 390px; height: 120px; overflow: visible; }
+.wf { fill: var(--ctl2); } .wf.far { opacity: .5; }
+.wph { stroke: var(--tx); stroke-width: 2; } .wph.ghost { stroke-dasharray: 3 4; stroke-width: 1.6; }
+.wkn { fill: var(--tx); } .wkn.ghost { fill: var(--top); stroke: var(--tx); stroke-width: 2; }
+.c3lbl { position: relative; height: 18px; margin-top: 6px; }
+.c3lbl span { position: absolute; transform: translateX(-50%); font-size: 13px; line-height: 18px; color: var(--sec); }
+.c3lbl span.on { color: var(--tx); font-weight: 700; }
+.c3teach { font-size: 14px; line-height: 20px; color: var(--sec); margin-top: 12px; }
+.c3row { display: flex; align-items: center; gap: 12px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; margin-top: 16px; }
+.c3row .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--acc); flex: none; }
+.c3row b { display: block; font-size: 16px; line-height: 21px; } .c3row span { font-size: 14px; color: var(--sec); }
+.c3row .io.chev { margin-left: auto; font-size: 16px; color: var(--sec); }
+.c3zoom svg { display: block; width: 390px; height: 190px; overflow: visible; }
+.c3zl { font-size: 14px; font-weight: 700; fill: var(--sec); text-anchor: middle; font-family: Inter, system-ui, sans-serif; }
+.c3zl.cur { fill: var(--acc); }
+
+/* ═════ 4 · Колода ═════ */
+.c4deck { position: relative; height: 492px; margin-top: 14px; }
+.c4card { position: absolute; top: 0; left: 34px; width: 322px; height: 476px; border-radius: 32px; overflow: hidden; color: #fff; box-shadow: var(--sh2); padding: 18px; display: flex; flex-direction: column; }
+.c4card .gl { position: absolute; right: -40px; top: 40px; font-size: 230px; color: rgba(255, 255, 255, .11); transform: rotate(-8deg); }
+.c4card > * { position: relative; }
+.c4card .top { display: flex; align-items: center; gap: 8px; }
+.c4card .top .r { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); white-space: nowrap; }
+.c4card .big { font-size: 36px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: auto; text-wrap: balance; }
+.c4card .ru { font-size: 16px; line-height: 21px; color: rgba(255, 255, 255, .86); margin-top: 6px; }
+.c4card .h { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 14px; text-wrap: balance; }
+.c4card .qchips { margin-top: 12px; }
+.c4card .qbtn { margin-top: 16px; }
+.c4card .lk { display: flex; align-items: center; gap: 8px; font-size: 15px; color: rgba(255, 255, 255, .9); margin-top: 12px; }
+.c4card.mute::before { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .32); }
+.c4card.b1 { transform: translateX(18px) scale(.95); transform-origin: 100% 50%; opacity: .92; }
+.c4card.b2 { transform: translateX(34px) scale(.90); transform-origin: 100% 50%; opacity: .7; }
+.c4card.prev { transform: translateX(-314px) scale(.95); transform-origin: 100% 50%; opacity: .9; }
+.c4card.next { transform: translateX(314px) scale(.95); transform-origin: 0 50%; opacity: .9; }
+.c4dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 2px; }
+.c4dots i { width: 8px; height: 8px; border-radius: 4px; background: var(--ctl2); }
+.c4dots i.d { background: var(--acc); opacity: .55; }
+.c4dots i.c { width: 26px; background: var(--tx); }
+.c4dots i.x { width: 10px; height: 10px; border-radius: 2px; transform: rotate(45deg); background: none; box-shadow: inset 0 0 0 2px var(--sec); margin: 0 3px; }
+.c4dots i.x.c { background: var(--tx); box-shadow: none; width: 12px; height: 12px; }
+.c4tools { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
+.c4fan { position: relative; height: 300px; margin-top: 18px; }
+.fcard { position: absolute; left: 50%; bottom: 52px; width: 88px; height: 132px; margin-left: -44px; border-radius: 16px; overflow: hidden; color: #fff; transform-origin: 50% 220%; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .55); padding: 10px; display: flex; flex-direction: column; }
+.fcard .n { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.fcard.cur { width: 112px; height: 160px; margin-left: -56px; }
+.fcard .n .io { font-size: 12px; }
+.fcard .p { font-size: 14px; line-height: 17px; font-weight: 700; margin-top: auto; }
+.fcard.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .38); }
+.fcard.lock > * { position: relative; z-index: 1; opacity: .85; }
+.c4sel { text-align: center; }
+.c4sel .k { font-size: 14px; color: var(--sec); }
+.c4sel .h { font-size: 21px; line-height: 27px; font-weight: 700; margin-top: 2px; }
+.c4sel .qbtn { margin-top: 14px; }
+.c4exam { background: radial-gradient(90% 60% at 80% 0%, rgba(142, 124, 255, .55), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(127, 224, 216, .35), transparent 60%), linear-gradient(160deg, #262447, #12142A 70%); }
+.th-marine .c4exam { background: radial-gradient(90% 60% at 80% 0%, rgba(127, 224, 216, .40), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(142, 124, 255, .35), transparent 60%), linear-gradient(160deg, #0B3442, #04141C 70%); }
+.c4exam .seal { width: 64px; height: 64px; border-radius: 20px; background: rgba(255, 255, 255, .16); display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.c4exam .f { display: flex; gap: 8px; margin-top: 14px; }
+.c4exam .f span { height: 30px; padding: 0 9px; border-radius: 15px; background: rgba(255, 255, 255, .16); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; white-space: nowrap; }
+
+/* ═════ 5 · Разговорник ═════ */
+.c5ch { margin-top: 22px; }
+.c5h { display: flex; align-items: center; gap: 8px; }
+.c5h .t { font-size: 15px; line-height: 20px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.c5h .t .io { font-size: 14px; }
+.c5h .r { margin-left: auto; font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.c5h .r .io { font-size: 13px; color: var(--good); }
+.c5scene { font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.3px; margin-top: 4px; }
+.c5wall { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 10px; align-items: baseline; }
+.ph5 { font-size: 28px; line-height: 38px; font-weight: 700; letter-spacing: -.4px; position: relative; white-space: nowrap; }
+.ph5 sup { font-size: 12px; line-height: 12px; font-weight: 700; color: var(--sec); margin-right: 4px; vertical-align: super; letter-spacing: 0; }
+.ph5.cur { color: var(--acc); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 7px; }
+.ph5 .pl { display: inline-flex; width: 30px; height: 30px; border-radius: 15px; background: var(--acc); color: var(--on-solid); align-items: center; justify-content: center; font-size: 13px; margin-left: 6px; vertical-align: 4px; }
+.th-ink .ph5 .pl { color: #fff; }
+.ph5.lk .w { filter: blur(6px); opacity: .5; }
+.ph5.lk sup { opacity: .7; }
+.c5wall.sm .ph5 { font-size: 18px; line-height: 27px; letter-spacing: -.2px; color: var(--sec); }
+.c5wall.sm .ph5 sup { font-size: 10px; }
+.c5seal { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 20px; background: var(--ctl); font-size: 15px; font-weight: 700; margin-top: 14px; }
+.c5seal .io { font-size: 16px; color: var(--acc); }
+.c5seal.pass { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.c5seal.pass .io { color: var(--good); }
+.c5ghost { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; }
+.c5ghost i { height: 22px; border-radius: 11px; background: var(--ctl); opacity: .8; }
+.c5mini { position: absolute; left: 12px; right: 12px; bottom: 104px; height: 66px; border-radius: 22px; z-index: 34; display: flex; align-items: center; gap: 12px; padding: 0 10px 0 10px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .c5mini { background: linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(246, 246, 253, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 18px 36px -18px rgba(51, 51, 87, .5); }
+.th-marine .c5mini { background: linear-gradient(180deg, rgba(6, 56, 70, .86), rgba(0, 28, 36, .95)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.c5mini .art { width: 46px; height: 46px; border-radius: 14px; flex: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; }
+.c5mini .tx { flex: 1; min-width: 0; }
+.c5mini .tx b { display: block; font-size: 15px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c5mini .tx span { font-size: 13px; line-height: 17px; color: var(--sec); white-space: nowrap; }
+.c5mini .pl { width: 46px; height: 46px; border-radius: 23px; background: var(--solid); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; }
+.c5intro { font-size: 16px; line-height: 23px; color: var(--sec); margin-top: 10px; text-wrap: pretty; }
+.qpop { position: absolute; left: 16px; right: 16px; z-index: 45; border-radius: 26px; background: var(--card); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .55); padding: 16px; }
+.qpop::before { content: ''; position: absolute; top: -8px; width: 18px; height: 18px; border-radius: 4px; background: var(--card); transform: rotate(45deg); left: var(--ax, 60px); }
+.qdim.soft { background: color-mix(in srgb, var(--dimc) 70%, transparent); }
+.c5ly .ln { margin-top: 18px; }
+.c5ly .ln .w { display: block; font-size: 30px; line-height: 37px; font-weight: 700; letter-spacing: -.5px; }
+.c5ly .ln small { display: flex; align-items: center; gap: 6px; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 3px; }
+.c5ly .ln small .io { font-size: 12px; }
+.c5ly .ln.past .w { opacity: .42; }
+.c5ly .ln.cur .w { color: var(--tx); }
+.c5ly .ln.cur small { color: var(--acc); font-weight: 700; }
+.c5ly .ln.n1 .w { filter: blur(2px); opacity: .5; }
+.c5ly .ln.n2 .w { filter: blur(4px); opacity: .42; }
+.c5ly .ln.n3 .w { filter: blur(6px); opacity: .35; }
+.c5art { position: relative; height: 150px; border-radius: 24px; overflow: hidden; color: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 10px; }
+.c5art .gl { position: absolute; right: -24px; top: -20px; font-size: 150px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.c5art > * { position: relative; }
+.c5art .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.c5art .h { font-size: 24px; line-height: 29px; font-weight: 700; margin-top: 2px; }
+.c5exam { margin-top: 26px; border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 18px; }
+.c5exam .seal { width: 52px; height: 52px; border-radius: 16px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--acc); }
+.c5exam .h { font-size: 24px; line-height: 30px; font-weight: 700; margin-top: 12px; }
+.c5exam p { font-size: 16px; line-height: 23px; color: var(--sec); margin: 8px 0 0; }
+.c5exam .qbtn { margin-top: 16px; }
+
+/* ── страница ── */
+.thm { padding: 14px 0 0; display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; }
+.chp.on { background: #F2F1F6; color: #0B0C0E; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.cmp { border-collapse: collapse; width: 100%; max-width: 1400px; font-size: 14px; line-height: 20px; color: #C9C9CF; margin-top: 6px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 11px 16px 11px 0; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .08); }
+.cmp th { color: #8E8E96; font-size: 13px; font-weight: 700; }
+.cmp td b { color: #F2F2F4; }
+@media (prefers-reduced-motion: reduce) { .ph *, .ph *::before, .ph *::after { transition: none !important; animation: none !important; } }
+
+/* ───────── PhraseMan 2.0 · Главная · 4 новые концепции (№54, владелец 21.10) ─────────
+   зачем: «чтобы она реально красивее стала во множество раз, несколько вариантов». Не косметика: глубина, свет, иерархия, движение.
+   Блоки — из кода HomeV2 (шапка: серия, монеты; «Продолжить»; плитки; «Сегодня»; «Фраза дня»; Пик; строка «вместе» друзей).
+   Токены тем, таббар и кольцо Plus — из course-new-concepts (concepts.css). Классы с префиксом hm-/a-/b-/c-/d-, без .dim. */
+
+/* ── общее ── */
+.hm-top { display: flex; align-items: center; gap: 8px; }
+.hm-pill { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; background: var(--card); box-shadow: var(--sh); font-size: 15px; font-weight: 700; color: var(--tx); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hm-pill img { width: 20px; height: 20px; border-radius: 50%; display: block; }
+.hm-pill .io { font-size: 18px; }
+.hm-pill.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.hm-pill.ember { color: oklch(.64 .19 28); }
+.th-marine .hm-pill.ember { color: oklch(.76 .15 30); }
+.hm-pill.glass.ember { color: #FFB4A3; }
+.hm-pill .sub { font-size: 12px; font-weight: 700; opacity: .8; }
+.hm-bell { position: relative; }
+.hm-bell i.dot { position: absolute; right: 9px; top: 9px; width: 8px; height: 8px; border-radius: 4px; background: oklch(.64 .19 28); box-shadow: 0 0 0 2px var(--card); }
+.hm-sp { flex: 1; }
+.hm-off { display: flex; align-items: center; gap: 10px; border-radius: 16px; padding: 10px 14px; font-size: 14px; line-height: 19px; background: var(--card); box-shadow: var(--sh); color: var(--tx); }
+.hm-off .io { font-size: 18px; color: var(--sec); }
+.hm-off b { font-weight: 700; }
+.hm-off.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2); backdrop-filter: blur(16px); }
+.hm-off.glass .io { color: #fff; }
+.hm-h { display: flex; align-items: baseline; gap: 8px; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.hm-h span { margin-left: auto; font-size: 15px; font-weight: 400; color: var(--sec); }
+.hm-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--tx) 7%, transparent); }
+.hm-row:last-child { box-shadow: none; }
+.hm-row .ck { width: 26px; height: 26px; border-radius: 13px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--tx) 22%, transparent); display: flex; align-items: center; justify-content: center; flex: none; font-size: 14px; color: transparent; }
+.hm-row .ck.on { background: var(--acc); box-shadow: none; color: var(--on-solid); }
+.th-ink .hm-row .ck.on { color: #fff; }
+.hm-row .ic { width: 36px; height: 36px; border-radius: 11px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; color: var(--tx); }
+.hm-row .tx { flex: 1; min-width: 0; }
+.hm-row .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.hm-row .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.hm-row .n { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hm-row.done .t { color: var(--sec); }
+.hm-row.urgent .n { color: oklch(.64 .19 28); }
+.th-marine .hm-row.urgent .n { color: oklch(.76 .15 30); }
+.hm-pair { display: inline-flex; flex: none; }
+.hm-pair > * + * { margin-left: -10px; }
+.hm-coin { border-radius: 50%; display: block; box-shadow: 0 0 0 2px var(--card); }
+.hm-chips { display: flex; gap: 8px; }
+.hm-chips .qchip { height: 36px; }
+.hm-alt { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.hm-art { display: block; object-fit: contain; pointer-events: none; }
+.hm-rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.hm-why { max-width: 1100px; margin-top: 14px; font-size: 15px; line-height: 23px; color: #C9C9CF; }
+.hm-why b { color: #F2F2F4; }
+.hm-why ul { margin: 8px 0 0; padding-left: 20px; }
+.hm-why li { margin: 4px 0; }
+
+/* ═════ A · Сцена ═════ */
+.a-stage { position: relative; height: 540px; border-radius: 0 0 36px 36px; overflow: hidden; color: #fff; }
+.th-ink .a-stage { background: radial-gradient(70% 50% at 18% 0%, oklch(.66 .13 300 / .9), transparent 70%), linear-gradient(165deg, oklch(.47 .14 282) 0%, oklch(.28 .10 276) 100%); }
+.th-marine .a-stage { background: radial-gradient(70% 50% at 18% 0%, oklch(.55 .10 200 / .85), transparent 70%), linear-gradient(165deg, oklch(.36 .08 214) 0%, oklch(.15 .05 222) 100%); }
+.a-stage.eve { background: radial-gradient(70% 50% at 82% 4%, oklch(.58 .17 25 / .75), transparent 70%), linear-gradient(170deg, oklch(.30 .09 285) 0%, oklch(.14 .05 280) 100%) !important; }
+.a-stage .a-art { position: absolute; right: -26px; top: 92px; width: 214px; height: 214px; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45)); opacity: .96; }
+.a-stage .a-glow { position: absolute; right: 0; top: 96px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 70%); }
+.a-stage .a-scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .40)); }
+.a-top { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 2; }
+.a-body { position: absolute; left: 20px; right: 20px; bottom: 58px; z-index: 2; }
+.a-kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.a-title { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: 4px; text-wrap: balance; }
+.a-prog { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; color: rgba(255, 255, 255, .88); }
+.a-prog .bar { flex: 0 0 72px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.a-prog .bar i { display: block; height: 100%; background: #fff; }
+.a-cta { display: flex; gap: 10px; margin-top: 16px; }
+.a-cta .qbtn { flex: 1; margin: 0; }
+.a-cta .qbtn.glass { flex: none; width: 54px; height: 54px; padding: 0; border-radius: 27px; }
+.a-panel { position: relative; z-index: 3; margin: -38px 16px 0; border-radius: 28px; background: var(--card); box-shadow: var(--sh2); padding: 14px 16px 6px; }
+.a-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 16px 0; }
+.a-tile { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 8px 8px 12px; text-align: center; font-size: 15px; font-weight: 700; }
+.a-tile img { width: 100%; height: 78px; }
+.a-tile small { display: block; font-size: 12px; font-weight: 700; color: var(--sec); margin-top: 1px; }
+.a-pod { display: flex; align-items: center; gap: 12px; margin: 12px 16px 0; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 10px 14px 10px 10px; }
+.a-pod img.art { width: 56px; height: 56px; }
+.a-pod .tx { flex: 1; min-width: 0; }
+.a-pod .k { font-size: 13px; font-weight: 700; color: var(--sec); }
+.a-pod .p { font-size: 18px; line-height: 23px; font-weight: 700; margin-top: 1px; }
+.a-pod .s { font-size: 13px; color: var(--sec); margin-top: 3px; display: flex; align-items: center; gap: 6px; }
+.a-ember { position: absolute; left: -40px; bottom: -60px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, oklch(.66 .19 28 / .55), transparent 68%); }
+.a-count { font-size: 15px; font-weight: 700; color: #FFD0C4; margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+
+/* ═════ B · Виджеты ═════ */
+.b-head { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.b-head .d { font-size: 15px; line-height: 20px; color: var(--sec); }
+.b-head .t { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.b-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.b-w { position: relative; border-radius: 26px; padding: 14px; background: var(--card); box-shadow: var(--sh); overflow: hidden; min-height: 148px; display: flex; flex-direction: column; }
+.b-w.big { grid-column: span 2; min-height: 218px; color: #fff; padding: 16px; }
+.b-w.wide { grid-column: span 2; min-height: 0; }
+.b-w .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.b-w .k .io { font-size: 15px; }
+.b-w .v { font-size: 46px; line-height: 50px; font-weight: 800; letter-spacing: -1.4px; margin-top: auto; font-variant-numeric: tabular-nums; }
+.b-w .v small { font-size: 17px; font-weight: 700; letter-spacing: 0; color: var(--sec); margin-left: 4px; }
+.b-w .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.b-w.big .art { position: absolute; right: -24px; top: 6px; width: 210px; height: 210px; filter: drop-shadow(0 22px 30px rgba(0, 0, 0, .4)); }
+.b-w.big .tx { position: relative; margin-top: auto; max-width: 70%; }
+.b-w.big .kk { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.b-w.big .h { font-size: 26px; line-height: 31px; font-weight: 700; letter-spacing: -.4px; margin-top: 2px; text-wrap: balance; }
+.b-w.big .pl { position: absolute; right: 16px; bottom: 16px; width: 58px; height: 58px; border-radius: 29px; background: #fff; color: #121318; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .55); }
+.b-w.big .bar { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; margin-top: 10px; width: 140px; }
+.b-w.big .bar i { display: block; height: 100%; background: #fff; }
+.b-w.big .lk { position: relative; display: flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 8px; color: rgba(255, 255, 255, .9); }
+.b-flame { position: absolute; right: -14px; top: -10px; font-size: 104px; color: color-mix(in srgb, oklch(.64 .19 28) 26%, transparent); }
+.b-w.ember { background: linear-gradient(160deg, oklch(.36 .12 25), oklch(.20 .07 15)); color: #fff; }
+.b-w.ember .k, .b-w.ember .s, .b-w.ember .v small { color: rgba(255, 255, 255, .86); }
+.b-w.ember .b-flame { color: rgba(255, 170, 150, .35); }
+.b-en { display: flex; gap: 4px; margin-top: 8px; }
+.b-en i { flex: 1; height: 6px; border-radius: 3px; background: var(--ctl); }
+.b-en i.on { background: var(--acc); }
+.b-today { display: flex; gap: 10px; margin-top: 12px; }
+.b-today > div { flex: 1; min-width: 0; }
+.b-today .tt { font-size: 14px; line-height: 18px; font-weight: 700; }
+.b-today .nn { font-size: 13px; color: var(--sec); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.b-today .tr { height: 6px; border-radius: 3px; background: var(--ctl); overflow: hidden; margin-top: 8px; }
+.b-today .tr i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+.b-w .art2 { position: absolute; right: 8px; top: 8px; width: 62px; height: 62px; }
+.b-w .ph5 { font-size: 20px; line-height: 25px; font-weight: 700; margin-top: auto; max-width: 70%; letter-spacing: -.3px; }
+.b-w.mute { opacity: .55; }
+.b-plus { background: linear-gradient(140deg, rgba(142, 124, 255, .32), rgba(111, 168, 255, .14) 60%, rgba(127, 224, 216, .10)), var(--card); }
+
+/* ═════ C · Один шаг ═════ */
+.c-stage { position: relative; margin: 0 -20px; padding: 18px 20px 0; min-height: 560px; }
+.c-light { position: absolute; left: 50%; top: 30px; width: 420px; height: 420px; margin-left: -210px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 34%, transparent), transparent 66%); pointer-events: none; }
+.c-light.ember { background: radial-gradient(circle, oklch(.66 .19 28 / .34), transparent 66%); }
+.c-focus { position: relative; text-align: center; padding-top: 44px; }
+.c-focus .k { font-size: 15px; line-height: 20px; color: var(--sec); }
+.c-focus .cph { font-size: 50px; line-height: 56px; font-weight: 700; letter-spacing: -1.2px; margin-top: 18px; text-wrap: balance; }
+.c-focus .ru { font-size: 20px; line-height: 26px; color: var(--sec); margin-top: 6px; }
+.c-go { width: 104px; height: 104px; border-radius: 52px; margin: 30px auto 0; background: var(--solid); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 24px 50px -18px color-mix(in srgb, var(--acc) 70%, transparent), 0 0 0 10px color-mix(in srgb, var(--acc) 12%, transparent); }
+.c-go.off { background: var(--ctl); color: var(--sec); box-shadow: none; }
+.c-sub { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 14px; }
+.c-sub b { color: var(--tx); }
+.c-focus .hm-chips { justify-content: center; margin-top: 16px; }
+.c-drawer { position: absolute; left: 0; right: 0; bottom: 0; z-index: 32; border-radius: 30px 30px 0 0; padding: 10px 16px 120px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .c-drawer { background: linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(246, 246, 253, .96)); box-shadow: 0 -18px 40px -24px rgba(51, 51, 87, .5), inset 0 1px 0 rgba(255, 255, 255, .95); }
+.th-marine .c-drawer { background: linear-gradient(180deg, rgba(6, 56, 70, .88), rgba(0, 28, 36, .97)); box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .12); }
+.c-drawer .gb { width: 40px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 22%, transparent); margin: 0 auto 10px; }
+.c-drawer .hd { display: flex; align-items: baseline; font-size: 17px; font-weight: 700; padding: 0 4px; }
+.c-drawer .hd span { margin-left: auto; font-size: 14px; font-weight: 400; color: var(--sec); }
+.c-mini { display: flex; gap: 10px; margin-top: 10px; overflow: hidden; }
+.c-mc { flex: none; width: 150px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 10px 12px; }
+.c-mc .t { font-size: 14px; line-height: 18px; font-weight: 700; }
+.c-mc .s { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; }
+.c-mc .tr { height: 5px; border-radius: 3px; background: var(--ctl); overflow: hidden; margin-top: 8px; }
+.c-mc .tr i { display: block; height: 100%; background: var(--acc); }
+.c-mc.urgent .s { color: oklch(.64 .19 28); }
+.th-marine .c-mc.urgent .s { color: oklch(.76 .15 30); }
+.c-mc .mute { opacity: .5; }
+
+/* ═════ D · День ═════ */
+.d-head { margin-top: 12px; }
+.d-head .w { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; }
+.d-head .dt { font-size: 15px; color: var(--sec); }
+.d-line { position: relative; margin-top: 14px; padding-left: 30px; }
+.d-line::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 0; width: 2px; border-radius: 1px; background: color-mix(in srgb, var(--tx) 12%, transparent); }
+.d-sec { position: relative; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin: 14px 0 6px; }
+.d-sec::before { content: ''; position: absolute; left: -25px; top: 4px; width: 10px; height: 10px; border-radius: 5px; background: var(--bg-dot, color-mix(in srgb, var(--tx) 22%, transparent)); }
+.d-sec.now { color: var(--acc); }
+.d-sec.now::before { left: -27px; top: 1px; width: 14px; height: 14px; border-radius: 7px; background: var(--acc); box-shadow: 0 0 0 6px color-mix(in srgb, var(--acc) 22%, transparent); }
+.d-sec.ember { color: oklch(.64 .19 28); }
+.th-marine .d-sec.ember { color: oklch(.76 .15 30); }
+.d-sec.ember::before { background: oklch(.64 .19 28); box-shadow: 0 0 0 6px oklch(.64 .19 28 / .22); left: -27px; top: 1px; width: 14px; height: 14px; border-radius: 7px; }
+.d-item { display: flex; align-items: center; gap: 12px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 10px 12px; margin-top: 8px; }
+.d-item .tx { flex: 1; min-width: 0; }
+.d-item .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.d-item .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.d-item .n { font-size: 14px; font-weight: 700; color: var(--sec); white-space: nowrap; }
+.d-item img.art { width: 44px; height: 44px; }
+.d-item.done { background: transparent; box-shadow: none; padding: 6px 2px; }
+.d-item.done .t { color: var(--sec); font-weight: 400; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--sec) 60%, transparent); }
+.d-item.done .ok { width: 22px; height: 22px; border-radius: 11px; background: var(--acc); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 13px; flex: none; }
+.th-ink .d-item.done .ok { color: #fff; }
+.d-now { position: relative; border-radius: 26px; overflow: hidden; color: #fff; padding: 16px; margin-top: 8px; box-shadow: var(--sh2); }
+.d-now .art { position: absolute; right: -20px; top: -6px; width: 170px; height: 170px; filter: drop-shadow(0 20px 26px rgba(0, 0, 0, .4)); }
+.d-now > * { position: relative; }
+.d-now .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.d-now .h { font-size: 24px; line-height: 29px; font-weight: 700; letter-spacing: -.3px; margin-top: 2px; max-width: 66%; text-wrap: balance; }
+.d-now .p { font-size: 14px; color: rgba(255, 255, 255, .88); margin-top: 6px; }
+.d-now .qbtn { margin-top: 14px; height: 50px; border-radius: 25px; }
+.d-now .hm-chips { margin-top: 10px; }
+.d-now .hm-chips .qchip { background: rgba(255, 255, 255, .16); color: #fff; }
+/* серия в шапке — две строки, как в коде (значение и «Серия» / «Сегодня ещё нет») */
+.hm-pill.two { height: 42px; border-radius: 21px; padding: 0 12px 0 10px; }
+.hm-pill.two .vv { display: flex; flex-direction: column; line-height: 1.1; }
+.hm-pill.two .vv b { font-size: 15px; font-weight: 700; }
+.hm-pill.two .vv small { font-size: 11px; font-weight: 700; opacity: .78; }
+.hm-top .hm-pill { flex: none; }
+.hm-pill i.dv { width: 1px; height: 18px; background: currentColor; opacity: .22; margin: 0 4px; }
+.hm-emb { color: oklch(.64 .19 28); }
+.th-marine .hm-emb, .glass .hm-emb { color: #FFB4A3; }
+
+.xen { display: inline-flex; align-items: center; gap: 2px; height: 26px; padding: 0 9px; border-radius: 13px; background: rgba(18, 19, 24, .08); font-size: 14px; font-weight: 700; margin-left: 6px; }
+.xen .io { font-size: 13px; }
+/* ───────── «Сегодня» в языке «Сцены» (#57, после Пика) ─────────
+   Экран заданий дня (/today_tasks, вход — «Смотреть все» у блока «Сегодня» Главной): кольца дня, три строки задач, история дней.
+   Основа — утверждённая Главная A «Сцена» и эталон колец today-rings-screen.html (геометрия 222: толщина 16, зазор 7, монета 86).
+   Классы с префиксом td- (у kit.css заняты .dim, .ph, .row, .tile, .pill и др.). */
+.td-top { display: flex; align-items: center; gap: 12px; min-height: 40px; }
+.td-tt { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.4px; color: #fff; }
+.td-rings { position: relative; flex: none; }
+.td-rings svg { display: block; position: relative; z-index: 1; }
+.td-rings .td-coin { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; }
+.td-rings .td-coin img { border-radius: 50%; display: block; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .6); }
+.td-rglow { position: absolute; inset: -34px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .2), transparent 66%); }
+.td-hero { position: absolute; right: 22px; top: 104px; z-index: 1; }
+.td-n { font-variant-numeric: tabular-nums; }
+
+/* строки задач: отметка цветом своего кольца (эталон: «отметки строк закрашены цветом своих колец») */
+.td-row .ck { color: transparent; }
+.td-row .ck.on { color: #fff !important; }
+.td-mini { flex: none; display: block; }
+
+/* история дней — лента, как TodayActivityHistory */
+.td-hist { margin: 14px 16px 0; border-radius: 28px; background: var(--card); box-shadow: var(--sh); padding: 14px 14px 12px; }
+.td-days { display: flex; gap: 6px; margin-top: 10px; }
+.td-day { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0 7px; border-radius: 16px; }
+.td-day.on { background: color-mix(in srgb, var(--acc) 12%, transparent); }
+.td-day b { font-size: 12px; line-height: 15px; font-weight: 700; white-space: nowrap; }
+.td-day span { font-size: 11px; line-height: 14px; color: var(--sec); white-space: nowrap; }
+
+/* B · кольца в центре сцены */
+.tdb .a-stage { height: 650px; }
+.tdb.nocta .a-stage { height: 586px; }
+.tdb .td-hero { left: 50%; right: auto; top: 108px; margin-left: -125px; }
+.tdb .a-body { text-align: center; }
+.tdb .a-title { font-size: 44px; line-height: 50px; }
+.tdb .a-prog, .tdb .a-count { justify-content: center; }
+.tdb .a-cta { justify-content: center; }
+
+/* C · 3D-герой дня, кольца — в строках */
+.tdc .a-title { font-size: 32px; line-height: 38px; }
+.tdc .td-row .ck { display: none; }
+
+.td-note { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); margin-top: 10px; }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">«Сегодня» в языке «Сцены»: три варианта</h1>
+  <p class="page-lead">Заказ #57: экран «Сегодня» (открывается по «Смотреть все» у блока «Сегодня» Главной) в стиле утверждённой Главной A «Сцена». Содержимое — как в приложении сейчас: кольца дня с монетой ранга в центре (эталон today-rings-screen.html), три задания дня строками, лента истории дней. Три подачи: A — кольца героем справа (рекомендую), B — кольца крупно по центру, C — 3D-герой дня и кольца у каждой строки. У каждой пять состояний: утро, день, вечер с угрозой серии, всё выполнено, видео вместо диалога. Без плашек и бонусов (D09). Код приложения не менялся.</p>
+  <div class="thm"><span style="font-size:13px;color:#8E8E96;font-weight:700;margin-right:6px">Тема</span><span class="chp" data-t="ink">Сумерки</span><span class="chp" data-t="marine">Океан</span></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>window.__ICODE = {"albums-outline":"f110","book":"f1a5","book-outline":"f1a6","business-outline":"f1c7","cafe-outline":"f1ca","call-outline":"f1d9","chatbubble-ellipses-outline":"f213","chatbubbles-outline":"f218","checkmark":"f21d","chevron-back":"f229","chevron-down":"f232","chevron-forward":"f23b","cloud-offline-outline":"f25b","copy-outline":"f290","diamond":"f2a1","flame":"f313","flame-outline":"f314","flash":"f316","happy":"f361","home":"f382","home-outline":"f383","lock-closed":"f3c7","notifications-outline":"f47f","people-outline":"f4a3","play":"f4c6","play-circle-outline":"f4ce","restaurant-outline":"f536","school-outline":"f55d","settings-outline":"f56c","star":"f595","today":"f5e3","trophy":"f601","volume-high":"f613"};</script>
+<script>
+/* зачем (владелец 21.10, №40): 5 принципиально новых концепций экрана «Обучение» Learning V2. Прежние 5 вариантов отклонены целиком
+   («старые макеты переделанные»). Каждая концепция — свой принцип подачи: 1 Сезон (сериал), 2 Циферблат (круг), 3 Волна (запись голоса),
+   4 Колода (карта в фокусе), 5 Разговорник (фразы вместо номеров). Данные — из курса: план урока 1 (ПЛАН_КУРСА.md), названия эпизодов
+   (session_titles_v1.generated.ts), фразы, слова и число заданий — из learner.json эпизодов. */
+(() => {
+const { phone, block, col, coinImg } = K;
+const CODE = window.__ICODE || {};
+const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[COURSE-NEW] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+const gl = (n) => { const c = CODE[n]; if (!c) throw new Error('[COURSE-NEW] нет значка ' + n); return `&#x${c};`; };
+let TH = 'ink';
+const T = (h, extra = '') => h.replace('class="ph"', `class="ph th-${TH}${extra ? ' ' + extra : ''}"`);
+const pl = (n, f) => { const a = n % 10, b = n % 100; return f[(a === 1 && b !== 11) ? 0 : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? 1 : 2]; };
+const tasks = (n) => `${n} ${pl(n, ['задание', 'задания', 'заданий'])}`;
+
+/* ── данные курса ── */
+const LES = { n: 1, title: 'Present be: утверждение + not', arc: 'Первая неделя в Дублине' };
+const CH = [
+  { n: 1, scene: 'Первый рабочий день', name: 'I am (+ not)', ic: 'business-outline', h: 258 },
+  { n: 2, scene: 'Кофе с коллегой', name: 'You are (+ not)', ic: 'cafe-outline', h: 200 },
+  { n: 3, scene: 'Знакомство с командой', name: 'He / she is (+ not)', ic: 'people-outline', h: 304 },
+  { n: 4, scene: 'Квартира, погода, вещи', name: 'It is (+ not)', ic: 'home-outline', h: 168 },
+  { n: 5, scene: 'Обед с командой', name: 'We / they are (+ not)', ic: 'restaurant-outline', h: 340 },
+  { n: 6, scene: 'Пятница, паб', name: 'Сокращения', ic: 'chatbubbles-outline', h: 228 },
+  { n: 7, scene: 'Воскресный звонок домой', name: 'Вся система be', ic: 'call-outline', h: 282 },
+];
+const EP = {
+  1: { t: 'Вошли в офис', p: 'I am here.', ru: 'Я здесь.', k: 20, w: ['here', 'ready', 'fine', 'happy'] },
+  2: { t: 'День продолжается', p: 'I am busy.', k: 21 },
+  3: { t: 'Заботливый начальник', p: 'I am not sure.', k: 21 },
+  4: { t: 'Утренняя планёрка вслух', p: 'I am early.', k: 21 },
+  5: { t: 'Типичные ошибки: I fine, I no sure', p: 'I am new.', k: 21 },
+  6: { t: 'Вечером в квартире, звонок другу', p: 'I am home.', k: 20 },
+  7: { t: 'Конец дня, всё вперемешку', p: 'I am full.', k: 18 },
+  8: { t: 'Итог первого дня: ответить на 10 вопросов о себе', p: 'I am excited.', k: 25 },
+  9: { t: 'Коллега приносит кофе', p: 'He is tall.', k: 21 },
+  10: { t: 'Замечаем и говорим о собеседнике', p: 'You are early.', k: 21 },
+  11: { t: 'Успокаиваем коллегу', p: 'You are not lazy.', k: 18 },
+  12: { t: 'Комплименты вслух', p: 'I am calm.', ru: 'Я спокоен.', k: 20, w: ['polite', 'brave', 'honest', 'smart'] },
+  13: { t: 'Ловушки: you am, I are', p: 'You are kind.', k: 18 },
+  14: { t: 'Помогаем туристу под дождём', p: 'You are safe.', ru: 'Ты в безопасности.', k: 18, w: ['safe', 'warm', 'dry', 'wet'] },
+  15: { t: 'Вечер, разбор дня', p: 'I am serious.', k: 22 },
+  16: { t: '«Скажи коллеге пять вещей о нём»', p: 'It is open.', k: 21 },
+  17: { t: 'Начальник представляет людей', p: 'You are welcome.', k: 21 },
+  18: { t: 'Обсуждаем коллег шёпотом', p: 'She is funny.', k: 21 },
+};
+const STARS = { 1: 3, 2: 3, 3: 2, 4: 3, 5: 3, 6: 2, 7: 3, 8: 3, 9: 3, 10: 2, 11: 3 };
+const CUR = 12;
+const chOf = (e) => Math.ceil(e / 8);
+const epState = (e, mode = 'mid') => mode === 'new' ? (e === 1 ? 'cur' : 'lock') : (e < CUR ? 'done' : e === CUR ? 'cur' : 'lock');
+
+/* цвет главы: обложка — глубокий градиент её оттенка (без жёлтого), на обеих темах текст белый */
+const art = (h, k = 0) => TH === 'ink'
+  ? `radial-gradient(120% 90% at 88% 0%, oklch(.70 .13 ${h + 28}) 0%, transparent 58%), linear-gradient(160deg, oklch(.53 .15 ${h + k}) 0%, oklch(.33 .13 ${h + 18 + k}) 100%)`
+  : `radial-gradient(120% 90% at 88% 0%, oklch(.56 .12 ${h + 28}) 0%, transparent 58%), linear-gradient(160deg, oklch(.40 .11 ${h + k}) 0%, oklch(.20 .07 ${h + 18 + k}) 100%)`;
+const hueFill = (h) => `fill:oklch(var(--lw) var(--cw) ${h})`;
+
+/* ── общие детали ── */
+const avatar = (s = 36, plus = true) => plus
+  ? `<span class="pav"><span class="gap">${coinImg(5, s)}</span><span class="pin">${io('diamond')}</span></span>`
+  : `<span class="pav" style="background:none;padding:0"><span class="gap" style="padding:0;background:none">${coinImg(5, s + 9)}</span></span>`;
+const TABS = [['home-outline', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people-outline', 'Сообщество'], ['settings-outline', 'Настройки']];
+const tabbar = (extra = '') => `<div class="qfade"></div>${extra}<div class="tbar"><div class="cap"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 1 ? ' on' : ''}">${io(i)}<span>${l}</span></div>`).join('')}</div>`;
+const stars = (n) => `<span class="stars">${[0, 1, 2].map((i) => `<span class="${i < n ? '' : 'off'}">${io('star')}</span>`).join('')}</span>`;
+const hdr = (title, sub, plus = true) => `<div class="qhd"><div class="tt t">${title}${io('chevron-down')}</div><span class="sp"></span><span class="qround t">${io('book-outline')}</span>${avatar(36, plus)}</div>${sub ? `<div class="qsub">${sub}</div>` : ''}`;
+const nav = (k, h) => `<div class="c1nav"><span class="qround t">${io('chevron-back')}</span><div style="flex:1;min-width:0"><div class="qk">${k}</div><div style="font-size:19px;line-height:24px;font-weight:700">${h}</div></div><span class="qround t">${io('book-outline')}</span></div>`;
+const words = (e, glass) => `<div class="qchips">${(EP[e].w || []).map((w) => `<span class="qchip${glass ? ' glass' : ''}">${w}</span>`).join('')}</div>`;
+const say = (e, on) => `<div class="qsay"><span class="sp${on ? ' on' : ''} t">${io('volume-high')}</span><div><div class="en">${EP[e].p}</div><div class="ru">${EP[e].ru || ''}</div></div></div>`;
+const c1sec = (kick, title, right, chev = true) => `<div class="c1sec"><div style="min-width:0"><div class="qk">${kick}</div><div class="h t">${title}${chev ? io('chevron-down') : ''}</div></div><div class="r">${right}</div></div>`;
+const pills = (cur = 1) => `<div class="qpills">${CH.slice(0, 5).map((c, i) => `<span class="qpill${i === cur ? ' on' : ''}${i > cur ? ' lock' : ''} t">${i < cur ? io('checkmark') : i > cur ? io('lock-closed') : ''}Глава ${c.n}</span>`).join('')}</div>`;
+const c4back = (e, cls) => { const c = CH[chOf(e) - 1]; return `<div class="c4card ${cls}${epState(e) === 'lock' ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span><div class="top"><span class="qchip glass">${epState(e) === 'lock' ? io('lock-closed') : epState(e) === 'done' ? io('checkmark') : ''}Эпизод ${e}</span></div><div class="big">${EP[e].p}</div></div>`; };
+const c4front = (e, o) => {
+  const c = CH[chOf(e) - 1];
+  return `<div class="c4card${o.dim ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span>`
+    + `<div class="top"><span class="qchip glass">${o.dim ? io('lock-closed') : ''}Эпизод ${e}</span><span class="r">${o.right}</span></div>`
+    + `<div class="big">${EP[e].p}</div><div class="ru">${EP[e].ru || ''}</div><div class="h">${EP[e].t}</div>${words(e, true)}${o.lock ? `<div class="lk">${io('lock-closed')}${o.lock}</div>` : ''}${o.btns}</div>`;
+};
+const dots = (pos, mode = 'mid') => `<div class="c4dots">${Array.from({ length: 9 }, (_, i) => {
+  if (i === 8) return `<i class="x${pos === 'x' ? ' c' : ''}"></i>`;
+  const e = (mode === 'new' ? 1 : 9) + i; const st = epState(e, mode); return `<i class="${e === pos ? 'c' : st === 'done' ? 'd' : ''}"></i>`;
+}).join('')}</div>`;
+const c4tools = () => `<div class="c4tools"><span class="qchip t">${io('book-outline')}Теория урока</span><span class="qchip t">${io('albums-outline')}Вся глава</span></div>`;
+const fan = () => {
+  const list = [9, 10, 11, 12, 13, 14, 15, 16, 'x'];
+  return `<div class="c4fan">${list.map((e, i) => {
+    const r = -30 + i * 7.5; const isCur = e === CUR; const st = e === 'x' ? 'x' : epState(e);
+    const tr = `rotate(${r}deg)${isCur ? ' translateY(-40px)' : ''}`;
+    if (e === 'x') return `<div class="fcard c4exam" style="transform:${tr};z-index:${i}"><span class="n">${io('trophy')}</span><span class="p">Экзамен главы</span></div>`;
+    const c = CH[chOf(e) - 1];
+    return `<div class="fcard${st === 'lock' ? ' lock' : ''}${isCur ? ' cur' : ''}" style="transform:${tr};z-index:${isCur ? 20 : i};background:${art(c.h, (e % 8) * 4)}"><span class="n">${isCur ? io('play') : ''}${e}</span>${isCur ? `<span class="p">${EP[e].p}</span>` : ''}</div>`;
+  }).join('')}</div>`;
+};
+/* ═════════ ГЛАВНАЯ · 4 НОВЫЕ КОНЦЕПЦИИ (№54, владелец 21.10) ═════════
+   Выше — общие детали из course-new-concepts (тема, данные курса, кольцо Plus). Блоки и тексты — из HomeV2 и макета друзей «строго как на экране»:
+   серия «N дней» / «Сегодня ещё нет», монеты, «Продолжить», «Сегодня» (Пройти урок, Потренировать диалог, Повторить карточки «Не менее 10 слов»),
+   строка «Серия вдвоём с Лидией», «Фраза дня» (We are together., «2 друга уже ответили»), плитки Уроки / Диалоги / Карточки, Пик «Поднимайся выше всех». */
+const IMG = (name, cls = '', st = '') => `<img class="hm-art ${cls}" src="assets/v2art/${TH === 'ink' ? 'light' : 'dark'}/${name}.webp" alt="" style="${st}">`;
+const COINR = (r, s) => `<img class="hm-coin" src="${K.coin(r)}" width="${s}" height="${s}" style="width:${s}px;height:${s}px" alt="">`;
+const tabbarH = (extra = '') => `<div class="qfade"></div>${extra}<div class="tbar"><div class="cap" style="left:9px"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 0 ? ' on' : ''}">${io(k === 0 ? 'home' : i === 'book' ? 'book-outline' : i)}<span>${l}</span></div>`).join('')}</div>`;
+const MID_TODAY = [['book-outline', 'Пройти урок', '', '1/1', 1], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '6/10']];
+const S = {
+  new: { time: '9:41', streak: '0 дней', pend: true, coins: '0', en: '5', ep: 1, today: [['book-outline', 'Пройти урок', '', '0/1'], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '0/10']], done: 0 },
+  mid: { time: '18:10', streak: '5 дней', coins: '2 340', en: '4', ep: 12, today: MID_TODAY, done: 1, friend: true },
+  eve: { time: '21:40', streak: '5 дней', pend: true, warn: true, coins: '2 340', en: '3', ep: 12, today: [['book-outline', 'Пройти урок', '', '0/1', 0, 1], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '0/10']], done: 0, friend: true },
+  plus: { time: '18:10', streak: '5 дней', coins: '2 340', en: '∞', plus: true, ep: 12, today: MID_TODAY, done: 1, friend: true },
+  off: { time: '13:05', streak: '5 дней', coins: '2 340', en: '4', off: true, ep: 12, today: MID_TODAY, done: 1, friend: true },
+  zero: { time: '16:20', streak: '5 дней', coins: '2 340', en: '0', zero: true, ep: 12, today: MID_TODAY, done: 1, friend: true },
+};
+const ORDER = ['new', 'mid', 'eve', 'plus', 'off', 'zero'];
+const LBL = ['Новичок, первый день', 'Активный ученик', 'Серия под угрозой, 21:40', 'Plus', 'Нет сети', '0 энергии'];
+
+/* ── шапка: серия (две строки, как в коде), монеты, энергия, колокол, аватар ── */
+const stats = (s, glass) => {
+  const g = glass ? ' glass' : '';
+  const streak = `<span class="hm-pill two${g}${s.warn ? ' ember' : ''} t">${io(s.pend ? 'flame-outline' : 'flame')}<span class="vv"><b>${s.streak}</b><small>${s.pend ? 'Сегодня ещё нет' : 'Серия'}</small></span></span>`;
+  const money = `<span class="hm-pill${g} t"><img src="${K.coin(5)}" alt="">${s.coins}<i class="dv"></i><span class="${s.zero ? 'hm-emb' : ''}" style="display:inline-flex;align-items:center;gap:3px">${io('flash')}${s.en}</span></span>`;
+  return `${streak}${money}`;
+};
+const bell = (glass) => `<span class="qround hm-bell${glass ? ' glass' : ''} t">${io('notifications-outline')}<i class="dot"></i></span>`;
+const me = (s) => avatar(34, !!s.plus);
+const head = (s, glass) => `<div class="hm-top">${stats(s, glass)}<span class="hm-sp"></span>${bell(glass)}${me(s)}</div>`;
+const offBar = (glass) => `<div class="hm-off${glass ? ' glass' : ''}">${io('cloud-offline-outline')}<span><b>Нет сети.</b> Занятия и карточки работают, остальное догонит.</span></div>`;
+const chipsLesson = (s, glass) => s.ep === 1 ? `<div class="hm-chips"><span class="qchip${glass ? ' glass' : ''} t">${io('school-outline')}Не хочу с начала</span></div>`
+  : `<div class="hm-chips"><span class="qchip${glass ? ' glass' : ''} t">${io('albums-outline')}Слова</span><span class="qchip${glass ? ' glass' : ''} t">${io('book-outline')}Теория</span></div>`;
+const noEnergy = (glass) => `<div class="hm-alt"><span class="qchip${glass ? ' glass' : ''} t">${io('copy-outline')}Карточки</span><span class="qchip${glass ? ' glass' : ''} t">${io('chatbubble-ellipses-outline')}Фраза дня</span><span class="qchip${glass ? ' glass' : ''} t">${io('play-circle-outline')}Видео</span></div>`;
+const row = ([ic, t, sub, n, done, urgent]) => `<div class="hm-row${done ? ' done' : ''}${urgent ? ' urgent' : ''} t"><span class="ck${done ? ' on' : ''}">${io('checkmark')}</span><span class="ic">${io(ic)}</span><div class="tx"><div class="t">${t}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div><span class="n">${n}</span></div>`;
+const friendRow = (s) => `<div class="hm-row t"><span class="ck"></span>${COINR(8, 36)}<div class="tx"><div class="t">Серия вдвоём с Лидией</div><div class="s">${s.off ? 'Обновится, когда будет сеть' : s.warn ? 'Лидия уже занималась сегодня' : 'Лидия уже занималась · 3 дня'}</div></div><span class="n">0/1</span></div>`;
+const todayList = (s) => `${s.today.map(row).join('')}${s.friend ? friendRow(s) : ''}`;
+const pair = (s = 22) => `<span class="hm-pair">${COINR(9, s)}${COINR(11, s)}</span>`;
+
+/* ═════ A · Сцена ═════ */
+const aStage = (s) => {
+  const e = EP[s.ep];
+  let body;
+  if (s.zero) body = `<div class="a-kick">Эпизод 12 · ${e.t}</div><div class="a-title">Энергия вернётся через 42 мин</div><div class="a-prog">Пока можно заниматься без энергии</div>${noEnergy(true)}<div class="a-prog" style="margin-top:12px">${io('diamond')}С Plus без энергии</div>`;
+  else if (s.warn) body = `<div class="a-kick">Серия 5 дней</div><div class="a-title">До полуночи 2 ч 20 мин</div><div class="a-count">${io('flame')}Одно занятие сохранит серию</div><div class="a-cta"><div class="qbtn white t">${io('play')}Продолжить эпизод 12</div></div>`;
+  else if (s.ep === 1) body = `<div class="a-kick">Урок 1 · ${LES.arc}</div><div class="a-title">${e.t}</div><div class="a-prog">Эпизод 1 · ${tasks(e.k)}</div><div class="a-cta"><div class="qbtn white t">${io('play')}Начать</div></div><div style="margin-top:12px">${chipsLesson(s, true)}</div>`;
+  else body = `<div class="a-kick">Урок 1 · Эпизод 12</div><div class="a-title">${e.t}</div><div class="a-prog"><span class="bar"><i style="width:30%"></i></span>задание 6 из 20</div><div class="a-cta"><div class="qbtn white t">${io('play')}Продолжить</div></div><div style="margin-top:12px">${chipsLesson(s, true)}</div>`;
+  return `<div class="a-stage${s.warn ? ' eve' : ''}">${s.warn ? '<div class="a-ember"></div>' : ''}<div class="a-glow"></div>${IMG(s.warn ? 'today' : 'continue', 'a-art', s.zero ? 'opacity:.55;filter:grayscale(.4) drop-shadow(0 30px 40px rgba(0,0,0,.45))' : '')}<div class="a-scrim"></div>`
+    + `<div class="a-top">${head(s, true)}${s.off ? `<div style="margin-top:10px">${offBar(true)}</div>` : ''}</div><div class="a-body">${body}</div></div>`;
+};
+const aTiles = (s) => `<div class="a-tiles">${[['lessons', 'Уроки'], ['dialogs', 'Диалоги', s.plus ? 'без лимита' : ''], ['cards', 'Карточки']].map(([a, t, sm]) => `<div class="a-tile t">${IMG(a)}${t}${sm ? `<small>${sm}</small>` : ''}</div>`).join('')}</div>`;
+const aPod = (s) => `<div class="a-pod t"${s.off ? ' style="opacity:.55"' : ''}>${IMG('phrase_of_day', 'art')}<div class="tx"><div class="k">Фраза дня</div><div class="p">We are together.</div><div class="s">${s.off ? 'Ответишь, когда будет сеть' : `${pair()}2 друга уже ответили`}</div></div>${io('chevron-forward', 'font-size:18px;color:var(--sec)')}</div>`;
+const A = (s) => T(phone(`${aStage(s)}<div class="a-panel"><div class="hm-h">Сегодня<span>${s.done} из 3</span></div>${todayList(s)}</div>${aTiles(s)}${aPod(s)}<div style="height:140px"></div>`,
+  { time: s.time, inStyle: 'padding:0', fixed: tabbarH() }), 'onart');
+
+
+/* ═════════ «СЕГОДНЯ» В ЯЗЫКЕ «СЦЕНЫ» (#57, координатор 21.10: после Пика) ═════════
+   Выше — детали «Сцены» из home_body.js (сцена, IMG, кольцо Plus) и общие детали курса (тема, значки).
+   Экран /today_tasks (app/today_tasks.tsx): кольца дня с монетой ранга в центре, три строки задач (HomeV2TodayCard), лента истории
+   (TodayActivityHistory: дата «21 окт.», «N из 3»). Тексты задач — modules/today-tasks/today_tasks_view.ts: «Пройти урок» 1,
+   «Потренировать диалог» 1, «Повторить карточки» · «Не менее 10 слов» 10, «Посмотреть видео» N/10 минут. Кольца: геометрия эталона
+   today-rings-screen.html (222: толщина 16, зазор 7, монета 86), цвета [акцент, второй, золото]; без плашек и бонусов (D09). */
+const RC = ['#7EF0C8', '#A08CFF', '#F0C551'];
+const RCL = () => (TH === 'ink' ? ['#2E8F6C', '#5B49D6', '#9A6A00'] : RC);
+const ci = (r, s) => `<img src="${K.coin(r)}" alt="" style="width:${s}px;height:${s}px">`;
+const ringsSvg = (vals, size, cols, track = 0.2) => {
+  const k = size / 222; const sw = 16 * k; const gap = 7 * k; const c = size / 2;
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${vals.map((v, i) => { const r = c - sw / 2 - i * (sw + gap); const len = 2 * Math.PI * r; return `<circle cx="${c}" cy="${c}" r="${r.toFixed(1)}" fill="none" stroke="${cols[i]}" stroke-opacity="${track}" stroke-width="${sw.toFixed(1)}"/>`
+    + (v > 0 ? `<circle cx="${c}" cy="${c}" r="${r.toFixed(1)}" fill="none" stroke="${cols[i]}" stroke-width="${sw.toFixed(1)}" stroke-linecap="round" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${(len * (1 - Math.min(1, v))).toFixed(1)}" transform="rotate(-90 ${c} ${c})"/>` : ''); }).join('')}</svg>`;
+};
+const rings = (vals, size) => `<div class="td-rings" style="width:${size}px;height:${size}px"><div class="td-rglow"></div>${ringsSvg(vals, size, RC)}<div class="td-coin">${ci(5, Math.round(86 * size / 222))}</div></div>`;
+/* мини-кольца ленты истории: 62, радиусы 27/20/13, толщина 4 (TodayActivityHistory) */
+const miniDay = (v) => { const S = 62; const cols = RCL(); return `<svg class="td-mini" viewBox="0 0 ${S} ${S}" width="44" height="44">${[27, 20, 13].map((r, i) => { const len = 2 * Math.PI * r; return `<circle cx="31" cy="31" r="${r}" fill="none" stroke="${cols[i]}" stroke-opacity=".18" stroke-width="4"/>${v[i] > 0 ? `<circle cx="31" cy="31" r="${r}" fill="none" stroke="${cols[i]}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${(len * (1 - v[i])).toFixed(1)}" transform="rotate(-90 31 31)"/>` : ''}`; }).join('')}</svg>`; };
+/* кольцо одной задачи в строке (вариант C) — то же кольцо дня, только своё */
+const rowRing = (v, i) => { const cols = RCL(); const r = 14; const len = 2 * Math.PI * r; return `<svg class="td-mini" viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="${r}" fill="none" stroke="${cols[i]}" stroke-opacity=".2" stroke-width="5"/>${v > 0 ? `<circle cx="18" cy="18" r="${r}" fill="none" stroke="${cols[i]}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${(len * (1 - Math.min(1, v))).toFixed(1)}" transform="rotate(-90 18 18)"/>` : ''}</svg>`; };
+
+/* ── задачи и состояния ── */
+const T_LESSON = ['book-outline', 'Пройти урок', '', 1];
+const T_DIALOG = ['chatbubbles-outline', 'Потренировать диалог', '', 1];
+const T_CARDS = ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', 10];
+const T_VIDEO = ['play-circle-outline', 'Посмотреть видео', '', 10];
+const DAYS = [['15 окт.', [1, 1, 1]], ['16 окт.', [1, 1, 0.6]], ['17 окт.', [1, 0, 0]], ['18 окт.', [1, 1, 1]], ['19 окт.', [0, 0, 0]], ['20 окт.', [1, 1, 0.8]]];
+const TS = {
+  morning: { time: '9:10', tasks: [T_LESSON, T_DIALOG, T_CARDS], prog: [0, 0, 0], kick: 'Вторник, 21 октября', title: '0 из 3', sub: 'Три задания на сегодня', next: T_LESSON, ctaC: 'Начать',
+    titleC: 'Пройти урок', kickC: 'Сегодня · 0 из 3', subC: 'Эпизод 12 · Комплименты вслух', art: 'today' },
+  day: { time: '14:30', tasks: [T_LESSON, T_DIALOG, T_CARDS], prog: [1, 0, 6], kick: 'Вторник, 21 октября', title: '1 из 3', sub: 'Осталось: диалог и карточки', next: T_DIALOG, ctaC: 'Начать',
+    titleC: 'Потренировать диалог', kickC: 'Сегодня · 1 из 3', subC: 'Ещё диалог и 4 карточки', art: 'today' },
+  eve: { time: '21:40', eve: true, tasks: [T_LESSON, T_DIALOG, T_CARDS], prog: [0, 0, 0], kick: 'Серия 5 дней', title: 'До полуночи 2 ч 20 мин', count: 'Одно занятие сохранит серию', next: T_LESSON, urgent: true, ctaC: 'Начать',
+    titleB: '2 ч 20 мин', kickB: 'Серия 5 дней · до полуночи', titleC: 'До полуночи 2 ч 20 мин', kickC: 'Серия 5 дней', art: 'today' },
+  done: { time: '19:20', tasks: [T_LESSON, T_DIALOG, T_CARDS], prog: [1, 1, 10], kick: 'Вторник, 21 октября', title: '3 из 3', sub: 'Все кольца замкнуты', next: null,
+    titleC: 'День выполнен', kickC: 'Сегодня · 3 из 3', subC: 'Все кольца замкнуты', art: 'today' },
+  video: { time: '16:05', tasks: [T_LESSON, T_VIDEO, T_CARDS], prog: [1, 4, 6], kick: 'Вторник, 21 октября', title: '1 из 3', sub: 'Осталось: видео и карточки', next: T_VIDEO, ctaC: 'Продолжить',
+    titleC: 'Посмотреть видео', kickC: 'Сегодня · 1 из 3', subC: '4 из 10 минут', art: 'today' },
+};
+const T_ORDER = ['morning', 'day', 'eve', 'done', 'video'];
+const T_LBL = ['Утро: 0 из 3', 'День: 1 из 3', 'Вечер: серия под угрозой', 'Все задания выполнены', 'Видео вместо диалога: 4 из 10 минут'];
+const fr = (o) => o.tasks.map((t, i) => Math.min(1, o.prog[i] / t[3]));
+
+/* ── общие куски ── */
+const topT = () => `<div class="td-top"><span class="qround glass t">${io('chevron-back')}</span><span class="td-tt">Сегодня</span></div>`;
+const ctaT = (o, v = '') => (o.next ? `<div class="a-cta"><div class="qbtn white t">${io('play')}${(v === 'C' && o.ctaC) || o.next[1]}</div></div>` : '');
+const rowT = (o, mode) => (t, i) => {
+  const [ic, title, sub, of] = t; const n = o.prog[i]; const done = n >= of; const cols = RCL();
+  const ck = mode === 'ring' ? rowRing(n / of, i) : `<span class="ck${done ? ' on' : ''}" style="${done ? `background:${cols[i]};box-shadow:none` : `box-shadow:inset 0 0 0 2px ${cols[i]}`}">${io('checkmark')}</span>`;
+  return `<div class="hm-row td-row${done ? ' done' : ''}${o.urgent && i === 0 ? ' urgent' : ''} t">${ck}<span class="ic">${io(ic)}</span><div class="tx"><div class="t">${title}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div><span class="n td-n">${n}/${of}</span></div>`;
+};
+const panelT = (o, mode) => `<div class="a-panel"><div class="hm-h">Задания дня<span>${o.prog.filter((n, i) => n >= o.tasks[i][3]).length} из 3</span></div>${o.tasks.map(rowT(o, mode)).join('')}</div>`;
+const plFull = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'полный день' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'полных дня' : 'полных дней');
+const histT = (o) => { const today = fr(o); const cnt = (v) => v.filter((x) => x >= 1).length; return `<div class="td-hist"><div class="hm-h">История<span>${((n) => `${n} ${plFull(n)}`)(DAYS.filter(([, v]) => cnt(v) === 3).length + (cnt(today) === 3 ? 1 : 0))}</span></div><div class="td-days">${DAYS.concat([['21 окт.', today]]).map(([d, v], i) => `<div class="td-day${i === 6 ? ' on' : ''} t">${miniDay(v)}<b>${d}</b><span>${cnt(v)} из 3</span></div>`).join('')}</div></div>`; };
+const shellT = (o, cls, stage, mode) => T(phone(`<div class="${cls}">${stage}</div>${panelT(o, mode)}${histT(o)}<div style="height:40px"></div>`, { time: o.time, inStyle: 'padding:0' }), 'onart');
+const bodyT = (o, v = '') => { const k = o['kick' + v] ?? o.kick, t = o['title' + v] ?? o.title, s = o['sub' + v] ?? o.sub; return `<div class="a-kick">${k}</div><div class="a-title">${t}</div>${o.count ? `<div class="a-count">${io('flame')}${o.count}</div>` : s ? `<div class="a-prog">${s}</div>` : ''}${ctaT(o, v)}`; };
+const stageWrap = (o, inner) => `<div class="a-stage${o.eve ? ' eve' : ''}">${o.eve ? '<div class="a-ember"></div>' : ''}${inner}</div>`;
+
+/* ═════ A · Сцена: кольца дня — герой справа, крупное «1 из 3», следующая задача кнопкой ═════ */
+const phTA = (o) => shellT(o, 'tda', stageWrap(o, `<div class="td-hero">${rings(fr(o), 200)}</div><div class="a-scrim"></div><div class="a-top">${topT()}</div><div class="a-body">${bodyT(o)}</div>`), 'check');
+/* ═════ B · Кольца в центре сцены: крупно и по центру, как на часах ═════ */
+const phTB = (o) => shellT(o, o.next ? 'tdb' : 'tdb nocta', stageWrap(o, `<div class="td-hero">${rings(fr(o), 250)}</div><div class="a-scrim"></div><div class="a-top">${topT()}</div><div class="a-body">${bodyT(o, 'B')}</div>`), 'check');
+/* ═════ C · Герой дня: 3D-картинка справа, следующая задача заголовком, кольца — у каждой строки ═════ */
+const phTC = (o) => shellT(o, 'tdc', stageWrap(o, `<div class="a-glow"></div>${IMG(o.art, 'a-art')}<div class="a-scrim"></div><div class="a-top">${topT()}</div><div class="a-body">${bodyT(o, 'C')}</div>`), 'ring');
+
+/* ── таблицы ── */
+const tablesT = () => `<section class="block" id="td-rules"><h2>Что когда на экране</h2><p>Всё считается из заданий дня на телефоне (modules/today-tasks, локальное хранилище) — новых чтений базы нет. Кольца при входе докручиваются «до → после» с прошлого открытия, первое за день — от нуля.</p>`
+  + `<table class="cmp"><tr><th>Состояние</th><th>Когда</th><th>Заголовок и кнопка</th><th>Картинка героя (только вариант C)</th></tr>${[
+    ['Утро', 'Ни одно задание дня не выполнено, до 20:00', '«0 из 3» · «Пройти урок»', 'today_scene_morning'],
+    ['День', 'Часть заданий выполнена', '«1 из 3» · следующее невыполненное задание', 'today_scene_progress'],
+    ['Вечер, серия под угрозой', 'После 20:00, серия от 1 дня, сегодня занятия не было (то же правило, что у героя Главной)', '«До полуночи 2 ч 20 мин» · тёплый свет · «Пройти урок»', 'today_scene_evening'],
+    ['Все задания выполнены', 'Три задания закрыты', '«3 из 3» / «День выполнен», кнопки нет — без плашек и бонусов (D09)', 'today_scene_done'],
+    ['Видео вместо диалога', 'В языке нет диалогов — задание «Посмотреть видео», N/10 минут', '«1 из 3» · «Посмотреть видео»', 'как «День»'],
+  ].map((r) => `<tr>${r.map((c, i) => `<td>${i === 0 ? `<b>${c}</b>` : i === 3 && c.startsWith('today_') ? `<code>${c}.webp</code>` : c}</td>`).join('')}</tr>`).join('')}</table></section>`
+  + `<section class="block" id="td-art"><h2>Картинки</h2><p>Варианты A и B картинок не требуют: герой — сами кольца дня. Для варианта C — четыре героя в двух схемах (light для «Сумерек», dark для «Океана»), 1024 × 1024, прозрачный фон, webp до 120 КБ, путь <code>assets/images/v2art/{light,dark}/today_scene_&lt;состояние&gt;.webp</code> + имя в реестре картинок (themed_art_registry.ts). Пока файла нет — заглушка today.webp.</p>`
+  + `<table class="cmp"><tr><th>Файл</th><th>Что нарисовать (идея)</th></tr>${[['today_scene_morning', 'настольный календарь, утренний свет, чашка'], ['today_scene_progress', 'календарь с одной отметкой, карандаш рядом'], ['today_scene_evening', 'календарь в вечернем тёплом свете, огонёк серии'], ['today_scene_done', 'календарь с тремя отметками, спокойный огонёк']].map(([f, i]) => `<tr><td><code>${f}.webp</code></td><td>${i}</td></tr>`).join('')}</table></section>`
+  + `<section class="block" id="td-motion"><h2>Движение и отклик</h2><table class="cmp"><tr><th>Где</th><th>Что происходит</th><th>Время и кривая (Reanimated, UI-поток)</th></tr>${[
+    ['Вход на экран', 'место под кольца занято с первого кадра; кольца докручиваются «до → после» по очереди', '900 мс ease-out (.23, 1, .32, 1), задержка 120 мс между кольцами; с «Уменьшить движение» — сразу итог'],
+    ['Кольцо замкнулось', 'короткий звук и лёгкий отклик, кольцо чуть ярче', 'звук закрытия кольца уже есть в коде; без пружины и конфетти'],
+    ['Тап по строке', 'строка сжимается и сразу ведёт в задание', '160 мс scale .97'],
+    ['Лента истории', 'тап по дню подсвечивает его, кольца дня в ленте не анимируются', 'смена подсветки 180 мс'],
+    ['Вечер', 'тёплый свет в углу сцены, статично', 'без пульсации — вечером экран спокойный'],
+  ].map((r) => `<tr>${r.map((c, i) => `<td>${i === 0 ? `<b>${c}</b>` : c}</td>`).join('')}</tr>`).join('')}</table></section>`;
+
+/* ── страница ── */
+const render = () => {
+  document.getElementById('root').innerHTML =
+    block('ta', 'A · Сцена · рекомендую', 'Как утверждённая Главная: сцена со светом, справа герой — кольца дня с монетой, слева крупно «1 из 3» и кнопка следующего задания; стеклом наезжает панель «Задания дня» с отметками цветом своих колец, ниже лента истории. Картинок не требует.', T_ORDER.map((k, i) => col(`A · ${T_LBL[i]}`, phTA(TS[k]))))
+    + block('tb', 'B · Кольца в центре', 'Кольца крупно по центру сцены (250), под ними итог дня и кнопка — как на часах. Самый «праздничный» вариант, чуть длиннее экран.', T_ORDER.map((k, i) => col(`B · ${T_LBL[i]}`, phTB(TS[k]))))
+    + block('tc', 'C · Герой дня', 'Как Главная один в один: 3D-герой справа, заголовок — следующее задание, кольца — у каждой строки своё. Нужны 4 картинки героя.', T_ORDER.map((k, i) => col(`C · ${T_LBL[i]}`, phTC(TS[k]))))
+    + tablesT();
+  document.querySelectorAll('.thm .chp').forEach((c) => c.classList.toggle('on', c.dataset.t === TH));
+};
+document.querySelector('.thm').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { TH = c.dataset.t; render(); } });
+if (new URLSearchParams(location.search).get('t') === 'marine') TH = 'marine';
+render();
+K.init();
+})();
+
+</script>
+</body>
+</html>

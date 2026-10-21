@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-48:intro1:r2": {
+          "ru": "С we нужна make без s.",
+          "uk": "З we потрібна make без s."
+        },
+        "en:lesson-10:session-48:intro1:r3": {
+          "ru": "Здесь нужна личная форма make.",
+          "uk": "Тут потрібна особова форма make."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-48:intro2:r2": {
+          "ru": "Один сервер: is.",
+          "uk": "Один сервер: is."
+        },
+        "en:lesson-10:session-48:intro2:r3": {
+          "ru": "После is для текущего действия нужна working.",
+          "uk": "Після is для поточної дії потрібна working."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-48:intro3:r2": {
+          "ru": "Перед doing нужна are.",
+          "uk": "Перед doing потрібна are."
+        },
+        "en:lesson-10:session-48:intro3:r3": {
+          "ru": "После are нужна doing.",
+          "uk": "Після are потрібна doing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "154f50257069ebbd4cb197926c8867ffa2071b0258e34b7f59dc5d5f078e6d76"
+}

@@ -912,8 +912,11 @@ export function subscribeToIncomingRequests(
 // появлении: полный скан friend_requests + friends + до 20 reverse-чтений = до ~22
 // Firestore reads на каждое переключение таба (аудит 2026-07-25). Троттлим: не чаще
 // раза в 6 часов, метка в AsyncStorage переживает перезапуски. Экономия чтений.
+// зачем (владелец 21.10, №45 шаг 6; Ревизор п.5): мусор появляется только после редких оборванных операций — раз в сутки
+// хватает; заявки читаются только accepted (их и удаляем), друзья — только первые 20 (дальше всё равно не проверялись).
 const FRIEND_CLEANUP_LAST_RUN_KEY = 'friends_cleanup_last_run_v1';
-const FRIEND_CLEANUP_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
+const FRIEND_CLEANUP_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
+const FRIEND_CLEANUP_REVERSE_CHECK_LIMIT = 20;
 let friendCleanupInFlight = false;
 
 export async function cleanupStaleFriendData(): Promise<void> {
@@ -924,13 +927,22 @@ export async function cleanupStaleFriendData(): Promise<void> {
     const lastRaw = await AsyncStorage.getItem(FRIEND_CLEANUP_LAST_RUN_KEY).catch(noteSwallowedAs('firestore_friend_requests:promise_3', null));
     const sinceLast = Date.now() - Number(lastRaw ?? 0);
     // Отрицательное sinceLast = часы переведены назад → метка из «будущего», не верим ей.
-    if (Number(lastRaw) > 0 && sinceLast >= 0 && sinceLast < FRIEND_CLEANUP_MIN_INTERVAL_MS) return;
+    if (Number(lastRaw) > 0 && sinceLast >= 0 && sinceLast < FRIEND_CLEANUP_MIN_INTERVAL_MS) {
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friends_cleanup', decision: 'ttl_skip', sinceLastMs: sinceLast })); // guard-ok: ранний выход, без uid
+      return;
+    }
     // Метку ставим ДО работы: даже неудачная попытка не должна повторяться каждый вход в таб.
     await AsyncStorage.setItem(FRIEND_CLEANUP_LAST_RUN_KEY, String(Date.now())).catch(noteSwallowedHandler('firestore_friend_requests:promise_4'));
     const myUid = await ensureAnonUser();
-    if (!myUid) return;
+    if (!myUid) {
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friends_cleanup', decision: 'no_uid' })); // guard-ok: ранний выход
+      return;
+    }
     const db = getFirestore();
-    if (!db) return;
+    if (!db) {
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friends_cleanup', decision: 'no_firestore' })); // guard-ok: ранний выход
+      return;
+    }
 
     const batch = db.batch();
     let batchCount = 0;
@@ -938,7 +950,10 @@ export async function cleanupStaleFriendData(): Promise<void> {
 
     // 1. Удаляем accepted request-документы (мусор от accept без cleanup).
     const reqSnap = await db
-      .collection('users').doc(myUid).collection('friend_requests').get();
+      .collection('users').doc(myUid).collection('friend_requests')
+      .where('status', '==', 'accepted')
+      .limit(BATCH_MAX)
+      .get();
     for (const doc of reqSnap.docs as Array<{ id: string; data: () => Record<string, unknown>; ref: unknown }>) {
       if (batchCount >= BATCH_MAX) break;
       const st = doc.data().status as string | undefined;
@@ -951,9 +966,11 @@ export async function cleanupStaleFriendData(): Promise<void> {
     // 2. Проверяем односторонние friends-документы (есть у меня, нет у друга).
     // Лимит до 20 reverse-reads за один запуск — защита от N reads при большом списке.
     const friendsSnap = await db
-      .collection('users').doc(myUid).collection('friends').get();
+      .collection('users').doc(myUid).collection('friends')
+      .limit(FRIEND_CLEANUP_REVERSE_CHECK_LIMIT)
+      .get();
     const friendDocs = friendsSnap.docs as Array<{ id: string; ref: unknown }>;
-    const toCheck = friendDocs.slice(0, 20);
+    const toCheck = friendDocs.slice(0, FRIEND_CLEANUP_REVERSE_CHECK_LIMIT);
     const reverseSnaps = await Promise.all(
       toCheck.map(doc =>
         db.collection('users').doc(doc.id).collection('friends').doc(myUid).get(),
@@ -970,6 +987,7 @@ export async function cleanupStaleFriendData(): Promise<void> {
     if (batchCount > 0) {
       await batch.commit();
     }
+    console.log('[READ-TTL]', JSON.stringify({ area: 'friends_cleanup', decision: 'network', acceptedDocs: reqSnap.docs.length, friendsChecked: toCheck.length, deleted: batchCount })); // guard-ok: итог, без uid
   } catch (e) {
       // ignore — cleanup is best-effort
       DebugLogger.error('firestore_friend_requests:reverseSnaps', e instanceof Error ? e : new Error(String(e)), 'warning');

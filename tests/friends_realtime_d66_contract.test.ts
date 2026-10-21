@@ -49,4 +49,16 @@ describe('D66 friends realtime contract', () => {
     expect(friends).toContain('if (cancelled) return;');
     expect(requests).toContain('if (cancelled) return;');
   });
+
+  it('runs the repair cleanup once a day and reads only what it may delete', () => {
+    const input = source();
+    const cleanup = input.slice(input.indexOf('// ── cleanupStaleFriendData'));
+
+    // зачем (владелец 21.10, №45 шаг 6; Ревизор п.5): ремонт раз в сутки, заявки — только accepted, друзья — первые 20.
+    expect(cleanup).toContain('const FRIEND_CLEANUP_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;');
+    expect(cleanup).toContain(".where('status', '==', 'accepted')");
+    expect(cleanup).toContain('.limit(FRIEND_CLEANUP_REVERSE_CHECK_LIMIT)');
+    expect(cleanup).not.toContain("collection('friend_requests').get()");
+    expect(cleanup).not.toContain("collection('friends').get()");
+  });
 });

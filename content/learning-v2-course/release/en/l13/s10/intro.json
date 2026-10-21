@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отдать без оплаты",
+        "uk": "Віддати без оплати"
+      },
+      "bodyByLocale": {
+        "ru": "Give away — отдать бесплатно, не ожидать возврата. I didn't give away the clothes — я не отдал одежду бесплатно. Выберите отрицание о прошлом.",
+        "uk": "Give away — віддати безкоштовно, не очікувати повернення. I didn't give away the clothes — я не віддав одяг безкоштовно. Виберіть заперечення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-10:intro1:r1",
+              "text": "I didn't give away the clothes."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro1:r2",
+              "text": "I gave away the clothes."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro1:r3",
+              "text": "I didn't gave away the clothes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-10:intro1:r1",
+              "text": "I didn't give away the clothes."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro1:r2",
+              "text": "I gave away the clothes."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro1:r3",
+              "text": "I didn't gave away the clothes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не оставить вещи",
+        "uk": "Не залишити речі"
+      },
+      "bodyByLocale": {
+        "ru": "Leave behind — оставить вещи, уезжая или уходя; иногда — забыть их. I didn't leave behind any clothes — я не оставил никакой одежды. Выберите одежду, не сумки.",
+        "uk": "Leave behind — залишити речі, від’їжджаючи чи йдучи; іноді — забути їх. I didn't leave behind any clothes — я не залишив жодного одягу. Виберіть одяг, не сумки."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-10:intro2:r1",
+              "text": "I didn't leave behind any clothes."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro2:r2",
+              "text": "I didn't leave behind any bags."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro2:r3",
+              "text": "I didn't left behind any clothes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-10:intro2:r1",
+              "text": "I didn't leave behind any clothes."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro2:r2",
+              "text": "I didn't leave behind any bags."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro2:r3",
+              "text": "I didn't left behind any clothes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Запереть дом и вынести мусор",
+        "uk": "Замкнути будинок і винести сміття"
+      },
+      "bodyByLocale": {
+        "ru": "Lock up — запереть помещение перед уходом; take out здесь — вынести. I didn't take out the rubbish — я не вынес мусор. Выберите сообщение о мусоре.",
+        "uk": "Lock up — замкнути приміщення перед виходом; take out тут — винести. I didn't take out the rubbish — я не виніс сміття. Виберіть повідомлення про сміття."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-10:intro3:r1",
+              "text": "I didn't take out the rubbish."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro3:r2",
+              "text": "I didn't lock up the house."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro3:r3",
+              "text": "I didn't took out the rubbish."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-10:intro3:r1",
+              "text": "I didn't take out the rubbish."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro3:r2",
+              "text": "I didn't lock up the house."
+            },
+            {
+              "responseId": "en:lesson-13:session-10:intro3:r3",
+              "text": "I didn't took out the rubbish."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3cf95ad08c63217a0ded9b8f5d31c16847c3644776067f05ae6f7023f0bc7256"
+}

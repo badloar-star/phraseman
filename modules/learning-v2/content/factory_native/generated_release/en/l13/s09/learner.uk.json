@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-09:word:save-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — save up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:word:save-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — save up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:word:save-up:audio",
+          "transcript": "save up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:word:save-up:r1",
+            "targetText": "save up",
+            "meaningByLocale": {
+              "ru": "копить на покупку.",
+              "uk": "заощаджувати на покупку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "save up",
+          "definitionByLocale": {
+            "ru": "копить на покупку.",
+            "uk": "заощаджувати на покупку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не заощаджував на велосипед",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не заощаджував на велосипед",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't save up for a bike.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не копил на велосипед",
+          "uk": "Скажіть: Я не заощаджував на велосипед"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "save",
+          "up",
+          "for",
+          "a",
+          "bike"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i02:r1",
+          "text": "She didn't save up for a bike."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i02:r2",
+          "text": "I didn't save up for a bike."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i02:r3",
+          "text": "She doesn't save up for a bike."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i02:audio",
+          "transcript": "She didn't save up for a bike."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:i02:r1",
+            "targetText": "She didn't save up for a bike.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i02:r2",
+            "targetText": "I didn't save up for a bike.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i02:r3",
+            "targetText": "She doesn't save up for a bike.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't save up for a bike.",
+              "uk": "У записі звучить She didn't save up for a bike."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't save up for a bike.",
+              "uk": "У записі звучить She didn't save up for a bike."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i03:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i03:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ save up for a bike.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-09:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:word:pay-back",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pay back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:word:pay-back:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pay back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:word:pay-back:audio",
+          "transcript": "pay back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:word:pay-back:r1",
+            "targetText": "pay back",
+            "meaningByLocale": {
+              "ru": "вернуть долг.",
+              "uk": "повернути борг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pay back",
+          "definitionByLocale": {
+            "ru": "вернуть долг.",
+            "uk": "повернути борг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не повернув гроші в рахунок боргу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не повернув гроші в рахунок боргу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't pay back the money.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не вернул деньги в счёт долга",
+          "uk": "Скажіть: Я не повернув гроші в рахунок боргу"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "pay",
+          "back",
+          "the",
+          "money"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i05:r1",
+          "text": "She didn't pay back the money."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i05:r2",
+          "text": "I didn't pay back the money."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i05:r3",
+          "text": "She doesn't pay back the money."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i05:audio",
+          "transcript": "She didn't pay back the money."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:i05:r1",
+            "targetText": "She didn't pay back the money.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i05:r2",
+            "targetText": "I didn't pay back the money.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i05:r3",
+            "targetText": "She doesn't pay back the money.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't pay back the money.",
+              "uk": "У записі звучить She didn't pay back the money."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't pay back the money.",
+              "uk": "У записі звучить She didn't pay back the money."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i06:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i06:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i06:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ pay back the money.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-09:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:word:take-back",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:word:take-back:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:word:take-back:audio",
+          "transcript": "take back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:word:take-back:r1",
+            "targetText": "take back",
+            "meaningByLocale": {
+              "ru": "отнести покупку обратно в магазин.",
+              "uk": "віднести покупку назад до крамниці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take back",
+          "definitionByLocale": {
+            "ru": "отнести покупку обратно в магазин.",
+            "uk": "віднести покупку назад до крамниці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не відніс туфлі назад до крамниці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не відніс туфлі назад до крамниці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't take back the shoes.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не отнёс туфли обратно в магазин",
+          "uk": "Скажіть: Я не відніс туфлі назад до крамниці"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "take",
+          "back",
+          "the",
+          "shoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i08:r1",
+          "text": "She didn't take back the shoes."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i08:r2",
+          "text": "I didn't take back the shoes."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i08:r3",
+          "text": "She doesn't take back the shoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i08:audio",
+          "transcript": "She didn't take back the shoes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:i08:r1",
+            "targetText": "She didn't take back the shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i08:r2",
+            "targetText": "I didn't take back the shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i08:r3",
+            "targetText": "She doesn't take back the shoes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't take back the shoes.",
+              "uk": "У записі звучить She didn't take back the shoes."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't take back the shoes.",
+              "uk": "У записі звучить She didn't take back the shoes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i09:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i09:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i09:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ take back the shoes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-09:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:word:give-back",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — give back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:word:give-back:audio"
+      ],
+      "accessibilityLabel": "Картка слова — give back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:word:give-back:audio",
+          "transcript": "give back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:word:give-back:r1",
+            "targetText": "give back",
+            "meaningByLocale": {
+              "ru": "вернуть взятую вещь владельцу.",
+              "uk": "повернути взяту річ власникові."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "give back",
+          "definitionByLocale": {
+            "ru": "вернуть взятую вещь владельцу.",
+            "uk": "повернути взяту річ власникові."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не повернув книжку власникові",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не повернув книжку власникові",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't give back the book.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не вернул книгу владельцу",
+          "uk": "Скажіть: Я не повернув книжку власникові"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "give",
+          "back",
+          "the",
+          "book"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i11:r1",
+          "text": "She didn't give back the book."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i11:r2",
+          "text": "I didn't give back the book."
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i11:r3",
+          "text": "She doesn't give back the book."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i11:audio",
+          "transcript": "She didn't give back the book."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-09:i11:r1",
+            "targetText": "She didn't give back the book.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i11:r2",
+            "targetText": "I didn't give back the book.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i11:r3",
+            "targetText": "She doesn't give back the book.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't give back the book.",
+              "uk": "У записі звучить She didn't give back the book."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't give back the book.",
+              "uk": "У записі звучить She didn't give back the book."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-09:i12:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i12:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-09:i12:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ give back the book.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-09:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-09:i13:p1",
+            "target": "save up",
+            "meaningByLocale": {
+              "ru": "копить на покупку",
+              "uk": "заощаджувати на покупку"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-09:i13:p2",
+            "target": "pay back",
+            "meaningByLocale": {
+              "ru": "вернуть долг",
+              "uk": "повернути борг"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-09:i13:p3",
+            "target": "take back",
+            "meaningByLocale": {
+              "ru": "отнести покупку обратно в магазин",
+              "uk": "віднести покупку назад до крамниці"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-09:i13:p4",
+            "target": "give back",
+            "meaningByLocale": {
+              "ru": "вернуть взятую вещь владельцу",
+              "uk": "повернути взяту річ власникові"
+            }
+          }
+        ],
+        "leftColumn": [
+          "save up",
+          "pay back",
+          "take back",
+          "give back"
+        ],
+        "rightColumn": [
+          "заощаджувати на покупку",
+          "повернути борг",
+          "віднести покупку назад до крамниці",
+          "повернути взяту річ власникові"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i14:audio",
+          "transcript": "We didn't visit the shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't visit the shop.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "visit",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i15:audio",
+          "transcript": "He didn't buy a bike."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He didn't buy a bike.",
+        "orderedTokens": [
+          "He",
+          "didn't",
+          "buy",
+          "a",
+          "bike"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора я не повернув книжку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора я не повернув книжку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i16:audio",
+          "transcript": "I didn't give back the book yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I didn't give back the book yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора вона не повернула борг",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора вона не повернула борг",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-09:i17:audio",
+          "transcript": "She didn't pay back the money yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't pay back the money yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "62fc82a2cbcb3e0ace59b8bc852fde653e694e11faf30a7c52a6f315f631825e"
+}

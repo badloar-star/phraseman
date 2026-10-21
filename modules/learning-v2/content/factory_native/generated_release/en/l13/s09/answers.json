@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-09:word:save-up",
+    "correctText": "save up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i01",
+    "correctText": "I didn't save up for a bike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i02",
+    "correctText": "She didn't save up for a bike.",
+    "correctResponseId": "en:lesson-13:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:word:pay-back",
+    "correctText": "pay back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i04",
+    "correctText": "I didn't pay back the money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i05",
+    "correctText": "She didn't pay back the money.",
+    "correctResponseId": "en:lesson-13:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:word:take-back",
+    "correctText": "take back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i07",
+    "correctText": "I didn't take back the shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i08",
+    "correctText": "She didn't take back the shoes.",
+    "correctResponseId": "en:lesson-13:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:word:give-back",
+    "correctText": "give back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i10",
+    "correctText": "I didn't give back the book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i11",
+    "correctText": "She didn't give back the book.",
+    "correctResponseId": "en:lesson-13:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i13",
+    "correctText": "en:lesson-13:session-09:i13:p1=save up\nen:lesson-13:session-09:i13:p2=pay back\nen:lesson-13:session-09:i13:p3=take back\nen:lesson-13:session-09:i13:p4=give back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i14",
+    "correctText": "We didn't visit the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i15",
+    "correctText": "He didn't buy a bike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i16",
+    "correctText": "I didn't give back the book yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-09:i17",
+    "correctText": "She didn't pay back the money yesterday.",
+    "correctResponseId": null
+  }
+]

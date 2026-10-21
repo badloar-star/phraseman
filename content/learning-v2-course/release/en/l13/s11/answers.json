@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-11:word:turn-up",
+    "correctText": "turn up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i01",
+    "correctText": "I didn't turn up the radio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i02",
+    "correctText": "She didn't turn up the radio.",
+    "correctResponseId": "en:lesson-13:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:word:turn-down",
+    "correctText": "turn down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i04",
+    "correctText": "I didn't turn down the music.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i05",
+    "correctText": "She didn't turn down the music.",
+    "correctResponseId": "en:lesson-13:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:word:hang-up",
+    "correctText": "hang up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i07",
+    "correctText": "I didn't hang up my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i08",
+    "correctText": "She didn't hang up my coat.",
+    "correctResponseId": "en:lesson-13:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:word:wake-up",
+    "correctText": "wake up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i10",
+    "correctText": "I didn't wake up early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i11",
+    "correctText": "She didn't wake up early.",
+    "correctResponseId": "en:lesson-13:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i13",
+    "correctText": "en:lesson-13:session-11:i13:p1=turn up\nen:lesson-13:session-11:i13:p2=turn down\nen:lesson-13:session-11:i13:p3=hang up\nen:lesson-13:session-11:i13:p4=wake up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i14",
+    "correctText": "We didn't listen to the radio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i15",
+    "correctText": "He didn't start work at seven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i16",
+    "correctText": "I didn't wake up early yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-11:i17",
+    "correctText": "She didn't turn down the music yesterday.",
+    "correctResponseId": null
+  }
+]

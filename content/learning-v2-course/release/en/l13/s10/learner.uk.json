@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-10:word:give-away",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — give away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:word:give-away:audio"
+      ],
+      "accessibilityLabel": "Картка слова — give away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:word:give-away:audio",
+          "transcript": "give away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:word:give-away:r1",
+            "targetText": "give away",
+            "meaningByLocale": {
+              "ru": "отдать бесплатно.",
+              "uk": "віддати безкоштовно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "give away",
+          "definitionByLocale": {
+            "ru": "отдать бесплатно.",
+            "uk": "віддати безкоштовно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не віддав одяг безкоштовно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не віддав одяг безкоштовно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't give away the clothes.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не отдал одежду бесплатно",
+          "uk": "Скажіть: Я не віддав одяг безкоштовно"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "give",
+          "away",
+          "the",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i02:r1",
+          "text": "She didn't give away the clothes."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i02:r2",
+          "text": "I didn't give away the clothes."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i02:r3",
+          "text": "She doesn't give away the clothes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i02:audio",
+          "transcript": "She didn't give away the clothes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:i02:r1",
+            "targetText": "She didn't give away the clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i02:r2",
+            "targetText": "I didn't give away the clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i02:r3",
+            "targetText": "She doesn't give away the clothes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't give away the clothes.",
+              "uk": "У записі звучить She didn't give away the clothes."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't give away the clothes.",
+              "uk": "У записі звучить She didn't give away the clothes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i03:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i03:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ give away the clothes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-10:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:word:leave-behind",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leave behind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:word:leave-behind:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leave behind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:word:leave-behind:audio",
+          "transcript": "leave behind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:word:leave-behind:r1",
+            "targetText": "leave behind",
+            "meaningByLocale": {
+              "ru": "оставить вещи при уходе или отъезде.",
+              "uk": "залишити речі, йдучи чи від’їжджаючи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leave behind",
+          "definitionByLocale": {
+            "ru": "оставить вещи при уходе или отъезде.",
+            "uk": "залишити речі, йдучи чи від’їжджаючи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не залишив жодного одягу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не залишив жодного одягу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't leave behind any clothes.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не оставил никакой одежды",
+          "uk": "Скажіть: Я не залишив жодного одягу"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "leave",
+          "behind",
+          "any",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i05:r1",
+          "text": "She didn't leave behind any clothes."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i05:r2",
+          "text": "I didn't leave behind any clothes."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i05:r3",
+          "text": "She doesn't leave behind any clothes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i05:audio",
+          "transcript": "She didn't leave behind any clothes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:i05:r1",
+            "targetText": "She didn't leave behind any clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i05:r2",
+            "targetText": "I didn't leave behind any clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i05:r3",
+            "targetText": "She doesn't leave behind any clothes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't leave behind any clothes.",
+              "uk": "У записі звучить She didn't leave behind any clothes."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't leave behind any clothes.",
+              "uk": "У записі звучить She didn't leave behind any clothes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i06:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i06:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i06:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ leave behind any clothes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-10:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:word:lock-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lock up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:word:lock-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lock up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:word:lock-up:audio",
+          "transcript": "lock up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:word:lock-up:r1",
+            "targetText": "lock up",
+            "meaningByLocale": {
+              "ru": "запереть помещение перед уходом.",
+              "uk": "замкнути приміщення перед виходом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lock up",
+          "definitionByLocale": {
+            "ru": "запереть помещение перед уходом.",
+            "uk": "замкнути приміщення перед виходом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не замкнув будинок перед виходом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не замкнув будинок перед виходом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't lock up the house.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не запер дом перед уходом",
+          "uk": "Скажіть: Я не замкнув будинок перед виходом"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "lock",
+          "up",
+          "the",
+          "house"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i08:r1",
+          "text": "She didn't lock up the house."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i08:r2",
+          "text": "I didn't lock up the house."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i08:r3",
+          "text": "She doesn't lock up the house."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i08:audio",
+          "transcript": "She didn't lock up the house."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:i08:r1",
+            "targetText": "She didn't lock up the house.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i08:r2",
+            "targetText": "I didn't lock up the house.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i08:r3",
+            "targetText": "She doesn't lock up the house.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't lock up the house.",
+              "uk": "У записі звучить She didn't lock up the house."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't lock up the house.",
+              "uk": "У записі звучить She didn't lock up the house."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i09:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i09:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i09:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ lock up the house.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-10:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:word:take-out",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:word:take-out:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:word:take-out:audio",
+          "transcript": "take out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:word:take-out:r1",
+            "targetText": "take out",
+            "meaningByLocale": {
+              "ru": "вынести.",
+              "uk": "винести."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take out",
+          "definitionByLocale": {
+            "ru": "вынести.",
+            "uk": "винести."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не виніс сміття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не виніс сміття",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't take out the rubbish.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не вынес мусор",
+          "uk": "Скажіть: Я не виніс сміття"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "take",
+          "out",
+          "the",
+          "rubbish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i11:r1",
+          "text": "She didn't take out the rubbish."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i11:r2",
+          "text": "I didn't take out the rubbish."
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i11:r3",
+          "text": "She doesn't take out the rubbish."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i11:audio",
+          "transcript": "She didn't take out the rubbish."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-10:i11:r1",
+            "targetText": "She didn't take out the rubbish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i11:r2",
+            "targetText": "I didn't take out the rubbish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i11:r3",
+            "targetText": "She doesn't take out the rubbish.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't take out the rubbish.",
+              "uk": "У записі звучить She didn't take out the rubbish."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't take out the rubbish.",
+              "uk": "У записі звучить She didn't take out the rubbish."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-10:i12:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i12:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-10:i12:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ take out the rubbish.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-10:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-10:i13:p1",
+            "target": "give away",
+            "meaningByLocale": {
+              "ru": "отдать бесплатно",
+              "uk": "віддати безкоштовно"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-10:i13:p2",
+            "target": "leave behind",
+            "meaningByLocale": {
+              "ru": "оставить вещи при уходе или отъезде",
+              "uk": "залишити речі, йдучи чи від’їжджаючи"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-10:i13:p3",
+            "target": "lock up",
+            "meaningByLocale": {
+              "ru": "запереть помещение перед уходом",
+              "uk": "замкнути приміщення перед виходом"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-10:i13:p4",
+            "target": "take out",
+            "meaningByLocale": {
+              "ru": "вынести",
+              "uk": "винести"
+            }
+          }
+        ],
+        "leftColumn": [
+          "give away",
+          "leave behind",
+          "lock up",
+          "take out"
+        ],
+        "rightColumn": [
+          "віддати безкоштовно",
+          "залишити речі, йдучи чи від’їжджаючи",
+          "замкнути приміщення перед виходом",
+          "винести"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i14:audio",
+          "transcript": "We didn't leave early."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't leave early.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "leave",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i15:audio",
+          "transcript": "He didn't pack the bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He didn't pack the bag.",
+        "orderedTokens": [
+          "He",
+          "didn't",
+          "pack",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора я не виніс сміття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора я не виніс сміття",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i16:audio",
+          "transcript": "I didn't take out the rubbish yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I didn't take out the rubbish yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора вона не віддала одяг безкоштовно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора вона не віддала одяг безкоштовно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-10:i17:audio",
+          "transcript": "She didn't give away the clothes yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't give away the clothes yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9071c1aef73357a6ceb76658a0abef12a9de4566d0963b49133eefe817c9c3cc"
+}

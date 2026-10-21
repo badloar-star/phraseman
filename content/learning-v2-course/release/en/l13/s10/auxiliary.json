@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-10:intro1:r2": {
+          "ru": "Здесь одежду отдали.",
+          "uk": "Тут одяг віддали."
+        },
+        "en:lesson-13:session-10:intro1:r3": {
+          "ru": "После didn't нужна give.",
+          "uk": "Після didn't потрібна give."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-10:intro2:r2": {
+          "ru": "Здесь речь о сумках.",
+          "uk": "Тут ідеться про сумки."
+        },
+        "en:lesson-13:session-10:intro2:r3": {
+          "ru": "После didn't нужна leave.",
+          "uk": "Після didn't потрібна leave."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-10:intro3:r2": {
+          "ru": "Здесь речь о том, заперли ли дом.",
+          "uk": "Тут ідеться про те, чи замкнули будинок."
+        },
+        "en:lesson-13:session-10:intro3:r3": {
+          "ru": "После didn't нужна take.",
+          "uk": "Після didn't потрібна take."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "47ab8db9c0eab5c5912de5ebe84fc286d1d393d11418860bca3d2b611c7da3dc"
+}

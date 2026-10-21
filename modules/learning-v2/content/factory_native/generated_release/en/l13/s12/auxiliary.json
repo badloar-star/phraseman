@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-12:intro1:r2": {
+          "ru": "Это сообщение о том, что человек прилёг.",
+          "uk": "Це повідомлення про те, що людина прилягла."
+        },
+        "en:lesson-13:session-12:intro1:r3": {
+          "ru": "После didn't нужна lie.",
+          "uk": "Після didn't потрібна lie."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-12:intro2:r2": {
+          "ru": "Здесь человек не выходил из дома.",
+          "uk": "Тут людина не виходила з дому."
+        },
+        "en:lesson-13:session-12:intro2:r3": {
+          "ru": "После didn't нужна stay.",
+          "uk": "Після didn't потрібна stay."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-12:intro3:r2": {
+          "ru": "Здесь человек вернулся рано.",
+          "uk": "Тут людина повернулася рано."
+        },
+        "en:lesson-13:session-12:intro3:r3": {
+          "ru": "После didn't нужна come.",
+          "uk": "Після didn't потрібна come."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a6a0eecb4b8e0c46513378452591825a0a265abdf6741c92148963a58360824a"
+}

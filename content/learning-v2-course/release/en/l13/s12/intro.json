@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прилечь отдохнуть",
+        "uk": "Прилягти відпочити"
+      },
+      "bodyByLocale": {
+        "ru": "Lie down — прилечь. I didn't lie down — я не прилёг. После didn't нужна lie, не lay. Выберите отрицание о прошлом.",
+        "uk": "Lie down — прилягти. I didn't lie down — я не приліг. Після didn't потрібна lie, не lay. Виберіть заперечення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-12:intro1:r1",
+              "text": "I didn't lie down."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro1:r2",
+              "text": "I lay down."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro1:r3",
+              "text": "I didn't lay down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-12:intro1:r1",
+              "text": "I didn't lie down."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro1:r2",
+              "text": "I lay down."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro1:r3",
+              "text": "I didn't lay down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дома или вне дома",
+        "uk": "Вдома чи поза домом"
+      },
+      "bodyByLocale": {
+        "ru": "Stay in — остаться дома; go out — выйти из дома, например погулять или встретиться с друзьями. I didn't stay in — я не остался дома. Выберите это сообщение.",
+        "uk": "Stay in — залишитися вдома; go out — вийти з дому, наприклад погуляти чи зустрітися з друзями. I didn't stay in — я не залишився вдома. Виберіть це повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-12:intro2:r1",
+              "text": "I didn't stay in."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro2:r2",
+              "text": "I didn't go out."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro2:r3",
+              "text": "I didn't stayed in."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-12:intro2:r1",
+              "text": "I didn't stay in."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro2:r2",
+              "text": "I didn't go out."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro2:r3",
+              "text": "I didn't stayed in."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вернуться сюда",
+        "uk": "Повернутися сюди"
+      },
+      "bodyByLocale": {
+        "ru": "Come back — вернуться туда, где находится говорящий, или в место, о котором идёт речь. Вы дома и говорите о вчерашнем вечере: I didn't come back early — я не вернулся рано. Выберите это сообщение.",
+        "uk": "Come back — повернутися туди, де перебуває мовець, або в місце, про яке йдеться. Ви вдома й говорите про вчорашній вечір: I didn't come back early — я не повернувся рано. Виберіть це повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-12:intro3:r1",
+              "text": "I didn't come back early."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro3:r2",
+              "text": "I came back early."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro3:r3",
+              "text": "I didn't came back early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-12:intro3:r1",
+              "text": "I didn't come back early."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro3:r2",
+              "text": "I came back early."
+            },
+            {
+              "responseId": "en:lesson-13:session-12:intro3:r3",
+              "text": "I didn't came back early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "44d9e42c79dd0362704345dcf32d076b2c7a7972f1e190da9e77e5cd089ea6a9"
+}

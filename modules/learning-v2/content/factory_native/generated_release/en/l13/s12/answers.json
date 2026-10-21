@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-12:word:lie-down",
+    "correctText": "lie down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i01",
+    "correctText": "I didn't lie down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i02",
+    "correctText": "She didn't lie down.",
+    "correctResponseId": "en:lesson-13:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:word:stay-in",
+    "correctText": "stay in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i04",
+    "correctText": "I didn't stay in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i05",
+    "correctText": "She didn't stay in.",
+    "correctResponseId": "en:lesson-13:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:word:go-out",
+    "correctText": "go out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i07",
+    "correctText": "I didn't go out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i08",
+    "correctText": "She didn't go out.",
+    "correctResponseId": "en:lesson-13:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:word:come-back",
+    "correctText": "come back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i10",
+    "correctText": "I didn't come back early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i11",
+    "correctText": "She didn't come back early.",
+    "correctResponseId": "en:lesson-13:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i13",
+    "correctText": "en:lesson-13:session-12:i13:p1=lie down\nen:lesson-13:session-12:i13:p2=stay in\nen:lesson-13:session-12:i13:p3=go out\nen:lesson-13:session-12:i13:p4=come back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i14",
+    "correctText": "We didn't watch a film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i15",
+    "correctText": "He didn't visit his friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i16",
+    "correctText": "I didn't stay in last night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-12:i17",
+    "correctText": "She didn't come back early yesterday.",
+    "correctResponseId": null
+  }
+]

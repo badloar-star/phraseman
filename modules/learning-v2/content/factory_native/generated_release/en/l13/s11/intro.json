@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сделать громче",
+        "uk": "Зробити голосніше"
+      },
+      "bodyByLocale": {
+        "ru": "Turn up здесь — увеличить громкость. I didn't turn up the radio — я не сделал радио громче. Выберите отрицание, не сообщение об увеличении громкости.",
+        "uk": "Turn up тут — збільшити гучність. I didn't turn up the radio — я не зробив радіо голоснішим. Виберіть заперечення, не повідомлення про збільшення гучності."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-11:intro1:r1",
+              "text": "I didn't turn up the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro1:r2",
+              "text": "I turned up the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro1:r3",
+              "text": "I didn't turned up the radio."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-11:intro1:r1",
+              "text": "I didn't turn up the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro1:r2",
+              "text": "I turned up the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro1:r3",
+              "text": "I didn't turned up the radio."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сделать тише",
+        "uk": "Зробити тихіше"
+      },
+      "bodyByLocale": {
+        "ru": "Turn down — уменьшить громкость. I didn't turn down the music — я не сделал музыку тише. Выберите уменьшение громкости, не увеличение.",
+        "uk": "Turn down — зменшити гучність. I didn't turn down the music — я не зробив музику тихішою. Виберіть зменшення гучності, не збільшення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-11:intro2:r1",
+              "text": "I didn't turn down the music."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro2:r2",
+              "text": "I didn't turn up the music."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro2:r3",
+              "text": "I didn't turned down the music."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-11:intro2:r1",
+              "text": "I didn't turn down the music."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro2:r2",
+              "text": "I didn't turn up the music."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro2:r3",
+              "text": "I didn't turned down the music."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одежда и пробуждение",
+        "uk": "Одяг і пробудження"
+      },
+      "bodyByLocale": {
+        "ru": "Hang up здесь — повесить одежду на крючок или вешалку. Wake up — проснуться. I didn't wake up early — я не проснулся рано. Выберите сообщение о пробуждении.",
+        "uk": "Hang up тут — повісити одяг на гачок або вішак. Wake up — прокинутися. I didn't wake up early — я не прокинувся рано. Виберіть повідомлення про пробудження."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-11:intro3:r1",
+              "text": "I didn't wake up early."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro3:r2",
+              "text": "I didn't hang up my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro3:r3",
+              "text": "I didn't woke up early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-11:intro3:r1",
+              "text": "I didn't wake up early."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro3:r2",
+              "text": "I didn't hang up my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-11:intro3:r3",
+              "text": "I didn't woke up early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f856d5f7ed0f85adf477a603460a4f0e9e7587525bbfb7727b56885271ad8ec2"
+}

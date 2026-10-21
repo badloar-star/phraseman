@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-11:intro1:r2": {
+          "ru": "Здесь громкость увеличили.",
+          "uk": "Тут гучність збільшили."
+        },
+        "en:lesson-13:session-11:intro1:r3": {
+          "ru": "После didn't нужна turn.",
+          "uk": "Після didn't потрібна turn."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-11:intro2:r2": {
+          "ru": "Turn up — увеличить громкость.",
+          "uk": "Turn up — збільшити гучність."
+        },
+        "en:lesson-13:session-11:intro2:r3": {
+          "ru": "После didn't нужна turn.",
+          "uk": "Після didn't потрібна turn."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-11:intro3:r2": {
+          "ru": "Это об одежде.",
+          "uk": "Це про одяг."
+        },
+        "en:lesson-13:session-11:intro3:r3": {
+          "ru": "После didn't нужна wake.",
+          "uk": "Після didn't потрібна wake."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0036806f095a163c27904f3462ba2896e0de9d95b0a4d1ea296543e592bd1bc0"
+}

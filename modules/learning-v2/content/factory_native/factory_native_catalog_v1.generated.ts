@@ -4767,4 +4767,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 9,
+    sourceFingerprint: "31a061f79091b848dba240c689aee0a9bc56fea137bc9089bf13df7d564290c1",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"new: didn't + base verb; review: did questions","uk":"new: didn't + base verb; review: did questions"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 10,
+    sourceFingerprint: "ddc034c2ee3915134c1b39dad07fd05ccd8d35a05bdeb85cd027c816b953152b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: didn't + base verb","uk":"review: didn't + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 11,
+    sourceFingerprint: "13aec463c8fcceacedc11625509bafe04816f5dd51dee14f564732b464fbf436",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: didn't + base verb","uk":"review: didn't + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 12,
+    sourceFingerprint: "54728e4b94a6ec44cdbffc186cbf6f882eba3e99262c8192138af3936469b581",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: didn't + base verb","uk":"review: didn't + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
 ]);

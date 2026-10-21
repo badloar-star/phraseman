@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-10:word:give-away",
+    "correctText": "give away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i01",
+    "correctText": "I didn't give away the clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i02",
+    "correctText": "She didn't give away the clothes.",
+    "correctResponseId": "en:lesson-13:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:word:leave-behind",
+    "correctText": "leave behind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i04",
+    "correctText": "I didn't leave behind any clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i05",
+    "correctText": "She didn't leave behind any clothes.",
+    "correctResponseId": "en:lesson-13:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:word:lock-up",
+    "correctText": "lock up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i07",
+    "correctText": "I didn't lock up the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i08",
+    "correctText": "She didn't lock up the house.",
+    "correctResponseId": "en:lesson-13:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:word:take-out",
+    "correctText": "take out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i10",
+    "correctText": "I didn't take out the rubbish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i11",
+    "correctText": "She didn't take out the rubbish.",
+    "correctResponseId": "en:lesson-13:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i13",
+    "correctText": "en:lesson-13:session-10:i13:p1=give away\nen:lesson-13:session-10:i13:p2=leave behind\nen:lesson-13:session-10:i13:p3=lock up\nen:lesson-13:session-10:i13:p4=take out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i14",
+    "correctText": "We didn't leave early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i15",
+    "correctText": "He didn't pack the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i16",
+    "correctText": "I didn't take out the rubbish yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-10:i17",
+    "correctText": "She didn't give away the clothes yesterday.",
+    "correctResponseId": null
+  }
+]

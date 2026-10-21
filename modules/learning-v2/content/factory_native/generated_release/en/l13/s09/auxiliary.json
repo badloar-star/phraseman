@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-09:intro1:r2": {
+          "ru": "Это сообщение о покупке, без отрицания.",
+          "uk": "Це повідомлення про купівлю, без заперечення."
+        },
+        "en:lesson-13:session-09:intro1:r3": {
+          "ru": "После didn't нужна buy.",
+          "uk": "Після didn't потрібна buy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-09:intro2:r2": {
+          "ru": "Это о возврате долга.",
+          "uk": "Це про повернення боргу."
+        },
+        "en:lesson-13:session-09:intro2:r3": {
+          "ru": "После didn't нужна save.",
+          "uk": "Після didn't потрібна save."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-09:intro3:r2": {
+          "ru": "Здесь речь о возврате туфель в магазин.",
+          "uk": "Тут ідеться про повернення туфель до крамниці."
+        },
+        "en:lesson-13:session-09:intro3:r3": {
+          "ru": "После didn't нужна give.",
+          "uk": "Після didn't потрібна give."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4b180ee7a7069112ec857a39d3d730b6b9cf173e638f66d9cdfee7ddda22a604"
+}

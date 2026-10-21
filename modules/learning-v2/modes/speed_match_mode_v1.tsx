@@ -41,6 +41,9 @@ import { useLearningV2CompactPractice, useLearningV2PracticeViewportHost } from 
 import { useArenaSound } from "../../../hooks/use_arena_sound";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import { useLineScale, useScaledTextStyles } from "../../../hooks/useLineScale";
+import type { Lang } from "../../../constants/i18n";
+import { LearningV2TaskTitle } from "../../../components/learning-v2/LearningV2TaskChrome";
+import { LEARNING_V2_TASK_TITLE_ICONS, learningV2TaskTitle } from "../../../components/learning-v2/learning_v2_task_titles";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeSpeedMatchCopyV1 } from "./mode_copy_v1";
 import { SPEED_MATCH_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
@@ -333,22 +336,21 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     // зачем (сверка с learning-v2.html sm, 05.10): заголовок 600, фраза 10, сетка пар 22 (gap 10), разбор 18;
     // таймер — пилюля .timer, на исходе краснеет только цифра и значок (`.timer.low` color), без красной заливки.
     <View style={sx.root}>
-      <View style={sx.headerRow}>
-        <Text style={[sx.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
-        {round.timerEnabled ? <View
-          style={[
-            sx.timerPill,
-            { backgroundColor: g.opaqueControl },
-          ]}
-        >
+      {/* зачем (вердикт «Сверки» 21.10, одобренный макет speed-match-long-pairs.html / learning-v2-tasks-review.html): ОДИН заголовок —
+          плитка-иконка ⇄ и жирное «Найди пары» в строке с таймером. Прежние «Найди пару быстро» и второй большой «Соедините пары» убраны;
+          фраза задания (prompt) остаётся только для озвучки результата (announceForAccessibility). */}
+      <LearningV2TaskTitle
+        icon={LEARNING_V2_TASK_TITLE_ICONS.match_pairs}
+        title={learningV2TaskTitle(interfaceLocale as Lang, "match_pairs")}
+        testID="learning-v2-speed-match-title"
+        trailing={round.timerEnabled ? <View style={[sx.timerPill, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name="time-outline" size={16} color={timerLow ? g.bad : g.text} />
           <Text style={[sx.timerText, { color: timerLow ? g.bad : g.text }]}>
             {secondsLeft}{copy.secondsSuffix}
           </Text>
         </View> : null}
-      </View>
-
-      <Text style={[sx.hero, { color: g.text }, compact && { marginTop: 6 }]}>{prompt}</Text>
+      />
+      <View style={styles.titleGap} />
 
       <SpeedMatchGridV1>
         {payload.leftColumn.map((leftId, index) => {
@@ -453,9 +455,8 @@ function SpeedMatchGridV1({ children }: { children: React.ReactNode }): React.JS
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  headerRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  // `.tlab` 15/600 --sec (D145 → 16).
-  taskLabel: { fontSize: 16, lineHeight: 22, fontWeight: "600" },
+  // макет `<div style="height:18px">` между строкой названия и полем пар
+  titleGap: { height: 18 },
   timerPill: {
     minHeight: 34,
     borderRadius: 17,
@@ -465,8 +466,6 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   timerText: { fontSize: 16, lineHeight: 21, fontWeight: "700", fontVariant: ["tabular-nums"] },
-  // `.thero` margin-top 10; `.grid2` margin-top 22.
-  hero: { fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3, marginTop: 10, marginBottom: 22 },
   gridScroll: { flexGrow: 0, maxHeight: 470 },
   // эталон speed-match-long-pairs.html (вариант 2): строки одна под другой, в строке слово 36 % + перевод на остаток, gap 10.
   grid: { flexDirection: "column", gap: 10, paddingBottom: 4 },

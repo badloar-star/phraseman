@@ -22,6 +22,8 @@ export const SPIRE_PREVIEW_STATES = [
   // плашки «задания готовятся»/«нет сети» у кнопки «Подняться» и четыре вида заданий, которых не было в превью.
   'weekresult_stay', 'weekresult_down', 'passed', 'guard', 'block_missing', 'block_offline',
   'step_gap', 'step_odd', 'step_listen_choose', 'step_listen_build',
+  // зачем (координатор 21.10, «Сверка»): «Собери перевод» с ячейками не выпадает на эмуляторе (ступень Пика случайная) — заполнено («Проверить» активна) и ошибка (красная ячейка + «Правильно: …»)
+  'step_build_filled', 'step_build_wrong',
   // зачем (координатор 12.10, spire-gap-012/013): причины провала «время вышло» и «ступень прервана» (раньше в превью была одна — «сердца»)
   'lose_timeout', 'lose_aborted',
 ] as const;
@@ -313,6 +315,15 @@ const LISTEN_CHOOSE_TASK: SpirePackTask = {
   taskId: 'preview-listen-choose', mode: 'listen_choose', kind: 'listen', difficulty: 2,
   payload: { phrase: 'She works every day', audioUri: 'device-tts:en:0a1b2c3d', options: ['Она работает каждый день', 'Она работала вчера', 'Она будет работать завтра', 'Она не работает'] },
 } as SpirePackTask;
+// зачем: previewPicked — слова, уже стоящие в ячейках (читает только BuildTask и только в __DEV__): без тапов видно «заполнено» и «ошибка»
+const BUILD_FILLED_TASK: SpirePackTask = {
+  ...BUILD_TASK, taskId: 'preview-build-filled',
+  payload: { ...BUILD_TASK.payload, previewPicked: ['She', 'works', 'every', 'day'] },
+} as SpirePackTask;
+const BUILD_WRONG_TASK: SpirePackTask = {
+  ...BUILD_TASK, taskId: 'preview-build-wrong',
+  payload: { ...BUILD_TASK.payload, previewPicked: ['She', 'work', 'every', 'day'] },
+} as SpirePackTask;
 const LISTEN_BUILD_TASK: SpirePackTask = {
   taskId: 'preview-listen-build', mode: 'listen_build', kind: 'dictate', difficulty: 3,
   payload: { phrase: 'She works every day', audioUri: 'device-tts:en:0a1b2c3d', wordBank: ['She', 'works', 'every', 'day', 'work', 'the', 'is'], correctTokenCount: 4 },
@@ -348,6 +359,12 @@ function buildStepPreview(state: SpirePreviewState): SpireStepPreview {
   const common = { ctx, budgetMs: 100_000, elapsedMs: 28_000, hearts: 3, paused: false, preparing: false, answering: true, feedback: null } as const;
   switch (state) {
     case 'step_build': return { ...common, task: BUILD_TASK, taskIndex: 3 };
+    case 'step_build_filled': return { ...common, task: BUILD_FILLED_TASK, taskIndex: 3 };
+    case 'step_build_wrong':
+      return {
+        ...common, task: BUILD_WRONG_TASK, taskIndex: 3, hearts: 2, paused: true, answering: false,
+        feedback: { taskIndex: 3, ok: false, picked: null, itemIndex: null, correctIndex: null, correctText: 'She works every day', mistakeSaved: true },
+      };
     case 'step_gap': return { ...common, task: GAP_TASK, taskIndex: 2 };
     case 'step_odd': return { ...common, task: ODD_TASK, taskIndex: 4 };
     case 'step_listen_choose': return { ...common, task: LISTEN_CHOOSE_TASK, taskIndex: 1 };

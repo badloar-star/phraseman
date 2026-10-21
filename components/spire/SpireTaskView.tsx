@@ -106,7 +106,16 @@ function BuildTask({ lang, task, feedback, disabled, onTokens }: Props) {
   useEffect(() => {
     if (cellCount !== need) console.warn('[SPIRE] build: cells exceed bank', JSON.stringify({ taskId: task.taskId, need, bank: bank.length })); // guard-ok: сбой данных, причина обязана быть в логе
   }, [bank.length, cellCount, need, task.taskId]);
-  const [slots, setSlots] = useState<readonly (number | null)[]>(() => Array.from({ length: cellCount }, () => null));
+  const [slots, setSlots] = useState<readonly (number | null)[]>(() => {
+    const empty: (number | null)[] = Array.from({ length: cellCount }, () => null);
+    // зачем (координатор 21.10, «Сверка»): dev-превью step_build_filled / step_build_wrong ставит слова в ячейки без тапов; без __DEV__ поле игнорируется
+    const seeded = typeof __DEV__ !== 'undefined' && __DEV__ && Array.isArray(task.payload.previewPicked) ? strings(task.payload.previewPicked) : [];
+    seeded.slice(0, cellCount).forEach((word, at) => {
+      const index = bank.findIndex((candidate, i) => candidate === word && !empty.includes(i));
+      if (index >= 0) empty[at] = index;
+    });
+    return empty;
+  });
   const filledCount = slots.filter((k) => k !== null).length;
   const complete = slots.length > 0 && filledCount === slots.length;
   const place = useCallback((i: number) => {

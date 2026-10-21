@@ -7,6 +7,7 @@
 //                            | step_choice | step_build | step_items | step_wrong | step_prep
 //                            | weekresult_stay | weekresult_down | passed | guard | block_missing | block_offline
 //                            | step_gap | step_odd | step_listen_choose | step_listen_build
+//                            | step_build_filled (все ячейки заполнены, «Проверить» активна) | step_build_wrong (красная ячейка, «Правильно: …» + «Дальше»)
 //   ?exit=1 — на экране ступени поверх открыта шторка «Выйти из ступени?» (spire-009). Жалобу на задание в превью не рисуем: её отправка — запись в сеть.
 //   ?selector=1 — снизу полоса переключения состояний (по умолчанию скрыта, чтобы не попадать в кадр).
 //   &tier=0 (лига 0…11, 0 = Гранит; по умолчанию 3) &floor=4 (мой этаж 1…15; по умолчанию 7) &steps=39 (ступени в итоге недели) — данные кадра как в образце; лига итога недели следует за tier

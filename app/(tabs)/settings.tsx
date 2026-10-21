@@ -1903,9 +1903,14 @@ export default function SettingsMain() {
                     return;
                   }
                   if (!res.ok && res.reason === 'sync_failed') {
-                    // зачем (правило владельца 18.10, матрица Сайта B8): окна «Прогресс не сохранён… смена отменена» нет — прогресс цел и не стёрт,
-                    // человек остаётся в своём аккаунте; причина — в журнал, повтор — обычным тапом.
-                    console.warn('[ACC-MUT] settings:switch sync_failed — stays in account, no window'); // guard-ok: ветка и причина
+                    // зачем (правило владельца 18.10, матрица Сайта B8; решение (а) координатора 21.10): без сети НЕ стираем —
+                    // прогресс цел, человек остаётся в своём аккаунте. Единственное разрешённое сообщение — понятный текст «нет связи»;
+                    // молчание оставляло человека без понимания, почему смена не произошла. Строки — те же, что во вкладке «Друзья».
+                    console.warn('[AUTH-SWITCH] settings sync_failed — stays in account, shows connection_lost'); // guard-ok: ветка, причина и что увидел человек
+                    showInfoAlert(
+                      L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia'),
+                      L('Проверь интернет и попробуй ещё раз.', 'Перевір інтернет і спробуй ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.'),
+                    );
                     return;
                   }
                   if (!res.ok) {

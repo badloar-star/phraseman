@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-51:intro1:r2": {
+          "ru": "Один период: starts с s.",
+          "uk": "Один період: starts із s."
+        },
+        "en:lesson-10:session-51:intro1:r3": {
+          "ru": "Здесь нужна личная форма starts.",
+          "uk": "Тут потрібна особова форма starts."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-51:intro2:r2": {
+          "ru": "С I нужна study без s.",
+          "uk": "З I потрібна study без s."
+        },
+        "en:lesson-10:session-51:intro2:r3": {
+          "ru": "Здесь нужна study.",
+          "uk": "Тут потрібна study."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-51:intro3:r2": {
+          "ru": "Перед completing нужна am.",
+          "uk": "Перед completing потрібна am."
+        },
+        "en:lesson-10:session-51:intro3:r3": {
+          "ru": "Правильно completing, без e.",
+          "uk": "Правильно completing, без e."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d543273412791c3f2279bdf15dc1551ca01c7c0e3c600a97cac011bdfa0849bc"
+}

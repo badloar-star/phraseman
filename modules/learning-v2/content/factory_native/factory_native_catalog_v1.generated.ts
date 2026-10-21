@@ -3885,4 +3885,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The trial period lasts a month; We record the duration every day; We are updating the timeline","uk":"The trial period lasts a month; We record the duration every day; We are updating the timeline"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 51,
+    sourceFingerprint: "4ce607e9c1f3053e956e71d3ef48cbbe24fad1699c74aa007b69dcef0f458c43",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The term starts in September; I usually study on campus; I am completing my enrolment","uk":"The term starts in September; I usually study on campus; I am completing my enrolment"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-51:word:term",
+    "correctText": "term",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i01",
+    "correctText": "The term starts in September.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i02",
+    "correctText": "The term ends in December.",
+    "correctResponseId": "en:lesson-10:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i03",
+    "correctText": "starts",
+    "correctResponseId": "en:lesson-10:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:word:campus",
+    "correctText": "campus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i04",
+    "correctText": "I usually study on campus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i05",
+    "correctText": "The campus is quiet.",
+    "correctResponseId": "en:lesson-10:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i06",
+    "correctText": "study",
+    "correctResponseId": "en:lesson-10:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:word:tuition",
+    "correctText": "tuition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i07",
+    "correctText": "The tuition is expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i08",
+    "correctText": "The tuition is affordable.",
+    "correctResponseId": "en:lesson-10:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:word:enrolment",
+    "correctText": "enrolment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i10",
+    "correctText": "I am completing my enrolment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i11",
+    "correctText": "The enrolment is complete.",
+    "correctResponseId": "en:lesson-10:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i12",
+    "correctText": "completing",
+    "correctResponseId": "en:lesson-10:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i13",
+    "correctText": "en:lesson-10:session-51:i13:p1=term\nen:lesson-10:session-51:i13:p2=campus\nen:lesson-10:session-51:i13:p3=tuition\nen:lesson-10:session-51:i13:p4=enrolment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i14",
+    "correctText": "I am completing my enrolment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i15",
+    "correctText": "I usually study on campus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i16",
+    "correctText": "The term starts in September.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-51:i17",
+    "correctText": "I am completing my enrolment.",
+    "correctResponseId": null
+  }
+]

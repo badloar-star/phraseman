@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-45:intro1:r2": {
+          "ru": "С we нужна review без s.",
+          "uk": "З we потрібна review без s."
+        },
+        "en:lesson-10:session-45:intro1:r3": {
+          "ru": "Для регулярного действия здесь нужна review.",
+          "uk": "Для регулярної дії тут потрібна review."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-45:intro2:r2": {
+          "ru": "С this нужна is.",
+          "uk": "З this потрібна is."
+        },
+        "en:lesson-10:session-45:intro2:r3": {
+          "ru": "После this нужна связка is.",
+          "uk": "Після this потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-45:intro3:r2": {
+          "ru": "Правильно making, без e.",
+          "uk": "Правильно making, без e."
+        },
+        "en:lesson-10:session-45:intro3:r3": {
+          "ru": "Перед making нужна are.",
+          "uk": "Перед making потрібна are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "310529441a4aa8993a2ef5eb20463b5542dea8b11193a391b807375375aa9d55"
+}

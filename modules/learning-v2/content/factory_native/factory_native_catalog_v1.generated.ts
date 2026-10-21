@@ -3843,4 +3843,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We review the agenda every month; We have a quorum; We are discussing the motion","uk":"We review the agenda every month; We have a quorum; We are discussing the motion"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 45,
+    sourceFingerprint: "5821113f72b4cbef03b56b90692e8fbddb8cf5628704bc5b54b9c9b0dea4b0ae",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We review our progress every month; This is a major achievement; We are making a breakthrough","uk":"We review our progress every month; This is a major achievement; We are making a breakthrough"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

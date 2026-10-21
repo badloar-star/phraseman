@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-45:word:achievement",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — achievement",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:word:achievement:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — achievement",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:word:achievement:audio",
+          "transcript": "achievement"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:word:achievement:r1",
+            "targetText": "achievement",
+            "meaningByLocale": {
+              "ru": "«достижение». This is a major achievement. — «Это большое достижение». Успешный результат, достигнутый благодаря усилиям.",
+              "uk": "«досягнення». This is a major achievement. — «Це велике досягнення». Успішний результат, досягнутий завдяки зусиллям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "achievement",
+          "definitionByLocale": {
+            "ru": "«достижение». This is a major achievement. — «Это большое достижение». Успешный результат, достигнутый благодаря усилиям.",
+            "uk": "«досягнення». This is a major achievement. — «Це велике досягнення». Успішний результат, досягнутий завдяки зусиллям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда завершила сложную часть проекта. Оцените результат: «Это большое достижение»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда завершила сложную часть проекта. Оцените результат: «Это большое достижение»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a major achievement.",
+        "localizedMeaning": {
+          "ru": "Команда завершила сложную часть проекта. Оцените результат: «Это большое достижение»",
+          "uk": "Команда завершила складну частину проєкту. Оцініть результат: «Це велике досягнення»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "major",
+          "achievement"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i02:r1",
+          "text": "The achievement is important."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i02:r2",
+          "text": "The achievement is impressive."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i02:r3",
+          "text": "The project is important."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i02:audio",
+          "transcript": "The achievement is important."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:i02:r1",
+            "targetText": "The achievement is important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i02:r2",
+            "targetText": "The achievement is impressive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i02:r3",
+            "targetText": "The project is important.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The achievement is important.",
+              "uk": "У записі звучить The achievement is important."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The achievement is important.",
+              "uk": "У записі звучить The achievement is important."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы оцениваете один результат. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы оцениваете один результат. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы оцениваете один результат. Выберите связку",
+          "uk": "Ви оцінюєте один результат. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "This ___ a major achievement.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-45:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вы оцениваете один результат. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы оцениваете один результат. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "С this нужна is.",
+              "uk": "З this потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы оцениваете один результат. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:word:benchmark",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — benchmark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:word:benchmark:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — benchmark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:word:benchmark:audio",
+          "transcript": "benchmark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:word:benchmark:r1",
+            "targetText": "benchmark",
+            "meaningByLocale": {
+              "ru": "«эталон для сравнения». We are using this result as a benchmark. — «Мы используем этот результат как эталон для сравнения». Показатель, с которым сравнивают другие результаты.",
+              "uk": "«еталон для порівняння». We are using this result as a benchmark. — «Ми використовуємо цей результат як еталон для порівняння». Показник, із яким порівнюють інші результати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "benchmark",
+          "definitionByLocale": {
+            "ru": "«эталон для сравнения». We are using this result as a benchmark. — «Мы используем этот результат как эталон для сравнения». Показатель, с которым сравнивают другие результаты.",
+            "uk": "«еталон для порівняння». We are using this result as a benchmark. — «Ми використовуємо цей результат як еталон для порівняння». Показник, із яким порівнюють інші результати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сейчас вы сравниваете новые результаты с одним выбранным. Скажите: «Мы используем этот результат как эталон для сравнения»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас вы сравниваете новые результаты с одним выбранным. Скажите: «Мы используем этот результат как эталон для сравнения»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are using this result as a benchmark.",
+        "localizedMeaning": {
+          "ru": "Сейчас вы сравниваете новые результаты с одним выбранным. Скажите: «Мы используем этот результат как эталон для сравнения»",
+          "uk": "Зараз ви порівнюєте нові результати з одним обраним. Скажіть: «Ми використовуємо цей результат як еталон для порівняння»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "using",
+          "this",
+          "result",
+          "as",
+          "a",
+          "benchmark"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i05:r1",
+          "text": "The benchmark is in the report."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i05:r2",
+          "text": "The benchmark is in the email."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i05:r3",
+          "text": "The photo is in the report."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i05:audio",
+          "transcript": "The benchmark is in the report."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:i05:r1",
+            "targetText": "The benchmark is in the report.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i05:r2",
+            "targetText": "The benchmark is in the email.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i05:r3",
+            "targetText": "The photo is in the report.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The benchmark is in the report.",
+              "uk": "У записі звучить The benchmark is in the report."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The benchmark is in the report.",
+              "uk": "У записі звучить The benchmark is in the report."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Команда сейчас использует результат для сравнения. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда сейчас использует результат для сравнения. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Команда сейчас использует результат для сравнения. Выберите связку",
+          "uk": "Команда зараз використовує результат для порівняння. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "We ___ using this result as a benchmark.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-45:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Команда сейчас использует результат для сравнения. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Команда сейчас использует результат для сравнения. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "С we нужна are.",
+              "uk": "З we потрібна are."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Команда сейчас использует результат для сравнения. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; с we нужна are.",
+              "uk": "Am уживається з I; з we потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:word:breakthrough",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — breakthrough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:word:breakthrough:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — breakthrough",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:word:breakthrough:audio",
+          "transcript": "breakthrough"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:word:breakthrough:r1",
+            "targetText": "breakthrough",
+            "meaningByLocale": {
+              "ru": "«прорыв». We are making a breakthrough. — «Мы совершаем прорыв». Важный шаг вперёд после трудностей.",
+              "uk": "«прорив». We are making a breakthrough. — «Ми здійснюємо прорив». Важливий крок уперед після труднощів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breakthrough",
+          "definitionByLocale": {
+            "ru": "«прорыв». We are making a breakthrough. — «Мы совершаем прорыв». Важный шаг вперёд после трудностей.",
+            "uk": "«прорив». We are making a breakthrough. — «Ми здійснюємо прорив». Важливий крок уперед після труднощів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы прямо сейчас находите решение давней проблемы. Скажите: «Мы совершаем прорыв»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы прямо сейчас находите решение давней проблемы. Скажите: «Мы совершаем прорыв»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are making a breakthrough.",
+        "localizedMeaning": {
+          "ru": "Вы прямо сейчас находите решение давней проблемы. Скажите: «Мы совершаем прорыв»",
+          "uk": "Ви саме зараз знаходите розв’язання давньої проблеми. Скажіть: «Ми здійснюємо прорив»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "making",
+          "a",
+          "breakthrough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i08:r1",
+          "text": "The breakthrough is significant."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i08:r2",
+          "text": "The breakthrough is unexpected."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i08:r3",
+          "text": "The change is significant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i08:audio",
+          "transcript": "The breakthrough is significant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:i08:r1",
+            "targetText": "The breakthrough is significant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i08:r2",
+            "targetText": "The breakthrough is unexpected.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i08:r3",
+            "targetText": "The change is significant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The breakthrough is significant.",
+              "uk": "У записі звучить The breakthrough is significant."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The breakthrough is significant.",
+              "uk": "У записі звучить The breakthrough is significant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы make",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i09:r1",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i09:r2",
+          "text": "makeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i09:r3",
+          "text": "make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы make",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы make",
+          "uk": "Виберіть правильне написання форми make"
+        },
+        "gappedTargetPhrase": "We are ___ a breakthrough.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-45:i09:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i09:r2",
+            "text": "makeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i09:r3",
+            "text": "make"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы make",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы make",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: making.",
+              "uk": "Перед ing прибираємо e: making."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы make",
+            "feedbackByLocale": {
+              "ru": "После are для текущего действия нужна making.",
+              "uk": "Після are для поточної дії потрібна making."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:word:track-record",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — track record",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:word:track-record:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — track record",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:word:track-record:audio",
+          "transcript": "track record"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:word:track-record:r1",
+            "targetText": "track record",
+            "meaningByLocale": {
+              "ru": "«послужной список». The team has a strong track record. — «У команды солидный послужной список». Здесь результаты команды за время её работы, а не спортивная дорожка.",
+              "uk": "«послужний список». The team has a strong track record. — «У команди солідний послужний список». Тут результати команди за час її роботи, а не спортивна доріжка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "track record",
+          "definitionByLocale": {
+            "ru": "«послужной список». The team has a strong track record. — «У команды солидный послужной список». Здесь результаты команды за время её работы, а не спортивная дорожка.",
+            "uk": "«послужний список». The team has a strong track record. — «У команди солідний послужний список». Тут результати команди за час її роботи, а не спортивна доріжка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда успешно выполнила много проектов. Скажите: «У команды солидный послужной список»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда успешно выполнила много проектов. Скажите: «У команды солидный послужной список»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The team has a strong track record.",
+        "localizedMeaning": {
+          "ru": "Команда успешно выполнила много проектов. Скажите: «У команды солидный послужной список»",
+          "uk": "Команда успішно виконала багато проєктів. Скажіть: «У команди солідний послужний список»"
+        },
+        "orderedTokens": [
+          "The",
+          "team",
+          "has",
+          "a",
+          "strong",
+          "track",
+          "record"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i11:r1",
+          "text": "Her track record is impressive."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i11:r2",
+          "text": "His track record is impressive."
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i11:r3",
+          "text": "Her report is impressive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i11:audio",
+          "transcript": "Her track record is impressive."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-45:i11:r1",
+            "targetText": "Her track record is impressive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i11:r2",
+            "targetText": "His track record is impressive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i11:r3",
+            "targetText": "Her report is impressive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her track record is impressive.",
+              "uk": "У записі звучить Her track record is impressive."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her track record is impressive.",
+              "uk": "У записі звучить Her track record is impressive."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку в оценке её послужного списка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-45:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-45:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку в оценке её послужного списка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку в оценке её послужного списка",
+          "uk": "Виберіть зв’язку в оцінці її послужного списку"
+        },
+        "gappedTargetPhrase": "Her track record ___ impressive.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-45:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку в оценке её послужного списка",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку в оценке её послужного списка",
+            "feedbackByLocale": {
+              "ru": "Track record в единственном числе: is.",
+              "uk": "Track record в однині: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку в оценке её послужного списка",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-45:i13:p1",
+            "target": "achievement",
+            "meaningByLocale": {
+              "ru": "достижение",
+              "uk": "досягнення"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-45:i13:p2",
+            "target": "benchmark",
+            "meaningByLocale": {
+              "ru": "эталон для сравнения",
+              "uk": "еталон для порівняння"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-45:i13:p3",
+            "target": "breakthrough",
+            "meaningByLocale": {
+              "ru": "прорыв",
+              "uk": "прорив"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-45:i13:p4",
+            "target": "track record",
+            "meaningByLocale": {
+              "ru": "послужной список",
+              "uk": "послужний список"
+            }
+          }
+        ],
+        "leftColumn": [
+          "achievement",
+          "benchmark",
+          "breakthrough",
+          "track record"
+        ],
+        "rightColumn": [
+          "достижение",
+          "эталон для сравнения",
+          "прорыв",
+          "послужной список"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i14:audio",
+          "transcript": "We are making a breakthrough."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are making a breakthrough.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "making",
+          "a",
+          "breakthrough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, как часто команда обсуждает продвижение проекта. Скажите: «Мы анализируем свой прогресс каждый месяц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, как часто команда обсуждает продвижение проекта. Скажите: «Мы анализируем свой прогресс каждый месяц»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i15:audio",
+          "transcript": "We review our progress every month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We review our progress every month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега показывает успешно завершённую сложную работу. Скажите: «Это большое достижение»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега показывает успешно завершённую сложную работу. Скажите: «Это большое достижение»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a major achievement.",
+        "localizedMeaning": {
+          "ru": "Коллега показывает успешно завершённую сложную работу. Скажите: «Это большое достижение»",
+          "uk": "Колега показує успішно завершену складну роботу. Скажіть: «Це велике досягнення»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "major",
+          "achievement"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-45:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После долгих трудностей команда прямо сейчас находит способ решить проблему. Коллега спрашивает о ходе работы. Скажите: «Мы совершаем прорыв»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "После долгих трудностей команда прямо сейчас находит способ решить проблему. Коллега спрашивает о ходе работы. Скажите: «Мы совершаем прорыв»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-45:i17:audio",
+          "transcript": "We are making a breakthrough."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are making a breakthrough.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1855cafa7a3a7a04c1bb389723f09ffe3869be335608f988271276d9325b5051"
+}

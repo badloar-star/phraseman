@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Словарь — три варианта</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="dictionary-kit.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Словарь — три варианта улучшения</h1>
+  <p class="lead">Задача: один понятный словарь вместо двух разных, где слово можно найти, послушать, сохранить в карточки и <b>повторить</b>. Всё в стиле 2.0 («Тень», Inter, без обводок на контейнерах), обе темы, цвета — токены темы пользователя. Состояния слова различаются <b>формой</b>, а не только цветом: пустое кольцо — новое, половина — учу, галочка — знаю. Крупные цели нажатия ≥ 44 px, текст слов 17–19. Как сейчас — на странице <a href="dictionary-current.html">«Словарь — как сейчас»</a>.</p>
+  <nav class="nav" aria-label="Разделы"><a href="#a">A · Умный список</a><a href="#b">B · По урокам и выбор</a><a href="#c">C · Повтор в центре</a><a href="#cmp">Сравнение и рекомендация</a><a href="dictionary-current.html">← Как сейчас</a></nav>
+  <div id="root"></div>
+</div>
+<script src="dictionary-kit.js"></script>
+<script>
+const EXTRA = [['later', '/ˈleɪtə/', 'позже', 'n', 0, false], ['plate', '/pleɪt/', 'тарелка', 'n', 0, false]];
+const row = (w, { q = '', exp = false, pip = false, ck = null, bkOn = null, sub = false } = {}) => {
+  const d = [...WORDS, ...EXTRA].find((x) => x[0] === w) || [w, '', '', 'n', 0, false];
+  const state = pip ? pips(d[4]) : st(d[3]);
+  const lead = ck === null ? '' : `<span class="ck${ck ? ' on' : ''}" role="checkbox" aria-checked="${ck}">${ck ? ic('check', 15) : ''}</span>`;
+  return `<div class="wrow">${lead}${pip ? '' : state}<div class="wc"><div class="w">${hl(d[0], q)}</div><div class="m">${d[1]} · ${d[2]}</div></div>${pip ? state : ''}${ck === null ? vol() + bm(bkOn ?? d[5], 22) : ''}</div>`;
+};
+const example = (en, ru, src) => `<div class="ex"><div class="en">${en}</div><div class="ru">${ru}</div><div class="src">${src}</div><div class="acts"><span class="btn2">${ic('vol', 18)}Слушать</span><span class="btn2">${ic('bookmark', 18)}В карточки</span></div></div>`;
+
+// ───────── A · Умный список ─────────
+const aHead = (n) => `<div class="dh nob"><div><div class="ti">Словарь</div><div class="cnt">${n}</div></div><span class="rb sq" style="margin-top:8px">${ic('close', 18)}</span></div>`;
+const aChips = `<div class="chips"><span class="chip on">Все</span><span class="chip">Повторить <span class="n">12</span></span><span class="chip">Новые <span class="n">9</span></span><span class="chip" aria-label="Сохранённые, 31">${ic('bookmark', 16)}<span class="n">31</span></span></div>`;
+const A1 = (lt) => phone(`${aHead('142 слова · 64 выучено')}<div class="srch" style="margin-top:12px">${ic('search', 18)}Слово или перевод</div>${aChips}
+  <div class="lst">${sec('Урок 1', 9)}${row('office')}${row('boss')}${row('late', { exp: true })}${example('I’m <b>late</b> for the meeting.', 'Я опаздываю на встречу.', 'Из занятия: урок 1 · занятие 3')}${row('ready')}${row('sure')}</div>`,
+  { lt, dock: `<div class="dock"><div class="cta">${ic('repeat', 20)}Повторить 12 слов</div></div>` });
+const A2 = (lt) => phone(`${aHead('Найдено 3')}<div class="srch" style="margin-top:12px">${ic('search', 18)}<span class="tv">la</span><span class="cur"></span><span class="x">${ic('close', 16)}</span></div>${aChips}
+  <div class="lst">${sec('Урок 1', 1)}${row('late', { q: 'la' })}${sec('Урок 2', 2)}${row('later', { q: 'la' })}${row('plate', { q: 'la' })}</div>`, { lt });
+
+// ───────── B · По урокам и выбор ─────────
+const ring = (p, n) => `<span class="ring" style="--p:${p}">${n}</span>`;
+const acc = (n, meta, p, open) => `<div class="acc" style="${open ? 'margin-bottom:2px' : ''}">${ring(p, n)}<div><div class="w">Урок ${n}</div><div class="m">${meta}</div></div><span class="chev">${ic(open ? 'chevU' : 'chevD', 22)}</span></div>`;
+const B1 = (lt) => phone(`<div class="dh nob"><div><div class="ti">Словарь</div><div class="cnt">142 слова · 32 урока</div></div><span class="btn2" style="height:40px;margin-top:6px;font-size:14px">Выбрать</span></div>
+  <div class="srch" style="margin-top:12px">${ic('search', 18)}Слово или перевод</div>
+  <div class="btn2" style="margin-top:12px;height:52px;justify-content:space-between;padding:0 18px"><span style="display:flex;gap:10px;align-items:center">${ic('play', 20)}Слушать подряд</span><span style="color:var(--sec);font-weight:600;font-size:14px">142 слова</span></div>
+  <div class="lst">${acc(1, '9 слов · 6 выучено', 67, true)}<div class="sub">${['office', 'boss', 'late', 'ready', 'sure'].map((w) => row(w, { pip: true })).join('')}</div>${acc(2, '5 слов · 2 выучено', 40, false)}${acc(3, '8 слов · новый', 0, false)}</div>`, { lt });
+const B2 = (lt) => phone(`<div class="dh nob"><div><div class="ti">Выбрано 3</div><div class="cnt">Урок 1</div></div><span class="btn2" style="height:40px;margin-top:6px;font-size:14px">Готово</span></div>
+  <div class="srch" style="margin-top:12px">${ic('search', 18)}Слово или перевод</div>
+  <div class="lst">${sec('Урок 1', 9)}<div class="sub" style="margin-left:0">${[['office', true], ['boss', false], ['late', true], ['ready', true], ['sure', false], ['tired', false]].map(([w, c]) => row(w, { pip: true, ck: c })).join('')}</div></div>`,
+  { lt, dock: `<div class="dock" style="padding-top:34px"><div class="cta">${ic('cards', 20)}В карточки · 3</div><div class="dual" style="grid-template-columns:1fr 1fr;margin-top:10px"><span class="btn2" style="height:48px;flex-direction:row;font-size:15px">${ic('repeat', 18)}Повторить</span><span class="btn2" style="height:48px;flex-direction:row;font-size:15px">${ic('vol', 18)}Слушать</span></div></div>` });
+
+// ───────── C · Повтор в центре ─────────
+const C1 = (lt) => phone(`<div class="dh nob"><div><div class="ti">Словарь</div><div class="cnt">142 слова · 64 выучено</div></div><span class="rb sq" style="margin-top:8px">${ic('search', 18)}</span></div>
+  <div class="hero"><span class="hn">12</span><div><div class="ht">Повторить сегодня</div><div class="hm">12 слов · около 3 минут</div></div><div class="cta sm" style="flex-basis:100%">${ic('repeat', 20)}Начать повтор</div></div>
+  <div class="seg tall" style="margin-top:14px"><span class="on">Слова</span><span>Повтор</span><span>Сохранённые</span></div>
+  <div class="lst">${sec('Урок 1', 9)}${['office', 'boss', 'late', 'ready', 'sure', 'tired'].map((w) => row(w, { pip: true })).join('')}</div>`, { lt });
+const C2 = (lt) => phone(`<div class="hd" style="margin-top:10px;gap:14px"><span class="rb sq">${ic('close', 18)}</span><div class="pbar" role="progressbar" aria-valuenow="3" aria-valuemax="12"><i style="width:25%"></i></div><span style="font-size:14px;font-weight:600;color:var(--sec)">3 из 12</span></div>
+  <div class="rv"><span class="rb xl on">${ic('vol', 26)}</span><div class="w">tired</div><div class="tr">/ˈtaɪəd/</div><div class="mean">уставший</div><div class="exs">I’m tired after work.<br>Я устал после работы.</div></div>`,
+  { lt, dock: `<div class="dock" style="padding-top:20px"><div class="dual"><span class="btn2">Ещё раз<small>через 10 минут</small></span><span class="cta">Знаю<small>завтра не покажем</small></span></div></div>` });
+
+mount(`
+<h2 id="a">A · Умный список — «тот же словарь, но по делу»</h2>
+<p class="lead">Эволюция нынешнего словаря курса, самый короткий путь. Поиск всегда на виду, фильтры «Повторить / Новые / Сохранённые», у каждого слова состояние. Нажатие на слово раскрывает пример из занятия с кнопками «Слушать» и «В карточки». Снизу — одна главная кнопка «Повторить N слов» (её нет, если повторять нечего).</p>
+${pair('A1 · Все слова, раскрыто слово «late»', A1)}
+${pair('A2 · Поиск «la»: подсветка совпадения, число найденных, нужное слово раскрыто', A2, 'Внутри урока — тот же экран с фильтром «Урок». Классический «Словарь урока N» становится этим же экраном, открытым сразу на нужном уроке.')}
+<div class="spec"><div><b>Что решает:</b> поиск даже при малом числе слов; видно, что выучено; пример употребления; сохранение и озвучка одной кнопкой в раскрытии.</div><div><b>Что нужно в коде:</b> локальная запись «состояние слова» (новое / учу / знаю) в хранилище устройства; список и раскрытие — на уже существующих данных слов и озвучке; запуск «Повторить» — экран из варианта C (A2/C2).</div><div><b>Цена (оценка):</b> 3 дня список, поиск, фильтры, раскрытие; +2–3 дня на экран повтора. Ни одного нового запроса в сервер.</div><div><b>Риск:</b> низкий. Сторожа поиска, закладки и озвучки сохраняются.</div></div>
+
+<h2 id="b">B · По урокам и выбор — «собрать нужное и сразу действовать»</h2>
+<p class="lead">Слова свёрнуты в уроки с кольцом прогресса. Вверху «Слушать подряд» — одна кнопка, чтобы прослушать весь словарь или урок в дороге. «Выбрать» включает отметки: можно отметить слова и одним нажатием отправить в карточки или в повтор.</p>
+${pair('B1 · Уроки с кольцом прогресса, урок 1 раскрыт', B1)}
+${pair('B2 · Режим выбора: отмечено 3, действия внизу', B2, 'Подписи действий — текстом, не только значками (для читателей 40+).')}
+<div class="spec"><div><b>Что решает:</b> видно, на каком уроке что; массовое сохранение в карточки; прослушивание подряд без рук.</div><div><b>Что нужно в коде:</b> аккордеон по урокам; режим выбора; очередь озвучки (системный голос телефона часто не сообщает об окончании фразы — нужны страховочные таймеры, как уже сделано в списке слов урока); пакетное сохранение в карточки.</div><div><b>Цена (оценка):</b> 5–6 дней. При лимите 50 бесплатных карточек пакетное сохранение должно останавливаться и вести в окно Plus, как сейчас у одной закладки.</div><div><b>Риск:</b> средний — очередь озвучки и пакетное сохранение с лимитом.</div></div>
+
+<h2 id="c">C · Повтор в центре — «словарь, который учит»</h2>
+<p class="lead">Главная карточка экрана — «Повторить сегодня»: 12 слов, около 3 минут. Ниже три вкладки «Слова / Повтор / Сохранённые» и список с силой слова (4 деления). Экран повтора — карточка слова: слушать, перевод, пример и две честные кнопки «Ещё раз» и «Знаю» с подписью, когда слово вернётся.</p>
+${pair('C1 · Главная карточка «Повторить сегодня» и слова с силой', C1)}
+${pair('C2 · Повтор: слово, перевод и пример; «Ещё раз» / «Знаю»', C2, 'Подпись «через 10 минут / завтра не покажем» — только если расписание повтора реально существует; иначе подписей нет, кнопки остаются.')}
+<div class="spec"><div><b>Что решает:</b> словарь превращается в тренажёр памяти, а не справочник; ежедневная причина зайти.</div><div><b>Что нужно в коде:</b> расписание повторов (интервалы, «что показать сегодня») и хранилище силы слова; экран карточки; связь с Learning V2 (после каких занятий слово «открыто»).</div><div><b>Цена (оценка):</b> 6–8 дней, из них логика расписания — главная часть и решение по продукту (энергия за повтор? монеты? отдельно от занятий?).</div><div><b>Риск:</b> средний–высокий: новая логика обучения; если хранить только на устройстве — прогресс повторов теряется при переустановке (либо нужна синхронизация, а это чтения и записи базы).</div></div>
+
+<h2 id="cmp">Сравнение и рекомендация</h2>
+<div class="tbl"><table>
+<thead><tr><th></th><th>A · Умный список</th><th>B · По урокам и выбор</th><th>C · Повтор в центре</th></tr></thead>
+<tbody>
+<tr><td>Поиск</td><td>Всегда, с подсветкой</td><td>Всегда</td><td>Кнопка в шапке</td></tr>
+<tr><td>Слова курса</td><td>Все, фильтр по уроку</td><td>Свёрнуты по урокам</td><td>Список по урокам</td></tr>
+<tr><td>Повтор</td><td>Кнопка «Повторить N»</td><td>«Повторить» для отмеченных</td><td>Главное действие экрана</td></tr>
+<tr><td>Озвучка</td><td>У слова и в раскрытии</td><td>+ «Слушать подряд»</td><td>В карточке повтора</td></tr>
+<tr><td>В карточки</td><td>Одно слово, 44 px</td><td>Пакетом</td><td>Вкладка «Сохранённые»</td></tr>
+<tr><td>Два словаря → один</td><td>Да</td><td>Да</td><td>Да</td></tr>
+<tr><td>Цена</td><td>3 дня (+2–3 повтор)</td><td>5–6 дней</td><td>6–8 дней</td></tr>
+<tr><td>Риск</td><td>Низкий</td><td>Средний</td><td>Средний–высокий</td></tr>
+</tbody></table></div>
+<div class="rec"><b>Рекомендация: A, затем повтор из C, потом «Слушать подряд» из B</b>
+<p>1) Сделать вариант A и сразу заменить им оба словаря (классический «Словарь урока» открывается на нужном уроке) — это снимает главную путаницу и закрывает поиск, статус слова, пример и сохранение. 3 дня, без сервера.</p>
+<p>2) Следом добавить экран повтора из C2 — он нужен кнопке «Повторить» в A. Расписание сначала простое (только на устройстве); решение о синхронизации — отдельно, чтобы не плодить чтения базы.</p>
+<p>3) «Слушать подряд» из B — отдельной маленькой задачей, когда понадобится: она самая хрупкая из-за озвучки телефона.</p></div>
+`);
+</script>
+</body>
+</html>

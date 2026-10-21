@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Словарь — как сейчас</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="dictionary-kit.css">
+<style>
+.mark { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; z-index: 25; box-shadow: var(--cta-sh); }
+.chip-coin { display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px 0 10px; border-radius: 22px; background: var(--plate); box-shadow: var(--card-sh); font-weight: 700; font-size: 16px; }
+.coin { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(145deg, #D58A52, #8E4F2A); }
+.tile { width: 52px; height: 52px; border-radius: 14px; background: var(--soft); display: flex; align-items: center; justify-content: center; flex: none; }
+.chap { display: flex; align-items: center; gap: 14px; padding: 16px; margin-top: 12px; border-radius: 22px; background: var(--plate); box-shadow: var(--card-sh); }
+.chap .w { font-size: 20px; font-weight: 700; line-height: 25px; } .chap .m { font-size: 15px; color: var(--sec); margin-top: 1px; }
+.chap .cnt2 { margin-left: auto; font-size: 26px; font-weight: 800; } .chap .cnt2 small { font-size: 16px; color: var(--sec); font-weight: 600; }
+.trk { height: 7px; border-radius: 4px; background: var(--soft); margin: 4px 18px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Словарь — как сейчас по коду</h1>
+  <p class="lead">В приложении два «словаря», и они не связаны друг с другом: <b>словарь курса Learning V2</b> (кнопка-книжка в шапке карты уроков) и <b>классический «Словарь урока N»</b> (старый курс). Есть и третье, малое место — <b>«Карман слов»</b> внутри занятия Learning V2: слова текущего урока и колода карточек по нажатию (<code>LearningV2WordPocketOverlayV1.tsx</code>); отдельным макетом его не рисую. Ниже два словаря — один в один с экраном: размеры, тексты и состояния взяты из кода. Для словаря курса есть и прежний эталон — блок «Словарь» в <a href="learning-v2.html#dict-b">learning-v2.html</a> (экраны 2.7–2.9); этот файл показывает то же самое в обеих темах плюс вход и классический словарь.</p>
+  <nav class="nav" aria-label="Разделы"><a href="#entry">Вход</a><a href="#course">Словарь курса</a><a href="#classic">Словарь урока (классика)</a><a href="#facts">Что есть и чего нет</a><a href="dictionary-options.html">Варианты улучшения →</a></nav>
+  <div id="root"></div>
+</div>
+<script src="dictionary-kit.js"></script>
+<script>
+// ── 1. вход: шапка карты уроков (components/learning-v2/… , app/(tabs)/lessons.tsx:4753–4814) ──
+const entry = (lt) => phone(`
+  <div class="hd" style="gap:8px;margin-top:8px">
+    <span class="rb l">${ic('chevL', 22)}</span><span style="flex:1"></span>
+    <span class="rb sq44">${ic('lock', 21)}</span>
+    <span class="rb sq44" style="color:var(--text)">${ic('book', 21)}<span class="bdg">14</span></span>
+    <span class="chip-coin"><span class="coin"></span>0</span>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px"><span style="font-size:16px;font-weight:600;color:var(--sec)">Урок 1</span><span class="btn2" style="height:40px;font-size:14px">Классический курс</span></div>
+  <div style="display:flex;gap:12px;align-items:center;margin-top:14px"><span class="tile">${ic('hand', 24)}</span><div class="ti m" style="font-size:22px;line-height:28px">Present be: утверждение + not</div></div>
+  <div class="chap"><span class="tile">${ic('building', 26)}</span><div><div class="w">Глава 1</div><div class="m">Занятия 1–8</div></div><div class="cnt2">0<small>/8</small></div></div><div class="trk"></div>
+  <div class="chap"><span class="tile" style="color:var(--sec)">${ic('cards', 24)}</span><div><div class="w">Глава 2</div><div class="m">Занятия 9–16</div></div><div class="cnt2">0<small>/8</small></div></div>`, { lt });
+
+// ── 2. словарь курса: components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx ──
+const head = (n) => `<div class="dh"><div><div class="ov">Весь курс</div><div class="ti">Словарь</div><div class="cnt">Открыто: ${n}</div></div><span class="rb sq" style="margin-top:8px">${ic('close', 18)}</span></div>`;
+const course = (kind) => (lt) => {
+  if (kind === 'empty') return phone(`${head(0)}<div class="empty">${ic('book', 36)}Здесь появятся только слова, которые тебе уже встречались.</div>`, { lt });
+  const field = kind === 'query' ? `<span class="tv">bo</span><span class="cur"></span><span class="x">${ic('close', 16)}</span>` : kind === 'none' ? `<span class="tv">zebra</span><span class="cur"></span><span class="x">${ic('close', 16)}</span>` : 'Поиск слова';
+  const srch = `<div class="srch">${ic('search', 18)}${field}</div>`;
+  if (kind === 'none') return phone(`${head(14)}${srch}<div class="empty">${ic('search', 36)}Ничего не нашлось</div>`, { lt });
+  if (kind === 'query') return phone(`${head(14)}${srch}${sec('Урок 1', 1)}${wrow('boss', '/bɒs/', 'начальник')}`, { lt });
+  return phone(`${head(14)}${srch}${sec('Урок 1', 9)}${WORDS.map((w) => wrow(w[0], w[1], w[2], { saved: w[5] })).join('')}${sec('Урок 2', 5)}${wrow('question', '/ˈkwestʃən/', 'вопрос')}${wrow('where', '/weə/', 'где')}`, { lt });
+};
+
+// ── 3. классика: app/lesson_words.tsx (WordList :3417, переключатель :3800) ──
+const classicRow = (w, m, done, saved) => `<div class="card pcard"><span class="st ${done ? 'k' : 'n'}" role="img" aria-label="${done ? 'выучено' : 'ещё не выучено'}" style="${done ? '' : 'box-shadow:inset 0 0 0 2px var(--ring)'}">${done ? ic('check', 14) : ''}</span><div style="flex:1;min-width:0"><div class="w${done ? ' done' : ''}">${w}</div><div class="m">${m}</div></div>${bm(saved, 22)}</div>`;
+const classic = (lt) => phone(`
+  <div class="hd" style="margin-top:12px"><span class="rb l">${ic('chevL', 22)}</span><div class="ti m">1. Словарь</div></div>
+  <div class="prog"><div class="bar"><i style="width:16%"></i></div><span>6 / 37 выучено</span></div>
+  <div class="dsec" style="margin:22px 2px 10px"><span>Существительные</span></div>
+  ${classicRow('office', 'офис', true, true)}${classicRow('boss', 'начальник', true, false)}${classicRow('question', 'вопрос', false, false)}${classicRow('meeting', 'встреча', false, false)}${classicRow('report', 'отчёт', false, true)}
+  <div class="dsec" style="margin:18px 2px 10px"><span>Глаголы</span></div>
+  ${classicRow('work', 'работать', true, false)}`,
+  { lt, dock: `<div class="dock" style="padding:34px 20px 30px"><div class="seg"><span>Тренировка</span><span class="on">Список слов</span></div></div>` });
+
+mount(`
+<h2 id="entry">1. Как человек попадает в словарь курса</h2>
+<p class="lead">Книжка в шапке карты уроков (вкладка «Уроки»). На значке — число открытых слов, не больше 99. Кнопка есть только при открытой карте Learning V2 (<code>page === "v2"</code>); других входов в этот словарь в коде не нашёл.</p>
+${pair('Шапка карты: книжка со счётчиком слов — вторая справа', entry, 'Подпись кнопки для озвучки экрана — «Открыть словарь урока», хотя внутри словарь всего курса. Размер кнопки 44 × 44, значок 21.')}
+
+<h2 id="course">2. Словарь курса (Learning V2) — окно на весь экран</h2>
+<p class="lead">Слова всех 32 уроков, которые человек уже встретил в занятиях; список сгруппирован по урокам. Поиск идёт и по слову, и по переводу, но показывается только когда открыто ≥ 12 слов. У слова — озвучка (системный голос телефона) и закладка «в карточки».</p>
+${pair('Слова и разделы по урокам (14 слов открыто)', course('words'))}
+${pair('Ввод в поиске', course('query'), 'Совпадение в тексте не подсвечивается; число найденных нигде не показывается.')}
+${pair('Пока ничего не открыто (поиска нет — слов меньше 12)', course('empty'))}
+${pair('Ничего не нашлось', course('none'))}
+
+<h2 id="classic">3. «Словарь урока N» — классический курс</h2>
+<p class="lead">Открывается из меню урока старого курса. Два режима внизу: «Тренировка» (узнавание слов, сердечки и монеты) и «Список слов» (на макете). Слова урока сгруппированы по частям речи, слева значок «выучено / ещё нет», нажатие на слово — озвучка, справа закладка. Над списком — полоса «6 / 37 выучено», в конце списка кнопка «Начать тренировку» и «Сообщить об ошибке».</p>
+${pair('Список слов урока', classic, 'Здесь нет поиска совсем. Озвучка — английский голос телефона (en-US). Слова урока не видны в словаре курса, и наоборот.')}
+
+<h2 id="facts">4. Что есть и чего нет</h2>
+<div class="tbl"><table>
+<thead><tr><th>Возможность</th><th>Словарь курса (Learning V2)</th><th>«Словарь урока» (классика)</th></tr></thead>
+<tbody>
+<tr><td>Поиск</td><td>Есть, при ≥ 12 слов; по слову и переводу <code>…OverlayV1.tsx:190</code></td><td><b>Нет</b></td></tr>
+<tr><td>Откуда слова</td><td>Встреченные в занятиях всех 32 уроков, по языку изучения <code>lessons.tsx:2689</code></td><td>Слова одного урока старого курса</td></tr>
+<tr><td>Группировка</td><td>По урокам, заголовок «УРОК N» + число</td><td>По частям речи</td></tr>
+<tr><td>Что слово уже выучено</td><td><b>Не видно</b></td><td>Значок + полоса «N / M выучено» <code>lesson_words.tsx:3426</code></td></tr>
+<tr><td>Повтор слов</td><td><b>Нет</b> (кнопки «повторить» нет)</td><td>Вкладка «Тренировка» — но только слова этого урока, тратит энергию</td></tr>
+<tr><td>Озвучка</td><td>По кнопке у каждого слова, системный голос <code>…OverlayV1.tsx:252</code></td><td>Нажатием на слово; «слушать подряд» нет нигде</td></tr>
+<tr><td>Пример употребления</td><td><b>Нет</b>, строка не раскрывается</td><td><b>Нет</b></td></tr>
+<tr><td>Сохранение в карточки</td><td>Закладка 22 px; повторное нажатие снимает; бесплатных сохранённых — 50 (<code>free_limit.ts:5</code>), дальше открывается Plus</td><td>То же, источник «word»</td></tr>
+<tr><td>Пустое состояние</td><td>Книга + «Здесь появятся только слова, которые тебе уже встречались»</td><td>—</td></tr>
+</tbody></table></div>
+<div class="rec"><b>Главные неудобства (по коду)</b>
+<p>1) Два словаря с разным видом и разным набором слов. 2) В словаре курса нет ни статуса слова, ни повтора — это просто алфавитный справочник, который нельзя «проработать». 3) Поиск скрыт, пока слов мало, и нет фильтров («только сохранённые», «только новые»). 4) Слово не раскрывается: нет примера из занятия и откуда оно. 5) Закладка и озвучка не групповые: нельзя послушать подряд или сохранить сразу несколько.</p>
+<p><a href="dictionary-options.html" style="color:var(--page-ink);font-weight:600">Три варианта, как это исправить →</a></p></div>
+`);
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-31:intro1:r2": {
+          "ru": "Одна комната: was.",
+          "uk": "Одна кімната: was."
+        },
+        "en:lesson-11:session-31:intro1:r3": {
+          "ru": "С was не нужен did.",
+          "uk": "Із was не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-31:intro2:r2": {
+          "ru": "Два предмета: were.",
+          "uk": "Два предмети: were."
+        },
+        "en:lesson-11:session-31:intro2:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-31:intro3:r2": {
+          "ru": "Один ценник: was.",
+          "uk": "Один цінник: was."
+        },
+        "en:lesson-11:session-31:intro3:r3": {
+          "ru": "Вопрос с was строится без did.",
+          "uk": "Запитання з was будується без did."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ef494b8060fb8a0a9e14379a43af420ff57ecc738ea277216ea4b9ea062bf6e0"
+}

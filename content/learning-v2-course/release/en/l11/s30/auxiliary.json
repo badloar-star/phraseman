@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-30:intro1:r2": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        },
+        "en:lesson-11:session-30:intro1:r3": {
+          "ru": "В вопросе с was не нужен did.",
+          "uk": "У запитанні з was не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-30:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-30:intro2:r3": {
+          "ru": "Одна касса: was.",
+          "uk": "Одна каса: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-30:intro3:r2": {
+          "ru": "Одно табло: was.",
+          "uk": "Одне табло: was."
+        },
+        "en:lesson-11:session-30:intro3:r3": {
+          "ru": "Здесь перед одним предметом нужен a.",
+          "uk": "Тут перед одним предметом потрібне a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d1b9973fe1fe781f0fac3e8ce459a99e8bec2375e22a927851cb1f231948e03"
+}

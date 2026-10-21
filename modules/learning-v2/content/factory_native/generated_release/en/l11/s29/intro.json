@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Городская администрация",
+        "uk": "Міська адміністрація"
+      },
+      "bodyByLocale": {
+        "ru": "Town hall — «здание городской администрации», также «ратуша». Вчера оно было открыто: The town hall was open yesterday. Сейчас закрыто: It is closed now. Выберите сообщение о вчерашнем дне.",
+        "uk": "Town hall — «будівля міської адміністрації», також «ратуша». Учора вона була відчинена: The town hall was open yesterday. Зараз зачинена: It is closed now. Виберіть повідомлення про вчорашній день."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-29:intro1:r1",
+              "text": "The town hall was open yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro1:r2",
+              "text": "The town hall is open yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro1:r3",
+              "text": "The town hall were open yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-29:intro1:r1",
+              "text": "The town hall was open yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro1:r2",
+              "text": "The town hall is open yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro1:r3",
+              "text": "The town hall were open yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пожарная часть и машина",
+        "uk": "Пожежна частина й машина"
+      },
+      "bodyByLocale": {
+        "ru": "Fire station — «пожарная часть», fire engine — «пожарная машина». Здесь engine входит в название машины, его не нужно переводить отдельно. Вчера рядом с пожарной частью была пожарная машина: There was a fire engine near the fire station. Выберите эту фразу.",
+        "uk": "Fire station — «пожежна частина», fire engine — «пожежна машина». Тут engine входить до назви машини, його не потрібно перекладати окремо. Учора поруч із пожежною частиною була пожежна машина: There was a fire engine near the fire station. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-29:intro2:r1",
+              "text": "There was a fire engine near the fire station."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro2:r2",
+              "text": "There were a fire engine near the fire station."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro2:r3",
+              "text": "There was fire engine near the fire station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-29:intro2:r1",
+              "text": "There was a fire engine near the fire station."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro2:r2",
+              "text": "There were a fire engine near the fire station."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro2:r3",
+              "text": "There was fire engine near the fire station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Машина скорой помощи",
+        "uk": "Машина швидкої допомоги"
+      },
+      "bodyByLocale": {
+        "ru": "Ambulance — «машина скорой помощи». Перед начальным гласным звуком ставим an: There was an ambulance near the hospital — «Рядом с больницей была машина скорой помощи». Если машины две: There were two ambulances. Выберите фразу об одной машине у больницы.",
+        "uk": "Ambulance — «машина швидкої допомоги». Перед початковим голосним звуком ставимо an: There was an ambulance near the hospital — «Поруч із лікарнею була машина швидкої допомоги». Якщо машин дві: There were two ambulances. Виберіть фразу про одну машину біля лікарні."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-29:intro3:r1",
+              "text": "There was an ambulance near the hospital."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro3:r2",
+              "text": "There was a ambulance near the hospital."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro3:r3",
+              "text": "There were an ambulance near the hospital."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-29:intro3:r1",
+              "text": "There was an ambulance near the hospital."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro3:r2",
+              "text": "There was a ambulance near the hospital."
+            },
+            {
+              "responseId": "en:lesson-11:session-29:intro3:r3",
+              "text": "There were an ambulance near the hospital."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b52ff682feec9a8099c1cab057ba9e006ca199a4c4df798601697327970eaaa4"
+}

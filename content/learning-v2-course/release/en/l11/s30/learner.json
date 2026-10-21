@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-30:word:train-driver",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — train driver",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:word:train-driver:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — train driver",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:word:train-driver:audio",
+          "transcript": "train driver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:word:train-driver:r1",
+            "targetText": "train driver",
+            "meaningByLocale": {
+              "ru": "машинист поезда.",
+              "uk": "машиніст поїзда."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train driver",
+          "definitionByLocale": {
+            "ru": "машинист поезда.",
+            "uk": "машиніст поїзда."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что машинист был не уставшим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что машинист был не уставшим",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The train driver was not tired.",
+        "localizedMeaning": {
+          "ru": "Скажите, что машинист был не уставшим",
+          "uk": "Скажіть, що машиніст не був утомлений"
+        },
+        "orderedTokens": [
+          "The",
+          "train",
+          "driver",
+          "was",
+          "not",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i02:r1",
+          "text": "The train driver was near the train."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i02:r2",
+          "text": "The train driver is near the train."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i02:r3",
+          "text": "The train driver was in the café."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i02:audio",
+          "transcript": "The train driver was near the train."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:i02:r1",
+            "targetText": "The train driver was near the train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i02:r2",
+            "targetText": "The train driver is near the train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i02:r3",
+            "targetText": "The train driver was in the café.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The train driver was near the train.",
+              "uk": "У записі звучить The train driver was near the train."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The train driver was near the train.",
+              "uk": "У записі звучить The train driver was near the train."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера у кафе были два машиниста. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера у кафе были два машиниста. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера у кафе были два машиниста. Выберите форму",
+          "uk": "Учора біля кафе були два машиністи. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two train drivers near the café yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-30:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вчера у кафе были два машиниста. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера у кафе были два машиниста. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Два человека: were.",
+              "uk": "Дві людини: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера у кафе были два машиниста. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were.",
+              "uk": "Учора: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:word:ticket-office",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ticket office",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:word:ticket-office:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ticket office",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:word:ticket-office:audio",
+          "transcript": "ticket office"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:word:ticket-office:r1",
+            "targetText": "ticket office",
+            "meaningByLocale": {
+              "ru": "билетная касса.",
+              "uk": "квиткова каса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ticket office",
+          "definitionByLocale": {
+            "ru": "билетная касса.",
+            "uk": "квиткова каса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли билетная касса открыта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли билетная касса открыта",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the ticket office open?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли билетная касса открыта",
+          "uk": "Запитайте, чи була квиткова каса відчинена"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "ticket",
+          "office",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i05:r1",
+          "text": "The ticket office is closed now."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i05:r2",
+          "text": "The ticket office was closed yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i05:r3",
+          "text": "The ticket office is open now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i05:audio",
+          "transcript": "The ticket office is closed now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:i05:r1",
+            "targetText": "The ticket office is closed now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i05:r2",
+            "targetText": "The ticket office was closed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i05:r3",
+            "targetText": "The ticket office is open now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ticket office is closed now.",
+              "uk": "У записі звучить The ticket office is closed now."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ticket office is closed now.",
+              "uk": "У записі звучить The ticket office is closed now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера на станции была билетная касса. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера на станции была билетная касса. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера на станции была билетная касса. Выберите форму",
+          "uk": "Учора на станції була квиткова каса. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a ticket office at the station yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-30:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вчера на станции была билетная касса. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Вчера на станции была билетная касса. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна касса: was.",
+              "uk": "Одна каса: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Вчера на станции была билетная касса. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:word:railway",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — railway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:word:railway:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — railway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:word:railway:audio",
+          "transcript": "railway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:word:railway:r1",
+            "targetText": "railway",
+            "meaningByLocale": {
+              "ru": "железная дорога.",
+              "uk": "залізниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "railway",
+          "definitionByLocale": {
+            "ru": "железная дорога.",
+            "uk": "залізниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что железная дорога была рядом с деревней",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что железная дорога была рядом с деревней",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The railway was near the village.",
+        "localizedMeaning": {
+          "ru": "Скажите, что железная дорога была рядом с деревней",
+          "uk": "Скажіть, що залізниця була поруч із селом"
+        },
+        "orderedTokens": [
+          "The",
+          "railway",
+          "was",
+          "near",
+          "the",
+          "village"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i08:r1",
+          "text": "There was a bridge over the railway."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i08:r2",
+          "text": "There was a bridge over the river."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i08:r3",
+          "text": "There were two bridges over the railway."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i08:audio",
+          "transcript": "There was a bridge over the railway."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:i08:r1",
+            "targetText": "There was a bridge over the railway.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i08:r2",
+            "targetText": "There was a bridge over the river.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i08:r3",
+            "targetText": "There were two bridges over the railway.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a bridge over the railway.",
+              "uk": "У записі звучить There was a bridge over the railway."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a bridge over the railway.",
+              "uk": "У записі звучить There was a bridge over the railway."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Was the railway near the village? Она была далеко от деревни. Ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i09:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i09:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i09:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Was the railway near the village? Она была далеко от деревни. Ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the railway near the village? Она была далеко от деревни. Ответьте отрицательно",
+          "uk": "Друг запитав Was the railway near the village? Вона була далеко від села. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-30:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг спросил Was the railway near the village? Она была далеко от деревни. Ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the railway near the village? Она была далеко от деревни. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the railway near the village? Она была далеко от деревни. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "Вопрос с was: ответ wasn’t.",
+              "uk": "Запитання з was: відповідь wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:word:departure-board",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — departure board",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:word:departure-board:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — departure board",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:word:departure-board:audio",
+          "transcript": "departure board"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:word:departure-board:r1",
+            "targetText": "departure board",
+            "meaningByLocale": {
+              "ru": "табло отправлений транспорта.",
+              "uk": "табло відправлень транспорту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "departure board",
+          "definitionByLocale": {
+            "ru": "табло отправлений транспорта.",
+            "uk": "табло відправлень транспорту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: у двери было табло отправлений. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: у двери было табло отправлений. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a departure board near the door.",
+        "localizedMeaning": {
+          "ru": "Сообщите: у двери было табло отправлений. Начните с There",
+          "uk": "Повідомте: біля дверей було табло відправлень. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "departure",
+          "board",
+          "near",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i11:r1",
+          "text": "The departure board was on the wall."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i11:r2",
+          "text": "The departure board is on the wall."
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i11:r3",
+          "text": "The departure board was near the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i11:audio",
+          "transcript": "The departure board was on the wall."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-30:i11:r1",
+            "targetText": "The departure board was on the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i11:r2",
+            "targetText": "The departure board is on the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i11:r3",
+            "targetText": "The departure board was near the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The departure board was on the wall.",
+              "uk": "У записі звучить The departure board was on the wall."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The departure board was on the wall.",
+              "uk": "У записі звучить The departure board was on the wall."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера на станции было два табло отправлений. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-30:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-30:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера на станции было два табло отправлений. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера на станции было два табло отправлений. Выберите форму",
+          "uk": "Учора на станції було два табло відправлень. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two departure boards at the station yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-30:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вчера на станции было два табло отправлений. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Вчера на станции было два табло отправлений. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Два табло: were.",
+              "uk": "Два табло: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Вчера на станции было два табло отправлений. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "В прошлом о двух предметах: were.",
+              "uk": "У минулому про два предмети: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-30:i13:p1",
+            "target": "train driver",
+            "meaningByLocale": {
+              "ru": "машинист поезда",
+              "uk": "машиніст поїзда"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-30:i13:p2",
+            "target": "ticket office",
+            "meaningByLocale": {
+              "ru": "билетная касса",
+              "uk": "квиткова каса"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-30:i13:p3",
+            "target": "railway",
+            "meaningByLocale": {
+              "ru": "железная дорога",
+              "uk": "залізниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-30:i13:p4",
+            "target": "departure board",
+            "meaningByLocale": {
+              "ru": "табло отправлений",
+              "uk": "табло відправлень"
+            }
+          }
+        ],
+        "leftColumn": [
+          "train driver",
+          "ticket office",
+          "railway",
+          "departure board"
+        ],
+        "rightColumn": [
+          "машинист поезда",
+          "билетная касса",
+          "железная дорога",
+          "табло отправлений"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i14:audio",
+          "transcript": "Please don't move my suitcase."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my suitcase.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "suitcase"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i15:audio",
+          "transcript": "We are waiting right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are waiting right now.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "waiting",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, был ли машинист в кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите, был ли машинист в кафе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i16:audio",
+          "transcript": "Was the train driver in the café?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the train driver in the café?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что касса была не у двери",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что касса была не у двери",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-30:i17:audio",
+          "transcript": "The ticket office was not near the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ticket office was not near the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cb8e2330646464ffcff174a686d01eb0de99f2a1360e89d821a6f66029f844e5"
+}

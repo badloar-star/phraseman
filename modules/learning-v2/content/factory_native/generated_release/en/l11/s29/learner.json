@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-29:word:town-hall",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — town hall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:word:town-hall:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — town hall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:word:town-hall:audio",
+          "transcript": "town hall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:word:town-hall:r1",
+            "targetText": "town hall",
+            "meaningByLocale": {
+              "ru": "здание городской администрации, ратуша.",
+              "uk": "будівля міської адміністрації, ратуша."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "town hall",
+          "definitionByLocale": {
+            "ru": "здание городской администрации, ратуша.",
+            "uk": "будівля міської адміністрації, ратуша."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли городская администрация открыта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли городская администрация открыта",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the town hall open?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли городская администрация открыта",
+          "uk": "Запитайте, чи була міська адміністрація відчинена"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "town",
+          "hall",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i02:r1",
+          "text": "The town hall was closed yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i02:r2",
+          "text": "The town hall is closed now."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i02:r3",
+          "text": "The town hall was open yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i02:audio",
+          "transcript": "The town hall was closed yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:i02:r1",
+            "targetText": "The town hall was closed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i02:r2",
+            "targetText": "The town hall is closed now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i02:r3",
+            "targetText": "The town hall was open yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The town hall was closed yesterday.",
+              "uk": "У записі звучить The town hall was closed yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The town hall was closed yesterday.",
+              "uk": "У записі звучить The town hall was closed yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас администрация открыта. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас администрация открыта. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас администрация открыта. Выберите форму",
+          "uk": "Зараз адміністрація відчинена. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The town hall ___ open now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-29:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сейчас администрация открыта. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Сейчас администрация открыта. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Сейчас администрация открыта. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одно здание: is.",
+              "uk": "Одна будівля: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:word:fire-station",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fire station",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:word:fire-station:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fire station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:word:fire-station:audio",
+          "transcript": "fire station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:word:fire-station:r1",
+            "targetText": "fire station",
+            "meaningByLocale": {
+              "ru": "пожарная часть.",
+              "uk": "пожежна частина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fire station",
+          "definitionByLocale": {
+            "ru": "пожарная часть.",
+            "uk": "пожежна частина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: рядом с парком была пожарная часть. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: рядом с парком была пожарная часть. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a fire station near the park.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом с парком была пожарная часть. Начните с There",
+          "uk": "Повідомте: поруч із парком була пожежна частина. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "fire",
+          "station",
+          "near",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i05:r1",
+          "text": "The fire station was near the bridge."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i05:r2",
+          "text": "The fire station was near the school."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i05:r3",
+          "text": "The fire station is near the bridge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i05:audio",
+          "transcript": "The fire station was near the bridge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:i05:r1",
+            "targetText": "The fire station was near the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i05:r2",
+            "targetText": "The fire station was near the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i05:r3",
+            "targetText": "The fire station is near the bridge.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fire station was near the bridge.",
+              "uk": "У записі звучить The fire station was near the bridge."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fire station was near the bridge.",
+              "uk": "У записі звучить The fire station was near the bridge."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Раньше в городе были две пожарные части. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раньше в городе были две пожарные части. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Раньше в городе были две пожарные части. Выберите форму",
+          "uk": "Раніше в місті були дві пожежні частини. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two fire stations in the town.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-29:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Раньше в городе были две пожарные части. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Раньше в городе были две пожарные части. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Два места: were.",
+              "uk": "Два місця: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Раньше в городе были две пожарные части. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Прошлое, несколько мест: were.",
+              "uk": "Минулий час, кілька місць: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:word:fire-engine",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fire engine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:word:fire-engine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fire engine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:word:fire-engine:audio",
+          "transcript": "fire engine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:word:fire-engine:r1",
+            "targetText": "fire engine",
+            "meaningByLocale": {
+              "ru": "пожарная машина.",
+              "uk": "пожежна машина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fire engine",
+          "definitionByLocale": {
+            "ru": "пожарная машина.",
+            "uk": "пожежна машина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: рядом с мостом была пожарная машина. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: рядом с мостом была пожарная машина. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a fire engine near the bridge.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом с мостом была пожарная машина. Начните с There",
+          "uk": "Повідомте: поруч із мостом була пожежна машина. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "fire",
+          "engine",
+          "near",
+          "the",
+          "bridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i08:r1",
+          "text": "The fire engine was next to the school."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i08:r2",
+          "text": "The fire engine is next to the school."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i08:r3",
+          "text": "The fire engine was next to the park."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i08:audio",
+          "transcript": "The fire engine was next to the school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:i08:r1",
+            "targetText": "The fire engine was next to the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i08:r2",
+            "targetText": "The fire engine is next to the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i08:r3",
+            "targetText": "The fire engine was next to the park.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fire engine was next to the school.",
+              "uk": "У записі звучить The fire engine was next to the school."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fire engine was next to the school.",
+              "uk": "У записі звучить The fire engine was next to the school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера пожарная машина была у пожарной части. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера пожарная машина была у пожарной части. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера пожарная машина была у пожарной части. Выберите форму",
+          "uk": "Учора пожежна машина була біля пожежної частини. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The fire engine ___ near the fire station yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-29:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Вчера пожарная машина была у пожарной части. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Вчера пожарная машина была у пожарной части. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Вчера пожарная машина была у пожарной части. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна машина: was.",
+              "uk": "Одна машина: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:word:ambulance",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ambulance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:word:ambulance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ambulance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:word:ambulance:audio",
+          "transcript": "ambulance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:word:ambulance:r1",
+            "targetText": "ambulance",
+            "meaningByLocale": {
+              "ru": "машина скорой помощи.",
+              "uk": "машина швидкої допомоги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ambulance",
+          "definitionByLocale": {
+            "ru": "машина скорой помощи.",
+            "uk": "машина швидкої допомоги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: рядом со станцией была машина скорой помощи. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: рядом со станцией была машина скорой помощи. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was an ambulance near the station.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом со станцией была машина скорой помощи. Начните с There",
+          "uk": "Повідомте: поруч зі станцією була машина швидкої допомоги. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "an",
+          "ambulance",
+          "near",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i11:r1",
+          "text": "There were two ambulances near the hospital."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i11:r2",
+          "text": "There was an ambulance near the hospital."
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i11:r3",
+          "text": "There were two ambulances near the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i11:audio",
+          "transcript": "There were two ambulances near the hospital."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-29:i11:r1",
+            "targetText": "There were two ambulances near the hospital.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i11:r2",
+            "targetText": "There was an ambulance near the hospital.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i11:r3",
+            "targetText": "There were two ambulances near the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two ambulances near the hospital.",
+              "uk": "У записі звучить There were two ambulances near the hospital."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two ambulances near the hospital.",
+              "uk": "У записі звучить There were two ambulances near the hospital."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Was the ambulance near the school? Она была у больницы. Ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-29:i12:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i12:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-29:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Was the ambulance near the school? Она была у больницы. Ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the ambulance near the school? Она была у больницы. Ответьте отрицательно",
+          "uk": "Друг запитав Was the ambulance near the school? Вона була біля лікарні. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-29:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг спросил Was the ambulance near the school? Она была у больницы. Ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the ambulance near the school? Она была у больницы. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the ambulance near the school? Она была у больницы. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "Вопрос с was: ответ wasn’t.",
+              "uk": "Запитання з was: відповідь wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-29:i13:p1",
+            "target": "town hall",
+            "meaningByLocale": {
+              "ru": "городская администрация",
+              "uk": "міська адміністрація"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-29:i13:p2",
+            "target": "fire station",
+            "meaningByLocale": {
+              "ru": "пожарная часть",
+              "uk": "пожежна частина"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-29:i13:p3",
+            "target": "fire engine",
+            "meaningByLocale": {
+              "ru": "пожарная машина",
+              "uk": "пожежна машина"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-29:i13:p4",
+            "target": "ambulance",
+            "meaningByLocale": {
+              "ru": "машина скорой помощи",
+              "uk": "машина швидкої допомоги"
+            }
+          }
+        ],
+        "leftColumn": [
+          "town hall",
+          "fire station",
+          "fire engine",
+          "ambulance"
+        ],
+        "rightColumn": [
+          "городская администрация",
+          "пожарная часть",
+          "пожарная машина",
+          "машина скорой помощи"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i14:audio",
+          "transcript": "Please don't hurry me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't hurry me.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "hurry",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i15:audio",
+          "transcript": "We are walking right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are walking right now.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "walking",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, была ли пожарная машина у больницы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите, была ли пожарная машина у больницы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i16:audio",
+          "transcript": "Was the fire engine near the hospital?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the fire engine near the hospital?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите, что у моста были две машины скорой помощи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Сообщите, что у моста были две машины скорой помощи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-29:i17:audio",
+          "transcript": "There were two ambulances near the bridge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There were two ambulances near the bridge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a0846d4d810283a2a6d20d4abfe98c5d74af22864bb3f90f0c4c1a78923b39e3"
+}

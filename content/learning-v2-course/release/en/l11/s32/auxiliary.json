@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-32:intro1:r2": {
+          "ru": "Одна стойка: was.",
+          "uk": "Одна стійка: was."
+        },
+        "en:lesson-11:session-32:intro1:r3": {
+          "ru": "Здесь нужен a перед одним предметом.",
+          "uk": "Тут потрібне a перед одним предметом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-32:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-32:intro2:r3": {
+          "ru": "Одна карта: was.",
+          "uk": "Одна картка: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-32:intro3:r2": {
+          "ru": "Это одна кровать: was.",
+          "uk": "Це одне ліжко: was."
+        },
+        "en:lesson-11:session-32:intro3:r3": {
+          "ru": "Перед одним исчисляемым предметом здесь нужен a.",
+          "uk": "Перед одним злічуваним предметом тут потрібне a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "621ebba8b7bc67a0af2ae6334babb641fcf93a84f947fe849e81ca536dc1e990"
+}

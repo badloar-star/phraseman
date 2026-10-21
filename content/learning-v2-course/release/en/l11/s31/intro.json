@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Примерочная",
+        "uk": "Примірювальна"
+      },
+      "bodyByLocale": {
+        "ru": "Changing room — «примерочная» в магазине одежды. Free здесь значит «свободная, не занятая»: Was the changing room free? — «Примерочная была свободна?» Если в ней никого не было, ответьте: Yes, it was. Выберите вопрос о свободной примерочной.",
+        "uk": "Changing room — «примірювальна» в магазині одягу. Free тут означає «вільна, не зайнята»: Was the changing room free? — «Примірювальна була вільна?» Якщо в ній нікого не було, відповідайте: Yes, it was. Виберіть запитання про вільну примірювальну."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-31:intro1:r1",
+              "text": "Was the changing room free?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro1:r2",
+              "text": "Were the changing room free?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro1:r3",
+              "text": "Did the changing room was free?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-31:intro1:r1",
+              "text": "Was the changing room free?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro1:r2",
+              "text": "Were the changing room free?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro1:r3",
+              "text": "Did the changing room was free?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Витрина и корзина",
+        "uk": "Вітрина й кошик"
+      },
+      "bodyByLocale": {
+        "ru": "Shop window — «витрина магазина», shopping basket — «корзина для покупок». Вчера в витрине было платье: There was a dress in the shop window. А у двери стояли две корзины: There were two shopping baskets next to the door. Выберите фразу о двух корзинах.",
+        "uk": "Shop window — «вітрина магазину», shopping basket — «кошик для покупок». Учора у вітрині була сукня: There was a dress in the shop window. А біля дверей стояли два кошики: There were two shopping baskets next to the door. Виберіть фразу про два кошики."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-31:intro2:r1",
+              "text": "There were two shopping baskets next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro2:r2",
+              "text": "There was two shopping baskets next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro2:r3",
+              "text": "There were a two shopping baskets next to the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-31:intro2:r1",
+              "text": "There were two shopping baskets next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro2:r2",
+              "text": "There was two shopping baskets next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro2:r3",
+              "text": "There were a two shopping baskets next to the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ценник",
+        "uk": "Цінник"
+      },
+      "bodyByLocale": {
+        "ru": "Price tag — «ценник», ярлык с ценой на товаре. Вчера на пальто был ценник: There was a price tag on the coat. Если спрашиваем о знакомом ценнике: Was the price tag on the coat? Выберите вопрос.",
+        "uk": "Price tag — «цінник», ярлик із ціною на товарі. Учора на пальті був цінник: There was a price tag on the coat. Якщо запитуємо про знайомий цінник: Was the price tag on the coat? Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-31:intro3:r1",
+              "text": "Was the price tag on the coat?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro3:r2",
+              "text": "Were the price tag on the coat?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro3:r3",
+              "text": "Did the price tag was on the coat?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-31:intro3:r1",
+              "text": "Was the price tag on the coat?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro3:r2",
+              "text": "Were the price tag on the coat?"
+            },
+            {
+              "responseId": "en:lesson-11:session-31:intro3:r3",
+              "text": "Did the price tag was on the coat?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8c923e99e1da3cf0355b1e808a7360d4826eba64ba3335a83079d6cb3d6750b1"
+}

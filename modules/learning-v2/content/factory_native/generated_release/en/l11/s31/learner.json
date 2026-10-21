@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-31:word:changing-room",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — changing room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:word:changing-room:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — changing room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:word:changing-room:audio",
+          "transcript": "changing room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:word:changing-room:r1",
+            "targetText": "changing room",
+            "meaningByLocale": {
+              "ru": "примерочная в магазине одежды.",
+              "uk": "примірювальна в магазині одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "changing room",
+          "definitionByLocale": {
+            "ru": "примерочная в магазине одежды.",
+            "uk": "примірювальна в магазині одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли примерочная свободна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли примерочная свободна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the changing room free?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли примерочная свободна",
+          "uk": "Запитайте, чи була примірювальна вільна"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "changing",
+          "room",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i02:r1",
+          "text": "The changing room was empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i02:r2",
+          "text": "The changing room is empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i02:r3",
+          "text": "Was the changing room empty?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i02:audio",
+          "transcript": "The changing room was empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:i02:r1",
+            "targetText": "The changing room was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i02:r2",
+            "targetText": "The changing room is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i02:r3",
+            "targetText": "Was the changing room empty?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The changing room was empty.",
+              "uk": "У записі звучить The changing room was empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The changing room was empty.",
+              "uk": "У записі звучить The changing room was empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В магазине были две примерочные. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В магазине были две примерочные. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В магазине были две примерочные. Выберите форму",
+          "uk": "У магазині були дві примірювальні. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two changing rooms in the shop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-31:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В магазине были две примерочные. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "В магазине были две примерочные. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Две комнаты: were.",
+              "uk": "Дві кімнати: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "В магазине были две примерочные. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Прошлое, множественное число: were.",
+              "uk": "Минулий час, множина: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:word:shop-window",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shop window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:word:shop-window:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shop window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:word:shop-window:audio",
+          "transcript": "shop window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:word:shop-window:r1",
+            "targetText": "shop window",
+            "meaningByLocale": {
+              "ru": "витрина магазина.",
+              "uk": "вітрина магазину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shop window",
+          "definitionByLocale": {
+            "ru": "витрина магазина.",
+            "uk": "вітрина магазину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: в витрине было платье. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: в витрине было платье. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a dress in the shop window.",
+        "localizedMeaning": {
+          "ru": "Сообщите: в витрине было платье. Начните с There",
+          "uk": "Повідомте: у вітрині була сукня. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "dress",
+          "in",
+          "the",
+          "shop",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i05:r1",
+          "text": "The shop window was clean."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i05:r2",
+          "text": "The shop window was dirty."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i05:r3",
+          "text": "The shop window is clean."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i05:audio",
+          "transcript": "The shop window was clean."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:i05:r1",
+            "targetText": "The shop window was clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i05:r2",
+            "targetText": "The shop window was dirty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i05:r3",
+            "targetText": "The shop window is clean.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop window was clean.",
+              "uk": "У записі звучить The shop window was clean."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop window was clean.",
+              "uk": "У записі звучить The shop window was clean."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас витрина пустая. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас витрина пустая. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас витрина пустая. Выберите форму",
+          "uk": "Зараз вітрина порожня. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The shop window ___ empty now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-31:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сейчас витрина пустая. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Сейчас витрина пустая. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Сейчас витрина пустая. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна витрина: is.",
+              "uk": "Одна вітрина: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:word:shopping-basket",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shopping basket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:word:shopping-basket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shopping basket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:word:shopping-basket:audio",
+          "transcript": "shopping basket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:word:shopping-basket:r1",
+            "targetText": "shopping basket",
+            "meaningByLocale": {
+              "ru": "корзина для покупок.",
+              "uk": "кошик для покупок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shopping basket",
+          "definitionByLocale": {
+            "ru": "корзина для покупок.",
+            "uk": "кошик для покупок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли корзина тяжёлой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли корзина тяжёлой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the shopping basket heavy?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли корзина тяжёлой",
+          "uk": "Запитайте, чи був кошик важкий"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "shopping",
+          "basket",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i08:r1",
+          "text": "There was a shopping basket next to the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i08:r2",
+          "text": "There were two shopping baskets next to the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i08:r3",
+          "text": "The shopping basket was empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i08:audio",
+          "transcript": "There was a shopping basket next to the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:i08:r1",
+            "targetText": "There was a shopping basket next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i08:r2",
+            "targetText": "There were two shopping baskets next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i08:r3",
+            "targetText": "The shopping basket was empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a shopping basket next to the door.",
+              "uk": "У записі звучить There was a shopping basket next to the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a shopping basket next to the door.",
+              "uk": "У записі звучить There was a shopping basket next to the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера корзина была пустой. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера корзина была пустой. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера корзина была пустой. Выберите форму",
+          "uk": "Учора кошик був порожній. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The shopping basket ___ empty yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-31:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Вчера корзина была пустой. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Вчера корзина была пустой. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Yesterday — прошлое: was.",
+              "uk": "Yesterday — минуле: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Вчера корзина была пустой. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна корзина: was.",
+              "uk": "Один кошик: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:word:price-tag",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — price tag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:word:price-tag:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — price tag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:word:price-tag:audio",
+          "transcript": "price tag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:word:price-tag:r1",
+            "targetText": "price tag",
+            "meaningByLocale": {
+              "ru": "ценник, ярлык с ценой.",
+              "uk": "цінник, ярлик із ціною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "price tag",
+          "definitionByLocale": {
+            "ru": "ценник, ярлык с ценой.",
+            "uk": "цінник, ярлик із ціною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: на платье был ценник. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: на платье был ценник. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a price tag on the dress.",
+        "localizedMeaning": {
+          "ru": "Сообщите: на платье был ценник. Начните с There",
+          "uk": "Повідомте: на сукні був цінник. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "price",
+          "tag",
+          "on",
+          "the",
+          "dress"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i11:r1",
+          "text": "The price tag was on the coat."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i11:r2",
+          "text": "The price tag was on the dress."
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i11:r3",
+          "text": "The price tag is on the coat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i11:audio",
+          "transcript": "The price tag was on the coat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-31:i11:r1",
+            "targetText": "The price tag was on the coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i11:r2",
+            "targetText": "The price tag was on the dress.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i11:r3",
+            "targetText": "The price tag is on the coat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The price tag was on the coat.",
+              "uk": "У записі звучить The price tag was on the coat."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The price tag was on the coat.",
+              "uk": "У записі звучить The price tag was on the coat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Was the price tag on the coat? Он был на платье. Ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-31:i12:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i12:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-31:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Was the price tag on the coat? Он был на платье. Ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the price tag on the coat? Он был на платье. Ответьте отрицательно",
+          "uk": "Друг запитав Was the price tag on the coat? Він був на сукні. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-31:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг спросил Was the price tag on the coat? Он был на платье. Ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the price tag on the coat? Он был на платье. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the price tag on the coat? Он был на платье. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "Ответ на вопрос с was: wasn’t.",
+              "uk": "Відповідь на запитання з was: wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-31:i13:p1",
+            "target": "changing room",
+            "meaningByLocale": {
+              "ru": "примерочная",
+              "uk": "примірювальна"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-31:i13:p2",
+            "target": "shop window",
+            "meaningByLocale": {
+              "ru": "витрина магазина",
+              "uk": "вітрина магазину"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-31:i13:p3",
+            "target": "shopping basket",
+            "meaningByLocale": {
+              "ru": "корзина для покупок",
+              "uk": "кошик для покупок"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-31:i13:p4",
+            "target": "price tag",
+            "meaningByLocale": {
+              "ru": "ценник",
+              "uk": "цінник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "changing room",
+          "shop window",
+          "shopping basket",
+          "price tag"
+        ],
+        "rightColumn": [
+          "примерочная",
+          "витрина магазина",
+          "корзина для покупок",
+          "ценник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i14:audio",
+          "transcript": "Please don't move my coat."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my coat.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "coat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i15:audio",
+          "transcript": "I am looking at a dress right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am looking at a dress right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "looking",
+          "at",
+          "a",
+          "dress",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что примерочная была не пустой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что примерочная была не пустой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i16:audio",
+          "transcript": "The changing room was not empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The changing room was not empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите, что у стула были две корзины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Сообщите, что у стула были две корзины",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-31:i17:audio",
+          "transcript": "There were two shopping baskets near the chair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There were two shopping baskets near the chair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "428ee5f1e8d9fe897a9e03463a04a035704a0d29e144b3d0ca5e05463fee01d1"
+}

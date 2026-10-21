@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-30:word:train-driver",
+    "correctText": "train driver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i01",
+    "correctText": "The train driver was not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i02",
+    "correctText": "The train driver was near the train.",
+    "correctResponseId": "en:lesson-11:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:word:ticket-office",
+    "correctText": "ticket office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i04",
+    "correctText": "Was the ticket office open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i05",
+    "correctText": "The ticket office is closed now.",
+    "correctResponseId": "en:lesson-11:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:word:railway",
+    "correctText": "railway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i07",
+    "correctText": "The railway was near the village.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i08",
+    "correctText": "There was a bridge over the railway.",
+    "correctResponseId": "en:lesson-11:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i09",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:word:departure-board",
+    "correctText": "departure board",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i10",
+    "correctText": "There was a departure board near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i11",
+    "correctText": "The departure board was on the wall.",
+    "correctResponseId": "en:lesson-11:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i13",
+    "correctText": "en:lesson-11:session-30:i13:p1=train driver\nen:lesson-11:session-30:i13:p2=ticket office\nen:lesson-11:session-30:i13:p3=railway\nen:lesson-11:session-30:i13:p4=departure board",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i14",
+    "correctText": "Please don't move my suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i15",
+    "correctText": "We are waiting right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i16",
+    "correctText": "Was the train driver in the café?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-30:i17",
+    "correctText": "The ticket office was not near the door.",
+    "correctResponseId": null
+  }
+]

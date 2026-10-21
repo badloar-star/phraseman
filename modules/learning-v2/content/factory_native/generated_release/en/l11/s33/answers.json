@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-33:word:bath-towel",
+    "correctText": "bath towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i01",
+    "correctText": "Was the bath towel dry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i02",
+    "correctText": "The bath towel was wet.",
+    "correctResponseId": "en:lesson-11:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:word:hand-towel",
+    "correctText": "hand towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i04",
+    "correctText": "There was a hand towel next to the washbasin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i05",
+    "correctText": "There were two hand towels in the bathroom.",
+    "correctResponseId": "en:lesson-11:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:word:duvet-cover",
+    "correctText": "duvet cover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i07",
+    "correctText": "Was the duvet cover clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i08",
+    "correctText": "The duvet cover was in the cupboard.",
+    "correctResponseId": "en:lesson-11:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:word:bedspread",
+    "correctText": "bedspread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i10",
+    "correctText": "There was a bedspread on the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i11",
+    "correctText": "The bedspread is on the chair now.",
+    "correctResponseId": "en:lesson-11:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i13",
+    "correctText": "en:lesson-11:session-33:i13:p1=bath towel\nen:lesson-11:session-33:i13:p2=hand towel\nen:lesson-11:session-33:i13:p3=duvet cover\nen:lesson-11:session-33:i13:p4=bedspread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i14",
+    "correctText": "Please don't move the towels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i15",
+    "correctText": "I am cleaning right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i16",
+    "correctText": "The duvet cover was not on the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-33:i17",
+    "correctText": "Was the hand towel wet?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-29:word:town-hall",
+    "correctText": "town hall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i01",
+    "correctText": "Was the town hall open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i02",
+    "correctText": "The town hall was closed yesterday.",
+    "correctResponseId": "en:lesson-11:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:word:fire-station",
+    "correctText": "fire station",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i04",
+    "correctText": "There was a fire station near the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i05",
+    "correctText": "The fire station was near the bridge.",
+    "correctResponseId": "en:lesson-11:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:word:fire-engine",
+    "correctText": "fire engine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i07",
+    "correctText": "There was a fire engine near the bridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i08",
+    "correctText": "The fire engine was next to the school.",
+    "correctResponseId": "en:lesson-11:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:word:ambulance",
+    "correctText": "ambulance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i10",
+    "correctText": "There was an ambulance near the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i11",
+    "correctText": "There were two ambulances near the hospital.",
+    "correctResponseId": "en:lesson-11:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i13",
+    "correctText": "en:lesson-11:session-29:i13:p1=town hall\nen:lesson-11:session-29:i13:p2=fire station\nen:lesson-11:session-29:i13:p3=fire engine\nen:lesson-11:session-29:i13:p4=ambulance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i14",
+    "correctText": "Please don't hurry me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i15",
+    "correctText": "We are walking right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i16",
+    "correctText": "Was the fire engine near the hospital?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-29:i17",
+    "correctText": "There were two ambulances near the bridge.",
+    "correctResponseId": null
+  }
+]

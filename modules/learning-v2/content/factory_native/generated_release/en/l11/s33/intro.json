@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Большое и маленькое полотенце",
+        "uk": "Великий і маленький рушник"
+      },
+      "bodyByLocale": {
+        "ru": "Bath towel — «банное полотенце», большое полотенце после душа или ванны. Hand towel — «полотенце для рук», обычно меньше. Вчера банное полотенце было мокрым: The bath towel was wet yesterday. Сейчас оно сухое: It is dry now. Выберите сообщение о вчерашнем состоянии.",
+        "uk": "Bath towel — «банний рушник», великий рушник після душу чи ванни. Hand towel — «рушник для рук», зазвичай менший. Учора банний рушник був мокрий: The bath towel was wet yesterday. Зараз він сухий: It is dry now. Виберіть повідомлення про вчорашній стан."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-33:intro1:r1",
+              "text": "The bath towel was wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro1:r2",
+              "text": "The bath towel is wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro1:r3",
+              "text": "The bath towel were wet yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-33:intro1:r1",
+              "text": "The bath towel was wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro1:r2",
+              "text": "The bath towel is wet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro1:r3",
+              "text": "The bath towel were wet yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пододеяльник",
+        "uk": "Підковдра"
+      },
+      "bodyByLocale": {
+        "ru": "Duvet cover — «пододеяльник», тканевый чехол, в который вставляют одеяло. В шкафу было два пододеяльника: There were two duvet covers in the cupboard. Два предмета — were; множественное число получает последнее слово covers. Выберите эту фразу.",
+        "uk": "Duvet cover — «підковдра», тканинний чохол, у який вставляють ковдру. У шафі було дві підковдри: There were two duvet covers in the cupboard. Два предмети — were; множину отримує останнє слово covers. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-33:intro2:r1",
+              "text": "There were two duvet covers in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro2:r2",
+              "text": "There was two duvet covers in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro2:r3",
+              "text": "There were a two duvet covers in the cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-33:intro2:r1",
+              "text": "There were two duvet covers in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro2:r2",
+              "text": "There was two duvet covers in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro2:r3",
+              "text": "There were a two duvet covers in the cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Покрывало",
+        "uk": "Покривало"
+      },
+      "bodyByLocale": {
+        "ru": "Bedspread — «покрывало», которым накрывают застеленную кровать сверху. В отличие от duvet cover, это не чехол для одеяла. Вчера покрывало лежало на стуле: The bedspread was on the chair yesterday. Сейчас оно на кровати: It is on the bed now. Выберите вчерашнее место покрывала.",
+        "uk": "Bedspread — «покривало», яким накривають застелене ліжко зверху. На відміну від duvet cover, це не чохол для ковдри. Учора покривало лежало на стільці: The bedspread was on the chair yesterday. Зараз воно на ліжку: It is on the bed now. Виберіть учорашнє місце покривала."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-33:intro3:r1",
+              "text": "The bedspread was on the chair yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro3:r2",
+              "text": "The bedspread is on the chair yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro3:r3",
+              "text": "The bedspread were on the chair yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-33:intro3:r1",
+              "text": "The bedspread was on the chair yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro3:r2",
+              "text": "The bedspread is on the chair yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-33:intro3:r3",
+              "text": "The bedspread were on the chair yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa5d03aeb21071e0e93b21e082ec4564df0b785f960ab9388d561d9b4cf9376d"
+}

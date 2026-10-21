@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-33:intro1:r2": {
+          "ru": "Yesterday — прошлое: was.",
+          "uk": "Yesterday — минуле: was."
+        },
+        "en:lesson-11:session-33:intro1:r3": {
+          "ru": "Одно полотенце: was.",
+          "uk": "Один рушник: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-33:intro2:r2": {
+          "ru": "Два пододеяльника: were.",
+          "uk": "Дві підковдри: were."
+        },
+        "en:lesson-11:session-33:intro2:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-33:intro3:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-33:intro3:r3": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0e6880dd89b9eb674c47227d37845c5070fca480e2a44972bd23074280caf79a"
+}

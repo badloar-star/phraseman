@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-32:word:reception-desk",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reception desk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:reception-desk:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reception desk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:reception-desk:audio",
+            "transcript": "reception desk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:reception-desk:r1",
+              "targetText": "reception desk",
+              "meaningByLocale": {
+                "ru": "стойка регистрации в гостинице.",
+                "uk": "стійка реєстрації в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reception desk",
+            "definitionByLocale": {
+              "ru": "стойка регистрации в гостинице.",
+              "uk": "стійка реєстрації в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что стойка регистрации была рядом с дверью",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что стойка регистрации была рядом с дверью",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The reception desk was near the door.",
+          "localizedMeaning": {
+            "ru": "Скажите, что стойка регистрации была рядом с дверью",
+            "uk": "Скажіть, що стійка реєстрації була поруч із дверима"
+          },
+          "orderedTokens": [
+            "The",
+            "reception",
+            "desk",
+            "was",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i02:r1",
+            "text": "There were two people at the reception desk."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i02:r2",
+            "text": "There was a man at the reception desk."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i02:r3",
+            "text": "There were two people near the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i02:audio",
+            "transcript": "There were two people at the reception desk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i02:r1",
+              "targetText": "There were two people at the reception desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i02:r2",
+              "targetText": "There was a man at the reception desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i02:r3",
+              "targetText": "There were two people near the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two people at the reception desk.",
+                "uk": "У записі звучить There were two people at the reception desk."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two people at the reception desk.",
+                "uk": "У записі звучить There were two people at the reception desk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+            "uk": "Учора поруч із дверима була стійка реєстрації. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a reception desk near the door yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна стойка: was.",
+                "uk": "Одна стійка: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое: was.",
+                "uk": "Yesterday — минуле: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:word:key-card",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — key card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:key-card:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — key card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:key-card:audio",
+            "transcript": "key card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:key-card:r1",
+              "targetText": "key card",
+              "meaningByLocale": {
+                "ru": "карта-ключ от номера.",
+                "uk": "картка-ключ від номера."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "key card",
+            "definitionByLocale": {
+              "ru": "карта-ключ от номера.",
+              "uk": "картка-ключ від номера."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите друга, была ли его карта-ключ в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите друга, была ли его карта-ключ в сумке",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was your key card in your bag?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, была ли его карта-ключ в сумке",
+            "uk": "Запитайте друга, чи була його картка-ключ у сумці"
+          },
+          "orderedTokens": [
+            "Was",
+            "your",
+            "key",
+            "card",
+            "in",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i05:r1",
+            "text": "My key card is on the table now."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i05:r2",
+            "text": "My key card was on the table yesterday."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i05:r3",
+            "text": "My key card is in my bag now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i05:audio",
+            "transcript": "My key card is on the table now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i05:r1",
+              "targetText": "My key card is on the table now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i05:r2",
+              "targetText": "My key card was on the table yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i05:r3",
+              "targetText": "My key card is in my bag now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My key card is on the table now.",
+                "uk": "У записі звучить My key card is on the table now."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My key card is on the table now.",
+                "uk": "У записі звучить My key card is on the table now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера карта-ключ была в кармане. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера карта-ключ была в кармане. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера карта-ключ была в кармане. Выберите форму",
+            "uk": "Учора картка-ключ була в кишені. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My key card ___ in my pocket yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера карта-ключ была в кармане. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "Вчера карта-ключ была в кармане. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "Вчера карта-ключ была в кармане. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна карта: was.",
+                "uk": "Одна картка: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:word:breakfast-room",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — breakfast room",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:breakfast-room:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — breakfast room",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:breakfast-room:audio",
+            "transcript": "breakfast room"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:breakfast-room:r1",
+              "targetText": "breakfast room",
+              "meaningByLocale": {
+                "ru": "зал для завтрака в гостинице.",
+                "uk": "зала для сніданку в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "breakfast room",
+            "definitionByLocale": {
+              "ru": "зал для завтрака в гостинице.",
+              "uk": "зала для сніданку в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли зал для завтрака открыт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли зал для завтрака открыт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the breakfast room open?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли зал для завтрака открыт",
+            "uk": "Запитайте, чи була зала для сніданку відчинена"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "breakfast",
+            "room",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i08:r1",
+            "text": "The breakfast room was empty."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i08:r2",
+            "text": "The breakfast room is empty."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i08:r3",
+            "text": "The breakfast room was closed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i08:audio",
+            "transcript": "The breakfast room was empty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i08:r1",
+              "targetText": "The breakfast room was empty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i08:r2",
+              "targetText": "The breakfast room is empty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i08:r3",
+              "targetText": "The breakfast room was closed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The breakfast room was empty.",
+                "uk": "У записі звучить The breakfast room was empty."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The breakfast room was empty.",
+                "uk": "У записі звучить The breakfast room was empty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас зал для завтрака открыт. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас зал для завтрака открыт. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас зал для завтрака открыт. Выберите форму",
+            "uk": "Зараз зала для сніданку відчинена. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The breakfast room ___ open now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сейчас зал для завтрака открыт. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Сейчас зал для завтрака открыт. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Сейчас: is.",
+                "uk": "Зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Сейчас зал для завтрака открыт. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один зал: is.",
+                "uk": "Одна зала: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:word:double-bed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — double bed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:double-bed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — double bed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:double-bed:audio",
+            "transcript": "double bed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:double-bed:r1",
+              "targetText": "double bed",
+              "meaningByLocale": {
+                "ru": "двуспальная кровать.",
+                "uk": "двоспальне ліжко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "double bed",
+            "definitionByLocale": {
+              "ru": "двуспальная кровать.",
+              "uk": "двоспальне ліжко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в номере была двуспальная кровать. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в номере была двуспальная кровать. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a double bed in the room.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в номере была двуспальная кровать. Начните с There",
+            "uk": "Повідомте: у номері було двоспальне ліжко. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "double",
+            "bed",
+            "in",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i11:r1",
+            "text": "The double bed was comfortable."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i11:r2",
+            "text": "The double bed was uncomfortable."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i11:r3",
+            "text": "Was the double bed comfortable?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i11:audio",
+            "transcript": "The double bed was comfortable."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i11:r1",
+              "targetText": "The double bed was comfortable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i11:r2",
+              "targetText": "The double bed was uncomfortable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i11:r3",
+              "targetText": "Was the double bed comfortable?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The double bed was comfortable.",
+                "uk": "У записі звучить The double bed was comfortable."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The double bed was comfortable.",
+                "uk": "У записі звучить The double bed was comfortable."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+            "uk": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i12:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i12:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i12:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-32:i13:p1",
+              "target": "reception desk",
+              "meaningByLocale": {
+                "ru": "стойка регистрации",
+                "uk": "стійка реєстрації"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-32:i13:p2",
+              "target": "key card",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-32:i13:p3",
+              "target": "breakfast room",
+              "meaningByLocale": {
+                "ru": "зал для завтрака",
+                "uk": "зала для сніданку"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-32:i13:p4",
+              "target": "double bed",
+              "meaningByLocale": {
+                "ru": "двуспальная кровать",
+                "uk": "двоспальне ліжко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reception desk",
+            "key card",
+            "breakfast room",
+            "double bed"
+          ],
+          "rightColumn": [
+            "стойка регистрации",
+            "карта-ключ",
+            "зал для завтрака",
+            "двуспальная кровать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i14:audio",
+            "transcript": "Please don't close the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't close the door.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "close",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i15:audio",
+            "transcript": "We are waiting right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are waiting right now.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "waiting",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что карта-ключ была не на столе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что карта-ключ была не на столе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i16:audio",
+            "transcript": "The key card was not on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The key card was not on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что в номере были две двуспальные кровати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что в номере были две двуспальные кровати",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i17:audio",
+            "transcript": "There were two double beds in the room."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There were two double beds in the room.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-32:word:reception-desk",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reception desk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:reception-desk:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reception desk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:reception-desk:audio",
+            "transcript": "reception desk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:reception-desk:r1",
+              "targetText": "reception desk",
+              "meaningByLocale": {
+                "ru": "стойка регистрации в гостинице.",
+                "uk": "стійка реєстрації в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reception desk",
+            "definitionByLocale": {
+              "ru": "стойка регистрации в гостинице.",
+              "uk": "стійка реєстрації в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що стійка реєстрації була поруч із дверима",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що стійка реєстрації була поруч із дверима",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The reception desk was near the door.",
+          "localizedMeaning": {
+            "ru": "Скажите, что стойка регистрации была рядом с дверью",
+            "uk": "Скажіть, що стійка реєстрації була поруч із дверима"
+          },
+          "orderedTokens": [
+            "The",
+            "reception",
+            "desk",
+            "was",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i02:r1",
+            "text": "There were two people at the reception desk."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i02:r2",
+            "text": "There was a man at the reception desk."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i02:r3",
+            "text": "There were two people near the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i02:audio",
+            "transcript": "There were two people at the reception desk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i02:r1",
+              "targetText": "There were two people at the reception desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i02:r2",
+              "targetText": "There was a man at the reception desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i02:r3",
+              "targetText": "There were two people near the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two people at the reception desk.",
+                "uk": "У записі звучить There were two people at the reception desk."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two people at the reception desk.",
+                "uk": "У записі звучить There were two people at the reception desk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора поруч із дверима була стійка реєстрації. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора поруч із дверима була стійка реєстрації. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера рядом с дверью была стойка регистрации. Выберите форму",
+            "uk": "Учора поруч із дверима була стійка реєстрації. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a reception desk near the door yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Учора поруч із дверима була стійка реєстрації. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора поруч із дверима була стійка реєстрації. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна стойка: was.",
+                "uk": "Одна стійка: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора поруч із дверима була стійка реєстрації. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое: was.",
+                "uk": "Yesterday — минуле: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:word:key-card",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — key card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:key-card:audio"
+        ],
+        "accessibilityLabel": "Картка слова — key card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:key-card:audio",
+            "transcript": "key card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:key-card:r1",
+              "targetText": "key card",
+              "meaningByLocale": {
+                "ru": "карта-ключ от номера.",
+                "uk": "картка-ключ від номера."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "key card",
+            "definitionByLocale": {
+              "ru": "карта-ключ от номера.",
+              "uk": "картка-ключ від номера."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте друга, чи була його картка-ключ у сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте друга, чи була його картка-ключ у сумці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was your key card in your bag?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, была ли его карта-ключ в сумке",
+            "uk": "Запитайте друга, чи була його картка-ключ у сумці"
+          },
+          "orderedTokens": [
+            "Was",
+            "your",
+            "key",
+            "card",
+            "in",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i05:r1",
+            "text": "My key card is on the table now."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i05:r2",
+            "text": "My key card was on the table yesterday."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i05:r3",
+            "text": "My key card is in my bag now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i05:audio",
+            "transcript": "My key card is on the table now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i05:r1",
+              "targetText": "My key card is on the table now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i05:r2",
+              "targetText": "My key card was on the table yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i05:r3",
+              "targetText": "My key card is in my bag now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My key card is on the table now.",
+                "uk": "У записі звучить My key card is on the table now."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My key card is on the table now.",
+                "uk": "У записі звучить My key card is on the table now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора картка-ключ була в кишені. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора картка-ключ була в кишені. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера карта-ключ была в кармане. Выберите форму",
+            "uk": "Учора картка-ключ була в кишені. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My key card ___ in my pocket yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора картка-ключ була в кишені. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "Учора картка-ключ була в кишені. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "Учора картка-ключ була в кишені. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна карта: was.",
+                "uk": "Одна картка: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:word:breakfast-room",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — breakfast room",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:breakfast-room:audio"
+        ],
+        "accessibilityLabel": "Картка слова — breakfast room",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:breakfast-room:audio",
+            "transcript": "breakfast room"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:breakfast-room:r1",
+              "targetText": "breakfast room",
+              "meaningByLocale": {
+                "ru": "зал для завтрака в гостинице.",
+                "uk": "зала для сніданку в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "breakfast room",
+            "definitionByLocale": {
+              "ru": "зал для завтрака в гостинице.",
+              "uk": "зала для сніданку в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи була зала для сніданку відчинена",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи була зала для сніданку відчинена",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the breakfast room open?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли зал для завтрака открыт",
+            "uk": "Запитайте, чи була зала для сніданку відчинена"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "breakfast",
+            "room",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i08:r1",
+            "text": "The breakfast room was empty."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i08:r2",
+            "text": "The breakfast room is empty."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i08:r3",
+            "text": "The breakfast room was closed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i08:audio",
+            "transcript": "The breakfast room was empty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i08:r1",
+              "targetText": "The breakfast room was empty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i08:r2",
+              "targetText": "The breakfast room is empty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i08:r3",
+              "targetText": "The breakfast room was closed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The breakfast room was empty.",
+                "uk": "У записі звучить The breakfast room was empty."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The breakfast room was empty.",
+                "uk": "У записі звучить The breakfast room was empty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз зала для сніданку відчинена. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз зала для сніданку відчинена. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас зал для завтрака открыт. Выберите форму",
+            "uk": "Зараз зала для сніданку відчинена. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The breakfast room ___ open now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Зараз зала для сніданку відчинена. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Зараз зала для сніданку відчинена. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Сейчас: is.",
+                "uk": "Зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Зараз зала для сніданку відчинена. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один зал: is.",
+                "uk": "Одна зала: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:word:double-bed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — double bed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:word:double-bed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — double bed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:word:double-bed:audio",
+            "transcript": "double bed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:word:double-bed:r1",
+              "targetText": "double bed",
+              "meaningByLocale": {
+                "ru": "двуспальная кровать.",
+                "uk": "двоспальне ліжко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "double bed",
+            "definitionByLocale": {
+              "ru": "двуспальная кровать.",
+              "uk": "двоспальне ліжко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у номері було двоспальне ліжко. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у номері було двоспальне ліжко. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a double bed in the room.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в номере была двуспальная кровать. Начните с There",
+            "uk": "Повідомте: у номері було двоспальне ліжко. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "double",
+            "bed",
+            "in",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i11:r1",
+            "text": "The double bed was comfortable."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i11:r2",
+            "text": "The double bed was uncomfortable."
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i11:r3",
+            "text": "Was the double bed comfortable?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i11:audio",
+            "transcript": "The double bed was comfortable."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-32:i11:r1",
+              "targetText": "The double bed was comfortable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i11:r2",
+              "targetText": "The double bed was uncomfortable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i11:r3",
+              "targetText": "Was the double bed comfortable?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The double bed was comfortable.",
+                "uk": "У записі звучить The double bed was comfortable."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The double bed was comfortable.",
+                "uk": "У записі звучить The double bed was comfortable."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-32:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-32:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the double bed comfortable? На ней было неудобно. Ответьте отрицательно",
+            "uk": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-32:i12:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i12:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i12:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the double bed comfortable? На ньому було незручно. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-32:i13:p1",
+              "target": "reception desk",
+              "meaningByLocale": {
+                "ru": "стойка регистрации",
+                "uk": "стійка реєстрації"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-32:i13:p2",
+              "target": "key card",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-32:i13:p3",
+              "target": "breakfast room",
+              "meaningByLocale": {
+                "ru": "зал для завтрака",
+                "uk": "зала для сніданку"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-32:i13:p4",
+              "target": "double bed",
+              "meaningByLocale": {
+                "ru": "двуспальная кровать",
+                "uk": "двоспальне ліжко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reception desk",
+            "key card",
+            "breakfast room",
+            "double bed"
+          ],
+          "rightColumn": [
+            "стійка реєстрації",
+            "картка-ключ",
+            "зала для сніданку",
+            "двоспальне ліжко"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i14:audio",
+            "transcript": "Please don't close the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't close the door.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "close",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i15:audio",
+            "transcript": "We are waiting right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are waiting right now.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "waiting",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що картка-ключ була не на столі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що картка-ключ була не на столі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i16:audio",
+            "transcript": "The key card was not on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The key card was not on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що у номері були два двоспальні ліжка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що у номері були два двоспальні ліжка",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-32:i17:audio",
+            "transcript": "There were two double beds in the room."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There were two double beds in the room.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-32:word:reception-desk",
+      "correctText": "reception desk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i01",
+      "correctText": "The reception desk was near the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i02",
+      "correctText": "There were two people at the reception desk.",
+      "correctResponseId": "en:lesson-11:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:word:key-card",
+      "correctText": "key card",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i04",
+      "correctText": "Was your key card in your bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i05",
+      "correctText": "My key card is on the table now.",
+      "correctResponseId": "en:lesson-11:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-32:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:word:breakfast-room",
+      "correctText": "breakfast room",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i07",
+      "correctText": "Was the breakfast room open?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i08",
+      "correctText": "The breakfast room was empty.",
+      "correctResponseId": "en:lesson-11:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:word:double-bed",
+      "correctText": "double bed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i10",
+      "correctText": "There was a double bed in the room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i11",
+      "correctText": "The double bed was comfortable.",
+      "correctResponseId": "en:lesson-11:session-32:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i12",
+      "correctText": "wasn't",
+      "correctResponseId": "en:lesson-11:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i14",
+      "correctText": "Please don't close the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i15",
+      "correctText": "We are waiting right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i16",
+      "correctText": "The key card was not on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-32:i17",
+      "correctText": "There were two double beds in the room.",
+      "correctResponseId": null
+    }
+  ]
+}

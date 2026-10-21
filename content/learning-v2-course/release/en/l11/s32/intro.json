@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стойка регистрации",
+        "uk": "Стійка реєстрації"
+      },
+      "bodyByLocale": {
+        "ru": "Reception desk — «стойка регистрации» в гостинице. Вчера около двери была стойка: There was a reception desk near the door. Мы сообщаем о наличии предмета в прошлом. Выберите эту фразу.",
+        "uk": "Reception desk — «стійка реєстрації» в готелі. Учора біля дверей була стійка: There was a reception desk near the door. Ми повідомляємо про наявність предмета в минулому. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-32:intro1:r1",
+              "text": "There was a reception desk near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro1:r2",
+              "text": "There were a reception desk near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro1:r3",
+              "text": "There was reception desk near the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-32:intro1:r1",
+              "text": "There was a reception desk near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro1:r2",
+              "text": "There were a reception desk near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro1:r3",
+              "text": "There was reception desk near the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Карта-ключ",
+        "uk": "Картка-ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Key card — «карта-ключ» от номера. Вчера она была в сумке: My key card was in my bag yesterday. Сейчас лежит на столе: It is on the table now. Выберите фразу о вчерашнем месте карты.",
+        "uk": "Key card — «картка-ключ» від номера. Учора вона була в сумці: My key card was in my bag yesterday. Зараз лежить на столі: It is on the table now. Виберіть фразу про вчорашнє місце картки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-32:intro2:r1",
+              "text": "My key card was in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro2:r2",
+              "text": "My key card is in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro2:r3",
+              "text": "My key card were in my bag yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-32:intro2:r1",
+              "text": "My key card was in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro2:r2",
+              "text": "My key card is in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro2:r3",
+              "text": "My key card were in my bag yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Завтрак и номер",
+        "uk": "Сніданок і номер"
+      },
+      "bodyByLocale": {
+        "ru": "Breakfast room — «зал для завтрака», double bed — «двуспальная кровать». В номере была одна такая кровать: There was a double bed in the room. Double означает «двуспальная», а не две отдельные кровати, поэтому was. Выберите эту фразу.",
+        "uk": "Breakfast room — «зала для сніданку», double bed — «двоспальне ліжко». У номері було одне таке ліжко: There was a double bed in the room. Double означає «двоспальне», а не два окремі ліжка, тому was. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-32:intro3:r1",
+              "text": "There was a double bed in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro3:r2",
+              "text": "There were a double bed in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro3:r3",
+              "text": "There was double bed in the room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-32:intro3:r1",
+              "text": "There was a double bed in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro3:r2",
+              "text": "There were a double bed in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-32:intro3:r3",
+              "text": "There was double bed in the room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ee6bdbfbb6d2a7859e74f7fa4cb71a36e7e54d68d4cf03f8671f6d86a87fd54"
+}

@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-33:word:bath-towel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bath towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:word:bath-towel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bath towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:word:bath-towel:audio",
+          "transcript": "bath towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:word:bath-towel:r1",
+            "targetText": "bath towel",
+            "meaningByLocale": {
+              "ru": "банное полотенце.",
+              "uk": "банний рушник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bath towel",
+          "definitionByLocale": {
+            "ru": "банное полотенце.",
+            "uk": "банний рушник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був банний рушник сухий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був банний рушник сухий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the bath towel dry?",
+        "localizedMeaning": {
+          "ru": "Спросите, было ли банное полотенце сухим",
+          "uk": "Запитайте, чи був банний рушник сухий"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "bath",
+          "towel",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i02:r1",
+          "text": "The bath towel was wet."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i02:r2",
+          "text": "The bath towel is wet."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i02:r3",
+          "text": "Was the bath towel wet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i02:audio",
+          "transcript": "The bath towel was wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:i02:r1",
+            "targetText": "The bath towel was wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i02:r2",
+            "targetText": "The bath towel is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i02:r3",
+            "targetText": "Was the bath towel wet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bath towel was wet.",
+              "uk": "У записі звучить The bath towel was wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bath towel was wet.",
+              "uk": "У записі звучить The bath towel was wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз рушник чистий. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз рушник чистий. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас полотенце чистое. Выберите форму",
+          "uk": "Зараз рушник чистий. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The bath towel ___ clean now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-33:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз рушник чистий. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Зараз рушник чистий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Зараз рушник чистий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один предмет: is.",
+              "uk": "Один предмет: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:word:hand-towel",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hand towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:word:hand-towel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hand towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:word:hand-towel:audio",
+          "transcript": "hand towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:word:hand-towel:r1",
+            "targetText": "hand towel",
+            "meaningByLocale": {
+              "ru": "полотенце для рук.",
+              "uk": "рушник для рук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hand towel",
+          "definitionByLocale": {
+            "ru": "полотенце для рук.",
+            "uk": "рушник для рук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: поруч з умивальником був рушник для рук. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: поруч з умивальником був рушник для рук. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a hand towel next to the washbasin.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом с умывальником было полотенце для рук. Начните с There",
+          "uk": "Повідомте: поруч з умивальником був рушник для рук. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "hand",
+          "towel",
+          "next",
+          "to",
+          "the",
+          "washbasin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i05:r1",
+          "text": "There were two hand towels in the bathroom."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i05:r2",
+          "text": "There was a hand towel in the bathroom."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i05:r3",
+          "text": "There were two hand towels in the bedroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i05:audio",
+          "transcript": "There were two hand towels in the bathroom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:i05:r1",
+            "targetText": "There were two hand towels in the bathroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i05:r2",
+            "targetText": "There was a hand towel in the bathroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i05:r3",
+            "targetText": "There were two hand towels in the bedroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two hand towels in the bathroom.",
+              "uk": "У записі звучить There were two hand towels in the bathroom."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two hand towels in the bathroom.",
+              "uk": "У записі звучить There were two hand towels in the bathroom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора рушник для рук був на стільці. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i06:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора рушник для рук був на стільці. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера полотенце для рук было на стуле. Выберите форму",
+          "uk": "Учора рушник для рук був на стільці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The hand towel ___ on the chair yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-33:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i06:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора рушник для рук був на стільці. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Учора рушник для рук був на стільці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Учора рушник для рук був на стільці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один предмет: was.",
+              "uk": "Один предмет: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:word:duvet-cover",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — duvet cover",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:word:duvet-cover:audio"
+      ],
+      "accessibilityLabel": "Картка слова — duvet cover",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:word:duvet-cover:audio",
+          "transcript": "duvet cover"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:word:duvet-cover:r1",
+            "targetText": "duvet cover",
+            "meaningByLocale": {
+              "ru": "пододеяльник.",
+              "uk": "підковдра."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "duvet cover",
+          "definitionByLocale": {
+            "ru": "пододеяльник.",
+            "uk": "підковдра."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була підковдра чиста",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була підковдра чиста",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the duvet cover clean?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли пододеяльник чистым",
+          "uk": "Запитайте, чи була підковдра чиста"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "duvet",
+          "cover",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i08:r1",
+          "text": "The duvet cover was in the cupboard."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i08:r2",
+          "text": "The duvet cover is in the cupboard."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i08:r3",
+          "text": "The duvet cover was on the bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i08:audio",
+          "transcript": "The duvet cover was in the cupboard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:i08:r1",
+            "targetText": "The duvet cover was in the cupboard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i08:r2",
+            "targetText": "The duvet cover is in the cupboard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i08:r3",
+            "targetText": "The duvet cover was on the bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The duvet cover was in the cupboard.",
+              "uk": "У записі звучить The duvet cover was in the cupboard."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The duvet cover was in the cupboard.",
+              "uk": "У записі звучить The duvet cover was in the cupboard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На ліжку було дві підковдри. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На ліжку було дві підковдри. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На кровати было два пододеяльника. Выберите форму",
+          "uk": "На ліжку було дві підковдри. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two duvet covers on the bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-33:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "На ліжку було дві підковдри. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "На ліжку було дві підковдри. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Два предмета: were.",
+              "uk": "Два предмети: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "На ліжку було дві підковдри. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В прошлом о двух предметах: were.",
+              "uk": "У минулому про два предмети: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:word:bedspread",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bedspread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:word:bedspread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bedspread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:word:bedspread:audio",
+          "transcript": "bedspread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:word:bedspread:r1",
+            "targetText": "bedspread",
+            "meaningByLocale": {
+              "ru": "покрывало на кровать.",
+              "uk": "покривало на ліжко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bedspread",
+          "definitionByLocale": {
+            "ru": "покрывало на кровать.",
+            "uk": "покривало на ліжко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: на ліжку було покривало. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: на ліжку було покривало. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a bedspread on the bed.",
+        "localizedMeaning": {
+          "ru": "Сообщите: на кровати было покрывало. Начните с There",
+          "uk": "Повідомте: на ліжку було покривало. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "bedspread",
+          "on",
+          "the",
+          "bed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i11:r1",
+          "text": "The bedspread is on the chair now."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i11:r2",
+          "text": "The bedspread was on the chair yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i11:r3",
+          "text": "The bedspread is on the bed now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i11:audio",
+          "transcript": "The bedspread is on the chair now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-33:i11:r1",
+            "targetText": "The bedspread is on the chair now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i11:r2",
+            "targetText": "The bedspread was on the chair yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i11:r3",
+            "targetText": "The bedspread is on the bed now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bedspread is on the chair now.",
+              "uk": "У записі звучить The bedspread is on the chair now."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bedspread is on the chair now.",
+              "uk": "У записі звучить The bedspread is on the chair now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Was the bedspread clean? Воно було брудне. Дайте заперечну відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-33:i12:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i12:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-33:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Was the bedspread clean? Воно було брудне. Дайте заперечну відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the bedspread clean? Оно было грязным. Ответьте отрицательно",
+          "uk": "Друг запитав Was the bedspread clean? Воно було брудне. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-33:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг запитав Was the bedspread clean? Воно було брудне. Дайте заперечну відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the bedspread clean? Воно було брудне. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the bedspread clean? Воно було брудне. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "Вопрос с was: ответ wasn’t.",
+              "uk": "Запитання з was: відповідь wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-33:i13:p1",
+            "target": "bath towel",
+            "meaningByLocale": {
+              "ru": "банное полотенце",
+              "uk": "банний рушник"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-33:i13:p2",
+            "target": "hand towel",
+            "meaningByLocale": {
+              "ru": "полотенце для рук",
+              "uk": "рушник для рук"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-33:i13:p3",
+            "target": "duvet cover",
+            "meaningByLocale": {
+              "ru": "пододеяльник",
+              "uk": "підковдра"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-33:i13:p4",
+            "target": "bedspread",
+            "meaningByLocale": {
+              "ru": "покрывало",
+              "uk": "покривало"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bath towel",
+          "hand towel",
+          "duvet cover",
+          "bedspread"
+        ],
+        "rightColumn": [
+          "банний рушник",
+          "рушник для рук",
+          "підковдра",
+          "покривало"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i14:audio",
+          "transcript": "Please don't move the towels."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move the towels.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "the",
+          "towels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i15:audio",
+          "transcript": "I am cleaning right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am cleaning right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "cleaning",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що підковдра була не на стільці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що підковдра була не на стільці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i16:audio",
+          "transcript": "The duvet cover was not on the chair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The duvet cover was not on the chair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був рушник для рук мокрий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був рушник для рук мокрий",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-33:i17:audio",
+          "transcript": "Was the hand towel wet?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the hand towel wet?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cd61876cae1d879135a665cf1a4753eac8ad9ca0208dbffa0eb111a6549cba9e"
+}

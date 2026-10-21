@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-31:word:changing-room",
+    "correctText": "changing room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i01",
+    "correctText": "Was the changing room free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i02",
+    "correctText": "The changing room was empty.",
+    "correctResponseId": "en:lesson-11:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:word:shop-window",
+    "correctText": "shop window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i04",
+    "correctText": "There was a dress in the shop window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i05",
+    "correctText": "The shop window was clean.",
+    "correctResponseId": "en:lesson-11:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:word:shopping-basket",
+    "correctText": "shopping basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i07",
+    "correctText": "Was the shopping basket heavy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i08",
+    "correctText": "There was a shopping basket next to the door.",
+    "correctResponseId": "en:lesson-11:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:word:price-tag",
+    "correctText": "price tag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i10",
+    "correctText": "There was a price tag on the dress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i11",
+    "correctText": "The price tag was on the coat.",
+    "correctResponseId": "en:lesson-11:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i13",
+    "correctText": "en:lesson-11:session-31:i13:p1=changing room\nen:lesson-11:session-31:i13:p2=shop window\nen:lesson-11:session-31:i13:p3=shopping basket\nen:lesson-11:session-31:i13:p4=price tag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i14",
+    "correctText": "Please don't move my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i15",
+    "correctText": "I am looking at a dress right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i16",
+    "correctText": "The changing room was not empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-31:i17",
+    "correctText": "There were two shopping baskets near the chair.",
+    "correctResponseId": null
+  }
+]

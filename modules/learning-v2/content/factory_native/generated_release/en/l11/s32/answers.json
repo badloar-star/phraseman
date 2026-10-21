@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-32:word:reception-desk",
+    "correctText": "reception desk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i01",
+    "correctText": "The reception desk was near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i02",
+    "correctText": "There were two people at the reception desk.",
+    "correctResponseId": "en:lesson-11:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:word:key-card",
+    "correctText": "key card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i04",
+    "correctText": "Was your key card in your bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i05",
+    "correctText": "My key card is on the table now.",
+    "correctResponseId": "en:lesson-11:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:word:breakfast-room",
+    "correctText": "breakfast room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i07",
+    "correctText": "Was the breakfast room open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i08",
+    "correctText": "The breakfast room was empty.",
+    "correctResponseId": "en:lesson-11:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:word:double-bed",
+    "correctText": "double bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i10",
+    "correctText": "There was a double bed in the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i11",
+    "correctText": "The double bed was comfortable.",
+    "correctResponseId": "en:lesson-11:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i13",
+    "correctText": "en:lesson-11:session-32:i13:p1=reception desk\nen:lesson-11:session-32:i13:p2=key card\nen:lesson-11:session-32:i13:p3=breakfast room\nen:lesson-11:session-32:i13:p4=double bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i14",
+    "correctText": "Please don't close the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i15",
+    "correctText": "We are waiting right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i16",
+    "correctText": "The key card was not on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-32:i17",
+    "correctText": "There were two double beds in the room.",
+    "correctResponseId": null
+  }
+]

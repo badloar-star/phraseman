@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Машинист",
+        "uk": "Машиніст"
+      },
+      "bodyByLocale": {
+        "ru": "Train driver — «машинист поезда». Вчера машинист был готов: The train driver was ready yesterday. Вопрос: Was the train driver ready? Если машинистов два: The two train drivers were ready. Выберите вопрос об одном машинисте.",
+        "uk": "Train driver — «машиніст поїзда». Учора машиніст був готовий: The train driver was ready yesterday. Запитання: Was the train driver ready? Якщо машиністів двоє: The two train drivers were ready. Виберіть запитання про одного машиніста."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-30:intro1:r1",
+              "text": "Was the train driver ready?"
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro1:r2",
+              "text": "Were the train driver ready?"
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro1:r3",
+              "text": "Did the train driver was ready?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-30:intro1:r1",
+              "text": "Was the train driver ready?"
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro1:r2",
+              "text": "Were the train driver ready?"
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro1:r3",
+              "text": "Did the train driver was ready?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Билетная касса",
+        "uk": "Квиткова каса"
+      },
+      "bodyByLocale": {
+        "ru": "Ticket office — «билетная касса», место, где покупают билеты. Вчера касса была закрыта: The ticket office was closed yesterday. Сейчас открыта: The ticket office is open now. Выберите сообщение о вчерашней кассе.",
+        "uk": "Ticket office — «квиткова каса», місце, де купують квитки. Учора каса була зачинена: The ticket office was closed yesterday. Зараз відчинена: The ticket office is open now. Виберіть повідомлення про вчорашню касу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-30:intro2:r1",
+              "text": "The ticket office was closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro2:r2",
+              "text": "The ticket office is closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro2:r3",
+              "text": "The ticket office were closed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-30:intro2:r1",
+              "text": "The ticket office was closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro2:r2",
+              "text": "The ticket office is closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro2:r3",
+              "text": "The ticket office were closed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Железная дорога и табло",
+        "uk": "Залізниця й табло"
+      },
+      "bodyByLocale": {
+        "ru": "Railway — «железная дорога», обычное британское слово. Departure board — «табло отправлений»: на нём смотрят время отправления транспорта. Вчера на стене было табло: There was a departure board on the wall. Один предмет: there was a. Выберите эту фразу.",
+        "uk": "Railway — «залізниця», звичайне британське слово. Departure board — «табло відправлень»: на ньому дивляться час відправлення транспорту. Учора на стіні було табло: There was a departure board on the wall. Один предмет: there was a. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-30:intro3:r1",
+              "text": "There was a departure board on the wall."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro3:r2",
+              "text": "There were a departure board on the wall."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro3:r3",
+              "text": "There was departure board on the wall."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-30:intro3:r1",
+              "text": "There was a departure board on the wall."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro3:r2",
+              "text": "There were a departure board on the wall."
+            },
+            {
+              "responseId": "en:lesson-11:session-30:intro3:r3",
+              "text": "There was departure board on the wall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7528f145327a50fde6ba703ecbdeb01aa8a9cb20b1d4af895b991807f9767870"
+}

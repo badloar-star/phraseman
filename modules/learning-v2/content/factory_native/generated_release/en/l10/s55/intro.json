@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen",
+    "uk": "I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вечерняя привычка",
+        "uk": "Вечірня звичка"
+      },
+      "bodyByLocale": {
+        "ru": "Reminder — «напоминание». Каждый вечер вы ставите напоминание на следующий день: I set a reminder every evening — «Я ставлю напоминание каждый вечер». Это привычка: Present Simple. С I нужна set без s.",
+        "uk": "Reminder — «нагадування». Щовечора ви встановлюєте нагадування на наступний день: I set a reminder every evening — «Я встановлюю нагадування щовечора». Це звичка: Present Simple. З I потрібна set без s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-55:intro1:r1",
+              "text": "I set a reminder every evening."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro1:r2",
+              "text": "I sets a reminder every evening."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro1:r3",
+              "text": "I setting a reminder every evening."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-55:intro1:r1",
+              "text": "I set a reminder every evening."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro1:r2",
+              "text": "I sets a reminder every evening."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro1:r3",
+              "text": "I setting a reminder every evening."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняю мелодию",
+        "uk": "Змінюю мелодію"
+      },
+      "bodyByLocale": {
+        "ru": "Ringtone — «мелодия звонка» телефона. Вы сейчас выбираете другую: I am changing my ringtone — «Я меняю мелодию звонка». Текущая работа: am + changing. У change перед ing убираем e.",
+        "uk": "Ringtone — «мелодія дзвінка» телефона. Ви зараз вибираєте іншу: I am changing my ringtone — «Я змінюю мелодію дзвінка». Поточна робота: am + changing. У change перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-55:intro2:r1",
+              "text": "I am changing my ringtone."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro2:r2",
+              "text": "I changing my ringtone."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro2:r3",
+              "text": "I am changeing my ringtone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-55:intro2:r1",
+              "text": "I am changing my ringtone."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro2:r2",
+              "text": "I changing my ringtone."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro2:r3",
+              "text": "I am changeing my ringtone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Окно мешает читать",
+        "uk": "Вікно заважає читати"
+      },
+      "bodyByLocale": {
+        "ru": "Pop-up — «всплывающее окно», появляющееся поверх содержимого. Сейчас оно закрывает экран: A pop-up is blocking the screen — «Всплывающее окно закрывает экран». Is blocking описывает текущую помеху. Один pop-up: is.",
+        "uk": "Pop-up — «спливне вікно», що з’являється поверх вмісту. Зараз воно закриває екран: A pop-up is blocking the screen — «Спливне вікно закриває екран». Is blocking описує поточну перешкоду. Одне pop-up: is."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-55:intro3:r1",
+              "text": "A pop-up is blocking the screen."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro3:r2",
+              "text": "A pop-up are blocking the screen."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro3:r3",
+              "text": "A pop-up blocking the screen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-55:intro3:r1",
+              "text": "A pop-up is blocking the screen."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro3:r2",
+              "text": "A pop-up are blocking the screen."
+            },
+            {
+              "responseId": "en:lesson-10:session-55:intro3:r3",
+              "text": "A pop-up blocking the screen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "878bd5b8f35e5efaec62557e0f77e54114ff67c7d395f1214362939549faf1b9"
+}

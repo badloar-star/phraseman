@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-55:intro1:r2": {
+          "ru": "С I нужна set без s.",
+          "uk": "З I потрібна set без s."
+        },
+        "en:lesson-10:session-55:intro1:r3": {
+          "ru": "Здесь нужна личная форма set.",
+          "uk": "Тут потрібна особова форма set."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-55:intro2:r2": {
+          "ru": "Перед changing нужна am.",
+          "uk": "Перед changing потрібна am."
+        },
+        "en:lesson-10:session-55:intro2:r3": {
+          "ru": "Правильно changing, без e.",
+          "uk": "Правильно changing, без e."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-55:intro3:r2": {
+          "ru": "Одно окно: is.",
+          "uk": "Одне вікно: is."
+        },
+        "en:lesson-10:session-55:intro3:r3": {
+          "ru": "Перед blocking нужна is.",
+          "uk": "Перед blocking потрібна is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9233820f32d62fc34a15a1c7d994bc8ec0be6cb4d8178a32e33c58d7da83a053"
+}

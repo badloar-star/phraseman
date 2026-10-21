@@ -3913,4 +3913,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am rescheduling my appointment; We check availability every morning; I am on the waiting list","uk":"I am rescheduling my appointment; We check availability every morning; I am on the waiting list"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 55,
+    sourceFingerprint: "b8c5fc58a28cd4084eac63455a19b0e9a6ae5d6fe5487a8883e689daf093c189",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen","uk":"I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

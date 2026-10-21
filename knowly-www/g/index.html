@@ -1,0 +1,121 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Тебе подарок · Phraseman</title><meta name="robots" content="noindex"><meta name="description" content="Phraseman — живой язык для вашей жизни."><link rel="icon" href="/assets/approved/brand.png"><script src="/assets/approved/site.js" defer></script><script src="/assets/approved/product-motion.js" defer></script><script src="/assets/approved/cinema.js" defer></script><script src="/assets/approved/certificate-premium-renderer.js" defer></script><script src="/assets/approved/edition-certificates.js" defer></script><script src="/assets/approved/test-engine.js" defer></script><script src="/assets/approved/edition.js" defer></script><script src="/assets/approved/world.js" defer></script><style>
+    /* /g/<КОД> — страница ссылки-подарка (владелец 21.10). Одна карточка по центру:
+       что за подарок, от кого и кнопка «Открыть в Phraseman». */
+    .gift-open { display: grid; place-items: center; padding-block: clamp(32px, 8vw, 88px); }
+    .gift-open-card { width: 100%; max-width: 480px; display: grid; justify-items: center; gap: 14px; text-align: center; padding: 32px 24px; border-radius: 28px; background: var(--card-solid); box-shadow: var(--shadow); }
+    .gift-open-icon { border-radius: 20px; }
+    .gift-open-kicker { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--sec); }
+    .gift-open h1 { margin: 0; font-size: clamp(26px, 6vw, 36px); line-height: 1.12; letter-spacing: -.02em; color: var(--text); text-wrap: balance; }
+    .gift-open-sub { margin: 0; max-width: 32em; font-size: 15.5px; line-height: 1.55; color: var(--sec); text-wrap: pretty; }
+    .gift-open-actions { width: 100%; display: grid; gap: 12px; margin-top: 6px; }
+    .runtime-surface .gift-open-cta { display: flex; justify-content: center; align-items: center; width: 100%; min-height: 52px; border-radius: 999px; font: 700 16px/1 var(--font); text-decoration: none; transition: transform .12s ease; }
+    .runtime-surface .gift-open-cta:active { transform: scale(.97); }
+    .gift-open-note { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
+    .gift-open-code { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 10px 10px 16px; border-radius: 16px; background: var(--control); }
+    .gift-open-code span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 700 14px/1.3 ui-monospace, 'SF Mono', Menlo, Consolas, monospace; color: var(--text); user-select: all; }
+    .gift-open-code button { all: unset; box-sizing: border-box; flex: none; cursor: pointer; padding: 8px 14px; border-radius: 999px; font: 650 13px/1.2 var(--font); color: var(--text); background: var(--card-solid); transition: transform .12s ease; }
+    .gift-open-code button:active { transform: scale(.97); }
+    .gift-open-code button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-open-stores { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
+    .gift-open-stores .store-badge { padding: 10px 18px; border-radius: 14px; background: var(--control); color: var(--text); text-decoration: none; font-size: 14px; }
+    @media (prefers-reduced-motion: reduce) { .runtime-surface .gift-open-cta, .gift-open-code button { transition: none; } }
+  </style><script src="/assets/site-config.js?v=20261015p" defer></script><script src="/assets/stats.js?v=3" defer></script><script src="/assets/ds.js?v=20260816-11" defer></script><link rel="stylesheet" href="/assets/approved/runtime-components.css"><script src="/assets/approved/production.js" defer></script><link rel="stylesheet" href="/assets/v2/base.css?v=20261015"><link rel="stylesheet" href="/assets/v2/money.css?v=20261015p"><script src="/assets/v2/theme.js?v=20261015"></script></head><body data-approved-studio="20260908" class="cinema edition route-start inner-cinema"><a class="skip" href="#content">К содержанию</a><header class="site-header"><div class="container nav-row"><a class="brand" href="/" aria-label="Phraseman — главная"><img src="/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><nav id="main-nav" aria-label="Главная навигация"><a href="/app/" data-i18n="approved.0">Приложение</a><a href="/english-level-test/" data-i18n="approved.1">Тест уровня</a><a href="/guides/" data-i18n="approved.2">Журнал</a><a href="/gift/" data-i18n="approved.3">Подарить</a><a href="/contact/" data-i18n="approved.4">Поддержка</a></nav><div class="nav-actions"><a class="language" href="#site-preferences" aria-label="Язык и оформление" aria-expanded="false" id="site-language">RU <span aria-hidden="true">⌄</span></a><a class="button small primary" href="/download/">Начать бесплатно<span aria-hidden="true">→</span></a><button class="menu-button icon-button" aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="site-preferences" class="site-language-menu" hidden><button type="button" data-lang-btn="ru">Русский</button><button type="button" data-lang-btn="en">English</button><button type="button" id="theme-toggle">Светлая / тёмная тема</button></div></header><main id="content"><section class="container runtime-surface gift-open">
+      <div class="gift-open-card" id="gift-card">
+        <img class="gift-open-icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
+        <p class="gift-open-kicker" id="gift-kicker">Подарок</p>
+        <h1 id="gift-title">Проверяем подарок…</h1>
+        <p class="gift-open-sub" id="gift-sub">Секунду.</p>
+        <div class="gift-open-actions" id="gift-actions" hidden>
+          <a class="btn-gold gift-open-cta" id="gift-open-app" href="#">Открыть в Phraseman</a>
+          <p class="gift-open-note">Нет приложения? Установи его, войди — и открой эту ссылку ещё раз. Или введи код вручную: Настройки → Промокоды.</p>
+          <div class="gift-open-code"><span id="gift-code">—</span><button type="button" id="gift-copy">Копировать</button></div>
+        </div>
+        <div class="gift-open-stores" id="gift-stores">
+          <a class="store-badge" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer" aria-label="Скачать Phraseman в App Store"><b>App Store</b></a>
+          <a class="store-badge" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer" aria-label="Скачать Phraseman в Google Play"><b>Google Play</b></a>
+        </div>
+      </div>
+    </section></main><footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand" href="/" aria-label="Phraseman — главная"><img src="/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><p data-i18n="approved.13">Чуть больше языка.<br>Чуть больше свободы.</p></div><div class="footer-links"><div><b data-i18n="approved.14">Практиковаться</b><a href="/app/" data-i18n="approved.15">О приложении</a><a href="/download/" data-i18n="approved.16">Скачать Phraseman</a><a href="/english-level-test/" data-i18n="approved.17">Определить уровень</a></div><div><b data-i18n="approved.19">Открывать больше</b><a href="/guides/" data-i18n="approved.20">Гайды и истории</a><a href="/premium/" data-i18n="approved.21">Plus и Pro</a><a href="/gift/" data-i18n="approved.22">Подарить доступ</a><a href="/russia/" data-i18n="approved.23">Оплата в России</a></div><div><b data-i18n="approved.24">Мы рядом</b><a href="/contact/" data-i18n="approved.4">Поддержка</a><a href="/faq/" data-i18n="approved.25">Частые вопросы</a><a href="/#reviews" data-i18n="approved.26">Отзывы</a></div></div></div><div class="footer-bottom"><span>© 2026 Knowly · Phraseman</span><div><a href="/legal/privacy/" data-i18n="approved.27">Конфиденциальность</a><a href="/legal/terms/">Условия</a><a href="/legal/data-deletion/" data-i18n="approved.29">Удаление данных</a><a href="#cookie-settings" data-cookie-settings data-i18n="approved.30">Настройки cookies</a></div></div></div></footer><script>
+  /* зачем (владелец 21.10, подарок «Ссылкой»): получатель видит, что за подарок и от кого,
+     и открывает его в приложении одной кнопкой. Код берём из пути /g/<КОД>.
+     Журнал [GIFT-PLUS] на каждом раннем выходе и в catch. */
+  (function () {
+    'use strict';
+    var LOG = '[GIFT-PLUS]';
+    var PLAN = { monthly: 'месяц Phraseman Plus', yearly: 'год Phraseman Plus' };
+    var $ = function (id) { return document.getElementById(id); };
+
+    function set(title, sub, kicker) {
+      $('gift-title').textContent = title;
+      $('gift-sub').textContent = sub;
+      if (kicker) $('gift-kicker').textContent = kicker;
+    }
+    function readCode() {
+      var m = location.pathname.match(/^\/g\/([^/?#]+)/i);
+      if (!m) return '';
+      try { return decodeURIComponent(m[1]).trim().toUpperCase(); } catch (error) {
+        console.warn(LOG, 'link_page:decode_failed', { message: String(error && error.message || error) });
+        return '';
+      }
+    }
+    function showActive(code, info) {
+      var plan = PLAN[info.plan] || PLAN.yearly;
+      var who = info.to ? info.to + ', тебе' : 'Тебе';
+      set(who + ' подарили ' + plan, (info.from ? 'От: ' + info.from + '. ' : '')
+        + 'Открой подарок в приложении — Plus включится одной кнопкой. Если Plus уже есть, он продлится.', 'Подарок 🎁');
+      $('gift-open-app').href = 'phraseman://promo_code_entry?code=' + encodeURIComponent(code) + '&source=gift_link';
+      $('gift-code').textContent = code;
+      $('gift-actions').hidden = false;
+      var copy = $('gift-copy');
+      copy.addEventListener('click', function () {
+        try {
+          navigator.clipboard.writeText(code).then(function () {
+            copy.textContent = 'Скопировано ✓';
+            setTimeout(function () { copy.textContent = 'Копировать'; }, 2000);
+          }, function (error) { console.warn(LOG, 'link_page:copy_refused', { message: String(error && error.message || error) }); });
+        } catch (error) {
+          console.warn(LOG, 'link_page:copy_unavailable', { message: String(error && error.message || error) });
+        }
+      });
+    }
+    var TERMINAL = {
+      redeemed: ['Подарок уже открыт', 'Этот подарок уже активирован. Если это был не ты — спроси у дарителя.'],
+      cancelled: ['Подарок отменён', 'Даритель отменил этот подарок. Ссылка больше не работает.'],
+      expired: ['Срок подарка истёк', 'Ссылка действовала 365 дней. Напиши дарителю или в поддержку.'],
+      unknown: ['Подарок не найден', 'Проверь ссылку целиком — возможно, она скопировалась не полностью.'],
+    };
+
+    function boot() {
+      var cfg = window.KNOWLY_SITE || {};
+      document.querySelectorAll('[data-store="ios"]').forEach(function (a) { if (cfg.storeIos) a.href = cfg.storeIos; });
+      document.querySelectorAll('[data-store="android"]').forEach(function (a) { if (cfg.storeAndroid) a.href = cfg.storeAndroid; });
+      var code = readCode();
+      if (!/^[A-Z0-9_-]{3,32}$/.test(code)) {
+        console.warn(LOG, 'link_page:early_exit', { reason: 'bad_code', length: code.length });
+        set(TERMINAL.unknown[0], TERMINAL.unknown[1]);
+        return;
+      }
+      if (!cfg.giftLinkInfoEndpoint) {
+        console.warn(LOG, 'link_page:early_exit', { reason: 'no_endpoint' });
+        showActive(code, {});
+        return;
+      }
+      fetch(cfg.giftLinkInfoEndpoint, { method: 'POST', body: JSON.stringify({ code: code }) })
+        .then(function (r) { return r.json().then(function (body) { return { http: r.status, body: body }; }); })
+        .then(function (res) {
+          var info = res.body || {};
+          console.log(LOG, 'link_page:info', { http: res.http, status: info.status || null, error: info.error || null });
+          if (info.ok && info.status === 'active') { showActive(code, info); return; }
+          if (info.ok && TERMINAL[info.status]) { set(TERMINAL[info.status][0], TERMINAL[info.status][1]); return; }
+          /* лимит или сбой сервера — не прячем подарок: даём открыть, приложение само проверит код */
+          showActive(code, {});
+        })
+        .catch(function (error) {
+          console.warn(LOG, 'link_page:failed', { message: String(error && error.message || error) });
+          showActive(code, {});
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+    else boot();
+  })();
+</script></body></html>

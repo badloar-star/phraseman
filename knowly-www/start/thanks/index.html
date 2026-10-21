@@ -33,6 +33,20 @@
     .qbuild-ring { width: 44px; height: 44px; margin: 0 auto 18px; border-radius: 50%; border: 3px solid var(--border); border-top-color: var(--accent-2); animation: qspin 1s linear infinite; }
     @keyframes qspin { to { transform: rotate(360deg); } }
     @media (prefers-reduced-motion: reduce) { .qbuild-ring { animation-duration: 2.4s; } }
+    /* Подарок: ссылка длиннее кода — мельче и без разрядки, переносится целиком */
+    .qthanks .qcode.qgift-link { font-size: clamp(15px, 3.6vw, 19px); letter-spacing: 0; overflow-wrap: anywhere; }
+    .qgift-cancel { display: grid; justify-items: center; gap: 10px; }
+    .qgift-cancel-btn { all: unset; box-sizing: border-box; cursor: pointer; padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 650; color: var(--sec, var(--text-muted)); background: var(--control, var(--surface-2)); transition: transform .12s ease, filter .15s ease; }
+    .qgift-cancel-btn:active { transform: scale(.97); }
+    .qgift-cancel-btn:focus-visible { outline: 2px solid var(--fill, var(--accent-2)); outline-offset: 2px; }
+    .qgift-cancel-btn.danger { color: #fff; background: var(--bad, #c0392b); }
+    .qgift-cancel-btn[disabled] { opacity: .55; pointer-events: none; }
+    .qgift-cancel-confirm { display: grid; gap: 10px; max-width: 30em; }
+    .qgift-cancel-confirm p { margin: 0; font-size: 14px; color: var(--text-muted); }
+    .qgift-cancel-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .qgift-cancel-err { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--bad, #c0392b); }
+    .qgift-cancel-err:empty { display: none; }
+    @media (prefers-reduced-motion: reduce) { .qgift-cancel-btn { transition: none; } }
   </style><script src="/assets/site-config.js?v=20261015p" defer></script><script src="/assets/stats.js?v=3" defer></script><script src="/assets/ds.js?v=20260816-11" defer></script><link rel="stylesheet" href="/assets/approved/runtime-components.css"><script src="/assets/approved/production.js" defer></script><link rel="stylesheet" href="/assets/v2/base.css?v=20261015"><link rel="stylesheet" href="/assets/v2/money.css?v=20261015p"><script src="/assets/v2/theme.js?v=20261015"></script></head><body data-approved-studio="20260908" class="cinema edition route-start inner-cinema"><a class="skip" href="#content">К содержанию</a><header class="site-header"><div class="container nav-row"><a class="brand" href="/" aria-label="Phraseman — главная"><img src="/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><nav id="main-nav" aria-label="Главная навигация"><a href="/app/" data-i18n="approved.0">Приложение</a><a href="/english-level-test/" data-i18n="approved.1">Тест уровня</a><a href="/guides/" data-i18n="approved.2">Журнал</a><a href="/gift/" data-i18n="approved.3">Подарить</a><a href="/contact/" data-i18n="approved.4">Поддержка</a></nav><div class="nav-actions"><a class="language" href="#site-preferences" aria-label="Язык и оформление" aria-expanded="false" id="site-language">RU <span aria-hidden="true">⌄</span></a><a class="button small primary" href="/download/">Начать бесплатно<span aria-hidden="true">→</span></a><button class="menu-button icon-button" aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="site-preferences" class="site-language-menu" hidden><button type="button" data-lang-btn="ru">Русский</button><button type="button" data-lang-btn="en">English</button><button type="button" id="theme-toggle">Светлая / тёмная тема</button></div></header><main id="content"><section class="container runtime-surface"><div class="quiz-root">
       <!-- Состояние 1: подтверждаем оплату -->
       <div class="qscreen qthanks" id="state-waiting">
@@ -90,6 +104,46 @@
           <span>Совет: сделай скриншот этого экрана. А если код всё же потеряется —
             <a href="/contact/" style="color:var(--gold)">напиши в поддержку</a>, восстановим по email из оплаты.</span>
         </div>
+      </div>
+
+      <!-- Подарок «Ссылкой»: ссылку покупатель отправляет сам (владелец 21.10) -->
+      <div class="qscreen qthanks" id="state-gift-link" style="display:none">
+        <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
+        <p class="kicker">Оплата прошла 🎉</p>
+        <h1>Ссылка-подарок <span class="gold-accent">готова</span></h1>
+        <p class="sub">Отправь её в любом мессенджере. Ссылка откроет Phraseman, и подарок включится одной кнопкой; если Plus уже есть — он продлится. Копия ссылки — у тебя на почте.</p>
+        <div class="qcode-box">
+          <div class="qcode qgift-link" id="gift-link">—</div>
+          <button class="btn-gold qcode-copy" type="button" id="copy-link-btn">Скопировать ссылку</button>
+        </div>
+      </div>
+
+      <!-- Подарок «По нику»: Plus уже включён получателю -->
+      <div class="qscreen qthanks" id="state-gift-nick" style="display:none">
+        <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
+        <p class="kicker">Оплата прошла 🎉</p>
+        <h1>Подарок <span class="gold-accent">уже у получателя</span></h1>
+        <p class="sub" id="gift-nick-sub">Plus включён — получатель увидит подарок, когда откроет Phraseman. Вводить ничего не нужно. Чек отправили тебе на почту.</p>
+      </div>
+
+      <!-- Подарок отменён покупателем до активации -->
+      <div class="qscreen qthanks" id="state-gift-cancelled" style="display:none">
+        <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
+        <p class="qstate-title">Подарок <span class="gold-accent">отменён</span></p>
+        <p class="sub">Код и ссылка больше не работают. Деньги вернём вручную — <a href="/contact/">напиши в поддержку</a> с email из оплаты, если мы ещё не связались с тобой.</p>
+      </div>
+
+      <!-- Отмена кода или ссылки до активации (у подарка «по нику» её нет) -->
+      <div class="qthanks qgift-cancel" id="gift-cancel" style="display:none;padding-top:0">
+        <button class="qgift-cancel-btn" type="button" id="gift-cancel-btn">Отменить подарок</button>
+        <div class="qgift-cancel-confirm" id="gift-cancel-confirm" hidden>
+          <p>Отменить? Код и ссылка сразу перестанут работать, деньги вернём вручную через поддержку.</p>
+          <div class="qgift-cancel-row">
+            <button class="qgift-cancel-btn danger" type="button" id="gift-cancel-yes">Да, отменить</button>
+            <button class="qgift-cancel-btn" type="button" id="gift-cancel-no">Оставить</button>
+          </div>
+        </div>
+        <p class="qgift-cancel-err" id="gift-cancel-err" role="alert"></p>
       </div>
 
       <!-- Состояние 3: код не получен (запасной путь — ручная активация) -->
@@ -186,7 +240,7 @@
       } catch (_) { /* noop */ }
 
       function show(id) {
-        ['state-waiting', 'state-code', 'state-manual'].forEach(function (s) {
+        ['state-waiting', 'state-code', 'state-manual', 'state-gift-link', 'state-gift-nick', 'state-gift-cancelled'].forEach(function (s) {
           var el = document.getElementById(s);
           if (el) el.style.display = s === id ? '' : 'none';
         });
@@ -229,6 +283,64 @@
         } catch (_) { /* noop */ }
       }
 
+      var GIFT_LOG = '[GIFT-PLUS]';
+      function copyText(btn, text, idleLabel) {
+        function done() {
+          btn.textContent = 'Скопировано ✓';
+          setTimeout(function () { btn.textContent = idleLabel; }, 2000);
+        }
+        try {
+          navigator.clipboard.writeText(text).then(done, function (error) {
+            console.warn(GIFT_LOG, 'copy:refused', { message: String(error && error.message || error) });
+          });
+        } catch (error) {
+          console.warn(GIFT_LOG, 'copy:unavailable', { message: String(error && error.message || error) });
+        }
+      }
+      function showGiftLink(link) {
+        document.getElementById('gift-link').textContent = link;
+        show('state-gift-link');
+        var btn = document.getElementById('copy-link-btn');
+        btn.addEventListener('click', function () { copyText(btn, link, 'Скопировать ссылку'); });
+      }
+
+      /* Отмена кода или ссылки до активации. зачем: владелец 21.10 — передумал или ошибся
+         адресатом; деньги возвращаются вручную, пока владелец не решил иначе. */
+      function offerGiftCancel() {
+        var box = document.getElementById('gift-cancel');
+        var openBtn = document.getElementById('gift-cancel-btn');
+        var confirmBox = document.getElementById('gift-cancel-confirm');
+        var yes = document.getElementById('gift-cancel-yes');
+        var no = document.getElementById('gift-cancel-no');
+        var err = document.getElementById('gift-cancel-err');
+        var cancelEndpoint = cfg.giftCancelEndpoint;
+        if (!cancelEndpoint) { console.warn(GIFT_LOG, 'cancel:early_exit', { reason: 'no_endpoint' }); return; }
+        box.style.display = '';
+        openBtn.addEventListener('click', function () { openBtn.hidden = true; confirmBox.hidden = false; yes.focus(); });
+        no.addEventListener('click', function () { confirmBox.hidden = true; openBtn.hidden = false; err.textContent = ''; openBtn.focus(); });
+        yes.addEventListener('click', function () {
+          if (yes.disabled) return;
+          yes.disabled = true; no.disabled = true; err.textContent = '';
+          fetch(cancelEndpoint, { method: 'POST', body: JSON.stringify(payload) })
+            .then(function (r) { return r.json().then(function (body) { return { http: r.status, body: body }; }); })
+            .then(function (res) {
+              if (res.body && res.body.ok) { box.style.display = 'none'; show('state-gift-cancelled'); return; }
+              var reason = res.body && res.body.error;
+              console.warn(GIFT_LOG, 'cancel:refused', { http: res.http, error: reason || null });
+              err.textContent = reason === 'already_redeemed'
+                ? 'Подарок уже активирован — отменить его нельзя.'
+                : 'Не получилось отменить. Попробуй ещё раз или напиши в поддержку.';
+              if (reason === 'already_redeemed') { confirmBox.hidden = true; return; }
+              yes.disabled = false; no.disabled = false;
+            })
+            .catch(function (error) {
+              console.warn(GIFT_LOG, 'cancel:failed', { message: String(error && error.message || error) });
+              err.textContent = 'Нет связи. Попробуй ещё раз или напиши в поддержку.';
+              yes.disabled = false; no.disabled = false;
+            });
+        });
+      }
+
       var params = new URLSearchParams(location.search);
       var sessionId = params.get('session_id') || '';
       var paypalOrder = params.get('order') || '';
@@ -255,8 +367,17 @@
         fetch(endpoint, { method: 'POST', body: JSON.stringify(payload) })
           .then(function (r) { return r.json(); })
           .then(function (data) {
-            if (data && data.ok && data.status === 'paid' && data.code) {
+            if (data && data.ok && data.status === 'cancelled') { show('state-gift-cancelled'); return; }
+            /* Подарок «по нику»: ждём, пока сервер доставит Plus получателю (код не показываем) */
+            if (data && data.ok && data.giftDelivery === 'nick') {
+              if (data.giftNickDelivered) { show('state-gift-nick'); return; }
+            } else if (data && data.ok && data.status === 'paid' && data.giftDelivery === 'link' && data.giftLink) {
+              showGiftLink(data.giftLink);
+              offerGiftCancel();
+              return;
+            } else if (data && data.ok && data.status === 'paid' && data.code) {
               showCode(data.code);
+              if (data.giftDelivery === 'email') offerGiftCancel();
               return;
             }
             if (attempts >= MAX_ATTEMPTS) { show('state-manual'); return; }

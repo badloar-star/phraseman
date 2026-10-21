@@ -169,6 +169,10 @@
             "functionId": "emailUnsubscribe",
             "region": "us-central1"
           }
+        },
+        {
+          "source": "/g/**",
+          "destination": "/g/index.html"
         }
       ],
       "headers": [

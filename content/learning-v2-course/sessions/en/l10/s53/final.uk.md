@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 53 — Особлива нагода
+# Англійська · Урок 10 · Заняття 53 — Привітатися й побажати доброї ночі
 
-**Ситуація.** Підготувати стіл до свята й обговорити початок програми.
+**Ситуація.** Обрати привітання за часом доби й попрощатися перед сном.
 
-**Що ви опануєте:** This is a special occasion; The festivities start at six; We are arranging the centrepiece
-**Нові слова:** occasion, festivities, centrepiece, place card
+**Що ви опануєте:** Good morning; Good afternoon; Good evening; Good night
+**Нові слова:** good morning, good afternoon, good evening, good night
 
 ## Інтро 1
 
-### Чому ми зібралися
+### Уранці
 
-Occasion — «нагода; випадок». Сьогодні родина відзначає важливу подію: This is a special occasion — «Це особлива нагода». Описуємо подію за допомогою is. Перед злічуваним occasion в однині тут потрібен a.
+О дев’ятій ранку ви зустрічаєте сусіда. Good morning — «Доброго ранку». Це привітання при зустрічі вранці. Слова вчимо разом: good morning.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **This is a special occasion.**
-- ❌ This are a special occasion. — *З this потрібна is.*
-- ❌ This is special occasion. — *Тут потрібне a special occasion.*
+- ✅ **Good morning.**
+- ❌ Good mornings. — *У привітанні morning без s.*
+- ❌ Well morning. — *У цьому привітанні потрібно Good.*
 
 ---
 
 ## Інтро 2
 
-### Початок програми
+### Удень і ввечері
 
-Festivities — «святкування», святкові заходи. За програмою вони починаються о шостій: The festivities start at six — «Святкування починаються о шостій». Для встановленого розкладу підходить Present Simple. Festivities — множина, тому start без s.
+Після полудня при зустрічі кажемо Good afternoon — «Добрий день». Увечері при зустрічі — Good evening: «Добрий вечір». Зараз третя година дня, ви заходите до магазину й вітаєтеся з продавцем.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The festivities start at six.**
-- ❌ The festivities starts at six. — *Множина: start без s.*
-- ❌ The festivities starting at six. — *Тут потрібна особова форма start.*
+- ✅ **Good afternoon.**
+- ❌ Good morning. — *Зараз третя година дня, не ранок.*
+- ❌ Good evening. — *Для цієї денної зустрічі потрібно Good afternoon.*
 
 ---
 
 ## Інтро 3
 
-### Прикрашаємо стіл зараз
+### Перед сном
 
-Centrepiece — «центральна прикраса столу», наприклад композиція з квітів. Ви з другом зараз її оформлюєте: We are arranging the centrepiece — «Ми оформлюємо центральну прикрасу столу». Поточна робота: are + arranging. У arrange перед ing прибираємо e. Centrepiece — британське написання; у США пишуть centerpiece.
+Ви йдете спати й прощаєтеся з близькою людиною. Good night — «На добраніч». Це побажання при прощанні на ніч, а не привітання при вечірній зустрічі. Для зустрічі ввечері — Good evening; перед сном — Good night.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We are arranging the centrepiece.**
-- ❌ We arranging the centrepiece. — *Перед arranging потрібна are.*
-- ❌ We are arrangeing the centrepiece. — *Правильно arranging, без e.*
+- ✅ **Good night.**
+- ❌ Good evening. — *Good evening — привітання ввечері. Тут прощаємося перед сном.*
+- ❌ Good afternoon. — *Good afternoon — денне привітання, не побажання перед сном.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — occasion**
-<!-- interaction_id: en:lesson-10:session-53:word:occasion; family: word_card -->
-> **occasion** — «нагода». This is a special occasion. — «Це особлива нагода». Тут важлива подія, заради якої зібралася родина.
+**1 · Картка слова — good morning**
+<!-- interaction_id: en:lesson-10:session-53:word:good-morning; family: word_card -->
+> **good morning** — «Доброго ранку». Привітання при зустрічі вранці.
 
-**2 · Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»**
+**2 · Привітайтеся із сусідом уранці**
 <!-- interaction_id: en:lesson-10:session-53:i01; family: phrase_builder -->
-Плитки: `occasion` `special` `a` `is` `This` → **This is a special occasion.**
+Плитки: `morning` `Good` → **Good morning.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-53:i02; family: listen_choose -->
-🔊 *This is a happy occasion.* → **This is a happy occasion.** · This is a sad occasion. · This is a happy day.
-- This is a sad occasion. — *У записі звучить This is a happy occasion.*
-- This is a happy day. — *У записі звучить This is a happy occasion.*
+🔊 *Good morning, Tom.* → **Good morning, Tom.** · Good morning, Anna. · Good morning, Ben.
+- Good morning, Anna. — *У записі звучить Good morning, Tom.*
+- Good morning, Ben. — *У записі звучить Good morning, Tom.*
 
-**4 · Виберіть зв’язку після this**
+**4 · Закінчіть ранкове привітання**
 <!-- interaction_id: en:lesson-10:session-53:i03; family: context_gap_grammar -->
-This ___ a special occasion. → **is** · are · am
-- are — *З this потрібна is.*
-- am — *Am уживається з I.*
+Good ___. → **morning** · mornings · mornings are
+- mornings — *У привітанні morning без s.*
+- mornings are — *Тут лише Good morning, без are.*
 
-**5 · Картка слова — festivities**
-<!-- interaction_id: en:lesson-10:session-53:word:festivities; family: word_card -->
-> **festivities** — «святкування». The festivities start at six. — «Святкування починаються о шостій». Святкові заходи, множина.
+**5 · Картка слова — good afternoon**
+<!-- interaction_id: en:lesson-10:session-53:word:good-afternoon; family: word_card -->
+> **good afternoon** — «Добрий день». Привітання після полудня.
 
-**6 · Поясніть час за програмою: «Святкування починаються о шостій»**
+**6 · Зараз третя година дня. Привітайтеся з продавцем**
 <!-- interaction_id: en:lesson-10:session-53:i04; family: phrase_builder -->
-Плитки: `six` `at` `start` `festivities` `The` → **The festivities start at six.**
+Плитки: `afternoon` `Good` → **Good afternoon.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-53:i05; family: listen_choose -->
-🔊 *The festivities are outside.* → **The festivities are outside.** · The festivities are inside. · The guests are outside.
-- The festivities are inside. — *У записі звучить The festivities are outside.*
-- The guests are outside. — *У записі звучить The festivities are outside.*
+🔊 *Good afternoon, Anna.* → **Good afternoon, Anna.** · Good morning, Anna. · Good afternoon, Tom.
+- Good morning, Anna. — *У записі звучить Good afternoon, Anna.*
+- Good afternoon, Tom. — *У записі звучить Good afternoon, Anna.*
 
-**8 · Це розклад. Виберіть форму start**
+**8 · Третя година дня. Закінчіть денне привітання**
 <!-- interaction_id: en:lesson-10:session-53:i06; family: context_gap_grammar -->
-The festivities ___ at six. → **start** · starts · starting
-- starts — *Festivities — множина: start.*
-- starting — *Тут потрібна особова форма start.*
+Good ___. → **afternoon** · morning · afternoons
+- morning — *Зараз день після полудня, а morning — ранок.*
+- afternoons — *У привітанні afternoon без s.*
 
-**9 · Картка слова — centrepiece**
-<!-- interaction_id: en:lesson-10:session-53:word:centrepiece; family: word_card -->
-> **centrepiece** — «центральна прикраса столу». We are arranging the centrepiece. — «Ми оформлюємо центральну прикрасу столу». Тут композиція з квітів.
+**9 · Картка слова — good evening**
+<!-- interaction_id: en:lesson-10:session-53:word:good-evening; family: word_card -->
+> **good evening** — «Добрий вечір». Привітання при зустрічі ввечері.
 
-**10 · Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»**
+**10 · Восьма година вечора. Привітайтеся з гостем**
 <!-- interaction_id: en:lesson-10:session-53:i07; family: phrase_builder -->
-Плитки: `centrepiece` `the` `arranging` `are` `We` → **We are arranging the centrepiece.**
+Плитки: `evening` `Good` → **Good evening.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-53:i08; family: listen_choose -->
-🔊 *The centrepiece is beautiful.* → **The centrepiece is beautiful.** · The centrepiece is small. · The garden is beautiful.
-- The centrepiece is small. — *У записі звучить The centrepiece is beautiful.*
-- The garden is beautiful. — *У записі звучить The centrepiece is beautiful.*
+🔊 *Good evening, Ben.* → **Good evening, Ben.** · Good morning, Ben. · Good afternoon, Ben.
+- Good morning, Ben. — *У записі звучить Good evening, Ben.*
+- Good afternoon, Ben. — *У записі звучить Good evening, Ben.*
 
-**12 · Виберіть правильне написання форми arrange**
+**12 · Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання**
 <!-- interaction_id: en:lesson-10:session-53:i09; family: context_gap_grammar -->
-We are ___ the centrepiece. → **arranging** · arrangeing · arrange
-- arrangeing — *Перед ing прибираємо e: arranging.*
-- arrange — *Після are для поточної дії потрібна arranging.*
+Good ___. → **evening** · morning · afternoon
+- morning — *Зараз вечір, не ранок.*
+- afternoon — *Зараз вечір, тому Good evening.*
 
-**13 · Картка слова — place card**
-<!-- interaction_id: en:lesson-10:session-53:word:place-card; family: word_card -->
-> **place card** — «картка з іменем гостя». Your name is on the place card. — «Ваше ім’я на картці з іменем гостя». Place card указує місце гостя за столом; пишеться двома словами.
+**13 · Картка слова — good night**
+<!-- interaction_id: en:lesson-10:session-53:word:good-night; family: word_card -->
+> **good night** — «На добраніч». Побажання при прощанні на ніч.
 
-**14 · Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»**
+**14 · Ви йдете спати. Побажайте близькій людині доброї ночі**
 <!-- interaction_id: en:lesson-10:session-53:i10; family: phrase_builder -->
-Плитки: `card` `place` `the` `on` `is` `name` `Your` → **Your name is on the place card.**
+Плитки: `night` `Good` → **Good night.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-53:i11; family: listen_choose -->
-🔊 *The place card is beside the plate.* → **The place card is beside the plate.** · The place card is under the plate. · The glass is beside the plate.
-- The place card is under the plate. — *У записі звучить The place card is beside the plate.*
-- The glass is beside the plate. — *У записі звучить The place card is beside the plate.*
+🔊 *Good night, Anna.* → **Good night, Anna.** · Good evening, Anna. · Good night, Tom.
+- Good evening, Anna. — *У записі звучить Good night, Anna.*
+- Good night, Tom. — *У записі звучить Good night, Anna.*
 
-**16 · Ідеться про одне ім’я. Виберіть зв’язку**
+**16 · Ви прощаєтеся перед сном. Закінчіть побажання**
 <!-- interaction_id: en:lesson-10:session-53:i12; family: context_gap_grammar -->
-Your name ___ on the place card. → **is** · are · am
-- are — *Одне ім’я: is.*
-- am — *Am уживається з I.*
+Good ___. → **night** · evening · afternoon
+- evening — *Good evening — привітання, а тут прощання перед сном.*
+- afternoon — *Good afternoon — денне привітання.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте фрази з перекладом**
 <!-- interaction_id: en:lesson-10:session-53:i13; family: speed_match -->
-occasion — нагода · festivities — святкування · centrepiece — центральна прикраса столу · place card — картка з іменем гостя
+good morning — доброго ранку · good afternoon — добрий день · good evening — добрий вечір · good night — на добраніч
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-53:i14; family: listen_build_dictation -->
-🔊 *We are arranging the centrepiece.* Плитки: `centrepiece` `the` `arranging` `are` `We` → **We are arranging the centrepiece.**
+🔊 *Good afternoon.* Плитки: `afternoon` `Good` → **Good afternoon.**
 
-**19 · Друг запитує, коли починається святкова програма. Скажіть: «Святкування починаються о шостій»**
-<!-- interaction_id: en:lesson-10:session-53:i15; family: scripted_repeat_compare -->
-🎙 **The festivities start at six.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-53:i15; family: listen_build_dictation -->
+🔊 *Good night.* Плитки: `night` `Good` → **Good night.**
 
-**20 · Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»**
-<!-- interaction_id: en:lesson-10:session-53:i16; family: phrase_builder -->
-Плитки: `occasion` `special` `a` `is` `This` → **This is a special occasion.**
+**20 · Уранці привітайтеся з Анною**
+<!-- interaction_id: en:lesson-10:session-53:i16; family: scripted_repeat_compare -->
+🎙 **Good morning, Anna.**
 
-**21 · Ви з другом оформлюєте квіткову композицію в центрі столу. Господар запитує, чим ви зайняті зараз. Скажіть: «Ми оформлюємо центральну прикрасу столу»**
-<!-- interaction_id: en:lesson-10:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are arranging the centrepiece.**
+**21 · Увечері привітайтеся з Томом**
+<!-- interaction_id: en:lesson-10:session-53:i17; family: scripted_repeat_compare -->
+🎙 **Good evening, Tom.**
 

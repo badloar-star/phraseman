@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-25:word:dawn",
+        "interactionId": "en:lesson-10:session-25:word:lunchtime",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — dawn",
+        "prompt": "Карточка слова — lunchtime",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:dawn:audio"
+          "en:lesson-10:session-25:word:lunchtime:audio"
         ],
-        "accessibilityLabel": "Карточка слова — dawn",
+        "accessibilityLabel": "Карточка слова — lunchtime",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:dawn:audio",
-            "transcript": "dawn"
+            "audioTargetId": "en:lesson-10:session-25:word:lunchtime:audio",
+            "transcript": "lunchtime"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:dawn:r1",
-              "targetText": "dawn",
+              "responseId": "en:lesson-10:session-25:word:lunchtime:r1",
+              "targetText": "lunchtime",
               "meaningByLocale": {
-                "ru": "«рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.",
-                "uk": "«світанок». I usually walk at dawn. — «Я зазвичай гуляю на світанку». Час, коли вранці починає світати."
+                "ru": "«обеденное время». I walk at lunchtime. — «Я гуляю в обеденное время».",
+                "uk": "«обідній час». I walk at lunchtime. — «Я гуляю в обідній час»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "dawn",
+            "word": "lunchtime",
             "definitionByLocale": {
-              "ru": "«рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.",
-              "uk": "«світанок». I usually walk at dawn. — «Я зазвичай гуляю на світанку». Час, коли вранці починає світати."
+              "ru": "«обеденное время». I walk at lunchtime. — «Я гуляю в обеденное время».",
+              "uk": "«обідній час». I walk at lunchtime. — «Я гуляю в обідній час»."
             }
           }
         },
@@ -52,24 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+        "prompt": "Скажите, что гуляете в обеденное время. Время поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+        "accessibilityLabel": "Скажите, что гуляете в обеденное время. Время поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I usually walk at dawn.",
+          "targetPhrase": "I walk at lunchtime.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
-            "uk": "Друг запитує про вашу звичку. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці"
+            "ru": "Скажите, что гуляете в обеденное время. Время поставьте в конце",
+            "uk": "Скажіть, що гуляєте в обідній час. Час поставте в кінці"
           },
           "orderedTokens": [
             "I",
-            "usually",
             "walk",
             "at",
-            "dawn"
+            "lunchtime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i02:r1",
-            "text": "We walk at dawn."
+            "text": "We walk at lunchtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i02:r2",
-            "text": "I walk at dawn."
+            "text": "I walk at lunchtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i02:r3",
-            "text": "We run at dawn."
+            "text": "They walk at lunchtime."
           }
         ],
         "mediaIds": [],
@@ -110,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i02:audio",
-            "transcript": "We walk at dawn."
+            "transcript": "We walk at lunchtime."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i02:r1",
-              "targetText": "We walk at dawn.",
+              "targetText": "We walk at lunchtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i02:r2",
-              "targetText": "I walk at dawn.",
+              "targetText": "I walk at lunchtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i02:r3",
-              "targetText": "We run at dawn.",
+              "targetText": "They walk at lunchtime.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We walk at dawn.",
-                "uk": "У записі звучить We walk at dawn."
+                "ru": "В записи звучит We walk at lunchtime.",
+                "uk": "У записі звучить We walk at lunchtime."
               }
             },
             {
@@ -146,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We walk at dawn.",
-                "uk": "У записі звучить We walk at dawn."
+                "ru": "В записи звучит We walk at lunchtime.",
+                "uk": "У записі звучить We walk at lunchtime."
               }
             }
           ],
@@ -162,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+        "prompt": "Выберите форму walk с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i03:r1",
-            "text": "am walking"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-25:i03:r2",
-            "text": "walking"
+            "text": "walks"
           },
           {
             "responseId": "en:lesson-10:session-25:i03:r3",
-            "text": "am walk"
+            "text": "walking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+        "accessibilityLabel": "Выберите форму walk с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
-            "uk": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз"
+            "ru": "Выберите форму walk с I",
+            "uk": "Виберіть форму walk з I"
           },
-          "gappedTargetPhrase": "I ___ now.",
+          "gappedTargetPhrase": "I ___ at lunchtime.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i03:r1",
-              "text": "am walking"
+              "text": "walk"
             },
             {
               "responseId": "en:lesson-10:session-25:i03:r2",
-              "text": "walking"
+              "text": "walks"
             },
             {
               "responseId": "en:lesson-10:session-25:i03:r3",
-              "text": "am walk"
+              "text": "walking"
             }
           ],
-          "testedDimension": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+          "testedDimension": "Выберите форму walk с I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i03:r2",
               "correct": false,
-              "testedDimension": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+              "testedDimension": "Выберите форму walk с I",
               "feedbackByLocale": {
-                "ru": "Нужно am перед walking.",
-                "uk": "Потрібне am перед walking."
+                "ru": "С I нужна walk без s.",
+                "uk": "З I потрібна walk без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i03:r3",
               "correct": false,
-              "testedDimension": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+              "testedDimension": "Выберите форму walk с I",
               "feedbackByLocale": {
-                "ru": "После am нужна walking.",
-                "uk": "Після am потрібна walking."
+                "ru": "Для привычки здесь нужна walk.",
+                "uk": "Для звички тут потрібна walk."
               }
             }
           ]
@@ -226,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:word:dew",
+        "interactionId": "en:lesson-10:session-25:word:bedtime",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — dew",
+        "prompt": "Карточка слова — bedtime",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:dew:audio"
+          "en:lesson-10:session-25:word:bedtime:audio"
         ],
-        "accessibilityLabel": "Карточка слова — dew",
+        "accessibilityLabel": "Карточка слова — bedtime",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:dew:audio",
-            "transcript": "dew"
+            "audioTargetId": "en:lesson-10:session-25:word:bedtime:audio",
+            "transcript": "bedtime"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:dew:r1",
-              "targetText": "dew",
+              "responseId": "en:lesson-10:session-25:word:bedtime:r1",
+              "targetText": "bedtime",
               "meaningByLocale": {
-                "ru": "«роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.",
-                "uk": "«роса». There is dew on the grass. — «На траві роса». Маленькі краплі води, які з’являються на прохолодній поверхні."
+                "ru": "«время ложиться спать». I read before bedtime. — «Я читаю перед сном».",
+                "uk": "«час лягати спати». I read before bedtime. — «Я читаю перед сном»."
               }
             }
           ],
@@ -259,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "dew",
+            "word": "bedtime",
             "definitionByLocale": {
-              "ru": "«роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.",
-              "uk": "«роса». There is dew on the grass. — «На траві роса». Маленькі краплі води, які з’являються на прохолодній поверхні."
+              "ru": "«время ложиться спать». I read before bedtime. — «Я читаю перед сном».",
+              "uk": "«час лягати спати». I read before bedtime. — «Я читаю перед сном»."
             }
           }
         },
@@ -274,25 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
+        "prompt": "Скажите, что читаете перед сном. Время поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
+        "accessibilityLabel": "Скажите, что читаете перед сном. Время поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "There is dew on the grass.",
+          "targetPhrase": "I read before bedtime.",
           "localizedMeaning": {
-            "ru": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
-            "uk": "На ранковій прогулянці ви помічаєте краплі на траві. Скажіть другу: «На траві роса»"
+            "ru": "Скажите, что читаете перед сном. Время поставьте в конце",
+            "uk": "Скажіть, що читаєте перед сном. Час поставте в кінці"
           },
           "orderedTokens": [
-            "There",
-            "is",
-            "dew",
-            "on",
-            "the",
-            "grass"
+            "I",
+            "read",
+            "before",
+            "bedtime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i05:r1",
-            "text": "There is dew on the leaves."
+            "text": "She reads before bedtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i05:r2",
-            "text": "There is dew on the grass."
+            "text": "He reads before bedtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i05:r3",
-            "text": "There is water on the leaves."
+            "text": "We read before bedtime."
           }
         ],
         "mediaIds": [],
@@ -333,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i05:audio",
-            "transcript": "There is dew on the leaves."
+            "transcript": "She reads before bedtime."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i05:r1",
-              "targetText": "There is dew on the leaves.",
+              "targetText": "She reads before bedtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i05:r2",
-              "targetText": "There is dew on the grass.",
+              "targetText": "He reads before bedtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i05:r3",
-              "targetText": "There is water on the leaves.",
+              "targetText": "We read before bedtime.",
               "meaningByLocale": null
             }
           ],
@@ -360,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is dew on the leaves.",
-                "uk": "У записі звучить There is dew on the leaves."
+                "ru": "В записи звучит She reads before bedtime.",
+                "uk": "У записі звучить She reads before bedtime."
               }
             },
             {
@@ -369,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is dew on the leaves.",
-                "uk": "У записі звучить There is dew on the leaves."
+                "ru": "В записи звучит She reads before bedtime.",
+                "uk": "У записі звучить She reads before bedtime."
               }
             }
           ],
@@ -385,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+        "prompt": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i06:r1",
-            "text": "walk"
+            "text": "before"
           },
           {
             "responseId": "en:lesson-10:session-25:i06:r2",
-            "text": "walks"
+            "text": "after"
           },
           {
             "responseId": "en:lesson-10:session-25:i06:r3",
-            "text": "walking"
+            "text": "under"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+        "accessibilityLabel": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
-            "uk": "Ви розповідаєте про щоденну звичку. Виберіть форму walk"
+            "ru": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
+            "uk": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime"
           },
-          "gappedTargetPhrase": "I ___ every morning.",
+          "gappedTargetPhrase": "I read ___ bedtime.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i06:r1",
-              "text": "walk"
+              "text": "before"
             },
             {
               "responseId": "en:lesson-10:session-25:i06:r2",
-              "text": "walks"
+              "text": "after"
             },
             {
               "responseId": "en:lesson-10:session-25:i06:r3",
-              "text": "walking"
+              "text": "under"
             }
           ],
-          "testedDimension": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+          "testedDimension": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i06:r2",
               "correct": false,
-              "testedDimension": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+              "testedDimension": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
               "feedbackByLocale": {
-                "ru": "С I нужна walk без s.",
-                "uk": "З I потрібна walk без s."
+                "ru": "After — после, а нужно перед.",
+                "uk": "After — після, а потрібно перед."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i06:r3",
               "correct": false,
-              "testedDimension": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+              "testedDimension": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна walk.",
-                "uk": "Для цієї звички потрібна walk."
+                "ru": "Under — под. Для времени перед сном нужно before.",
+                "uk": "Under — під. Для часу перед сном потрібно before."
               }
             }
           ]
@@ -449,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:word:mist",
+        "interactionId": "en:lesson-10:session-25:word:midnight",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — mist",
+        "prompt": "Карточка слова — midnight",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:mist:audio"
+          "en:lesson-10:session-25:word:midnight:audio"
         ],
-        "accessibilityLabel": "Карточка слова — mist",
+        "accessibilityLabel": "Карточка слова — midnight",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:mist:audio",
-            "transcript": "mist"
+            "audioTargetId": "en:lesson-10:session-25:word:midnight:audio",
+            "transcript": "midnight"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:mist:r1",
-              "targetText": "mist",
+              "responseId": "en:lesson-10:session-25:word:midnight:r1",
+              "targetText": "midnight",
               "meaningByLocale": {
-                "ru": "«лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.",
-                "uk": "«легкий туман». There is mist over the river. — «Над річкою легкий туман». Тут тонка пелена краплин води в повітрі."
+                "ru": "«полночь». I am asleep at midnight. — «В полночь я сплю».",
+                "uk": "«північ». I am asleep at midnight. — «Опівночі я сплю»."
               }
             }
           ],
@@ -482,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "mist",
+            "word": "midnight",
             "definitionByLocale": {
-              "ru": "«лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.",
-              "uk": "«легкий туман». There is mist over the river. — «Над річкою легкий туман». Тут тонка пелена краплин води в повітрі."
+              "ru": "«полночь». I am asleep at midnight. — «В полночь я сплю».",
+              "uk": "«північ». I am asleep at midnight. — «Опівночі я сплю»."
             }
           }
         },
@@ -497,25 +494,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
+        "prompt": "Скажите, что в полночь вы спите. At midnight поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
+        "accessibilityLabel": "Скажите, что в полночь вы спите. At midnight поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "There is mist over the river.",
+          "targetPhrase": "I am asleep at midnight.",
           "localizedMeaning": {
-            "ru": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
-            "uk": "Під час прогулянки біля річки ви бачите легкий туман. Скажіть: «Над річкою легкий туман»"
+            "ru": "Скажите, что в полночь вы спите. At midnight поставьте в конце",
+            "uk": "Скажіть, що опівночі ви спите. At midnight поставте в кінці"
           },
           "orderedTokens": [
-            "There",
-            "is",
-            "mist",
-            "over",
-            "the",
-            "river"
+            "I",
+            "am",
+            "asleep",
+            "at",
+            "midnight"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -536,15 +532,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i08:r1",
-            "text": "The mist is clearing."
+            "text": "She is asleep at midnight."
           },
           {
             "responseId": "en:lesson-10:session-25:i08:r2",
-            "text": "The mist is thick."
+            "text": "He is asleep at midnight."
           },
           {
             "responseId": "en:lesson-10:session-25:i08:r3",
-            "text": "The sky is clearing."
+            "text": "I am asleep at midnight."
           }
         ],
         "mediaIds": [],
@@ -556,23 +552,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i08:audio",
-            "transcript": "The mist is clearing."
+            "transcript": "She is asleep at midnight."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i08:r1",
-              "targetText": "The mist is clearing.",
+              "targetText": "She is asleep at midnight.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i08:r2",
-              "targetText": "The mist is thick.",
+              "targetText": "He is asleep at midnight.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i08:r3",
-              "targetText": "The sky is clearing.",
+              "targetText": "I am asleep at midnight.",
               "meaningByLocale": null
             }
           ],
@@ -583,8 +579,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mist is clearing.",
-                "uk": "У записі звучить The mist is clearing."
+                "ru": "В записи звучит She is asleep at midnight.",
+                "uk": "У записі звучить She is asleep at midnight."
               }
             },
             {
@@ -592,8 +588,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mist is clearing.",
-                "uk": "У записі звучить The mist is clearing."
+                "ru": "В записи звучит She is asleep at midnight.",
+                "uk": "У записі звучить She is asleep at midnight."
               }
             }
           ],
@@ -608,63 +604,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+        "prompt": "Выберите предлог в выражении «в полночь»",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i09:r1",
-            "text": "is clearing"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-25:i09:r2",
-            "text": "clearing"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-25:i09:r3",
-            "text": "is clear"
+            "text": "under"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+        "accessibilityLabel": "Выберите предлог в выражении «в полночь»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Туман постепенно исчезает прямо сейчас. Выберите форму",
-            "uk": "Туман поступово зникає просто зараз. Виберіть форму"
+            "ru": "Выберите предлог в выражении «в полночь»",
+            "uk": "Виберіть прийменник у вислові «опівночі»"
           },
-          "gappedTargetPhrase": "The mist ___ now.",
+          "gappedTargetPhrase": "I am asleep ___ midnight.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i09:r1",
-              "text": "is clearing"
+              "text": "at"
             },
             {
               "responseId": "en:lesson-10:session-25:i09:r2",
-              "text": "clearing"
+              "text": "on"
             },
             {
               "responseId": "en:lesson-10:session-25:i09:r3",
-              "text": "is clear"
+              "text": "under"
             }
           ],
-          "testedDimension": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+          "testedDimension": "Выберите предлог в выражении «в полночь»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i09:r2",
               "correct": false,
-              "testedDimension": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+              "testedDimension": "Выберите предлог в выражении «в полночь»",
               "feedbackByLocale": {
-                "ru": "Перед clearing нужно is.",
-                "uk": "Перед clearing потрібне is."
+                "ru": "С midnight здесь нужна at.",
+                "uk": "З midnight тут потрібна at."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i09:r3",
               "correct": false,
-              "testedDimension": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+              "testedDimension": "Выберите предлог в выражении «в полночь»",
               "feedbackByLocale": {
-                "ru": "Для процесса рассеивания здесь нужно is clearing.",
-                "uk": "Для процесу розсіювання тут потрібне is clearing."
+                "ru": "Under — под. Здесь нужно at midnight.",
+                "uk": "Under — під. Тут потрібно at midnight."
               }
             }
           ]
@@ -672,32 +668,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:word:birdsong",
+        "interactionId": "en:lesson-10:session-25:word:daytime",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — birdsong",
+        "prompt": "Карточка слова — daytime",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:birdsong:audio"
+          "en:lesson-10:session-25:word:daytime:audio"
         ],
-        "accessibilityLabel": "Карточка слова — birdsong",
+        "accessibilityLabel": "Карточка слова — daytime",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:birdsong:audio",
-            "transcript": "birdsong"
+            "audioTargetId": "en:lesson-10:session-25:word:daytime:audio",
+            "transcript": "daytime"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:birdsong:r1",
-              "targetText": "birdsong",
+              "responseId": "en:lesson-10:session-25:word:daytime:r1",
+              "targetText": "daytime",
               "meaningByLocale": {
-                "ru": "«пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.",
-                "uk": "«спів птахів». I am listening to birdsong. — «Я слухаю спів птахів». Звуки птахів, які співають."
+                "ru": "«дневное время». I work in the daytime. — «Я работаю днём».",
+                "uk": "«денний час». I work in the daytime. — «Я працюю вдень»."
               }
             }
           ],
@@ -705,10 +701,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "birdsong",
+            "word": "daytime",
             "definitionByLocale": {
-              "ru": "«пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.",
-              "uk": "«спів птахів». I am listening to birdsong. — «Я слухаю спів птахів». Звуки птахів, які співають."
+              "ru": "«дневное время». I work in the daytime. — «Я работаю днём».",
+              "uk": "«денний час». I work in the daytime. — «Я працюю вдень»."
             }
           }
         },
@@ -720,24 +716,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
+        "prompt": "Скажите, что работаете днём. Время поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
+        "accessibilityLabel": "Скажите, что работаете днём. Время поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am listening to birdsong.",
+          "targetPhrase": "I work in the daytime.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
-            "uk": "Друг запитує, що ви робите зараз у парку. Скажіть: «Я слухаю спів птахів»"
+            "ru": "Скажите, что работаете днём. Время поставьте в конце",
+            "uk": "Скажіть, що працюєте вдень. Час поставте в кінці"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "listening",
-            "to",
-            "birdsong"
+            "work",
+            "in",
+            "the",
+            "daytime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -758,15 +754,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i11:r1",
-            "text": "We are listening to birdsong."
+            "text": "We work in the daytime."
           },
           {
             "responseId": "en:lesson-10:session-25:i11:r2",
-            "text": "I am listening to birdsong."
+            "text": "I work in the daytime."
           },
           {
             "responseId": "en:lesson-10:session-25:i11:r3",
-            "text": "We are listening to music."
+            "text": "They work in the daytime."
           }
         ],
         "mediaIds": [],
@@ -778,23 +774,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i11:audio",
-            "transcript": "We are listening to birdsong."
+            "transcript": "We work in the daytime."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i11:r1",
-              "targetText": "We are listening to birdsong.",
+              "targetText": "We work in the daytime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i11:r2",
-              "targetText": "I am listening to birdsong.",
+              "targetText": "I work in the daytime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i11:r3",
-              "targetText": "We are listening to music.",
+              "targetText": "They work in the daytime.",
               "meaningByLocale": null
             }
           ],
@@ -805,8 +801,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are listening to birdsong.",
-                "uk": "У записі звучить We are listening to birdsong."
+                "ru": "В записи звучит We work in the daytime.",
+                "uk": "У записі звучить We work in the daytime."
               }
             },
             {
@@ -814,8 +810,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are listening to birdsong.",
-                "uk": "У записі звучить We are listening to birdsong."
+                "ru": "В записи звучит We work in the daytime.",
+                "uk": "У записі звучить We work in the daytime."
               }
             }
           ],
@@ -830,63 +826,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы слушаете птиц. Выберите предлог после listening",
+        "prompt": "Выберите форму work с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i12:r1",
-            "text": "to"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-10:session-25:i12:r2",
-            "text": "at"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-10:session-25:i12:r3",
-            "text": "on"
+            "text": "working"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы слушаете птиц. Выберите предлог после listening",
+        "accessibilityLabel": "Выберите форму work с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы слушаете птиц. Выберите предлог после listening",
-            "uk": "Ви слухаєте птахів. Виберіть прийменник після listening"
+            "ru": "Выберите форму work с I",
+            "uk": "Виберіть форму work з I"
           },
-          "gappedTargetPhrase": "I am listening ___ birdsong.",
+          "gappedTargetPhrase": "I ___ in the daytime.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i12:r1",
-              "text": "to"
+              "text": "work"
             },
             {
               "responseId": "en:lesson-10:session-25:i12:r2",
-              "text": "at"
+              "text": "works"
             },
             {
               "responseId": "en:lesson-10:session-25:i12:r3",
-              "text": "on"
+              "text": "working"
             }
           ],
-          "testedDimension": "Вы слушаете птиц. Выберите предлог после listening",
+          "testedDimension": "Выберите форму work с I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i12:r2",
               "correct": false,
-              "testedDimension": "Вы слушаете птиц. Выберите предлог после listening",
+              "testedDimension": "Выберите форму work с I",
               "feedbackByLocale": {
-                "ru": "Говорим listen to, не listen at.",
-                "uk": "Кажемо listen to, не listen at."
+                "ru": "С I нужна work без s.",
+                "uk": "З I потрібна work без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i12:r3",
               "correct": false,
-              "testedDimension": "Вы слушаете птиц. Выберите предлог после listening",
+              "testedDimension": "Выберите форму work с I",
               "feedbackByLocale": {
-                "ru": "Говорим listen to, не listen on.",
-                "uk": "Кажемо listen to, не listen on."
+                "ru": "Для привычки здесь нужна work.",
+                "uk": "Для звички тут потрібна work."
               }
             }
           ]
@@ -899,58 +895,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-25:i13:p1",
-              "target": "dawn",
+              "target": "lunchtime",
               "meaningByLocale": {
-                "ru": "рассвет",
-                "uk": "світанок"
+                "ru": "обеденное время",
+                "uk": "обідній час"
               }
             },
             {
               "pairId": "en:lesson-10:session-25:i13:p2",
-              "target": "dew",
+              "target": "bedtime",
               "meaningByLocale": {
-                "ru": "роса",
-                "uk": "роса"
+                "ru": "время ложиться спать",
+                "uk": "час лягати спати"
               }
             },
             {
               "pairId": "en:lesson-10:session-25:i13:p3",
-              "target": "mist",
+              "target": "midnight",
               "meaningByLocale": {
-                "ru": "лёгкий туман",
-                "uk": "легкий туман"
+                "ru": "полночь",
+                "uk": "північ"
               }
             },
             {
               "pairId": "en:lesson-10:session-25:i13:p4",
-              "target": "birdsong",
+              "target": "daytime",
               "meaningByLocale": {
-                "ru": "пение птиц",
-                "uk": "спів птахів"
+                "ru": "дневное время",
+                "uk": "денний час"
               }
             }
           ],
           "leftColumn": [
-            "dawn",
-            "dew",
-            "mist",
-            "birdsong"
+            "lunchtime",
+            "bedtime",
+            "midnight",
+            "daytime"
           ],
           "rightColumn": [
-            "рассвет",
-            "роса",
-            "лёгкий туман",
-            "пение птиц"
+            "обеденное время",
+            "время ложиться спать",
+            "полночь",
+            "дневное время"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -972,26 +968,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-25:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i14:audio",
-            "transcript": "I am walking now."
+            "transcript": "I read before bedtime."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am walking now.",
+          "hiddenTargetPhrase": "I read before bedtime.",
           "orderedTokens": [
             "I",
-            "am",
-            "walking",
-            "now"
+            "read",
+            "before",
+            "bedtime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1005,24 +1001,61 @@
       {
         "interactionId": "en:lesson-10:session-25:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, чем вы заняты. Скажите: «Я сейчас слушаю пение птиц»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-25:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, чем вы заняты. Скажите: «Я сейчас слушаю пение птиц»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-25:i15:audio",
+            "transcript": "I work in the daytime."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I work in the daytime.",
+          "orderedTokens": [
+            "I",
+            "work",
+            "in",
+            "the",
+            "daytime"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что звоните маме в обеденное время",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что звоните маме в обеденное время",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:i15:audio",
-            "transcript": "I am listening to birdsong at the moment."
+            "audioTargetId": "en:lesson-10:session-25:i16:audio",
+            "transcript": "I call my mother at lunchtime."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am listening to birdsong at the moment.",
+          "targetPhrase": "I call my mother at lunchtime.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1036,71 +1069,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I usually walk at dawn.",
-          "localizedMeaning": {
-            "ru": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
-            "uk": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці"
-          },
-          "orderedTokens": [
-            "I",
-            "usually",
-            "walk",
-            "at",
-            "dawn"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-25:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг звонит и спрашивает, чем вы заняты прямо сейчас. Вы идёте по парку. Скажите: «Я сейчас гуляю»",
+        "prompt": "Скажите, что читаете днём",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-25:i17:audio"
         ],
-        "accessibilityLabel": "Друг звонит и спрашивает, чем вы заняты прямо сейчас. Вы идёте по парку. Скажите: «Я сейчас гуляю»",
+        "accessibilityLabel": "Скажите, что читаете днём",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i17:audio",
-            "transcript": "I am walking now."
+            "transcript": "I read in the daytime."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am walking now.",
+          "targetPhrase": "I read in the daytime.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1113,32 +1104,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-25:word:dawn",
+        "interactionId": "en:lesson-10:session-25:word:lunchtime",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — dawn",
+        "prompt": "Картка слова — lunchtime",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:dawn:audio"
+          "en:lesson-10:session-25:word:lunchtime:audio"
         ],
-        "accessibilityLabel": "Картка слова — dawn",
+        "accessibilityLabel": "Картка слова — lunchtime",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:dawn:audio",
-            "transcript": "dawn"
+            "audioTargetId": "en:lesson-10:session-25:word:lunchtime:audio",
+            "transcript": "lunchtime"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:dawn:r1",
-              "targetText": "dawn",
+              "responseId": "en:lesson-10:session-25:word:lunchtime:r1",
+              "targetText": "lunchtime",
               "meaningByLocale": {
-                "ru": "«рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.",
-                "uk": "«світанок». I usually walk at dawn. — «Я зазвичай гуляю на світанку». Час, коли вранці починає світати."
+                "ru": "«обеденное время». I walk at lunchtime. — «Я гуляю в обеденное время».",
+                "uk": "«обідній час». I walk at lunchtime. — «Я гуляю в обідній час»."
               }
             }
           ],
@@ -1146,10 +1137,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "dawn",
+            "word": "lunchtime",
             "definitionByLocale": {
-              "ru": "«рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.",
-              "uk": "«світанок». I usually walk at dawn. — «Я зазвичай гуляю на світанку». Час, коли вранці починає світати."
+              "ru": "«обеденное время». I walk at lunchtime. — «Я гуляю в обеденное время».",
+              "uk": "«обідній час». I walk at lunchtime. — «Я гуляю в обідній час»."
             }
           }
         },
@@ -1161,24 +1152,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує про вашу звичку. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці",
+        "prompt": "Скажіть, що гуляєте в обідній час. Час поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує про вашу звичку. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці",
+        "accessibilityLabel": "Скажіть, що гуляєте в обідній час. Час поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I usually walk at dawn.",
+          "targetPhrase": "I walk at lunchtime.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
-            "uk": "Друг запитує про вашу звичку. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці"
+            "ru": "Скажите, что гуляете в обеденное время. Время поставьте в конце",
+            "uk": "Скажіть, що гуляєте в обідній час. Час поставте в кінці"
           },
           "orderedTokens": [
             "I",
-            "usually",
             "walk",
             "at",
-            "dawn"
+            "lunchtime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1199,15 +1189,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i02:r1",
-            "text": "We walk at dawn."
+            "text": "We walk at lunchtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i02:r2",
-            "text": "I walk at dawn."
+            "text": "I walk at lunchtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i02:r3",
-            "text": "We run at dawn."
+            "text": "They walk at lunchtime."
           }
         ],
         "mediaIds": [],
@@ -1219,23 +1209,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i02:audio",
-            "transcript": "We walk at dawn."
+            "transcript": "We walk at lunchtime."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i02:r1",
-              "targetText": "We walk at dawn.",
+              "targetText": "We walk at lunchtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i02:r2",
-              "targetText": "I walk at dawn.",
+              "targetText": "I walk at lunchtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i02:r3",
-              "targetText": "We run at dawn.",
+              "targetText": "They walk at lunchtime.",
               "meaningByLocale": null
             }
           ],
@@ -1246,8 +1236,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We walk at dawn.",
-                "uk": "У записі звучить We walk at dawn."
+                "ru": "В записи звучит We walk at lunchtime.",
+                "uk": "У записі звучить We walk at lunchtime."
               }
             },
             {
@@ -1255,8 +1245,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We walk at dawn.",
-                "uk": "У записі звучить We walk at dawn."
+                "ru": "В записи звучит We walk at lunchtime.",
+                "uk": "У записі звучить We walk at lunchtime."
               }
             }
           ],
@@ -1271,63 +1261,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз",
+        "prompt": "Виберіть форму walk з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i03:r1",
-            "text": "am walking"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-25:i03:r2",
-            "text": "walking"
+            "text": "walks"
           },
           {
             "responseId": "en:lesson-10:session-25:i03:r3",
-            "text": "am walk"
+            "text": "walking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз",
+        "accessibilityLabel": "Виберіть форму walk з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
-            "uk": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз"
+            "ru": "Выберите форму walk с I",
+            "uk": "Виберіть форму walk з I"
           },
-          "gappedTargetPhrase": "I ___ now.",
+          "gappedTargetPhrase": "I ___ at lunchtime.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i03:r1",
-              "text": "am walking"
+              "text": "walk"
             },
             {
               "responseId": "en:lesson-10:session-25:i03:r2",
-              "text": "walking"
+              "text": "walks"
             },
             {
               "responseId": "en:lesson-10:session-25:i03:r3",
-              "text": "am walk"
+              "text": "walking"
             }
           ],
-          "testedDimension": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз",
+          "testedDimension": "Виберіть форму walk з I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i03:r2",
               "correct": false,
-              "testedDimension": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз",
+              "testedDimension": "Виберіть форму walk з I",
               "feedbackByLocale": {
-                "ru": "Нужно am перед walking.",
-                "uk": "Потрібне am перед walking."
+                "ru": "С I нужна walk без s.",
+                "uk": "З I потрібна walk без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i03:r3",
               "correct": false,
-              "testedDimension": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз",
+              "testedDimension": "Виберіть форму walk з I",
               "feedbackByLocale": {
-                "ru": "После am нужна walking.",
-                "uk": "Після am потрібна walking."
+                "ru": "Для привычки здесь нужна walk.",
+                "uk": "Для звички тут потрібна walk."
               }
             }
           ]
@@ -1335,32 +1325,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:word:dew",
+        "interactionId": "en:lesson-10:session-25:word:bedtime",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — dew",
+        "prompt": "Картка слова — bedtime",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:dew:audio"
+          "en:lesson-10:session-25:word:bedtime:audio"
         ],
-        "accessibilityLabel": "Картка слова — dew",
+        "accessibilityLabel": "Картка слова — bedtime",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:dew:audio",
-            "transcript": "dew"
+            "audioTargetId": "en:lesson-10:session-25:word:bedtime:audio",
+            "transcript": "bedtime"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:dew:r1",
-              "targetText": "dew",
+              "responseId": "en:lesson-10:session-25:word:bedtime:r1",
+              "targetText": "bedtime",
               "meaningByLocale": {
-                "ru": "«роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.",
-                "uk": "«роса». There is dew on the grass. — «На траві роса». Маленькі краплі води, які з’являються на прохолодній поверхні."
+                "ru": "«время ложиться спать». I read before bedtime. — «Я читаю перед сном».",
+                "uk": "«час лягати спати». I read before bedtime. — «Я читаю перед сном»."
               }
             }
           ],
@@ -1368,10 +1358,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "dew",
+            "word": "bedtime",
             "definitionByLocale": {
-              "ru": "«роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.",
-              "uk": "«роса». There is dew on the grass. — «На траві роса». Маленькі краплі води, які з’являються на прохолодній поверхні."
+              "ru": "«время ложиться спать». I read before bedtime. — «Я читаю перед сном».",
+              "uk": "«час лягати спати». I read before bedtime. — «Я читаю перед сном»."
             }
           }
         },
@@ -1383,25 +1373,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "На ранковій прогулянці ви помічаєте краплі на траві. Скажіть другу: «На траві роса»",
+        "prompt": "Скажіть, що читаєте перед сном. Час поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "На ранковій прогулянці ви помічаєте краплі на траві. Скажіть другу: «На траві роса»",
+        "accessibilityLabel": "Скажіть, що читаєте перед сном. Час поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "There is dew on the grass.",
+          "targetPhrase": "I read before bedtime.",
           "localizedMeaning": {
-            "ru": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
-            "uk": "На ранковій прогулянці ви помічаєте краплі на траві. Скажіть другу: «На траві роса»"
+            "ru": "Скажите, что читаете перед сном. Время поставьте в конце",
+            "uk": "Скажіть, що читаєте перед сном. Час поставте в кінці"
           },
           "orderedTokens": [
-            "There",
-            "is",
-            "dew",
-            "on",
-            "the",
-            "grass"
+            "I",
+            "read",
+            "before",
+            "bedtime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1422,15 +1410,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i05:r1",
-            "text": "There is dew on the leaves."
+            "text": "She reads before bedtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i05:r2",
-            "text": "There is dew on the grass."
+            "text": "He reads before bedtime."
           },
           {
             "responseId": "en:lesson-10:session-25:i05:r3",
-            "text": "There is water on the leaves."
+            "text": "We read before bedtime."
           }
         ],
         "mediaIds": [],
@@ -1442,23 +1430,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i05:audio",
-            "transcript": "There is dew on the leaves."
+            "transcript": "She reads before bedtime."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i05:r1",
-              "targetText": "There is dew on the leaves.",
+              "targetText": "She reads before bedtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i05:r2",
-              "targetText": "There is dew on the grass.",
+              "targetText": "He reads before bedtime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i05:r3",
-              "targetText": "There is water on the leaves.",
+              "targetText": "We read before bedtime.",
               "meaningByLocale": null
             }
           ],
@@ -1469,8 +1457,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is dew on the leaves.",
-                "uk": "У записі звучить There is dew on the leaves."
+                "ru": "В записи звучит She reads before bedtime.",
+                "uk": "У записі звучить She reads before bedtime."
               }
             },
             {
@@ -1478,8 +1466,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is dew on the leaves.",
-                "uk": "У записі звучить There is dew on the leaves."
+                "ru": "В записи звучит She reads before bedtime.",
+                "uk": "У записі звучить She reads before bedtime."
               }
             }
           ],
@@ -1494,63 +1482,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви розповідаєте про щоденну звичку. Виберіть форму walk",
+        "prompt": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i06:r1",
-            "text": "walk"
+            "text": "before"
           },
           {
             "responseId": "en:lesson-10:session-25:i06:r2",
-            "text": "walks"
+            "text": "after"
           },
           {
             "responseId": "en:lesson-10:session-25:i06:r3",
-            "text": "walking"
+            "text": "under"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви розповідаєте про щоденну звичку. Виберіть форму walk",
+        "accessibilityLabel": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
-            "uk": "Ви розповідаєте про щоденну звичку. Виберіть форму walk"
+            "ru": "Вы читаете перед сном, не после. Выберите слово перед bedtime",
+            "uk": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime"
           },
-          "gappedTargetPhrase": "I ___ every morning.",
+          "gappedTargetPhrase": "I read ___ bedtime.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i06:r1",
-              "text": "walk"
+              "text": "before"
             },
             {
               "responseId": "en:lesson-10:session-25:i06:r2",
-              "text": "walks"
+              "text": "after"
             },
             {
               "responseId": "en:lesson-10:session-25:i06:r3",
-              "text": "walking"
+              "text": "under"
             }
           ],
-          "testedDimension": "Ви розповідаєте про щоденну звичку. Виберіть форму walk",
+          "testedDimension": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i06:r2",
               "correct": false,
-              "testedDimension": "Ви розповідаєте про щоденну звичку. Виберіть форму walk",
+              "testedDimension": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime",
               "feedbackByLocale": {
-                "ru": "С I нужна walk без s.",
-                "uk": "З I потрібна walk без s."
+                "ru": "After — после, а нужно перед.",
+                "uk": "After — після, а потрібно перед."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i06:r3",
               "correct": false,
-              "testedDimension": "Ви розповідаєте про щоденну звичку. Виберіть форму walk",
+              "testedDimension": "Ви читаєте перед сном, не після. Виберіть слово перед bedtime",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна walk.",
-                "uk": "Для цієї звички потрібна walk."
+                "ru": "Under — под. Для времени перед сном нужно before.",
+                "uk": "Under — під. Для часу перед сном потрібно before."
               }
             }
           ]
@@ -1558,32 +1546,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:word:mist",
+        "interactionId": "en:lesson-10:session-25:word:midnight",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — mist",
+        "prompt": "Картка слова — midnight",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:mist:audio"
+          "en:lesson-10:session-25:word:midnight:audio"
         ],
-        "accessibilityLabel": "Картка слова — mist",
+        "accessibilityLabel": "Картка слова — midnight",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:mist:audio",
-            "transcript": "mist"
+            "audioTargetId": "en:lesson-10:session-25:word:midnight:audio",
+            "transcript": "midnight"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:mist:r1",
-              "targetText": "mist",
+              "responseId": "en:lesson-10:session-25:word:midnight:r1",
+              "targetText": "midnight",
               "meaningByLocale": {
-                "ru": "«лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.",
-                "uk": "«легкий туман». There is mist over the river. — «Над річкою легкий туман». Тут тонка пелена краплин води в повітрі."
+                "ru": "«полночь». I am asleep at midnight. — «В полночь я сплю».",
+                "uk": "«північ». I am asleep at midnight. — «Опівночі я сплю»."
               }
             }
           ],
@@ -1591,10 +1579,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "mist",
+            "word": "midnight",
             "definitionByLocale": {
-              "ru": "«лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.",
-              "uk": "«легкий туман». There is mist over the river. — «Над річкою легкий туман». Тут тонка пелена краплин води в повітрі."
+              "ru": "«полночь». I am asleep at midnight. — «В полночь я сплю».",
+              "uk": "«північ». I am asleep at midnight. — «Опівночі я сплю»."
             }
           }
         },
@@ -1606,25 +1594,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Під час прогулянки біля річки ви бачите легкий туман. Скажіть: «Над річкою легкий туман»",
+        "prompt": "Скажіть, що опівночі ви спите. At midnight поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Під час прогулянки біля річки ви бачите легкий туман. Скажіть: «Над річкою легкий туман»",
+        "accessibilityLabel": "Скажіть, що опівночі ви спите. At midnight поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "There is mist over the river.",
+          "targetPhrase": "I am asleep at midnight.",
           "localizedMeaning": {
-            "ru": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
-            "uk": "Під час прогулянки біля річки ви бачите легкий туман. Скажіть: «Над річкою легкий туман»"
+            "ru": "Скажите, что в полночь вы спите. At midnight поставьте в конце",
+            "uk": "Скажіть, що опівночі ви спите. At midnight поставте в кінці"
           },
           "orderedTokens": [
-            "There",
-            "is",
-            "mist",
-            "over",
-            "the",
-            "river"
+            "I",
+            "am",
+            "asleep",
+            "at",
+            "midnight"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1645,15 +1632,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i08:r1",
-            "text": "The mist is clearing."
+            "text": "She is asleep at midnight."
           },
           {
             "responseId": "en:lesson-10:session-25:i08:r2",
-            "text": "The mist is thick."
+            "text": "He is asleep at midnight."
           },
           {
             "responseId": "en:lesson-10:session-25:i08:r3",
-            "text": "The sky is clearing."
+            "text": "I am asleep at midnight."
           }
         ],
         "mediaIds": [],
@@ -1665,23 +1652,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i08:audio",
-            "transcript": "The mist is clearing."
+            "transcript": "She is asleep at midnight."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i08:r1",
-              "targetText": "The mist is clearing.",
+              "targetText": "She is asleep at midnight.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i08:r2",
-              "targetText": "The mist is thick.",
+              "targetText": "He is asleep at midnight.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i08:r3",
-              "targetText": "The sky is clearing.",
+              "targetText": "I am asleep at midnight.",
               "meaningByLocale": null
             }
           ],
@@ -1692,8 +1679,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mist is clearing.",
-                "uk": "У записі звучить The mist is clearing."
+                "ru": "В записи звучит She is asleep at midnight.",
+                "uk": "У записі звучить She is asleep at midnight."
               }
             },
             {
@@ -1701,8 +1688,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mist is clearing.",
-                "uk": "У записі звучить The mist is clearing."
+                "ru": "В записи звучит She is asleep at midnight.",
+                "uk": "У записі звучить She is asleep at midnight."
               }
             }
           ],
@@ -1717,63 +1704,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Туман поступово зникає просто зараз. Виберіть форму",
+        "prompt": "Виберіть прийменник у вислові «опівночі»",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i09:r1",
-            "text": "is clearing"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-25:i09:r2",
-            "text": "clearing"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-25:i09:r3",
-            "text": "is clear"
+            "text": "under"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Туман поступово зникає просто зараз. Виберіть форму",
+        "accessibilityLabel": "Виберіть прийменник у вислові «опівночі»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Туман постепенно исчезает прямо сейчас. Выберите форму",
-            "uk": "Туман поступово зникає просто зараз. Виберіть форму"
+            "ru": "Выберите предлог в выражении «в полночь»",
+            "uk": "Виберіть прийменник у вислові «опівночі»"
           },
-          "gappedTargetPhrase": "The mist ___ now.",
+          "gappedTargetPhrase": "I am asleep ___ midnight.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i09:r1",
-              "text": "is clearing"
+              "text": "at"
             },
             {
               "responseId": "en:lesson-10:session-25:i09:r2",
-              "text": "clearing"
+              "text": "on"
             },
             {
               "responseId": "en:lesson-10:session-25:i09:r3",
-              "text": "is clear"
+              "text": "under"
             }
           ],
-          "testedDimension": "Туман поступово зникає просто зараз. Виберіть форму",
+          "testedDimension": "Виберіть прийменник у вислові «опівночі»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i09:r2",
               "correct": false,
-              "testedDimension": "Туман поступово зникає просто зараз. Виберіть форму",
+              "testedDimension": "Виберіть прийменник у вислові «опівночі»",
               "feedbackByLocale": {
-                "ru": "Перед clearing нужно is.",
-                "uk": "Перед clearing потрібне is."
+                "ru": "С midnight здесь нужна at.",
+                "uk": "З midnight тут потрібна at."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i09:r3",
               "correct": false,
-              "testedDimension": "Туман поступово зникає просто зараз. Виберіть форму",
+              "testedDimension": "Виберіть прийменник у вислові «опівночі»",
               "feedbackByLocale": {
-                "ru": "Для процесса рассеивания здесь нужно is clearing.",
-                "uk": "Для процесу розсіювання тут потрібне is clearing."
+                "ru": "Under — под. Здесь нужно at midnight.",
+                "uk": "Under — під. Тут потрібно at midnight."
               }
             }
           ]
@@ -1781,32 +1768,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:word:birdsong",
+        "interactionId": "en:lesson-10:session-25:word:daytime",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — birdsong",
+        "prompt": "Картка слова — daytime",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-25:word:birdsong:audio"
+          "en:lesson-10:session-25:word:daytime:audio"
         ],
-        "accessibilityLabel": "Картка слова — birdsong",
+        "accessibilityLabel": "Картка слова — daytime",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:word:birdsong:audio",
-            "transcript": "birdsong"
+            "audioTargetId": "en:lesson-10:session-25:word:daytime:audio",
+            "transcript": "daytime"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-25:word:birdsong:r1",
-              "targetText": "birdsong",
+              "responseId": "en:lesson-10:session-25:word:daytime:r1",
+              "targetText": "daytime",
               "meaningByLocale": {
-                "ru": "«пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.",
-                "uk": "«спів птахів». I am listening to birdsong. — «Я слухаю спів птахів». Звуки птахів, які співають."
+                "ru": "«дневное время». I work in the daytime. — «Я работаю днём».",
+                "uk": "«денний час». I work in the daytime. — «Я працюю вдень»."
               }
             }
           ],
@@ -1814,10 +1801,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "birdsong",
+            "word": "daytime",
             "definitionByLocale": {
-              "ru": "«пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.",
-              "uk": "«спів птахів». I am listening to birdsong. — «Я слухаю спів птахів». Звуки птахів, які співають."
+              "ru": "«дневное время». I work in the daytime. — «Я работаю днём».",
+              "uk": "«денний час». I work in the daytime. — «Я працюю вдень»."
             }
           }
         },
@@ -1829,24 +1816,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує, що ви робите зараз у парку. Скажіть: «Я слухаю спів птахів»",
+        "prompt": "Скажіть, що працюєте вдень. Час поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує, що ви робите зараз у парку. Скажіть: «Я слухаю спів птахів»",
+        "accessibilityLabel": "Скажіть, що працюєте вдень. Час поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am listening to birdsong.",
+          "targetPhrase": "I work in the daytime.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
-            "uk": "Друг запитує, що ви робите зараз у парку. Скажіть: «Я слухаю спів птахів»"
+            "ru": "Скажите, что работаете днём. Время поставьте в конце",
+            "uk": "Скажіть, що працюєте вдень. Час поставте в кінці"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "listening",
-            "to",
-            "birdsong"
+            "work",
+            "in",
+            "the",
+            "daytime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1867,15 +1854,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i11:r1",
-            "text": "We are listening to birdsong."
+            "text": "We work in the daytime."
           },
           {
             "responseId": "en:lesson-10:session-25:i11:r2",
-            "text": "I am listening to birdsong."
+            "text": "I work in the daytime."
           },
           {
             "responseId": "en:lesson-10:session-25:i11:r3",
-            "text": "We are listening to music."
+            "text": "They work in the daytime."
           }
         ],
         "mediaIds": [],
@@ -1887,23 +1874,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i11:audio",
-            "transcript": "We are listening to birdsong."
+            "transcript": "We work in the daytime."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-25:i11:r1",
-              "targetText": "We are listening to birdsong.",
+              "targetText": "We work in the daytime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i11:r2",
-              "targetText": "I am listening to birdsong.",
+              "targetText": "I work in the daytime.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-25:i11:r3",
-              "targetText": "We are listening to music.",
+              "targetText": "They work in the daytime.",
               "meaningByLocale": null
             }
           ],
@@ -1914,8 +1901,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are listening to birdsong.",
-                "uk": "У записі звучить We are listening to birdsong."
+                "ru": "В записи звучит We work in the daytime.",
+                "uk": "У записі звучить We work in the daytime."
               }
             },
             {
@@ -1923,8 +1910,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are listening to birdsong.",
-                "uk": "У записі звучить We are listening to birdsong."
+                "ru": "В записи звучит We work in the daytime.",
+                "uk": "У записі звучить We work in the daytime."
               }
             }
           ],
@@ -1939,63 +1926,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви слухаєте птахів. Виберіть прийменник після listening",
+        "prompt": "Виберіть форму work з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-25:i12:r1",
-            "text": "to"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-10:session-25:i12:r2",
-            "text": "at"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-10:session-25:i12:r3",
-            "text": "on"
+            "text": "working"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви слухаєте птахів. Виберіть прийменник після listening",
+        "accessibilityLabel": "Виберіть форму work з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы слушаете птиц. Выберите предлог после listening",
-            "uk": "Ви слухаєте птахів. Виберіть прийменник після listening"
+            "ru": "Выберите форму work с I",
+            "uk": "Виберіть форму work з I"
           },
-          "gappedTargetPhrase": "I am listening ___ birdsong.",
+          "gappedTargetPhrase": "I ___ in the daytime.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-25:i12:r1",
-              "text": "to"
+              "text": "work"
             },
             {
               "responseId": "en:lesson-10:session-25:i12:r2",
-              "text": "at"
+              "text": "works"
             },
             {
               "responseId": "en:lesson-10:session-25:i12:r3",
-              "text": "on"
+              "text": "working"
             }
           ],
-          "testedDimension": "Ви слухаєте птахів. Виберіть прийменник після listening",
+          "testedDimension": "Виберіть форму work з I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-25:i12:r2",
               "correct": false,
-              "testedDimension": "Ви слухаєте птахів. Виберіть прийменник після listening",
+              "testedDimension": "Виберіть форму work з I",
               "feedbackByLocale": {
-                "ru": "Говорим listen to, не listen at.",
-                "uk": "Кажемо listen to, не listen at."
+                "ru": "С I нужна work без s.",
+                "uk": "З I потрібна work без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-25:i12:r3",
               "correct": false,
-              "testedDimension": "Ви слухаєте птахів. Виберіть прийменник після listening",
+              "testedDimension": "Виберіть форму work з I",
               "feedbackByLocale": {
-                "ru": "Говорим listen to, не listen on.",
-                "uk": "Кажемо listen to, не listen on."
+                "ru": "Для привычки здесь нужна work.",
+                "uk": "Для звички тут потрібна work."
               }
             }
           ]
@@ -2008,58 +1995,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-25:i13:p1",
-              "target": "dawn",
+              "target": "lunchtime",
               "meaningByLocale": {
-                "ru": "рассвет",
-                "uk": "світанок"
+                "ru": "обеденное время",
+                "uk": "обідній час"
               }
             },
             {
               "pairId": "en:lesson-10:session-25:i13:p2",
-              "target": "dew",
+              "target": "bedtime",
               "meaningByLocale": {
-                "ru": "роса",
-                "uk": "роса"
+                "ru": "время ложиться спать",
+                "uk": "час лягати спати"
               }
             },
             {
               "pairId": "en:lesson-10:session-25:i13:p3",
-              "target": "mist",
+              "target": "midnight",
               "meaningByLocale": {
-                "ru": "лёгкий туман",
-                "uk": "легкий туман"
+                "ru": "полночь",
+                "uk": "північ"
               }
             },
             {
               "pairId": "en:lesson-10:session-25:i13:p4",
-              "target": "birdsong",
+              "target": "daytime",
               "meaningByLocale": {
-                "ru": "пение птиц",
-                "uk": "спів птахів"
+                "ru": "дневное время",
+                "uk": "денний час"
               }
             }
           ],
           "leftColumn": [
-            "dawn",
-            "dew",
-            "mist",
-            "birdsong"
+            "lunchtime",
+            "bedtime",
+            "midnight",
+            "daytime"
           ],
           "rightColumn": [
-            "світанок",
-            "роса",
-            "легкий туман",
-            "спів птахів"
+            "обідній час",
+            "час лягати спати",
+            "північ",
+            "денний час"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2081,26 +2068,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-25:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i14:audio",
-            "transcript": "I am walking now."
+            "transcript": "I read before bedtime."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am walking now.",
+          "hiddenTargetPhrase": "I read before bedtime.",
           "orderedTokens": [
             "I",
-            "am",
-            "walking",
-            "now"
+            "read",
+            "before",
+            "bedtime"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2114,24 +2101,61 @@
       {
         "interactionId": "en:lesson-10:session-25:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, чим ви зайняті. Скажіть: «Я зараз слухаю спів птахів»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-25:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує, чим ви зайняті. Скажіть: «Я зараз слухаю спів птахів»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-25:i15:audio",
+            "transcript": "I work in the daytime."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I work in the daytime.",
+          "orderedTokens": [
+            "I",
+            "work",
+            "in",
+            "the",
+            "daytime"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що телефонуєте мамі в обідній час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що телефонуєте мамі в обідній час",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-25:i15:audio",
-            "transcript": "I am listening to birdsong at the moment."
+            "audioTargetId": "en:lesson-10:session-25:i16:audio",
+            "transcript": "I call my mother at lunchtime."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am listening to birdsong at the moment.",
+          "targetPhrase": "I call my mother at lunchtime.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2145,71 +2169,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-25:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I usually walk at dawn.",
-          "localizedMeaning": {
-            "ru": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
-            "uk": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці"
-          },
-          "orderedTokens": [
-            "I",
-            "usually",
-            "walk",
-            "at",
-            "dawn"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-25:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг телефонує й запитує, чим ви зайняті просто зараз. Ви йдете парком. Скажіть: «Я зараз гуляю»",
+        "prompt": "Скажіть, що читаєте вдень",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-25:i17:audio"
         ],
-        "accessibilityLabel": "Друг телефонує й запитує, чим ви зайняті просто зараз. Ви йдете парком. Скажіть: «Я зараз гуляю»",
+        "accessibilityLabel": "Скажіть, що читаєте вдень",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-25:i17:audio",
-            "transcript": "I am walking now."
+            "transcript": "I read in the daytime."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am walking now.",
+          "targetPhrase": "I read in the daytime.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2223,83 +2205,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-25:word:dawn",
-      "correctText": "dawn",
+      "interactionId": "en:lesson-10:session-25:word:lunchtime",
+      "correctText": "lunchtime",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i01",
-      "correctText": "I usually walk at dawn.",
+      "correctText": "I walk at lunchtime.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i02",
-      "correctText": "We walk at dawn.",
+      "correctText": "We walk at lunchtime.",
       "correctResponseId": "en:lesson-10:session-25:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-25:i03",
-      "correctText": "am walking",
+      "correctText": "walk",
       "correctResponseId": "en:lesson-10:session-25:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-25:word:dew",
-      "correctText": "dew",
+      "interactionId": "en:lesson-10:session-25:word:bedtime",
+      "correctText": "bedtime",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i04",
-      "correctText": "There is dew on the grass.",
+      "correctText": "I read before bedtime.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i05",
-      "correctText": "There is dew on the leaves.",
+      "correctText": "She reads before bedtime.",
       "correctResponseId": "en:lesson-10:session-25:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-25:i06",
-      "correctText": "walk",
+      "correctText": "before",
       "correctResponseId": "en:lesson-10:session-25:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-25:word:mist",
-      "correctText": "mist",
+      "interactionId": "en:lesson-10:session-25:word:midnight",
+      "correctText": "midnight",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i07",
-      "correctText": "There is mist over the river.",
+      "correctText": "I am asleep at midnight.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i08",
-      "correctText": "The mist is clearing.",
+      "correctText": "She is asleep at midnight.",
       "correctResponseId": "en:lesson-10:session-25:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-25:i09",
-      "correctText": "is clearing",
+      "correctText": "at",
       "correctResponseId": "en:lesson-10:session-25:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-25:word:birdsong",
-      "correctText": "birdsong",
+      "interactionId": "en:lesson-10:session-25:word:daytime",
+      "correctText": "daytime",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i10",
-      "correctText": "I am listening to birdsong.",
+      "correctText": "I work in the daytime.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i11",
-      "correctText": "We are listening to birdsong.",
+      "correctText": "We work in the daytime.",
       "correctResponseId": "en:lesson-10:session-25:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-25:i12",
-      "correctText": "to",
+      "correctText": "work",
       "correctResponseId": "en:lesson-10:session-25:i12:r1"
     },
     {
@@ -2309,22 +2291,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-25:i14",
-      "correctText": "I am walking now.",
+      "correctText": "I read before bedtime.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i15",
-      "correctText": "I am listening to birdsong at the moment.",
+      "correctText": "I work in the daytime.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i16",
-      "correctText": "I usually walk at dawn.",
+      "correctText": "I call my mother at lunchtime.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-25:i17",
-      "correctText": "I am walking now.",
+      "correctText": "I read in the daytime.",
       "correctResponseId": null
     }
   ]

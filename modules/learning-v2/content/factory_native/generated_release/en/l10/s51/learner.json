@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-51:word:term",
+      "interactionId": "en:lesson-10:session-51:word:classmate",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — term",
+      "prompt": "Карточка слова — classmate",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-51:word:term:audio"
+        "en:lesson-10:session-51:word:classmate:audio"
       ],
-      "accessibilityLabel": "Карточка слова — term",
+      "accessibilityLabel": "Карточка слова — classmate",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-51:word:term:audio",
-          "transcript": "term"
+          "audioTargetId": "en:lesson-10:session-51:word:classmate:audio",
+          "transcript": "classmate"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-51:word:term:r1",
-            "targetText": "term",
+            "responseId": "en:lesson-10:session-51:word:classmate:r1",
+            "targetText": "classmate",
             "meaningByLocale": {
-              "ru": "«учебный период». The term starts in September. — «Учебный период начинается в сентябре». Часть учебного года между каникулами.",
-              "uk": "«навчальний період». The term starts in September. — «Навчальний період починається у вересні». Частина навчального року між канікулами."
+              "ru": "«одноклассник, одногруппник». My classmate is reading. — «Мой одноклассник читает».",
+              "uk": "«однокласник, одногрупник». My classmate is reading. — «Мій однокласник читає»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "term",
+          "word": "classmate",
           "definitionByLocale": {
-            "ru": "«учебный период». The term starts in September. — «Учебный период начинается в сентябре». Часть учебного года между каникулами.",
-            "uk": "«навчальний період». The term starts in September. — «Навчальний період починається у вересні». Частина навчального року між канікулами."
+            "ru": "«одноклассник, одногруппник». My classmate is reading. — «Мой одноклассник читает».",
+            "uk": "«однокласник, одногрупник». My classmate is reading. — «Мій однокласник читає»."
           }
         }
       },
@@ -52,24 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Объясните дату по учебному календарю: «Учебный период начинается в сентябре»",
+      "prompt": "Скажите, что ваш одноклассник сейчас читает",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Объясните дату по учебному календарю: «Учебный период начинается в сентябре»",
+      "accessibilityLabel": "Скажите, что ваш одноклассник сейчас читает",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The term starts in September.",
+        "targetPhrase": "My classmate is reading.",
         "localizedMeaning": {
-          "ru": "Объясните дату по учебному календарю: «Учебный период начинается в сентябре»",
-          "uk": "Поясніть дату за навчальним календарем: «Навчальний період починається у вересні»"
+          "ru": "Скажите, что ваш одноклассник сейчас читает",
+          "uk": "Скажіть, що ваш однокласник зараз читає"
         },
         "orderedTokens": [
-          "The",
-          "term",
-          "starts",
-          "in",
-          "September"
+          "My",
+          "classmate",
+          "is",
+          "reading"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i02:r1",
-          "text": "The term ends in December."
+          "text": "My classmate is writing."
         },
         {
           "responseId": "en:lesson-10:session-51:i02:r2",
-          "text": "The term ends in January."
+          "text": "My classmate is reading."
         },
         {
           "responseId": "en:lesson-10:session-51:i02:r3",
-          "text": "The course ends in December."
+          "text": "Your classmate is writing."
         }
       ],
       "mediaIds": [],
@@ -110,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-51:i02:audio",
-          "transcript": "The term ends in December."
+          "transcript": "My classmate is writing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-51:i02:r1",
-            "targetText": "The term ends in December.",
+            "targetText": "My classmate is writing.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i02:r2",
-            "targetText": "The term ends in January.",
+            "targetText": "My classmate is reading.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i02:r3",
-            "targetText": "The course ends in December.",
+            "targetText": "Your classmate is writing.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The term ends in December.",
-              "uk": "У записі звучить The term ends in December."
+              "ru": "В записи звучит My classmate is writing.",
+              "uk": "У записі звучить My classmate is writing."
             }
           },
           {
@@ -146,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The term ends in December.",
-              "uk": "У записі звучить The term ends in December."
+              "ru": "В записи звучит My classmate is writing.",
+              "uk": "У записі звучить My classmate is writing."
             }
           }
         ],
@@ -162,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это установленное расписание. Выберите форму start",
+      "prompt": "Выберите форму be для одного одноклассника",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i03:r1",
-          "text": "starts"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-51:i03:r2",
-          "text": "start"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-51:i03:r3",
-          "text": "starting"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это установленное расписание. Выберите форму start",
+      "accessibilityLabel": "Выберите форму be для одного одноклассника",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это установленное расписание. Выберите форму start",
-          "uk": "Це встановлений розклад. Виберіть форму start"
+          "ru": "Выберите форму be для одного одноклассника",
+          "uk": "Виберіть форму be для одного однокласника"
         },
-        "gappedTargetPhrase": "The term ___ in September.",
+        "gappedTargetPhrase": "My classmate ___ reading.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-51:i03:r1",
-            "text": "starts"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-51:i03:r2",
-            "text": "start"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-51:i03:r3",
-            "text": "starting"
+            "text": "am"
           }
         ],
-        "testedDimension": "Это установленное расписание. Выберите форму start",
+        "testedDimension": "Выберите форму be для одного одноклассника",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-51:i03:r2",
             "correct": false,
-            "testedDimension": "Это установленное расписание. Выберите форму start",
+            "testedDimension": "Выберите форму be для одного одноклассника",
             "feedbackByLocale": {
-              "ru": "Один период: starts с s.",
-              "uk": "Один період: starts із s."
+              "ru": "Один classmate: нужна is.",
+              "uk": "Один classmate: потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-51:i03:r3",
             "correct": false,
-            "testedDimension": "Это установленное расписание. Выберите форму start",
+            "testedDimension": "Выберите форму be для одного одноклассника",
             "feedbackByLocale": {
-              "ru": "Здесь нужна starts.",
-              "uk": "Тут потрібна starts."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -226,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-51:word:campus",
+      "interactionId": "en:lesson-10:session-51:word:subject",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — campus",
+      "prompt": "Карточка слова — subject",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-51:word:campus:audio"
+        "en:lesson-10:session-51:word:subject:audio"
       ],
-      "accessibilityLabel": "Карточка слова — campus",
+      "accessibilityLabel": "Карточка слова — subject",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-51:word:campus:audio",
-          "transcript": "campus"
+          "audioTargetId": "en:lesson-10:session-51:word:subject:audio",
+          "transcript": "subject"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-51:word:campus:r1",
-            "targetText": "campus",
+            "responseId": "en:lesson-10:session-51:word:subject:r1",
+            "targetText": "subject",
             "meaningByLocale": {
-              "ru": "«кампус». I usually study on campus. — «Я обычно учусь в кампусе». Территория учебного заведения с его зданиями.",
-              "uk": "«кампус». I usually study on campus. — «Я зазвичай навчаюся в кампусі». Територія навчального закладу з його будівлями."
+              "ru": "«учебный предмет». English is my favourite subject. — «Английский — мой любимый предмет».",
+              "uk": "«навчальний предмет». English is my favourite subject. — «Англійська — мій улюблений предмет»."
             }
           }
         ],
@@ -259,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "campus",
+          "word": "subject",
           "definitionByLocale": {
-            "ru": "«кампус». I usually study on campus. — «Я обычно учусь в кампусе». Территория учебного заведения с его зданиями.",
-            "uk": "«кампус». I usually study on campus. — «Я зазвичай навчаюся в кампусі». Територія навчального закладу з його будівлями."
+            "ru": "«учебный предмет». English is my favourite subject. — «Английский — мой любимый предмет».",
+            "uk": "«навчальний предмет». English is my favourite subject. — «Англійська — мій улюблений предмет»."
           }
         }
       },
@@ -274,24 +273,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите, где вы обычно занимаетесь: «Я обычно учусь в кампусе». Поставьте usually перед study",
+      "prompt": "Скажите, что английский — ваш любимый предмет. Начните с English",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите, где вы обычно занимаетесь: «Я обычно учусь в кампусе». Поставьте usually перед study",
+      "accessibilityLabel": "Скажите, что английский — ваш любимый предмет. Начните с English",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually study on campus.",
+        "targetPhrase": "English is my favourite subject.",
         "localizedMeaning": {
-          "ru": "Скажите, где вы обычно занимаетесь: «Я обычно учусь в кампусе». Поставьте usually перед study",
-          "uk": "Скажіть, де ви зазвичай займаєтеся: «Я зазвичай навчаюся в кампусі». Поставте usually перед study"
+          "ru": "Скажите, что английский — ваш любимый предмет. Начните с English",
+          "uk": "Скажіть, що англійська — ваш улюблений предмет. Почніть з English"
         },
         "orderedTokens": [
-          "I",
-          "usually",
-          "study",
-          "on",
-          "campus"
+          "English",
+          "is",
+          "my",
+          "favourite",
+          "subject"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +311,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i05:r1",
-          "text": "The campus is quiet."
+          "text": "English is my favourite subject."
         },
         {
           "responseId": "en:lesson-10:session-51:i05:r2",
-          "text": "The campus is busy."
+          "text": "English is your favourite subject."
         },
         {
           "responseId": "en:lesson-10:session-51:i05:r3",
-          "text": "The library is quiet."
+          "text": "Is English my favourite subject?"
         }
       ],
       "mediaIds": [],
@@ -332,23 +331,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-51:i05:audio",
-          "transcript": "The campus is quiet."
+          "transcript": "English is my favourite subject."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-51:i05:r1",
-            "targetText": "The campus is quiet.",
+            "targetText": "English is my favourite subject.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i05:r2",
-            "targetText": "The campus is busy.",
+            "targetText": "English is your favourite subject.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i05:r3",
-            "targetText": "The library is quiet.",
+            "targetText": "Is English my favourite subject?",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +358,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The campus is quiet.",
-              "uk": "У записі звучить The campus is quiet."
+              "ru": "В записи звучит English is my favourite subject.",
+              "uk": "У записі звучить English is my favourite subject."
             }
           },
           {
@@ -368,8 +367,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The campus is quiet.",
-              "uk": "У записі звучить The campus is quiet."
+              "ru": "В записи звучит English is my favourite subject.",
+              "uk": "У записі звучить English is my favourite subject."
             }
           }
         ],
@@ -384,63 +383,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это привычка. Выберите форму study",
+      "prompt": "Выберите глагол в предложении об английском",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i06:r1",
-          "text": "study"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-51:i06:r2",
-          "text": "studies"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-51:i06:r3",
-          "text": "studying"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это привычка. Выберите форму study",
+      "accessibilityLabel": "Выберите глагол в предложении об английском",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это привычка. Выберите форму study",
-          "uk": "Це звичка. Виберіть форму study"
+          "ru": "Выберите глагол в предложении об английском",
+          "uk": "Виберіть дієслово в реченні про англійську"
         },
-        "gappedTargetPhrase": "I usually ___ on campus.",
+        "gappedTargetPhrase": "English ___ my favourite subject.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-51:i06:r1",
-            "text": "study"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-51:i06:r2",
-            "text": "studies"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-51:i06:r3",
-            "text": "studying"
+            "text": "am"
           }
         ],
-        "testedDimension": "Это привычка. Выберите форму study",
+        "testedDimension": "Выберите глагол в предложении об английском",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-51:i06:r2",
             "correct": false,
-            "testedDimension": "Это привычка. Выберите форму study",
+            "testedDimension": "Выберите глагол в предложении об английском",
             "feedbackByLocale": {
-              "ru": "С I нужна study без s.",
-              "uk": "З I потрібна study без s."
+              "ru": "С English здесь нужна is.",
+              "uk": "З English тут потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-51:i06:r3",
             "correct": false,
-            "testedDimension": "Это привычка. Выберите форму study",
+            "testedDimension": "Выберите глагол в предложении об английском",
             "feedbackByLocale": {
-              "ru": "Здесь нужна study.",
-              "uk": "Тут потрібна study."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -448,32 +447,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-51:word:tuition",
+      "interactionId": "en:lesson-10:session-51:word:maths",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — tuition",
+      "prompt": "Карточка слова — maths",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-51:word:tuition:audio"
+        "en:lesson-10:session-51:word:maths:audio"
       ],
-      "accessibilityLabel": "Карточка слова — tuition",
+      "accessibilityLabel": "Карточка слова — maths",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-51:word:tuition:audio",
-          "transcript": "tuition"
+          "audioTargetId": "en:lesson-10:session-51:word:maths:audio",
+          "transcript": "maths"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-51:word:tuition:r1",
-            "targetText": "tuition",
+            "responseId": "en:lesson-10:session-51:word:maths:r1",
+            "targetText": "maths",
             "meaningByLocale": {
-              "ru": "«плата за обучение». The tuition is expensive. — «Обучение стоит дорого». Здесь стоимость обучения, не занятия как процесс.",
-              "uk": "«плата за навчання». The tuition is expensive. — «Навчання коштує дорого». Тут вартість навчання, не заняття як процес."
+              "ru": "«математика» (британский вариант). Maths is difficult. — «Математика трудная».",
+              "uk": "«математика» (британський варіант). Maths is difficult. — «Математика складна»."
             }
           }
         ],
@@ -481,10 +480,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "tuition",
+          "word": "maths",
           "definitionByLocale": {
-            "ru": "«плата за обучение». The tuition is expensive. — «Обучение стоит дорого». Здесь стоимость обучения, не занятия как процесс.",
-            "uk": "«плата за навчання». The tuition is expensive. — «Навчання коштує дорого». Тут вартість навчання, не заняття як процес."
+            "ru": "«математика» (британский вариант). Maths is difficult. — «Математика трудная».",
+            "uk": "«математика» (британський варіант). Maths is difficult. — «Математика складна»."
           }
         }
       },
@@ -496,23 +495,22 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы сравниваете стоимость учебных программ. Скажите с tuition: «Обучение стоит дорого»",
+      "prompt": "Скажите, что математика трудная",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сравниваете стоимость учебных программ. Скажите с tuition: «Обучение стоит дорого»",
+      "accessibilityLabel": "Скажите, что математика трудная",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The tuition is expensive.",
+        "targetPhrase": "Maths is difficult.",
         "localizedMeaning": {
-          "ru": "Вы сравниваете стоимость учебных программ. Скажите с tuition: «Обучение стоит дорого»",
-          "uk": "Ви порівнюєте вартість навчальних програм. Скажіть із tuition: «Навчання коштує дорого»"
+          "ru": "Скажите, что математика трудная",
+          "uk": "Скажіть, що математика складна"
         },
         "orderedTokens": [
-          "The",
-          "tuition",
+          "Maths",
           "is",
-          "expensive"
+          "difficult"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -533,15 +531,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i08:r1",
-          "text": "The tuition is affordable."
+          "text": "Maths is easy."
         },
         {
           "responseId": "en:lesson-10:session-51:i08:r2",
-          "text": "The tuition is expensive."
+          "text": "Maths is difficult."
         },
         {
           "responseId": "en:lesson-10:session-51:i08:r3",
-          "text": "The accommodation is affordable."
+          "text": "English is easy."
         }
       ],
       "mediaIds": [],
@@ -553,23 +551,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-51:i08:audio",
-          "transcript": "The tuition is affordable."
+          "transcript": "Maths is easy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-51:i08:r1",
-            "targetText": "The tuition is affordable.",
+            "targetText": "Maths is easy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i08:r2",
-            "targetText": "The tuition is expensive.",
+            "targetText": "Maths is difficult.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i08:r3",
-            "targetText": "The accommodation is affordable.",
+            "targetText": "English is easy.",
             "meaningByLocale": null
           }
         ],
@@ -580,8 +578,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The tuition is affordable.",
-              "uk": "У записі звучить The tuition is affordable."
+              "ru": "В записи звучит Maths is easy.",
+              "uk": "У записі звучить Maths is easy."
             }
           },
           {
@@ -589,8 +587,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The tuition is affordable.",
-              "uk": "У записі звучить The tuition is affordable."
+              "ru": "В записи звучит Maths is easy.",
+              "uk": "У записі звучить Maths is easy."
             }
           }
         ],
@@ -605,7 +603,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Tuition здесь неисчисляемое. Выберите связку",
+      "prompt": "Выберите глагол для названия предмета maths",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i09:r1",
@@ -622,14 +620,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Tuition здесь неисчисляемое. Выберите связку",
+      "accessibilityLabel": "Выберите глагол для названия предмета maths",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Tuition здесь неисчисляемое. Выберите связку",
-          "uk": "Tuition тут незлічуване. Виберіть зв’язку"
+          "ru": "Выберите глагол для названия предмета maths",
+          "uk": "Виберіть дієслово для назви предмета maths"
         },
-        "gappedTargetPhrase": "The tuition ___ expensive.",
+        "gappedTargetPhrase": "Maths ___ difficult.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-51:i09:r1",
@@ -644,24 +642,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Tuition здесь неисчисляемое. Выберите связку",
+        "testedDimension": "Выберите глагол для названия предмета maths",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-51:i09:r2",
             "correct": false,
-            "testedDimension": "Tuition здесь неисчисляемое. Выберите связку",
+            "testedDimension": "Выберите глагол для названия предмета maths",
             "feedbackByLocale": {
-              "ru": "С tuition нужна is.",
-              "uk": "З tuition потрібна is."
+              "ru": "Maths здесь сочетается с is, несмотря на s.",
+              "uk": "Maths тут поєднується з is, попри s."
             }
           },
           {
             "responseId": "en:lesson-10:session-51:i09:r3",
             "correct": false,
-            "testedDimension": "Tuition здесь неисчисляемое. Выберите связку",
+            "testedDimension": "Выберите глагол для названия предмета maths",
             "feedbackByLocale": {
-              "ru": "Am используется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -669,32 +667,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-51:word:enrolment",
+      "interactionId": "en:lesson-10:session-51:word:history",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — enrolment",
+      "prompt": "Карточка слова — history",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-51:word:enrolment:audio"
+        "en:lesson-10:session-51:word:history:audio"
       ],
-      "accessibilityLabel": "Карточка слова — enrolment",
+      "accessibilityLabel": "Карточка слова — history",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-51:word:enrolment:audio",
-          "transcript": "enrolment"
+          "audioTargetId": "en:lesson-10:session-51:word:history:audio",
+          "transcript": "history"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-51:word:enrolment:r1",
-            "targetText": "enrolment",
+            "responseId": "en:lesson-10:session-51:word:history:r1",
+            "targetText": "history",
             "meaningByLocale": {
-              "ru": "«запись на обучение». I am completing my enrolment. — «Я завершаю запись на обучение». Здесь оформление записи на курс.",
-              "uk": "«запис на навчання». I am completing my enrolment. — «Я завершую запис на навчання». Тут оформлення запису на курс."
+              "ru": "«история» как учебный предмет. We are studying history. — «Мы изучаем историю».",
+              "uk": "«історія» як навчальний предмет. We are studying history. — «Ми вивчаємо історію»."
             }
           }
         ],
@@ -702,10 +700,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "enrolment",
+          "word": "history",
           "definitionByLocale": {
-            "ru": "«запись на обучение». I am completing my enrolment. — «Я завершаю запись на обучение». Здесь оформление записи на курс.",
-            "uk": "«запис на навчання». I am completing my enrolment. — «Я завершую запис на навчання». Тут оформлення запису на курс."
+            "ru": "«история» как учебный предмет. We are studying history. — «Мы изучаем историю».",
+            "uk": "«історія» як навчальний предмет. We are studying history. — «Ми вивчаємо історію»."
           }
         }
       },
@@ -717,24 +715,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы сейчас заполняете последние поля формы. Скажите: «Я завершаю запись на обучение»",
+      "prompt": "Скажите, что вы сейчас изучаете историю",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сейчас заполняете последние поля формы. Скажите: «Я завершаю запись на обучение»",
+      "accessibilityLabel": "Скажите, что вы сейчас изучаете историю",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am completing my enrolment.",
+        "targetPhrase": "We are studying history.",
         "localizedMeaning": {
-          "ru": "Вы сейчас заполняете последние поля формы. Скажите: «Я завершаю запись на обучение»",
-          "uk": "Ви зараз заповнюєте останні поля форми. Скажіть: «Я завершую запис на навчання»"
+          "ru": "Скажите, что вы сейчас изучаете историю",
+          "uk": "Скажіть, що ви зараз вивчаєте історію"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "completing",
-          "my",
-          "enrolment"
+          "We",
+          "are",
+          "studying",
+          "history"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -755,15 +752,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i11:r1",
-          "text": "The enrolment is complete."
+          "text": "I am studying history."
         },
         {
           "responseId": "en:lesson-10:session-51:i11:r2",
-          "text": "The enrolment is delayed."
+          "text": "We are studying history."
         },
         {
           "responseId": "en:lesson-10:session-51:i11:r3",
-          "text": "The form is complete."
+          "text": "I am studying maths."
         }
       ],
       "mediaIds": [],
@@ -775,23 +772,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-51:i11:audio",
-          "transcript": "The enrolment is complete."
+          "transcript": "I am studying history."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-51:i11:r1",
-            "targetText": "The enrolment is complete.",
+            "targetText": "I am studying history.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i11:r2",
-            "targetText": "The enrolment is delayed.",
+            "targetText": "We are studying history.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-51:i11:r3",
-            "targetText": "The form is complete.",
+            "targetText": "I am studying maths.",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +799,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The enrolment is complete.",
-              "uk": "У записі звучить The enrolment is complete."
+              "ru": "В записи звучит I am studying history.",
+              "uk": "У записі звучить I am studying history."
             }
           },
           {
@@ -811,8 +808,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The enrolment is complete.",
-              "uk": "У записі звучить The enrolment is complete."
+              "ru": "В записи звучит I am studying history.",
+              "uk": "У записі звучить I am studying history."
             }
           }
         ],
@@ -827,63 +824,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите правильное написание формы complete",
+      "prompt": "Выберите форму study после are",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-51:i12:r1",
-          "text": "completing"
+          "text": "studying"
         },
         {
           "responseId": "en:lesson-10:session-51:i12:r2",
-          "text": "completeing"
+          "text": "study"
         },
         {
           "responseId": "en:lesson-10:session-51:i12:r3",
-          "text": "complete"
+          "text": "studies"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите правильное написание формы complete",
+      "accessibilityLabel": "Выберите форму study после are",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите правильное написание формы complete",
-          "uk": "Виберіть правильне написання форми complete"
+          "ru": "Выберите форму study после are",
+          "uk": "Виберіть форму study після are"
         },
-        "gappedTargetPhrase": "I am ___ my enrolment.",
+        "gappedTargetPhrase": "We are ___ history.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-51:i12:r1",
-            "text": "completing"
+            "text": "studying"
           },
           {
             "responseId": "en:lesson-10:session-51:i12:r2",
-            "text": "completeing"
+            "text": "study"
           },
           {
             "responseId": "en:lesson-10:session-51:i12:r3",
-            "text": "complete"
+            "text": "studies"
           }
         ],
-        "testedDimension": "Выберите правильное написание формы complete",
+        "testedDimension": "Выберите форму study после are",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-51:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите правильное написание формы complete",
+            "testedDimension": "Выберите форму study после are",
             "feedbackByLocale": {
-              "ru": "Перед ing убираем e: completing.",
-              "uk": "Перед ing прибираємо e: completing."
+              "ru": "После are нужна studying.",
+              "uk": "Після are потрібна studying."
             }
           },
           {
             "responseId": "en:lesson-10:session-51:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите правильное написание формы complete",
+            "testedDimension": "Выберите форму study после are",
             "feedbackByLocale": {
-              "ru": "После am для текущего действия нужна completing.",
-              "uk": "Після am для поточної дії потрібна completing."
+              "ru": "Здесь are studying, не are studies.",
+              "uk": "Тут are studying, не are studies."
             }
           }
         ]
@@ -896,58 +893,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-51:i13:p1",
-            "target": "term",
+            "target": "classmate",
             "meaningByLocale": {
-              "ru": "учебный период",
-              "uk": "навчальний період"
+              "ru": "одноклассник",
+              "uk": "однокласник"
             }
           },
           {
             "pairId": "en:lesson-10:session-51:i13:p2",
-            "target": "campus",
+            "target": "subject",
             "meaningByLocale": {
-              "ru": "кампус",
-              "uk": "кампус"
+              "ru": "учебный предмет",
+              "uk": "навчальний предмет"
             }
           },
           {
             "pairId": "en:lesson-10:session-51:i13:p3",
-            "target": "tuition",
+            "target": "maths",
             "meaningByLocale": {
-              "ru": "плата за обучение",
-              "uk": "плата за навчання"
+              "ru": "математика",
+              "uk": "математика"
             }
           },
           {
             "pairId": "en:lesson-10:session-51:i13:p4",
-            "target": "enrolment",
+            "target": "history",
             "meaningByLocale": {
-              "ru": "запись на обучение",
-              "uk": "запис на навчання"
+              "ru": "история",
+              "uk": "історія"
             }
           }
         ],
         "leftColumn": [
-          "term",
-          "campus",
-          "tuition",
-          "enrolment"
+          "classmate",
+          "subject",
+          "maths",
+          "history"
         ],
         "rightColumn": [
-          "учебный период",
-          "кампус",
-          "плата за обучение",
-          "запись на обучение"
+          "одноклассник",
+          "учебный предмет",
+          "математика",
+          "история"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -969,27 +966,25 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-51:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-51:i14:audio",
-          "transcript": "I am completing my enrolment."
+          "transcript": "Maths is difficult."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I am completing my enrolment.",
+        "hiddenTargetPhrase": "Maths is difficult.",
         "orderedTokens": [
-          "I",
-          "am",
-          "completing",
-          "my",
-          "enrolment"
+          "Maths",
+          "is",
+          "difficult"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1003,24 +998,60 @@
     {
       "interactionId": "en:lesson-10:session-51:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, где вы обычно учитесь. Скажите: «Я обычно учусь в кампусе»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-51:i15:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, где вы обычно учитесь. Скажите: «Я обычно учусь в кампусе»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i15:audio",
+          "transcript": "We are studying history."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are studying history.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "studying",
+          "history"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что история — ваш любимый предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что история — ваш любимый предмет",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-51:i15:audio",
-          "transcript": "I usually study on campus."
+          "audioTargetId": "en:lesson-10:session-51:i16:audio",
+          "transcript": "History is my favourite subject."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I usually study on campus.",
+        "targetPhrase": "History is my favourite subject.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1034,71 +1065,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-51:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает о начале учёбы. Скажите: «Учебный период начинается в сентябре»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает о начале учёбы. Скажите: «Учебный период начинается в сентябре»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The term starts in September.",
-        "localizedMeaning": {
-          "ru": "Друг спрашивает о начале учёбы. Скажите: «Учебный период начинается в сентябре»",
-          "uk": "Друг запитує про початок навчання. Скажіть: «Навчальний період починається у вересні»"
-        },
-        "orderedTokens": [
-          "The",
-          "term",
-          "starts",
-          "in",
-          "September"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-51:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы заполняете последние поля формы записи на курс. Друг спрашивает, чем вы заняты сейчас. Скажите: «Я завершаю запись на обучение»",
+      "prompt": "Скажите, что ваш одноклассник сейчас изучает математику",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-51:i17:audio"
       ],
-      "accessibilityLabel": "Вы заполняете последние поля формы записи на курс. Друг спрашивает, чем вы заняты сейчас. Скажите: «Я завершаю запись на обучение»",
+      "accessibilityLabel": "Скажите, что ваш одноклассник сейчас изучает математику",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-51:i17:audio",
-          "transcript": "I am completing my enrolment."
+          "transcript": "My classmate is studying maths."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am completing my enrolment.",
+        "targetPhrase": "My classmate is studying maths.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1104,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bcaaddee775aee6c9927d763b95c3e74ecb92f1c78e977e216f12c870a99ac03"
+  "learnerFingerprint": "50c507b25a0aa4f2826b7ce971f985a22412cac113d0d49ade52f74fca73ed0e"
 }

@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 51 — Початок навчання
+# Англійська · Урок 10 · Заняття 51 — Розмова про навчання
 
-**Ситуація.** Обговорити навчальний період, оплату й запис на навчання.
+**Ситуація.** Назвати однокласника й навчальні предмети, розповісти про заняття зараз.
 
-**Що ви опануєте:** The term starts in September; I usually study on campus; I am completing my enrolment
-**Нові слова:** term, campus, tuition, enrolment
+**Що ви опануєте:** My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history
+**Нові слова:** classmate, subject, maths, history
 
 ## Інтро 1
 
-### Коли починається навчання
+### Хто навчається з вами
 
-Term тут — «навчальний період», частина навчального року між канікулами; це не обов’язково половина року. За календарем він починається у вересні: The term starts in September — «Навчальний період починається у вересні». Для встановленого розкладу підходить Present Simple. Після the term потрібна starts із s.
+Друг запитує про людину поруч із вами. Classmate — «однокласник, одногрупник», людина з вашого навчального класу: My classmate is reading — «Мій однокласник читає». Він читає зараз: is reading.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The term starts in September.**
-- ❌ The term start in September. — *Один період: starts із s.*
-- ❌ The term starting in September. — *Тут потрібна особова форма starts.*
+- ✅ **My classmate is reading.**
+- ❌ My classmate reading. — *Перед reading потрібна is.*
+- ❌ My classmate are reading. — *Один classmate: потрібна is.*
 
 ---
 
 ## Інтро 2
 
-### Де я зазвичай навчаюся
+### Улюблений предмет
 
-Campus — «кампус», територія навчального закладу з його будівлями. Ви зазвичай займаєтеся там: I usually study on campus — «Я зазвичай навчаюся в кампусі». Звичку виражаємо через Present Simple. Usually стоїть перед study; у сполученні on campus артикль не потрібен.
+Ви обговорюєте, що подобається вивчати. Subject тут — «навчальний предмет»: English is my favourite subject — «Англійська — мій улюблений предмет». Maths — «математика» у британській англійській: Maths is difficult — «Математика складна». Попри s у maths, тут потрібна is.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I usually study on campus.**
-- ❌ I usually studies on campus. — *З I потрібна study без s.*
-- ❌ I usually studying on campus. — *Тут потрібна study.*
+- ✅ **Maths is difficult.**
+- ❌ Maths are difficult. — *Maths — назва одного предмета, тому is.*
+- ❌ Maths am difficult. — *Am вживається з I. Тут потрібна is.*
 
 ---
 
 ## Інтро 3
 
-### Завершую запис
+### Що вивчаємо зараз
 
-Enrolment — «запис на навчання». Ви зараз заповнюєте останні поля форми: I am completing my enrolment — «Я завершую запис на навчання». Поточна робота: am + completing. У complete перед ing прибираємо e. Enrolment — британське написання; у США пишуть enrollment.
+Ви з однокласниками займаєтеся й розповідаєте, який предмет зараз вивчаєте. History — «історія»: We are studying history — «Ми вивчаємо історію». Для заняття зараз: are studying. У цьому значенні перед history не потрібен артикль.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am completing my enrolment.**
-- ❌ I completing my enrolment. — *Перед completing потрібна am.*
-- ❌ I am completeing my enrolment. — *Правильно completing, без e.*
+- ✅ **We are studying history.**
+- ❌ We is studying history. — *З we потрібна are.*
+- ❌ We are study history. — *Після are потрібна studying.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — term**
-<!-- interaction_id: en:lesson-10:session-51:word:term; family: word_card -->
-> **term** — «навчальний період». The term starts in September. — «Навчальний період починається у вересні». Частина навчального року між канікулами.
+**1 · Картка слова — classmate**
+<!-- interaction_id: en:lesson-10:session-51:word:classmate; family: word_card -->
+> **classmate** — «однокласник, одногрупник». My classmate is reading. — «Мій однокласник читає».
 
-**2 · Поясніть дату за навчальним календарем: «Навчальний період починається у вересні»**
+**2 · Скажіть, що ваш однокласник зараз читає**
 <!-- interaction_id: en:lesson-10:session-51:i01; family: phrase_builder -->
-Плитки: `September` `in` `starts` `term` `The` → **The term starts in September.**
+Плитки: `reading` `is` `classmate` `My` → **My classmate is reading.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-51:i02; family: listen_choose -->
-🔊 *The term ends in December.* → **The term ends in December.** · The term ends in January. · The course ends in December.
-- The term ends in January. — *У записі звучить The term ends in December.*
-- The course ends in December. — *У записі звучить The term ends in December.*
+🔊 *My classmate is writing.* → **My classmate is writing.** · My classmate is reading. · Your classmate is writing.
+- My classmate is reading. — *У записі звучить My classmate is writing.*
+- Your classmate is writing. — *У записі звучить My classmate is writing.*
 
-**4 · Це встановлений розклад. Виберіть форму start**
+**4 · Виберіть форму be для одного однокласника**
 <!-- interaction_id: en:lesson-10:session-51:i03; family: context_gap_grammar -->
-The term ___ in September. → **starts** · start · starting
-- start — *Один період: starts із s.*
-- starting — *Тут потрібна starts.*
+My classmate ___ reading. → **is** · are · am
+- are — *Один classmate: потрібна is.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**5 · Картка слова — campus**
-<!-- interaction_id: en:lesson-10:session-51:word:campus; family: word_card -->
-> **campus** — «кампус». I usually study on campus. — «Я зазвичай навчаюся в кампусі». Територія навчального закладу з його будівлями.
+**5 · Картка слова — subject**
+<!-- interaction_id: en:lesson-10:session-51:word:subject; family: word_card -->
+> **subject** — «навчальний предмет». English is my favourite subject. — «Англійська — мій улюблений предмет».
 
-**6 · Скажіть, де ви зазвичай займаєтеся: «Я зазвичай навчаюся в кампусі». Поставте usually перед study**
+**6 · Скажіть, що англійська — ваш улюблений предмет. Почніть з English**
 <!-- interaction_id: en:lesson-10:session-51:i04; family: phrase_builder -->
-Плитки: `campus` `on` `study` `usually` `I` → **I usually study on campus.**
+Плитки: `subject` `favourite` `my` `is` `English` → **English is my favourite subject.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-51:i05; family: listen_choose -->
-🔊 *The campus is quiet.* → **The campus is quiet.** · The campus is busy. · The library is quiet.
-- The campus is busy. — *У записі звучить The campus is quiet.*
-- The library is quiet. — *У записі звучить The campus is quiet.*
+🔊 *English is my favourite subject.* → **English is my favourite subject.** · English is your favourite subject. · Is English my favourite subject?
+- English is your favourite subject. — *У записі звучить English is my favourite subject.*
+- Is English my favourite subject? — *У записі звучить English is my favourite subject.*
 
-**8 · Це звичка. Виберіть форму study**
+**8 · Виберіть дієслово в реченні про англійську**
 <!-- interaction_id: en:lesson-10:session-51:i06; family: context_gap_grammar -->
-I usually ___ on campus. → **study** · studies · studying
-- studies — *З I потрібна study без s.*
-- studying — *Тут потрібна study.*
+English ___ my favourite subject. → **is** · are · am
+- are — *З English тут потрібна is.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**9 · Картка слова — tuition**
-<!-- interaction_id: en:lesson-10:session-51:word:tuition; family: word_card -->
-> **tuition** — «плата за навчання». The tuition is expensive. — «Навчання коштує дорого». Тут вартість навчання, не заняття як процес.
+**9 · Картка слова — maths**
+<!-- interaction_id: en:lesson-10:session-51:word:maths; family: word_card -->
+> **maths** — «математика» (британський варіант). Maths is difficult. — «Математика складна».
 
-**10 · Ви порівнюєте вартість навчальних програм. Скажіть із tuition: «Навчання коштує дорого»**
+**10 · Скажіть, що математика складна**
 <!-- interaction_id: en:lesson-10:session-51:i07; family: phrase_builder -->
-Плитки: `expensive` `is` `tuition` `The` → **The tuition is expensive.**
+Плитки: `difficult` `is` `Maths` → **Maths is difficult.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-51:i08; family: listen_choose -->
-🔊 *The tuition is affordable.* → **The tuition is affordable.** · The tuition is expensive. · The accommodation is affordable.
-- The tuition is expensive. — *У записі звучить The tuition is affordable.*
-- The accommodation is affordable. — *У записі звучить The tuition is affordable.*
+🔊 *Maths is easy.* → **Maths is easy.** · Maths is difficult. · English is easy.
+- Maths is difficult. — *У записі звучить Maths is easy.*
+- English is easy. — *У записі звучить Maths is easy.*
 
-**12 · Tuition тут незлічуване. Виберіть зв’язку**
+**12 · Виберіть дієслово для назви предмета maths**
 <!-- interaction_id: en:lesson-10:session-51:i09; family: context_gap_grammar -->
-The tuition ___ expensive. → **is** · are · am
-- are — *З tuition потрібна is.*
-- am — *Am уживається з I.*
+Maths ___ difficult. → **is** · are · am
+- are — *Maths тут поєднується з is, попри s.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**13 · Картка слова — enrolment**
-<!-- interaction_id: en:lesson-10:session-51:word:enrolment; family: word_card -->
-> **enrolment** — «запис на навчання». I am completing my enrolment. — «Я завершую запис на навчання». Тут оформлення запису на курс.
+**13 · Картка слова — history**
+<!-- interaction_id: en:lesson-10:session-51:word:history; family: word_card -->
+> **history** — «історія» як навчальний предмет. We are studying history. — «Ми вивчаємо історію».
 
-**14 · Ви зараз заповнюєте останні поля форми. Скажіть: «Я завершую запис на навчання»**
+**14 · Скажіть, що ви зараз вивчаєте історію**
 <!-- interaction_id: en:lesson-10:session-51:i10; family: phrase_builder -->
-Плитки: `enrolment` `my` `completing` `am` `I` → **I am completing my enrolment.**
+Плитки: `history` `studying` `are` `We` → **We are studying history.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-51:i11; family: listen_choose -->
-🔊 *The enrolment is complete.* → **The enrolment is complete.** · The enrolment is delayed. · The form is complete.
-- The enrolment is delayed. — *У записі звучить The enrolment is complete.*
-- The form is complete. — *У записі звучить The enrolment is complete.*
+🔊 *I am studying history.* → **I am studying history.** · We are studying history. · I am studying maths.
+- We are studying history. — *У записі звучить I am studying history.*
+- I am studying maths. — *У записі звучить I am studying history.*
 
-**16 · Виберіть правильне написання форми complete**
+**16 · Виберіть форму study після are**
 <!-- interaction_id: en:lesson-10:session-51:i12; family: context_gap_grammar -->
-I am ___ my enrolment. → **completing** · completeing · complete
-- completeing — *Перед ing прибираємо e: completing.*
-- complete — *Після am для поточної дії потрібна completing.*
+We are ___ history. → **studying** · study · studies
+- study — *Після are потрібна studying.*
+- studies — *Тут are studying, не are studies.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-51:i13; family: speed_match -->
-term — навчальний період · campus — кампус · tuition — плата за навчання · enrolment — запис на навчання
+classmate — однокласник · subject — навчальний предмет · maths — математика · history — історія
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-51:i14; family: listen_build_dictation -->
-🔊 *I am completing my enrolment.* Плитки: `enrolment` `my` `completing` `am` `I` → **I am completing my enrolment.**
+🔊 *Maths is difficult.* Плитки: `difficult` `is` `Maths` → **Maths is difficult.**
 
-**19 · Друг запитує, де ви зазвичай навчаєтеся. Скажіть: «Я зазвичай навчаюся в кампусі»**
-<!-- interaction_id: en:lesson-10:session-51:i15; family: scripted_repeat_compare -->
-🎙 **I usually study on campus.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-51:i15; family: listen_build_dictation -->
+🔊 *We are studying history.* Плитки: `history` `studying` `are` `We` → **We are studying history.**
 
-**20 · Друг запитує про початок навчання. Скажіть: «Навчальний період починається у вересні»**
-<!-- interaction_id: en:lesson-10:session-51:i16; family: phrase_builder -->
-Плитки: `September` `in` `starts` `term` `The` → **The term starts in September.**
+**20 · Скажіть, що історія — ваш улюблений предмет**
+<!-- interaction_id: en:lesson-10:session-51:i16; family: scripted_repeat_compare -->
+🎙 **History is my favourite subject.**
 
-**21 · Ви заповнюєте останні поля форми запису на курс. Друг запитує, чим ви зайняті зараз. Скажіть: «Я завершую запис на навчання»**
-<!-- interaction_id: en:lesson-10:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am completing my enrolment.**
+**21 · Скажіть, що ваш однокласник зараз вивчає математику**
+<!-- interaction_id: en:lesson-10:session-51:i17; family: scripted_repeat_compare -->
+🎙 **My classmate is studying maths.**
 

@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 50 — Планируем время
+# Английский · Урок 10 · Занятие 50 — Скоро, позже и вовремя
 
-**Ситуация.** Обсудить сроки работы и длительность отдельных действий.
+**Ситуация.** Договориться о встрече и уточнить время транспорта.
 
-**Что вы освоите:** The trial period lasts a month; We record the duration every day; We are updating the timeline
-**Новые слова:** period, interval, duration, timeline
+**Что вы освоите:** The train leaves soon; See you later; I am already here; The bus is on time
+**Новые слова:** soon, later, already, on time
 
 ## Интро 1
 
-### Сколько длится проба
+### Скоро и позже
 
-Period — «период», отрезок времени. Вы объясняете условия пробного использования программы: The trial period lasts a month — «Пробный период длится месяц». Это установленное условие, поэтому Present Simple. После the trial period используем lasts с s.
+Вы смотрите расписание: поезд отправляется через несколько минут. Soon — «скоро»: The train leaves soon — «Поезд скоро отправляется». Здесь расписание, поэтому leaves. Later — «позже». Прощаясь с другом до следующей встречи, скажите: See you later — «Увидимся позже». Учим это как готовую фразу.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The trial period lasts a month.**
-- ❌ The trial period last a month. — *Один период: lasts с s.*
-- ❌ The trial period lasting a month. — *Здесь нужна личная форма lasts.*
+- ✅ **The train leaves soon.**
+- ❌ The train leave soon. — *Один train: leaves с s.*
+- ❌ The train leaving soon. — *Для расписания здесь нужна leaves.*
 
 ---
 
 ## Интро 2
 
-### Записываем длительность
+### Уже на месте
 
-Duration — «длительность». Команда каждый день записывает, сколько занимает одна и та же процедура: We record the duration every day — «Мы записываем длительность каждый день». Регулярная работа выражается через Present Simple: record.
+Друг спрашивает, где вы. Вы уже у входа в кафе. Already — «уже»: I am already here — «Я уже здесь». В этой фразе already стоит после am, перед here.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We record the duration every day.**
-- ❌ We records the duration every day. — *С we нужна record без s.*
-- ❌ We recording the duration every day. — *Здесь нужна record.*
+- ✅ **I am already here.**
+- ❌ I is already here. — *С I нужна am.*
+- ❌ I already here. — *В этой фразе нужна am после I.*
 
 ---
 
 ## Интро 3
 
-### Меняем график сейчас
+### По расписанию
 
-Timeline здесь — «временной график»: последовательность этапов с датами. Команда сейчас вносит новые сроки: We are updating the timeline — «Мы обновляем временной график». Для текущей работы: are + updating. У update перед ing убираем e.
+Автобус приходит точно по расписанию. On time — «вовремя»: The bus is on time — «Автобус приходит вовремя». В этой ситуации он не опаздывает. On time учим как цельное выражение.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are updating the timeline.**
-- ❌ We updating the timeline. — *Перед updating нужна are.*
-- ❌ We are updateing the timeline. — *Правильно updating, без e.*
+- ✅ **The bus is on time.**
+- ❌ The bus are on time. — *Один bus: нужна is.*
+- ❌ The bus am on time. — *Am используется с I. Здесь нужна is.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — period**
-<!-- interaction_id: en:lesson-10:session-50:word:period; family: word_card -->
-> **period** — «период». The trial period lasts a month. — «Пробный период длится месяц». Здесь отрезок времени для пробного использования программы.
+**1 · Карточка слова — soon**
+<!-- interaction_id: en:lesson-10:session-50:word:soon; family: word_card -->
+> **soon** — «скоро». The train leaves soon. — «Поезд скоро отправляется».
 
-**2 · Объясните условие использования программы: «Пробный период длится месяц»**
+**2 · По расписанию поезд скоро отправляется. Soon поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-50:i01; family: phrase_builder -->
-Плитки: `month` `a` `lasts` `period` `trial` `The` → **The trial period lasts a month.**
+Плитки: `soon` `leaves` `train` `The` → **The train leaves soon.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-50:i02; family: listen_choose -->
-🔊 *The trial period is over.* → **The trial period is over.** · The trial period is short. · The meeting is over.
-- The trial period is short. — *В записи звучит The trial period is over.*
-- The meeting is over. — *В записи звучит The trial period is over.*
+🔊 *The bus leaves soon.* → **The bus leaves soon.** · The train leaves soon. · The bus arrives soon.
+- The train leaves soon. — *В записи звучит The bus leaves soon.*
+- The bus arrives soon. — *В записи звучит The bus leaves soon.*
 
-**4 · Это установленное условие. Выберите форму last**
+**4 · Выберите форму leave для одного поезда**
 <!-- interaction_id: en:lesson-10:session-50:i03; family: context_gap_grammar -->
-The trial period ___ a month. → **lasts** · last · lasting
-- last — *Один период: lasts с s.*
-- lasting — *Здесь нужна личная форма lasts.*
+The train ___ soon. → **leaves** · leave · leaving
+- leave — *Один train: leaves с s.*
+- leaving — *Для расписания здесь нужна leaves.*
 
-**5 · Карточка слова — interval**
-<!-- interaction_id: en:lesson-10:session-50:word:interval; family: word_card -->
-> **interval** — «интервал». The interval is ten minutes. — «Интервал составляет десять минут». Здесь промежуток времени между двумя проверками.
+**5 · Карточка слова — later**
+<!-- interaction_id: en:lesson-10:session-50:word:later; family: word_card -->
+> **later** — «позже». See you later. — «Увидимся позже».
 
-**6 · Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»**
+**6 · Попрощайтесь с другом: увидимся позже**
 <!-- interaction_id: en:lesson-10:session-50:i04; family: phrase_builder -->
-Плитки: `minutes` `ten` `is` `interval` `The` → **The interval is ten minutes.**
+Плитки: `later` `you` `See` → **See you later.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-50:i05; family: listen_choose -->
-🔊 *The interval is five minutes.* → **The interval is five minutes.** · The interval is ten minutes. · The meeting is five minutes.
-- The interval is ten minutes. — *В записи звучит The interval is five minutes.*
-- The meeting is five minutes. — *В записи звучит The interval is five minutes.*
+🔊 *See you later.* → **See you later.** · See you soon. · See you tomorrow.
+- See you soon. — *В записи звучит See you later.*
+- See you tomorrow. — *В записи звучит See you later.*
 
-**8 · Речь об одном интервале. Выберите связку**
+**8 · Выберите слово со значением «позже»**
 <!-- interaction_id: en:lesson-10:session-50:i06; family: context_gap_grammar -->
-The interval ___ ten minutes. → **is** · are · am
-- are — *Один интервал: is.*
-- am — *Am используется с I.*
+See you ___. → **later** · soon · tomorrow
+- soon — *Soon — скоро, а здесь нужно позже.*
+- tomorrow — *Tomorrow — завтра, а здесь нужно позже.*
 
-**9 · Карточка слова — duration**
-<!-- interaction_id: en:lesson-10:session-50:word:duration; family: word_card -->
-> **duration** — «длительность». We record the duration every day. — «Мы записываем длительность каждый день». Здесь количество времени, которое занимает процедура.
+**9 · Карточка слова — already**
+<!-- interaction_id: en:lesson-10:session-50:word:already; family: word_card -->
+> **already** — «уже». I am already here. — «Я уже здесь».
 
-**10 · Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце**
+**10 · Скажите, что уже на месте. Already поставьте после am**
 <!-- interaction_id: en:lesson-10:session-50:i07; family: phrase_builder -->
-Плитки: `day` `every` `duration` `the` `record` `We` → **We record the duration every day.**
+Плитки: `here` `already` `am` `I` → **I am already here.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-50:i08; family: listen_choose -->
-🔊 *The duration is two hours.* → **The duration is two hours.** · The duration is three hours. · The interval is two hours.
-- The duration is three hours. — *В записи звучит The duration is two hours.*
-- The interval is two hours. — *В записи звучит The duration is two hours.*
+🔊 *She is already here.* → **She is already here.** · He is already here. · I am already here.
+- He is already here. — *В записи звучит She is already here.*
+- I am already here. — *В записи звучит She is already here.*
 
-**12 · Это ежедневная работа. Выберите форму record**
+**12 · Выберите форму be с I**
 <!-- interaction_id: en:lesson-10:session-50:i09; family: context_gap_grammar -->
-We ___ the duration every day. → **record** · records · recording
-- records — *С we нужна record без s.*
-- recording — *Здесь нужна record.*
+I ___ already here. → **am** · is · are
+- is — *С I нужна am.*
+- are — *С I нужна am.*
 
-**13 · Карточка слова — timeline**
-<!-- interaction_id: en:lesson-10:session-50:word:timeline; family: word_card -->
-> **timeline** — «временной график». We are updating the timeline. — «Мы обновляем временной график». Последовательность этапов с датами.
+**13 · Карточка слова — on time**
+<!-- interaction_id: en:lesson-10:session-50:word:on-time; family: word_card -->
+> **on time** — «вовремя». The bus is on time. — «Автобус приходит вовремя».
 
-**14 · Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»**
+**14 · Автобус приходит по расписанию. Скажите, что он вовремя**
 <!-- interaction_id: en:lesson-10:session-50:i10; family: phrase_builder -->
-Плитки: `timeline` `the` `updating` `are` `We` → **We are updating the timeline.**
+Плитки: `time` `on` `is` `bus` `The` → **The bus is on time.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-50:i11; family: listen_choose -->
-🔊 *The timeline is on the wall.* → **The timeline is on the wall.** · The timeline is on the website. · The barometer is on the wall.
-- The timeline is on the website. — *В записи звучит The timeline is on the wall.*
-- The barometer is on the wall. — *В записи звучит The timeline is on the wall.*
+🔊 *The train is on time.* → **The train is on time.** · The bus is on time. · The train is late.
+- The bus is on time. — *В записи звучит The train is on time.*
+- The train is late. — *В записи звучит The train is on time.*
 
-**16 · Выберите правильное написание формы update**
+**16 · Выберите глагол для одного автобуса**
 <!-- interaction_id: en:lesson-10:session-50:i12; family: context_gap_grammar -->
-We are ___ the timeline. → **updating** · updateing · update
-- updateing — *Перед ing убираем e: updating.*
-- update — *После are для текущего действия нужна updating.*
+The bus ___ on time. → **is** · are · am
+- are — *Один bus: нужна is.*
+- am — *Am используется с I. Здесь нужна is.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-50:i13; family: speed_match -->
-period — период · interval — интервал · duration — длительность · timeline — временной график
+soon — скоро · later — позже · already — уже · on time — вовремя
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-50:i14; family: listen_build_dictation -->
-🔊 *We are updating the timeline.* Плитки: `timeline` `the` `updating` `are` `We` → **We are updating the timeline.**
+🔊 *I am already here.* Плитки: `here` `already` `am` `I` → **I am already here.**
 
-**19 · Пользователь спрашивает, сколько длится пробное использование. Скажите: «Пробный период длится месяц»**
-<!-- interaction_id: en:lesson-10:session-50:i15; family: scripted_repeat_compare -->
-🎙 **The trial period lasts a month.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-50:i15; family: listen_build_dictation -->
+🔊 *The bus is on time.* Плитки: `time` `on` `is` `bus` `The` → **The bus is on time.**
 
-**20 · Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»**
-<!-- interaction_id: en:lesson-10:session-50:i16; family: phrase_builder -->
-Плитки: `minutes` `ten` `is` `interval` `The` → **The interval is ten minutes.**
+**20 · Попрощайтесь: до скорого**
+<!-- interaction_id: en:lesson-10:session-50:i16; family: scripted_repeat_compare -->
+🎙 **See you soon.**
 
-**21 · Вы с коллегами вносите новые даты этапов проекта. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы обновляем временной график»**
-<!-- interaction_id: en:lesson-10:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are updating the timeline.**
+**21 · Скажите, что ваш друг уже здесь**
+<!-- interaction_id: en:lesson-10:session-50:i17; family: scripted_repeat_compare -->
+🎙 **My friend is already here.**
 

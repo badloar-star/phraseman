@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-53",
   "learningOutcomeByLocale": {
-    "ru": "This is a special occasion; The festivities start at six; We are arranging the centrepiece",
-    "uk": "This is a special occasion; The festivities start at six; We are arranging the centrepiece"
+    "ru": "Good morning; Good afternoon; Good evening; Good night",
+    "uk": "Good morning; Good afternoon; Good evening; Good night"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Почему мы собрались",
-        "uk": "Чому ми зібралися"
+        "ru": "Утром",
+        "uk": "Уранці"
       },
       "bodyByLocale": {
-        "ru": "Occasion — «повод; случай». Сегодня семья отмечает важное событие: This is a special occasion — «Это особый повод». Описываем событие с помощью is. Перед исчисляемым occasion в единственном числе здесь нужен a.",
-        "uk": "Occasion — «нагода; випадок». Сьогодні родина відзначає важливу подію: This is a special occasion — «Це особлива нагода». Описуємо подію за допомогою is. Перед злічуваним occasion в однині тут потрібен a."
+        "ru": "В девять утра вы встречаете соседа. Good morning — «Доброе утро». Это приветствие при встрече утром. Слова учим вместе: good morning.",
+        "uk": "О дев’ятій ранку ви зустрічаєте сусіда. Good morning — «Доброго ранку». Це привітання при зустрічі вранці. Слова вчимо разом: good morning."
       },
       "question": {
         "interactionId": "en:lesson-10:session-53:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-53:intro1:r1",
-              "text": "This is a special occasion."
+              "text": "Good morning."
             },
             {
               "responseId": "en:lesson-10:session-53:intro1:r2",
-              "text": "This are a special occasion."
+              "text": "Good mornings."
             },
             {
               "responseId": "en:lesson-10:session-53:intro1:r3",
-              "text": "This is special occasion."
+              "text": "Well morning."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-53:intro1:r1",
-              "text": "This is a special occasion."
+              "text": "Good morning."
             },
             {
               "responseId": "en:lesson-10:session-53:intro1:r2",
-              "text": "This are a special occasion."
+              "text": "Good mornings."
             },
             {
               "responseId": "en:lesson-10:session-53:intro1:r3",
-              "text": "This is special occasion."
+              "text": "Well morning."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Начало программы",
-        "uk": "Початок програми"
+        "ru": "Днём и вечером",
+        "uk": "Удень і ввечері"
       },
       "bodyByLocale": {
-        "ru": "Festivities — «празднества», праздничные мероприятия. По программе они начинаются в шесть: The festivities start at six — «Празднества начинаются в шесть». Для установленного расписания подходит Present Simple. Festivities — множественное число, поэтому start без s.",
-        "uk": "Festivities — «святкування», святкові заходи. За програмою вони починаються о шостій: The festivities start at six — «Святкування починаються о шостій». Для встановленого розкладу підходить Present Simple. Festivities — множина, тому start без s."
+        "ru": "После полудня при встрече говорим Good afternoon — «Добрый день». Вечером при встрече — Good evening: «Добрый вечер». Сейчас три часа дня, вы входите в магазин и здороваетесь с продавцом.",
+        "uk": "Після полудня при зустрічі кажемо Good afternoon — «Добрий день». Увечері при зустрічі — Good evening: «Добрий вечір». Зараз третя година дня, ви заходите до магазину й вітаєтеся з продавцем."
       },
       "question": {
         "interactionId": "en:lesson-10:session-53:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-53:intro2:r1",
-              "text": "The festivities start at six."
+              "text": "Good afternoon."
             },
             {
               "responseId": "en:lesson-10:session-53:intro2:r2",
-              "text": "The festivities starts at six."
+              "text": "Good morning."
             },
             {
               "responseId": "en:lesson-10:session-53:intro2:r3",
-              "text": "The festivities starting at six."
+              "text": "Good evening."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-53:intro2:r1",
-              "text": "The festivities start at six."
+              "text": "Good afternoon."
             },
             {
               "responseId": "en:lesson-10:session-53:intro2:r2",
-              "text": "The festivities starts at six."
+              "text": "Good morning."
             },
             {
               "responseId": "en:lesson-10:session-53:intro2:r3",
-              "text": "The festivities starting at six."
+              "text": "Good evening."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Украшаем стол сейчас",
-        "uk": "Прикрашаємо стіл зараз"
+        "ru": "Перед сном",
+        "uk": "Перед сном"
       },
       "bodyByLocale": {
-        "ru": "Centrepiece — «центральное украшение стола», например композиция из цветов. Вы с другом сейчас её оформляете: We are arranging the centrepiece — «Мы оформляем центральное украшение стола». Текущая работа: are + arranging. У arrange перед ing убираем e. Centrepiece — британское написание; в США пишут centerpiece.",
-        "uk": "Centrepiece — «центральна прикраса столу», наприклад композиція з квітів. Ви з другом зараз її оформлюєте: We are arranging the centrepiece — «Ми оформлюємо центральну прикрасу столу». Поточна робота: are + arranging. У arrange перед ing прибираємо e. Centrepiece — британське написання; у США пишуть centerpiece."
+        "ru": "Вы идёте спать и прощаетесь с близким человеком. Good night — «Спокойной ночи». Это пожелание при прощании на ночь, а не приветствие при вечерней встрече. Для встречи вечером — Good evening; перед сном — Good night.",
+        "uk": "Ви йдете спати й прощаєтеся з близькою людиною. Good night — «На добраніч». Це побажання при прощанні на ніч, а не привітання при вечірній зустрічі. Для зустрічі ввечері — Good evening; перед сном — Good night."
       },
       "question": {
         "interactionId": "en:lesson-10:session-53:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-53:intro3:r1",
-              "text": "We are arranging the centrepiece."
+              "text": "Good night."
             },
             {
               "responseId": "en:lesson-10:session-53:intro3:r2",
-              "text": "We arranging the centrepiece."
+              "text": "Good evening."
             },
             {
               "responseId": "en:lesson-10:session-53:intro3:r3",
-              "text": "We are arrangeing the centrepiece."
+              "text": "Good afternoon."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-53:intro3:r1",
-              "text": "We are arranging the centrepiece."
+              "text": "Good night."
             },
             {
               "responseId": "en:lesson-10:session-53:intro3:r2",
-              "text": "We arranging the centrepiece."
+              "text": "Good evening."
             },
             {
               "responseId": "en:lesson-10:session-53:intro3:r3",
-              "text": "We are arrangeing the centrepiece."
+              "text": "Good afternoon."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "27babe6a2ff02a56da92007ba2ec4d5cf31e99d0596f4c538486c66c0c22956b"
+  "introFingerprint": "fc863cc1530270fa70ad8bad8a6b560b49dfe73c00b64de4762a8129a1400fd8"
 }

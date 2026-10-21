@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-50:intro1:r2": {
-          "ru": "Один период: lasts с s.",
-          "uk": "Один період: lasts із s."
+          "ru": "Один train: leaves с s.",
+          "uk": "Один train: leaves із s."
         },
         "en:lesson-10:session-50:intro1:r3": {
-          "ru": "Здесь нужна личная форма lasts.",
-          "uk": "Тут потрібна особова форма lasts."
+          "ru": "Для расписания здесь нужна leaves.",
+          "uk": "Для розкладу тут потрібна leaves."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-50:intro2:r2": {
-          "ru": "С we нужна record без s.",
-          "uk": "З we потрібна record без s."
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
         },
         "en:lesson-10:session-50:intro2:r3": {
-          "ru": "Здесь нужна record.",
-          "uk": "Тут потрібна record."
+          "ru": "В этой фразе нужна am после I.",
+          "uk": "У цій фразі потрібна am після I."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-50:intro3:r2": {
-          "ru": "Перед updating нужна are.",
-          "uk": "Перед updating потрібна are."
+          "ru": "Один bus: нужна is.",
+          "uk": "Один bus: потрібна is."
         },
         "en:lesson-10:session-50:intro3:r3": {
-          "ru": "Правильно updating, без e.",
-          "uk": "Правильно updating, без e."
+          "ru": "Am используется с I. Здесь нужна is.",
+          "uk": "Am вживається з I. Тут потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ce7b99a3c7d6691cb070eca2364a1639bd052879ffdccf76dad869bb7106b8ec"
+  "auxiliaryFingerprint": "7d2b8313ed3b7862e9747f979507808fec18f7c058f99581421ec361eb7ebf80"
 }

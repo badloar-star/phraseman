@@ -10,8 +10,8 @@
           "uk": "З I потрібна walk без s."
         },
         "en:lesson-10:session-25:intro1:r3": {
-          "ru": "Для этой привычки нужна walk, не walking.",
-          "uk": "Для цієї звички потрібна walk, не walking."
+          "ru": "Для привычки здесь walk без am.",
+          "uk": "Для звички тут walk без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-25:intro2:r2": {
-          "ru": "Перед walking нужно am.",
-          "uk": "Перед walking потрібне am."
+          "ru": "С I нужна read без s.",
+          "uk": "З I потрібна read без s."
         },
         "en:lesson-10:session-25:intro2:r3": {
-          "ru": "После am здесь нужна walking.",
-          "uk": "Після am тут потрібна walking."
+          "ru": "Для привычки здесь read без am.",
+          "uk": "Для звички тут read без am."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-25:intro3:r2": {
-          "ru": "После listening нужно to.",
-          "uk": "Після listening потрібне to."
+          "ru": "С I нужна work без s.",
+          "uk": "З I потрібна work без s."
         },
         "en:lesson-10:session-25:intro3:r3": {
-          "ru": "После am здесь нужна listening.",
-          "uk": "Після am тут потрібна listening."
+          "ru": "Для привычки здесь work без am.",
+          "uk": "Для звички тут work без am."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "340703773f6420e960550b248a9138686f6292478b8cc2667f0aaae4ba788738"
+  "auxiliaryFingerprint": "338c088bb2b5a18f1c33474506e0f6ecbd22e4bdd8cb6c3b433f571f3479df37"
 }

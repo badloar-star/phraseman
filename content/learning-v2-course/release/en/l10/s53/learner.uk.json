@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-53:word:occasion",
+      "interactionId": "en:lesson-10:session-53:word:good-morning",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — occasion",
+      "prompt": "Картка слова — good morning",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-53:word:occasion:audio"
+        "en:lesson-10:session-53:word:good-morning:audio"
       ],
-      "accessibilityLabel": "Картка слова — occasion",
+      "accessibilityLabel": "Картка слова — good morning",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-53:word:occasion:audio",
-          "transcript": "occasion"
+          "audioTargetId": "en:lesson-10:session-53:word:good-morning:audio",
+          "transcript": "good morning"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-53:word:occasion:r1",
-            "targetText": "occasion",
+            "responseId": "en:lesson-10:session-53:word:good-morning:r1",
+            "targetText": "good morning",
             "meaningByLocale": {
-              "ru": "«повод». This is a special occasion. — «Это особый повод». Здесь важное событие, ради которого собралась семья.",
-              "uk": "«нагода». This is a special occasion. — «Це особлива нагода». Тут важлива подія, заради якої зібралася родина."
+              "ru": "«Доброе утро». Приветствие при встрече утром.",
+              "uk": "«Доброго ранку». Привітання при зустрічі вранці."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "occasion",
+          "word": "good morning",
           "definitionByLocale": {
-            "ru": "«повод». This is a special occasion. — «Это особый повод». Здесь важное событие, ради которого собралась семья.",
-            "uk": "«нагода». This is a special occasion. — «Це особлива нагода». Тут важлива подія, заради якої зібралася родина."
+            "ru": "«Доброе утро». Приветствие при встрече утром.",
+            "uk": "«Доброго ранку». Привітання при зустрічі вранці."
           }
         }
       },
@@ -52,24 +52,21 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»",
+      "prompt": "Привітайтеся із сусідом уранці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»",
+      "accessibilityLabel": "Привітайтеся із сусідом уранці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a special occasion.",
+        "targetPhrase": "Good morning.",
         "localizedMeaning": {
-          "ru": "Семья собралась отметить важное событие. Скажите: «Это особый повод»",
-          "uk": "Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»"
+          "ru": "Поздоровайтесь с соседом утром",
+          "uk": "Привітайтеся із сусідом уранці"
         },
         "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "special",
-          "occasion"
+          "Good",
+          "morning"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +87,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i02:r1",
-          "text": "This is a happy occasion."
+          "text": "Good morning, Tom."
         },
         {
           "responseId": "en:lesson-10:session-53:i02:r2",
-          "text": "This is a sad occasion."
+          "text": "Good morning, Anna."
         },
         {
           "responseId": "en:lesson-10:session-53:i02:r3",
-          "text": "This is a happy day."
+          "text": "Good morning, Ben."
         }
       ],
       "mediaIds": [],
@@ -110,23 +107,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-53:i02:audio",
-          "transcript": "This is a happy occasion."
+          "transcript": "Good morning, Tom."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-53:i02:r1",
-            "targetText": "This is a happy occasion.",
+            "targetText": "Good morning, Tom.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i02:r2",
-            "targetText": "This is a sad occasion.",
+            "targetText": "Good morning, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i02:r3",
-            "targetText": "This is a happy day.",
+            "targetText": "Good morning, Ben.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +134,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит This is a happy occasion.",
-              "uk": "У записі звучить This is a happy occasion."
+              "ru": "В записи звучит Good morning, Tom.",
+              "uk": "У записі звучить Good morning, Tom."
             }
           },
           {
@@ -146,8 +143,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит This is a happy occasion.",
-              "uk": "У записі звучить This is a happy occasion."
+              "ru": "В записи звучит Good morning, Tom.",
+              "uk": "У записі звучить Good morning, Tom."
             }
           }
         ],
@@ -162,63 +159,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку після this",
+      "prompt": "Закінчіть ранкове привітання",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i03:r1",
-          "text": "is"
+          "text": "morning"
         },
         {
           "responseId": "en:lesson-10:session-53:i03:r2",
-          "text": "are"
+          "text": "mornings"
         },
         {
           "responseId": "en:lesson-10:session-53:i03:r3",
-          "text": "am"
+          "text": "mornings are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку після this",
+      "accessibilityLabel": "Закінчіть ранкове привітання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку после this",
-          "uk": "Виберіть зв’язку після this"
+          "ru": "Закончите утреннее приветствие",
+          "uk": "Закінчіть ранкове привітання"
         },
-        "gappedTargetPhrase": "This ___ a special occasion.",
+        "gappedTargetPhrase": "Good ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-53:i03:r1",
-            "text": "is"
+            "text": "morning"
           },
           {
             "responseId": "en:lesson-10:session-53:i03:r2",
-            "text": "are"
+            "text": "mornings"
           },
           {
             "responseId": "en:lesson-10:session-53:i03:r3",
-            "text": "am"
+            "text": "mornings are"
           }
         ],
-        "testedDimension": "Виберіть зв’язку після this",
+        "testedDimension": "Закінчіть ранкове привітання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-53:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку після this",
+            "testedDimension": "Закінчіть ранкове привітання",
             "feedbackByLocale": {
-              "ru": "С this нужна is.",
-              "uk": "З this потрібна is."
+              "ru": "В приветствии morning без s.",
+              "uk": "У привітанні morning без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-53:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку після this",
+            "testedDimension": "Закінчіть ранкове привітання",
             "feedbackByLocale": {
-              "ru": "Am используется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Здесь только Good morning, без are.",
+              "uk": "Тут лише Good morning, без are."
             }
           }
         ]
@@ -226,32 +223,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-53:word:festivities",
+      "interactionId": "en:lesson-10:session-53:word:good-afternoon",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — festivities",
+      "prompt": "Картка слова — good afternoon",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-53:word:festivities:audio"
+        "en:lesson-10:session-53:word:good-afternoon:audio"
       ],
-      "accessibilityLabel": "Картка слова — festivities",
+      "accessibilityLabel": "Картка слова — good afternoon",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-53:word:festivities:audio",
-          "transcript": "festivities"
+          "audioTargetId": "en:lesson-10:session-53:word:good-afternoon:audio",
+          "transcript": "good afternoon"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-53:word:festivities:r1",
-            "targetText": "festivities",
+            "responseId": "en:lesson-10:session-53:word:good-afternoon:r1",
+            "targetText": "good afternoon",
             "meaningByLocale": {
-              "ru": "«празднества». The festivities start at six. — «Празднества начинаются в шесть». Праздничные мероприятия, множественное число.",
-              "uk": "«святкування». The festivities start at six. — «Святкування починаються о шостій». Святкові заходи, множина."
+              "ru": "«Добрый день». Приветствие после полудня.",
+              "uk": "«Добрий день». Привітання після полудня."
             }
           }
         ],
@@ -259,10 +256,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "festivities",
+          "word": "good afternoon",
           "definitionByLocale": {
-            "ru": "«празднества». The festivities start at six. — «Празднества начинаются в шесть». Праздничные мероприятия, множественное число.",
-            "uk": "«святкування». The festivities start at six. — «Святкування починаються о шостій». Святкові заходи, множина."
+            "ru": "«Добрый день». Приветствие после полудня.",
+            "uk": "«Добрий день». Привітання після полудня."
           }
         }
       },
@@ -274,24 +271,21 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поясніть час за програмою: «Святкування починаються о шостій»",
+      "prompt": "Зараз третя година дня. Привітайтеся з продавцем",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поясніть час за програмою: «Святкування починаються о шостій»",
+      "accessibilityLabel": "Зараз третя година дня. Привітайтеся з продавцем",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The festivities start at six.",
+        "targetPhrase": "Good afternoon.",
         "localizedMeaning": {
-          "ru": "Объясните время по программе: «Празднества начинаются в шесть»",
-          "uk": "Поясніть час за програмою: «Святкування починаються о шостій»"
+          "ru": "Сейчас три часа дня. Поздоровайтесь с продавцом",
+          "uk": "Зараз третя година дня. Привітайтеся з продавцем"
         },
         "orderedTokens": [
-          "The",
-          "festivities",
-          "start",
-          "at",
-          "six"
+          "Good",
+          "afternoon"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +306,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i05:r1",
-          "text": "The festivities are outside."
+          "text": "Good afternoon, Anna."
         },
         {
           "responseId": "en:lesson-10:session-53:i05:r2",
-          "text": "The festivities are inside."
+          "text": "Good morning, Anna."
         },
         {
           "responseId": "en:lesson-10:session-53:i05:r3",
-          "text": "The guests are outside."
+          "text": "Good afternoon, Tom."
         }
       ],
       "mediaIds": [],
@@ -332,23 +326,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-53:i05:audio",
-          "transcript": "The festivities are outside."
+          "transcript": "Good afternoon, Anna."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-53:i05:r1",
-            "targetText": "The festivities are outside.",
+            "targetText": "Good afternoon, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i05:r2",
-            "targetText": "The festivities are inside.",
+            "targetText": "Good morning, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i05:r3",
-            "targetText": "The guests are outside.",
+            "targetText": "Good afternoon, Tom.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +353,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The festivities are outside.",
-              "uk": "У записі звучить The festivities are outside."
+              "ru": "В записи звучит Good afternoon, Anna.",
+              "uk": "У записі звучить Good afternoon, Anna."
             }
           },
           {
@@ -368,8 +362,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The festivities are outside.",
-              "uk": "У записі звучить The festivities are outside."
+              "ru": "В записи звучит Good afternoon, Anna.",
+              "uk": "У записі звучить Good afternoon, Anna."
             }
           }
         ],
@@ -384,63 +378,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Це розклад. Виберіть форму start",
+      "prompt": "Третя година дня. Закінчіть денне привітання",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i06:r1",
-          "text": "start"
+          "text": "afternoon"
         },
         {
           "responseId": "en:lesson-10:session-53:i06:r2",
-          "text": "starts"
+          "text": "morning"
         },
         {
           "responseId": "en:lesson-10:session-53:i06:r3",
-          "text": "starting"
+          "text": "afternoons"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Це розклад. Виберіть форму start",
+      "accessibilityLabel": "Третя година дня. Закінчіть денне привітання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это расписание. Выберите форму start",
-          "uk": "Це розклад. Виберіть форму start"
+          "ru": "Три часа дня. Закончите дневное приветствие",
+          "uk": "Третя година дня. Закінчіть денне привітання"
         },
-        "gappedTargetPhrase": "The festivities ___ at six.",
+        "gappedTargetPhrase": "Good ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-53:i06:r1",
-            "text": "start"
+            "text": "afternoon"
           },
           {
             "responseId": "en:lesson-10:session-53:i06:r2",
-            "text": "starts"
+            "text": "morning"
           },
           {
             "responseId": "en:lesson-10:session-53:i06:r3",
-            "text": "starting"
+            "text": "afternoons"
           }
         ],
-        "testedDimension": "Це розклад. Виберіть форму start",
+        "testedDimension": "Третя година дня. Закінчіть денне привітання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-53:i06:r2",
             "correct": false,
-            "testedDimension": "Це розклад. Виберіть форму start",
+            "testedDimension": "Третя година дня. Закінчіть денне привітання",
             "feedbackByLocale": {
-              "ru": "Festivities — множественное число: start.",
-              "uk": "Festivities — множина: start."
+              "ru": "Сейчас день после полудня, а morning — утро.",
+              "uk": "Зараз день після полудня, а morning — ранок."
             }
           },
           {
             "responseId": "en:lesson-10:session-53:i06:r3",
             "correct": false,
-            "testedDimension": "Це розклад. Виберіть форму start",
+            "testedDimension": "Третя година дня. Закінчіть денне привітання",
             "feedbackByLocale": {
-              "ru": "Здесь нужна личная форма start.",
-              "uk": "Тут потрібна особова форма start."
+              "ru": "В приветствии afternoon без s.",
+              "uk": "У привітанні afternoon без s."
             }
           }
         ]
@@ -448,32 +442,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-53:word:centrepiece",
+      "interactionId": "en:lesson-10:session-53:word:good-evening",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — centrepiece",
+      "prompt": "Картка слова — good evening",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-53:word:centrepiece:audio"
+        "en:lesson-10:session-53:word:good-evening:audio"
       ],
-      "accessibilityLabel": "Картка слова — centrepiece",
+      "accessibilityLabel": "Картка слова — good evening",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-53:word:centrepiece:audio",
-          "transcript": "centrepiece"
+          "audioTargetId": "en:lesson-10:session-53:word:good-evening:audio",
+          "transcript": "good evening"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-53:word:centrepiece:r1",
-            "targetText": "centrepiece",
+            "responseId": "en:lesson-10:session-53:word:good-evening:r1",
+            "targetText": "good evening",
             "meaningByLocale": {
-              "ru": "«центральное украшение стола». We are arranging the centrepiece. — «Мы оформляем центральное украшение стола». Здесь композиция из цветов.",
-              "uk": "«центральна прикраса столу». We are arranging the centrepiece. — «Ми оформлюємо центральну прикрасу столу». Тут композиція з квітів."
+              "ru": "«Добрый вечер». Приветствие при встрече вечером.",
+              "uk": "«Добрий вечір». Привітання при зустрічі ввечері."
             }
           }
         ],
@@ -481,10 +475,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "centrepiece",
+          "word": "good evening",
           "definitionByLocale": {
-            "ru": "«центральное украшение стола». We are arranging the centrepiece. — «Мы оформляем центральное украшение стола». Здесь композиция из цветов.",
-            "uk": "«центральна прикраса столу». We are arranging the centrepiece. — «Ми оформлюємо центральну прикрасу столу». Тут композиція з квітів."
+            "ru": "«Добрый вечер». Приветствие при встрече вечером.",
+            "uk": "«Добрий вечір». Привітання при зустрічі ввечері."
           }
         }
       },
@@ -496,24 +490,21 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "prompt": "Восьма година вечора. Привітайтеся з гостем",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "accessibilityLabel": "Восьма година вечора. Привітайтеся з гостем",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are arranging the centrepiece.",
+        "targetPhrase": "Good evening.",
         "localizedMeaning": {
-          "ru": "Вы сейчас составляете композицию для центра стола. Скажите: «Мы оформляем центральное украшение стола»",
-          "uk": "Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»"
+          "ru": "Восемь часов вечера. Поздоровайтесь с гостем",
+          "uk": "Восьма година вечора. Привітайтеся з гостем"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "arranging",
-          "the",
-          "centrepiece"
+          "Good",
+          "evening"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +525,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i08:r1",
-          "text": "The centrepiece is beautiful."
+          "text": "Good evening, Ben."
         },
         {
           "responseId": "en:lesson-10:session-53:i08:r2",
-          "text": "The centrepiece is small."
+          "text": "Good morning, Ben."
         },
         {
           "responseId": "en:lesson-10:session-53:i08:r3",
-          "text": "The garden is beautiful."
+          "text": "Good afternoon, Ben."
         }
       ],
       "mediaIds": [],
@@ -554,23 +545,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-53:i08:audio",
-          "transcript": "The centrepiece is beautiful."
+          "transcript": "Good evening, Ben."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-53:i08:r1",
-            "targetText": "The centrepiece is beautiful.",
+            "targetText": "Good evening, Ben.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i08:r2",
-            "targetText": "The centrepiece is small.",
+            "targetText": "Good morning, Ben.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i08:r3",
-            "targetText": "The garden is beautiful.",
+            "targetText": "Good afternoon, Ben.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +572,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The centrepiece is beautiful.",
-              "uk": "У записі звучить The centrepiece is beautiful."
+              "ru": "В записи звучит Good evening, Ben.",
+              "uk": "У записі звучить Good evening, Ben."
             }
           },
           {
@@ -590,8 +581,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The centrepiece is beautiful.",
-              "uk": "У записі звучить The centrepiece is beautiful."
+              "ru": "В записи звучит Good evening, Ben.",
+              "uk": "У записі звучить Good evening, Ben."
             }
           }
         ],
@@ -606,63 +597,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть правильне написання форми arrange",
+      "prompt": "Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i09:r1",
-          "text": "arranging"
+          "text": "evening"
         },
         {
           "responseId": "en:lesson-10:session-53:i09:r2",
-          "text": "arrangeing"
+          "text": "morning"
         },
         {
           "responseId": "en:lesson-10:session-53:i09:r3",
-          "text": "arrange"
+          "text": "afternoon"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть правильне написання форми arrange",
+      "accessibilityLabel": "Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите правильное написание формы arrange",
-          "uk": "Виберіть правильне написання форми arrange"
+          "ru": "Восемь вечера, вы встречаете гостя. Закончите приветствие",
+          "uk": "Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання"
         },
-        "gappedTargetPhrase": "We are ___ the centrepiece.",
+        "gappedTargetPhrase": "Good ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-53:i09:r1",
-            "text": "arranging"
+            "text": "evening"
           },
           {
             "responseId": "en:lesson-10:session-53:i09:r2",
-            "text": "arrangeing"
+            "text": "morning"
           },
           {
             "responseId": "en:lesson-10:session-53:i09:r3",
-            "text": "arrange"
+            "text": "afternoon"
           }
         ],
-        "testedDimension": "Виберіть правильне написання форми arrange",
+        "testedDimension": "Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-53:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми arrange",
+            "testedDimension": "Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання",
             "feedbackByLocale": {
-              "ru": "Перед ing убираем e: arranging.",
-              "uk": "Перед ing прибираємо e: arranging."
+              "ru": "Сейчас вечер, не утро.",
+              "uk": "Зараз вечір, не ранок."
             }
           },
           {
             "responseId": "en:lesson-10:session-53:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми arrange",
+            "testedDimension": "Восьма вечора, ви зустрічаєте гостя. Закінчіть привітання",
             "feedbackByLocale": {
-              "ru": "После are для текущего действия нужна arranging.",
-              "uk": "Після are для поточної дії потрібна arranging."
+              "ru": "Сейчас вечер, поэтому Good evening.",
+              "uk": "Зараз вечір, тому Good evening."
             }
           }
         ]
@@ -670,32 +661,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-53:word:place-card",
+      "interactionId": "en:lesson-10:session-53:word:good-night",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — place card",
+      "prompt": "Картка слова — good night",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-53:word:place-card:audio"
+        "en:lesson-10:session-53:word:good-night:audio"
       ],
-      "accessibilityLabel": "Картка слова — place card",
+      "accessibilityLabel": "Картка слова — good night",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-53:word:place-card:audio",
-          "transcript": "place card"
+          "audioTargetId": "en:lesson-10:session-53:word:good-night:audio",
+          "transcript": "good night"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-53:word:place-card:r1",
-            "targetText": "place card",
+            "responseId": "en:lesson-10:session-53:word:good-night:r1",
+            "targetText": "good night",
             "meaningByLocale": {
-              "ru": "«карточка с именем гостя». Your name is on the place card. — «Ваше имя на карточке с именем гостя». Place card указывает место гостя за столом; пишется двумя словами.",
-              "uk": "«картка з іменем гостя». Your name is on the place card. — «Ваше ім’я на картці з іменем гостя». Place card указує місце гостя за столом; пишеться двома словами."
+              "ru": "«Спокойной ночи». Пожелание при прощании на ночь.",
+              "uk": "«На добраніч». Побажання при прощанні на ніч."
             }
           }
         ],
@@ -703,10 +694,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "place card",
+          "word": "good night",
           "definitionByLocale": {
-            "ru": "«карточка с именем гостя». Your name is on the place card. — «Ваше имя на карточке с именем гостя». Place card указывает место гостя за столом; пишется двумя словами.",
-            "uk": "«картка з іменем гостя». Your name is on the place card. — «Ваше ім’я на картці з іменем гостя». Place card указує місце гостя за столом; пишеться двома словами."
+            "ru": "«Спокойной ночи». Пожелание при прощании на ночь.",
+            "uk": "«На добраніч». Побажання при прощанні на ніч."
           }
         }
       },
@@ -718,26 +709,21 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»",
+      "prompt": "Ви йдете спати. Побажайте близькій людині доброї ночі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»",
+      "accessibilityLabel": "Ви йдете спати. Побажайте близькій людині доброї ночі",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Your name is on the place card.",
+        "targetPhrase": "Good night.",
         "localizedMeaning": {
-          "ru": "Гость ищет своё место. Скажите: «Ваше имя на карточке с именем гостя»",
-          "uk": "Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»"
+          "ru": "Вы идёте спать. Пожелайте близкому человеку спокойной ночи",
+          "uk": "Ви йдете спати. Побажайте близькій людині доброї ночі"
         },
         "orderedTokens": [
-          "Your",
-          "name",
-          "is",
-          "on",
-          "the",
-          "place",
-          "card"
+          "Good",
+          "night"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -758,15 +744,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i11:r1",
-          "text": "The place card is beside the plate."
+          "text": "Good night, Anna."
         },
         {
           "responseId": "en:lesson-10:session-53:i11:r2",
-          "text": "The place card is under the plate."
+          "text": "Good evening, Anna."
         },
         {
           "responseId": "en:lesson-10:session-53:i11:r3",
-          "text": "The glass is beside the plate."
+          "text": "Good night, Tom."
         }
       ],
       "mediaIds": [],
@@ -778,23 +764,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-53:i11:audio",
-          "transcript": "The place card is beside the plate."
+          "transcript": "Good night, Anna."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-53:i11:r1",
-            "targetText": "The place card is beside the plate.",
+            "targetText": "Good night, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i11:r2",
-            "targetText": "The place card is under the plate.",
+            "targetText": "Good evening, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-53:i11:r3",
-            "targetText": "The glass is beside the plate.",
+            "targetText": "Good night, Tom.",
             "meaningByLocale": null
           }
         ],
@@ -805,8 +791,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The place card is beside the plate.",
-              "uk": "У записі звучить The place card is beside the plate."
+              "ru": "В записи звучит Good night, Anna.",
+              "uk": "У записі звучить Good night, Anna."
             }
           },
           {
@@ -814,8 +800,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The place card is beside the plate.",
-              "uk": "У записі звучить The place card is beside the plate."
+              "ru": "В записи звучит Good night, Anna.",
+              "uk": "У записі звучить Good night, Anna."
             }
           }
         ],
@@ -830,63 +816,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ідеться про одне ім’я. Виберіть зв’язку",
+      "prompt": "Ви прощаєтеся перед сном. Закінчіть побажання",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-53:i12:r1",
-          "text": "is"
+          "text": "night"
         },
         {
           "responseId": "en:lesson-10:session-53:i12:r2",
-          "text": "are"
+          "text": "evening"
         },
         {
           "responseId": "en:lesson-10:session-53:i12:r3",
-          "text": "am"
+          "text": "afternoon"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ідеться про одне ім’я. Виберіть зв’язку",
+      "accessibilityLabel": "Ви прощаєтеся перед сном. Закінчіть побажання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одном имени. Выберите связку",
-          "uk": "Ідеться про одне ім’я. Виберіть зв’язку"
+          "ru": "Вы прощаетесь перед сном. Закончите пожелание",
+          "uk": "Ви прощаєтеся перед сном. Закінчіть побажання"
         },
-        "gappedTargetPhrase": "Your name ___ on the place card.",
+        "gappedTargetPhrase": "Good ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-53:i12:r1",
-            "text": "is"
+            "text": "night"
           },
           {
             "responseId": "en:lesson-10:session-53:i12:r2",
-            "text": "are"
+            "text": "evening"
           },
           {
             "responseId": "en:lesson-10:session-53:i12:r3",
-            "text": "am"
+            "text": "afternoon"
           }
         ],
-        "testedDimension": "Ідеться про одне ім’я. Виберіть зв’язку",
+        "testedDimension": "Ви прощаєтеся перед сном. Закінчіть побажання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-53:i12:r2",
             "correct": false,
-            "testedDimension": "Ідеться про одне ім’я. Виберіть зв’язку",
+            "testedDimension": "Ви прощаєтеся перед сном. Закінчіть побажання",
             "feedbackByLocale": {
-              "ru": "Одно имя: is.",
-              "uk": "Одне ім’я: is."
+              "ru": "Good evening — приветствие, а здесь прощание перед сном.",
+              "uk": "Good evening — привітання, а тут прощання перед сном."
             }
           },
           {
             "responseId": "en:lesson-10:session-53:i12:r3",
             "correct": false,
-            "testedDimension": "Ідеться про одне ім’я. Виберіть зв’язку",
+            "testedDimension": "Ви прощаєтеся перед сном. Закінчіть побажання",
             "feedbackByLocale": {
-              "ru": "Am используется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Good afternoon — дневное приветствие.",
+              "uk": "Good afternoon — денне привітання."
             }
           }
         ]
@@ -899,58 +885,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "Поєднайте фрази з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Поєднайте фрази з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-53:i13:p1",
-            "target": "occasion",
+            "target": "good morning",
             "meaningByLocale": {
-              "ru": "повод",
-              "uk": "нагода"
+              "ru": "доброе утро",
+              "uk": "доброго ранку"
             }
           },
           {
             "pairId": "en:lesson-10:session-53:i13:p2",
-            "target": "festivities",
+            "target": "good afternoon",
             "meaningByLocale": {
-              "ru": "празднества",
-              "uk": "святкування"
+              "ru": "добрый день",
+              "uk": "добрий день"
             }
           },
           {
             "pairId": "en:lesson-10:session-53:i13:p3",
-            "target": "centrepiece",
+            "target": "good evening",
             "meaningByLocale": {
-              "ru": "центральное украшение стола",
-              "uk": "центральна прикраса столу"
+              "ru": "добрый вечер",
+              "uk": "добрий вечір"
             }
           },
           {
             "pairId": "en:lesson-10:session-53:i13:p4",
-            "target": "place card",
+            "target": "good night",
             "meaningByLocale": {
-              "ru": "карточка с именем гостя",
-              "uk": "картка з іменем гостя"
+              "ru": "спокойной ночи",
+              "uk": "на добраніч"
             }
           }
         ],
         "leftColumn": [
-          "occasion",
-          "festivities",
-          "centrepiece",
-          "place card"
+          "good morning",
+          "good afternoon",
+          "good evening",
+          "good night"
         ],
         "rightColumn": [
-          "нагода",
-          "святкування",
-          "центральна прикраса столу",
-          "картка з іменем гостя"
+          "доброго ранку",
+          "добрий день",
+          "добрий вечір",
+          "на добраніч"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -972,27 +958,24 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-53:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-53:i14:audio",
-          "transcript": "We are arranging the centrepiece."
+          "transcript": "Good afternoon."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are arranging the centrepiece.",
+        "hiddenTargetPhrase": "Good afternoon.",
         "orderedTokens": [
-          "We",
-          "are",
-          "arranging",
-          "the",
-          "centrepiece"
+          "Good",
+          "afternoon"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1006,24 +989,58 @@
     {
       "interactionId": "en:lesson-10:session-53:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, коли починається святкова програма. Скажіть: «Святкування починаються о шостій»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-53:i15:audio"
       ],
-      "accessibilityLabel": "Друг запитує, коли починається святкова програма. Скажіть: «Святкування починаються о шостій»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i15:audio",
+          "transcript": "Good night."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Good night.",
+        "orderedTokens": [
+          "Good",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уранці привітайтеся з Анною",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Уранці привітайтеся з Анною",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-53:i15:audio",
-          "transcript": "The festivities start at six."
+          "audioTargetId": "en:lesson-10:session-53:i16:audio",
+          "transcript": "Good morning, Anna."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The festivities start at six.",
+        "targetPhrase": "Good morning, Anna.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1037,71 +1054,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-53:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is a special occasion.",
-        "localizedMeaning": {
-          "ru": "Вы объясняете, почему вся семья собралась вместе. Скажите: «Это особый повод»",
-          "uk": "Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»"
-        },
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "special",
-          "occasion"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-53:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з другом оформлюєте квіткову композицію в центрі столу. Господар запитує, чим ви зайняті зараз. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "prompt": "Увечері привітайтеся з Томом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-53:i17:audio"
       ],
-      "accessibilityLabel": "Ви з другом оформлюєте квіткову композицію в центрі столу. Господар запитує, чим ви зайняті зараз. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "accessibilityLabel": "Увечері привітайтеся з Томом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-53:i17:audio",
-          "transcript": "We are arranging the centrepiece."
+          "transcript": "Good evening, Tom."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are arranging the centrepiece.",
+        "targetPhrase": "Good evening, Tom.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1118,5 +1093,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d033356c90368f8aef025eca3286abf64bd830f416bf912efd7aa30279d07ac2"
+  "learnerFingerprint": "3e257816a4ca6f513f477be3c6519a702cd0f38bcad4521c33b3417990e0b79e"
 }

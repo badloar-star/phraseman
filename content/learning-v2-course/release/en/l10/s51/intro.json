@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-51",
   "learningOutcomeByLocale": {
-    "ru": "The term starts in September; I usually study on campus; I am completing my enrolment",
-    "uk": "The term starts in September; I usually study on campus; I am completing my enrolment"
+    "ru": "My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history",
+    "uk": "My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Когда начинается учёба",
-        "uk": "Коли починається навчання"
+        "ru": "Кто учится с вами",
+        "uk": "Хто навчається з вами"
       },
       "bodyByLocale": {
-        "ru": "Term здесь — «учебный период», часть учебного года между каникулами; это не обязательно половина года. По календарю он начинается в сентябре: The term starts in September — «Учебный период начинается в сентябре». Для установленного расписания подходит Present Simple. После the term нужна starts с s.",
-        "uk": "Term тут — «навчальний період», частина навчального року між канікулами; це не обов’язково половина року. За календарем він починається у вересні: The term starts in September — «Навчальний період починається у вересні». Для встановленого розкладу підходить Present Simple. Після the term потрібна starts із s."
+        "ru": "Друг спрашивает о человеке рядом с вами. Classmate — «одноклассник, одногруппник», человек из вашего учебного класса: My classmate is reading — «Мой одноклассник читает». Он читает сейчас: is reading.",
+        "uk": "Друг запитує про людину поруч із вами. Classmate — «однокласник, одногрупник», людина з вашого навчального класу: My classmate is reading — «Мій однокласник читає». Він читає зараз: is reading."
       },
       "question": {
         "interactionId": "en:lesson-10:session-51:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-51:intro1:r1",
-              "text": "The term starts in September."
+              "text": "My classmate is reading."
             },
             {
               "responseId": "en:lesson-10:session-51:intro1:r2",
-              "text": "The term start in September."
+              "text": "My classmate reading."
             },
             {
               "responseId": "en:lesson-10:session-51:intro1:r3",
-              "text": "The term starting in September."
+              "text": "My classmate are reading."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-51:intro1:r1",
-              "text": "The term starts in September."
+              "text": "My classmate is reading."
             },
             {
               "responseId": "en:lesson-10:session-51:intro1:r2",
-              "text": "The term start in September."
+              "text": "My classmate reading."
             },
             {
               "responseId": "en:lesson-10:session-51:intro1:r3",
-              "text": "The term starting in September."
+              "text": "My classmate are reading."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где я обычно учусь",
-        "uk": "Де я зазвичай навчаюся"
+        "ru": "Любимый предмет",
+        "uk": "Улюблений предмет"
       },
       "bodyByLocale": {
-        "ru": "Campus — «кампус», территория учебного заведения с его зданиями. Вы обычно занимаетесь там: I usually study on campus — «Я обычно учусь в кампусе». Привычку выражаем через Present Simple. Usually стоит перед study; в сочетании on campus артикль не нужен.",
-        "uk": "Campus — «кампус», територія навчального закладу з його будівлями. Ви зазвичай займаєтеся там: I usually study on campus — «Я зазвичай навчаюся в кампусі». Звичку виражаємо через Present Simple. Usually стоїть перед study; у сполученні on campus артикль не потрібен."
+        "ru": "Вы обсуждаете, что нравится изучать. Subject здесь — «учебный предмет»: English is my favourite subject — «Английский — мой любимый предмет». Maths — «математика» в британском английском: Maths is difficult — «Математика трудная». Несмотря на s в maths, здесь нужна is.",
+        "uk": "Ви обговорюєте, що подобається вивчати. Subject тут — «навчальний предмет»: English is my favourite subject — «Англійська — мій улюблений предмет». Maths — «математика» у британській англійській: Maths is difficult — «Математика складна». Попри s у maths, тут потрібна is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-51:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-51:intro2:r1",
-              "text": "I usually study on campus."
+              "text": "Maths is difficult."
             },
             {
               "responseId": "en:lesson-10:session-51:intro2:r2",
-              "text": "I usually studies on campus."
+              "text": "Maths are difficult."
             },
             {
               "responseId": "en:lesson-10:session-51:intro2:r3",
-              "text": "I usually studying on campus."
+              "text": "Maths am difficult."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-51:intro2:r1",
-              "text": "I usually study on campus."
+              "text": "Maths is difficult."
             },
             {
               "responseId": "en:lesson-10:session-51:intro2:r2",
-              "text": "I usually studies on campus."
+              "text": "Maths are difficult."
             },
             {
               "responseId": "en:lesson-10:session-51:intro2:r3",
-              "text": "I usually studying on campus."
+              "text": "Maths am difficult."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Завершаю запись",
-        "uk": "Завершую запис"
+        "ru": "Что изучаем сейчас",
+        "uk": "Що вивчаємо зараз"
       },
       "bodyByLocale": {
-        "ru": "Enrolment — «запись на обучение». Вы сейчас заполняете последние поля формы: I am completing my enrolment — «Я завершаю запись на обучение». Текущая работа: am + completing. У complete перед ing убираем e. Enrolment — британское написание; в США пишут enrollment.",
-        "uk": "Enrolment — «запис на навчання». Ви зараз заповнюєте останні поля форми: I am completing my enrolment — «Я завершую запис на навчання». Поточна робота: am + completing. У complete перед ing прибираємо e. Enrolment — британське написання; у США пишуть enrollment."
+        "ru": "Вы с одноклассниками занимаетесь и рассказываете, какой предмет сейчас изучаете. History — «история»: We are studying history — «Мы изучаем историю». Для занятия сейчас: are studying. В этом значении перед history не нужен артикль.",
+        "uk": "Ви з однокласниками займаєтеся й розповідаєте, який предмет зараз вивчаєте. History — «історія»: We are studying history — «Ми вивчаємо історію». Для заняття зараз: are studying. У цьому значенні перед history не потрібен артикль."
       },
       "question": {
         "interactionId": "en:lesson-10:session-51:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-51:intro3:r1",
-              "text": "I am completing my enrolment."
+              "text": "We are studying history."
             },
             {
               "responseId": "en:lesson-10:session-51:intro3:r2",
-              "text": "I completing my enrolment."
+              "text": "We is studying history."
             },
             {
               "responseId": "en:lesson-10:session-51:intro3:r3",
-              "text": "I am completeing my enrolment."
+              "text": "We are study history."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-51:intro3:r1",
-              "text": "I am completing my enrolment."
+              "text": "We are studying history."
             },
             {
               "responseId": "en:lesson-10:session-51:intro3:r2",
-              "text": "I completing my enrolment."
+              "text": "We is studying history."
             },
             {
               "responseId": "en:lesson-10:session-51:intro3:r3",
-              "text": "I am completeing my enrolment."
+              "text": "We are study history."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d5833335809860d045c977c1731a9dc65fd2be229af58684bb722b8d3c769436"
+  "introFingerprint": "ec4d8f2d31a7a18890a9fedc365d2699f2c33b3b2a14697b3ee2ae9745f37f7f"
 }

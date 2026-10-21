@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 53 — Особый повод
+# Английский · Урок 10 · Занятие 53 — Поздороваться и пожелать спокойной ночи
 
-**Ситуация.** Подготовить стол к празднику и обсудить начало программы.
+**Ситуация.** Выбрать приветствие по времени суток и попрощаться перед сном.
 
-**Что вы освоите:** This is a special occasion; The festivities start at six; We are arranging the centrepiece
-**Новые слова:** occasion, festivities, centrepiece, place card
+**Что вы освоите:** Good morning; Good afternoon; Good evening; Good night
+**Новые слова:** good morning, good afternoon, good evening, good night
 
 ## Интро 1
 
-### Почему мы собрались
+### Утром
 
-Occasion — «повод; случай». Сегодня семья отмечает важное событие: This is a special occasion — «Это особый повод». Описываем событие с помощью is. Перед исчисляемым occasion в единственном числе здесь нужен a.
+В девять утра вы встречаете соседа. Good morning — «Доброе утро». Это приветствие при встрече утром. Слова учим вместе: good morning.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **This is a special occasion.**
-- ❌ This are a special occasion. — *С this нужна is.*
-- ❌ This is special occasion. — *Здесь нужен a special occasion.*
+- ✅ **Good morning.**
+- ❌ Good mornings. — *В приветствии morning без s.*
+- ❌ Well morning. — *В этом приветствии нужно Good.*
 
 ---
 
 ## Интро 2
 
-### Начало программы
+### Днём и вечером
 
-Festivities — «празднества», праздничные мероприятия. По программе они начинаются в шесть: The festivities start at six — «Празднества начинаются в шесть». Для установленного расписания подходит Present Simple. Festivities — множественное число, поэтому start без s.
+После полудня при встрече говорим Good afternoon — «Добрый день». Вечером при встрече — Good evening: «Добрый вечер». Сейчас три часа дня, вы входите в магазин и здороваетесь с продавцом.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The festivities start at six.**
-- ❌ The festivities starts at six. — *Множественное число: start без s.*
-- ❌ The festivities starting at six. — *Здесь нужна личная форма start.*
+- ✅ **Good afternoon.**
+- ❌ Good morning. — *Сейчас три часа дня, не утро.*
+- ❌ Good evening. — *Для этой дневной встречи нужно Good afternoon.*
 
 ---
 
 ## Интро 3
 
-### Украшаем стол сейчас
+### Перед сном
 
-Centrepiece — «центральное украшение стола», например композиция из цветов. Вы с другом сейчас её оформляете: We are arranging the centrepiece — «Мы оформляем центральное украшение стола». Текущая работа: are + arranging. У arrange перед ing убираем e. Centrepiece — британское написание; в США пишут centerpiece.
+Вы идёте спать и прощаетесь с близким человеком. Good night — «Спокойной ночи». Это пожелание при прощании на ночь, а не приветствие при вечерней встрече. Для встречи вечером — Good evening; перед сном — Good night.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are arranging the centrepiece.**
-- ❌ We arranging the centrepiece. — *Перед arranging нужна are.*
-- ❌ We are arrangeing the centrepiece. — *Правильно arranging, без e.*
+- ✅ **Good night.**
+- ❌ Good evening. — *Good evening — приветствие вечером. Здесь прощаемся перед сном.*
+- ❌ Good afternoon. — *Good afternoon — дневное приветствие, не пожелание перед сном.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — occasion**
-<!-- interaction_id: en:lesson-10:session-53:word:occasion; family: word_card -->
-> **occasion** — «повод». This is a special occasion. — «Это особый повод». Здесь важное событие, ради которого собралась семья.
+**1 · Карточка слова — good morning**
+<!-- interaction_id: en:lesson-10:session-53:word:good-morning; family: word_card -->
+> **good morning** — «Доброе утро». Приветствие при встрече утром.
 
-**2 · Семья собралась отметить важное событие. Скажите: «Это особый повод»**
+**2 · Поздоровайтесь с соседом утром**
 <!-- interaction_id: en:lesson-10:session-53:i01; family: phrase_builder -->
-Плитки: `occasion` `special` `a` `is` `This` → **This is a special occasion.**
+Плитки: `morning` `Good` → **Good morning.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-53:i02; family: listen_choose -->
-🔊 *This is a happy occasion.* → **This is a happy occasion.** · This is a sad occasion. · This is a happy day.
-- This is a sad occasion. — *В записи звучит This is a happy occasion.*
-- This is a happy day. — *В записи звучит This is a happy occasion.*
+🔊 *Good morning, Tom.* → **Good morning, Tom.** · Good morning, Anna. · Good morning, Ben.
+- Good morning, Anna. — *В записи звучит Good morning, Tom.*
+- Good morning, Ben. — *В записи звучит Good morning, Tom.*
 
-**4 · Выберите связку после this**
+**4 · Закончите утреннее приветствие**
 <!-- interaction_id: en:lesson-10:session-53:i03; family: context_gap_grammar -->
-This ___ a special occasion. → **is** · are · am
-- are — *С this нужна is.*
-- am — *Am используется с I.*
+Good ___. → **morning** · mornings · mornings are
+- mornings — *В приветствии morning без s.*
+- mornings are — *Здесь только Good morning, без are.*
 
-**5 · Карточка слова — festivities**
-<!-- interaction_id: en:lesson-10:session-53:word:festivities; family: word_card -->
-> **festivities** — «празднества». The festivities start at six. — «Празднества начинаются в шесть». Праздничные мероприятия, множественное число.
+**5 · Карточка слова — good afternoon**
+<!-- interaction_id: en:lesson-10:session-53:word:good-afternoon; family: word_card -->
+> **good afternoon** — «Добрый день». Приветствие после полудня.
 
-**6 · Объясните время по программе: «Празднества начинаются в шесть»**
+**6 · Сейчас три часа дня. Поздоровайтесь с продавцом**
 <!-- interaction_id: en:lesson-10:session-53:i04; family: phrase_builder -->
-Плитки: `six` `at` `start` `festivities` `The` → **The festivities start at six.**
+Плитки: `afternoon` `Good` → **Good afternoon.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-53:i05; family: listen_choose -->
-🔊 *The festivities are outside.* → **The festivities are outside.** · The festivities are inside. · The guests are outside.
-- The festivities are inside. — *В записи звучит The festivities are outside.*
-- The guests are outside. — *В записи звучит The festivities are outside.*
+🔊 *Good afternoon, Anna.* → **Good afternoon, Anna.** · Good morning, Anna. · Good afternoon, Tom.
+- Good morning, Anna. — *В записи звучит Good afternoon, Anna.*
+- Good afternoon, Tom. — *В записи звучит Good afternoon, Anna.*
 
-**8 · Это расписание. Выберите форму start**
+**8 · Три часа дня. Закончите дневное приветствие**
 <!-- interaction_id: en:lesson-10:session-53:i06; family: context_gap_grammar -->
-The festivities ___ at six. → **start** · starts · starting
-- starts — *Festivities — множественное число: start.*
-- starting — *Здесь нужна личная форма start.*
+Good ___. → **afternoon** · morning · afternoons
+- morning — *Сейчас день после полудня, а morning — утро.*
+- afternoons — *В приветствии afternoon без s.*
 
-**9 · Карточка слова — centrepiece**
-<!-- interaction_id: en:lesson-10:session-53:word:centrepiece; family: word_card -->
-> **centrepiece** — «центральное украшение стола». We are arranging the centrepiece. — «Мы оформляем центральное украшение стола». Здесь композиция из цветов.
+**9 · Карточка слова — good evening**
+<!-- interaction_id: en:lesson-10:session-53:word:good-evening; family: word_card -->
+> **good evening** — «Добрый вечер». Приветствие при встрече вечером.
 
-**10 · Вы сейчас составляете композицию для центра стола. Скажите: «Мы оформляем центральное украшение стола»**
+**10 · Восемь часов вечера. Поздоровайтесь с гостем**
 <!-- interaction_id: en:lesson-10:session-53:i07; family: phrase_builder -->
-Плитки: `centrepiece` `the` `arranging` `are` `We` → **We are arranging the centrepiece.**
+Плитки: `evening` `Good` → **Good evening.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-53:i08; family: listen_choose -->
-🔊 *The centrepiece is beautiful.* → **The centrepiece is beautiful.** · The centrepiece is small. · The garden is beautiful.
-- The centrepiece is small. — *В записи звучит The centrepiece is beautiful.*
-- The garden is beautiful. — *В записи звучит The centrepiece is beautiful.*
+🔊 *Good evening, Ben.* → **Good evening, Ben.** · Good morning, Ben. · Good afternoon, Ben.
+- Good morning, Ben. — *В записи звучит Good evening, Ben.*
+- Good afternoon, Ben. — *В записи звучит Good evening, Ben.*
 
-**12 · Выберите правильное написание формы arrange**
+**12 · Восемь вечера, вы встречаете гостя. Закончите приветствие**
 <!-- interaction_id: en:lesson-10:session-53:i09; family: context_gap_grammar -->
-We are ___ the centrepiece. → **arranging** · arrangeing · arrange
-- arrangeing — *Перед ing убираем e: arranging.*
-- arrange — *После are для текущего действия нужна arranging.*
+Good ___. → **evening** · morning · afternoon
+- morning — *Сейчас вечер, не утро.*
+- afternoon — *Сейчас вечер, поэтому Good evening.*
 
-**13 · Карточка слова — place card**
-<!-- interaction_id: en:lesson-10:session-53:word:place-card; family: word_card -->
-> **place card** — «карточка с именем гостя». Your name is on the place card. — «Ваше имя на карточке с именем гостя». Place card указывает место гостя за столом; пишется двумя словами.
+**13 · Карточка слова — good night**
+<!-- interaction_id: en:lesson-10:session-53:word:good-night; family: word_card -->
+> **good night** — «Спокойной ночи». Пожелание при прощании на ночь.
 
-**14 · Гость ищет своё место. Скажите: «Ваше имя на карточке с именем гостя»**
+**14 · Вы идёте спать. Пожелайте близкому человеку спокойной ночи**
 <!-- interaction_id: en:lesson-10:session-53:i10; family: phrase_builder -->
-Плитки: `card` `place` `the` `on` `is` `name` `Your` → **Your name is on the place card.**
+Плитки: `night` `Good` → **Good night.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-53:i11; family: listen_choose -->
-🔊 *The place card is beside the plate.* → **The place card is beside the plate.** · The place card is under the plate. · The glass is beside the plate.
-- The place card is under the plate. — *В записи звучит The place card is beside the plate.*
-- The glass is beside the plate. — *В записи звучит The place card is beside the plate.*
+🔊 *Good night, Anna.* → **Good night, Anna.** · Good evening, Anna. · Good night, Tom.
+- Good evening, Anna. — *В записи звучит Good night, Anna.*
+- Good night, Tom. — *В записи звучит Good night, Anna.*
 
-**16 · Речь об одном имени. Выберите связку**
+**16 · Вы прощаетесь перед сном. Закончите пожелание**
 <!-- interaction_id: en:lesson-10:session-53:i12; family: context_gap_grammar -->
-Your name ___ on the place card. → **is** · are · am
-- are — *Одно имя: is.*
-- am — *Am используется с I.*
+Good ___. → **night** · evening · afternoon
+- evening — *Good evening — приветствие, а здесь прощание перед сном.*
+- afternoon — *Good afternoon — дневное приветствие.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините фразы с переводом**
 <!-- interaction_id: en:lesson-10:session-53:i13; family: speed_match -->
-occasion — повод · festivities — празднества · centrepiece — центральное украшение стола · place card — карточка с именем гостя
+good morning — доброе утро · good afternoon — добрый день · good evening — добрый вечер · good night — спокойной ночи
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-53:i14; family: listen_build_dictation -->
-🔊 *We are arranging the centrepiece.* Плитки: `centrepiece` `the` `arranging` `are` `We` → **We are arranging the centrepiece.**
+🔊 *Good afternoon.* Плитки: `afternoon` `Good` → **Good afternoon.**
 
-**19 · Друг спрашивает, когда начинается праздничная программа. Скажите: «Празднества начинаются в шесть»**
-<!-- interaction_id: en:lesson-10:session-53:i15; family: scripted_repeat_compare -->
-🎙 **The festivities start at six.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-53:i15; family: listen_build_dictation -->
+🔊 *Good night.* Плитки: `night` `Good` → **Good night.**
 
-**20 · Вы объясняете, почему вся семья собралась вместе. Скажите: «Это особый повод»**
-<!-- interaction_id: en:lesson-10:session-53:i16; family: phrase_builder -->
-Плитки: `occasion` `special` `a` `is` `This` → **This is a special occasion.**
+**20 · Утром поздоровайтесь с Анной**
+<!-- interaction_id: en:lesson-10:session-53:i16; family: scripted_repeat_compare -->
+🎙 **Good morning, Anna.**
 
-**21 · Вы с другом оформляете цветочную композицию в центре стола. Хозяин спрашивает, чем вы заняты сейчас. Скажите: «Мы оформляем центральное украшение стола»**
-<!-- interaction_id: en:lesson-10:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are arranging the centrepiece.**
+**21 · Вечером поздоровайтесь с Томом**
+<!-- interaction_id: en:lesson-10:session-53:i17; family: scripted_repeat_compare -->
+🎙 **Good evening, Tom.**
 

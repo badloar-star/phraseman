@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-50:word:period",
-    "correctText": "period",
+    "interactionId": "en:lesson-10:session-50:word:soon",
+    "correctText": "soon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i01",
-    "correctText": "The trial period lasts a month.",
+    "correctText": "The train leaves soon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i02",
-    "correctText": "The trial period is over.",
+    "correctText": "The bus leaves soon.",
     "correctResponseId": "en:lesson-10:session-50:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-50:i03",
-    "correctText": "lasts",
+    "correctText": "leaves",
     "correctResponseId": "en:lesson-10:session-50:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-50:word:interval",
-    "correctText": "interval",
+    "interactionId": "en:lesson-10:session-50:word:later",
+    "correctText": "later",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i04",
-    "correctText": "The interval is ten minutes.",
+    "correctText": "See you later.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i05",
-    "correctText": "The interval is five minutes.",
+    "correctText": "See you later.",
     "correctResponseId": "en:lesson-10:session-50:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-50:i06",
-    "correctText": "is",
+    "correctText": "later",
     "correctResponseId": "en:lesson-10:session-50:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-50:word:duration",
-    "correctText": "duration",
+    "interactionId": "en:lesson-10:session-50:word:already",
+    "correctText": "already",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i07",
-    "correctText": "We record the duration every day.",
+    "correctText": "I am already here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i08",
-    "correctText": "The duration is two hours.",
+    "correctText": "She is already here.",
     "correctResponseId": "en:lesson-10:session-50:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-50:i09",
-    "correctText": "record",
+    "correctText": "am",
     "correctResponseId": "en:lesson-10:session-50:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-50:word:timeline",
-    "correctText": "timeline",
+    "interactionId": "en:lesson-10:session-50:word:on-time",
+    "correctText": "on time",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i10",
-    "correctText": "We are updating the timeline.",
+    "correctText": "The bus is on time.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i11",
-    "correctText": "The timeline is on the wall.",
+    "correctText": "The train is on time.",
     "correctResponseId": "en:lesson-10:session-50:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-50:i12",
-    "correctText": "updating",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-50:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-50:i13",
-    "correctText": "en:lesson-10:session-50:i13:p1=period\nen:lesson-10:session-50:i13:p2=interval\nen:lesson-10:session-50:i13:p3=duration\nen:lesson-10:session-50:i13:p4=timeline",
+    "correctText": "en:lesson-10:session-50:i13:p1=soon\nen:lesson-10:session-50:i13:p2=later\nen:lesson-10:session-50:i13:p3=already\nen:lesson-10:session-50:i13:p4=on time",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i14",
-    "correctText": "We are updating the timeline.",
+    "correctText": "I am already here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i15",
-    "correctText": "The trial period lasts a month.",
+    "correctText": "The bus is on time.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i16",
-    "correctText": "The interval is ten minutes.",
+    "correctText": "See you soon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-50:i17",
-    "correctText": "We are updating the timeline.",
+    "correctText": "My friend is already here.",
     "correctResponseId": null
   }
 ]

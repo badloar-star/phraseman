@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-50",
   "learningOutcomeByLocale": {
-    "ru": "The trial period lasts a month; We record the duration every day; We are updating the timeline",
-    "uk": "The trial period lasts a month; We record the duration every day; We are updating the timeline"
+    "ru": "The train leaves soon; See you later; I am already here; The bus is on time",
+    "uk": "The train leaves soon; See you later; I am already here; The bus is on time"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сколько длится проба",
-        "uk": "Скільки триває проба"
+        "ru": "Скоро и позже",
+        "uk": "Скоро й пізніше"
       },
       "bodyByLocale": {
-        "ru": "Period — «период», отрезок времени. Вы объясняете условия пробного использования программы: The trial period lasts a month — «Пробный период длится месяц». Это установленное условие, поэтому Present Simple. После the trial period используем lasts с s.",
-        "uk": "Period — «період», відрізок часу. Ви пояснюєте умови пробного користування програмою: The trial period lasts a month — «Пробний період триває місяць». Це встановлена умова, тому Present Simple. Після the trial period використовуємо lasts із s."
+        "ru": "Вы смотрите расписание: поезд отправляется через несколько минут. Soon — «скоро»: The train leaves soon — «Поезд скоро отправляется». Здесь расписание, поэтому leaves. Later — «позже». Прощаясь с другом до следующей встречи, скажите: See you later — «Увидимся позже». Учим это как готовую фразу.",
+        "uk": "Ви дивитеся розклад: потяг відправляється за кілька хвилин. Soon — «скоро»: The train leaves soon — «Потяг скоро відправляється». Тут розклад, тому leaves. Later — «пізніше». Прощаючись із другом до наступної зустрічі, скажіть: See you later — «Побачимося пізніше». Вчимо це як готову фразу."
       },
       "question": {
         "interactionId": "en:lesson-10:session-50:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-50:intro1:r1",
-              "text": "The trial period lasts a month."
+              "text": "The train leaves soon."
             },
             {
               "responseId": "en:lesson-10:session-50:intro1:r2",
-              "text": "The trial period last a month."
+              "text": "The train leave soon."
             },
             {
               "responseId": "en:lesson-10:session-50:intro1:r3",
-              "text": "The trial period lasting a month."
+              "text": "The train leaving soon."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-50:intro1:r1",
-              "text": "The trial period lasts a month."
+              "text": "The train leaves soon."
             },
             {
               "responseId": "en:lesson-10:session-50:intro1:r2",
-              "text": "The trial period last a month."
+              "text": "The train leave soon."
             },
             {
               "responseId": "en:lesson-10:session-50:intro1:r3",
-              "text": "The trial period lasting a month."
+              "text": "The train leaving soon."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Записываем длительность",
-        "uk": "Записуємо тривалість"
+        "ru": "Уже на месте",
+        "uk": "Уже на місці"
       },
       "bodyByLocale": {
-        "ru": "Duration — «длительность». Команда каждый день записывает, сколько занимает одна и та же процедура: We record the duration every day — «Мы записываем длительность каждый день». Регулярная работа выражается через Present Simple: record.",
-        "uk": "Duration — «тривалість». Команда щодня записує, скільки займає та сама процедура: We record the duration every day — «Ми записуємо тривалість щодня». Регулярну роботу виражаємо через Present Simple: record."
+        "ru": "Друг спрашивает, где вы. Вы уже у входа в кафе. Already — «уже»: I am already here — «Я уже здесь». В этой фразе already стоит после am, перед here.",
+        "uk": "Друг запитує, де ви. Ви вже біля входу до кафе. Already — «уже»: I am already here — «Я вже тут». У цій фразі already стоїть після am, перед here."
       },
       "question": {
         "interactionId": "en:lesson-10:session-50:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-50:intro2:r1",
-              "text": "We record the duration every day."
+              "text": "I am already here."
             },
             {
               "responseId": "en:lesson-10:session-50:intro2:r2",
-              "text": "We records the duration every day."
+              "text": "I is already here."
             },
             {
               "responseId": "en:lesson-10:session-50:intro2:r3",
-              "text": "We recording the duration every day."
+              "text": "I already here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-50:intro2:r1",
-              "text": "We record the duration every day."
+              "text": "I am already here."
             },
             {
               "responseId": "en:lesson-10:session-50:intro2:r2",
-              "text": "We records the duration every day."
+              "text": "I is already here."
             },
             {
               "responseId": "en:lesson-10:session-50:intro2:r3",
-              "text": "We recording the duration every day."
+              "text": "I already here."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Меняем график сейчас",
-        "uk": "Змінюємо графік зараз"
+        "ru": "По расписанию",
+        "uk": "За розкладом"
       },
       "bodyByLocale": {
-        "ru": "Timeline здесь — «временной график»: последовательность этапов с датами. Команда сейчас вносит новые сроки: We are updating the timeline — «Мы обновляем временной график». Для текущей работы: are + updating. У update перед ing убираем e.",
-        "uk": "Timeline тут — «часовий графік»: послідовність етапів із датами. Команда зараз вносить нові строки: We are updating the timeline — «Ми оновлюємо часовий графік». Для поточної роботи: are + updating. У update перед ing прибираємо e."
+        "ru": "Автобус приходит точно по расписанию. On time — «вовремя»: The bus is on time — «Автобус приходит вовремя». В этой ситуации он не опаздывает. On time учим как цельное выражение.",
+        "uk": "Автобус прибуває точно за розкладом. On time — «вчасно»: The bus is on time — «Автобус прибуває вчасно». У цій ситуації він не запізнюється. On time вчимо як цілісний вислів."
       },
       "question": {
         "interactionId": "en:lesson-10:session-50:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-50:intro3:r1",
-              "text": "We are updating the timeline."
+              "text": "The bus is on time."
             },
             {
               "responseId": "en:lesson-10:session-50:intro3:r2",
-              "text": "We updating the timeline."
+              "text": "The bus are on time."
             },
             {
               "responseId": "en:lesson-10:session-50:intro3:r3",
-              "text": "We are updateing the timeline."
+              "text": "The bus am on time."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-50:intro3:r1",
-              "text": "We are updating the timeline."
+              "text": "The bus is on time."
             },
             {
               "responseId": "en:lesson-10:session-50:intro3:r2",
-              "text": "We updating the timeline."
+              "text": "The bus are on time."
             },
             {
               "responseId": "en:lesson-10:session-50:intro3:r3",
-              "text": "We are updateing the timeline."
+              "text": "The bus am on time."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "af7993ff2a736fd9fce9cd1a4461d438e4d8fd58231eb31f006dba71273fdab5"
+  "introFingerprint": "a0a1001e1572a7a5e250824cc4222fd99f6d65ca494ab47edc8035aeacad519e"
 }

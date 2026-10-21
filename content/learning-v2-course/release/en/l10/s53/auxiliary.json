@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-53:intro1:r2": {
-          "ru": "С this нужна is.",
-          "uk": "З this потрібна is."
+          "ru": "В приветствии morning без s.",
+          "uk": "У привітанні morning без s."
         },
         "en:lesson-10:session-53:intro1:r3": {
-          "ru": "Здесь нужен a special occasion.",
-          "uk": "Тут потрібне a special occasion."
+          "ru": "В этом приветствии нужно Good.",
+          "uk": "У цьому привітанні потрібно Good."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-53:intro2:r2": {
-          "ru": "Множественное число: start без s.",
-          "uk": "Множина: start без s."
+          "ru": "Сейчас три часа дня, не утро.",
+          "uk": "Зараз третя година дня, не ранок."
         },
         "en:lesson-10:session-53:intro2:r3": {
-          "ru": "Здесь нужна личная форма start.",
-          "uk": "Тут потрібна особова форма start."
+          "ru": "Для этой дневной встречи нужно Good afternoon.",
+          "uk": "Для цієї денної зустрічі потрібно Good afternoon."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-53:intro3:r2": {
-          "ru": "Перед arranging нужна are.",
-          "uk": "Перед arranging потрібна are."
+          "ru": "Good evening — приветствие вечером. Здесь прощаемся перед сном.",
+          "uk": "Good evening — привітання ввечері. Тут прощаємося перед сном."
         },
         "en:lesson-10:session-53:intro3:r3": {
-          "ru": "Правильно arranging, без e.",
-          "uk": "Правильно arranging, без e."
+          "ru": "Good afternoon — дневное приветствие, не пожелание перед сном.",
+          "uk": "Good afternoon — денне привітання, не побажання перед сном."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9be473e46c25901e5d69ed02f09d8d6719c967e879f90b74a7eeff9ec5dd2702"
+  "auxiliaryFingerprint": "071b9f98e893c9c64f30de7918fcddb3e532cfc5b1d1a51ffdab9c91ac2ac08c"
 }

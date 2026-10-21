@@ -1,57 +1,57 @@
 [
   {
-    "interactionId": "en:lesson-10:session-51:word:term",
-    "correctText": "term",
+    "interactionId": "en:lesson-10:session-51:word:classmate",
+    "correctText": "classmate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i01",
-    "correctText": "The term starts in September.",
+    "correctText": "My classmate is reading.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i02",
-    "correctText": "The term ends in December.",
+    "correctText": "My classmate is writing.",
     "correctResponseId": "en:lesson-10:session-51:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-51:i03",
-    "correctText": "starts",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-51:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-51:word:campus",
-    "correctText": "campus",
+    "interactionId": "en:lesson-10:session-51:word:subject",
+    "correctText": "subject",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i04",
-    "correctText": "I usually study on campus.",
+    "correctText": "English is my favourite subject.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i05",
-    "correctText": "The campus is quiet.",
+    "correctText": "English is my favourite subject.",
     "correctResponseId": "en:lesson-10:session-51:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-51:i06",
-    "correctText": "study",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-51:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-51:word:tuition",
-    "correctText": "tuition",
+    "interactionId": "en:lesson-10:session-51:word:maths",
+    "correctText": "maths",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i07",
-    "correctText": "The tuition is expensive.",
+    "correctText": "Maths is difficult.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i08",
-    "correctText": "The tuition is affordable.",
+    "correctText": "Maths is easy.",
     "correctResponseId": "en:lesson-10:session-51:i08:r1"
   },
   {
@@ -60,48 +60,48 @@
     "correctResponseId": "en:lesson-10:session-51:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-51:word:enrolment",
-    "correctText": "enrolment",
+    "interactionId": "en:lesson-10:session-51:word:history",
+    "correctText": "history",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i10",
-    "correctText": "I am completing my enrolment.",
+    "correctText": "We are studying history.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i11",
-    "correctText": "The enrolment is complete.",
+    "correctText": "I am studying history.",
     "correctResponseId": "en:lesson-10:session-51:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-51:i12",
-    "correctText": "completing",
+    "correctText": "studying",
     "correctResponseId": "en:lesson-10:session-51:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-51:i13",
-    "correctText": "en:lesson-10:session-51:i13:p1=term\nen:lesson-10:session-51:i13:p2=campus\nen:lesson-10:session-51:i13:p3=tuition\nen:lesson-10:session-51:i13:p4=enrolment",
+    "correctText": "en:lesson-10:session-51:i13:p1=classmate\nen:lesson-10:session-51:i13:p2=subject\nen:lesson-10:session-51:i13:p3=maths\nen:lesson-10:session-51:i13:p4=history",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i14",
-    "correctText": "I am completing my enrolment.",
+    "correctText": "Maths is difficult.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i15",
-    "correctText": "I usually study on campus.",
+    "correctText": "We are studying history.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i16",
-    "correctText": "The term starts in September.",
+    "correctText": "History is my favourite subject.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-51:i17",
-    "correctText": "I am completing my enrolment.",
+    "correctText": "My classmate is studying maths.",
     "correctResponseId": null
   }
 ]

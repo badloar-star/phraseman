@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 25 — Прогулка на рассвете
+# Английский · Урок 10 · Занятие 25 — В течение дня
 
-**Ситуация.** Сравнить обычную утреннюю прогулку с прогулкой, которая происходит сейчас.
+**Ситуация.** Рассказать, когда вы гуляете, читаете, работаете и спите.
 
-**Что вы освоите:** I usually walk at dawn; I am walking now; I am listening to birdsong at the moment
-**Новые слова:** dawn, dew, mist, birdsong
+**Что вы освоите:** I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime
+**Новые слова:** lunchtime, bedtime, midnight, daytime
 
 ## Интро 1
 
-### Обычно на рассвете
+### В обеденное время
 
-Dawn — «рассвет», время, когда утром начинает светать. Вы рассказываете о привычке: I usually walk at dawn — «Я обычно гуляю на рассвете». Usually показывает, как часто это происходит, и стоит перед walk. Для привычки используем Present Simple. At dawn само по себе называет время суток, а не выбирает грамматическое время.
+Друг спрашивает, когда вы обычно выходите на прогулку. Lunchtime — «обеденное время»: I walk at lunchtime — «Я гуляю в обеденное время». Перед lunchtime в этой фразе стоит at. Это привычка: walk.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I usually walk at dawn.**
-- ❌ I usually walks at dawn. — *С I нужна walk без s.*
-- ❌ I usually walking at dawn. — *Для этой привычки нужна walk, не walking.*
+- ✅ **I walk at lunchtime.**
+- ❌ I walks at lunchtime. — *С I нужна walk без s.*
+- ❌ I am walk at lunchtime. — *Для привычки здесь walk без am.*
 
 ---
 
 ## Интро 2
 
-### Гуляю прямо сейчас
+### Перед сном и в полночь
 
-Друг звонит вам во время прогулки. I am walking now — «Я сейчас гуляю». Now указывает на текущий момент. Для действия, которое идёт сейчас, используем am + walking. Сравните: I walk every morning — привычка; I am walking now — действие в момент разговора.
+Вы рассказываете о вечере. Bedtime — «время ложиться спать»: I read before bedtime — «Я читаю перед сном». Midnight — «полночь»: I am asleep at midnight — «В полночь я сплю». Before bedtime — перед сном; at midnight — в полночь.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am walking now.**
-- ❌ I walking now. — *Перед walking нужно am.*
-- ❌ I am walk now. — *После am здесь нужна walking.*
+- ✅ **I read before bedtime.**
+- ❌ I reads before bedtime. — *С I нужна read без s.*
+- ❌ I am read before bedtime. — *Для привычки здесь read без am.*
 
 ---
 
 ## Интро 3
 
-### В данный момент
+### Днём
 
-At the moment — «в данный момент». Birdsong — «пение птиц». Вы остановились послушать птиц: I am listening to birdsong at the moment — «Я сейчас слушаю пение птиц». Listen требует to: listen to birdsong. Слова времени помогают понять ситуацию, но не отменяют смысл глагола: I know the answer now — «Теперь я знаю ответ», со Simple.
+Друг спрашивает, работаете ли вы ночью. Daytime — «дневное время»: I work in the daytime — «Я работаю днём». В этом выражении нужны in и the: in the daytime. Вы говорите об обычном рабочем времени.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am listening to birdsong at the moment.**
-- ❌ I am listening birdsong at the moment. — *После listening нужно to.*
-- ❌ I am listen to birdsong at the moment. — *После am здесь нужна listening.*
+- ✅ **I work in the daytime.**
+- ❌ I works in the daytime. — *С I нужна work без s.*
+- ❌ I am work in the daytime. — *Для привычки здесь work без am.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — dawn**
-<!-- interaction_id: en:lesson-10:session-25:word:dawn; family: word_card -->
-> **dawn** — «рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.
+**1 · Карточка слова — lunchtime**
+<!-- interaction_id: en:lesson-10:session-25:word:lunchtime; family: word_card -->
+> **lunchtime** — «обеденное время». I walk at lunchtime. — «Я гуляю в обеденное время».
 
-**2 · Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце**
+**2 · Скажите, что гуляете в обеденное время. Время поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-25:i01; family: phrase_builder -->
-Плитки: `dawn` `at` `walk` `usually` `I` → **I usually walk at dawn.**
+Плитки: `lunchtime` `at` `walk` `I` → **I walk at lunchtime.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-25:i02; family: listen_choose -->
-🔊 *We walk at dawn.* → **We walk at dawn.** · I walk at dawn. · We run at dawn.
-- I walk at dawn. — *В записи звучит We walk at dawn.*
-- We run at dawn. — *В записи звучит We walk at dawn.*
+🔊 *We walk at lunchtime.* → **We walk at lunchtime.** · I walk at lunchtime. · They walk at lunchtime.
+- I walk at lunchtime. — *В записи звучит We walk at lunchtime.*
+- They walk at lunchtime. — *В записи звучит We walk at lunchtime.*
 
-**4 · Друг звонит во время вашей прогулки. Выберите форму для действия сейчас**
+**4 · Выберите форму walk с I**
 <!-- interaction_id: en:lesson-10:session-25:i03; family: context_gap_grammar -->
-I ___ now. → **am walking** · walking · am walk
-- walking — *Нужно am перед walking.*
-- am walk — *После am нужна walking.*
+I ___ at lunchtime. → **walk** · walks · walking
+- walks — *С I нужна walk без s.*
+- walking — *Для привычки здесь нужна walk.*
 
-**5 · Карточка слова — dew**
-<!-- interaction_id: en:lesson-10:session-25:word:dew; family: word_card -->
-> **dew** — «роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.
+**5 · Карточка слова — bedtime**
+<!-- interaction_id: en:lesson-10:session-25:word:bedtime; family: word_card -->
+> **bedtime** — «время ложиться спать». I read before bedtime. — «Я читаю перед сном».
 
-**6 · На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»**
+**6 · Скажите, что читаете перед сном. Время поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-25:i04; family: phrase_builder -->
-Плитки: `grass` `the` `on` `dew` `is` `There` → **There is dew on the grass.**
+Плитки: `bedtime` `before` `read` `I` → **I read before bedtime.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-25:i05; family: listen_choose -->
-🔊 *There is dew on the leaves.* → **There is dew on the leaves.** · There is dew on the grass. · There is water on the leaves.
-- There is dew on the grass. — *В записи звучит There is dew on the leaves.*
-- There is water on the leaves. — *В записи звучит There is dew on the leaves.*
+🔊 *She reads before bedtime.* → **She reads before bedtime.** · He reads before bedtime. · We read before bedtime.
+- He reads before bedtime. — *В записи звучит She reads before bedtime.*
+- We read before bedtime. — *В записи звучит She reads before bedtime.*
 
-**8 · Вы рассказываете о ежедневной привычке. Выберите форму walk**
+**8 · Вы читаете перед сном, не после. Выберите слово перед bedtime**
 <!-- interaction_id: en:lesson-10:session-25:i06; family: context_gap_grammar -->
-I ___ every morning. → **walk** · walks · walking
-- walks — *С I нужна walk без s.*
-- walking — *Для этой привычки нужна walk.*
+I read ___ bedtime. → **before** · after · under
+- after — *After — после, а нужно перед.*
+- under — *Under — под. Для времени перед сном нужно before.*
 
-**9 · Карточка слова — mist**
-<!-- interaction_id: en:lesson-10:session-25:word:mist; family: word_card -->
-> **mist** — «лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.
+**9 · Карточка слова — midnight**
+<!-- interaction_id: en:lesson-10:session-25:word:midnight; family: word_card -->
+> **midnight** — «полночь». I am asleep at midnight. — «В полночь я сплю».
 
-**10 · Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»**
+**10 · Скажите, что в полночь вы спите. At midnight поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-25:i07; family: phrase_builder -->
-Плитки: `river` `the` `over` `mist` `is` `There` → **There is mist over the river.**
+Плитки: `midnight` `at` `asleep` `am` `I` → **I am asleep at midnight.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-25:i08; family: listen_choose -->
-🔊 *The mist is clearing.* → **The mist is clearing.** · The mist is thick. · The sky is clearing.
-- The mist is thick. — *В записи звучит The mist is clearing.*
-- The sky is clearing. — *В записи звучит The mist is clearing.*
+🔊 *She is asleep at midnight.* → **She is asleep at midnight.** · He is asleep at midnight. · I am asleep at midnight.
+- He is asleep at midnight. — *В записи звучит She is asleep at midnight.*
+- I am asleep at midnight. — *В записи звучит She is asleep at midnight.*
 
-**12 · Туман постепенно исчезает прямо сейчас. Выберите форму**
+**12 · Выберите предлог в выражении «в полночь»**
 <!-- interaction_id: en:lesson-10:session-25:i09; family: context_gap_grammar -->
-The mist ___ now. → **is clearing** · clearing · is clear
-- clearing — *Перед clearing нужно is.*
-- is clear — *Для процесса рассеивания здесь нужно is clearing.*
+I am asleep ___ midnight. → **at** · on · under
+- on — *С midnight здесь нужна at.*
+- under — *Under — под. Здесь нужно at midnight.*
 
-**13 · Карточка слова — birdsong**
-<!-- interaction_id: en:lesson-10:session-25:word:birdsong; family: word_card -->
-> **birdsong** — «пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.
+**13 · Карточка слова — daytime**
+<!-- interaction_id: en:lesson-10:session-25:word:daytime; family: word_card -->
+> **daytime** — «дневное время». I work in the daytime. — «Я работаю днём».
 
-**14 · Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»**
+**14 · Скажите, что работаете днём. Время поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-25:i10; family: phrase_builder -->
-Плитки: `birdsong` `to` `listening` `am` `I` → **I am listening to birdsong.**
+Плитки: `daytime` `the` `in` `work` `I` → **I work in the daytime.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-25:i11; family: listen_choose -->
-🔊 *We are listening to birdsong.* → **We are listening to birdsong.** · I am listening to birdsong. · We are listening to music.
-- I am listening to birdsong. — *В записи звучит We are listening to birdsong.*
-- We are listening to music. — *В записи звучит We are listening to birdsong.*
+🔊 *We work in the daytime.* → **We work in the daytime.** · I work in the daytime. · They work in the daytime.
+- I work in the daytime. — *В записи звучит We work in the daytime.*
+- They work in the daytime. — *В записи звучит We work in the daytime.*
 
-**16 · Вы слушаете птиц. Выберите предлог после listening**
+**16 · Выберите форму work с I**
 <!-- interaction_id: en:lesson-10:session-25:i12; family: context_gap_grammar -->
-I am listening ___ birdsong. → **to** · at · on
-- at — *Говорим listen to, не listen at.*
-- on — *Говорим listen to, не listen on.*
+I ___ in the daytime. → **work** · works · working
+- works — *С I нужна work без s.*
+- working — *Для привычки здесь нужна work.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-25:i13; family: speed_match -->
-dawn — рассвет · dew — роса · mist — лёгкий туман · birdsong — пение птиц
+lunchtime — обеденное время · bedtime — время ложиться спать · midnight — полночь · daytime — дневное время
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-25:i14; family: listen_build_dictation -->
-🔊 *I am walking now.* Плитки: `now` `walking` `am` `I` → **I am walking now.**
+🔊 *I read before bedtime.* Плитки: `bedtime` `before` `read` `I` → **I read before bedtime.**
 
-**19 · Друг спрашивает, чем вы заняты. Скажите: «Я сейчас слушаю пение птиц»**
-<!-- interaction_id: en:lesson-10:session-25:i15; family: scripted_repeat_compare -->
-🎙 **I am listening to birdsong at the moment.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-25:i15; family: listen_build_dictation -->
+🔊 *I work in the daytime.* Плитки: `daytime` `the` `in` `work` `I` → **I work in the daytime.**
 
-**20 · Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце**
-<!-- interaction_id: en:lesson-10:session-25:i16; family: phrase_builder -->
-Плитки: `dawn` `at` `walk` `usually` `I` → **I usually walk at dawn.**
+**20 · Скажите, что звоните маме в обеденное время**
+<!-- interaction_id: en:lesson-10:session-25:i16; family: scripted_repeat_compare -->
+🎙 **I call my mother at lunchtime.**
 
-**21 · Друг звонит и спрашивает, чем вы заняты прямо сейчас. Вы идёте по парку. Скажите: «Я сейчас гуляю»**
-<!-- interaction_id: en:lesson-10:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am walking now.**
+**21 · Скажите, что читаете днём**
+<!-- interaction_id: en:lesson-10:session-25:i17; family: scripted_repeat_compare -->
+🎙 **I read in the daytime.**
 

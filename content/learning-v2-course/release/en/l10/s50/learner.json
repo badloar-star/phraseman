@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-50:word:period",
+      "interactionId": "en:lesson-10:session-50:word:soon",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — period",
+      "prompt": "Карточка слова — soon",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-50:word:period:audio"
+        "en:lesson-10:session-50:word:soon:audio"
       ],
-      "accessibilityLabel": "Карточка слова — period",
+      "accessibilityLabel": "Карточка слова — soon",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-50:word:period:audio",
-          "transcript": "period"
+          "audioTargetId": "en:lesson-10:session-50:word:soon:audio",
+          "transcript": "soon"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-50:word:period:r1",
-            "targetText": "period",
+            "responseId": "en:lesson-10:session-50:word:soon:r1",
+            "targetText": "soon",
             "meaningByLocale": {
-              "ru": "«период». The trial period lasts a month. — «Пробный период длится месяц». Здесь отрезок времени для пробного использования программы.",
-              "uk": "«період». The trial period lasts a month. — «Пробний період триває місяць». Тут відрізок часу для пробного користування програмою."
+              "ru": "«скоро». The train leaves soon. — «Поезд скоро отправляется».",
+              "uk": "«скоро». The train leaves soon. — «Потяг скоро відправляється»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "period",
+          "word": "soon",
           "definitionByLocale": {
-            "ru": "«период». The trial period lasts a month. — «Пробный период длится месяц». Здесь отрезок времени для пробного использования программы.",
-            "uk": "«період». The trial period lasts a month. — «Пробний період триває місяць». Тут відрізок часу для пробного користування програмою."
+            "ru": "«скоро». The train leaves soon. — «Поезд скоро отправляется».",
+            "uk": "«скоро». The train leaves soon. — «Потяг скоро відправляється»."
           }
         }
       },
@@ -52,25 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Объясните условие использования программы: «Пробный период длится месяц»",
+      "prompt": "По расписанию поезд скоро отправляется. Soon поставьте в конце",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Объясните условие использования программы: «Пробный период длится месяц»",
+      "accessibilityLabel": "По расписанию поезд скоро отправляется. Soon поставьте в конце",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The trial period lasts a month.",
+        "targetPhrase": "The train leaves soon.",
         "localizedMeaning": {
-          "ru": "Объясните условие использования программы: «Пробный период длится месяц»",
-          "uk": "Поясніть умову користування програмою: «Пробний період триває місяць»"
+          "ru": "По расписанию поезд скоро отправляется. Soon поставьте в конце",
+          "uk": "За розкладом потяг скоро відправляється. Soon поставте в кінці"
         },
         "orderedTokens": [
           "The",
-          "trial",
-          "period",
-          "lasts",
-          "a",
-          "month"
+          "train",
+          "leaves",
+          "soon"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -91,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i02:r1",
-          "text": "The trial period is over."
+          "text": "The bus leaves soon."
         },
         {
           "responseId": "en:lesson-10:session-50:i02:r2",
-          "text": "The trial period is short."
+          "text": "The train leaves soon."
         },
         {
           "responseId": "en:lesson-10:session-50:i02:r3",
-          "text": "The meeting is over."
+          "text": "The bus arrives soon."
         }
       ],
       "mediaIds": [],
@@ -111,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-50:i02:audio",
-          "transcript": "The trial period is over."
+          "transcript": "The bus leaves soon."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-50:i02:r1",
-            "targetText": "The trial period is over.",
+            "targetText": "The bus leaves soon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i02:r2",
-            "targetText": "The trial period is short.",
+            "targetText": "The train leaves soon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i02:r3",
-            "targetText": "The meeting is over.",
+            "targetText": "The bus arrives soon.",
             "meaningByLocale": null
           }
         ],
@@ -138,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The trial period is over.",
-              "uk": "У записі звучить The trial period is over."
+              "ru": "В записи звучит The bus leaves soon.",
+              "uk": "У записі звучить The bus leaves soon."
             }
           },
           {
@@ -147,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The trial period is over.",
-              "uk": "У записі звучить The trial period is over."
+              "ru": "В записи звучит The bus leaves soon.",
+              "uk": "У записі звучить The bus leaves soon."
             }
           }
         ],
@@ -163,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это установленное условие. Выберите форму last",
+      "prompt": "Выберите форму leave для одного поезда",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i03:r1",
-          "text": "lasts"
+          "text": "leaves"
         },
         {
           "responseId": "en:lesson-10:session-50:i03:r2",
-          "text": "last"
+          "text": "leave"
         },
         {
           "responseId": "en:lesson-10:session-50:i03:r3",
-          "text": "lasting"
+          "text": "leaving"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это установленное условие. Выберите форму last",
+      "accessibilityLabel": "Выберите форму leave для одного поезда",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это установленное условие. Выберите форму last",
-          "uk": "Це встановлена умова. Виберіть форму last"
+          "ru": "Выберите форму leave для одного поезда",
+          "uk": "Виберіть форму leave для одного потяга"
         },
-        "gappedTargetPhrase": "The trial period ___ a month.",
+        "gappedTargetPhrase": "The train ___ soon.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-50:i03:r1",
-            "text": "lasts"
+            "text": "leaves"
           },
           {
             "responseId": "en:lesson-10:session-50:i03:r2",
-            "text": "last"
+            "text": "leave"
           },
           {
             "responseId": "en:lesson-10:session-50:i03:r3",
-            "text": "lasting"
+            "text": "leaving"
           }
         ],
-        "testedDimension": "Это установленное условие. Выберите форму last",
+        "testedDimension": "Выберите форму leave для одного поезда",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-50:i03:r2",
             "correct": false,
-            "testedDimension": "Это установленное условие. Выберите форму last",
+            "testedDimension": "Выберите форму leave для одного поезда",
             "feedbackByLocale": {
-              "ru": "Один период: lasts с s.",
-              "uk": "Один період: lasts із s."
+              "ru": "Один train: leaves с s.",
+              "uk": "Один train: leaves із s."
             }
           },
           {
             "responseId": "en:lesson-10:session-50:i03:r3",
             "correct": false,
-            "testedDimension": "Это установленное условие. Выберите форму last",
+            "testedDimension": "Выберите форму leave для одного поезда",
             "feedbackByLocale": {
-              "ru": "Здесь нужна личная форма lasts.",
-              "uk": "Тут потрібна особова форма lasts."
+              "ru": "Для расписания здесь нужна leaves.",
+              "uk": "Для розкладу тут потрібна leaves."
             }
           }
         ]
@@ -227,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-50:word:interval",
+      "interactionId": "en:lesson-10:session-50:word:later",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — interval",
+      "prompt": "Карточка слова — later",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-50:word:interval:audio"
+        "en:lesson-10:session-50:word:later:audio"
       ],
-      "accessibilityLabel": "Карточка слова — interval",
+      "accessibilityLabel": "Карточка слова — later",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-50:word:interval:audio",
-          "transcript": "interval"
+          "audioTargetId": "en:lesson-10:session-50:word:later:audio",
+          "transcript": "later"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-50:word:interval:r1",
-            "targetText": "interval",
+            "responseId": "en:lesson-10:session-50:word:later:r1",
+            "targetText": "later",
             "meaningByLocale": {
-              "ru": "«интервал». The interval is ten minutes. — «Интервал составляет десять минут». Здесь промежуток времени между двумя проверками.",
-              "uk": "«інтервал». The interval is ten minutes. — «Інтервал становить десять хвилин». Тут проміжок часу між двома перевірками."
+              "ru": "«позже». See you later. — «Увидимся позже».",
+              "uk": "«пізніше». See you later. — «Побачимося пізніше»."
             }
           }
         ],
@@ -260,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "interval",
+          "word": "later",
           "definitionByLocale": {
-            "ru": "«интервал». The interval is ten minutes. — «Интервал составляет десять минут». Здесь промежуток времени между двумя проверками.",
-            "uk": "«інтервал». The interval is ten minutes. — «Інтервал становить десять хвилин». Тут проміжок часу між двома перевірками."
+            "ru": "«позже». See you later. — «Увидимся позже».",
+            "uk": "«пізніше». See you later. — «Побачимося пізніше»."
           }
         }
       },
@@ -275,24 +273,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»",
+      "prompt": "Попрощайтесь с другом: увидимся позже",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»",
+      "accessibilityLabel": "Попрощайтесь с другом: увидимся позже",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The interval is ten minutes.",
+        "targetPhrase": "See you later.",
         "localizedMeaning": {
-          "ru": "Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»",
-          "uk": "Між двома перевірками минає десять хвилин. Скажіть: «Інтервал становить десять хвилин»"
+          "ru": "Попрощайтесь с другом: увидимся позже",
+          "uk": "Попрощайтеся з другом: побачимося пізніше"
         },
         "orderedTokens": [
-          "The",
-          "interval",
-          "is",
-          "ten",
-          "minutes"
+          "See",
+          "you",
+          "later"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,15 +309,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i05:r1",
-          "text": "The interval is five minutes."
+          "text": "See you later."
         },
         {
           "responseId": "en:lesson-10:session-50:i05:r2",
-          "text": "The interval is ten minutes."
+          "text": "See you soon."
         },
         {
           "responseId": "en:lesson-10:session-50:i05:r3",
-          "text": "The meeting is five minutes."
+          "text": "See you tomorrow."
         }
       ],
       "mediaIds": [],
@@ -333,23 +329,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-50:i05:audio",
-          "transcript": "The interval is five minutes."
+          "transcript": "See you later."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-50:i05:r1",
-            "targetText": "The interval is five minutes.",
+            "targetText": "See you later.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i05:r2",
-            "targetText": "The interval is ten minutes.",
+            "targetText": "See you soon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i05:r3",
-            "targetText": "The meeting is five minutes.",
+            "targetText": "See you tomorrow.",
             "meaningByLocale": null
           }
         ],
@@ -360,8 +356,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The interval is five minutes.",
-              "uk": "У записі звучить The interval is five minutes."
+              "ru": "В записи звучит See you later.",
+              "uk": "У записі звучить See you later."
             }
           },
           {
@@ -369,8 +365,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The interval is five minutes.",
-              "uk": "У записі звучить The interval is five minutes."
+              "ru": "В записи звучит See you later.",
+              "uk": "У записі звучить See you later."
             }
           }
         ],
@@ -385,63 +381,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Речь об одном интервале. Выберите связку",
+      "prompt": "Выберите слово со значением «позже»",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i06:r1",
-          "text": "is"
+          "text": "later"
         },
         {
           "responseId": "en:lesson-10:session-50:i06:r2",
-          "text": "are"
+          "text": "soon"
         },
         {
           "responseId": "en:lesson-10:session-50:i06:r3",
-          "text": "am"
+          "text": "tomorrow"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Речь об одном интервале. Выберите связку",
+      "accessibilityLabel": "Выберите слово со значением «позже»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одном интервале. Выберите связку",
-          "uk": "Ідеться про один інтервал. Виберіть зв’язку"
+          "ru": "Выберите слово со значением «позже»",
+          "uk": "Виберіть слово зі значенням «пізніше»"
         },
-        "gappedTargetPhrase": "The interval ___ ten minutes.",
+        "gappedTargetPhrase": "See you ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-50:i06:r1",
-            "text": "is"
+            "text": "later"
           },
           {
             "responseId": "en:lesson-10:session-50:i06:r2",
-            "text": "are"
+            "text": "soon"
           },
           {
             "responseId": "en:lesson-10:session-50:i06:r3",
-            "text": "am"
+            "text": "tomorrow"
           }
         ],
-        "testedDimension": "Речь об одном интервале. Выберите связку",
+        "testedDimension": "Выберите слово со значением «позже»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-50:i06:r2",
             "correct": false,
-            "testedDimension": "Речь об одном интервале. Выберите связку",
+            "testedDimension": "Выберите слово со значением «позже»",
             "feedbackByLocale": {
-              "ru": "Один интервал: is.",
-              "uk": "Один інтервал: is."
+              "ru": "Soon — скоро, а здесь нужно позже.",
+              "uk": "Soon — скоро, а тут потрібно пізніше."
             }
           },
           {
             "responseId": "en:lesson-10:session-50:i06:r3",
             "correct": false,
-            "testedDimension": "Речь об одном интервале. Выберите связку",
+            "testedDimension": "Выберите слово со значением «позже»",
             "feedbackByLocale": {
-              "ru": "Am используется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Tomorrow — завтра, а здесь нужно позже.",
+              "uk": "Tomorrow — завтра, а тут потрібно пізніше."
             }
           }
         ]
@@ -449,32 +445,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-50:word:duration",
+      "interactionId": "en:lesson-10:session-50:word:already",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — duration",
+      "prompt": "Карточка слова — already",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-50:word:duration:audio"
+        "en:lesson-10:session-50:word:already:audio"
       ],
-      "accessibilityLabel": "Карточка слова — duration",
+      "accessibilityLabel": "Карточка слова — already",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-50:word:duration:audio",
-          "transcript": "duration"
+          "audioTargetId": "en:lesson-10:session-50:word:already:audio",
+          "transcript": "already"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-50:word:duration:r1",
-            "targetText": "duration",
+            "responseId": "en:lesson-10:session-50:word:already:r1",
+            "targetText": "already",
             "meaningByLocale": {
-              "ru": "«длительность». We record the duration every day. — «Мы записываем длительность каждый день». Здесь количество времени, которое занимает процедура.",
-              "uk": "«тривалість». We record the duration every day. — «Ми записуємо тривалість щодня». Тут кількість часу, яку займає процедура."
+              "ru": "«уже». I am already here. — «Я уже здесь».",
+              "uk": "«уже». I am already here. — «Я вже тут»."
             }
           }
         ],
@@ -482,10 +478,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "duration",
+          "word": "already",
           "definitionByLocale": {
-            "ru": "«длительность». We record the duration every day. — «Мы записываем длительность каждый день». Здесь количество времени, которое занимает процедура.",
-            "uk": "«тривалість». We record the duration every day. — «Ми записуємо тривалість щодня». Тут кількість часу, яку займає процедура."
+            "ru": "«уже». I am already here. — «Я уже здесь».",
+            "uk": "«уже». I am already here. — «Я вже тут»."
           }
         }
       },
@@ -497,25 +493,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце",
+      "prompt": "Скажите, что уже на месте. Already поставьте после am",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце",
+      "accessibilityLabel": "Скажите, что уже на месте. Already поставьте после am",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We record the duration every day.",
+        "targetPhrase": "I am already here.",
         "localizedMeaning": {
-          "ru": "Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце",
-          "uk": "Команда щодня записує, скільки триває процедура. Скажіть: «Ми записуємо тривалість щодня». Поставте every day у кінці"
+          "ru": "Скажите, что уже на месте. Already поставьте после am",
+          "uk": "Скажіть, що вже на місці. Already поставте після am"
         },
         "orderedTokens": [
-          "We",
-          "record",
-          "the",
-          "duration",
-          "every",
-          "day"
+          "I",
+          "am",
+          "already",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -536,15 +530,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i08:r1",
-          "text": "The duration is two hours."
+          "text": "She is already here."
         },
         {
           "responseId": "en:lesson-10:session-50:i08:r2",
-          "text": "The duration is three hours."
+          "text": "He is already here."
         },
         {
           "responseId": "en:lesson-10:session-50:i08:r3",
-          "text": "The interval is two hours."
+          "text": "I am already here."
         }
       ],
       "mediaIds": [],
@@ -556,23 +550,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-50:i08:audio",
-          "transcript": "The duration is two hours."
+          "transcript": "She is already here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-50:i08:r1",
-            "targetText": "The duration is two hours.",
+            "targetText": "She is already here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i08:r2",
-            "targetText": "The duration is three hours.",
+            "targetText": "He is already here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i08:r3",
-            "targetText": "The interval is two hours.",
+            "targetText": "I am already here.",
             "meaningByLocale": null
           }
         ],
@@ -583,8 +577,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The duration is two hours.",
-              "uk": "У записі звучить The duration is two hours."
+              "ru": "В записи звучит She is already here.",
+              "uk": "У записі звучить She is already here."
             }
           },
           {
@@ -592,8 +586,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The duration is two hours.",
-              "uk": "У записі звучить The duration is two hours."
+              "ru": "В записи звучит She is already here.",
+              "uk": "У записі звучить She is already here."
             }
           }
         ],
@@ -608,63 +602,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это ежедневная работа. Выберите форму record",
+      "prompt": "Выберите форму be с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i09:r1",
-          "text": "record"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-10:session-50:i09:r2",
-          "text": "records"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-50:i09:r3",
-          "text": "recording"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это ежедневная работа. Выберите форму record",
+      "accessibilityLabel": "Выберите форму be с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это ежедневная работа. Выберите форму record",
-          "uk": "Це щоденна робота. Виберіть форму record"
+          "ru": "Выберите форму be с I",
+          "uk": "Виберіть форму be з I"
         },
-        "gappedTargetPhrase": "We ___ the duration every day.",
+        "gappedTargetPhrase": "I ___ already here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-50:i09:r1",
-            "text": "record"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-10:session-50:i09:r2",
-            "text": "records"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-50:i09:r3",
-            "text": "recording"
+            "text": "are"
           }
         ],
-        "testedDimension": "Это ежедневная работа. Выберите форму record",
+        "testedDimension": "Выберите форму be с I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-50:i09:r2",
             "correct": false,
-            "testedDimension": "Это ежедневная работа. Выберите форму record",
+            "testedDimension": "Выберите форму be с I",
             "feedbackByLocale": {
-              "ru": "С we нужна record без s.",
-              "uk": "З we потрібна record без s."
+              "ru": "С I нужна am.",
+              "uk": "З I потрібна am."
             }
           },
           {
             "responseId": "en:lesson-10:session-50:i09:r3",
             "correct": false,
-            "testedDimension": "Это ежедневная работа. Выберите форму record",
+            "testedDimension": "Выберите форму be с I",
             "feedbackByLocale": {
-              "ru": "Здесь нужна record.",
-              "uk": "Тут потрібна record."
+              "ru": "С I нужна am.",
+              "uk": "З I потрібна am."
             }
           }
         ]
@@ -672,32 +666,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-50:word:timeline",
+      "interactionId": "en:lesson-10:session-50:word:on-time",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — timeline",
+      "prompt": "Карточка слова — on time",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-50:word:timeline:audio"
+        "en:lesson-10:session-50:word:on-time:audio"
       ],
-      "accessibilityLabel": "Карточка слова — timeline",
+      "accessibilityLabel": "Карточка слова — on time",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-50:word:timeline:audio",
-          "transcript": "timeline"
+          "audioTargetId": "en:lesson-10:session-50:word:on-time:audio",
+          "transcript": "on time"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-50:word:timeline:r1",
-            "targetText": "timeline",
+            "responseId": "en:lesson-10:session-50:word:on-time:r1",
+            "targetText": "on time",
             "meaningByLocale": {
-              "ru": "«временной график». We are updating the timeline. — «Мы обновляем временной график». Последовательность этапов с датами.",
-              "uk": "«часовий графік». We are updating the timeline. — «Ми оновлюємо часовий графік». Послідовність етапів із датами."
+              "ru": "«вовремя». The bus is on time. — «Автобус приходит вовремя».",
+              "uk": "«вчасно». The bus is on time. — «Автобус прибуває вчасно»."
             }
           }
         ],
@@ -705,10 +699,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "timeline",
+          "word": "on time",
           "definitionByLocale": {
-            "ru": "«временной график». We are updating the timeline. — «Мы обновляем временной график». Последовательность этапов с датами.",
-            "uk": "«часовий графік». We are updating the timeline. — «Ми оновлюємо часовий графік». Послідовність етапів із датами."
+            "ru": "«вовремя». The bus is on time. — «Автобус приходит вовремя».",
+            "uk": "«вчасно». The bus is on time. — «Автобус прибуває вчасно»."
           }
         }
       },
@@ -720,24 +714,24 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»",
+      "prompt": "Автобус приходит по расписанию. Скажите, что он вовремя",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»",
+      "accessibilityLabel": "Автобус приходит по расписанию. Скажите, что он вовремя",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are updating the timeline.",
+        "targetPhrase": "The bus is on time.",
         "localizedMeaning": {
-          "ru": "Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»",
-          "uk": "Ви зараз змінюєте дати етапів проєкту. Скажіть: «Ми оновлюємо часовий графік»"
+          "ru": "Автобус приходит по расписанию. Скажите, что он вовремя",
+          "uk": "Автобус прибуває за розкладом. Скажіть, що він вчасно"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "updating",
-          "the",
-          "timeline"
+          "The",
+          "bus",
+          "is",
+          "on",
+          "time"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -758,15 +752,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i11:r1",
-          "text": "The timeline is on the wall."
+          "text": "The train is on time."
         },
         {
           "responseId": "en:lesson-10:session-50:i11:r2",
-          "text": "The timeline is on the website."
+          "text": "The bus is on time."
         },
         {
           "responseId": "en:lesson-10:session-50:i11:r3",
-          "text": "The barometer is on the wall."
+          "text": "The train is late."
         }
       ],
       "mediaIds": [],
@@ -778,23 +772,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-50:i11:audio",
-          "transcript": "The timeline is on the wall."
+          "transcript": "The train is on time."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-50:i11:r1",
-            "targetText": "The timeline is on the wall.",
+            "targetText": "The train is on time.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i11:r2",
-            "targetText": "The timeline is on the website.",
+            "targetText": "The bus is on time.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-50:i11:r3",
-            "targetText": "The barometer is on the wall.",
+            "targetText": "The train is late.",
             "meaningByLocale": null
           }
         ],
@@ -805,8 +799,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The timeline is on the wall.",
-              "uk": "У записі звучить The timeline is on the wall."
+              "ru": "В записи звучит The train is on time.",
+              "uk": "У записі звучить The train is on time."
             }
           },
           {
@@ -814,8 +808,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The timeline is on the wall.",
-              "uk": "У записі звучить The timeline is on the wall."
+              "ru": "В записи звучит The train is on time.",
+              "uk": "У записі звучить The train is on time."
             }
           }
         ],
@@ -830,63 +824,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите правильное написание формы update",
+      "prompt": "Выберите глагол для одного автобуса",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-50:i12:r1",
-          "text": "updating"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-50:i12:r2",
-          "text": "updateing"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-50:i12:r3",
-          "text": "update"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите правильное написание формы update",
+      "accessibilityLabel": "Выберите глагол для одного автобуса",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите правильное написание формы update",
-          "uk": "Виберіть правильне написання форми update"
+          "ru": "Выберите глагол для одного автобуса",
+          "uk": "Виберіть дієслово для одного автобуса"
         },
-        "gappedTargetPhrase": "We are ___ the timeline.",
+        "gappedTargetPhrase": "The bus ___ on time.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-50:i12:r1",
-            "text": "updating"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-50:i12:r2",
-            "text": "updateing"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-50:i12:r3",
-            "text": "update"
+            "text": "am"
           }
         ],
-        "testedDimension": "Выберите правильное написание формы update",
+        "testedDimension": "Выберите глагол для одного автобуса",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-50:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите правильное написание формы update",
+            "testedDimension": "Выберите глагол для одного автобуса",
             "feedbackByLocale": {
-              "ru": "Перед ing убираем e: updating.",
-              "uk": "Перед ing прибираємо e: updating."
+              "ru": "Один bus: нужна is.",
+              "uk": "Один bus: потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-50:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите правильное написание формы update",
+            "testedDimension": "Выберите глагол для одного автобуса",
             "feedbackByLocale": {
-              "ru": "После are для текущего действия нужна updating.",
-              "uk": "Після are для поточної дії потрібна updating."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -899,58 +893,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-50:i13:p1",
-            "target": "period",
+            "target": "soon",
             "meaningByLocale": {
-              "ru": "период",
-              "uk": "період"
+              "ru": "скоро",
+              "uk": "скоро"
             }
           },
           {
             "pairId": "en:lesson-10:session-50:i13:p2",
-            "target": "interval",
+            "target": "later",
             "meaningByLocale": {
-              "ru": "интервал",
-              "uk": "інтервал"
+              "ru": "позже",
+              "uk": "пізніше"
             }
           },
           {
             "pairId": "en:lesson-10:session-50:i13:p3",
-            "target": "duration",
+            "target": "already",
             "meaningByLocale": {
-              "ru": "длительность",
-              "uk": "тривалість"
+              "ru": "уже",
+              "uk": "уже"
             }
           },
           {
             "pairId": "en:lesson-10:session-50:i13:p4",
-            "target": "timeline",
+            "target": "on time",
             "meaningByLocale": {
-              "ru": "временной график",
-              "uk": "часовий графік"
+              "ru": "вовремя",
+              "uk": "вчасно"
             }
           }
         ],
         "leftColumn": [
-          "period",
-          "interval",
-          "duration",
-          "timeline"
+          "soon",
+          "later",
+          "already",
+          "on time"
         ],
         "rightColumn": [
-          "период",
-          "интервал",
-          "длительность",
-          "временной график"
+          "скоро",
+          "позже",
+          "уже",
+          "вовремя"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -972,27 +966,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-50:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-50:i14:audio",
-          "transcript": "We are updating the timeline."
+          "transcript": "I am already here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are updating the timeline.",
+        "hiddenTargetPhrase": "I am already here.",
         "orderedTokens": [
-          "We",
-          "are",
-          "updating",
-          "the",
-          "timeline"
+          "I",
+          "am",
+          "already",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1006,24 +999,61 @@
     {
       "interactionId": "en:lesson-10:session-50:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Пользователь спрашивает, сколько длится пробное использование. Скажите: «Пробный период длится месяц»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-50:i15:audio"
       ],
-      "accessibilityLabel": "Пользователь спрашивает, сколько длится пробное использование. Скажите: «Пробный период длится месяц»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i15:audio",
+          "transcript": "The bus is on time."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bus is on time.",
+        "orderedTokens": [
+          "The",
+          "bus",
+          "is",
+          "on",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попрощайтесь: до скорого",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Попрощайтесь: до скорого",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-50:i15:audio",
-          "transcript": "The trial period lasts a month."
+          "audioTargetId": "en:lesson-10:session-50:i16:audio",
+          "transcript": "See you soon."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The trial period lasts a month.",
+        "targetPhrase": "See you soon.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1037,71 +1067,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-50:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The interval is ten minutes.",
-        "localizedMeaning": {
-          "ru": "Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»",
-          "uk": "Колега запитує, скільки часу минає між перевірками. Скажіть: «Інтервал становить десять хвилин»"
-        },
-        "orderedTokens": [
-          "The",
-          "interval",
-          "is",
-          "ten",
-          "minutes"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-50:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы с коллегами вносите новые даты этапов проекта. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы обновляем временной график»",
+      "prompt": "Скажите, что ваш друг уже здесь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-50:i17:audio"
       ],
-      "accessibilityLabel": "Вы с коллегами вносите новые даты этапов проекта. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы обновляем временной график»",
+      "accessibilityLabel": "Скажите, что ваш друг уже здесь",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-50:i17:audio",
-          "transcript": "We are updating the timeline."
+          "transcript": "My friend is already here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are updating the timeline.",
+        "targetPhrase": "My friend is already here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1118,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0b621ba84c3804dc8aaf48557d4a552cb88c3ad562c16ab16841f3a7de5f7ec2"
+  "learnerFingerprint": "b6566a5f3550d9af6a3e83d91a5103dbc12cef0f3889d1059cface033365aafd"
 }

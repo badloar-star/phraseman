@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-53:word:occasion",
-    "correctText": "occasion",
+    "interactionId": "en:lesson-10:session-53:word:good-morning",
+    "correctText": "good morning",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i01",
-    "correctText": "This is a special occasion.",
+    "correctText": "Good morning.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i02",
-    "correctText": "This is a happy occasion.",
+    "correctText": "Good morning, Tom.",
     "correctResponseId": "en:lesson-10:session-53:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-53:i03",
-    "correctText": "is",
+    "correctText": "morning",
     "correctResponseId": "en:lesson-10:session-53:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-53:word:festivities",
-    "correctText": "festivities",
+    "interactionId": "en:lesson-10:session-53:word:good-afternoon",
+    "correctText": "good afternoon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i04",
-    "correctText": "The festivities start at six.",
+    "correctText": "Good afternoon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i05",
-    "correctText": "The festivities are outside.",
+    "correctText": "Good afternoon, Anna.",
     "correctResponseId": "en:lesson-10:session-53:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-53:i06",
-    "correctText": "start",
+    "correctText": "afternoon",
     "correctResponseId": "en:lesson-10:session-53:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-53:word:centrepiece",
-    "correctText": "centrepiece",
+    "interactionId": "en:lesson-10:session-53:word:good-evening",
+    "correctText": "good evening",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i07",
-    "correctText": "We are arranging the centrepiece.",
+    "correctText": "Good evening.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i08",
-    "correctText": "The centrepiece is beautiful.",
+    "correctText": "Good evening, Ben.",
     "correctResponseId": "en:lesson-10:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-53:i09",
-    "correctText": "arranging",
+    "correctText": "evening",
     "correctResponseId": "en:lesson-10:session-53:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-53:word:place-card",
-    "correctText": "place card",
+    "interactionId": "en:lesson-10:session-53:word:good-night",
+    "correctText": "good night",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i10",
-    "correctText": "Your name is on the place card.",
+    "correctText": "Good night.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i11",
-    "correctText": "The place card is beside the plate.",
+    "correctText": "Good night, Anna.",
     "correctResponseId": "en:lesson-10:session-53:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-53:i12",
-    "correctText": "is",
+    "correctText": "night",
     "correctResponseId": "en:lesson-10:session-53:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-53:i13",
-    "correctText": "en:lesson-10:session-53:i13:p1=occasion\nen:lesson-10:session-53:i13:p2=festivities\nen:lesson-10:session-53:i13:p3=centrepiece\nen:lesson-10:session-53:i13:p4=place card",
+    "correctText": "en:lesson-10:session-53:i13:p1=good morning\nen:lesson-10:session-53:i13:p2=good afternoon\nen:lesson-10:session-53:i13:p3=good evening\nen:lesson-10:session-53:i13:p4=good night",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i14",
-    "correctText": "We are arranging the centrepiece.",
+    "correctText": "Good afternoon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i15",
-    "correctText": "The festivities start at six.",
+    "correctText": "Good night.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i16",
-    "correctText": "This is a special occasion.",
+    "correctText": "Good morning, Anna.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-53:i17",
-    "correctText": "We are arranging the centrepiece.",
+    "correctText": "Good evening, Tom.",
     "correctResponseId": null
   }
 ]

@@ -3705,9 +3705,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 25,
-    sourceFingerprint: "a68ed075b2bd2b5e6ad6095b81563dd1295c2a45370375b0b3ae08fddae13c74",
+    sourceFingerprint: "a955be0562f81859ddf9108958e78b8fd676332e13ffcb048797a9262de18f21",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually walk at dawn; I am walking now; I am listening to birdsong at the moment","uk":"I usually walk at dawn; I am walking now; I am listening to birdsong at the moment"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime","uk":"I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3880,16 +3880,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 50,
-    sourceFingerprint: "264d165940dae612df0c2ca84b6f44dc21400a264ab7d04508fb4dd7c1bfaa77",
+    sourceFingerprint: "1c13a8280a5b2c777634db9ba96055ac754657ac8f6823b136bb8e36bc7cc5e8",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The trial period lasts a month; We record the duration every day; We are updating the timeline","uk":"The trial period lasts a month; We record the duration every day; We are updating the timeline"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The train leaves soon; See you later; I am already here; The bus is on time","uk":"The train leaves soon; See you later; I am already here; The bus is on time"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 51,
-    sourceFingerprint: "2355945c200375c7030bd748ac94006078fae2f53ba28790f4de1f9cc5cdf6db",
+    sourceFingerprint: "a85fe07ff00027a25e68eeb0c51b604965ff252b61262d3280d8d51dba6a935e",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The term starts in September; I usually study on campus; I am completing my enrolment","uk":"The term starts in September; I usually study on campus; I am completing my enrolment"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history","uk":"My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3901,9 +3901,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 53,
-    sourceFingerprint: "fd61cc0c82d79cc687786625c11f90d89a9ae510007ff5757ee452542efaaaf2",
+    sourceFingerprint: "ec2b27d02b75fe3c6fc5acd8bbbf389246dccd254ff017999e857ffecd15078d",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This is a special occasion; The festivities start at six; We are arranging the centrepiece","uk":"This is a special occasion; The festivities start at six; We are arranging the centrepiece"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Good morning; Good afternoon; Good evening; Good night","uk":"Good morning; Good afternoon; Good evening; Good night"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

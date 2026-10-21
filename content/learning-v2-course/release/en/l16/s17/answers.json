@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-17:word:check-in-on",
+    "correctText": "check in on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i01",
+    "correctText": "I'll check in on your mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i02",
+    "correctText": "I'll check in on your mother.",
+    "correctResponseId": "en:lesson-16:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i03",
+    "correctText": "I'll check in on",
+    "correctResponseId": "en:lesson-16:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:word:look-out-for",
+    "correctText": "look out for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i04",
+    "correctText": "I'll look out for your brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i05",
+    "correctText": "I'll look out for your brother.",
+    "correctResponseId": "en:lesson-16:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i06",
+    "correctText": "I'll look out for",
+    "correctResponseId": "en:lesson-16:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:word:stand-by",
+    "correctText": "stand by",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i07",
+    "correctText": "I'll stand by you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i08",
+    "correctText": "I'll stand by you.",
+    "correctResponseId": "en:lesson-16:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i09",
+    "correctText": "I'll stand by",
+    "correctResponseId": "en:lesson-16:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:word:keep-in-touch",
+    "correctText": "keep in touch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i10",
+    "correctText": "I'll keep in touch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i11",
+    "correctText": "I'll keep in touch.",
+    "correctResponseId": "en:lesson-16:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i12",
+    "correctText": "I'll keep in touch",
+    "correctResponseId": "en:lesson-16:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i13",
+    "correctText": "en:lesson-16:session-17:i13:p1=check in on\nen:lesson-16:session-17:i13:p2=look out for\nen:lesson-16:session-17:i13:p3=stand by\nen:lesson-16:session-17:i13:p4=keep in touch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i14",
+    "correctText": "I'll check in on your mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i15",
+    "correctText": "I'll stand by you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i16",
+    "correctText": "I'll look out for your brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-17:i17",
+    "correctText": "I'll keep in touch.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-17:intro1:r2": {
+          "ru": "После I'll не нужно to.",
+          "uk": "Після I'll не потрібне to."
+        },
+        "en:lesson-16:session-17:intro1:r3": {
+          "ru": "Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll.",
+          "uk": "Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-17:intro2:r2": {
+          "ru": "После I'll не нужно to.",
+          "uk": "Після I'll не потрібне to."
+        },
+        "en:lesson-16:session-17:intro2:r3": {
+          "ru": "Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll.",
+          "uk": "Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-17:intro3:r2": {
+          "ru": "После I'll не нужно to.",
+          "uk": "Після I'll не потрібне to."
+        },
+        "en:lesson-16:session-17:intro3:r3": {
+          "ru": "Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll.",
+          "uk": "Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2b2426903af9a188f061a6808123fa53355a45a8749fc4447775cef6f4dbe325"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-18:word:drop-by",
+    "correctText": "drop by",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i01",
+    "correctText": "I'll drop by tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i02",
+    "correctText": "I'll drop by tomorrow.",
+    "correctResponseId": "en:lesson-16:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i03",
+    "correctText": "I'll drop by",
+    "correctResponseId": "en:lesson-16:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:word:see-off",
+    "correctText": "see off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i04",
+    "correctText": "I'll see off your sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i05",
+    "correctText": "I'll see off your sister.",
+    "correctResponseId": "en:lesson-16:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i06",
+    "correctText": "I'll see off",
+    "correctResponseId": "en:lesson-16:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:word:get-back-to",
+    "correctText": "get back to",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i07",
+    "correctText": "I'll get back to you tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i08",
+    "correctText": "I'll get back to you tonight.",
+    "correctResponseId": "en:lesson-16:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i09",
+    "correctText": "I'll get back to",
+    "correctResponseId": "en:lesson-16:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:word:bring-back",
+    "correctText": "bring back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i10",
+    "correctText": "I'll bring back your umbrella.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i11",
+    "correctText": "I'll bring back your umbrella.",
+    "correctResponseId": "en:lesson-16:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i12",
+    "correctText": "I'll bring back",
+    "correctResponseId": "en:lesson-16:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i13",
+    "correctText": "en:lesson-16:session-18:i13:p1=drop by\nen:lesson-16:session-18:i13:p2=see off\nen:lesson-16:session-18:i13:p3=get back to\nen:lesson-16:session-18:i13:p4=bring back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i14",
+    "correctText": "I'll drop by tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i15",
+    "correctText": "I'll get back to you tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i16",
+    "correctText": "I'll see off your sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-18:i17",
+    "correctText": "I'll bring back your umbrella.",
+    "correctResponseId": null
+  }
+]

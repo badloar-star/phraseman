@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-19:word:hand-in",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hand in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:hand-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hand in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:hand-in:audio",
+            "transcript": "hand in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:hand-in:r1",
+              "targetText": "hand in",
+              "meaningByLocale": {
+                "ru": "сдать документ или работу тому, кто их собирает.",
+                "uk": "здати документ або роботу тому, хто їх збирає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hand in",
+            "definitionByLocale": {
+              "ru": "сдать документ или работу тому, кто их собирает.",
+              "uk": "здати документ або роботу тому, хто їх збирає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Скажите: «Я сдам бланк завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Скажите: «Я сдам бланк завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll hand in the form tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Скажите: «Я сдам бланк завтра».",
+            "uk": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Скажіть: «Я здам бланк завтра»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "hand",
+            "in",
+            "the",
+            "form",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i02:r1",
+            "text": "I'll hand in the form tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i02:r2",
+            "text": "We'll hand in the form tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i02:r3",
+            "text": "They'll hand in the form tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i02:audio",
+            "transcript": "I'll hand in the form tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i02:r1",
+              "targetText": "I'll hand in the form tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i02:r2",
+              "targetText": "We'll hand in the form tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i02:r3",
+              "targetText": "They'll hand in the form tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand in the form tomorrow.",
+                "uk": "У записі звучить I'll hand in the form tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand in the form tomorrow.",
+                "uk": "У записі звучить I'll hand in the form tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i03:r1",
+            "text": "I'll hand in"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i03:r2",
+            "text": "I'll to hand in"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i03:r3",
+            "text": "I hand in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+            "uk": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the form tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i03:r1",
+              "text": "I'll hand in"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i03:r2",
+              "text": "I'll to hand in"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i03:r3",
+              "text": "I hand in"
+            }
+          ],
+          "testedDimension": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:word:hand-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hand out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:hand-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hand out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:hand-out:audio",
+            "transcript": "hand out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:hand-out:r1",
+              "targetText": "hand out",
+              "meaningByLocale": {
+                "ru": "раздать по одному нескольким людям.",
+                "uk": "роздати по одному кільком людям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hand out",
+            "definitionByLocale": {
+              "ru": "раздать по одному нескольким людям.",
+              "uk": "роздати по одному кільком людям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Скажите: «Я раздам приглашения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Скажите: «Я раздам приглашения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll hand out the invitations.",
+          "localizedMeaning": {
+            "ru": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Скажите: «Я раздам приглашения».",
+            "uk": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Скажіть: «Я роздам запрошення»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "hand",
+            "out",
+            "the",
+            "invitations"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i05:r1",
+            "text": "I'll hand out the invitations."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i05:r2",
+            "text": "We'll hand out the invitations."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i05:r3",
+            "text": "They'll hand out the invitations."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i05:audio",
+            "transcript": "I'll hand out the invitations."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i05:r1",
+              "targetText": "I'll hand out the invitations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i05:r2",
+              "targetText": "We'll hand out the invitations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i05:r3",
+              "targetText": "They'll hand out the invitations.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand out the invitations.",
+                "uk": "У записі звучить I'll hand out the invitations."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand out the invitations.",
+                "uk": "У записі звучить I'll hand out the invitations."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i06:r1",
+            "text": "I'll hand out"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i06:r2",
+            "text": "I'll to hand out"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i06:r3",
+            "text": "I hand out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+            "uk": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the invitations.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i06:r1",
+              "text": "I'll hand out"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i06:r2",
+              "text": "I'll to hand out"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i06:r3",
+              "text": "I hand out"
+            }
+          ],
+          "testedDimension": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:word:send-back",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — send back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:send-back:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — send back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:send-back:audio",
+            "transcript": "send back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:send-back:r1",
+              "targetText": "send back",
+              "meaningByLocale": {
+                "ru": "отправить обратно.",
+                "uk": "надіслати назад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "send back",
+            "definitionByLocale": {
+              "ru": "отправить обратно.",
+              "uk": "надіслати назад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Скажите: «Я отправлю не те туфли обратно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Скажите: «Я отправлю не те туфли обратно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll send back the wrong shoes.",
+          "localizedMeaning": {
+            "ru": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Скажите: «Я отправлю не те туфли обратно».",
+            "uk": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Скажіть: «Я надішлю не ті туфлі назад»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "send",
+            "back",
+            "the",
+            "wrong",
+            "shoes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i08:r1",
+            "text": "I'll send back the wrong shoes."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i08:r2",
+            "text": "We'll send back the wrong shoes."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i08:r3",
+            "text": "They'll send back the wrong shoes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i08:audio",
+            "transcript": "I'll send back the wrong shoes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i08:r1",
+              "targetText": "I'll send back the wrong shoes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i08:r2",
+              "targetText": "We'll send back the wrong shoes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i08:r3",
+              "targetText": "They'll send back the wrong shoes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll send back the wrong shoes.",
+                "uk": "У записі звучить I'll send back the wrong shoes."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll send back the wrong shoes.",
+                "uk": "У записі звучить I'll send back the wrong shoes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i09:r1",
+            "text": "I'll send back"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i09:r2",
+            "text": "I'll to send back"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i09:r3",
+            "text": "I send back"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+            "uk": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the wrong shoes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i09:r1",
+              "text": "I'll send back"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i09:r2",
+              "text": "I'll to send back"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i09:r3",
+              "text": "I send back"
+            }
+          ],
+          "testedDimension": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:word:set-aside",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — set aside",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:set-aside:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — set aside",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:set-aside:audio",
+            "transcript": "set aside"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:set-aside:r1",
+              "targetText": "set aside",
+              "meaningByLocale": {
+                "ru": "отложить и сохранить для определённой цели.",
+                "uk": "відкласти й зберегти для певної мети."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "set aside",
+            "definitionByLocale": {
+              "ru": "отложить и сохранить для определённой цели.",
+              "uk": "відкласти й зберегти для певної мети."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Скажите: «Я отложу немного денег на поездку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Скажите: «Я отложу немного денег на поездку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll set aside some money for the trip.",
+          "localizedMeaning": {
+            "ru": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Скажите: «Я отложу немного денег на поездку».",
+            "uk": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Скажіть: «Я відкладу трохи грошей на поїздку»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "set",
+            "aside",
+            "some",
+            "money",
+            "for",
+            "the",
+            "trip"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i11:r1",
+            "text": "I'll set aside some money for the trip."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i11:r2",
+            "text": "We'll set aside some money for the trip."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i11:r3",
+            "text": "They'll set aside some money for the trip."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i11:audio",
+            "transcript": "I'll set aside some money for the trip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i11:r1",
+              "targetText": "I'll set aside some money for the trip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i11:r2",
+              "targetText": "We'll set aside some money for the trip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i11:r3",
+              "targetText": "They'll set aside some money for the trip.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set aside some money for the trip.",
+                "uk": "У записі звучить I'll set aside some money for the trip."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set aside some money for the trip.",
+                "uk": "У записі звучить I'll set aside some money for the trip."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i12:r1",
+            "text": "I'll set aside"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i12:r2",
+            "text": "I'll to set aside"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i12:r3",
+            "text": "I set aside"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+            "uk": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ some money for the trip.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i12:r1",
+              "text": "I'll set aside"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i12:r2",
+              "text": "I'll to set aside"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i12:r3",
+              "text": "I set aside"
+            }
+          ],
+          "testedDimension": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-19:i13:p1",
+              "target": "hand in",
+              "meaningByLocale": {
+                "ru": "сдать документ или работу тому, кто их собирает",
+                "uk": "здати документ або роботу тому, хто їх збирає"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-19:i13:p2",
+              "target": "hand out",
+              "meaningByLocale": {
+                "ru": "раздать по одному нескольким людям",
+                "uk": "роздати по одному кільком людям"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-19:i13:p3",
+              "target": "send back",
+              "meaningByLocale": {
+                "ru": "отправить обратно",
+                "uk": "надіслати назад"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-19:i13:p4",
+              "target": "set aside",
+              "meaningByLocale": {
+                "ru": "отложить и сохранить для определённой цели",
+                "uk": "відкласти й зберегти для певної мети"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hand in",
+            "hand out",
+            "send back",
+            "set aside"
+          ],
+          "rightColumn": [
+            "сдать документ или работу тому, кто их собирает",
+            "раздать по одному нескольким людям",
+            "отправить обратно",
+            "отложить и сохранить для определённой цели"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i14:audio",
+            "transcript": "I'll hand in the form tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll hand in the form tomorrow.",
+          "orderedTokens": [
+            "I'll",
+            "hand",
+            "in",
+            "the",
+            "form",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i15:audio",
+            "transcript": "I'll send back the wrong shoes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll send back the wrong shoes.",
+          "orderedTokens": [
+            "I'll",
+            "send",
+            "back",
+            "the",
+            "wrong",
+            "shoes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i16:audio",
+            "transcript": "I'll hand out the invitations."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll hand out the invitations.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i17:audio",
+            "transcript": "I'll set aside some money for the trip."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll set aside some money for the trip.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-19:word:hand-in",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hand in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:hand-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hand in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:hand-in:audio",
+            "transcript": "hand in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:hand-in:r1",
+              "targetText": "hand in",
+              "meaningByLocale": {
+                "ru": "сдать документ или работу тому, кто их собирает.",
+                "uk": "здати документ або роботу тому, хто їх збирає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hand in",
+            "definitionByLocale": {
+              "ru": "сдать документ или работу тому, кто их собирает.",
+              "uk": "здати документ або роботу тому, хто їх збирає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Скажіть: «Я здам бланк завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Скажіть: «Я здам бланк завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll hand in the form tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Скажите: «Я сдам бланк завтра».",
+            "uk": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Скажіть: «Я здам бланк завтра»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "hand",
+            "in",
+            "the",
+            "form",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i02:r1",
+            "text": "I'll hand in the form tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i02:r2",
+            "text": "We'll hand in the form tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i02:r3",
+            "text": "They'll hand in the form tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i02:audio",
+            "transcript": "I'll hand in the form tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i02:r1",
+              "targetText": "I'll hand in the form tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i02:r2",
+              "targetText": "We'll hand in the form tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i02:r3",
+              "targetText": "They'll hand in the form tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand in the form tomorrow.",
+                "uk": "У записі звучить I'll hand in the form tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand in the form tomorrow.",
+                "uk": "У записі звучить I'll hand in the form tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i03:r1",
+            "text": "I'll hand in"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i03:r2",
+            "text": "I'll to hand in"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i03:r3",
+            "text": "I hand in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. Используйте I'll.",
+            "uk": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the form tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i03:r1",
+              "text": "I'll hand in"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i03:r2",
+              "text": "I'll to hand in"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i03:r3",
+              "text": "I hand in"
+            }
+          ],
+          "testedDimension": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:word:hand-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hand out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:hand-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hand out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:hand-out:audio",
+            "transcript": "hand out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:hand-out:r1",
+              "targetText": "hand out",
+              "meaningByLocale": {
+                "ru": "раздать по одному нескольким людям.",
+                "uk": "роздати по одному кільком людям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hand out",
+            "definitionByLocale": {
+              "ru": "раздать по одному нескольким людям.",
+              "uk": "роздати по одному кільком людям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Скажіть: «Я роздам запрошення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Скажіть: «Я роздам запрошення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll hand out the invitations.",
+          "localizedMeaning": {
+            "ru": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Скажите: «Я раздам приглашения».",
+            "uk": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Скажіть: «Я роздам запрошення»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "hand",
+            "out",
+            "the",
+            "invitations"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i05:r1",
+            "text": "I'll hand out the invitations."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i05:r2",
+            "text": "We'll hand out the invitations."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i05:r3",
+            "text": "They'll hand out the invitations."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i05:audio",
+            "transcript": "I'll hand out the invitations."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i05:r1",
+              "targetText": "I'll hand out the invitations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i05:r2",
+              "targetText": "We'll hand out the invitations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i05:r3",
+              "targetText": "They'll hand out the invitations.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand out the invitations.",
+                "uk": "У записі звучить I'll hand out the invitations."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll hand out the invitations.",
+                "uk": "У записі звучить I'll hand out the invitations."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i06:r1",
+            "text": "I'll hand out"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i06:r2",
+            "text": "I'll to hand out"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i06:r3",
+            "text": "I hand out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. Используйте I'll.",
+            "uk": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the invitations.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i06:r1",
+              "text": "I'll hand out"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i06:r2",
+              "text": "I'll to hand out"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i06:r3",
+              "text": "I hand out"
+            }
+          ],
+          "testedDimension": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:word:send-back",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — send back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:send-back:audio"
+        ],
+        "accessibilityLabel": "Картка слова — send back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:send-back:audio",
+            "transcript": "send back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:send-back:r1",
+              "targetText": "send back",
+              "meaningByLocale": {
+                "ru": "отправить обратно.",
+                "uk": "надіслати назад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "send back",
+            "definitionByLocale": {
+              "ru": "отправить обратно.",
+              "uk": "надіслати назад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Скажіть: «Я надішлю не ті туфлі назад».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Скажіть: «Я надішлю не ті туфлі назад».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll send back the wrong shoes.",
+          "localizedMeaning": {
+            "ru": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Скажите: «Я отправлю не те туфли обратно».",
+            "uk": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Скажіть: «Я надішлю не ті туфлі назад»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "send",
+            "back",
+            "the",
+            "wrong",
+            "shoes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i08:r1",
+            "text": "I'll send back the wrong shoes."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i08:r2",
+            "text": "We'll send back the wrong shoes."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i08:r3",
+            "text": "They'll send back the wrong shoes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i08:audio",
+            "transcript": "I'll send back the wrong shoes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i08:r1",
+              "targetText": "I'll send back the wrong shoes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i08:r2",
+              "targetText": "We'll send back the wrong shoes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i08:r3",
+              "targetText": "They'll send back the wrong shoes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll send back the wrong shoes.",
+                "uk": "У записі звучить I'll send back the wrong shoes."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll send back the wrong shoes.",
+                "uk": "У записі звучить I'll send back the wrong shoes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i09:r1",
+            "text": "I'll send back"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i09:r2",
+            "text": "I'll to send back"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i09:r3",
+            "text": "I send back"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В посылке оказались туфли другого размера. Вы обещаете близкому отправить их обратно. Используйте I'll.",
+            "uk": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the wrong shoes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i09:r1",
+              "text": "I'll send back"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i09:r2",
+              "text": "I'll to send back"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i09:r3",
+              "text": "I send back"
+            }
+          ],
+          "testedDimension": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "У посилці виявилися туфлі іншого розміру. Ви обіцяєте близькій людині надіслати їх назад. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:word:set-aside",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — set aside",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:word:set-aside:audio"
+        ],
+        "accessibilityLabel": "Картка слова — set aside",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:word:set-aside:audio",
+            "transcript": "set aside"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:word:set-aside:r1",
+              "targetText": "set aside",
+              "meaningByLocale": {
+                "ru": "отложить и сохранить для определённой цели.",
+                "uk": "відкласти й зберегти для певної мети."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "set aside",
+            "definitionByLocale": {
+              "ru": "отложить и сохранить для определённой цели.",
+              "uk": "відкласти й зберегти для певної мети."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Скажіть: «Я відкладу трохи грошей на поїздку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Скажіть: «Я відкладу трохи грошей на поїздку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll set aside some money for the trip.",
+          "localizedMeaning": {
+            "ru": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Скажите: «Я отложу немного денег на поездку».",
+            "uk": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Скажіть: «Я відкладу трохи грошей на поїздку»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "set",
+            "aside",
+            "some",
+            "money",
+            "for",
+            "the",
+            "trip"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i11:r1",
+            "text": "I'll set aside some money for the trip."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i11:r2",
+            "text": "We'll set aside some money for the trip."
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i11:r3",
+            "text": "They'll set aside some money for the trip."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i11:audio",
+            "transcript": "I'll set aside some money for the trip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-19:i11:r1",
+              "targetText": "I'll set aside some money for the trip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i11:r2",
+              "targetText": "We'll set aside some money for the trip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i11:r3",
+              "targetText": "They'll set aside some money for the trip.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set aside some money for the trip.",
+                "uk": "У записі звучить I'll set aside some money for the trip."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set aside some money for the trip.",
+                "uk": "У записі звучить I'll set aside some money for the trip."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-19:i12:r1",
+            "text": "I'll set aside"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i12:r2",
+            "text": "I'll to set aside"
+          },
+          {
+            "responseId": "en:lesson-16:session-19:i12:r3",
+            "text": "I set aside"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. Используйте I'll.",
+            "uk": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ some money for the trip.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-19:i12:r1",
+              "text": "I'll set aside"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i12:r2",
+              "text": "I'll to set aside"
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i12:r3",
+              "text": "I set aside"
+            }
+          ],
+          "testedDimension": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-19:i13:p1",
+              "target": "hand in",
+              "meaningByLocale": {
+                "ru": "сдать документ или работу тому, кто их собирает",
+                "uk": "здати документ або роботу тому, хто їх збирає"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-19:i13:p2",
+              "target": "hand out",
+              "meaningByLocale": {
+                "ru": "раздать по одному нескольким людям",
+                "uk": "роздати по одному кільком людям"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-19:i13:p3",
+              "target": "send back",
+              "meaningByLocale": {
+                "ru": "отправить обратно",
+                "uk": "надіслати назад"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-19:i13:p4",
+              "target": "set aside",
+              "meaningByLocale": {
+                "ru": "отложить и сохранить для определённой цели",
+                "uk": "відкласти й зберегти для певної мети"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hand in",
+            "hand out",
+            "send back",
+            "set aside"
+          ],
+          "rightColumn": [
+            "здати документ або роботу тому, хто їх збирає",
+            "роздати по одному кільком людям",
+            "надіслати назад",
+            "відкласти й зберегти для певної мети"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i14:audio",
+            "transcript": "I'll hand in the form tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll hand in the form tomorrow.",
+          "orderedTokens": [
+            "I'll",
+            "hand",
+            "in",
+            "the",
+            "form",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i15:audio",
+            "transcript": "I'll send back the wrong shoes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll send back the wrong shoes.",
+          "orderedTokens": [
+            "I'll",
+            "send",
+            "back",
+            "the",
+            "wrong",
+            "shoes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i16:audio",
+            "transcript": "I'll hand out the invitations."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll hand out the invitations.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-19:i17:audio",
+            "transcript": "I'll set aside some money for the trip."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll set aside some money for the trip.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-19:word:hand-in",
+      "correctText": "hand in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i01",
+      "correctText": "I'll hand in the form tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i02",
+      "correctText": "I'll hand in the form tomorrow.",
+      "correctResponseId": "en:lesson-16:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i03",
+      "correctText": "I'll hand in",
+      "correctResponseId": "en:lesson-16:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:word:hand-out",
+      "correctText": "hand out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i04",
+      "correctText": "I'll hand out the invitations.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i05",
+      "correctText": "I'll hand out the invitations.",
+      "correctResponseId": "en:lesson-16:session-19:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i06",
+      "correctText": "I'll hand out",
+      "correctResponseId": "en:lesson-16:session-19:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:word:send-back",
+      "correctText": "send back",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i07",
+      "correctText": "I'll send back the wrong shoes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i08",
+      "correctText": "I'll send back the wrong shoes.",
+      "correctResponseId": "en:lesson-16:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i09",
+      "correctText": "I'll send back",
+      "correctResponseId": "en:lesson-16:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:word:set-aside",
+      "correctText": "set aside",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i10",
+      "correctText": "I'll set aside some money for the trip.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i11",
+      "correctText": "I'll set aside some money for the trip.",
+      "correctResponseId": "en:lesson-16:session-19:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i12",
+      "correctText": "I'll set aside",
+      "correctResponseId": "en:lesson-16:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i14",
+      "correctText": "I'll hand in the form tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i15",
+      "correctText": "I'll send back the wrong shoes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i16",
+      "correctText": "I'll hand out the invitations.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-19:i17",
+      "correctText": "I'll set aside some money for the trip.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-18:word:drop-by",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drop by",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:word:drop-by:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drop by",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:word:drop-by:audio",
+          "transcript": "drop by"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:word:drop-by:r1",
+            "targetText": "drop by",
+            "meaningByLocale": {
+              "ru": "ненадолго зайти в гости.",
+              "uk": "ненадовго зайти в гості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drop by",
+          "definitionByLocale": {
+            "ru": "ненадолго зайти в гости.",
+            "uk": "ненадовго зайти в гості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Скажите: «Я ненадолго зайду завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Скажите: «Я ненадолго зайду завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll drop by tomorrow.",
+        "localizedMeaning": {
+          "ru": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Скажите: «Я ненадолго зайду завтра».",
+          "uk": "Сусід просить зазирнути до нього. Ви обіцяєте ненадовго зайти завтра. Скажіть: «Я ненадовго зайду завтра»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "drop",
+          "by",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i02:r1",
+          "text": "I'll drop by tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i02:r2",
+          "text": "We'll drop by tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i02:r3",
+          "text": "They'll drop by tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i02:audio",
+          "transcript": "I'll drop by tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:i02:r1",
+            "targetText": "I'll drop by tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i02:r2",
+            "targetText": "We'll drop by tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i02:r3",
+            "targetText": "They'll drop by tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll drop by tomorrow.",
+              "uk": "У записі звучить I'll drop by tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll drop by tomorrow.",
+              "uk": "У записі звучить I'll drop by tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i03:r1",
+          "text": "I'll drop by"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i03:r2",
+          "text": "I'll to drop by"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i03:r3",
+          "text": "I drop by"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Используйте I'll.",
+          "uk": "Сусід просить зазирнути до нього. Ви обіцяєте ненадовго зайти завтра. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-18:i03:r1",
+            "text": "I'll drop by"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i03:r2",
+            "text": "I'll to drop by"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i03:r3",
+            "text": "I drop by"
+          }
+        ],
+        "testedDimension": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:word:see-off",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — see off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:word:see-off:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — see off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:word:see-off:audio",
+          "transcript": "see off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:word:see-off:r1",
+            "targetText": "see off",
+            "meaningByLocale": {
+              "ru": "проводить уезжающего человека.",
+              "uk": "провести людину, яка від’їжджає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "see off",
+          "definitionByLocale": {
+            "ru": "проводить уезжающего человека.",
+            "uk": "провести людину, яка від’їжджає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Скажите: «Я провожу вашу сестру».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Скажите: «Я провожу вашу сестру».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll see off your sister.",
+        "localizedMeaning": {
+          "ru": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Скажите: «Я провожу вашу сестру».",
+          "uk": "Друг не може провести сестру на потяг. Ви обіцяєте поїхати з нею на вокзал і провести її. Скажіть: «Я проведу вашу сестру»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "see",
+          "off",
+          "your",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i05:r1",
+          "text": "I'll see off your sister."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i05:r2",
+          "text": "We'll see off your sister."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i05:r3",
+          "text": "They'll see off your sister."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i05:audio",
+          "transcript": "I'll see off your sister."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:i05:r1",
+            "targetText": "I'll see off your sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i05:r2",
+            "targetText": "We'll see off your sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i05:r3",
+            "targetText": "They'll see off your sister.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll see off your sister.",
+              "uk": "У записі звучить I'll see off your sister."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll see off your sister.",
+              "uk": "У записі звучить I'll see off your sister."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i06:r1",
+          "text": "I'll see off"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i06:r2",
+          "text": "I'll to see off"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i06:r3",
+          "text": "I see off"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Используйте I'll.",
+          "uk": "Друг не може провести сестру на потяг. Ви обіцяєте поїхати з нею на вокзал і провести її. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ your sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-18:i06:r1",
+            "text": "I'll see off"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i06:r2",
+            "text": "I'll to see off"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i06:r3",
+            "text": "I see off"
+          }
+        ],
+        "testedDimension": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:word:get-back-to",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — get back to",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:word:get-back-to:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — get back to",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:word:get-back-to:audio",
+          "transcript": "get back to"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:word:get-back-to:r1",
+            "targetText": "get back to",
+            "meaningByLocale": {
+              "ru": "позже связаться с человеком и ответить.",
+              "uk": "пізніше зв’язатися з людиною й відповісти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get back to",
+          "definitionByLocale": {
+            "ru": "позже связаться с человеком и ответить.",
+            "uk": "пізніше зв’язатися з людиною й відповісти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Скажите: «Я свяжусь с вами и отвечу сегодня вечером».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Скажите: «Я свяжусь с вами и отвечу сегодня вечером».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll get back to you tonight.",
+        "localizedMeaning": {
+          "ru": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Скажите: «Я свяжусь с вами и отвечу сегодня вечером».",
+          "uk": "У вас поки немає відповіді на запитання друга. Ви обіцяєте уточнити й відповісти ввечері. Скажіть: «Я зв’яжуся з вами й відповім сьогодні ввечері»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "get",
+          "back",
+          "to",
+          "you",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i08:r1",
+          "text": "I'll get back to you tonight."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i08:r2",
+          "text": "We'll get back to you tonight."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i08:r3",
+          "text": "They'll get back to you tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i08:audio",
+          "transcript": "I'll get back to you tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:i08:r1",
+            "targetText": "I'll get back to you tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i08:r2",
+            "targetText": "We'll get back to you tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i08:r3",
+            "targetText": "They'll get back to you tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll get back to you tonight.",
+              "uk": "У записі звучить I'll get back to you tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll get back to you tonight.",
+              "uk": "У записі звучить I'll get back to you tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i09:r1",
+          "text": "I'll get back to"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i09:r2",
+          "text": "I'll to get back to"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i09:r3",
+          "text": "I get back to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Используйте I'll.",
+          "uk": "У вас поки немає відповіді на запитання друга. Ви обіцяєте уточнити й відповісти ввечері. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ you tonight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-18:i09:r1",
+            "text": "I'll get back to"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i09:r2",
+            "text": "I'll to get back to"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i09:r3",
+            "text": "I get back to"
+          }
+        ],
+        "testedDimension": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "У вас пока нет ответа на вопрос друга. Вы обещаете уточнить и ответить вечером. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:word:bring-back",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bring back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:word:bring-back:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bring back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:word:bring-back:audio",
+          "transcript": "bring back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:word:bring-back:r1",
+            "targetText": "bring back",
+            "meaningByLocale": {
+              "ru": "принести обратно.",
+              "uk": "принести назад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bring back",
+          "definitionByLocale": {
+            "ru": "принести обратно.",
+            "uk": "принести назад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Скажите: «Я принесу ваш зонт обратно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Скажите: «Я принесу ваш зонт обратно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll bring back your umbrella.",
+        "localizedMeaning": {
+          "ru": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Скажите: «Я принесу ваш зонт обратно».",
+          "uk": "Ви позичили в друга парасолю. Заспокойте його: ви обіцяєте принести парасолю назад. Скажіть: «Я принесу вашу парасолю назад»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "bring",
+          "back",
+          "your",
+          "umbrella"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i11:r1",
+          "text": "I'll bring back your umbrella."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i11:r2",
+          "text": "We'll bring back your umbrella."
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i11:r3",
+          "text": "They'll bring back your umbrella."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i11:audio",
+          "transcript": "I'll bring back your umbrella."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-18:i11:r1",
+            "targetText": "I'll bring back your umbrella.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i11:r2",
+            "targetText": "We'll bring back your umbrella.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i11:r3",
+            "targetText": "They'll bring back your umbrella.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll bring back your umbrella.",
+              "uk": "У записі звучить I'll bring back your umbrella."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll bring back your umbrella.",
+              "uk": "У записі звучить I'll bring back your umbrella."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-18:i12:r1",
+          "text": "I'll bring back"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i12:r2",
+          "text": "I'll to bring back"
+        },
+        {
+          "responseId": "en:lesson-16:session-18:i12:r3",
+          "text": "I bring back"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Используйте I'll.",
+          "uk": "Ви позичили в друга парасолю. Заспокойте його: ви обіцяєте принести парасолю назад. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ your umbrella.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-18:i12:r1",
+            "text": "I'll bring back"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i12:r2",
+            "text": "I'll to bring back"
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i12:r3",
+            "text": "I bring back"
+          }
+        ],
+        "testedDimension": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-18:i13:p1",
+            "target": "drop by",
+            "meaningByLocale": {
+              "ru": "ненадолго зайти в гости",
+              "uk": "ненадовго зайти в гості"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-18:i13:p2",
+            "target": "see off",
+            "meaningByLocale": {
+              "ru": "проводить уезжающего человека",
+              "uk": "провести людину, яка від’їжджає"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-18:i13:p3",
+            "target": "get back to",
+            "meaningByLocale": {
+              "ru": "позже связаться с человеком и ответить",
+              "uk": "пізніше зв’язатися з людиною й відповісти"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-18:i13:p4",
+            "target": "bring back",
+            "meaningByLocale": {
+              "ru": "принести обратно",
+              "uk": "принести назад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drop by",
+          "see off",
+          "get back to",
+          "bring back"
+        ],
+        "rightColumn": [
+          "ненадолго зайти в гости",
+          "проводить уезжающего человека",
+          "позже связаться с человеком и ответить",
+          "принести обратно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное обещание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное обещание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i14:audio",
+          "transcript": "I'll drop by tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll drop by tomorrow.",
+        "orderedTokens": [
+          "I'll",
+          "drop",
+          "by",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное обещание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное обещание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i15:audio",
+          "transcript": "I'll get back to you tonight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll get back to you tonight.",
+        "orderedTokens": [
+          "I'll",
+          "get",
+          "back",
+          "to",
+          "you",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Произнесите своё обещание.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. Произнесите своё обещание.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i16:audio",
+          "transcript": "I'll see off your sister."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll see off your sister.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Произнесите своё обещание.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. Произнесите своё обещание.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-18:i17:audio",
+          "transcript": "I'll bring back your umbrella."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll bring back your umbrella.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a1d1768bbb4cb49f17260dbdad66f4a7f31fdbb45a09c81580fa29306f7dc54f"
+}

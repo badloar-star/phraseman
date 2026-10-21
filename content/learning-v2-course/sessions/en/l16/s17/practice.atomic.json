@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-17:word:check-in-on",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check in on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:check-in-on:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check in on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:check-in-on:audio",
+            "transcript": "check in on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:check-in-on:r1",
+              "targetText": "check in on",
+              "meaningByLocale": {
+                "ru": "навестить или связаться, чтобы узнать, всё ли в порядке.",
+                "uk": "навідати або зв’язатися, щоб дізнатися, чи все гаразд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check in on",
+            "definitionByLocale": {
+              "ru": "навестить или связаться, чтобы узнать, всё ли в порядке.",
+              "uk": "навідати або зв’язатися, щоб дізнатися, чи все гаразд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Скажите: «Я навещу вашу маму, чтобы узнать, всё ли в порядке».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Скажите: «Я навещу вашу маму, чтобы узнать, всё ли в порядке».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll check in on your mother.",
+          "localizedMeaning": {
+            "ru": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Скажите: «Я навещу вашу маму, чтобы узнать, всё ли в порядке».",
+            "uk": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Скажіть: «Я навідаю вашу маму, щоб дізнатися, чи все гаразд»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "check",
+            "in",
+            "on",
+            "your",
+            "mother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i02:r1",
+            "text": "I'll check in on your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i02:r2",
+            "text": "We'll check in on your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i02:r3",
+            "text": "They'll check in on your mother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i02:audio",
+            "transcript": "I'll check in on your mother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i02:r1",
+              "targetText": "I'll check in on your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i02:r2",
+              "targetText": "We'll check in on your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i02:r3",
+              "targetText": "They'll check in on your mother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check in on your mother.",
+                "uk": "У записі звучить I'll check in on your mother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check in on your mother.",
+                "uk": "У записі звучить I'll check in on your mother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i03:r1",
+            "text": "I'll check in on"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i03:r2",
+            "text": "I'll to check in on"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i03:r3",
+            "text": "I check in on"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+            "uk": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your mother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i03:r1",
+              "text": "I'll check in on"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i03:r2",
+              "text": "I'll to check in on"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i03:r3",
+              "text": "I check in on"
+            }
+          ],
+          "testedDimension": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:word:look-out-for",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — look out for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:look-out-for:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — look out for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:look-out-for:audio",
+            "transcript": "look out for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:look-out-for:r1",
+              "targetText": "look out for",
+              "meaningByLocale": {
+                "ru": "присматривать и оберегать от неприятностей.",
+                "uk": "приглядати й оберігати від неприємностей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "look out for",
+            "definitionByLocale": {
+              "ru": "присматривать и оберегать от неприятностей.",
+              "uk": "приглядати й оберігати від неприємностей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Скажите: «Я присмотрю за вашим братом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Скажите: «Я присмотрю за вашим братом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll look out for your brother.",
+          "localizedMeaning": {
+            "ru": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Скажите: «Я присмотрю за вашим братом».",
+            "uk": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Скажіть: «Я пригляну за вашим братом»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "look",
+            "out",
+            "for",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i05:r1",
+            "text": "I'll look out for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i05:r2",
+            "text": "We'll look out for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i05:r3",
+            "text": "They'll look out for your brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i05:audio",
+            "transcript": "I'll look out for your brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i05:r1",
+              "targetText": "I'll look out for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i05:r2",
+              "targetText": "We'll look out for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i05:r3",
+              "targetText": "They'll look out for your brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll look out for your brother.",
+                "uk": "У записі звучить I'll look out for your brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll look out for your brother.",
+                "uk": "У записі звучить I'll look out for your brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i06:r1",
+            "text": "I'll look out for"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i06:r2",
+            "text": "I'll to look out for"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i06:r3",
+            "text": "I look out for"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+            "uk": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i06:r1",
+              "text": "I'll look out for"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i06:r2",
+              "text": "I'll to look out for"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i06:r3",
+              "text": "I look out for"
+            }
+          ],
+          "testedDimension": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:word:stand-by",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stand by",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:stand-by:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stand by",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:stand-by:audio",
+            "transcript": "stand by"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:stand-by:r1",
+              "targetText": "stand by",
+              "meaningByLocale": {
+                "ru": "поддерживать человека в трудной ситуации.",
+                "uk": "підтримувати людину у складній ситуації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stand by",
+            "definitionByLocale": {
+              "ru": "поддерживать человека в трудной ситуации.",
+              "uk": "підтримувати людину у складній ситуації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Скажите: «Я поддержу вас».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Скажите: «Я поддержу вас».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll stand by you.",
+          "localizedMeaning": {
+            "ru": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Скажите: «Я поддержу вас».",
+            "uk": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Скажіть: «Я підтримаю вас»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "stand",
+            "by",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i08:r1",
+            "text": "I'll stand by you."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i08:r2",
+            "text": "We'll stand by you."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i08:r3",
+            "text": "They'll stand by you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i08:audio",
+            "transcript": "I'll stand by you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i08:r1",
+              "targetText": "I'll stand by you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i08:r2",
+              "targetText": "We'll stand by you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i08:r3",
+              "targetText": "They'll stand by you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll stand by you.",
+                "uk": "У записі звучить I'll stand by you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll stand by you.",
+                "uk": "У записі звучить I'll stand by you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i09:r1",
+            "text": "I'll stand by"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i09:r2",
+            "text": "I'll to stand by"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i09:r3",
+            "text": "I stand by"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+            "uk": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i09:r1",
+              "text": "I'll stand by"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i09:r2",
+              "text": "I'll to stand by"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i09:r3",
+              "text": "I stand by"
+            }
+          ],
+          "testedDimension": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:word:keep-in-touch",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keep in touch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:keep-in-touch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keep in touch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:keep-in-touch:audio",
+            "transcript": "keep in touch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:keep-in-touch:r1",
+              "targetText": "keep in touch",
+              "meaningByLocale": {
+                "ru": "поддерживать связь.",
+                "uk": "підтримувати зв’язок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep in touch",
+            "definitionByLocale": {
+              "ru": "поддерживать связь.",
+              "uk": "підтримувати зв’язок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Скажите: «Я буду поддерживать связь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Скажите: «Я буду поддерживать связь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll keep in touch.",
+          "localizedMeaning": {
+            "ru": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Скажите: «Я буду поддерживать связь».",
+            "uk": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Скажіть: «Я підтримуватиму зв’язок»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "keep",
+            "in",
+            "touch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i11:r1",
+            "text": "I'll keep in touch."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i11:r2",
+            "text": "We'll keep in touch."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i11:r3",
+            "text": "They'll keep in touch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i11:audio",
+            "transcript": "I'll keep in touch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i11:r1",
+              "targetText": "I'll keep in touch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i11:r2",
+              "targetText": "We'll keep in touch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i11:r3",
+              "targetText": "They'll keep in touch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep in touch.",
+                "uk": "У записі звучить I'll keep in touch."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep in touch.",
+                "uk": "У записі звучить I'll keep in touch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i12:r1",
+            "text": "I'll keep in touch"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i12:r2",
+            "text": "I'll to keep in touch"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i12:r3",
+            "text": "I keep in touch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+            "uk": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i12:r1",
+              "text": "I'll keep in touch"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i12:r2",
+              "text": "I'll to keep in touch"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i12:r3",
+              "text": "I keep in touch"
+            }
+          ],
+          "testedDimension": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-17:i13:p1",
+              "target": "check in on",
+              "meaningByLocale": {
+                "ru": "навестить или связаться, чтобы узнать, всё ли в порядке",
+                "uk": "навідати або зв’язатися, щоб дізнатися, чи все гаразд"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-17:i13:p2",
+              "target": "look out for",
+              "meaningByLocale": {
+                "ru": "присматривать и оберегать от неприятностей",
+                "uk": "приглядати й оберігати від неприємностей"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-17:i13:p3",
+              "target": "stand by",
+              "meaningByLocale": {
+                "ru": "поддерживать человека в трудной ситуации",
+                "uk": "підтримувати людину у складній ситуації"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-17:i13:p4",
+              "target": "keep in touch",
+              "meaningByLocale": {
+                "ru": "поддерживать связь",
+                "uk": "підтримувати зв’язок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check in on",
+            "look out for",
+            "stand by",
+            "keep in touch"
+          ],
+          "rightColumn": [
+            "навестить или связаться, чтобы узнать, всё ли в порядке",
+            "присматривать и оберегать от неприятностей",
+            "поддерживать человека в трудной ситуации",
+            "поддерживать связь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i14:audio",
+            "transcript": "I'll check in on your mother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll check in on your mother.",
+          "orderedTokens": [
+            "I'll",
+            "check",
+            "in",
+            "on",
+            "your",
+            "mother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i15:audio",
+            "transcript": "I'll stand by you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll stand by you.",
+          "orderedTokens": [
+            "I'll",
+            "stand",
+            "by",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i16:audio",
+            "transcript": "I'll look out for your brother."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll look out for your brother.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i17:audio",
+            "transcript": "I'll keep in touch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll keep in touch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-17:word:check-in-on",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check in on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:check-in-on:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check in on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:check-in-on:audio",
+            "transcript": "check in on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:check-in-on:r1",
+              "targetText": "check in on",
+              "meaningByLocale": {
+                "ru": "навестить или связаться, чтобы узнать, всё ли в порядке.",
+                "uk": "навідати або зв’язатися, щоб дізнатися, чи все гаразд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check in on",
+            "definitionByLocale": {
+              "ru": "навестить или связаться, чтобы узнать, всё ли в порядке.",
+              "uk": "навідати або зв’язатися, щоб дізнатися, чи все гаразд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Скажіть: «Я навідаю вашу маму, щоб дізнатися, чи все гаразд».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Скажіть: «Я навідаю вашу маму, щоб дізнатися, чи все гаразд».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll check in on your mother.",
+          "localizedMeaning": {
+            "ru": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Скажите: «Я навещу вашу маму, чтобы узнать, всё ли в порядке».",
+            "uk": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Скажіть: «Я навідаю вашу маму, щоб дізнатися, чи все гаразд»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "check",
+            "in",
+            "on",
+            "your",
+            "mother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i02:r1",
+            "text": "I'll check in on your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i02:r2",
+            "text": "We'll check in on your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i02:r3",
+            "text": "They'll check in on your mother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i02:audio",
+            "transcript": "I'll check in on your mother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i02:r1",
+              "targetText": "I'll check in on your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i02:r2",
+              "targetText": "We'll check in on your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i02:r3",
+              "targetText": "They'll check in on your mother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check in on your mother.",
+                "uk": "У записі звучить I'll check in on your mother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check in on your mother.",
+                "uk": "У записі звучить I'll check in on your mother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i03:r1",
+            "text": "I'll check in on"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i03:r2",
+            "text": "I'll to check in on"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i03:r3",
+            "text": "I check in on"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг уезжает и волнуется за маму. Вы обещаете навещать её и узнавать, всё ли хорошо. Используйте I'll.",
+            "uk": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your mother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i03:r1",
+              "text": "I'll check in on"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i03:r2",
+              "text": "I'll to check in on"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i03:r3",
+              "text": "I check in on"
+            }
+          ],
+          "testedDimension": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг їде й хвилюється за маму. Ви обіцяєте навідувати її та дізнаватися, чи все добре. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:word:look-out-for",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — look out for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:look-out-for:audio"
+        ],
+        "accessibilityLabel": "Картка слова — look out for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:look-out-for:audio",
+            "transcript": "look out for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:look-out-for:r1",
+              "targetText": "look out for",
+              "meaningByLocale": {
+                "ru": "присматривать и оберегать от неприятностей.",
+                "uk": "приглядати й оберігати від неприємностей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "look out for",
+            "definitionByLocale": {
+              "ru": "присматривать и оберегать от неприятностей.",
+              "uk": "приглядати й оберігати від неприємностей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Скажіть: «Я пригляну за вашим братом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Скажіть: «Я пригляну за вашим братом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll look out for your brother.",
+          "localizedMeaning": {
+            "ru": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Скажите: «Я присмотрю за вашим братом».",
+            "uk": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Скажіть: «Я пригляну за вашим братом»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "look",
+            "out",
+            "for",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i05:r1",
+            "text": "I'll look out for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i05:r2",
+            "text": "We'll look out for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i05:r3",
+            "text": "They'll look out for your brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i05:audio",
+            "transcript": "I'll look out for your brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i05:r1",
+              "targetText": "I'll look out for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i05:r2",
+              "targetText": "We'll look out for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i05:r3",
+              "targetText": "They'll look out for your brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll look out for your brother.",
+                "uk": "У записі звучить I'll look out for your brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll look out for your brother.",
+                "uk": "У записі звучить I'll look out for your brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i06:r1",
+            "text": "I'll look out for"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i06:r2",
+            "text": "I'll to look out for"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i06:r3",
+            "text": "I look out for"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг беспокоится за младшего брата на экскурсии. Вы обещаете присматривать за ним. Используйте I'll.",
+            "uk": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i06:r1",
+              "text": "I'll look out for"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i06:r2",
+              "text": "I'll to look out for"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i06:r3",
+              "text": "I look out for"
+            }
+          ],
+          "testedDimension": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:word:stand-by",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stand by",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:stand-by:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stand by",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:stand-by:audio",
+            "transcript": "stand by"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:stand-by:r1",
+              "targetText": "stand by",
+              "meaningByLocale": {
+                "ru": "поддерживать человека в трудной ситуации.",
+                "uk": "підтримувати людину у складній ситуації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stand by",
+            "definitionByLocale": {
+              "ru": "поддерживать человека в трудной ситуации.",
+              "uk": "підтримувати людину у складній ситуації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Скажіть: «Я підтримаю вас».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Скажіть: «Я підтримаю вас».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll stand by you.",
+          "localizedMeaning": {
+            "ru": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Скажите: «Я поддержу вас».",
+            "uk": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Скажіть: «Я підтримаю вас»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "stand",
+            "by",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i08:r1",
+            "text": "I'll stand by you."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i08:r2",
+            "text": "We'll stand by you."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i08:r3",
+            "text": "They'll stand by you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i08:audio",
+            "transcript": "I'll stand by you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i08:r1",
+              "targetText": "I'll stand by you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i08:r2",
+              "targetText": "We'll stand by you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i08:r3",
+              "targetText": "They'll stand by you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll stand by you.",
+                "uk": "У записі звучить I'll stand by you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll stand by you.",
+                "uk": "У записі звучить I'll stand by you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i09:r1",
+            "text": "I'll stand by"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i09:r2",
+            "text": "I'll to stand by"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i09:r3",
+            "text": "I stand by"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг проходит через трудный период и боится остаться один. Вы обещаете поддержать его. Используйте I'll.",
+            "uk": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i09:r1",
+              "text": "I'll stand by"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i09:r2",
+              "text": "I'll to stand by"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i09:r3",
+              "text": "I stand by"
+            }
+          ],
+          "testedDimension": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг переживає складний період і боїться залишитися сам. Ви обіцяєте підтримати його. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:word:keep-in-touch",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keep in touch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:word:keep-in-touch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keep in touch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:word:keep-in-touch:audio",
+            "transcript": "keep in touch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:word:keep-in-touch:r1",
+              "targetText": "keep in touch",
+              "meaningByLocale": {
+                "ru": "поддерживать связь.",
+                "uk": "підтримувати зв’язок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep in touch",
+            "definitionByLocale": {
+              "ru": "поддерживать связь.",
+              "uk": "підтримувати зв’язок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Скажіть: «Я підтримуватиму зв’язок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Скажіть: «Я підтримуватиму зв’язок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll keep in touch.",
+          "localizedMeaning": {
+            "ru": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Скажите: «Я буду поддерживать связь».",
+            "uk": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Скажіть: «Я підтримуватиму зв’язок»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "keep",
+            "in",
+            "touch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i11:r1",
+            "text": "I'll keep in touch."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i11:r2",
+            "text": "We'll keep in touch."
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i11:r3",
+            "text": "They'll keep in touch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i11:audio",
+            "transcript": "I'll keep in touch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-17:i11:r1",
+              "targetText": "I'll keep in touch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i11:r2",
+              "targetText": "We'll keep in touch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i11:r3",
+              "targetText": "They'll keep in touch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep in touch.",
+                "uk": "У записі звучить I'll keep in touch."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep in touch.",
+                "uk": "У записі звучить I'll keep in touch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-17:i12:r1",
+            "text": "I'll keep in touch"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i12:r2",
+            "text": "I'll to keep in touch"
+          },
+          {
+            "responseId": "en:lesson-16:session-17:i12:r3",
+            "text": "I keep in touch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы переезжаете. Друг просит не пропадать, и вы обещаете поддерживать связь. Используйте I'll.",
+            "uk": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-17:i12:r1",
+              "text": "I'll keep in touch"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i12:r2",
+              "text": "I'll to keep in touch"
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i12:r3",
+              "text": "I keep in touch"
+            }
+          ],
+          "testedDimension": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-17:i13:p1",
+              "target": "check in on",
+              "meaningByLocale": {
+                "ru": "навестить или связаться, чтобы узнать, всё ли в порядке",
+                "uk": "навідати або зв’язатися, щоб дізнатися, чи все гаразд"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-17:i13:p2",
+              "target": "look out for",
+              "meaningByLocale": {
+                "ru": "присматривать и оберегать от неприятностей",
+                "uk": "приглядати й оберігати від неприємностей"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-17:i13:p3",
+              "target": "stand by",
+              "meaningByLocale": {
+                "ru": "поддерживать человека в трудной ситуации",
+                "uk": "підтримувати людину у складній ситуації"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-17:i13:p4",
+              "target": "keep in touch",
+              "meaningByLocale": {
+                "ru": "поддерживать связь",
+                "uk": "підтримувати зв’язок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check in on",
+            "look out for",
+            "stand by",
+            "keep in touch"
+          ],
+          "rightColumn": [
+            "навідати або зв’язатися, щоб дізнатися, чи все гаразд",
+            "приглядати й оберігати від неприємностей",
+            "підтримувати людину у складній ситуації",
+            "підтримувати зв’язок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i14:audio",
+            "transcript": "I'll check in on your mother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll check in on your mother.",
+          "orderedTokens": [
+            "I'll",
+            "check",
+            "in",
+            "on",
+            "your",
+            "mother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i15:audio",
+            "transcript": "I'll stand by you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll stand by you.",
+          "orderedTokens": [
+            "I'll",
+            "stand",
+            "by",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Друг непокоїться за молодшого брата на екскурсії. Ви обіцяєте приглядати за ним. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i16:audio",
+            "transcript": "I'll look out for your brother."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll look out for your brother.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Ви переїжджаєте. Друг просить не зникати, і ви обіцяєте підтримувати зв’язок. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-17:i17:audio",
+            "transcript": "I'll keep in touch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll keep in touch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-17:word:check-in-on",
+      "correctText": "check in on",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i01",
+      "correctText": "I'll check in on your mother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i02",
+      "correctText": "I'll check in on your mother.",
+      "correctResponseId": "en:lesson-16:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i03",
+      "correctText": "I'll check in on",
+      "correctResponseId": "en:lesson-16:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:word:look-out-for",
+      "correctText": "look out for",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i04",
+      "correctText": "I'll look out for your brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i05",
+      "correctText": "I'll look out for your brother.",
+      "correctResponseId": "en:lesson-16:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i06",
+      "correctText": "I'll look out for",
+      "correctResponseId": "en:lesson-16:session-17:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:word:stand-by",
+      "correctText": "stand by",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i07",
+      "correctText": "I'll stand by you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i08",
+      "correctText": "I'll stand by you.",
+      "correctResponseId": "en:lesson-16:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i09",
+      "correctText": "I'll stand by",
+      "correctResponseId": "en:lesson-16:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:word:keep-in-touch",
+      "correctText": "keep in touch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i10",
+      "correctText": "I'll keep in touch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i11",
+      "correctText": "I'll keep in touch.",
+      "correctResponseId": "en:lesson-16:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i12",
+      "correctText": "I'll keep in touch",
+      "correctResponseId": "en:lesson-16:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i14",
+      "correctText": "I'll check in on your mother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i15",
+      "correctText": "I'll stand by you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i16",
+      "correctText": "I'll look out for your brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-17:i17",
+      "correctText": "I'll keep in touch.",
+      "correctResponseId": null
+    }
+  ]
+}

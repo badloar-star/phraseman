@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: promise",
+    "uk": "I'll + base verb: promise"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обещание близкому",
+        "uk": "Обіцянка близькій людині"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Обещание тоже можно передать через I'll + глагол в начальной форме. Здесь вы не просто предполагаете будущее: вы заверяете человека, что сделаете обещанное. Смысл обещания понятен из ситуации. После I'll не нужно to. hand in — сдать документ или работу тому, кто их собирает. Вы заполнили бланк для школьной поездки. Учитель напоминает о нём, и вы обещаете сдать его завтра. I'll hand in the form tomorrow. — Я сдам бланк завтра.",
+        "uk": "I'll — скорочення I will. Обіцянку теж можна передати через I'll + дієслово в початковій формі. Тут ви не просто припускаєте майбутнє: ви запевняєте людину, що зробите обіцяне. Значення обіцянки зрозуміле із ситуації. Після I'll не потрібне to. hand in — здати документ або роботу тому, хто їх збирає. Ви заповнили бланк для шкільної поїздки. Учитель нагадує про нього, і ви обіцяєте здати його завтра. I'll hand in the form tomorrow. — Я здам бланк завтра."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-19:intro1:r1",
+              "text": "I'll hand in the form tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro1:r2",
+              "text": "I'll to hand in the form tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro1:r3",
+              "text": "I hand in the form tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-19:intro1:r1",
+              "text": "I'll hand in the form tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro1:r2",
+              "text": "I'll to hand in the form tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro1:r3",
+              "text": "I hand in the form tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заверяем в поддержке",
+        "uk": "Запевняємо в підтримці"
+      },
+      "bodyByLocale": {
+        "ru": "hand out — раздать по одному нескольким людям. Друг готовит праздник и переживает, что гости не получат приглашения. Вы обещаете их раздать. I'll hand out the invitations. — Я раздам приглашения.",
+        "uk": "hand out — роздати по одному кільком людям. Друг готує свято й переживає, що гості не отримають запрошення. Ви обіцяєте їх роздати. I'll hand out the invitations. — Я роздам запрошення."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-19:intro2:r1",
+              "text": "I'll hand out the invitations."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro2:r2",
+              "text": "I'll to hand out the invitations."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro2:r3",
+              "text": "I hand out the invitations."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-19:intro2:r1",
+              "text": "I'll hand out the invitations."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro2:r2",
+              "text": "I'll to hand out the invitations."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro2:r3",
+              "text": "I hand out the invitations."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держим слово",
+        "uk": "Дотримуємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "send back — отправить обратно. set aside — отложить и сохранить для определённой цели. Вы с другом собираетесь в поездку. Он беспокоится о расходах, и вы обещаете отложить свою часть денег. I'll set aside some money for the trip. — Я отложу немного денег на поездку.",
+        "uk": "send back — надіслати назад. set aside — відкласти й зберегти для певної мети. Ви з другом збираєтеся в поїздку. Він непокоїться про витрати, і ви обіцяєте відкласти свою частину грошей. I'll set aside some money for the trip. — Я відкладу трохи грошей на поїздку."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-19:intro3:r1",
+              "text": "I'll set aside some money for the trip."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro3:r2",
+              "text": "I'll to set aside some money for the trip."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro3:r3",
+              "text": "I set aside some money for the trip."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-19:intro3:r1",
+              "text": "I'll set aside some money for the trip."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro3:r2",
+              "text": "I'll to set aside some money for the trip."
+            },
+            {
+              "responseId": "en:lesson-16:session-19:intro3:r3",
+              "text": "I set aside some money for the trip."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2a7aedc72936cb9d77762e41009183d628d66cad6afcf01add69f4fe79fda3c1"
+}

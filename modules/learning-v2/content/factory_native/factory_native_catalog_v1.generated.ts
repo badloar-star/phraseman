@@ -5999,4 +5999,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + base verb: spontaneous decision","uk":"I'll + base verb: spontaneous decision"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 17,
+    sourceFingerprint: "1761de8e9b2ee1543093cdfed19790adb27142cb99fa3ca7a69e64f5ab684481",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + base verb: promise","uk":"I'll + base verb: promise"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 18,
+    sourceFingerprint: "9945a00cd9eac7aff0f8034cc696b11aa60e4000bae07813364d7d24e2a2a7d7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + base verb: promise","uk":"I'll + base verb: promise"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 19,
+    sourceFingerprint: "a5f1068697509ff29e039c7221f8293d117518f566bc8fb37ba3e1f260910b6e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + base verb: promise","uk":"I'll + base verb: promise"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
 ]);

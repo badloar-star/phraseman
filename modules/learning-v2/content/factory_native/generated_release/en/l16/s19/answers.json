@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-19:word:hand-in",
+    "correctText": "hand in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i01",
+    "correctText": "I'll hand in the form tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i02",
+    "correctText": "I'll hand in the form tomorrow.",
+    "correctResponseId": "en:lesson-16:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i03",
+    "correctText": "I'll hand in",
+    "correctResponseId": "en:lesson-16:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:word:hand-out",
+    "correctText": "hand out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i04",
+    "correctText": "I'll hand out the invitations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i05",
+    "correctText": "I'll hand out the invitations.",
+    "correctResponseId": "en:lesson-16:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i06",
+    "correctText": "I'll hand out",
+    "correctResponseId": "en:lesson-16:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:word:send-back",
+    "correctText": "send back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i07",
+    "correctText": "I'll send back the wrong shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i08",
+    "correctText": "I'll send back the wrong shoes.",
+    "correctResponseId": "en:lesson-16:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i09",
+    "correctText": "I'll send back",
+    "correctResponseId": "en:lesson-16:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:word:set-aside",
+    "correctText": "set aside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i10",
+    "correctText": "I'll set aside some money for the trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i11",
+    "correctText": "I'll set aside some money for the trip.",
+    "correctResponseId": "en:lesson-16:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i12",
+    "correctText": "I'll set aside",
+    "correctResponseId": "en:lesson-16:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i13",
+    "correctText": "en:lesson-16:session-19:i13:p1=hand in\nen:lesson-16:session-19:i13:p2=hand out\nen:lesson-16:session-19:i13:p3=send back\nen:lesson-16:session-19:i13:p4=set aside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i14",
+    "correctText": "I'll hand in the form tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i15",
+    "correctText": "I'll send back the wrong shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i16",
+    "correctText": "I'll hand out the invitations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-19:i17",
+    "correctText": "I'll set aside some money for the trip.",
+    "correctResponseId": null
+  }
+]

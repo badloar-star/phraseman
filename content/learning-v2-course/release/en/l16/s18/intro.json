@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: promise",
+    "uk": "I'll + base verb: promise"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обещание близкому",
+        "uk": "Обіцянка близькій людині"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Обещание тоже можно передать через I'll + глагол в начальной форме. Здесь вы не просто предполагаете будущее: вы заверяете человека, что сделаете обещанное. Смысл обещания понятен из ситуации. После I'll не нужно to. drop by — ненадолго зайти в гости. Сосед просит заглянуть к нему. Вы обещаете ненадолго зайти завтра. I'll drop by tomorrow. — Я ненадолго зайду завтра.",
+        "uk": "I'll — скорочення I will. Обіцянку теж можна передати через I'll + дієслово в початковій формі. Тут ви не просто припускаєте майбутнє: ви запевняєте людину, що зробите обіцяне. Значення обіцянки зрозуміле із ситуації. Після I'll не потрібне to. drop by — ненадовго зайти в гості. Сусід просить зазирнути до нього. Ви обіцяєте ненадовго зайти завтра. I'll drop by tomorrow. — Я ненадовго зайду завтра."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-18:intro1:r1",
+              "text": "I'll drop by tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro1:r2",
+              "text": "I'll to drop by tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro1:r3",
+              "text": "I drop by tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-18:intro1:r1",
+              "text": "I'll drop by tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro1:r2",
+              "text": "I'll to drop by tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro1:r3",
+              "text": "I drop by tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заверяем в поддержке",
+        "uk": "Запевняємо в підтримці"
+      },
+      "bodyByLocale": {
+        "ru": "see off — проводить уезжающего человека. Друг не может проводить сестру на поезд. Вы обещаете поехать с ней на вокзал и проводить её. I'll see off your sister. — Я провожу вашу сестру.",
+        "uk": "see off — провести людину, яка від’їжджає. Друг не може провести сестру на потяг. Ви обіцяєте поїхати з нею на вокзал і провести її. I'll see off your sister. — Я проведу вашу сестру."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-18:intro2:r1",
+              "text": "I'll see off your sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro2:r2",
+              "text": "I'll to see off your sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro2:r3",
+              "text": "I see off your sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-18:intro2:r1",
+              "text": "I'll see off your sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro2:r2",
+              "text": "I'll to see off your sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro2:r3",
+              "text": "I see off your sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держим слово",
+        "uk": "Дотримуємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "get back to — позже связаться с человеком и ответить. bring back — принести обратно. Вы одолжили у друга зонт. Успокойте его: вы обещаете принести зонт обратно. I'll bring back your umbrella. — Я принесу ваш зонт обратно.",
+        "uk": "get back to — пізніше зв’язатися з людиною й відповісти. bring back — принести назад. Ви позичили в друга парасолю. Заспокойте його: ви обіцяєте принести парасолю назад. I'll bring back your umbrella. — Я принесу вашу парасолю назад."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-18:intro3:r1",
+              "text": "I'll bring back your umbrella."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro3:r2",
+              "text": "I'll to bring back your umbrella."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro3:r3",
+              "text": "I bring back your umbrella."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-18:intro3:r1",
+              "text": "I'll bring back your umbrella."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro3:r2",
+              "text": "I'll to bring back your umbrella."
+            },
+            {
+              "responseId": "en:lesson-16:session-18:intro3:r3",
+              "text": "I bring back your umbrella."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5ee2ac176b9f2d1c935c0141f00f659cec53f7088a983b50affb5553b0985524"
+}

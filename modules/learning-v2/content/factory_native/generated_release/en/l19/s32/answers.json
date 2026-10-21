@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-32:word:wages",
+    "correctText": "wages",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i01",
+    "correctText": "I am able to check my wages.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i02",
+    "correctText": "I am able to check my wages.",
+    "correctResponseId": "en:lesson-19:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:word:bonus",
+    "correctText": "bonus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i04",
+    "correctText": "She is able to earn a bonus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i05",
+    "correctText": "She is able to earn a bonus.",
+    "correctResponseId": "en:lesson-19:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:word:promotion",
+    "correctText": "promotion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i07",
+    "correctText": "We will be able to discuss the promotion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i08",
+    "correctText": "We will be able to discuss the promotion.",
+    "correctResponseId": "en:lesson-19:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:word:retirement",
+    "correctText": "retirement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i10",
+    "correctText": "They will be able to plan their retirement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i11",
+    "correctText": "They will be able to plan their retirement.",
+    "correctResponseId": "en:lesson-19:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i13",
+    "correctText": "en:lesson-19:session-32:i13:p1=wages\nen:lesson-19:session-32:i13:p2=bonus\nen:lesson-19:session-32:i13:p3=promotion\nen:lesson-19:session-32:i13:p4=retirement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i16",
+    "correctText": "I can check my wages.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-32:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

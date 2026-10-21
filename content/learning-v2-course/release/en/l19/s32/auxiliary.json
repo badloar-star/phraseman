@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-32:intro1:r2": {
+          "ru": "С I нужна форма am: I am able to.",
+          "uk": "З I потрібна форма am: I am able to."
+        },
+        "en:lesson-19:session-32:intro1:r3": {
+          "ru": "После able нужно to.",
+          "uk": "Після able потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-32:intro2:r2": {
+          "ru": "С she нужна форма is.",
+          "uk": "З she потрібна форма is."
+        },
+        "en:lesson-19:session-32:intro2:r3": {
+          "ru": "После able нужно to.",
+          "uk": "Після able потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-32:intro3:r2": {
+          "ru": "После will нельзя ставить can; используйте will be able to.",
+          "uk": "Після will не можна ставити can; використайте will be able to."
+        },
+        "en:lesson-19:session-32:intro3:r3": {
+          "ru": "В конструкции нужна be: will be able to.",
+          "uk": "У конструкції потрібне be: will be able to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1832a4c3c66887eb54e288d3f5b02ebe538a44548a4a822d30fe67cdb68a6328"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-29:word:ingredient",
+    "correctText": "ingredient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i01",
+    "correctText": "I am able to find this ingredient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i02",
+    "correctText": "I am able to find this ingredient.",
+    "correctResponseId": "en:lesson-19:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:word:mixture",
+    "correctText": "mixture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i04",
+    "correctText": "She is able to stir the mixture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i05",
+    "correctText": "She is able to stir the mixture.",
+    "correctResponseId": "en:lesson-19:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:word:texture",
+    "correctText": "texture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i07",
+    "correctText": "We will be able to improve the texture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i08",
+    "correctText": "We will be able to improve the texture.",
+    "correctResponseId": "en:lesson-19:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:word:substitute",
+    "correctText": "substitute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i10",
+    "correctText": "They will be able to find a substitute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i11",
+    "correctText": "They will be able to find a substitute.",
+    "correctResponseId": "en:lesson-19:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i13",
+    "correctText": "en:lesson-19:session-29:i13:p1=ingredient\nen:lesson-19:session-29:i13:p2=mixture\nen:lesson-19:session-29:i13:p3=texture\nen:lesson-19:session-29:i13:p4=substitute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i16",
+    "correctText": "I can find this ingredient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-29:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-25:word:cope",
+    "correctText": "cope",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i01",
+    "correctText": "I am able to cope with the stress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i02",
+    "correctText": "I am able to cope with the stress.",
+    "correctResponseId": "en:lesson-19:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:word:recover",
+    "correctText": "recover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i04",
+    "correctText": "She is able to recover at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i05",
+    "correctText": "She is able to recover at home.",
+    "correctResponseId": "en:lesson-19:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:word:achieve",
+    "correctText": "achieve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i07",
+    "correctText": "We will be able to achieve this goal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i08",
+    "correctText": "We will be able to achieve this goal.",
+    "correctResponseId": "en:lesson-19:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:word:succeed",
+    "correctText": "succeed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i10",
+    "correctText": "They will be able to succeed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i11",
+    "correctText": "They will be able to succeed.",
+    "correctResponseId": "en:lesson-19:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i13",
+    "correctText": "en:lesson-19:session-25:i13:p1=cope\nen:lesson-19:session-25:i13:p2=recover\nen:lesson-19:session-25:i13:p3=achieve\nen:lesson-19:session-25:i13:p4=succeed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i16",
+    "correctText": "I can cope with the stress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-25:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

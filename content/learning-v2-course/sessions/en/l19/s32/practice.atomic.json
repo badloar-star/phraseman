@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-32:word:wages",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wages",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:wages:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wages",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:wages:audio",
+            "transcript": "wages"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:wages:r1",
+              "targetText": "wages",
+              "meaningByLocale": {
+                "ru": "заработная плата.",
+                "uk": "заробітна плата."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wages",
+            "definitionByLocale": {
+              "ru": "заработная плата.",
+              "uk": "заробітна плата."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Я могу проверить свою заработную плату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Я могу проверить свою заработную плату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to check my wages.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу проверить свою заработную плату».",
+            "uk": "Скажіть із be able to: «Я можу перевірити свою заробітну плату»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "check",
+            "my",
+            "wages"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i02:r1",
+            "text": "I am able to check my wages."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i02:r2",
+            "text": "I am not able to check my wages."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i02:r3",
+            "text": "We are able to check our wages."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i02:audio",
+            "transcript": "I am able to check my wages."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i02:r1",
+              "targetText": "I am able to check my wages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i02:r2",
+              "targetText": "I am not able to check my wages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i02:r3",
+              "targetText": "We are able to check our wages.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to check my wages.",
+                "uk": "У записі звучить I am able to check my wages."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to check my wages.",
+                "uk": "У записі звучить I am able to check my wages."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ check my wages.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:word:bonus",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bonus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:bonus:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bonus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:bonus:audio",
+            "transcript": "bonus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:bonus:r1",
+              "targetText": "bonus",
+              "meaningByLocale": {
+                "ru": "премия, дополнительная выплата.",
+                "uk": "премія, додаткова виплата."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bonus",
+            "definitionByLocale": {
+              "ru": "премия, дополнительная выплата.",
+              "uk": "премія, додаткова виплата."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Она может заработать премию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Она может заработать премию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to earn a bonus.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может заработать премию».",
+            "uk": "Скажіть із be able to: «Вона може заробити премію»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "earn",
+            "a",
+            "bonus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i05:r1",
+            "text": "She is able to earn a bonus."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i05:r2",
+            "text": "She is not able to earn a bonus."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i05:r3",
+            "text": "They are able to earn a bonus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i05:audio",
+            "transcript": "She is able to earn a bonus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i05:r1",
+              "targetText": "She is able to earn a bonus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i05:r2",
+              "targetText": "She is not able to earn a bonus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i05:r3",
+              "targetText": "They are able to earn a bonus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to earn a bonus.",
+                "uk": "У записі звучить She is able to earn a bonus."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to earn a bonus.",
+                "uk": "У записі звучить She is able to earn a bonus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ earn a bonus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:word:promotion",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — promotion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:promotion:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — promotion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:promotion:audio",
+            "transcript": "promotion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:promotion:r1",
+              "targetText": "promotion",
+              "meaningByLocale": {
+                "ru": "повышение по должности.",
+                "uk": "підвищення на посаді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "promotion",
+            "definitionByLocale": {
+              "ru": "повышение по должности.",
+              "uk": "підвищення на посаді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Мы сможем обсудить повышение по должности».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Мы сможем обсудить повышение по должности».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to discuss the promotion.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем обсудить повышение по должности».",
+            "uk": "Скажіть із be able to: «Ми зможемо обговорити підвищення на посаді»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "discuss",
+            "the",
+            "promotion"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i08:r1",
+            "text": "We will be able to discuss the promotion."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i08:r2",
+            "text": "We will not be able to discuss the promotion."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i08:r3",
+            "text": "I will be able to discuss the promotion."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i08:audio",
+            "transcript": "We will be able to discuss the promotion."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i08:r1",
+              "targetText": "We will be able to discuss the promotion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i08:r2",
+              "targetText": "We will not be able to discuss the promotion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i08:r3",
+              "targetText": "I will be able to discuss the promotion.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to discuss the promotion.",
+                "uk": "У записі звучить We will be able to discuss the promotion."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to discuss the promotion.",
+                "uk": "У записі звучить We will be able to discuss the promotion."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ discuss the promotion.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:word:retirement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — retirement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:retirement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — retirement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:retirement:audio",
+            "transcript": "retirement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:retirement:r1",
+              "targetText": "retirement",
+              "meaningByLocale": {
+                "ru": "выход на пенсию, жизнь после окончания работы.",
+                "uk": "вихід на пенсію, життя після завершення роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retirement",
+            "definitionByLocale": {
+              "ru": "выход на пенсию, жизнь после окончания работы.",
+              "uk": "вихід на пенсію, життя після завершення роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Они смогут спланировать свой выход на пенсию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Они смогут спланировать свой выход на пенсию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to plan their retirement.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут спланировать свой выход на пенсию».",
+            "uk": "Скажіть із be able to: «Вони зможуть спланувати свій вихід на пенсію»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "plan",
+            "their",
+            "retirement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i11:r1",
+            "text": "They will be able to plan their retirement."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i11:r2",
+            "text": "They will not be able to plan their retirement."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i11:r3",
+            "text": "She will be able to plan her retirement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i11:audio",
+            "transcript": "They will be able to plan their retirement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i11:r1",
+              "targetText": "They will be able to plan their retirement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i11:r2",
+              "targetText": "They will not be able to plan their retirement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i11:r3",
+              "targetText": "She will be able to plan her retirement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to plan their retirement.",
+                "uk": "У записі звучить They will be able to plan their retirement."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to plan their retirement.",
+                "uk": "У записі звучить They will be able to plan their retirement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ plan their retirement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-32:i13:p1",
+              "target": "wages",
+              "meaningByLocale": {
+                "ru": "заработная плата",
+                "uk": "заробітна плата"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-32:i13:p2",
+              "target": "bonus",
+              "meaningByLocale": {
+                "ru": "премия, дополнительная выплата",
+                "uk": "премія, додаткова виплата"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-32:i13:p3",
+              "target": "promotion",
+              "meaningByLocale": {
+                "ru": "повышение по должности",
+                "uk": "підвищення на посаді"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-32:i13:p4",
+              "target": "retirement",
+              "meaningByLocale": {
+                "ru": "выход на пенсию, жизнь после окончания работы",
+                "uk": "вихід на пенсію, життя після завершення роботи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wages",
+            "bonus",
+            "promotion",
+            "retirement"
+          ],
+          "rightColumn": [
+            "заработная плата",
+            "премия, дополнительная выплата",
+            "повышение по должности",
+            "выход на пенсию, жизнь после окончания работы"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите о возможности",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите о возможности",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i16:audio",
+            "transcript": "I can check my wages."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can check my wages.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-32:word:wages",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wages",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:wages:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wages",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:wages:audio",
+            "transcript": "wages"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:wages:r1",
+              "targetText": "wages",
+              "meaningByLocale": {
+                "ru": "заработная плата.",
+                "uk": "заробітна плата."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wages",
+            "definitionByLocale": {
+              "ru": "заработная плата.",
+              "uk": "заробітна плата."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Я можу перевірити свою заробітну плату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Я можу перевірити свою заробітну плату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to check my wages.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу проверить свою заработную плату».",
+            "uk": "Скажіть із be able to: «Я можу перевірити свою заробітну плату»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "check",
+            "my",
+            "wages"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i02:r1",
+            "text": "I am able to check my wages."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i02:r2",
+            "text": "I am not able to check my wages."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i02:r3",
+            "text": "We are able to check our wages."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i02:audio",
+            "transcript": "I am able to check my wages."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i02:r1",
+              "targetText": "I am able to check my wages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i02:r2",
+              "targetText": "I am not able to check my wages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i02:r3",
+              "targetText": "We are able to check our wages.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to check my wages.",
+                "uk": "У записі звучить I am able to check my wages."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to check my wages.",
+                "uk": "У записі звучить I am able to check my wages."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ check my wages.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:word:bonus",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bonus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:bonus:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bonus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:bonus:audio",
+            "transcript": "bonus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:bonus:r1",
+              "targetText": "bonus",
+              "meaningByLocale": {
+                "ru": "премия, дополнительная выплата.",
+                "uk": "премія, додаткова виплата."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bonus",
+            "definitionByLocale": {
+              "ru": "премия, дополнительная выплата.",
+              "uk": "премія, додаткова виплата."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вона може заробити премію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вона може заробити премію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to earn a bonus.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может заработать премию».",
+            "uk": "Скажіть із be able to: «Вона може заробити премію»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "earn",
+            "a",
+            "bonus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i05:r1",
+            "text": "She is able to earn a bonus."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i05:r2",
+            "text": "She is not able to earn a bonus."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i05:r3",
+            "text": "They are able to earn a bonus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i05:audio",
+            "transcript": "She is able to earn a bonus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i05:r1",
+              "targetText": "She is able to earn a bonus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i05:r2",
+              "targetText": "She is not able to earn a bonus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i05:r3",
+              "targetText": "They are able to earn a bonus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to earn a bonus.",
+                "uk": "У записі звучить She is able to earn a bonus."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to earn a bonus.",
+                "uk": "У записі звучить She is able to earn a bonus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ earn a bonus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:word:promotion",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — promotion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:promotion:audio"
+        ],
+        "accessibilityLabel": "Картка слова — promotion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:promotion:audio",
+            "transcript": "promotion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:promotion:r1",
+              "targetText": "promotion",
+              "meaningByLocale": {
+                "ru": "повышение по должности.",
+                "uk": "підвищення на посаді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "promotion",
+            "definitionByLocale": {
+              "ru": "повышение по должности.",
+              "uk": "підвищення на посаді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Ми зможемо обговорити підвищення на посаді».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Ми зможемо обговорити підвищення на посаді».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to discuss the promotion.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем обсудить повышение по должности».",
+            "uk": "Скажіть із be able to: «Ми зможемо обговорити підвищення на посаді»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "discuss",
+            "the",
+            "promotion"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i08:r1",
+            "text": "We will be able to discuss the promotion."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i08:r2",
+            "text": "We will not be able to discuss the promotion."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i08:r3",
+            "text": "I will be able to discuss the promotion."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i08:audio",
+            "transcript": "We will be able to discuss the promotion."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i08:r1",
+              "targetText": "We will be able to discuss the promotion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i08:r2",
+              "targetText": "We will not be able to discuss the promotion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i08:r3",
+              "targetText": "I will be able to discuss the promotion.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to discuss the promotion.",
+                "uk": "У записі звучить We will be able to discuss the promotion."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to discuss the promotion.",
+                "uk": "У записі звучить We will be able to discuss the promotion."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ discuss the promotion.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:word:retirement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — retirement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:word:retirement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — retirement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:word:retirement:audio",
+            "transcript": "retirement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:word:retirement:r1",
+              "targetText": "retirement",
+              "meaningByLocale": {
+                "ru": "выход на пенсию, жизнь после окончания работы.",
+                "uk": "вихід на пенсію, життя після завершення роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retirement",
+            "definitionByLocale": {
+              "ru": "выход на пенсию, жизнь после окончания работы.",
+              "uk": "вихід на пенсію, життя після завершення роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вони зможуть спланувати свій вихід на пенсію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вони зможуть спланувати свій вихід на пенсію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to plan their retirement.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут спланировать свой выход на пенсию».",
+            "uk": "Скажіть із be able to: «Вони зможуть спланувати свій вихід на пенсію»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "plan",
+            "their",
+            "retirement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i11:r1",
+            "text": "They will be able to plan their retirement."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i11:r2",
+            "text": "They will not be able to plan their retirement."
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i11:r3",
+            "text": "She will be able to plan her retirement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i11:audio",
+            "transcript": "They will be able to plan their retirement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-32:i11:r1",
+              "targetText": "They will be able to plan their retirement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i11:r2",
+              "targetText": "They will not be able to plan their retirement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i11:r3",
+              "targetText": "She will be able to plan her retirement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to plan their retirement.",
+                "uk": "У записі звучить They will be able to plan their retirement."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to plan their retirement.",
+                "uk": "У записі звучить They will be able to plan their retirement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-32:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-32:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ plan their retirement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-32:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-32:i13:p1",
+              "target": "wages",
+              "meaningByLocale": {
+                "ru": "заработная плата",
+                "uk": "заробітна плата"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-32:i13:p2",
+              "target": "bonus",
+              "meaningByLocale": {
+                "ru": "премия, дополнительная выплата",
+                "uk": "премія, додаткова виплата"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-32:i13:p3",
+              "target": "promotion",
+              "meaningByLocale": {
+                "ru": "повышение по должности",
+                "uk": "підвищення на посаді"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-32:i13:p4",
+              "target": "retirement",
+              "meaningByLocale": {
+                "ru": "выход на пенсию, жизнь после окончания работы",
+                "uk": "вихід на пенсію, життя після завершення роботи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wages",
+            "bonus",
+            "promotion",
+            "retirement"
+          ],
+          "rightColumn": [
+            "заробітна плата",
+            "премія, додаткова виплата",
+            "підвищення на посаді",
+            "вихід на пенсію, життя після завершення роботи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть про можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть про можливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i16:audio",
+            "transcript": "I can check my wages."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can check my wages.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-32:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-32:word:wages",
+      "correctText": "wages",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i01",
+      "correctText": "I am able to check my wages.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i02",
+      "correctText": "I am able to check my wages.",
+      "correctResponseId": "en:lesson-19:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i03",
+      "correctText": "am able to",
+      "correctResponseId": "en:lesson-19:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:word:bonus",
+      "correctText": "bonus",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i04",
+      "correctText": "She is able to earn a bonus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i05",
+      "correctText": "She is able to earn a bonus.",
+      "correctResponseId": "en:lesson-19:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i06",
+      "correctText": "is able to",
+      "correctResponseId": "en:lesson-19:session-32:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:word:promotion",
+      "correctText": "promotion",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i07",
+      "correctText": "We will be able to discuss the promotion.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i08",
+      "correctText": "We will be able to discuss the promotion.",
+      "correctResponseId": "en:lesson-19:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i09",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:word:retirement",
+      "correctText": "retirement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i10",
+      "correctText": "They will be able to plan their retirement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i11",
+      "correctText": "They will be able to plan their retirement.",
+      "correctResponseId": "en:lesson-19:session-32:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i12",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i14",
+      "correctText": "At twenty, I could speak confidently.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i16",
+      "correctText": "I can check my wages.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-32:i17",
+      "correctText": "This is such a useful skill.",
+      "correctResponseId": null
+    }
+  ]
+}

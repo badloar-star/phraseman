@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "be able to + base verb; will be able to",
+    "uk": "be able to + base verb; will be able to"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заплатить налог",
+        "uk": "Сплатити податок"
+      },
+      "bodyByLocale": {
+        "ru": "Tax — налог. Вы получили сумму к оплате и можете её заплатить. Во множественном числе: taxes. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Tax — податок. Ви отримали суму до сплати й можете її сплатити. У множині: taxes. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-31:intro1:r1",
+              "text": "I am able to pay this tax."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro1:r2",
+              "text": "I able to pay this tax."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro1:r3",
+              "text": "I am able pay this tax."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-31:intro1:r1",
+              "text": "I am able to pay this tax."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro1:r2",
+              "text": "I able to pay this tax."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro1:r3",
+              "text": "I am able pay this tax."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подать заявку на кредит",
+        "uk": "Подати заявку на кредит"
+      },
+      "bodyByLocale": {
+        "ru": "Loan — заём, кредит: деньги, которые нужно вернуть. В этой истории знакомая может подать заявку в банк. Это не означает, что заявку уже одобрили. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Loan — позика, кредит: гроші, які потрібно повернути. У цій історії знайома може подати заявку до банку. Це не означає, що заявку вже схвалили. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-31:intro2:r1",
+              "text": "She is able to apply for a loan."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro2:r2",
+              "text": "She are able to apply for a loan."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro2:r3",
+              "text": "She is able apply for a loan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-31:intro2:r1",
+              "text": "She is able to apply for a loan."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro2:r2",
+              "text": "She are able to apply for a loan."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro2:r3",
+              "text": "She is able apply for a loan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что сможем сделать",
+        "uk": "Що зможемо зробити"
+      },
+      "bodyByLocale": {
+        "ru": "О будущей возможности: will be able to. Не will can и не will able to. Mortgage — ипотечный кредит. Pay the mortgage здесь — вносить платежи по ипотеке. Pension — пенсия. В этой истории семья обсуждает будущие платежи, а другая пара — получение пенсии после указанной в письме даты.",
+        "uk": "Про майбутню можливість: will be able to. Не will can і не will able to. Mortgage — іпотечний кредит. Pay the mortgage тут — вносити платежі за іпотекою. Pension — пенсія. У цій історії родина обговорює майбутні платежі, а інша пара — отримання пенсії після зазначеної в листі дати."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-31:intro3:r1",
+              "text": "We will be able to pay the mortgage."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro3:r2",
+              "text": "We will can pay the mortgage."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro3:r3",
+              "text": "We will able to pay the mortgage."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-31:intro3:r1",
+              "text": "We will be able to pay the mortgage."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro3:r2",
+              "text": "We will can pay the mortgage."
+            },
+            {
+              "responseId": "en:lesson-19:session-31:intro3:r3",
+              "text": "We will able to pay the mortgage."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "266f49817785d0f0bca3d9f000ea0adfeb0ea14d0216120932c4b53e6f26ca6c"
+}

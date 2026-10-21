@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "be able to + base verb; will be able to",
+    "uk": "be able to + base verb; will be able to"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Справиться сейчас",
+        "uk": "Упоратися зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Cope — справляться; с трудностью — cope with. У вас напряжённая неделя, но вы чувствуете, что справляетесь со стрессом. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Cope — справлятися; із труднощами — cope with. У вас напружений тиждень, але ви відчуваєте, що даєте раду стресу. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-25:intro1:r1",
+              "text": "I am able to cope with the stress."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro1:r2",
+              "text": "I able to cope with the stress."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro1:r3",
+              "text": "I am able cope with the stress."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-25:intro1:r1",
+              "text": "I am able to cope with the stress."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro1:r2",
+              "text": "I able to cope with the stress."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro1:r3",
+              "text": "I am able cope with the stress."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Восстанавливаться дома",
+        "uk": "Одужувати вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Recover — восстанавливаться, выздоравливать. В этой истории врач уже разрешил вашей знакомой восстанавливаться дома. Вы сообщаете об этой возможности. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Recover — відновлюватися, одужувати. У цій історії лікар уже дозволив вашій знайомій одужувати вдома. Ви повідомляєте про цю можливість. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-25:intro2:r1",
+              "text": "She is able to recover at home."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro2:r2",
+              "text": "She are able to recover at home."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro2:r3",
+              "text": "She is able recover at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-25:intro2:r1",
+              "text": "She is able to recover at home."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro2:r2",
+              "text": "She are able to recover at home."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro2:r3",
+              "text": "She is able recover at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что сможем сделать",
+        "uk": "Що зможемо зробити"
+      },
+      "bodyByLocale": {
+        "ru": "О будущей возможности: will be able to. Не will can и не will able to. Achieve — достичь чего-то: achieve this goal. Succeed — добиться успеха; после succeed не нужно добавлять goal. Вы обсуждаете, чего сможете достичь после подготовки.",
+        "uk": "Про майбутню можливість: will be able to. Не will can і не will able to. Achieve — досягти чогось: achieve this goal. Succeed — досягти успіху; після succeed не потрібно додавати goal. Ви обговорюєте, чого зможете досягти після підготовки."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-25:intro3:r1",
+              "text": "We will be able to achieve this goal."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro3:r2",
+              "text": "We will can achieve this goal."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro3:r3",
+              "text": "We will able to achieve this goal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-25:intro3:r1",
+              "text": "We will be able to achieve this goal."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro3:r2",
+              "text": "We will can achieve this goal."
+            },
+            {
+              "responseId": "en:lesson-19:session-25:intro3:r3",
+              "text": "We will able to achieve this goal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5d7b2d5af9d8dde7005b9be3dd9465be3aedcf0a5bbc7fc80f9dde55f88b40c9"
+}

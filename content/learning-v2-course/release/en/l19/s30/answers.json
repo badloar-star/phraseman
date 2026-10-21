@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-30:word:income",
+    "correctText": "income",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i01",
+    "correctText": "I am able to manage my income.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i02",
+    "correctText": "I am able to manage my income.",
+    "correctResponseId": "en:lesson-19:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:word:salary",
+    "correctText": "salary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i04",
+    "correctText": "She is able to check her salary.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i05",
+    "correctText": "She is able to check her salary.",
+    "correctResponseId": "en:lesson-19:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:word:debt",
+    "correctText": "debt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i07",
+    "correctText": "We will be able to pay this debt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i08",
+    "correctText": "We will be able to pay this debt.",
+    "correctResponseId": "en:lesson-19:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:word:savings",
+    "correctText": "savings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i10",
+    "correctText": "They will be able to use their savings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i11",
+    "correctText": "They will be able to use their savings.",
+    "correctResponseId": "en:lesson-19:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i13",
+    "correctText": "en:lesson-19:session-30:i13:p1=income\nen:lesson-19:session-30:i13:p2=salary\nen:lesson-19:session-30:i13:p3=debt\nen:lesson-19:session-30:i13:p4=savings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i16",
+    "correctText": "I can manage my income.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-30:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

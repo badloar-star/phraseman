@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "be able to + base verb; will be able to",
+    "uk": "be able to + base verb; will be able to"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сосредоточиться",
+        "uk": "Зосередитися"
+      },
+      "bodyByLocale": {
+        "ru": "Concentrate — сосредоточиваться. В библиотеке тихо, и вам легче заниматься. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Concentrate — зосереджуватися. У бібліотеці тихо, і вам легше займатися. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-26:intro1:r1",
+              "text": "I am able to concentrate here."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro1:r2",
+              "text": "I able to concentrate here."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro1:r3",
+              "text": "I am able concentrate here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-26:intro1:r1",
+              "text": "I am able to concentrate here."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro1:r2",
+              "text": "I able to concentrate here."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro1:r3",
+              "text": "I am able concentrate here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Запомнить слова",
+        "uk": "Запам’ятати слова"
+      },
+      "bodyByLocale": {
+        "ru": "Memorize — запоминать, заучивать. Ваша знакомая учит небольшой список слов и может запомнить их. Британское написание memorise тоже правильное. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Memorize — запам’ятовувати, вивчати напам’ять. Ваша знайома вчить невеликий список слів і може їх запам’ятати. Британське написання memorise теж правильне. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-26:intro2:r1",
+              "text": "She is able to memorize these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro2:r2",
+              "text": "She are able to memorize these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro2:r3",
+              "text": "She is able memorize these words."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-26:intro2:r1",
+              "text": "She is able to memorize these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro2:r2",
+              "text": "She are able to memorize these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro2:r3",
+              "text": "She is able memorize these words."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что сможем сделать",
+        "uk": "Що зможемо зробити"
+      },
+      "bodyByLocale": {
+        "ru": "О будущей возможности: will be able to. Не will can и не will able to. Pronounce — произносить: после практики вы сможете произнести трудные слова. Revise в британском английском — повторять материал, например перед экзаменом. Вечером дома будет тихо, и ваши друзья смогут заниматься.",
+        "uk": "Про майбутню можливість: will be able to. Не will can і не will able to. Pronounce — вимовляти: після практики ви зможете вимовити складні слова. Revise у британській англійській — повторювати матеріал, наприклад перед іспитом. Увечері вдома буде тихо, і ваші друзі зможуть займатися."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-26:intro3:r1",
+              "text": "We will be able to pronounce these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro3:r2",
+              "text": "We will can pronounce these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro3:r3",
+              "text": "We will able to pronounce these words."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-26:intro3:r1",
+              "text": "We will be able to pronounce these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro3:r2",
+              "text": "We will can pronounce these words."
+            },
+            {
+              "responseId": "en:lesson-19:session-26:intro3:r3",
+              "text": "We will able to pronounce these words."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ace510054a70f41050a6bddba4c2e4b254387fdf6d9d1c9e617dda687807910"
+}

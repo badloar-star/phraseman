@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-29:word:ingredient",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ingredient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:word:ingredient:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ingredient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:word:ingredient:audio",
+          "transcript": "ingredient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:word:ingredient:r1",
+            "targetText": "ingredient",
+            "meaningByLocale": {
+              "ru": "ингредиент, составная часть блюда.",
+              "uk": "інгредієнт, складник страви."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ingredient",
+          "definitionByLocale": {
+            "ru": "ингредиент, составная часть блюда.",
+            "uk": "інгредієнт, складник страви."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с be able to: «Я могу найти этот ингредиент».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с be able to: «Я могу найти этот ингредиент».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am able to find this ingredient.",
+        "localizedMeaning": {
+          "ru": "Скажите с be able to: «Я могу найти этот ингредиент».",
+          "uk": "Скажіть із be able to: «Я можу знайти цей інгредієнт»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "able",
+          "to",
+          "find",
+          "this",
+          "ingredient"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i02:r1",
+          "text": "I am able to find this ingredient."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i02:r2",
+          "text": "I am not able to find this ingredient."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i02:r3",
+          "text": "We are able to find this ingredient."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i02:audio",
+          "transcript": "I am able to find this ingredient."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:i02:r1",
+            "targetText": "I am able to find this ingredient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i02:r2",
+            "targetText": "I am not able to find this ingredient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i02:r3",
+            "targetText": "We are able to find this ingredient.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am able to find this ingredient.",
+              "uk": "У записі звучить I am able to find this ingredient."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am able to find this ingredient.",
+              "uk": "У записі звучить I am able to find this ingredient."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните конструкцию be able to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i03:r1",
+          "text": "am able to"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i03:r2",
+          "text": "am able"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i03:r3",
+          "text": "am can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните конструкцию be able to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните конструкцию be able to.",
+          "uk": "Доповніть конструкцію be able to."
+        },
+        "gappedTargetPhrase": "I ___ find this ingredient.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-29:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "testedDimension": "Дополните конструкцию be able to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "После able нужно to.",
+              "uk": "Після able потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+              "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:word:mixture",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mixture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:word:mixture:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mixture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:word:mixture:audio",
+          "transcript": "mixture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:word:mixture:r1",
+            "targetText": "mixture",
+            "meaningByLocale": {
+              "ru": "смесь.",
+              "uk": "суміш."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mixture",
+          "definitionByLocale": {
+            "ru": "смесь.",
+            "uk": "суміш."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с be able to: «Она может перемешивать смесь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с be able to: «Она может перемешивать смесь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is able to stir the mixture.",
+        "localizedMeaning": {
+          "ru": "Скажите с be able to: «Она может перемешивать смесь».",
+          "uk": "Скажіть із be able to: «Вона може перемішувати суміш»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "able",
+          "to",
+          "stir",
+          "the",
+          "mixture"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i05:r1",
+          "text": "She is able to stir the mixture."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i05:r2",
+          "text": "She is not able to stir the mixture."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i05:r3",
+          "text": "They are able to stir the mixture."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i05:audio",
+          "transcript": "She is able to stir the mixture."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:i05:r1",
+            "targetText": "She is able to stir the mixture.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i05:r2",
+            "targetText": "She is not able to stir the mixture.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i05:r3",
+            "targetText": "They are able to stir the mixture.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is able to stir the mixture.",
+              "uk": "У записі звучить She is able to stir the mixture."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is able to stir the mixture.",
+              "uk": "У записі звучить She is able to stir the mixture."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните конструкцию be able to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i06:r1",
+          "text": "is able to"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i06:r2",
+          "text": "is able"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i06:r3",
+          "text": "is can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните конструкцию be able to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните конструкцию be able to.",
+          "uk": "Доповніть конструкцію be able to."
+        },
+        "gappedTargetPhrase": "She ___ stir the mixture.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-29:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "testedDimension": "Дополните конструкцию be able to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "После able нужно to.",
+              "uk": "Після able потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+              "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:word:texture",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — texture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:word:texture:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — texture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:word:texture:audio",
+          "transcript": "texture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:word:texture:r1",
+            "targetText": "texture",
+            "meaningByLocale": {
+              "ru": "текстура, ощущение поверхности или еды.",
+              "uk": "текстура, відчуття поверхні або їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "texture",
+          "definitionByLocale": {
+            "ru": "текстура, ощущение поверхности или еды.",
+            "uk": "текстура, відчуття поверхні або їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с be able to: «Мы сможем улучшить текстуру».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с be able to: «Мы сможем улучшить текстуру».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will be able to improve the texture.",
+        "localizedMeaning": {
+          "ru": "Скажите с be able to: «Мы сможем улучшить текстуру».",
+          "uk": "Скажіть із be able to: «Ми зможемо покращити текстуру»."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "improve",
+          "the",
+          "texture"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i08:r1",
+          "text": "We will be able to improve the texture."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i08:r2",
+          "text": "We will not be able to improve the texture."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i08:r3",
+          "text": "I will be able to improve the texture."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i08:audio",
+          "transcript": "We will be able to improve the texture."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:i08:r1",
+            "targetText": "We will be able to improve the texture.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i08:r2",
+            "targetText": "We will not be able to improve the texture.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i08:r3",
+            "targetText": "I will be able to improve the texture.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will be able to improve the texture.",
+              "uk": "У записі звучить We will be able to improve the texture."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will be able to improve the texture.",
+              "uk": "У записі звучить We will be able to improve the texture."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните конструкцию be able to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i09:r1",
+          "text": "will be able to"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i09:r2",
+          "text": "will able to"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i09:r3",
+          "text": "will can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните конструкцию be able to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните конструкцию be able to.",
+          "uk": "Доповніть конструкцію be able to."
+        },
+        "gappedTargetPhrase": "We ___ improve the texture.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-29:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "testedDimension": "Дополните конструкцию be able to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "После will нужна форма be: will be able to.",
+              "uk": "Після will потрібна форма be: will be able to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "Will и can не ставят вместе; используйте will be able to.",
+              "uk": "Will і can не ставлять разом; використайте will be able to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:word:substitute",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — substitute",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:word:substitute:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — substitute",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:word:substitute:audio",
+          "transcript": "substitute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:word:substitute:r1",
+            "targetText": "substitute",
+            "meaningByLocale": {
+              "ru": "заменитель, то, что используют вместо другого.",
+              "uk": "замінник, те, що використовують замість іншого."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "substitute",
+          "definitionByLocale": {
+            "ru": "заменитель, то, что используют вместо другого.",
+            "uk": "замінник, те, що використовують замість іншого."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с be able to: «Они смогут найти заменитель».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с be able to: «Они смогут найти заменитель».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They will be able to find a substitute.",
+        "localizedMeaning": {
+          "ru": "Скажите с be able to: «Они смогут найти заменитель».",
+          "uk": "Скажіть із be able to: «Вони зможуть знайти замінник»."
+        },
+        "orderedTokens": [
+          "They",
+          "will",
+          "be",
+          "able",
+          "to",
+          "find",
+          "a",
+          "substitute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i11:r1",
+          "text": "They will be able to find a substitute."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i11:r2",
+          "text": "They will not be able to find a substitute."
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i11:r3",
+          "text": "She will be able to find a substitute."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i11:audio",
+          "transcript": "They will be able to find a substitute."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-29:i11:r1",
+            "targetText": "They will be able to find a substitute.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i11:r2",
+            "targetText": "They will not be able to find a substitute.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i11:r3",
+            "targetText": "She will be able to find a substitute.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They will be able to find a substitute.",
+              "uk": "У записі звучить They will be able to find a substitute."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They will be able to find a substitute.",
+              "uk": "У записі звучить They will be able to find a substitute."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните конструкцию be able to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-29:i12:r1",
+          "text": "will be able to"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i12:r2",
+          "text": "will able to"
+        },
+        {
+          "responseId": "en:lesson-19:session-29:i12:r3",
+          "text": "will can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните конструкцию be able to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните конструкцию be able to.",
+          "uk": "Доповніть конструкцію be able to."
+        },
+        "gappedTargetPhrase": "They ___ find a substitute.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-29:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "testedDimension": "Дополните конструкцию be able to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "После will нужна форма be: will be able to.",
+              "uk": "Після will потрібна форма be: will be able to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните конструкцию be able to.",
+            "feedbackByLocale": {
+              "ru": "Will и can не ставят вместе; используйте will be able to.",
+              "uk": "Will і can не ставлять разом; використайте will be able to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-29:i13:p1",
+            "target": "ingredient",
+            "meaningByLocale": {
+              "ru": "ингредиент, составная часть блюда",
+              "uk": "інгредієнт, складник страви"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-29:i13:p2",
+            "target": "mixture",
+            "meaningByLocale": {
+              "ru": "смесь",
+              "uk": "суміш"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-29:i13:p3",
+            "target": "texture",
+            "meaningByLocale": {
+              "ru": "текстура, ощущение поверхности или еды",
+              "uk": "текстура, відчуття поверхні або їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-29:i13:p4",
+            "target": "substitute",
+            "meaningByLocale": {
+              "ru": "заменитель, то, что используют вместо другого",
+              "uk": "замінник, те, що використовують замість іншого"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ingredient",
+          "mixture",
+          "texture",
+          "substitute"
+        ],
+        "rightColumn": [
+          "ингредиент, составная часть блюда",
+          "смесь",
+          "текстура, ощущение поверхности или еды",
+          "заменитель, то, что используют вместо другого"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное умение в прошлом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i14:audio",
+          "transcript": "At twenty, I could speak confidently."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "speak",
+          "confidently"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: скажите о возможности",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: скажите о возможности",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i16:audio",
+          "transcript": "I can find this ingredient."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can find this ingredient.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: подчеркните впечатление",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: подчеркните впечатление",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-29:i17:audio",
+          "transcript": "This is such a useful skill."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a useful skill.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d316e1b7d5fd3c7b192f30fa58072d56052458b64d80ed527d32e472b0ddc862"
+}

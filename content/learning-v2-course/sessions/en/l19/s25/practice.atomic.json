@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-25:word:cope",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:cope:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:cope:audio",
+            "transcript": "cope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:cope:r1",
+              "targetText": "cope",
+              "meaningByLocale": {
+                "ru": "справляться.",
+                "uk": "давати раду, справлятися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cope",
+            "definitionByLocale": {
+              "ru": "справляться.",
+              "uk": "давати раду, справлятися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Я могу справиться со стрессом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Я могу справиться со стрессом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to cope with the stress.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу справиться со стрессом».",
+            "uk": "Скажіть із be able to: «Я можу впоратися зі стресом»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "cope",
+            "with",
+            "the",
+            "stress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i02:r1",
+            "text": "I am able to cope with the stress."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i02:r2",
+            "text": "I am not able to cope with the stress."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i02:r3",
+            "text": "We are able to cope with the stress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i02:audio",
+            "transcript": "I am able to cope with the stress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i02:r1",
+              "targetText": "I am able to cope with the stress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i02:r2",
+              "targetText": "I am not able to cope with the stress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i02:r3",
+              "targetText": "We are able to cope with the stress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to cope with the stress.",
+                "uk": "У записі звучить I am able to cope with the stress."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to cope with the stress.",
+                "uk": "У записі звучить I am able to cope with the stress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ cope with the stress.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:word:recover",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recover",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:recover:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recover",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:recover:audio",
+            "transcript": "recover"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:recover:r1",
+              "targetText": "recover",
+              "meaningByLocale": {
+                "ru": "восстанавливаться, выздоравливать.",
+                "uk": "відновлюватися, одужувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recover",
+            "definitionByLocale": {
+              "ru": "восстанавливаться, выздоравливать.",
+              "uk": "відновлюватися, одужувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Она может восстанавливаться дома».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Она может восстанавливаться дома».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to recover at home.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может восстанавливаться дома».",
+            "uk": "Скажіть із be able to: «Вона може одужувати вдома»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "recover",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i05:r1",
+            "text": "She is able to recover at home."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i05:r2",
+            "text": "She is not able to recover at home."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i05:r3",
+            "text": "They are able to recover at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i05:audio",
+            "transcript": "She is able to recover at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i05:r1",
+              "targetText": "She is able to recover at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i05:r2",
+              "targetText": "She is not able to recover at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i05:r3",
+              "targetText": "They are able to recover at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to recover at home.",
+                "uk": "У записі звучить She is able to recover at home."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to recover at home.",
+                "uk": "У записі звучить She is able to recover at home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ recover at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:word:achieve",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — achieve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:achieve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — achieve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:achieve:audio",
+            "transcript": "achieve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:achieve:r1",
+              "targetText": "achieve",
+              "meaningByLocale": {
+                "ru": "достигать.",
+                "uk": "досягати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "achieve",
+            "definitionByLocale": {
+              "ru": "достигать.",
+              "uk": "досягати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Мы сможем достичь этой цели».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Мы сможем достичь этой цели».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to achieve this goal.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем достичь этой цели».",
+            "uk": "Скажіть із be able to: «Ми зможемо досягти цієї мети»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "achieve",
+            "this",
+            "goal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i08:r1",
+            "text": "We will be able to achieve this goal."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i08:r2",
+            "text": "We will not be able to achieve this goal."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i08:r3",
+            "text": "I will be able to achieve this goal."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i08:audio",
+            "transcript": "We will be able to achieve this goal."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i08:r1",
+              "targetText": "We will be able to achieve this goal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i08:r2",
+              "targetText": "We will not be able to achieve this goal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i08:r3",
+              "targetText": "I will be able to achieve this goal.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to achieve this goal.",
+                "uk": "У записі звучить We will be able to achieve this goal."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to achieve this goal.",
+                "uk": "У записі звучить We will be able to achieve this goal."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ achieve this goal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:word:succeed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — succeed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:succeed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — succeed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:succeed:audio",
+            "transcript": "succeed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:succeed:r1",
+              "targetText": "succeed",
+              "meaningByLocale": {
+                "ru": "добиваться успеха.",
+                "uk": "досягати успіху."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "succeed",
+            "definitionByLocale": {
+              "ru": "добиваться успеха.",
+              "uk": "досягати успіху."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Они смогут добиться успеха».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Они смогут добиться успеха».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to succeed.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут добиться успеха».",
+            "uk": "Скажіть із be able to: «Вони зможуть досягти успіху»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "succeed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i11:r1",
+            "text": "They will be able to succeed."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i11:r2",
+            "text": "They will not be able to succeed."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i11:r3",
+            "text": "She will be able to succeed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i11:audio",
+            "transcript": "They will be able to succeed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i11:r1",
+              "targetText": "They will be able to succeed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i11:r2",
+              "targetText": "They will not be able to succeed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i11:r3",
+              "targetText": "She will be able to succeed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to succeed.",
+                "uk": "У записі звучить They will be able to succeed."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to succeed.",
+                "uk": "У записі звучить They will be able to succeed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ succeed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-25:i13:p1",
+              "target": "cope",
+              "meaningByLocale": {
+                "ru": "справляться",
+                "uk": "давати раду, справлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-25:i13:p2",
+              "target": "recover",
+              "meaningByLocale": {
+                "ru": "восстанавливаться, выздоравливать",
+                "uk": "відновлюватися, одужувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-25:i13:p3",
+              "target": "achieve",
+              "meaningByLocale": {
+                "ru": "достигать",
+                "uk": "досягати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-25:i13:p4",
+              "target": "succeed",
+              "meaningByLocale": {
+                "ru": "добиваться успеха",
+                "uk": "досягати успіху"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cope",
+            "recover",
+            "achieve",
+            "succeed"
+          ],
+          "rightColumn": [
+            "справляться",
+            "восстанавливаться, выздоравливать",
+            "достигать",
+            "добиваться успеха"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите о возможности",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите о возможности",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i16:audio",
+            "transcript": "I can cope with the stress."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can cope with the stress.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-25:word:cope",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:cope:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:cope:audio",
+            "transcript": "cope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:cope:r1",
+              "targetText": "cope",
+              "meaningByLocale": {
+                "ru": "справляться.",
+                "uk": "давати раду, справлятися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cope",
+            "definitionByLocale": {
+              "ru": "справляться.",
+              "uk": "давати раду, справлятися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Я можу впоратися зі стресом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Я можу впоратися зі стресом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to cope with the stress.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу справиться со стрессом».",
+            "uk": "Скажіть із be able to: «Я можу впоратися зі стресом»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "cope",
+            "with",
+            "the",
+            "stress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i02:r1",
+            "text": "I am able to cope with the stress."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i02:r2",
+            "text": "I am not able to cope with the stress."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i02:r3",
+            "text": "We are able to cope with the stress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i02:audio",
+            "transcript": "I am able to cope with the stress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i02:r1",
+              "targetText": "I am able to cope with the stress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i02:r2",
+              "targetText": "I am not able to cope with the stress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i02:r3",
+              "targetText": "We are able to cope with the stress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to cope with the stress.",
+                "uk": "У записі звучить I am able to cope with the stress."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to cope with the stress.",
+                "uk": "У записі звучить I am able to cope with the stress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ cope with the stress.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:word:recover",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recover",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:recover:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recover",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:recover:audio",
+            "transcript": "recover"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:recover:r1",
+              "targetText": "recover",
+              "meaningByLocale": {
+                "ru": "восстанавливаться, выздоравливать.",
+                "uk": "відновлюватися, одужувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recover",
+            "definitionByLocale": {
+              "ru": "восстанавливаться, выздоравливать.",
+              "uk": "відновлюватися, одужувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вона може одужувати вдома».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вона може одужувати вдома».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to recover at home.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может восстанавливаться дома».",
+            "uk": "Скажіть із be able to: «Вона може одужувати вдома»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "recover",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i05:r1",
+            "text": "She is able to recover at home."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i05:r2",
+            "text": "She is not able to recover at home."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i05:r3",
+            "text": "They are able to recover at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i05:audio",
+            "transcript": "She is able to recover at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i05:r1",
+              "targetText": "She is able to recover at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i05:r2",
+              "targetText": "She is not able to recover at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i05:r3",
+              "targetText": "They are able to recover at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to recover at home.",
+                "uk": "У записі звучить She is able to recover at home."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to recover at home.",
+                "uk": "У записі звучить She is able to recover at home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ recover at home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:word:achieve",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — achieve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:achieve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — achieve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:achieve:audio",
+            "transcript": "achieve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:achieve:r1",
+              "targetText": "achieve",
+              "meaningByLocale": {
+                "ru": "достигать.",
+                "uk": "досягати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "achieve",
+            "definitionByLocale": {
+              "ru": "достигать.",
+              "uk": "досягати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Ми зможемо досягти цієї мети».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Ми зможемо досягти цієї мети».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to achieve this goal.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем достичь этой цели».",
+            "uk": "Скажіть із be able to: «Ми зможемо досягти цієї мети»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "achieve",
+            "this",
+            "goal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i08:r1",
+            "text": "We will be able to achieve this goal."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i08:r2",
+            "text": "We will not be able to achieve this goal."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i08:r3",
+            "text": "I will be able to achieve this goal."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i08:audio",
+            "transcript": "We will be able to achieve this goal."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i08:r1",
+              "targetText": "We will be able to achieve this goal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i08:r2",
+              "targetText": "We will not be able to achieve this goal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i08:r3",
+              "targetText": "I will be able to achieve this goal.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to achieve this goal.",
+                "uk": "У записі звучить We will be able to achieve this goal."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to achieve this goal.",
+                "uk": "У записі звучить We will be able to achieve this goal."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ achieve this goal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:word:succeed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — succeed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:word:succeed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — succeed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:word:succeed:audio",
+            "transcript": "succeed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:word:succeed:r1",
+              "targetText": "succeed",
+              "meaningByLocale": {
+                "ru": "добиваться успеха.",
+                "uk": "досягати успіху."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "succeed",
+            "definitionByLocale": {
+              "ru": "добиваться успеха.",
+              "uk": "досягати успіху."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вони зможуть досягти успіху».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вони зможуть досягти успіху».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to succeed.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут добиться успеха».",
+            "uk": "Скажіть із be able to: «Вони зможуть досягти успіху»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "succeed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i11:r1",
+            "text": "They will be able to succeed."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i11:r2",
+            "text": "They will not be able to succeed."
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i11:r3",
+            "text": "She will be able to succeed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i11:audio",
+            "transcript": "They will be able to succeed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-25:i11:r1",
+              "targetText": "They will be able to succeed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i11:r2",
+              "targetText": "They will not be able to succeed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i11:r3",
+              "targetText": "She will be able to succeed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to succeed.",
+                "uk": "У записі звучить They will be able to succeed."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to succeed.",
+                "uk": "У записі звучить They will be able to succeed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-25:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-25:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ succeed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-25:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-25:i13:p1",
+              "target": "cope",
+              "meaningByLocale": {
+                "ru": "справляться",
+                "uk": "давати раду, справлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-25:i13:p2",
+              "target": "recover",
+              "meaningByLocale": {
+                "ru": "восстанавливаться, выздоравливать",
+                "uk": "відновлюватися, одужувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-25:i13:p3",
+              "target": "achieve",
+              "meaningByLocale": {
+                "ru": "достигать",
+                "uk": "досягати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-25:i13:p4",
+              "target": "succeed",
+              "meaningByLocale": {
+                "ru": "добиваться успеха",
+                "uk": "досягати успіху"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cope",
+            "recover",
+            "achieve",
+            "succeed"
+          ],
+          "rightColumn": [
+            "давати раду, справлятися",
+            "відновлюватися, одужувати",
+            "досягати",
+            "досягати успіху"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть про можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть про можливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i16:audio",
+            "transcript": "I can cope with the stress."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can cope with the stress.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-25:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-25:word:cope",
+      "correctText": "cope",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i01",
+      "correctText": "I am able to cope with the stress.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i02",
+      "correctText": "I am able to cope with the stress.",
+      "correctResponseId": "en:lesson-19:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i03",
+      "correctText": "am able to",
+      "correctResponseId": "en:lesson-19:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:word:recover",
+      "correctText": "recover",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i04",
+      "correctText": "She is able to recover at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i05",
+      "correctText": "She is able to recover at home.",
+      "correctResponseId": "en:lesson-19:session-25:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i06",
+      "correctText": "is able to",
+      "correctResponseId": "en:lesson-19:session-25:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:word:achieve",
+      "correctText": "achieve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i07",
+      "correctText": "We will be able to achieve this goal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i08",
+      "correctText": "We will be able to achieve this goal.",
+      "correctResponseId": "en:lesson-19:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i09",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:word:succeed",
+      "correctText": "succeed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i10",
+      "correctText": "They will be able to succeed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i11",
+      "correctText": "They will be able to succeed.",
+      "correctResponseId": "en:lesson-19:session-25:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i12",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-25:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i14",
+      "correctText": "At twenty, I could speak confidently.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i16",
+      "correctText": "I can cope with the stress.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-25:i17",
+      "correctText": "This is such a useful skill.",
+      "correctResponseId": null
+    }
+  ]
+}

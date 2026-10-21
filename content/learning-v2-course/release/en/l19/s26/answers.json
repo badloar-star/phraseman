@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-26:word:concentrate",
+    "correctText": "concentrate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i01",
+    "correctText": "I am able to concentrate here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i02",
+    "correctText": "I am able to concentrate here.",
+    "correctResponseId": "en:lesson-19:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:word:memorize",
+    "correctText": "memorize",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i04",
+    "correctText": "She is able to memorize these words.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i05",
+    "correctText": "She is able to memorize these words.",
+    "correctResponseId": "en:lesson-19:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:word:pronounce",
+    "correctText": "pronounce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i07",
+    "correctText": "We will be able to pronounce these words.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i08",
+    "correctText": "We will be able to pronounce these words.",
+    "correctResponseId": "en:lesson-19:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:word:revise",
+    "correctText": "revise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i10",
+    "correctText": "They will be able to revise at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i11",
+    "correctText": "They will be able to revise at home.",
+    "correctResponseId": "en:lesson-19:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i13",
+    "correctText": "en:lesson-19:session-26:i13:p1=concentrate\nen:lesson-19:session-26:i13:p2=memorize\nen:lesson-19:session-26:i13:p3=pronounce\nen:lesson-19:session-26:i13:p4=revise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i16",
+    "correctText": "I can concentrate here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-26:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

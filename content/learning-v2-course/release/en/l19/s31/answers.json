@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-31:word:tax",
+    "correctText": "tax",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i01",
+    "correctText": "I am able to pay this tax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i02",
+    "correctText": "I am able to pay this tax.",
+    "correctResponseId": "en:lesson-19:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:word:loan",
+    "correctText": "loan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i04",
+    "correctText": "She is able to apply for a loan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i05",
+    "correctText": "She is able to apply for a loan.",
+    "correctResponseId": "en:lesson-19:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:word:mortgage",
+    "correctText": "mortgage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i07",
+    "correctText": "We will be able to pay the mortgage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i08",
+    "correctText": "We will be able to pay the mortgage.",
+    "correctResponseId": "en:lesson-19:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:word:pension",
+    "correctText": "pension",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i10",
+    "correctText": "They will be able to receive their pension.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i11",
+    "correctText": "They will be able to receive their pension.",
+    "correctResponseId": "en:lesson-19:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i13",
+    "correctText": "en:lesson-19:session-31:i13:p1=tax\nen:lesson-19:session-31:i13:p2=loan\nen:lesson-19:session-31:i13:p3=mortgage\nen:lesson-19:session-31:i13:p4=pension",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i16",
+    "correctText": "I can pay this tax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-31:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

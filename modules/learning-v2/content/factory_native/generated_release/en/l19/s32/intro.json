@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "be able to + base verb; will be able to",
+    "uk": "be able to + base verb; will be able to"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проверить оплату труда",
+        "uk": "Перевірити оплату праці"
+      },
+      "bodyByLocale": {
+        "ru": "Wages — заработная плата, часто оплата за часы или неделю работы. Вы получили расчёт за неделю и можете проверить сумму. Здесь wages — форма множественного числа. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Wages — заробітна плата, часто оплата за години або тиждень роботи. Ви отримали розрахунок за тиждень і можете перевірити суму. Тут wages — форма множини. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-32:intro1:r1",
+              "text": "I am able to check my wages."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro1:r2",
+              "text": "I able to check my wages."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro1:r3",
+              "text": "I am able check my wages."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-32:intro1:r1",
+              "text": "I am able to check my wages."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro1:r2",
+              "text": "I able to check my wages."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro1:r3",
+              "text": "I am able check my wages."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заработать премию",
+        "uk": "Заробити премію"
+      },
+      "bodyByLocale": {
+        "ru": "Bonus здесь — премия, дополнительная выплата к обычной зарплате. Ваша знакомая участвует в рабочем задании, за которое предусмотрена премия. Она может её заработать. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Bonus тут — премія, додаткова виплата до звичайної зарплати. Ваша знайома бере участь у робочому завданні, за яке передбачена премія. Вона може її заробити. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-32:intro2:r1",
+              "text": "She is able to earn a bonus."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro2:r2",
+              "text": "She are able to earn a bonus."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro2:r3",
+              "text": "She is able earn a bonus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-32:intro2:r1",
+              "text": "She is able to earn a bonus."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro2:r2",
+              "text": "She are able to earn a bonus."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro2:r3",
+              "text": "She is able earn a bonus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что сможем сделать",
+        "uk": "Що зможемо зробити"
+      },
+      "bodyByLocale": {
+        "ru": "О будущей возможности: will be able to. Не will can и не will able to. Promotion здесь — повышение по должности. Завтра вы сможете обсудить предложенное повышение с руководителем. Retirement — выход на пенсию и жизнь после окончания работы. Это период жизни, а pension — сама пенсия как доход.",
+        "uk": "Про майбутню можливість: will be able to. Не will can і не will able to. Promotion тут — підвищення на посаді. Завтра ви зможете обговорити запропоноване підвищення з керівником. Retirement — вихід на пенсію й життя після завершення роботи. Це період життя, а pension — сама пенсія як дохід."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-32:intro3:r1",
+              "text": "We will be able to discuss the promotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro3:r2",
+              "text": "We will can discuss the promotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro3:r3",
+              "text": "We will able to discuss the promotion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-32:intro3:r1",
+              "text": "We will be able to discuss the promotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro3:r2",
+              "text": "We will can discuss the promotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-32:intro3:r3",
+              "text": "We will able to discuss the promotion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "49068376338a5afbf462e72725e1830c49d9f83be875d7d93d5916716a6b1af8"
+}

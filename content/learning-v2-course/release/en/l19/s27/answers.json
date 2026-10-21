@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-27:word:misunderstanding",
+    "correctText": "misunderstanding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i01",
+    "correctText": "I am able to explain the misunderstanding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i02",
+    "correctText": "I am able to explain the misunderstanding.",
+    "correctResponseId": "en:lesson-19:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i03",
+    "correctText": "am able to",
+    "correctResponseId": "en:lesson-19:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:word:forgive",
+    "correctText": "forgive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i04",
+    "correctText": "She is able to forgive him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i05",
+    "correctText": "She is able to forgive him.",
+    "correctResponseId": "en:lesson-19:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i06",
+    "correctText": "is able to",
+    "correctResponseId": "en:lesson-19:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:word:resolve",
+    "correctText": "resolve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i07",
+    "correctText": "We will be able to resolve the problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i08",
+    "correctText": "We will be able to resolve the problem.",
+    "correctResponseId": "en:lesson-19:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i09",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:word:overcome",
+    "correctText": "overcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i10",
+    "correctText": "They will be able to overcome this difficulty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i11",
+    "correctText": "They will be able to overcome this difficulty.",
+    "correctResponseId": "en:lesson-19:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i12",
+    "correctText": "will be able to",
+    "correctResponseId": "en:lesson-19:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i13",
+    "correctText": "en:lesson-19:session-27:i13:p1=misunderstanding\nen:lesson-19:session-27:i13:p2=forgive\nen:lesson-19:session-27:i13:p3=resolve\nen:lesson-19:session-27:i13:p4=overcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i16",
+    "correctText": "I can explain the misunderstanding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-27:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

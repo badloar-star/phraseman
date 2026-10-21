@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-28:word:enrol",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — enrol",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:enrol:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — enrol",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:enrol:audio",
+            "transcript": "enrol"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:enrol:r1",
+              "targetText": "enrol",
+              "meaningByLocale": {
+                "ru": "записываться на обучение.",
+                "uk": "записуватися на навчання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "enrol",
+            "definitionByLocale": {
+              "ru": "записываться на обучение.",
+              "uk": "записуватися на навчання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Я могу записаться на обучение через интернет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Я могу записаться на обучение через интернет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to enrol online.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу записаться на обучение через интернет».",
+            "uk": "Скажіть із be able to: «Я можу записатися на навчання через інтернет»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "enrol",
+            "online"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i02:r1",
+            "text": "I am able to enrol online."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i02:r2",
+            "text": "I am not able to enrol online."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i02:r3",
+            "text": "We are able to enrol online."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i02:audio",
+            "transcript": "I am able to enrol online."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i02:r1",
+              "targetText": "I am able to enrol online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i02:r2",
+              "targetText": "I am not able to enrol online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i02:r3",
+              "targetText": "We are able to enrol online.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to enrol online.",
+                "uk": "У записі звучить I am able to enrol online."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to enrol online.",
+                "uk": "У записі звучить I am able to enrol online."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ enrol online.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:word:participate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — participate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:participate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — participate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:participate:audio",
+            "transcript": "participate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:participate:r1",
+              "targetText": "participate",
+              "meaningByLocale": {
+                "ru": "участвовать.",
+                "uk": "брати участь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "participate",
+            "definitionByLocale": {
+              "ru": "участвовать.",
+              "uk": "брати участь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Она может участвовать в занятии».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Она может участвовать в занятии».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to participate in the class.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может участвовать в занятии».",
+            "uk": "Скажіть із be able to: «Вона може брати участь у занятті»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "participate",
+            "in",
+            "the",
+            "class"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i05:r1",
+            "text": "She is able to participate in the class."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i05:r2",
+            "text": "She is not able to participate in the class."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i05:r3",
+            "text": "They are able to participate in the class."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i05:audio",
+            "transcript": "She is able to participate in the class."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i05:r1",
+              "targetText": "She is able to participate in the class.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i05:r2",
+              "targetText": "She is not able to participate in the class.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i05:r3",
+              "targetText": "They are able to participate in the class.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to participate in the class.",
+                "uk": "У записі звучить She is able to participate in the class."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to participate in the class.",
+                "uk": "У записі звучить She is able to participate in the class."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ participate in the class.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:word:qualify",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — qualify",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:qualify:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — qualify",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:qualify:audio",
+            "transcript": "qualify"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:qualify:r1",
+              "targetText": "qualify",
+              "meaningByLocale": {
+                "ru": "соответствовать требованиям, получать право.",
+                "uk": "відповідати вимогам, отримувати право."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "qualify",
+            "definitionByLocale": {
+              "ru": "соответствовать требованиям, получать право.",
+              "uk": "відповідати вимогам, отримувати право."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Мы сможем соответствовать требованиям этой работы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Мы сможем соответствовать требованиям этой работы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to qualify for this job.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем соответствовать требованиям этой работы».",
+            "uk": "Скажіть із be able to: «Ми зможемо відповідати вимогам цієї роботи»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "qualify",
+            "for",
+            "this",
+            "job"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i08:r1",
+            "text": "We will be able to qualify for this job."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i08:r2",
+            "text": "We will not be able to qualify for this job."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i08:r3",
+            "text": "I will be able to qualify for this job."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i08:audio",
+            "transcript": "We will be able to qualify for this job."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i08:r1",
+              "targetText": "We will be able to qualify for this job.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i08:r2",
+              "targetText": "We will not be able to qualify for this job.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i08:r3",
+              "targetText": "I will be able to qualify for this job.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to qualify for this job.",
+                "uk": "У записі звучить We will be able to qualify for this job."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to qualify for this job.",
+                "uk": "У записі звучить We will be able to qualify for this job."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ qualify for this job.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:word:retake",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — retake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:retake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — retake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:retake:audio",
+            "transcript": "retake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:retake:r1",
+              "targetText": "retake",
+              "meaningByLocale": {
+                "ru": "пересдавать экзамен.",
+                "uk": "перескладати іспит."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retake",
+            "definitionByLocale": {
+              "ru": "пересдавать экзамен.",
+              "uk": "перескладати іспит."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с be able to: «Они смогут пересдать экзамен».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с be able to: «Они смогут пересдать экзамен».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to retake the exam.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут пересдать экзамен».",
+            "uk": "Скажіть із be able to: «Вони зможуть перескласти іспит»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "retake",
+            "the",
+            "exam"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i11:r1",
+            "text": "They will be able to retake the exam."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i11:r2",
+            "text": "They will not be able to retake the exam."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i11:r3",
+            "text": "She will be able to retake the exam."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i11:audio",
+            "transcript": "They will be able to retake the exam."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i11:r1",
+              "targetText": "They will be able to retake the exam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i11:r2",
+              "targetText": "They will not be able to retake the exam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i11:r3",
+              "targetText": "She will be able to retake the exam.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to retake the exam.",
+                "uk": "У записі звучить They will be able to retake the exam."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to retake the exam.",
+                "uk": "У записі звучить They will be able to retake the exam."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните конструкцию be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните конструкцию be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ retake the exam.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Дополните конструкцию be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните конструкцию be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-28:i13:p1",
+              "target": "enrol",
+              "meaningByLocale": {
+                "ru": "записываться на обучение",
+                "uk": "записуватися на навчання"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-28:i13:p2",
+              "target": "participate",
+              "meaningByLocale": {
+                "ru": "участвовать",
+                "uk": "брати участь"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-28:i13:p3",
+              "target": "qualify",
+              "meaningByLocale": {
+                "ru": "соответствовать требованиям, получать право",
+                "uk": "відповідати вимогам, отримувати право"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-28:i13:p4",
+              "target": "retake",
+              "meaningByLocale": {
+                "ru": "пересдавать экзамен",
+                "uk": "перескладати іспит"
+              }
+            }
+          ],
+          "leftColumn": [
+            "enrol",
+            "participate",
+            "qualify",
+            "retake"
+          ],
+          "rightColumn": [
+            "записываться на обучение",
+            "участвовать",
+            "соответствовать требованиям, получать право",
+            "пересдавать экзамен"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите о возможности",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите о возможности",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i16:audio",
+            "transcript": "I can enrol online."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can enrol online.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-28:word:enrol",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — enrol",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:enrol:audio"
+        ],
+        "accessibilityLabel": "Картка слова — enrol",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:enrol:audio",
+            "transcript": "enrol"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:enrol:r1",
+              "targetText": "enrol",
+              "meaningByLocale": {
+                "ru": "записываться на обучение.",
+                "uk": "записуватися на навчання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "enrol",
+            "definitionByLocale": {
+              "ru": "записываться на обучение.",
+              "uk": "записуватися на навчання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Я можу записатися на навчання через інтернет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Я можу записатися на навчання через інтернет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am able to enrol online.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Я могу записаться на обучение через интернет».",
+            "uk": "Скажіть із be able to: «Я можу записатися на навчання через інтернет»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "able",
+            "to",
+            "enrol",
+            "online"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i02:r1",
+            "text": "I am able to enrol online."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i02:r2",
+            "text": "I am not able to enrol online."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i02:r3",
+            "text": "We are able to enrol online."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i02:audio",
+            "transcript": "I am able to enrol online."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i02:r1",
+              "targetText": "I am able to enrol online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i02:r2",
+              "targetText": "I am not able to enrol online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i02:r3",
+              "targetText": "We are able to enrol online.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to enrol online.",
+                "uk": "У записі звучить I am able to enrol online."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am able to enrol online.",
+                "uk": "У записі звучить I am able to enrol online."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i03:r1",
+            "text": "am able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i03:r2",
+            "text": "am able"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i03:r3",
+            "text": "am can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "I ___ enrol online.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i03:r1",
+              "text": "am able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i03:r2",
+              "text": "am able"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i03:r3",
+              "text": "am can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:word:participate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — participate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:participate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — participate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:participate:audio",
+            "transcript": "participate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:participate:r1",
+              "targetText": "participate",
+              "meaningByLocale": {
+                "ru": "участвовать.",
+                "uk": "брати участь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "participate",
+            "definitionByLocale": {
+              "ru": "участвовать.",
+              "uk": "брати участь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вона може брати участь у занятті».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вона може брати участь у занятті».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is able to participate in the class.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Она может участвовать в занятии».",
+            "uk": "Скажіть із be able to: «Вона може брати участь у занятті»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "able",
+            "to",
+            "participate",
+            "in",
+            "the",
+            "class"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i05:r1",
+            "text": "She is able to participate in the class."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i05:r2",
+            "text": "She is not able to participate in the class."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i05:r3",
+            "text": "They are able to participate in the class."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i05:audio",
+            "transcript": "She is able to participate in the class."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i05:r1",
+              "targetText": "She is able to participate in the class.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i05:r2",
+              "targetText": "She is not able to participate in the class.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i05:r3",
+              "targetText": "They are able to participate in the class.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to participate in the class.",
+                "uk": "У записі звучить She is able to participate in the class."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is able to participate in the class.",
+                "uk": "У записі звучить She is able to participate in the class."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i06:r1",
+            "text": "is able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i06:r2",
+            "text": "is able"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i06:r3",
+            "text": "is can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "She ___ participate in the class.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i06:r1",
+              "text": "is able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i06:r2",
+              "text": "is able"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i06:r3",
+              "text": "is can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После able нужно to.",
+                "uk": "Після able потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "С can не употребляют am или is; здесь нужна конструкция be able to.",
+                "uk": "Із can не вживають am або is; тут потрібна конструкція be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:word:qualify",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — qualify",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:qualify:audio"
+        ],
+        "accessibilityLabel": "Картка слова — qualify",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:qualify:audio",
+            "transcript": "qualify"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:qualify:r1",
+              "targetText": "qualify",
+              "meaningByLocale": {
+                "ru": "соответствовать требованиям, получать право.",
+                "uk": "відповідати вимогам, отримувати право."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "qualify",
+            "definitionByLocale": {
+              "ru": "соответствовать требованиям, получать право.",
+              "uk": "відповідати вимогам, отримувати право."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Ми зможемо відповідати вимогам цієї роботи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Ми зможемо відповідати вимогам цієї роботи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will be able to qualify for this job.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Мы сможем соответствовать требованиям этой работы».",
+            "uk": "Скажіть із be able to: «Ми зможемо відповідати вимогам цієї роботи»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "qualify",
+            "for",
+            "this",
+            "job"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i08:r1",
+            "text": "We will be able to qualify for this job."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i08:r2",
+            "text": "We will not be able to qualify for this job."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i08:r3",
+            "text": "I will be able to qualify for this job."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i08:audio",
+            "transcript": "We will be able to qualify for this job."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i08:r1",
+              "targetText": "We will be able to qualify for this job.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i08:r2",
+              "targetText": "We will not be able to qualify for this job.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i08:r3",
+              "targetText": "I will be able to qualify for this job.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to qualify for this job.",
+                "uk": "У записі звучить We will be able to qualify for this job."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will be able to qualify for this job.",
+                "uk": "У записі звучить We will be able to qualify for this job."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i09:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i09:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i09:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "We ___ qualify for this job.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i09:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i09:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i09:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:word:retake",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — retake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:word:retake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — retake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:word:retake:audio",
+            "transcript": "retake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:word:retake:r1",
+              "targetText": "retake",
+              "meaningByLocale": {
+                "ru": "пересдавать экзамен.",
+                "uk": "перескладати іспит."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retake",
+            "definitionByLocale": {
+              "ru": "пересдавать экзамен.",
+              "uk": "перескладати іспит."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із be able to: «Вони зможуть перескласти іспит».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із be able to: «Вони зможуть перескласти іспит».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They will be able to retake the exam.",
+          "localizedMeaning": {
+            "ru": "Скажите с be able to: «Они смогут пересдать экзамен».",
+            "uk": "Скажіть із be able to: «Вони зможуть перескласти іспит»."
+          },
+          "orderedTokens": [
+            "They",
+            "will",
+            "be",
+            "able",
+            "to",
+            "retake",
+            "the",
+            "exam"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i11:r1",
+            "text": "They will be able to retake the exam."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i11:r2",
+            "text": "They will not be able to retake the exam."
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i11:r3",
+            "text": "She will be able to retake the exam."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i11:audio",
+            "transcript": "They will be able to retake the exam."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-28:i11:r1",
+              "targetText": "They will be able to retake the exam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i11:r2",
+              "targetText": "They will not be able to retake the exam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i11:r3",
+              "targetText": "She will be able to retake the exam.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to retake the exam.",
+                "uk": "У записі звучить They will be able to retake the exam."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They will be able to retake the exam.",
+                "uk": "У записі звучить They will be able to retake the exam."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть конструкцію be able to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-28:i12:r1",
+            "text": "will be able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i12:r2",
+            "text": "will able to"
+          },
+          {
+            "responseId": "en:lesson-19:session-28:i12:r3",
+            "text": "will can"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть конструкцію be able to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните конструкцию be able to.",
+            "uk": "Доповніть конструкцію be able to."
+          },
+          "gappedTargetPhrase": "They ___ retake the exam.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-28:i12:r1",
+              "text": "will be able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i12:r2",
+              "text": "will able to"
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i12:r3",
+              "text": "will can"
+            }
+          ],
+          "testedDimension": "Доповніть конструкцію be able to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "После will нужна форма be: will be able to.",
+                "uk": "Після will потрібна форма be: will be able to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть конструкцію be able to.",
+              "feedbackByLocale": {
+                "ru": "Will и can не ставят вместе; используйте will be able to.",
+                "uk": "Will і can не ставлять разом; використайте will be able to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-28:i13:p1",
+              "target": "enrol",
+              "meaningByLocale": {
+                "ru": "записываться на обучение",
+                "uk": "записуватися на навчання"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-28:i13:p2",
+              "target": "participate",
+              "meaningByLocale": {
+                "ru": "участвовать",
+                "uk": "брати участь"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-28:i13:p3",
+              "target": "qualify",
+              "meaningByLocale": {
+                "ru": "соответствовать требованиям, получать право",
+                "uk": "відповідати вимогам, отримувати право"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-28:i13:p4",
+              "target": "retake",
+              "meaningByLocale": {
+                "ru": "пересдавать экзамен",
+                "uk": "перескладати іспит"
+              }
+            }
+          ],
+          "leftColumn": [
+            "enrol",
+            "participate",
+            "qualify",
+            "retake"
+          ],
+          "rightColumn": [
+            "записуватися на навчання",
+            "брати участь",
+            "відповідати вимогам, отримувати право",
+            "перескладати іспит"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть про можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть про можливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i16:audio",
+            "transcript": "I can enrol online."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can enrol online.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-28:i17:audio",
+            "transcript": "This is such a useful skill."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful skill.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-28:word:enrol",
+      "correctText": "enrol",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i01",
+      "correctText": "I am able to enrol online.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i02",
+      "correctText": "I am able to enrol online.",
+      "correctResponseId": "en:lesson-19:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i03",
+      "correctText": "am able to",
+      "correctResponseId": "en:lesson-19:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:word:participate",
+      "correctText": "participate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i04",
+      "correctText": "She is able to participate in the class.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i05",
+      "correctText": "She is able to participate in the class.",
+      "correctResponseId": "en:lesson-19:session-28:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i06",
+      "correctText": "is able to",
+      "correctResponseId": "en:lesson-19:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:word:qualify",
+      "correctText": "qualify",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i07",
+      "correctText": "We will be able to qualify for this job.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i08",
+      "correctText": "We will be able to qualify for this job.",
+      "correctResponseId": "en:lesson-19:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i09",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:word:retake",
+      "correctText": "retake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i10",
+      "correctText": "They will be able to retake the exam.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i11",
+      "correctText": "They will be able to retake the exam.",
+      "correctResponseId": "en:lesson-19:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i12",
+      "correctText": "will be able to",
+      "correctResponseId": "en:lesson-19:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i14",
+      "correctText": "At twenty, I could speak confidently.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i16",
+      "correctText": "I can enrol online.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-28:i17",
+      "correctText": "This is such a useful skill.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "be able to + base verb; will be able to",
+    "uk": "be able to + base verb; will be able to"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Записаться на курс",
+        "uk": "Записатися на курс"
+      },
+      "bodyByLocale": {
+        "ru": "Enrol — записываться на обучение. На курс можно записаться через интернет, поэтому вам не нужно ехать в школу. Американское написание enroll тоже правильное. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Enrol — записуватися на навчання. На курс можна записатися через інтернет, тому вам не потрібно їхати до школи. Американське написання enroll теж правильне. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-28:intro1:r1",
+              "text": "I am able to enrol online."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro1:r2",
+              "text": "I able to enrol online."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro1:r3",
+              "text": "I am able enrol online."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-28:intro1:r1",
+              "text": "I am able to enrol online."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro1:r2",
+              "text": "I able to enrol online."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro1:r3",
+              "text": "I am able enrol online."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Участвовать в занятии",
+        "uk": "Брати участь у занятті"
+      },
+      "bodyByLocale": {
+        "ru": "Participate — участвовать. Перед названием занятия или события нужен in. Расписание изменилось, и теперь ваша знакомая может участвовать в занятии. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Participate — брати участь. Перед назвою заняття або події потрібне in. Розклад змінився, і тепер ваша знайома може брати участь у занятті. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-28:intro2:r1",
+              "text": "She is able to participate in the class."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro2:r2",
+              "text": "She are able to participate in the class."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro2:r3",
+              "text": "She is able participate in the class."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-28:intro2:r1",
+              "text": "She is able to participate in the class."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro2:r2",
+              "text": "She are able to participate in the class."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro2:r3",
+              "text": "She is able participate in the class."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что сможем сделать",
+        "uk": "Що зможемо зробити"
+      },
+      "bodyByLocale": {
+        "ru": "О будущей возможности: will be able to. Не will can и не will able to. Qualify for — соответствовать требованиям, получить право на что-то. После обучения у вас будет нужная подготовка для этой работы. Это ещё не означает, что вас обязательно наймут. Retake the exam — пересдать экзамен: по правилам курса следующая попытка будет доступна позже.",
+        "uk": "Про майбутню можливість: will be able to. Не will can і не will able to. Qualify for — відповідати вимогам, отримати право на щось. Після навчання у вас буде потрібна підготовка для цієї роботи. Це ще не означає, що вас обов’язково наймуть. Retake the exam — перескласти іспит: за правилами курсу наступна спроба буде доступна пізніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-28:intro3:r1",
+              "text": "We will be able to qualify for this job."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro3:r2",
+              "text": "We will can qualify for this job."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro3:r3",
+              "text": "We will able to qualify for this job."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-28:intro3:r1",
+              "text": "We will be able to qualify for this job."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro3:r2",
+              "text": "We will can qualify for this job."
+            },
+            {
+              "responseId": "en:lesson-19:session-28:intro3:r3",
+              "text": "We will able to qualify for this job."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5dcbb86889a1aa1570e59df1faab5b5e35badf40761bedcb6fde8e2d09e66436"
+}

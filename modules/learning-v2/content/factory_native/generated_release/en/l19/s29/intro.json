@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "be able to + base verb; will be able to",
+    "uk": "be able to + base verb; will be able to"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти продукты для блюда",
+        "uk": "Знайти продукти для страви"
+      },
+      "bodyByLocale": {
+        "ru": "Ingredient — ингредиент, часть блюда: например, мука или молоко. Вы проверили, что нужные продукты есть в ближайшем магазине. Несколько ингредиентов — ingredients. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Ingredient — інгредієнт, складник страви: наприклад, борошно або молоко. Ви перевірили, що потрібні продукти є в найближчому магазині. Кілька інгредієнтів — ingredients. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-29:intro1:r1",
+              "text": "I am able to find this ingredient."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro1:r2",
+              "text": "I able to find this ingredient."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro1:r3",
+              "text": "I am able find this ingredient."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-29:intro1:r1",
+              "text": "I am able to find this ingredient."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro1:r2",
+              "text": "I able to find this ingredient."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro1:r3",
+              "text": "I am able find this ingredient."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Перемешать смесь",
+        "uk": "Перемішати суміш"
+      },
+      "bodyByLocale": {
+        "ru": "Mixture — смесь. Продукты уже в миске. Ваша знакомая берёт ложку и может их перемешивать, пока вы готовите остальное. Be able to + начальная форма глагола означает «быть в состоянии, мочь». В настоящем выбираем am/is/are, а to сохраняем: I am able to, she is able to. Часто проще сказать can; здесь тренируем другой способ выразить возможность.",
+        "uk": "Mixture — суміш. Продукти вже в мисці. Ваша знайома бере ложку й може їх перемішувати, поки ви готуєте решту. Be able to + початкова форма дієслова означає «бути спроможним, могти». У теперішньому часі вибираємо am/is/are, а to зберігаємо: I am able to, she is able to. Часто простіше сказати can; тут тренуємо інший спосіб виразити можливість."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-29:intro2:r1",
+              "text": "She is able to stir the mixture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro2:r2",
+              "text": "She are able to stir the mixture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro2:r3",
+              "text": "She is able stir the mixture."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-29:intro2:r1",
+              "text": "She is able to stir the mixture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro2:r2",
+              "text": "She are able to stir the mixture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro2:r3",
+              "text": "She is able stir the mixture."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что сможем сделать",
+        "uk": "Що зможемо зробити"
+      },
+      "bodyByLocale": {
+        "ru": "О будущей возможности: will be able to. Не will can и не will able to. Texture — текстура: например, гладкая или с кусочками. Вы хотите сделать смесь более гладкой. Substitute — заменитель: если нужного продукта нет, можно найти другой, подходящий для этого рецепта.",
+        "uk": "Про майбутню можливість: will be able to. Не will can і не will able to. Texture — текстура: наприклад, гладка або зі шматочками. Ви хочете зробити суміш гладкішою. Substitute — замінник: якщо потрібного продукту немає, можна знайти інший, відповідний для цього рецепта."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-29:intro3:r1",
+              "text": "We will be able to improve the texture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro3:r2",
+              "text": "We will can improve the texture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro3:r3",
+              "text": "We will able to improve the texture."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-29:intro3:r1",
+              "text": "We will be able to improve the texture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro3:r2",
+              "text": "We will can improve the texture."
+            },
+            {
+              "responseId": "en:lesson-19:session-29:intro3:r3",
+              "text": "We will able to improve the texture."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d24b37ff3a1559733d9ca608a6f01d4c547e0cec527aa34ced86bbdd958512fc"
+}

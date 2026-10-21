@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обучение: новые концепции</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · экран курса Learning V2 · 5 новых концепций (№40, владелец 21.10) ─────────
+   зачем: владелец отклонил прежние 5 вариантов («старые макеты переделанные») и просит ПРИНЦИПИАЛЬНО новые подачи экрана «Обучение»:
+   уроки → главы → эпизоды, «Продолжить», входной тест, закрытые эпизоды можно посмотреть, теория, прогресс. Язык 2.0 сохраняем:
+   темы «Сумерки» (ink) и «Океан» (marine), Inter, стекло, плавающий таббар, кольцо Plus. Без старой карты кружков 4×2 и плашек глав.
+   Веса шрифта только 400 и 700 (DESIGN.md). Обводок контейнеров нет (стиль «Тень»: тон, тень, скругление). */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+
+/* ── темы ── */
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --top: #F3F4FD; --bot: #ECE4F7; --tx: #17181E; --sec: #595A63;
+  --card: #FCFCFF; --ctl: #E6E7F4; --ctl2: #D8D9EA; --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --sh2: 0 26px 50px -22px rgba(51, 51, 87, .55); --acc: oklch(.52 .14 282); --solid: #17181E; --on-solid: #FFFFFF; --good: #2B8A5E;
+  --sb: #111; --dimc: rgba(23, 24, 30, .38); --lz: .55; --cz: .15; --lw: .58; --cw: .14; }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --top: #002936; --bot: #001B17; --tx: #F6FBFD; --sec: #B8CFD6;
+  --card: #002027; --ctl: #123037; --ctl2: #1D3F47; --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06);
+  --sh2: 0 30px 60px -24px rgba(0, 0, 0, .9); --acc: oklch(.82 .11 215); --solid: #F6FBFD; --on-solid: #00131A; --good: #4CC98C;
+  --sb: #fff; --dimc: rgba(0, 0, 0, .55); --lz: .40; --cz: .11; --lw: .78; --cw: .11; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+/* статус-бар поверх обложки — белый в обеих темах */
+.ph.onart .sb { color: #fff; } .ph.onart .sb .sys svg { filter: none !important; }
+
+/* ── общие детали ── */
+.qhd { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qhd .tt { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; display: flex; align-items: center; gap: 6px; }
+.qhd .tt .io { font-size: 17px; color: var(--sec); margin-top: 3px; }
+.qhd .sp { flex: 1; }
+.qsub { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 2px; }
+.qround { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--sh); font-size: 20px; color: var(--tx); flex: none; }
+.qround.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; padding: 0 22px; white-space: nowrap; }
+.qbtn .io { font-size: 18px; }
+.qbtn.solid { background: var(--solid); color: var(--on-solid); }
+.qbtn.white { background: #FFFFFF; color: #121318; }
+.qbtn.ctl { background: var(--ctl); color: var(--tx); height: 50px; border-radius: 25px; font-size: 16px; }
+.qbtn.glass { background: rgba(255, 255, 255, .16); color: #fff; height: 50px; border-radius: 25px; font-size: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn + .qbtn { margin-top: 12px; }
+.qnote { font-size: 13px; line-height: 17px; color: var(--sec); text-align: center; margin-top: 8px; }
+.qchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.qchip { height: 34px; padding: 0 12px; border-radius: 17px; background: var(--ctl); font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; color: var(--tx); }
+.qchip.glass { background: rgba(255, 255, 255, .16); color: #fff; }
+.qcard { border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.qk { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.qk .io { font-size: 14px; }
+.qt { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; text-wrap: balance; margin-top: 4px; }
+.qm { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qsay { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.qsay .sp { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; color: var(--tx); }
+.qsay .sp.on { background: var(--solid); color: var(--on-solid); }
+.qsay .en { font-size: 19px; line-height: 24px; font-weight: 700; }
+.qsay .ru { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qlock { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 20px; color: var(--sec); }
+.qlock .io { font-size: 15px; }
+.stars { display: inline-flex; gap: 2px; font-size: 12px; color: var(--acc); vertical-align: middle; }
+.stars .off { opacity: .28; }
+.rbar { height: 4px; border-radius: 2px; background: var(--ctl); overflow: hidden; }
+.rbar i { display: block; height: 100%; background: var(--acc); border-radius: 2px; }
+
+/* аватар с кольцом Plus (эталон plus-ring-etalon.html): зазор — подложкой, чтобы его не снимала страховка обводок */
+.pav { position: relative; display: inline-flex; border-radius: 50%; padding: 2.5px; flex: none; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pav .gap { display: flex; padding: 2px; border-radius: 50%; background: var(--top); }
+.pav .gap img { display: block; border-radius: 50%; }
+.pav .pin { position: absolute; right: -2px; bottom: -2px; width: 15px; height: 15px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 8.5px; box-shadow: 0 0 0 2px var(--top); }
+.onart .pav .gap { background: rgba(0, 0, 0, .25); } .onart .pav .pin { box-shadow: 0 0 0 2px rgba(0, 0, 0, .25); }
+
+/* плавающий таббар 2.0 (как в эталоне Главной), подписи из кода: Главная · Обучение · Видео · Сообщество · Настройки */
+.qfade { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; z-index: 30; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--bot) 0%, transparent), var(--bot) 72%); }
+.tbar { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .tbar { background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(246, 246, 253, .92)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 20px 40px -18px rgba(51, 51, 87, .5); }
+.th-marine .tbar { background: linear-gradient(180deg, rgba(6, 56, 70, .84), rgba(0, 28, 36, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.tbar .cap { position: absolute; top: 9px; bottom: 9px; left: calc(9px + (100% - 18px) / 5); width: calc((100% - 18px) / 5); border-radius: 18px; }
+.th-ink .tbar .cap { background: rgba(23, 24, 30, .07); }
+.th-marine .tbar .cap { background: rgba(255, 255, 255, .11); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .14); }
+.tbar .ti { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 10.5px; line-height: 12px; position: relative; z-index: 1; color: var(--sec); }
+.tbar .ti .io { font-size: 22px; }
+.tbar .ti.on { color: var(--tx); font-weight: 700; }
+
+/* шторка и затемнение */
+.qdim { position: absolute; inset: 0; z-index: 40; background: var(--dimc); }
+.qsheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 45; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -20px 50px -20px rgba(0, 0, 0, .45); padding: 10px 20px 34px; }
+.qgrab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl2); margin: 0 auto 14px; }
+
+/* кадр эпизода: градиент главы + фраза эпизода (вместо стоп-кадра сериала) */
+.still { position: relative; border-radius: 18px; overflow: hidden; color: #fff; }
+.still .gl { position: absolute; right: -14px; top: -10px; font-size: 120px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.still .ph1 { position: absolute; left: 14px; right: 14px; bottom: 12px; font-size: 21px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
+.still .no { position: absolute; left: 10px; top: 10px; height: 26px; padding: 0 9px; border-radius: 13px; background: rgba(0, 0, 0, .24); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.still .no .io { font-size: 12px; }
+.still .st { position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 13px; background: rgba(255, 255, 255, .24); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.still .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .26); }
+.still .prog i { display: block; height: 100%; background: #fff; }
+.still.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .40); }
+.still.lock .no, .still.lock .ph1 { z-index: 1; }
+.still.lock .ph1 { opacity: .78; }
+
+/* ═════ 1 · Сезон ═════ */
+.c1hero { position: relative; height: 512px; border-radius: 0 0 34px 34px; overflow: hidden; color: #fff; }
+.c1hero .gl { position: absolute; right: -54px; top: 64px; font-size: 310px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.c1hero .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 320px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .36)); }
+.c1top { position: absolute; left: 20px; right: 20px; top: 58px; display: flex; align-items: center; gap: 10px; }
+.c1pill { height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-size: 16px; font-weight: 700; }
+.c1pill .io { font-size: 13px; }
+.c1body { position: absolute; left: 20px; right: 20px; bottom: 22px; }
+.c1kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.c1title { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; margin-top: 6px; text-wrap: balance; }
+.c1desc { font-size: 16px; line-height: 22px; color: rgba(255, 255, 255, .88); margin-top: 8px; text-wrap: pretty; }
+.c1body .qbtn { margin-top: 16px; }
+.c1res { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.c1res .bar { flex: 0 0 64px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.c1res .bar i { display: block; height: 100%; background: #fff; }
+.c1sec { display: flex; align-items: flex-end; gap: 8px; padding: 22px 20px 0; }
+.c1sec .r { padding-bottom: 3px; }
+.c1sec .h { font-size: 21px; line-height: 26px; font-weight: 700; display: flex; align-items: center; gap: 6px; letter-spacing: -.2px; }
+.c1sec .h .io { font-size: 14px; color: var(--sec); }
+.c1sec .r { margin-left: auto; font-size: 15px; color: var(--sec); white-space: nowrap; }
+.c1shelf { display: flex; gap: 12px; padding: 14px 20px 0; overflow: hidden; }
+.c1ep { flex: none; width: 236px; }
+.c1ep .still { height: 133px; box-shadow: var(--sh); }
+.c1ep .t { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.c1ep .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+.c1ep .m .io { font-size: 13px; }
+.c1extra { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; padding: 18px 20px 0; }
+.c1x { border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 14px; }
+.c1x .io { font-size: 24px; color: var(--acc); }
+.c1x b { display: block; font-size: 16px; line-height: 21px; margin-top: 10px; }
+.c1x span { font-size: 14px; color: var(--sec); }
+.c1exam { flex: none; width: 300px; }
+.c1exam .still { height: 300px; border-radius: 22px; box-shadow: var(--sh2); }
+.c1exam .ex { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+.c1exam .ex .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.c1exam .ex .h { font-size: 26px; line-height: 31px; font-weight: 700; margin-top: 4px; }
+.c1exam .ex .f { display: flex; gap: 8px; margin-top: 12px; }
+.c1exam .ex .f span { height: 30px; padding: 0 10px; border-radius: 15px; background: rgba(255, 255, 255, .18); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; }
+.c1exam .ex .qbtn { margin-top: 14px; height: 48px; border-radius: 24px; font-size: 16px; }
+.c1exam .seal { position: absolute; left: 18px; top: 18px; width: 52px; height: 52px; border-radius: 16px; background: rgba(255, 255, 255, .18); display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 1; }
+.c1after { padding: 14px 20px 0; font-size: 15px; line-height: 21px; color: var(--sec); }
+.c1nav { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qpills { display: flex; gap: 8px; overflow: hidden; margin: 16px -20px 0; padding: 0 20px; }
+.qpill { flex: none; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--ctl); display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: var(--tx); }
+.qpill.on { background: var(--solid); color: var(--on-solid); }
+.qpill.lock { color: var(--sec); }
+.qpill .io { font-size: 13px; }
+.c1row { display: flex; gap: 14px; align-items: center; padding: 9px 0; }
+.c1row .still { width: 132px; height: 74px; border-radius: 13px; flex: none; }
+.c1row .still .ph1 { font-size: 14px; line-height: 17px; left: 10px; right: 8px; bottom: 8px; }
+.c1row .still .st { width: 22px; height: 22px; top: 7px; right: 7px; font-size: 12px; }
+.c1row .n { font-size: 13px; line-height: 17px; color: var(--sec); }
+.c1row .t { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 1px; text-wrap: balance; }
+.c1row .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 3px; display: flex; gap: 6px; align-items: center; }
+.c1row .m .io { font-size: 13px; }
+.c1row.cur .n { color: var(--acc); font-weight: 700; }
+.c1sheetart { height: 196px; border-radius: 20px; }
+.c1sheetart .ph1 { font-size: 30px; line-height: 34px; }
+
+/* ═════ 2 · Циферблат ═════ */
+.c2wrap { position: relative; width: 370px; height: 370px; margin: 8px auto 0; }
+.c2wrap.sm { width: 300px; height: 300px; }
+.c2wrap svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.c2center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 86px; }
+.c2wrap.sm .c2center { padding: 0 70px; }
+.c2center .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.c2center .h { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.3px; margin-top: 4px; text-wrap: balance; }
+.c2wrap.sm .c2center .h { font-size: 19px; line-height: 24px; }
+.c2center .m { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 6px; }
+.tk { stroke-linecap: round; stroke-width: 5; }
+.tk.done { stroke: var(--acc); } .tk.fut { stroke: var(--sec); opacity: .38; } .tk.far { stroke: var(--sec); opacity: .2; } .tk.open { stroke: var(--acc); opacity: .42; }
+.band { fill: none; stroke: var(--acc); stroke-opacity: .14; stroke-width: 36; stroke-linecap: round; }
+.dm.pass { fill: var(--acc); } .dm.open { fill: none; stroke: var(--tx); stroke-width: 2.2; } .dm.lock { fill: var(--sec); opacity: .22; }
+.cur { fill: var(--acc); } .curg { fill: var(--acc); fill-opacity: .22; }
+.knob { fill: none; stroke: var(--tx); stroke-width: 2.6; }
+.chi { font-family: IoniconsApp; font-size: 20px; fill: var(--sec); text-anchor: middle; dominant-baseline: central; }
+.chi.sel { fill: var(--tx); } .chi.lk { opacity: .45; }
+.c2lbl { font-size: 15px; font-weight: 700; fill: var(--sec); text-anchor: middle; dominant-baseline: central; font-family: Inter, system-ui, sans-serif; }
+.c2lbl.cur { fill: var(--acc); } .c2lbl.lk { opacity: .55; }
+.c2card { margin-top: 10px; }
+.c2card .top { display: flex; align-items: center; gap: 8px; }
+.c2card .top .r { margin-left: auto; font-size: 14px; color: var(--sec); white-space: nowrap; }
+.c2card .qbtn { margin-top: 16px; }
+.c2facts { display: flex; gap: 8px; margin-top: 14px; }
+.c2facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 10px 8px; text-align: center; }
+.c2facts b { display: block; font-size: 20px; line-height: 24px; } .c2facts span { font-size: 13px; color: var(--sec); }
+.c2list { margin-top: 4px; }
+.c2li { display: flex; align-items: center; gap: 12px; padding: 11px 0; box-shadow: inset 0 -1px 0 var(--ctl); }
+.c2li:last-child { box-shadow: none; }
+.c2li .n { width: 28px; font-size: 15px; font-weight: 700; color: var(--sec); text-align: center; flex: none; }
+.c2li .t { flex: 1; font-size: 16px; line-height: 21px; font-weight: 700; }
+.c2li .s { font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.c2li.cur .n, .c2li.cur .s { color: var(--acc); }
+.c2li.lk .t { color: var(--sec); font-weight: 400; }
+
+/* ═════ 3 · Волна ═════ */
+.c3card { position: relative; border-radius: 28px; overflow: hidden; color: #fff; padding: 16px; margin-top: 14px; box-shadow: var(--sh2); }
+.c3card .gl { position: absolute; right: -30px; top: -26px; font-size: 190px; color: rgba(255, 255, 255, .11); transform: rotate(-8deg); }
+.c3card > * { position: relative; }
+.c3card .top { display: flex; align-items: center; gap: 8px; }
+.c3card .top .r { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); white-space: nowrap; }
+.c3card .h { font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; margin-top: 14px; text-wrap: balance; }
+.c3card .qsay .sp { background: rgba(255, 255, 255, .18); color: #fff; }
+.c3card .qsay .ru { color: rgba(255, 255, 255, .84); }
+.c3card .qbtn { margin-top: 16px; }
+.c3card .qchips { margin-top: 12px; }
+.c3card .lk { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 15px; color: rgba(255, 255, 255, .88); }
+.c3card.mute::before { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .30); }
+.c3sec { display: flex; align-items: baseline; gap: 8px; margin-top: 22px; }
+.c3sec .h { font-size: 18px; line-height: 23px; font-weight: 700; }
+.c3sec .r { margin-left: auto; font-size: 15px; color: var(--sec); white-space: nowrap; }
+.c3wave { position: relative; margin-top: 10px; }
+.c3wave svg { display: block; width: 390px; height: 120px; overflow: visible; }
+.wf { fill: var(--ctl2); } .wf.far { opacity: .5; }
+.wph { stroke: var(--tx); stroke-width: 2; } .wph.ghost { stroke-dasharray: 3 4; stroke-width: 1.6; }
+.wkn { fill: var(--tx); } .wkn.ghost { fill: var(--top); stroke: var(--tx); stroke-width: 2; }
+.c3lbl { position: relative; height: 18px; margin-top: 6px; }
+.c3lbl span { position: absolute; transform: translateX(-50%); font-size: 13px; line-height: 18px; color: var(--sec); }
+.c3lbl span.on { color: var(--tx); font-weight: 700; }
+.c3teach { font-size: 14px; line-height: 20px; color: var(--sec); margin-top: 12px; }
+.c3row { display: flex; align-items: center; gap: 12px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; margin-top: 16px; }
+.c3row .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--acc); flex: none; }
+.c3row b { display: block; font-size: 16px; line-height: 21px; } .c3row span { font-size: 14px; color: var(--sec); }
+.c3row .io.chev { margin-left: auto; font-size: 16px; color: var(--sec); }
+.c3zoom svg { display: block; width: 390px; height: 190px; overflow: visible; }
+.c3zl { font-size: 14px; font-weight: 700; fill: var(--sec); text-anchor: middle; font-family: Inter, system-ui, sans-serif; }
+.c3zl.cur { fill: var(--acc); }
+
+/* ═════ 4 · Колода ═════ */
+.c4deck { position: relative; height: 492px; margin-top: 14px; }
+.c4card { position: absolute; top: 0; left: 34px; width: 322px; height: 476px; border-radius: 32px; overflow: hidden; color: #fff; box-shadow: var(--sh2); padding: 18px; display: flex; flex-direction: column; }
+.c4card .gl { position: absolute; right: -40px; top: 40px; font-size: 230px; color: rgba(255, 255, 255, .11); transform: rotate(-8deg); }
+.c4card > * { position: relative; }
+.c4card .top { display: flex; align-items: center; gap: 8px; }
+.c4card .top .r { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); white-space: nowrap; }
+.c4card .big { font-size: 36px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: auto; text-wrap: balance; }
+.c4card .ru { font-size: 16px; line-height: 21px; color: rgba(255, 255, 255, .86); margin-top: 6px; }
+.c4card .h { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 14px; text-wrap: balance; }
+.c4card .qchips { margin-top: 12px; }
+.c4card .qbtn { margin-top: 16px; }
+.c4card .lk { display: flex; align-items: center; gap: 8px; font-size: 15px; color: rgba(255, 255, 255, .9); margin-top: 12px; }
+.c4card.mute::before { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .32); }
+.c4card.b1 { transform: translateX(18px) scale(.95); transform-origin: 100% 50%; opacity: .92; }
+.c4card.b2 { transform: translateX(34px) scale(.90); transform-origin: 100% 50%; opacity: .7; }
+.c4card.prev { transform: translateX(-314px) scale(.95); transform-origin: 100% 50%; opacity: .9; }
+.c4card.next { transform: translateX(314px) scale(.95); transform-origin: 0 50%; opacity: .9; }
+.c4dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 2px; }
+.c4dots i { width: 8px; height: 8px; border-radius: 4px; background: var(--ctl2); }
+.c4dots i.d { background: var(--acc); opacity: .55; }
+.c4dots i.c { width: 26px; background: var(--tx); }
+.c4dots i.x { width: 10px; height: 10px; border-radius: 2px; transform: rotate(45deg); background: none; box-shadow: inset 0 0 0 2px var(--sec); margin: 0 3px; }
+.c4dots i.x.c { background: var(--tx); box-shadow: none; width: 12px; height: 12px; }
+.c4tools { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
+.c4fan { position: relative; height: 300px; margin-top: 18px; }
+.fcard { position: absolute; left: 50%; bottom: 52px; width: 88px; height: 132px; margin-left: -44px; border-radius: 16px; overflow: hidden; color: #fff; transform-origin: 50% 220%; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .55); padding: 10px; display: flex; flex-direction: column; }
+.fcard .n { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.fcard.cur { width: 112px; height: 160px; margin-left: -56px; }
+.fcard .n .io { font-size: 12px; }
+.fcard .p { font-size: 14px; line-height: 17px; font-weight: 700; margin-top: auto; }
+.fcard.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .38); }
+.fcard.lock > * { position: relative; z-index: 1; opacity: .85; }
+.c4sel { text-align: center; }
+.c4sel .k { font-size: 14px; color: var(--sec); }
+.c4sel .h { font-size: 21px; line-height: 27px; font-weight: 700; margin-top: 2px; }
+.c4sel .qbtn { margin-top: 14px; }
+.c4exam { background: radial-gradient(90% 60% at 80% 0%, rgba(142, 124, 255, .55), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(127, 224, 216, .35), transparent 60%), linear-gradient(160deg, #262447, #12142A 70%); }
+.th-marine .c4exam { background: radial-gradient(90% 60% at 80% 0%, rgba(127, 224, 216, .40), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(142, 124, 255, .35), transparent 60%), linear-gradient(160deg, #0B3442, #04141C 70%); }
+.c4exam .seal { width: 64px; height: 64px; border-radius: 20px; background: rgba(255, 255, 255, .16); display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.c4exam .f { display: flex; gap: 8px; margin-top: 14px; }
+.c4exam .f span { height: 30px; padding: 0 9px; border-radius: 15px; background: rgba(255, 255, 255, .16); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; white-space: nowrap; }
+
+/* ═════ 5 · Разговорник ═════ */
+.c5ch { margin-top: 22px; }
+.c5h { display: flex; align-items: center; gap: 8px; }
+.c5h .t { font-size: 15px; line-height: 20px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.c5h .t .io { font-size: 14px; }
+.c5h .r { margin-left: auto; font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.c5h .r .io { font-size: 13px; color: var(--good); }
+.c5scene { font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.3px; margin-top: 4px; }
+.c5wall { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 10px; align-items: baseline; }
+.ph5 { font-size: 28px; line-height: 38px; font-weight: 700; letter-spacing: -.4px; position: relative; white-space: nowrap; }
+.ph5 sup { font-size: 12px; line-height: 12px; font-weight: 700; color: var(--sec); margin-right: 4px; vertical-align: super; letter-spacing: 0; }
+.ph5.cur { color: var(--acc); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 7px; }
+.ph5 .pl { display: inline-flex; width: 30px; height: 30px; border-radius: 15px; background: var(--acc); color: var(--on-solid); align-items: center; justify-content: center; font-size: 13px; margin-left: 6px; vertical-align: 4px; }
+.th-ink .ph5 .pl { color: #fff; }
+.ph5.lk .w { filter: blur(6px); opacity: .5; }
+.ph5.lk sup { opacity: .7; }
+.c5wall.sm .ph5 { font-size: 18px; line-height: 27px; letter-spacing: -.2px; color: var(--sec); }
+.c5wall.sm .ph5 sup { font-size: 10px; }
+.c5seal { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 20px; background: var(--ctl); font-size: 15px; font-weight: 700; margin-top: 14px; }
+.c5seal .io { font-size: 16px; color: var(--acc); }
+.c5seal.pass { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.c5seal.pass .io { color: var(--good); }
+.c5ghost { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; }
+.c5ghost i { height: 22px; border-radius: 11px; background: var(--ctl); opacity: .8; }
+.c5mini { position: absolute; left: 12px; right: 12px; bottom: 104px; height: 66px; border-radius: 22px; z-index: 34; display: flex; align-items: center; gap: 12px; padding: 0 10px 0 10px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .c5mini { background: linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(246, 246, 253, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 18px 36px -18px rgba(51, 51, 87, .5); }
+.th-marine .c5mini { background: linear-gradient(180deg, rgba(6, 56, 70, .86), rgba(0, 28, 36, .95)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.c5mini .art { width: 46px; height: 46px; border-radius: 14px; flex: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; }
+.c5mini .tx { flex: 1; min-width: 0; }
+.c5mini .tx b { display: block; font-size: 15px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c5mini .tx span { font-size: 13px; line-height: 17px; color: var(--sec); white-space: nowrap; }
+.c5mini .pl { width: 46px; height: 46px; border-radius: 23px; background: var(--solid); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; }
+.c5intro { font-size: 16px; line-height: 23px; color: var(--sec); margin-top: 10px; text-wrap: pretty; }
+.qpop { position: absolute; left: 16px; right: 16px; z-index: 45; border-radius: 26px; background: var(--card); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .55); padding: 16px; }
+.qpop::before { content: ''; position: absolute; top: -8px; width: 18px; height: 18px; border-radius: 4px; background: var(--card); transform: rotate(45deg); left: var(--ax, 60px); }
+.qdim.soft { background: color-mix(in srgb, var(--dimc) 70%, transparent); }
+.c5ly .ln { margin-top: 18px; }
+.c5ly .ln .w { display: block; font-size: 30px; line-height: 37px; font-weight: 700; letter-spacing: -.5px; }
+.c5ly .ln small { display: flex; align-items: center; gap: 6px; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 3px; }
+.c5ly .ln small .io { font-size: 12px; }
+.c5ly .ln.past .w { opacity: .42; }
+.c5ly .ln.cur .w { color: var(--tx); }
+.c5ly .ln.cur small { color: var(--acc); font-weight: 700; }
+.c5ly .ln.n1 .w { filter: blur(2px); opacity: .5; }
+.c5ly .ln.n2 .w { filter: blur(4px); opacity: .42; }
+.c5ly .ln.n3 .w { filter: blur(6px); opacity: .35; }
+.c5art { position: relative; height: 150px; border-radius: 24px; overflow: hidden; color: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 10px; }
+.c5art .gl { position: absolute; right: -24px; top: -20px; font-size: 150px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.c5art > * { position: relative; }
+.c5art .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.c5art .h { font-size: 24px; line-height: 29px; font-weight: 700; margin-top: 2px; }
+.c5exam { margin-top: 26px; border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 18px; }
+.c5exam .seal { width: 52px; height: 52px; border-radius: 16px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--acc); }
+.c5exam .h { font-size: 24px; line-height: 30px; font-weight: 700; margin-top: 12px; }
+.c5exam p { font-size: 16px; line-height: 23px; color: var(--sec); margin: 8px 0 0; }
+.c5exam .qbtn { margin-top: 16px; }
+
+/* ── страница ── */
+.thm { padding: 14px 0 0; display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; }
+.chp.on { background: #F2F1F6; color: #0B0C0E; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.cmp { border-collapse: collapse; width: 100%; max-width: 1400px; font-size: 14px; line-height: 20px; color: #C9C9CF; margin-top: 6px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 11px 16px 11px 0; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .08); }
+.cmp th { color: #8E8E96; font-size: 13px; font-weight: 700; }
+.cmp td b { color: #F2F2F4; }
+@media (prefers-reduced-motion: reduce) { .ph *, .ph *::before, .ph *::after { transition: none !important; animation: none !important; } }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Экран «Обучение»: пять новых концепций (№40)</h1>
+  <p class="page-lead">Заказ владельца 21.10: прежние пять вариантов отклонены, нужны принципиально новые подачи. Что видишь, открыв «Обучение»: урок, 7 глав-сцен, 8 эпизодов в главе и экзамен главы, «Продолжить», входной тест «Не хочу с начала», закрытые эпизоды можно посмотреть, теория урока, прогресс. Язык 2.0 тот же: темы «Сумерки» и «Океан», Inter, стекло, плавающий таббар, кольцо Plus. Тексты настоящие: урок 1 «Present be», арка «Первая неделя в Дублине», названия эпизодов, фразы и слова из курса. Код приложения не менялся.</p>
+  <div class="thm"><span style="font-size:13px;color:#8E8E96;font-weight:700;margin-right:6px">Тема</span><span class="chp" data-t="ink">Сумерки</span><span class="chp" data-t="marine">Океан</span></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>window.__ICODE = {"albums-outline":"f110","book":"f1a5","book-outline":"f1a6","business-outline":"f1c7","cafe-outline":"f1ca","call-outline":"f1d9","chatbubbles-outline":"f218","checkmark":"f21d","checkmark-circle":"f21e","chevron-back":"f229","chevron-down":"f232","chevron-forward":"f23b","diamond":"f2a1","happy":"f361","home-outline":"f383","lock-closed":"f3c7","open":"f487","people-outline":"f4a3","play":"f4c6","play-circle-outline":"f4ce","restaurant-outline":"f536","school-outline":"f55d","settings-outline":"f56c","star":"f595","trophy":"f601","volume-high":"f613"};</script>
+<script>
+/* зачем (владелец 21.10, №40): 5 принципиально новых концепций экрана «Обучение» Learning V2. Прежние 5 вариантов отклонены целиком
+   («старые макеты переделанные»). Каждая концепция — свой принцип подачи: 1 Сезон (сериал), 2 Циферблат (круг), 3 Волна (запись голоса),
+   4 Колода (карта в фокусе), 5 Разговорник (фразы вместо номеров). Данные — из курса: план урока 1 (ПЛАН_КУРСА.md), названия эпизодов
+   (session_titles_v1.generated.ts), фразы, слова и число заданий — из learner.json эпизодов. */
+(() => {
+const { phone, block, col, coinImg } = K;
+const CODE = window.__ICODE || {};
+const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[COURSE-NEW] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+const gl = (n) => { const c = CODE[n]; if (!c) throw new Error('[COURSE-NEW] нет значка ' + n); return `&#x${c};`; };
+let TH = 'ink';
+const T = (h, extra = '') => h.replace('class="ph"', `class="ph th-${TH}${extra ? ' ' + extra : ''}"`);
+const pl = (n, f) => { const a = n % 10, b = n % 100; return f[(a === 1 && b !== 11) ? 0 : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? 1 : 2]; };
+const tasks = (n) => `${n} ${pl(n, ['задание', 'задания', 'заданий'])}`;
+
+/* ── данные курса ── */
+const LES = { n: 1, title: 'Present be: утверждение + not', arc: 'Первая неделя в Дублине' };
+const CH = [
+  { n: 1, scene: 'Первый рабочий день', name: 'I am (+ not)', ic: 'business-outline', h: 258 },
+  { n: 2, scene: 'Кофе с коллегой', name: 'You are (+ not)', ic: 'cafe-outline', h: 200 },
+  { n: 3, scene: 'Знакомство с командой', name: 'He / she is (+ not)', ic: 'people-outline', h: 304 },
+  { n: 4, scene: 'Квартира, погода, вещи', name: 'It is (+ not)', ic: 'home-outline', h: 168 },
+  { n: 5, scene: 'Обед с командой', name: 'We / they are (+ not)', ic: 'restaurant-outline', h: 340 },
+  { n: 6, scene: 'Пятница, паб', name: 'Сокращения', ic: 'chatbubbles-outline', h: 228 },
+  { n: 7, scene: 'Воскресный звонок домой', name: 'Вся система be', ic: 'call-outline', h: 282 },
+];
+const EP = {
+  1: { t: 'Вошли в офис', p: 'I am here.', ru: 'Я здесь.', k: 20, w: ['here', 'ready', 'fine', 'happy'] },
+  2: { t: 'День продолжается', p: 'I am busy.', k: 21 },
+  3: { t: 'Заботливый начальник', p: 'I am not sure.', k: 21 },
+  4: { t: 'Утренняя планёрка вслух', p: 'I am early.', k: 21 },
+  5: { t: 'Типичные ошибки: I fine, I no sure', p: 'I am new.', k: 21 },
+  6: { t: 'Вечером в квартире, звонок другу', p: 'I am home.', k: 20 },
+  7: { t: 'Конец дня, всё вперемешку', p: 'I am full.', k: 18 },
+  8: { t: 'Итог первого дня: ответить на 10 вопросов о себе', p: 'I am excited.', k: 25 },
+  9: { t: 'Коллега приносит кофе', p: 'He is tall.', k: 21 },
+  10: { t: 'Замечаем и говорим о собеседнике', p: 'You are early.', k: 21 },
+  11: { t: 'Успокаиваем коллегу', p: 'You are not lazy.', k: 18 },
+  12: { t: 'Комплименты вслух', p: 'I am calm.', ru: 'Я спокоен.', k: 20, w: ['polite', 'brave', 'honest', 'smart'] },
+  13: { t: 'Ловушки: you am, I are', p: 'You are kind.', k: 18 },
+  14: { t: 'Помогаем туристу под дождём', p: 'You are safe.', ru: 'Ты в безопасности.', k: 18, w: ['safe', 'warm', 'dry', 'wet'] },
+  15: { t: 'Вечер, разбор дня', p: 'I am serious.', k: 22 },
+  16: { t: '«Скажи коллеге пять вещей о нём»', p: 'It is open.', k: 21 },
+  17: { t: 'Начальник представляет людей', p: 'You are welcome.', k: 21 },
+  18: { t: 'Обсуждаем коллег шёпотом', p: 'She is funny.', k: 21 },
+};
+const STARS = { 1: 3, 2: 3, 3: 2, 4: 3, 5: 3, 6: 2, 7: 3, 8: 3, 9: 3, 10: 2, 11: 3 };
+const CUR = 12;
+const chOf = (e) => Math.ceil(e / 8);
+const epState = (e, mode = 'mid') => mode === 'new' ? (e === 1 ? 'cur' : 'lock') : (e < CUR ? 'done' : e === CUR ? 'cur' : 'lock');
+
+/* цвет главы: обложка — глубокий градиент её оттенка (без жёлтого), на обеих темах текст белый */
+const art = (h, k = 0) => TH === 'ink'
+  ? `radial-gradient(120% 90% at 88% 0%, oklch(.70 .13 ${h + 28}) 0%, transparent 58%), linear-gradient(160deg, oklch(.53 .15 ${h + k}) 0%, oklch(.33 .13 ${h + 18 + k}) 100%)`
+  : `radial-gradient(120% 90% at 88% 0%, oklch(.56 .12 ${h + 28}) 0%, transparent 58%), linear-gradient(160deg, oklch(.40 .11 ${h + k}) 0%, oklch(.20 .07 ${h + 18 + k}) 100%)`;
+const hueFill = (h) => `fill:oklch(var(--lw) var(--cw) ${h})`;
+
+/* ── общие детали ── */
+const avatar = (s = 36, plus = true) => plus
+  ? `<span class="pav"><span class="gap">${coinImg(5, s)}</span><span class="pin">${io('diamond')}</span></span>`
+  : `<span class="pav" style="background:none;padding:0"><span class="gap" style="padding:0;background:none">${coinImg(5, s + 9)}</span></span>`;
+const TABS = [['home-outline', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people-outline', 'Сообщество'], ['settings-outline', 'Настройки']];
+const tabbar = (extra = '') => `<div class="qfade"></div>${extra}<div class="tbar"><div class="cap"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 1 ? ' on' : ''}">${io(i)}<span>${l}</span></div>`).join('')}</div>`;
+const stars = (n) => `<span class="stars">${[0, 1, 2].map((i) => `<span class="${i < n ? '' : 'off'}">${io('star')}</span>`).join('')}</span>`;
+const hdr = (title, sub, plus = true) => `<div class="qhd"><div class="tt t">${title}${io('chevron-down')}</div><span class="sp"></span><span class="qround t">${io('book-outline')}</span>${avatar(36, plus)}</div>${sub ? `<div class="qsub">${sub}</div>` : ''}`;
+const nav = (k, h) => `<div class="c1nav"><span class="qround t">${io('chevron-back')}</span><div style="flex:1;min-width:0"><div class="qk">${k}</div><div style="font-size:19px;line-height:24px;font-weight:700">${h}</div></div><span class="qround t">${io('book-outline')}</span></div>`;
+const words = (e, glass) => `<div class="qchips">${(EP[e].w || []).map((w) => `<span class="qchip${glass ? ' glass' : ''}">${w}</span>`).join('')}</div>`;
+const say = (e, on) => `<div class="qsay"><span class="sp${on ? ' on' : ''} t">${io('volume-high')}</span><div><div class="en">${EP[e].p}</div><div class="ru">${EP[e].ru || ''}</div></div></div>`;
+const still = (e, o = {}) => {
+  const c = CH[chOf(e) - 1]; const s = o.state || epState(e, o.mode); const h = o.h || 133;
+  return `<div class="still${s === 'lock' ? ' lock' : ''}${o.cls ? ' ' + o.cls : ''}" style="height:${h}px;background:${art(c.h, (e % 8) * 4)}">`
+    + `<span class="gl" style="font-size:${Math.round(h * .92)}px">${io(c.ic)}</span>`
+    + (o.noNo ? '' : `<span class="no">${s === 'lock' ? io('lock-closed') : ''}${e}</span>`)
+    + (s === 'done' ? `<span class="st">${io('checkmark')}</span>` : '')
+    + `<span class="ph1">${EP[e].p}</span>`
+    + (s === 'cur' && o.prog !== false ? `<span class="prog"><i style="width:${o.mode === 'new' ? 0 : 30}%"></i></span>` : '')
+    + '</div>';
+};
+
+/* ═════════ 1 · СЕЗОН ═════════ */
+const c1hero = (mode) => {
+  const c = CH[mode === 'new' ? 0 : 1];
+  const body = mode === 'new'
+    ? `<div class="c1kick">Урок 1 · ${LES.arc}</div><div class="c1title">${LES.title}</div><div class="c1desc">Новая работа в Дублине, вокруг никого знакомых. 7 глав и 56 эпизодов.</div>`
+      + `<div class="qbtn white t">${io('play')}Начать с эпизода 1</div><div class="qbtn glass t">${io('school-outline')}Не хочу с начала</div><div class="c1res" style="justify-content:center">Короткий тест откроет то, что ты уже знаешь</div>`
+    : `<div class="c1kick">Урок 1 · ${LES.arc}</div><div class="c1title">${LES.title}</div>`
+      + `<div class="qbtn white t">${io('play')}Продолжить эпизод 12</div><div class="c1res"><span class="bar"><i style="width:30%"></i></span>Комплименты вслух, задание 6 из 20</div>`;
+  return `<div class="c1hero" style="background:${art(c.h)}"><span class="gl">${io(c.ic)}</span><div class="scrim"></div>`
+    + `<div class="c1top"><span class="c1pill t">Урок 1${io('chevron-down')}</span><span style="flex:1"></span><span class="qround glass t">${io('book-outline')}</span>${avatar(36, mode !== 'new')}</div>`
+    + `<div class="c1body">${body}</div></div>`;
+};
+const c1sec = (kick, title, right, chev = true) => `<div class="c1sec"><div style="min-width:0"><div class="qk">${kick}</div><div class="h t">${title}${chev ? io('chevron-down') : ''}</div></div><div class="r">${right}</div></div>`;
+const c1ep = (e, mode = 'mid') => {
+  const s = epState(e, mode);
+  const meta = s === 'done' ? stars(STARS[e]) : s === 'cur' ? `<span>${mode === 'new' ? tasks(EP[e].k) : 'задание 6 из 20'}</span>` : `${io('lock-closed')}<span>после эпизода ${e - 1}</span>`;
+  return `<div class="c1ep t">${still(e, { mode })}<div class="t">${EP[e].t}</div><div class="m">${meta}</div></div>`;
+};
+const c1extra = () => `<div class="c1sec"><div class="h">Дополнительно</div></div><div class="c1extra"><div class="c1x t">${io('book-outline')}<b>Теория урока</b><span>правило и примеры</span></div><div class="c1x t">${io('albums-outline')}<b>Слова урока</b><span>в Карточках</span></div></div>`;
+const c1Mid = () => T(phone(`${c1hero('mid')}${c1sec('Глава 2 из 7', 'Кофе с коллегой', '3 из 8')}<div class="c1shelf">${[11, 12, 13].map((e) => c1ep(e)).join('')}</div><div style="height:150px"></div>`,
+  { time: '9:41', inStyle: 'padding:0', fixed: tabbar() }), 'onart');
+const c1New = () => T(phone(`${c1hero('new')}${c1sec('Глава 1 из 7', 'Первый рабочий день', '0 из 8')}<div class="c1shelf">${[1, 2, 3].map((e) => c1ep(e, 'new')).join('')}</div><div style="height:150px"></div>`,
+  { time: '9:41', inStyle: 'padding:0', fixed: tabbar() }), 'onart');
+const c1Lock = () => T(phone(`${c1hero('mid')}${c1sec('Глава 2 из 7', 'Кофе с коллегой', '3 из 8')}<div class="c1shelf">${[11, 12, 13].map((e) => c1ep(e)).join('')}</div><div style="height:150px"></div>`,
+  { time: '9:41', inStyle: 'padding:0', fixed: tabbar(), overlay: `<div class="qdim"></div><div class="qsheet"><div class="qgrab"></div>${still(14, { h: 190, cls: 'c1sheetart', state: 'lock' })}`
+    + `<div class="qk" style="margin-top:16px">Эпизод 14 · Глава 2</div><div class="qt">${EP[14].t}</div>`
+    + `<div class="qm" style="margin-top:6px">Турист заблудился под дождём. Вы помогаете ему и говорите, что он в безопасности.</div>`
+    + `<div style="margin-top:12px">${words(14)}</div>${say(14)}<div class="qlock" style="margin-top:14px">${io('lock-closed')}Откроется после эпизода 13</div>`
+    + `<div class="qbtn solid t" style="margin-top:16px">${io('play')}Продолжить эпизод 12</div><div class="qbtn ctl t">${io('trophy')}Открыть экзаменом главы</div></div>` }), 'onart');
+const c1row = (e) => {
+  const s = epState(e);
+  const meta = s === 'done' ? stars(STARS[e]) : s === 'cur' ? '<span>задание 6 из 20</span>' : `${io('lock-closed')}<span>${tasks(EP[e].k)}</span>`;
+  return `<div class="c1row${s === 'cur' ? ' cur' : ''} t">${still(e, { h: 74, noNo: true })}<div style="min-width:0"><div class="n">Эпизод ${e}${s === 'cur' ? ', сейчас' : ''}</div><div class="t">${EP[e].t}</div><div class="m">${meta}</div></div></div>`;
+};
+const pills = (cur = 1) => `<div class="qpills">${CH.slice(0, 5).map((c, i) => `<span class="qpill${i === cur ? ' on' : ''}${i > cur ? ' lock' : ''} t">${i < cur ? io('checkmark') : i > cur ? io('lock-closed') : ''}Глава ${c.n}</span>`).join('')}</div>`;
+const c1Chapter = () => T(phone(`<div class="c1nav"><span class="qround t">${io('chevron-back')}</span><span style="flex:1"></span><span class="qround t">${io('book-outline')}</span>${avatar(36)}</div>`
+  + `<div class="qk" style="margin-top:16px">Урок 1 · ${LES.arc}</div><div class="c1title" style="font-size:30px;line-height:36px;margin-top:2px;color:var(--tx)">Все эпизоды</div>${pills(1)}`
+  + `<div class="c1sec" style="padding:20px 0 4px"><div class="h">${CH[1].scene}</div><div class="r">3 из 8</div></div>${[9, 10, 11, 12, 13, 14, 15, 16].map(c1row).join('')}<div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+const c1exam = () => `<div class="c1exam t"><div class="still" style="background:${art(CH[1].h + 36)}"><span class="gl" style="font-size:250px;right:-46px;top:-6px">${io('trophy')}</span><span class="seal">${io('trophy')}</span>`
+  + `<div class="ex"><div class="k">Финал главы 2</div><div class="h">Экзамен главы</div><div class="f"><span>12 вопросов</span><span>сдать от 10</span></div><div class="qbtn white t">Сдать экзамен</div></div></div>`
+  + `<div class="t" style="font-size:16px;line-height:21px;font-weight:700;margin-top:10px">Можно сдать заранее</div><div class="m" style="font-size:14px;color:var(--sec);margin-top:4px">С Plus экзамен бесплатный</div></div>`;
+const c1Exam = () => T(phone(`<div class="c1nav"><div style="flex:1;font-size:17px;line-height:22px;font-weight:700;text-align:center;padding-left:50px">Урок 1</div><span class="qround t">${io('book-outline')}</span>${avatar(36)}</div>`
+  + `<div style="margin:0 -20px">${c1sec('Глава 2 из 7', 'Кофе с коллегой', '3 из 8')}<div class="c1shelf"><div style="display:flex;gap:12px;margin-left:-406px">${[15, 16].map((e) => c1ep(e)).join('')}${c1exam()}</div></div>`
+  + `<div class="c1after">Сдашь экзамен, и откроется глава 3. Эпизоды 13–16 станут открыты, их можно пройти позже.</div>`
+  + `${c1sec('Глава 3 из 7', 'Знакомство с командой', `${io('lock-closed', 'font-size:13px')} после экзамена`, false)}<div class="c1shelf">${[17, 18].map((e) => `<div class="c1ep t">${still(e, { state: 'lock' })}<div class="t">${EP[e].t}</div><div class="m">${io('lock-closed')}<span>${tasks(EP[e].k)}</span></div></div>`).join('')}</div></div><div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+
+/* ═════════ 2 · ЦИФЕРБЛАТ ═════════ */
+const DIAL = { C: 200, R1: 145, R2: 167, RD: 156, RI: 190, G: 7 };
+const SEG = (360 - 7 * DIAL.G) / 7;
+const ang = (ci, m) => -90 + DIAL.G / 2 + ci * (SEG + DIAL.G) + m * (SEG / 8);
+const pt = (r, a) => [+(DIAL.C + r * Math.cos(a * Math.PI / 180)).toFixed(1), +(DIAL.C + r * Math.sin(a * Math.PI / 180)).toFixed(1)];
+const dialSVG = (o) => {
+  const mode = o.mode || 'mid'; const curCh = mode === 'new' ? 0 : 1; let s = '';
+  const [x0, y0] = pt(DIAL.RD, ang(o.sel, 0)); const [x1, y1] = pt(DIAL.RD, ang(o.sel, 8));
+  s += `<path class="band" d="M${x0} ${y0} A${DIAL.RD} ${DIAL.RD} 0 0 1 ${x1} ${y1}"/>`;
+  for (let ci = 0; ci < 7; ci++) {
+    for (let m = 0; m < 9; m++) {
+      const a = ang(ci, m);
+      if (m < 8) {
+        const e = ci * 8 + m + 1; const st = epState(e, mode);
+        if (st === 'cur') { const [cx, cy] = pt(DIAL.RD, a); s += `<circle class="curg" cx="${cx}" cy="${cy}" r="15"/><circle class="cur" cx="${cx}" cy="${cy}" r="8"/>`; continue; }
+        const cls = st === 'done' ? 'done' : ci === curCh ? 'fut' : 'far';
+        const [xa, ya] = pt(DIAL.R1, a); const [xb, yb] = pt(DIAL.R2, a);
+        s += `<line class="tk ${cls}" x1="${xa}" y1="${ya}" x2="${xb}" y2="${yb}"/>`;
+      } else {
+        const [cx, cy] = pt(DIAL.RD, a); const cls = mode === 'mid' && ci === 0 ? 'pass' : ci === curCh ? 'open' : 'lock';
+        s += `<rect class="dm ${cls}" x="${cx - 6.5}" y="${cy - 6.5}" width="13" height="13" rx="2.5" transform="rotate(45 ${cx} ${cy})"/>`;
+      }
+    }
+    const [ix, iy] = pt(DIAL.RI, ang(ci, 4));
+    s += `<text class="chi${ci === o.sel ? ' sel' : ''}${ci > curCh ? ' lk' : ''}" x="${ix}" y="${iy}">${gl(CH[ci].ic)}</text>`;
+  }
+  if (o.knob) {
+    const a = o.knob.exam != null ? ang(o.knob.exam, 8) : ang(chOf(o.knob.e) - 1, (o.knob.e - 1) % 8);
+    const [kx, ky] = pt(DIAL.RD, a); s += `<circle class="knob" cx="${kx}" cy="${ky}" r="14"/>`;
+  }
+  return `<svg viewBox="0 0 400 400" aria-hidden="true">${s}</svg>`;
+};
+const dial = (o, center) => `<div class="c2wrap${o.sm ? ' sm' : ''}" style="${o.size ? `width:${o.size}px;height:${o.size}px` : ''}">${dialSVG(o)}<div class="c2center">${center}</div></div>`;
+const c2center = (k, h, m) => `<div class="k">${k}</div><div class="h">${h}</div><div class="m">${m}</div>`;
+const c2Mid = () => T(phone(`${hdr('Урок 1', LES.title)}${dial({ sel: 1 }, c2center('Глава 2', CH[1].scene, '3 из 8'))}`
+  + `<div class="qcard c2card"><div class="top"><span class="qk" style="color:var(--acc)">Эпизод 12</span><span class="r">задание 6 из 20</span></div><div class="qt">${EP[12].t}</div>${say(12)}<div class="qbtn solid t">${io('play')}Продолжить</div></div><div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+const c2New = () => T(phone(`${hdr('Урок 1', LES.title, false)}${dial({ sel: 0, mode: 'new', size: 330 }, c2center('Глава 1', CH[0].scene, '0 из 8'))}`
+  + `<div class="qcard c2card"><div class="top"><span class="qk" style="color:var(--acc)">Эпизод 1</span><span class="r">${tasks(EP[1].k)}</span></div><div class="qt">${EP[1].t}</div>${say(1)}`
+  + `<div class="qbtn solid t">${io('play')}Начать урок</div><div class="qbtn ctl t">${io('school-outline')}Не хочу с начала</div><div class="qnote">Тест откроет главы, которые ты уже знаешь</div></div><div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+const c2Lock = () => T(phone(`${hdr('Урок 1', LES.title)}${dial({ sel: 1, sm: true, knob: { e: 14 } }, c2center('Глава 2', CH[1].scene, '3 из 8'))}`
+  + `<div class="qcard c2card"><div class="top"><span class="qk">${io('lock-closed')}Эпизод 14</span><span class="r">после эпизода 13</span></div><div class="qt">${EP[14].t}</div><div style="margin-top:12px">${words(14)}</div>${say(14)}`
+  + `<div class="qbtn solid t">${io('play')}Вернуться к эпизоду 12</div><div class="qbtn ctl t">${io('trophy')}Открыть экзаменом главы</div></div><div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+const arcSVG = () => {
+  const C = [200, 214], R = 168; let s = '';
+  const P = (r, a) => [+(C[0] + r * Math.cos(a * Math.PI / 180)).toFixed(1), +(C[1] + r * Math.sin(a * Math.PI / 180)).toFixed(1)];
+  const A = (i) => 196 + i * 18.5;
+  const [x0, y0] = P(R, A(0)); const [x1, y1] = P(R, A(8));
+  s += `<path class="band" style="stroke-width:46" d="M${x0} ${y0} A${R} ${R} 0 0 1 ${x1} ${y1}"/>`;
+  for (let i = 0; i < 9; i++) {
+    const a = A(i); const [lx, ly] = P(R + 40, a);
+    if (i === 8) { const [cx, cy] = P(R, a); s += `<rect class="dm open" x="${cx - 9}" y="${cy - 9}" width="18" height="18" rx="3" transform="rotate(45 ${cx} ${cy})"/>`; continue; }
+    const e = 9 + i; const st = epState(e);
+    if (st === 'cur') { const [cx, cy] = P(R, a); s += `<circle class="curg" cx="${cx}" cy="${cy}" r="22"/><circle class="cur" cx="${cx}" cy="${cy}" r="11"/>`; }
+    else { const [xa, ya] = P(R - 14, a); const [xb, yb] = P(R + 14, a); s += `<line class="tk ${st === 'done' ? 'done' : 'fut'}" style="stroke-width:8" x1="${xa}" y1="${ya}" x2="${xb}" y2="${yb}"/>`; }
+    s += `<text class="c2lbl${st === 'cur' ? ' cur' : ''}${st === 'lock' ? ' lk' : ''}" x="${lx}" y="${ly}">${e}</text>`;
+  }
+  return `<svg viewBox="0 0 400 236" style="width:390px;height:230px;display:block;overflow:visible" aria-hidden="true">${s}</svg>`;
+};
+const c2li = (e) => { const st = epState(e); const r = st === 'done' ? stars(STARS[e]) : st === 'cur' ? 'сейчас' : `${io('lock-closed', 'font-size:12px')}${tasks(EP[e].k)}`; return `<div class="c2li${st === 'cur' ? ' cur' : ''}${st === 'lock' ? ' lk' : ''} t"><span class="n">${e}</span><span class="t">${EP[e].t}</span><span class="s">${r}</span></div>`; };
+const c2Chapter = () => T(phone(`${nav('Урок 1', 'Глава 2')}<div style="position:relative;margin-top:22px">${arcSVG()}<div style="position:absolute;left:0;right:0;top:118px;text-align:center"><div class="qk" style="justify-content:center">You are (+ not)</div><div class="qt" style="font-size:24px">${CH[1].scene}</div><div class="qm" style="margin-top:4px">3 из 8, экзамен не сдан</div></div></div>`
+  + `<div class="qcard" style="margin-top:8px;padding:4px 16px">${[9, 10, 11, 12, 13, 14, 15, 16].map(c2li).join('')}<div class="c2li t"><span class="n">${io('diamond', 'font-size:14px;color:var(--acc)')}</span><span class="t">Экзамен главы</span><span class="s">можно заранее</span></div></div><div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+const c2Exam = () => T(phone(`${hdr('Урок 1', LES.title)}${dial({ sel: 1, sm: true, knob: { exam: 1 } }, c2center('Экзамен', 'Глава 2', '12 вопросов'))}`
+  + `<div class="qcard c2card"><div class="top"><span class="qk" style="color:var(--acc)">${io('trophy')}Экзамен главы 2</span><span class="r">можно сдать заранее</span></div><div class="qt">Проверка всей главы</div>`
+  + `<div class="qm" style="margin-top:6px">Вопросы из эпизодов 9–15. Сдашь, и откроется глава 3, а эпизоды 13–16 станут открыты.</div>`
+  + `<div class="c2facts"><div><b>12</b><span>вопросов</span></div><div><b>10</b><span>чтобы сдать</span></div><div><b>~7</b><span>минут</span></div></div>`
+  + `<div class="qbtn solid t">${io('trophy')}Сдать экзамен</div><div class="qnote">С Plus экзамен бесплатный</div></div><div style="height:150px"></div>`,
+  { time: '9:41', fixed: tabbar() }));
+
+/* ═════════ 3 · ВОЛНА ═════════ */
+const WV = { MID: 60, STEP: 5.4, BW: 3.2, CG: 7 };
+const wx = (ci, m) => +(4 + (ci * 9 + m) * WV.STEP + ci * WV.CG).toFixed(1);
+const waveSVG = (o = {}) => {
+  const mode = o.mode || 'mid'; const curCh = mode === 'new' ? 0 : 1; let s = '';
+  for (let ci = 0; ci < 7; ci++) {
+    for (let m = 0; m < 9; m++) {
+      const x = wx(ci, m);
+      if (m < 8) {
+        const e = ci * 8 + m + 1; const st = epState(e, mode);
+        if (st === 'done') { const h = { 3: 84, 2: 64, 1: 46 }[STARS[e]]; s += `<rect x="${x}" y="${WV.MID - h / 2}" width="${WV.BW}" height="${h}" rx="1.6" style="${hueFill(CH[ci].h)}"/>`; }
+        else if (st === 'cur') { const h = mode === 'new' ? 12 : 30; s += `<rect x="${x}" y="${WV.MID - h / 2}" width="${WV.BW}" height="${h}" rx="1.6" style="${hueFill(CH[ci].h)}"/>`; }
+        else s += `<rect class="wf${ci > curCh ? ' far' : ''}" x="${x}" y="${WV.MID - 4}" width="${WV.BW}" height="8" rx="1.6"/>`;
+      } else {
+        const cx = x + WV.BW / 2;
+        if (mode === 'mid' && ci === 0) { s += `<rect x="${x}" y="${WV.MID - 46}" width="${WV.BW}" height="92" rx="1.6" style="${hueFill(CH[ci].h)}"/><rect x="${cx - 5}" y="${WV.MID - 62}" width="10" height="10" rx="2" transform="rotate(45 ${cx} ${WV.MID - 57})" style="${hueFill(CH[ci].h)}"/>`; }
+        else s += `<rect class="dm ${ci === curCh ? 'open' : 'lock'}" x="${cx - 5}" y="${WV.MID - 5}" width="10" height="10" rx="2" transform="rotate(45 ${cx} ${WV.MID})"/>`;
+      }
+    }
+  }
+  const head = (x, ghost) => `<line class="wph${ghost ? ' ghost' : ''}" x1="${x}" y1="6" x2="${x}" y2="116"/><circle class="wkn${ghost ? ' ghost' : ''}" cx="${x}" cy="6" r="6"/>`;
+  const hx = (e) => wx(chOf(e) - 1, (e - 1) % 8) + WV.BW / 2;
+  if (o.head != null) s += head(hx(o.head), false);
+  if (o.ghost != null) s += head(hx(o.ghost), true);
+  if (o.examHead != null) s += head(wx(o.examHead, 8) + WV.BW / 2, true);
+  return `<svg viewBox="0 0 390 120" aria-hidden="true">${s}</svg>`;
+};
+const wlabels = (on) => `<div class="c3lbl">${CH.map((c, ci) => `<span class="${ci === on ? 'on' : ''}" style="left:${(wx(ci, 4) + WV.BW / 2).toFixed(1)}px">${c.n}</span>`).join('')}</div>`;
+const c3wave = (o, label, right) => `<div class="c3sec"><span class="h">${label}</span><span class="r">${right}</span></div><div class="c3wave t">${waveSVG(o)}${wlabels(o.mode === 'new' ? 0 : 1)}</div>`;
+const theoryRow = () => `<div class="c3row t"><span class="ic">${io('book-outline')}</span><div><b>Теория урока</b><span>правило, формула, примеры</span></div>${io('chevron-forward', '').replace('class="io"', 'class="io chev"')}</div>`;
+const c3card = (e, o = {}) => {
+  const c = CH[chOf(e) - 1];
+  return `<div class="c3card${o.dim ? ' mute' : ''}" style="background:${art(c.h)}"><span class="gl">${io(c.ic)}</span>`
+    + `<div class="top"><span class="qchip glass">${o.dim ? io('lock-closed') : ''}Эпизод ${e}</span><span class="r">${o.right}</span></div>`
+    + `<div class="h">${EP[e].t}</div>${say(e)}${o.words ? words(e, true) : ''}${o.lock ? `<div class="lk">${io('lock-closed')}${o.lock}</div>` : ''}${o.btns}</div>`;
+};
+const c3Mid = () => T(phone(`${hdr('Урок 1', LES.title)}${c3card(12, { right: 'задание 6 из 20', btns: `<div class="qbtn white t">${io('play')}Продолжить</div>` })}`
+  + `${c3wave({ head: 12 }, 'Глава 2 · Кофе с коллегой', '11 из 56')}${theoryRow()}<div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const c3New = () => T(phone(`${hdr('Урок 1', LES.title, false)}${c3card(1, { right: tasks(EP[1].k), btns: `<div class="qbtn white t">${io('play')}Начать урок</div>` })}`
+  + `<div class="qbtn ctl t" style="margin-top:12px">${io('school-outline')}Не хочу с начала</div>`
+  + `${c3wave({ mode: 'new', head: 1 }, 'Глава 1 · Первый рабочий день', '0 из 56')}<div class="c3teach">Каждая полоска станет эпизодом. Чем увереннее сказано, тем она выше.</div><div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const c3Lock = () => T(phone(`${hdr('Урок 1', LES.title)}${c3card(14, { dim: true, right: 'просмотр', words: true, lock: 'Откроется после эпизода 13', btns: `<div class="qbtn white t" style="margin-top:14px">${io('play')}К эпизоду 12</div><div class="qbtn glass t">${io('trophy')}Открыть экзаменом главы</div>` })}`
+  + `${c3wave({ head: 12, ghost: 14 }, 'Глава 2 · Кофе с коллегой', '11 из 56')}<div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const zoomSVG = () => {
+  let s = ''; const MID = 84;
+  for (let i = 0; i < 9; i++) {
+    const x = i * 45 + 2; const cx = x + 15;
+    if (i === 8) { s += `<rect class="dm open" x="${cx - 9}" y="${MID - 9}" width="18" height="18" rx="3" transform="rotate(45 ${cx} ${MID})"/><text class="c3zl" x="${cx}" y="182">экз.</text>`; continue; }
+    const e = 9 + i; const st = epState(e);
+    if (st === 'done') { const h = { 3: 150, 2: 118, 1: 86 }[STARS[e]]; s += `<rect x="${x}" y="${MID - h / 2}" width="30" height="${h}" rx="10" style="${hueFill(CH[1].h)}"/>`; }
+    else if (st === 'cur') { s += `<rect class="wf" x="${x}" y="${MID - 75}" width="30" height="150" rx="10"/><rect x="${x}" y="${MID - 22}" width="30" height="44" rx="10" style="${hueFill(CH[1].h)}"/>`; }
+    else s += `<rect class="wf" x="${x}" y="${MID - 12}" width="30" height="24" rx="10"/>`;
+    s += `<text class="c3zl${st === 'cur' ? ' cur' : ''}" x="${cx}" y="182">${e}</text>`;
+  }
+  return `<svg viewBox="0 0 390 190" aria-hidden="true">${s}</svg>`;
+};
+const c3Chapter = () => T(phone(`${nav('Урок 1', 'Глава 2 · Кофе с коллегой')}<div class="c3sec" style="margin-top:18px"><span class="h">3 из 8</span><span class="r">экзамен не сдан</span></div>`
+  + `<div class="c3zoom t" style="margin-top:12px">${zoomSVG()}</div><div class="qcard" style="margin-top:14px;padding:4px 16px">${[9, 10, 11, 12, 13, 14, 15, 16].map(c2li).join('')}</div><div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const c3Exam = () => {
+  const c = CH[1];
+  const card = `<div class="c3card" style="background:${art(c.h + 36)}"><span class="gl">${io('trophy')}</span><div class="top"><span class="qchip glass">${io('trophy')}Экзамен главы 2</span><span class="r">можно заранее</span></div>`
+    + `<div class="h">Проверка всей главы</div><div class="lk" style="margin-top:8px;align-items:flex-start">Вопросы из эпизодов 9–15. Сдашь от 10 из 12, и откроется глава 3.</div>`
+    + `<div class="qbtn white t">${io('trophy')}Сдать экзамен</div><div class="c1res" style="justify-content:center">С Plus экзамен бесплатный</div></div>`;
+  return T(phone(`${hdr('Урок 1', LES.title)}${card}${c3wave({ head: 12, examHead: 1 }, 'Глава 1 сдана на 11 из 12', '11 из 56')}${theoryRow()}<div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+};
+
+/* ═════════ 4 · КОЛОДА ═════════ */
+const c4back = (e, cls) => { const c = CH[chOf(e) - 1]; return `<div class="c4card ${cls}${epState(e) === 'lock' ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span><div class="top"><span class="qchip glass">${epState(e) === 'lock' ? io('lock-closed') : epState(e) === 'done' ? io('checkmark') : ''}Эпизод ${e}</span></div><div class="big">${EP[e].p}</div></div>`; };
+const c4front = (e, o) => {
+  const c = CH[chOf(e) - 1];
+  return `<div class="c4card${o.dim ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span>`
+    + `<div class="top"><span class="qchip glass">${o.dim ? io('lock-closed') : ''}Эпизод ${e}</span><span class="r">${o.right}</span></div>`
+    + `<div class="big">${EP[e].p}</div><div class="ru">${EP[e].ru || ''}</div><div class="h">${EP[e].t}</div>${words(e, true)}${o.lock ? `<div class="lk">${io('lock-closed')}${o.lock}</div>` : ''}${o.btns}</div>`;
+};
+const dots = (pos, mode = 'mid') => `<div class="c4dots">${Array.from({ length: 9 }, (_, i) => {
+  if (i === 8) return `<i class="x${pos === 'x' ? ' c' : ''}"></i>`;
+  const e = (mode === 'new' ? 1 : 9) + i; const st = epState(e, mode); return `<i class="${e === pos ? 'c' : st === 'done' ? 'd' : ''}"></i>`;
+}).join('')}</div>`;
+const c4tools = () => `<div class="c4tools"><span class="qchip t">${io('book-outline')}Теория урока</span><span class="qchip t">${io('albums-outline')}Вся глава</span></div>`;
+const c4Mid = () => T(phone(`${hdr('Урок 1', 'Глава 2 · Кофе с коллегой')}<div class="c4deck">${c4back(11, 'prev')}${c4back(14, 'b2')}${c4back(13, 'b1')}`
+  + `${c4front(12, { right: 'задание 6 из 20', btns: `<div class="qbtn white t">${io('play')}Продолжить</div>` })}</div>${dots(12)}${c4tools()}<div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const c4New = () => {
+  const c = CH[0];
+  const pro = `<div class="c4card" style="background:${art(c.h)}"><span class="gl">${io(c.ic)}</span><div class="top"><span class="qchip glass">Урок 1</span><span class="r">7 глав, 56 эпизодов</span></div>`
+    + `<div class="big">${LES.arc}</div><div class="ru">Новая работа, чужой город, никого не знаешь. Каждый эпизод учит одной фразе.</div>`
+    + `<div class="qbtn white t">${io('play')}Начать с эпизода 1</div><div class="qbtn glass t">${io('school-outline')}Не хочу с начала</div></div>`;
+  return T(phone(`${hdr('Урок 1', LES.title, false)}<div class="c4deck">${c4back(2, 'b2')}${c4back(1, 'b1')}${pro}</div>${dots(0, 'new')}<div class="qnote" style="margin-top:12px">Тест откроет главы, которые ты уже знаешь</div><div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+};
+const c4Lock = () => T(phone(`${hdr('Урок 1', 'Глава 2 · Кофе с коллегой')}<div class="c4deck">${c4back(13, 'prev')}${c4back(16, 'b2')}${c4back(15, 'b1')}`
+  + `${c4front(14, { dim: true, right: 'просмотр', lock: 'Откроется после эпизода 13', btns: `<div class="qbtn white t">${io('play')}К эпизоду 12</div><div class="qbtn glass t">${io('trophy')}Открыть экзаменом главы</div>` })}</div>${dots(14)}<div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const fan = () => {
+  const list = [9, 10, 11, 12, 13, 14, 15, 16, 'x'];
+  return `<div class="c4fan">${list.map((e, i) => {
+    const r = -30 + i * 7.5; const isCur = e === CUR; const st = e === 'x' ? 'x' : epState(e);
+    const tr = `rotate(${r}deg)${isCur ? ' translateY(-40px)' : ''}`;
+    if (e === 'x') return `<div class="fcard c4exam" style="transform:${tr};z-index:${i}"><span class="n">${io('trophy')}</span><span class="p">Экзамен главы</span></div>`;
+    const c = CH[chOf(e) - 1];
+    return `<div class="fcard${st === 'lock' ? ' lock' : ''}${isCur ? ' cur' : ''}" style="transform:${tr};z-index:${isCur ? 20 : i};background:${art(c.h, (e % 8) * 4)}"><span class="n">${isCur ? io('play') : ''}${e}</span>${isCur ? `<span class="p">${EP[e].p}</span>` : ''}</div>`;
+  }).join('')}</div>`;
+};
+const c4Chapter = () => T(phone(`${nav('Урок 1', 'Глава 2 · Кофе с коллегой')}${pills(1)}${fan()}<div class="c4sel"><div class="k">Эпизод 12, задание 6 из 20</div><div class="h">${EP[12].t}</div><div class="qbtn solid t">${io('play')}Продолжить</div></div>`
+  + `<div class="qnote" style="margin-top:12px">Свайп по вееру выбирает эпизод, тап по закрытому покажет его</div><div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+const c4Exam = () => {
+  const ex = `<div class="c4card c4exam"><div class="top"><span class="seal">${io('trophy')}</span><span class="r">можно сдать заранее</span></div><div class="big" style="font-size:32px">Экзамен главы 2</div>`
+    + `<div class="ru">Вопросы из эпизодов 9–15. Сдашь от 10 из 12, и откроется глава 3, а эпизоды 13–16 станут открыты.</div><div class="f"><span>12 вопросов</span><span>от 10 верных</span><span>~7 минут</span></div>`
+    + `<div class="qbtn white t">${io('trophy')}Сдать экзамен</div><div class="ru" style="text-align:center;font-size:14px;margin-top:10px">С Plus экзамен бесплатный</div></div>`;
+  return T(phone(`${hdr('Урок 1', 'Глава 2 · Кофе с коллегой')}<div class="c4deck">${c4back(16, 'prev')}${c4back(17, 'b2')}${ex}</div>${dots('x')}<div style="height:150px"></div>`, { time: '9:41', fixed: tabbar() }));
+};
+
+/* ═════════ 5 · РАЗГОВОРНИК ═════════ */
+const ph5 = (e, mode = 'mid') => { const st = epState(e, mode); return `<span class="ph5 ${st === 'lock' ? 'lk' : st} t" data-e="${e}"><sup>${e}</sup><span class="w">${EP[e].p}</span>${st === 'cur' ? `<span class="pl">${io('play')}</span>` : ''}</span>`; };
+const mini = (e, sub) => { const c = CH[chOf(e) - 1]; return `<div class="c5mini t"><span class="art" style="background:${art(c.h)}">${io(c.ic)}</span><div class="tx"><b>${EP[e].t}</b><span>${sub}</span></div><span class="pl">${io('play')}</span></div>`; };
+const ghost = () => `<div class="c5ghost">${[150, 120, 190, 110, 160].map((w) => `<i style="width:${w}px"></i>`).join('')}</div>`;
+const c5ch1done = () => `<div class="c5ch"><div class="c5h"><span class="t">Глава 1 · Первый рабочий день</span><span class="r">${io('checkmark-circle')}8 из 8</span></div><div class="c5wall sm">${[1, 2, 3, 4, 5, 6, 7, 8].map((e) => ph5(e)).join('')}</div><span class="c5seal pass">${io('trophy')}Экзамен сдан на 11 из 12</span></div>`;
+const c5ch2 = () => `<div class="c5ch"><div class="c5h"><span class="t">Глава 2</span><span class="r">3 из 8</span></div><div class="c5scene">${CH[1].scene}</div><div class="c5wall">${[9, 10, 11, 12, 13, 14, 15, 16].map((e) => ph5(e)).join('')}</div><span class="c5seal t">${io('trophy')}Экзамен главы: можно сдать заранее</span></div>`;
+const c5ch3 = () => `<div class="c5ch"><div class="c5h"><span class="t">${io('lock-closed')}Глава 3 · ${CH[2].scene}</span></div>${ghost()}</div>`;
+const c5Mid = () => T(phone(`${hdr('Урок 1', LES.title)}${c5ch1done()}${c5ch2()}${c5ch3()}<div style="height:200px"></div>`, { time: '9:41', fixed: tabbar(mini(12, 'Эпизод 12, задание 6 из 20')) }));
+const c5New = () => T(phone(`${hdr('Урок 1', LES.title, false)}<div class="c5scene" style="font-size:28px;line-height:34px;margin-top:18px">${LES.arc}</div><div class="c5intro">Каждый эпизод учит одной живой фразе. Вот что ты скажешь в первой главе.</div>`
+  + `<div class="c5ch"><div class="c5h"><span class="t">Глава 1 · ${CH[0].scene}</span><span class="r">0 из 8</span></div><div class="c5wall">${[1, 2, 3, 4, 5, 6, 7, 8].map((e) => ph5(e, 'new')).join('')}</div></div>`
+  + `<div class="qbtn ctl t" style="margin-top:20px">${io('school-outline')}Не хочу с начала</div><div class="qnote">Тест откроет фразы, которые ты уже знаешь</div><div style="height:200px"></div>`, { time: '9:41', fixed: tabbar(mini(1, `Эпизод 1, ${tasks(EP[1].k)}`)) }));
+const c5Lock = () => T(phone(`${hdr('Урок 1', LES.title)}${c5ch2()}${c5ch3()}<div style="height:200px"></div>`, { time: '9:41', fixed: tabbar(mini(12, 'Эпизод 12, задание 6 из 20')),
+  overlay: `<div class="qdim soft"></div><div class="qpop" data-anchor="14"><div class="c2card" style="margin:0"><div class="top"><span class="qk">${io('lock-closed')}Эпизод 14</span><span class="r">после эпизода 13</span></div></div>`
+    + `<div class="qt">${EP[14].t}</div>${say(14, true)}<div style="margin-top:12px">${words(14)}</div><div class="qbtn solid t" style="margin-top:16px">${io('play')}Вернуться к эпизоду 12</div><div class="qbtn ctl t">${io('trophy')}Открыть экзаменом главы</div></div>` }));
+const lyr = (e) => {
+  const st = epState(e); const cls = st === 'done' ? 'past' : st === 'cur' ? 'cur' : e === 13 ? 'n1' : e === 14 ? 'n2' : 'n3';
+  const cap = st === 'done' ? `${EP[e].t} ${stars(STARS[e])}` : st === 'cur' ? `Эпизод 12, задание 6 из 20` : `${io('lock-closed')}${EP[e].t}`;
+  return `<div class="ln ${cls} t"><span class="w">${EP[e].p}</span><small>${cap}</small></div>`;
+};
+const c5art = () => `<div class="c5art" style="background:${art(CH[1].h)}"><span class="gl">${io(CH[1].ic)}</span><div class="k">Глава 2, 3 из 8</div><div class="h">${CH[1].scene}</div></div>`;
+const c5Chapter = () => T(phone(`${nav('Урок 1', 'Глава 2')}${c5art()}<div class="c5ly">${[9, 10, 11, 12, 13, 14, 15, 16].map(lyr).join('')}</div><div style="height:220px"></div>`, { time: '9:41', fixed: tabbar(mini(12, 'Эпизод 12, задание 6 из 20')) }));
+const c5Exam = () => T(phone(`${nav('Урок 1', 'Глава 2 · Кофе с коллегой')}<div class="c5ly">${[14, 15, 16].map(lyr).join('')}</div>`
+  + `<div class="c5exam"><span class="seal">${io('trophy')}</span><div class="h">Экзамен главы 2</div><p>12 вопросов по фразам главы. Сдашь от 10, и откроется глава 3, а эпизоды 13–16 станут открыты.</p><div class="qbtn solid t">${io('trophy')}Сдать экзамен</div><div class="qnote">С Plus экзамен бесплатный</div></div>`
+  + `${c5ch3()}<div style="height:220px"></div>`, { time: '9:41', fixed: tabbar(mini(12, 'Эпизод 12, задание 6 из 20')) }));
+
+/* ── страница ── */
+const LBL = ['В процессе', 'Новичок', 'Тап по закрытому эпизоду', 'Глава раскрыта', 'Экзамен главы'];
+const C5 = [
+  ['c1', '1 · Сезон<span class="rec">рекомендую</span>', 'Урок подан как сезон сериала, так он и задуман в плане курса. Сверху обложка главы и «Продолжить», ниже полка эпизодов: на каждом кадре фраза эпизода. Глава выбирается как сезон («Глава 2 ▾»), урок как сериал («Урок 1 ▾»). Закрытый эпизод открывается карточкой снизу. Экзамен стоит в конце полки как финал главы.', [c1Mid, c1New, c1Lock, c1Chapter, c1Exam]],
+  ['c2', '2 · Циферблат', 'Весь урок на одном круге: 7 дуг это главы, в каждой 8 делений-эпизодов и ромб экзамена. Ведёшь пальцем по кругу, на каждом эпизоде лёгкий щелчок, и карточка под кругом сразу показывает выбранный. Уроки листаются свайпом вбок, тап в центр раскрывает главу дугой.', [c2Mid, c2New, c2Lock, c2Chapter, c2Exam]],
+  ['c3', '3 · Волна', 'Урок как запись голоса: каждая полоска это эпизод, высота показывает, насколько уверенно сказано, ромб это экзамен. Тянешь бегунок, и карточка сверху показывает эпизод под ним, даже закрытый. Тап или щипок по главе увеличивает её волну.', [c3Mid, c3New, c3Lock, c3Chapter, c3Exam]],
+  ['c4', '4 · Колода', 'Один эпизод в фокусе, как карта на столе. Свайп вбок к соседнему эпизоду, вниз к соседней главе, точки под колодой показывают место. «Вся глава» раскладывает главу веером. Экзамен это последняя карта главы.', [c4Mid, c4New, c4Lock, c4Chapter, c4Exam]],
+  ['c5', '5 · Разговорник', 'Курс показывает не номера, а фразы, которые ты скажешь. Пройденные стоят чётко, текущая подсвечена, закрытые размыты: тап покажет эпизод. Глава раскрывается как текст песни, внизу мини-плеер «Продолжить».', [c5Mid, c5New, c5Lock, c5Chapter, c5Exam]],
+];
+const cmp = () => `<section class="block" id="cmp"><h2>Пять концепций рядом</h2><table class="cmp"><tr><th>Концепция</th><th>Главная мысль</th><th>Как выбрать главу</th><th>Закрытый эпизод</th><th>Экзамен главы</th><th>Слабое место</th><th>Сложность в коде</th></tr>`
+  + [['1 · Сезон', 'Урок как сезон сериала: обложка, «Продолжить», полка эпизодов с фразами', 'меню «Глава 2 ▾» и вкладки глав', 'карточка снизу: фраза со звуком, слова, когда откроется', 'финальный кадр полки', 'другие главы ниже, больше прокрутки', 'средняя'],
+    ['2 · Циферблат', 'Весь урок одним кругом, 7 дуг по 8 делений', 'тап по дуге, тап в центр раскрывает', 'карточка под кругом меняется на месте', 'ромб в конце дуги', 'к кругу нужно привыкнуть', 'высокая'],
+    ['3 · Волна', 'Урок как запись голоса, полоска это эпизод', 'тап по главе увеличивает волну', 'тянешь бегунок, карточка сверху показывает его', 'высокая полоска с ромбом', 'у новичка волна пустая', 'средняя'],
+    ['4 · Колода', 'Один эпизод в фокусе, свайпы', 'свайп вниз, веер главы', 'та же карта, приглушённая', 'последняя карта главы', 'виден один эпизод за раз', 'высокая'],
+    ['5 · Разговорник', 'Фразы вместо номеров', 'глава раскрывается как текст песни', 'всплывающая карточка у фразы', 'печать в конце главы', 'номера эпизодов на втором плане', 'низкая']]
+    .map((r) => `<tr>${r.map((c, i) => `<td>${i === 0 ? `<b>${c}</b>` : c}</td>`).join('')}</tr>`).join('') + '</table></section>';
+const motion = () => `<section class="block" id="mo"><h2>Движение и отклик, общее для всех</h2><table class="cmp"><tr><th>Действие</th><th>Что происходит</th><th>Время и кривая (Reanimated)</th></tr>`
+  + [['Нажатие кнопки, плитки, карты', 'сжатие до 0,97 сразу под пальцем', '120 мс, ease-out (0.23, 1, 0.32, 1)'],
+    ['Шторка или карточка закрытого эпизода', 'растёт из места тапа, фон темнеет; свайп вниз закрывает по скорости', 'открытие 320 мс (0.32, 0.72, 0, 1), закрытие 220 мс'],
+    ['Смена главы или урока', 'полка, круг или колода уезжает вбок, новая въезжает', '240 мс, ease-out; прерывается пальцем'],
+    ['Бегунок волны и круг циферблата', 'карточка меняется без задержки, на каждом эпизоде щелчок хаптики', 'без анимации, отклик в тот же кадр'],
+    ['Уменьшенное движение', 'только смена прозрачности, без сдвигов', '150 мс'],
+    ['Открытие вкладки', 'экран строится из снимка прогресса на телефоне, без спиннера; сеть догоняет фоном', 'первый кадр сразу']]
+    .map((r) => `<tr>${r.map((c, i) => `<td>${i === 0 ? `<b>${c}</b>` : c}</td>`).join('')}</tr>`).join('') + '</table></section>';
+const placePops = () => {
+  document.querySelectorAll('.qpop[data-anchor]').forEach((pop) => {
+    const ph = pop.closest('.ph'); const a = ph && ph.querySelector(`.ph5[data-e="${pop.dataset.anchor}"]`);
+    if (!ph || !a) { console.log('[COURSE-NEW] нет якоря для всплывающей карточки', pop.dataset.anchor); return; }
+    const pr = ph.getBoundingClientRect(); const ar = a.getBoundingClientRect();
+    pop.style.top = `${Math.round(ar.bottom - pr.top + 14)}px`;
+    pop.style.setProperty('--ax', `${Math.max(24, Math.round(ar.left - pr.left + 18 - 16))}px`);
+    a.classList.add('focus');
+  });
+};
+const render = () => {
+  const root = document.getElementById('root');
+  root.innerHTML = cmp() + C5.map(([id, title, lead, fns]) => block(id, title, lead, fns.map((f, i) => col(LBL[i], f())))).join('') + motion();
+  document.querySelectorAll('.thm .chp').forEach((c) => c.classList.toggle('on', c.dataset.t === TH));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(placePops));
+};
+document.querySelector('.thm').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { TH = c.dataset.t; render(); } });
+if (new URLSearchParams(location.search).get('t') === 'marine') TH = 'marine';
+render();
+K.init();
+})();
+
+</script>
+</body>
+</html>

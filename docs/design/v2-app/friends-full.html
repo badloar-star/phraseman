@@ -432,7 +432,7 @@
 .pane-th { background: var(--bg); }
 /* узкий экран (телефон владельца): поля по безопасной зоне, телефоны макета уменьшаются целиком, страница не скроллится вбок */
 .page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-@media (max-width: 500px) { .col { zoom: .8; } .ico-grid { padding: 12px; } .thm { gap: 6px; } .chp { height: 32px; padding: 0 11px; font-size: 13px; } }
+@media (max-width: 500px) { .col { zoom: .8; } .ico-grid { padding: 12px; } .thm { gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .thm::-webkit-scrollbar { display: none; } .chp { height: 32px; padding: 0 11px; font-size: 13px; flex: none; } }
 @media (max-width: 400px) { .col { zoom: .74; } }
 </style>
 </head>

@@ -2453,9 +2453,11 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     ukrainian: 'Вона використовує застосунки',
     spanish: 'Ella usa aplicaciones.',
     words: [
-      { text: 'Usa', correct: 'Usa', distractors: ['Internet', 'cuando', 'porque', 'aunque', 'también'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (internet).; D2: colisión léxica o colocación no idiomática en el hueco (cuando).; D3: colisión léxica o colocación no idiomática en el hueco (porque).; D4: colisión léxica o colocación no idiomática en el hueco (aunque).; D5: colisión léxica o colocación no idiomática en el hueco (también).
-      { text: 'Internet', correct: 'Internet', distractors: ['Usa', 'algún', 'alguna', 'ningún', 'ninguna'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (usa).; D2: colisión léxica o colocación no idiomática en el hueco (algún).; D3: colisión léxica o colocación no idiomática en el hueco (alguna).; D4: colisión léxica o colocación no idiomática en el hueco (ningún).; D5: colisión léxica o colocación no idiomática en el hueco (ninguna).
-      { text: '.', correct: '.', distractors: ['Usa', 'Internet', 'solo', 'así', 'casi'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (usa).; D2: marca de enunciación (¿?¡!) típica de calco inglés (internet).; D3: marca de enunciación (¿?¡!) típica de calco inglés (solo).; D4: marca de enunciación (¿?¡!) típica de calco inglés (así).; D5: marca de enunciación (¿?¡!) típica de calco inglés (casi).
+      // зачем (21.10): фразу сменили на «Ella usa aplicaciones.», а сборка осталась от «Usa Internet.»
+      { text: 'Ella', correct: 'Ella', distractors: ['Él', 'Ellas', 'Usted', 'Yo', 'Nosotros'], category: 'pronombre' }, // D1: persona o caso pronominal equivocado (él).; D2: persona o caso pronominal equivocado (ellas).; D3: persona o caso pronominal equivocado (usted).; D4: persona o caso pronominal equivocado (yo).; D5: persona o caso pronominal equivocado (nosotros).
+      { text: 'usa', correct: 'usa', distractors: ['uso', 'usas', 'usamos', 'usan', 'usar'], category: 'lexico_oracion' }, // D1–D5: persona o forma del verbo que no concuerda con «ella».
+      { text: 'aplicaciones', correct: 'aplicaciones', distractors: ['aplicación', 'aplica', 'aplicar', 'aplicado', 'apliques'], category: 'lexico_oracion' }, // D1: número sin artículo (aplicación).; D2–D5: forma verbal o adjetiva en el hueco del sustantivo.
+      { text: '.', correct: '.', distractors: ['Ella', 'usa', 'aplicaciones', 'así', 'casi'], category: 'puntuacion' }, // D1–D3: palabra de la frase en lugar del punto.; D4: así.; D5: casi.
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['her', 'he', 'they', 'we', 'it'], category: 'pronoun' },

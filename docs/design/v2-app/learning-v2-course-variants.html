@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Варианты экрана курса</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── Экран курса Learning V2 («Уроки»): 5 вариантов по принципу, реестр владельца №40 (21.10) ─────────
+   Дизайн 2.0 как в приложении: темы «Сумерки» (ink, светлая) и «Океан» (marine, тёмная) — те же токены, что у эталона chapter-exam.html;
+   плашка главы r22, плитка 55/14, узел 64, кегли только 13 · 16 · 19 · 22 · 24 · 34, без обводок (стиль «Тень»), плавающий таббар как в приложении.
+   Данные — настоящие: урок 1 «Present be: утверждение + not», 7 глав со сценами из ПЛАН_КУРСА.md, моменты эпизодов главы 1. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sb: #111; --acc: oklch(.52 .14 282); --fd: #ECE4F7; --ft: #F3F4FD; --b2: #FFFFFF; --dimc: rgba(23, 24, 30, .38); }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sb: #fff; --acc: oklch(.82 .11 215); --fd: #001B17; --ft: #002936; --b2: #123037; --dimc: rgba(0, 0, 0, .5); }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-ink .hi { background: #111; }
+.ph .scr > .in { padding: 52px 12px 150px; }
+
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: block; }
+.ph .t { transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+.ph .t:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) { .ph .t { transition: none; } }
+
+/* шапка и заголовок урока — как в коде (LearningV2ChaptersCourse.tsx) */
+.mh { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.mrb svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh { margin-top: 14px; }
+.lh .kr { display: flex; align-items: center; justify-content: space-between; min-height: 36px; }
+.lh .lk { font-size: 13px; line-height: 17px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
+.lh .clc { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 13px; font-weight: 700; }
+.lh .clc svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh .tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.lh .ltt { font-size: 22px; line-height: 27px; font-weight: 700; text-wrap: balance; }
+.ich { flex: none; width: 55px; height: 55px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); color: var(--tx); display: flex; align-items: center; justify-content: center; }
+.ich .io { font-size: 26px; }
+.ich.les { width: 46px; height: 46px; border-radius: 12px; }
+.ich.les .io { font-size: 22px; }
+.ich.sm { width: 46px; height: 46px; border-radius: 12px; }
+.ich.sm .io { font-size: 22px; }
+.dim-t { color: var(--sec); }
+
+/* плавающий таббар как в приложении: капсула, активная вкладка «Уроки» */
+.tabbar { position: absolute; left: 14px; right: 14px; bottom: 28px; height: 68px; border-radius: 34px; background: var(--card); box-shadow: var(--sh), 0 18px 36px -18px rgba(0, 0, 0, .5); z-index: 20; display: flex; align-items: center; justify-content: space-around; padding: 0 8px; }
+.tabbar .tb2 { width: 56px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 24px; color: var(--sec); }
+.tabbar .tb2 .io { font-size: 26px; }
+.tabbar .tb2.on { width: 76px; background: var(--ctl); color: var(--tx); }
+.topfade { position: absolute; left: 0; right: 0; top: 0; height: 64px; z-index: 19; pointer-events: none; background: linear-gradient(to bottom, var(--ft) 55%, color-mix(in srgb, var(--ft) 0%, transparent)); }
+.fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 15; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--fd) 0%, transparent), var(--fd) 62%); }
+
+/* плашка главы */
+.plate { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; }
+.plate .crow { display: flex; align-items: center; gap: 14px; }
+.plate .cp { flex: 1; min-width: 0; }
+.plate .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.plate .csub { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.cfr { font-size: 13px; line-height: 28px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.cfr b { font-size: 24px; line-height: 28px; font-weight: 800; color: var(--tx); }
+.ctrk { height: 7px; border-radius: 4px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.ctrk i { display: block; height: 100%; border-radius: 4px; background: var(--acc); }
+.plate.lk-s .tl, .plate.lk-s .ich { color: var(--sec); }
+.seebtn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; background: var(--ctl); color: var(--tx); font-size: 13px; font-weight: 700; flex: none; }
+.seebtn .io { font-size: 16px; }
+
+/* узлы эпизодов (сетка 4×2, как в коде) */
+.ses { display: flex; flex-wrap: wrap; row-gap: 18px; padding: 14px 6px 6px; }
+.s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.nd { position: relative; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--tx); }
+.nd .io { font-size: 24px; }
+.nd b { font-size: 13px; line-height: 16px; font-weight: 700; }
+.nd.cur { background: var(--tx); color: var(--card); box-shadow: 0 0 0 5px color-mix(in srgb, var(--tx) 14%, transparent); }
+.nd.lock { color: var(--sec); }
+.nd.sm { width: 44px; height: 44px; }
+.nd.sm .io { font-size: 20px; }
+.nd .stars { position: absolute; bottom: -10px; min-height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ctl); display: flex; align-items: center; gap: 1px; }
+.nd .stars .io { font-size: 11px; }
+.s .lb2 { width: 82px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; margin-top: 10px; }
+.s .lb2.on { color: var(--tx); font-weight: 800; }
+
+/* кнопки */
+.vcta { height: 56px; border-radius: 28px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; line-height: 21px; font-weight: 700; }
+.vcta .io { font-size: 20px; }
+.vcta2 { height: 52px; border-radius: 26px; background: var(--b2); box-shadow: var(--sh); color: var(--tx); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; line-height: 21px; font-weight: 700; }
+.vcta2 .io { font-size: 20px; }
+.exb { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.exb .io { font-size: 20px; }
+.exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
+
+/* «Продолжить» — карточка действия (инверсная: самый сильный объект экрана) */
+.vhero { margin-top: 16px; border-radius: 22px; background: var(--tx); color: var(--card); padding: 16px; }
+.vhero .k { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; opacity: .72; }
+.vhero .h { font-size: 22px; line-height: 27px; font-weight: 700; margin-top: 4px; }
+.vhero .s2 { font-size: 16px; line-height: 21px; opacity: .78; margin-top: 2px; }
+.vhero .bar { height: 7px; border-radius: 4px; background: color-mix(in srgb, var(--card) 24%, transparent); margin-top: 14px; overflow: hidden; }
+.vhero .bar i { display: block; height: 100%; background: var(--card); border-radius: 4px; }
+.vhero .vmeta { display: flex; justify-content: space-between; font-size: 13px; line-height: 17px; margin-top: 8px; opacity: .85; font-variant-numeric: tabular-nums; }
+.vhero .go { margin-top: 14px; height: 54px; border-radius: 27px; background: var(--card); color: var(--tx); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.vhero .go .io { font-size: 20px; }
+
+/* входной тест «Не хочу с начала» */
+.entry { margin-top: 12px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; display: flex; align-items: center; gap: 14px; }
+.entry .tx { flex: 1; min-width: 0; }
+.entry .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.entry .p { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.entry .chev { font-size: 20px; color: var(--sec); }
+.allrow { margin-top: 12px; height: 56px; border-radius: 28px; background: var(--b2); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.allrow .io { font-size: 20px; }
+
+/* шторка «посмотреть закрытое» */
+.xdim { position: absolute; inset: 0; z-index: 25; background: var(--dimc); }
+.vsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 12px 22px 40px; background: var(--card); box-shadow: 0 -18px 40px -18px rgba(0, 0, 0, .5); }
+.vsh .grab { width: 42px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto; }
+.vsh .ic { width: 64px; height: 64px; border-radius: 18px; margin: 20px auto 0; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--tx); }
+.vsh .tt { font-size: 24px; line-height: 30px; font-weight: 700; text-align: center; margin-top: 14px; }
+.vsh .ss { font-size: 16px; line-height: 21px; color: var(--sec); text-align: center; margin-top: 2px; }
+.vsh .facts { display: flex; gap: 10px; margin-top: 16px; }
+.vsh .facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 12px 6px; text-align: center; }
+.vsh .facts b { display: block; font-size: 22px; line-height: 26px; }
+.vsh .facts small { font-size: 13px; line-height: 17px; color: var(--sec); }
+.vsh .p { font-size: 16px; line-height: 21px; color: var(--sec); text-align: center; margin-top: 14px; }
+.vsh .c1 { margin-top: 18px; height: 54px; border-radius: 27px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.vsh .c1 .io { font-size: 20px; }
+.vsh .c2 { margin-top: 12px; height: 50px; border-radius: 25px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.vsh .nt { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 10px; }
+
+/* ── вариант А: путь ── */
+.trail { position: relative; margin-top: 6px; }
+.trail svg.pth { position: absolute; left: 0; top: 0; overflow: visible; }
+.tnode { position: absolute; width: 82px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.tnode .lb2 { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; margin-top: 10px; }
+.tnode .lb2.on { color: var(--tx); font-weight: 800; }
+.tnode .nd { background: color-mix(in srgb, var(--tx) 9%, var(--card)); }
+.tnode .nd.cur { background: var(--tx); }
+.tnode .nd.done { background: var(--acc); color: var(--card); }
+.tnode .nd .stars { color: var(--tx); }
+.tlab { position: absolute; width: 150px; display: flex; align-items: center; min-height: 24px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.tlab.L { justify-content: flex-end; text-align: right; }
+.tlab .pill2 { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 14px; background: var(--tx); color: var(--card); font-weight: 700; }
+.here { position: absolute; height: 32px; padding: 0 12px; border-radius: 16px; background: var(--tx); color: var(--card); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.vfab { position: absolute; left: 20px; right: 20px; bottom: 112px; z-index: 22; box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .55); }
+.exnode { position: absolute; left: 20px; right: 20px; }
+
+/* ── вариант С: сетка глав и экран главы ── */
+.cont { margin-top: 16px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 12px 16px 12px 12px; display: flex; align-items: center; gap: 12px; }
+.cont .pl { width: 46px; height: 46px; border-radius: 12px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; flex: none; }
+.cont .pl .io { font-size: 22px; }
+.cont .tx { flex: 1; min-width: 0; }
+.cont .a { font-size: 16px; line-height: 21px; font-weight: 700; }
+.cont .b { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
+.cont .chev { font-size: 20px; color: var(--sec); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.gc { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; display: flex; flex-direction: column; min-height: 176px; }
+.gc .top { display: flex; align-items: flex-start; justify-content: space-between; }
+.gc .tl { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 12px; }
+.gc .nm { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; font-weight: 600; }
+.gc .ctrk { margin-top: auto; }
+.gc .ft { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.gc.now { background: color-mix(in srgb, var(--card) 90%, var(--tx) 10%); box-shadow: 0 18px 30px -14px rgba(0, 0, 0, .45), var(--sh); transform: translateY(-3px); }
+.gc.lk-s .tl, .gc.lk-s .ich { color: var(--sec); }
+.nowpill { height: 24px; padding: 0 10px; border-radius: 12px; background: var(--tx); color: var(--card); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; }
+.backrow { display: flex; align-items: center; gap: 6px; height: 44px; margin-top: 4px; font-size: 16px; font-weight: 700; }
+.backrow .mrb { width: 44px; }
+.ephd { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+.ephd .t1 { font-size: 22px; line-height: 27px; font-weight: 700; }
+.ephd .t2 { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.erow { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px 14px 8px 10px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); margin-top: 8px; }
+.erow .tx { flex: 1; min-width: 0; }
+.erow .a { font-size: 16px; line-height: 21px; font-weight: 700; }
+.erow .b { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
+.erow.lk-s .a { color: var(--sec); }
+.erow.cur { background: color-mix(in srgb, var(--card) 90%, var(--tx) 10%); box-shadow: 0 14px 24px -14px rgba(0, 0, 0, .45), var(--sh); }
+.erow .stars2 { display: flex; gap: 1px; color: var(--tx); }
+.erow .stars2 .io { font-size: 13px; }
+.gobtn { height: 36px; padding: 0 14px; border-radius: 18px; background: var(--tx); color: var(--card); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.gobtn .io { font-size: 16px; }
+
+/* ── вариант D: лента-история ── */
+.cover { margin-top: 16px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.cover .k { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--sec); }
+.cover .h { font-size: 22px; line-height: 27px; font-weight: 700; margin-top: 4px; }
+.cover .s2 { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.tl2 { position: relative; margin-top: 18px; padding-left: 54px; }
+.tl2::before { content: ""; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 4px; border-radius: 2px; background: var(--ctl); }
+.tl2 .seg { position: absolute; left: 19px; top: 20px; width: 4px; border-radius: 2px; background: var(--acc); }
+.sc { position: relative; margin-bottom: 12px; }
+.sc .mk { position: absolute; left: -54px; top: 10px; width: 42px; height: 42px; border-radius: 21px; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--sh); color: var(--sec); }
+.sc .mk .io { font-size: 20px; }
+.sc.now .mk { background: var(--tx); color: var(--card); box-shadow: 0 0 0 5px color-mix(in srgb, var(--tx) 14%, transparent); }
+.sc.done .mk { background: var(--acc); color: var(--card); }
+.sc .cardd { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 14px 10px 16px; }
+.sc .hd { display: flex; align-items: center; gap: 10px; min-height: 52px; padding-bottom: 6px; }
+.sc .hd .tx { flex: 1; min-width: 0; }
+.sc .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.sc .sb2 { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; font-weight: 600; }
+.sc.lk-s .tl { color: var(--sec); }
+.dep { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 4px 0; }
+.dep .st { width: 32px; height: 32px; border-radius: 16px; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; flex: none; }
+.dep .st .io { font-size: 16px; }
+.dep.cur .st { background: var(--tx); color: var(--card); }
+.dep.lk-s .st { color: var(--sec); }
+.dep .tx { flex: 1; min-width: 0; }
+.dep .a { font-size: 16px; line-height: 21px; font-weight: 700; }
+.dep .b { font-size: 13px; line-height: 17px; color: var(--sec); }
+.dep.lk-s .a { color: var(--sec); }
+.dep .stars2 { display: flex; gap: 1px; color: var(--tx); }
+.dep .stars2 .io { font-size: 13px; }
+.dexam { margin: 6px 0 4px; height: 48px; border-radius: 24px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.dexam .io { font-size: 20px; }
+
+/* ── вариант Е: «сегодня» ── */
+.sec2 { display: flex; align-items: center; justify-content: space-between; margin: 24px 4px 10px; }
+.sec2 .a { font-size: 19px; line-height: 24px; font-weight: 700; }
+.sec2 .b { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 4px; }
+.goal { margin-top: 16px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; display: flex; align-items: center; gap: 14px; }
+.goal .tx { flex: 1; min-width: 0; }
+.goal .a { font-size: 19px; line-height: 24px; font-weight: 700; }
+.goal .b { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.streak { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.streak .io { font-size: 24px; color: var(--tx); }
+.strip { margin-top: 0; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; }
+.strip .hd { display: flex; align-items: center; gap: 12px; }
+.strip .hd .tx { flex: 1; min-width: 0; }
+.strip .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.strip .csub { font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 600; margin-top: 1px; }
+.dots { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; position: relative; padding: 0 2px; }
+.dots::before { content: ""; position: absolute; left: 22px; right: 22px; top: 50%; height: 4px; margin-top: -2px; border-radius: 2px; background: var(--ctl); }
+.dots .nd { position: relative; z-index: 1; }
+.dots .nd b { font-size: 13px; }
+.strip .exb { margin-top: 16px; height: 48px; }
+.car { display: flex; gap: 10px; overflow: hidden; margin: 0 -12px; padding: 0 12px; }
+.lc { flex: none; width: 152px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; display: flex; flex-direction: column; min-height: 176px; }
+.lc .tt { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 10px; }
+.lc .ctrk { margin-top: auto; }
+.lc.now { background: color-mix(in srgb, var(--card) 90%, var(--tx) 10%); box-shadow: 0 18px 30px -14px rgba(0, 0, 0, .45), var(--sh); }
+.lc.lk-s .tt, .lc.lk-s .ich { color: var(--sec); }
+.lc .nn { display: flex; align-items: center; justify-content: space-between; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+
+/* ── страница ── */
+.vnote { margin: 14px 0 0; max-width: 940px; font-size: 16px; line-height: 24px; color: #A6A6AE; }
+.vnote b { color: #F2F2F4; }
+.pc { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px; max-width: 940px; }
+.pc div { border-radius: 16px; background: #161618; padding: 14px 16px; font-size: 15px; line-height: 22px; color: #C9C9CF; }
+.pc b { display: block; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; }
+.pc .p b { color: #6FD08C; } .pc .m b { color: #F2766B; } .pc .c b { color: #8FA0FF; }
+.mx { border-collapse: collapse; margin-top: 16px; font-size: 14px; line-height: 20px; width: 100%; max-width: 1200px; color: #C9C9CF; }
+.mx th, .mx td { text-align: left; padding: 10px 14px 10px 0; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,.08); }
+.mx th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+.mx td:first-child { color: #F2F2F4; font-weight: 600; min-width: 170px; }
+.mxwrap { overflow-x: auto; }
+.rec { margin-top: 18px; padding: 18px 20px; border-radius: 18px; background: #1B1B1D; max-width: 940px; font-size: 16px; line-height: 24px; color: #D6D6D8; }
+.rec b { color: #fff; }
+.phones { align-items: flex-start; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Экран курса Learning V2 — 5 вариантов</h1>
+  <p class="page-lead">Реестр владельца №40 (21.10): что видно, когда открываешь вкладку «Уроки» — уроки → главы → эпизоды. Пять вариантов, каждый со своим принципом. Во всех: слово «Эпизод», в главе 8 эпизодов и под ними «Экзамен главы» (эталон chapter-exam.html), экзамен можно сдать заранее, входной тест «Не хочу с начала», закрытое можно посмотреть, продолжение с места, один понятный выход «Дальше / К карте». Данные настоящие: урок 1 «Present be: утверждение + not», главы и сцены из плана курса. Код приложения не менялся.</p>
+  <nav class="page-nav" id="nav"></nav>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { phone, block, col } = K;
+const CODE = {"home-outline":62339,"home":62338,"book-outline":61862,"book":61861,"play-circle-outline":62670,"people-outline":62627,"people":62623,"settings-outline":62828,"chevron-back":61993,"chevron-forward":62011,"chevron-down":62002,"chevron-up":62017,"arrow-forward":61747,"close":62026,"checkmark":61981,"checkmark-circle":61982,"lock-closed":62407,"play":62662,"trophy":62977,"star":62869,"flash":62230,"time-outline":62942,"eye-outline":62186,"list-outline":62399,"flag-outline":62225,"map-outline":62531,"flame":62227,"school-outline":62813,"refresh":62740,"compass-outline":62084,"briefcase-outline":61874,"business-outline":61895,"cafe-outline":61898,"home-outline-2":62339,"restaurant-outline":62774,"chatbubbles-outline":61976,"calendar-outline":61910,"navigate":62572,"ribbon-outline":62789,"footsteps-outline":62255,"sparkles-outline":62861};
+const gi = (n, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${CODE[n].toString(16)};</i>`;
+const ich = (n, cls = '') => `<span class="ich ${cls}">${gi(n)}</span>`;
+const back = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const bookI = '<svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/></svg>';
+const libI = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="6" width="4" height="14" rx="1"/><path d="M15.2 7.2l3.6-1 3 13.4-3.6 1z"/></svg>';
+const th = (h, t) => h.replace('class="ph"', `class="ph ${t === 'ink' ? 'th-ink' : 'th-marine'}"`);
+
+/* ── настоящие данные ── */
+const LESSON = { n: 1, title: 'Present be: утверждение + not', icon: 'briefcase-outline' };
+const CH = [
+  { n: 1, name: 'I am (+ not)', scene: 'Первый рабочий день', ic: 'business-outline' },
+  { n: 2, name: 'You are (+ not)', scene: 'Кофе с коллегой', ic: 'cafe-outline' },
+  { n: 3, name: 'He / she is (+ not)', scene: 'Знакомство с командой', ic: 'people-outline' },
+  { n: 4, name: 'It is (+ not)', scene: 'Квартира, погода, вещи', ic: 'home-outline' },
+  { n: 5, name: 'We / they are (+ not)', scene: 'Обед с командой', ic: 'restaurant-outline' },
+  { n: 6, name: 'Сокращения', scene: 'Пятница, паб', ic: 'chatbubbles-outline' },
+  { n: 7, name: 'Вся система be', scene: 'Воскресный звонок домой', ic: 'calendar-outline' },
+];
+const EP1 = ['Вошли в офис', 'День продолжается', 'Заботливый начальник', 'Утренняя планёрка', 'Типичные ошибки', 'Вечером в квартире', 'Конец дня', 'Проверка главы'];
+const STARS = [3, 2, 3];
+/* состояние главы 1: mid — 1–3 пройдены, 4 текущий; new — человек только пришёл */
+const epState = (i, st) => st === 'new' ? (i === 1 ? 'cur' : 'lock') : (i <= 3 ? 'done' : i === 4 ? 'cur' : 'lock');
+const doneCount = (st) => st === 'new' ? 0 : 3;
+
+const node = (n, s, o = {}) => {
+  const ic = { done: 'checkmark', cur: 'play', lock: 'lock-closed', chk: 'trophy' }[s];
+  const cls = { done: '', cur: ' cur', lock: ' lock', chk: ' lock' }[s];
+  const stars = o.stars ? `<span class="stars">${[0, 1, 2].map((i) => gi('star', `opacity:${i < o.stars ? 1 : .25}`)).join('')}</span>` : '';
+  return `<div class="s"><div class="nd${cls}${o.sm ? ' sm' : ''}">${gi(ic)}${o.noNum ? '' : `<b>${n}</b>`}${stars}</div>${o.noLabel ? '' : `<div class="lb2${s === 'cur' ? ' on' : ''}">${o.label || `Эпизод ${n}`}</div>`}</div>`;
+};
+const gridNodes = (st) => Array.from({ length: 8 }, (_, k) => {
+  const i = k + 1; const s = epState(i, st);
+  if (i === 8) return node(8, 'chk', { label: 'Проверка главы' });
+  return node(i, s, { stars: s === 'done' ? STARS[k] : 0 });
+}).join('');
+const tabs = () => `<div class="topfade"></div><div class="fade"></div><div class="tabbar"><span class="tb2">${gi('home-outline')}</span><span class="tb2 on">${gi('book')}</span><span class="tb2">${gi('play-circle-outline')}</span><span class="tb2">${gi('people-outline')}</span><span class="tb2">${gi('settings-outline')}</span></div>`;
+const hdr = () => `<div class="mh"><span class="mrb t">${back}</span><span class="mrb t">${bookI}</span></div>`;
+const lessonHead = () => `<div class="lh"><div class="kr"><span class="lk">Урок ${LESSON.n}</span><span class="clc t">${libI}Классический курс</span></div><div class="tr">${ich(LESSON.icon, 'les')}<div class="ltt">${LESSON.title}</div></div></div>`;
+const exam = (note = 'Сдашь — откроется глава 2') => `<div class="exb t">${gi('trophy')}Экзамен главы</div><div class="exn">${note}</div>`;
+const entry = (compact) => `<div class="entry t">${ich('compass-outline', 'sm')}<div class="tx"><div class="tl">Не хочу с начала</div><div class="p">Входной тест, бесплатно</div></div>${gi('chevron-forward', 'font-size:20px;color:var(--sec)')}</div>`;
+const sheetPrev = (n = 6) => `<div class="xdim"></div><div class="vsh"><div class="grab"></div><div class="ic">${gi('eye-outline')}</div>
+  <div class="tt">Эпизод ${n}</div><div class="ss">${EP1[n - 1]}</div>
+  <div class="facts"><div><b>12</b><small>заданий</small></div><div><b>4</b><small>новых слова</small></div><div><b>~6</b><small>минут</small></div></div>
+  <div class="p">Откроется после эпизода 5. Раньше — если сдать «Экзамен главы».</div>
+  <div class="c1">${gi('eye-outline')}Посмотреть эпизод</div><div class="c2">Продолжить с эпизода 4</div>
+  <div class="nt">Только просмотр: ответы не засчитываются</div></div>`;
+const focus = (id, sel, dy = 300) => setTimeout(() => { const ph = document.getElementById(id); if (!ph) return; const scr = ph.querySelector('.scr'); const el = ph.querySelector(sel); if (!scr || !el) return; scr.scrollTop = Math.max(0, el.getBoundingClientRect().top - scr.getBoundingClientRect().top + scr.scrollTop - dy); }, 60);
+const P = (id, t, body, o = {}) => th(phone(body, { time: '9:41', ...o }), t).replace('<div class="ph', `<div id="${id}" class="ph`);
+
+/* ═══════════ А · ПУТЬ ═══════════ */
+const trail = (st) => {
+  const STEP = 98; const W = 406; const cx = W / 2;
+  const offs = [0, 74, 104, 74, 0, -74, -104, -74];
+  const pts = Array.from({ length: 8 }, (_, k) => ({ x: cx + offs[k], y: 40 + k * STEP }));
+  const curIdx = st === 'new' ? 0 : 3;
+  const d = (a, b) => `M${a[0].x} ${a[0].y}` + a.slice(1).map((p, i) => { const q = a[i]; const m = (p.y - q.y) / 2; return ` C${q.x} ${q.y + m} ${p.x} ${p.y - m} ${p.x} ${p.y}`; }).join('');
+  const all = d(pts); const doneSeg = d(pts.slice(0, curIdx + 1));
+  const exTop = 40 + 7 * STEP + 56; const total = exTop + 96;
+  const nodes = pts.map((p, k) => {
+    const i = k + 1; const s = i === 8 ? 'chk' : epState(i, st);
+    const stars = s === 'done' ? STARS[k] : 0;
+    const st2 = stars ? `<span class="stars">${[0, 1, 2].map((q) => gi('star', `opacity:${q < stars ? 1 : .25}`)).join('')}</span>` : '';
+    const cls = { done: ' done', cur: ' cur', lock: ' lock', chk: ' lock' }[s]; const ic = { done: 'checkmark', cur: 'play', lock: 'lock-closed', chk: 'trophy' }[s];
+    const lab = i === 8 ? 'Проверка главы' : `Эпизод ${i}`;
+    const side = offs[k] > 0 ? 'L' : 'R';
+    const lx = side === 'L' ? p.x - 32 - 10 - 150 : p.x + 32 + 10;
+    const inner = s === 'cur' ? `<span class="pill2">${gi('footsteps-outline', 'font-size:16px')}Ты здесь · ${i}</span>` : lab;
+    return `<div class="tnode n${i}" style="left:${p.x - 41}px;top:${p.y - 32}px;height:64px"><div class="nd${cls}">${gi(ic)}<b>${i}</b>${st2}</div></div><div class="tlab ${side}" style="left:${lx}px;top:${p.y - 12}px">${inner}</div>`;
+  }).join('');
+  const ex = `<div class="exnode" style="top:${exTop}px"><div class="exb t" style="margin-top:0">${gi('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div></div>`;
+  return `<div class="trail" style="height:${total}px"><svg class="pth" width="${W}" height="${total}" viewBox="0 0 ${W} ${total}"><path d="${all}" fill="none" stroke="var(--ctl)" stroke-width="8" stroke-linecap="round"/><path d="${doneSeg}" fill="none" stroke="var(--acc)" stroke-width="8" stroke-linecap="round"/></svg>${nodes}${ex}</div>`;
+};
+const bannerA = (c, open, st) => {
+  const lk = !open;
+  return `<div class="plate t${lk ? ' lk-s' : ''}"><div class="crow">${ich(c.ic)}<div class="cp"><div class="tl">Глава ${c.n}</div><div class="csub">${c.name}</div></div>${lk ? `<span class="seebtn">${gi('eye-outline')}Посмотреть</span>` : `<span class="cfr"><b>${doneCount(st)}</b>/8</span>`}</div></div>`;
+};
+const variantA = (id, t, st, o = {}) => {
+  const body = `${hdr()}${lessonHead()}${st === 'new' ? entry() : ''}${bannerA(CH[0], true, st)}${trail(st)}${CH.slice(1).map((c) => bannerA(c, false, st)).join('')}<div class="allrow t">${gi('list-outline')}Все уроки</div>`;
+  const fixed = o.sheet ? sheetPrev(6) : `<div class="vcta vfab t">${gi('play')}${st === 'new' ? 'Начать · Эпизод 1' : 'Продолжить с задания 6'}</div>`;
+  const html = P(id, t, body, { fixed: tabs(), overlay: fixed });
+  if (o.sheet) focus(id, '.tnode.n6', 380); if (o.scroll) focus(id, o.scroll[0], o.scroll[1]);
+  return html;
+};
+
+/* ═══════════ B · «ПРОДОЛЖИТЬ» + СПИСОК ═══════════ */
+const heroB = (st) => st === 'new'
+  ? `<div class="vhero"><div class="k">Начать</div><div class="h">Эпизод 1</div><div class="s2">Глава 1 · I am (+ not)</div><div class="go t">${gi('play')}Начать урок 1</div></div>`
+  : `<div class="vhero"><div class="k">Продолжить</div><div class="h">Эпизод 4</div><div class="s2">Глава 1 · I am (+ not)</div><div class="bar"><i style="width:50%"></i></div><div class="vmeta"><span>Задание 6 из 12</span><span>~4 мин</span></div><div class="go t">${gi('play')}Продолжить с задания 6</div></div>`;
+const plateB = (c, st, open) => {
+  if (open) return `<div class="plate"><div class="crow">${ich(c.ic)}<div class="cp"><div class="tl">Глава ${c.n}</div><div class="csub">Эпизоды 1–8</div></div><span class="cfr"><b>${doneCount(st)}</b>/8</span>${gi('chevron-up', 'font-size:20px;color:var(--sec)')}</div><div class="ses">${gridNodes(st)}</div>${exam()}<div style="height:6px"></div></div>`;
+  return `<div class="plate t lk-s"><div class="crow">${ich(c.ic)}<div class="cp"><div class="tl">Глава ${c.n}</div><div class="csub">Эпизоды ${(c.n - 1) * 8 + 1}–${c.n * 8}</div></div><span class="seebtn">${gi('eye-outline')}Посмотреть</span></div><div class="ctrk"></div></div>`;
+};
+const variantB = (id, t, st, o = {}) => {
+  const body = `${hdr()}${lessonHead()}${heroB(st)}${st === 'new' ? entry() : ''}${plateB(CH[0], st, true)}${CH.slice(1).map((c) => plateB(c, st, false)).join('')}${st === 'new' ? '' : entry()}<div class="allrow t">${gi('list-outline')}Все уроки</div>`;
+  const html = P(id, t, body, { fixed: tabs(), overlay: o.sheet ? sheetPrev(6) : '' });
+  if (o.sheet) focus(id, '.ses .s:nth-child(6)', 300); if (o.scroll) focus(id, o.scroll[0], o.scroll[1]);
+  return html;
+};
+
+/* ═══════════ C · СЕТКА ГЛАВ + ЭКРАН ГЛАВЫ ═══════════ */
+const gridCard = (c, st) => {
+  const open = c.n === 1; const now = open;
+  const frac = open ? doneCount(st) : 0;
+  return `<div class="gc t${now ? ' now' : ''}${open ? '' : ' lk-s'}"><div class="top">${ich(c.ic)}${now ? `<span class="nowpill">Сейчас</span>` : `<span class="seebtn" style="height:28px;padding:0 10px">${gi('eye-outline')}</span>`}</div>
+  <div class="tl">Глава ${c.n}</div><div class="nm">${c.name}</div>
+  <div class="ft"><span class="cfr"><b style="font-size:19px;line-height:24px">${frac}</b>/8</span></div><div class="ctrk"><i style="width:${frac / 8 * 100}%"></i></div></div>`;
+};
+const variantC1 = (id, t, st) => {
+  const cont = st === 'new'
+    ? `<div class="cont t"><span class="pl">${gi('play')}</span><div class="tx"><div class="a">Начать · Эпизод 1</div><div class="b">Глава 1 · I am (+ not)</div></div>${gi('chevron-forward', 'font-size:20px;color:var(--sec)')}</div>${entry()}`
+    : `<div class="cont t"><span class="pl">${gi('play')}</span><div class="tx"><div class="a">Продолжить · Эпизод 4</div><div class="b">Глава 1 · задание 6 из 12</div></div>${gi('chevron-forward', 'font-size:20px;color:var(--sec)')}</div>`;
+  const all = `<div class="gc t" style="justify-content:center;align-items:center;gap:10px;min-height:176px;background:var(--ctl);box-shadow:none"><span class="ich" style="background:var(--card)">${gi('list-outline')}</span><div class="tl" style="margin-top:0">Все уроки</div></div>`;
+  const body = `${hdr()}${lessonHead()}${cont}<div class="grid2">${CH.map((c) => gridCard(c, st)).join('')}${all}</div>`;
+  return P(id, t, body, { fixed: tabs() });
+};
+const rowC = (i, st, o = {}) => {
+  const s = i === 8 ? 'chk' : epState(i, st); const k = i - 1;
+  const ic = { done: 'checkmark', cur: 'play', lock: 'lock-closed', chk: 'trophy' }[s]; const cls = { done: '', cur: ' cur', lock: ' lock', chk: ' lock' }[s];
+  const right = s === 'done' ? `<span class="stars2">${[0, 1, 2].map((q) => gi('star', `opacity:${q < STARS[k] ? 1 : .25}`)).join('')}</span>` : s === 'cur' ? `<span class="gobtn">${gi('play')}${st === 'new' ? 'Начать' : 'Продолжить'}</span>` : `<span class="seebtn" style="height:32px;padding:0 10px">${gi('eye-outline')}</span>`;
+  return `<div class="erow t${s === 'cur' ? ' cur' : ''}${s === 'lock' || s === 'chk' ? ' lk-s' : ''}"><div class="nd sm${cls}">${gi(ic)}</div><div class="tx"><div class="a">${i === 8 ? 'Проверка главы' : `Эпизод ${i}`}</div><div class="b">${i === 8 ? 'Итог главы, 12 заданий' : EP1[k]}</div></div>${right}</div>`;
+};
+const variantC2 = (id, t, st, o = {}) => {
+  void o.scroll;
+  const body = `<div class="backrow t"><span class="mrb">${back}</span><span>Карта урока</span></div>
+  <div class="ephd">${ich(CH[0].ic)}<div><div class="t1">Глава 1</div><div class="t2">${CH[0].name} · ${doneCount(st)} из 8</div></div></div>
+  <div style="margin-top:12px">${Array.from({ length: 8 }, (_, k) => rowC(k + 1, st)).join('')}</div>${exam()}`;
+  const html = P(id, t, body, { fixed: tabs(), overlay: o.sheet ? sheetPrev(6) : '' });
+  return html;
+};
+
+/* ═══════════ D · ЛЕНТА-ИСТОРИЯ ═══════════ */
+const depRow = (i, st) => {
+  const s = i === 8 ? 'chk' : epState(i, st); const k = i - 1;
+  const ic = { done: 'checkmark', cur: 'play', lock: 'lock-closed', chk: 'trophy' }[s];
+  const right = s === 'done' ? `<span class="stars2">${[0, 1, 2].map((q) => gi('star', `opacity:${q < STARS[k] ? 1 : .25}`)).join('')}</span>` : s === 'cur' ? `<span class="gobtn">${gi('play')}${st === 'new' ? 'Начать' : 'Продолжить'}</span>` : `${gi('eye-outline', 'font-size:18px;color:var(--sec)')}`;
+  return `<div class="dep t${s === 'cur' ? ' cur' : ''}${s === 'lock' || s === 'chk' ? ' lk-s' : ''}"><span class="st">${gi(ic)}</span><div class="tx"><div class="a">Эпизод ${i}${i === 8 ? ' · проверка' : ''}</div><div class="b">${i === 8 ? 'Итог первого дня' : EP1[k]}</div></div>${right}</div>`;
+};
+const sceneD = (c, st) => {
+  if (c.n === 1) return `<div class="sc now"><span class="mk">${gi(c.ic)}</span><div class="cardd"><div class="hd"><div class="tx"><div class="tl">${c.scene}</div><div class="sb2">Глава ${c.n} · ${c.name}</div></div><span class="cfr"><b>${doneCount(st)}</b>/8</span></div>${st === 'new' ? '' : `<div class="dep t"><span class="st">${gi('checkmark')}</span><div class="tx"><div class="a">Эпизоды 1–3</div><div class="b">Пройдены · 8 из 9 звёзд</div></div>${gi('chevron-down', 'font-size:18px;color:var(--sec)')}</div>`}${Array.from({ length: st === 'new' ? 8 : 5 }, (_, k) => depRow(k + (st === 'new' ? 1 : 4), st)).join('')}<div class="dexam t">${gi('trophy')}Экзамен главы</div><div class="exn" style="margin:0 0 6px">Сдашь — откроется «Кофе с коллегой»</div></div></div>`;
+  return `<div class="sc lk-s"><span class="mk">${gi(c.ic)}</span><div class="cardd t"><div class="hd" style="padding-bottom:4px"><div class="tx"><div class="tl">${c.scene}</div><div class="sb2">Глава ${c.n} · ${c.name}</div></div><span class="seebtn">${gi('eye-outline')}Посмотреть</span></div></div></div>`;
+};
+const variantD = (id, t, st, o = {}) => {
+  const cover = `<div class="cover"><div class="k">Арка урока ${LESSON.n}</div><div class="h">Первая неделя в Дублине</div><div class="s2">${LESSON.title}</div><div class="ctrk"><i style="width:${doneCount(st) / 56 * 100}%"></i></div><div class="exn" style="text-align:left;margin-top:8px">${doneCount(st)} из 56 эпизодов · 7 сцен</div></div>`;
+  const body = `${hdr()}${cover}${st === 'new' ? entry() : ''}<div class="tl2"><div class="seg" style="height:${st === 'new' ? 0 : 150}px"></div>${CH.map((c) => sceneD(c, st)).join('')}</div><div class="allrow t">${gi('list-outline')}Все уроки</div>`;
+  const html = P(id, t, body, { fixed: tabs(), overlay: o.sheet ? sheetPrev(6) : '' });
+  if (o.scroll) focus(id, o.scroll[0], o.scroll[1]);
+  return html;
+};
+
+/* ═══════════ E · «СЕГОДНЯ» ═══════════ */
+const ring = (v, max) => { const r = 28, c = 2 * Math.PI * r; return `<svg width="72" height="72" viewBox="0 0 72 72"><circle cx="36" cy="36" r="${r}" fill="none" stroke="var(--ctl)" stroke-width="8"/><circle cx="36" cy="36" r="${r}" fill="none" stroke="var(--acc)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - v / max)}" transform="rotate(-90 36 36)"/><text x="36" y="42" text-anchor="middle" font-family="Inter" font-weight="800" font-size="19" fill="currentColor">${v}/${max}</text></svg>`; };
+const LESSONS = [[1, 'Present be: утверждение + not', 'briefcase-outline'], [2, 'Present be: вопросы, короткие ответы', 'help'], [3, 'Существительные, a/an/the', 'cube'], [4, 'There is/are, some/any', 'map-outline']];
+const carE = (st) => `<div class="car">${[
+  { n: 1, t: 'Present be: утверждение + not', ic: 'briefcase-outline', f: doneCount(st), now: true },
+  { n: 2, t: 'Present be: вопросы и ответы', ic: 'chatbubbles-outline', f: 0 },
+  { n: 3, t: 'Существительные, a/an/the', ic: 'business-outline', f: 0 },
+].map((l) => `<div class="lc t${l.now ? ' now' : ' lk-s'}">${ich(l.ic, 'sm')}<div class="tt">${l.t}</div><div class="nn" style="margin-top:8px"><span>Урок ${l.n}</span>${l.now ? `<span>${l.f}/56</span>` : gi('eye-outline', 'font-size:16px')}</div><div class="ctrk" style="margin-top:8px"><i style="width:${l.f / 56 * 100}%"></i></div></div>`).join('')}</div>`;
+const stripE = (st) => `<div class="strip"><div class="hd">${ich(CH[0].ic, 'sm')}<div class="tx"><div class="tl">Глава 1</div><div class="csub">${CH[0].name}</div></div><span class="cfr"><b>${doneCount(st)}</b>/8</span></div>
+  <div class="dots">${Array.from({ length: 8 }, (_, k) => { const i = k + 1; const s = i === 8 ? 'chk' : epState(i, st); const ic = { done: 'checkmark', cur: 'play', lock: 'lock-closed', chk: 'trophy' }[s]; const cls = { done: '', cur: ' cur', lock: ' lock', chk: ' lock' }[s]; return `<div class="nd sm${cls} t" style="width:38px;height:38px">${gi(ic, 'font-size:18px')}</div>`; }).join('')}</div>
+  <div class="exb t">${gi('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div></div>`;
+const variantE = (id, t, st, o = {}) => {
+  const top = st === 'new'
+    ? `<div class="lh"><div class="kr"><span class="lk">Добро пожаловать</span></div><div class="ltt" style="margin-top:6px">Начнём с урока 1</div></div>`
+    : `<div class="lh"><div class="kr"><span class="lk">Сегодня</span></div><div class="ltt" style="margin-top:6px">Продолжим урок 1</div></div>`;
+  const goal = st === 'new' ? '' : `<div class="goal"><div>${ring(0, 1)}</div><div class="tx"><div class="a">Цель дня</div><div class="b">1 эпизод · осталось 1</div></div><div class="streak">${gi('flame')}<span>5 дней</span></div></div>`;
+  const next = st === 'new'
+    ? `<div class="vhero"><div class="k">Первый эпизод</div><div class="h">Эпизод 1</div><div class="s2">Глава 1 · I am (+ not)</div><div class="go t">${gi('play')}Начать</div></div>${entry()}`
+    : `<div class="vhero"><div class="k">Следующий эпизод</div><div class="h">Эпизод 4</div><div class="s2">Глава 1 · I am (+ not) · ~4 мин</div><div class="go t">${gi('play')}Продолжить с задания 6</div></div>`;
+  const body = `${hdr()}${top}${goal}${next}<div class="sec2"><span class="a">Эта глава</span><span class="b">Все эпизоды ${gi('chevron-forward', 'font-size:14px')}</span></div>${stripE(st)}<div class="sec2"><span class="a">Уроки</span><span class="b">Все 32 ${gi('chevron-forward', 'font-size:14px')}</span></div>${carE(st)}${st === 'new' ? '' : entry()}`;
+  const html = P(id, t, body, { fixed: tabs(), overlay: o.sheet ? sheetPrev(6) : '' });
+  if (o.scroll) focus(id, o.scroll[0], o.scroll[1]);
+  return html;
+};
+
+/* ═══════════ Общее: выход из эпизода ═══════════ */
+const finishScreen = (id, t) => P(id, t, `<div style="height:140px"></div><div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+  <div style="width:96px;height:96px;border-radius:48px;background:var(--tx);color:var(--card);display:flex;align-items:center;justify-content:center;font-size:44px">${gi('checkmark', 'font-size:44px')}</div>
+  <div style="font-size:24px;line-height:30px;font-weight:700;margin-top:22px">Эпизод 4 пройден</div>
+  <div style="display:flex;gap:4px;margin-top:12px">${[1, 2, 3].map((q) => gi('star', `font-size:28px;opacity:${q < 3 ? 1 : .25}`)).join('')}</div>
+  <div style="font-size:16px;line-height:21px;color:var(--sec);margin-top:14px">+12 монет · глава 1: 4 из 8</div></div>`,
+  { overlay: `<div style="position:absolute;left:20px;right:20px;bottom:52px;z-index:30"><div class="vcta t">Дальше: Эпизод 5${gi('arrow-forward')}</div><div class="vcta2 t" style="margin-top:12px">К карте</div></div>` });
+const exitSheet = (id, t) => P(id, t, `<div class="mh"><span class="mrb">${gi('close', 'font-size:20px')}</span><span class="cfr"><b>6</b>/12</span></div><div style="margin-top:36px;font-size:24px;line-height:30px;font-weight:700;text-align:center">She is a manager.</div><div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">${['She am a manager', 'She is a manager', 'She are a manager'].map((x, i) => `<div class="vcta2" style="justify-content:flex-start;padding:0 20px;height:56px;">${x}</div>`).join('')}</div>`,
+  { overlay: `<div class="xdim"></div><div class="vsh"><div class="grab"></div><div class="tt" style="margin-top:22px">Выйти из эпизода?</div><div class="p">Прогресс сохранится. Вернёшься с задания 6 из 12, энергия второй раз не тратится.</div><div class="c1">Остаться</div><div class="c2">К карте</div></div>` });
+
+/* ── сборка страницы ── */
+const NAVS = [['a', 'А · Путь'], ['b', 'Б · Продолжить'], ['c', 'В · Сетка глав'], ['d', 'Г · Лента-история'], ['e', 'Д · Сегодня'], ['x', 'Выход'], ['m', 'Сравнение']];
+document.getElementById('nav').innerHTML = NAVS.map(([id, n]) => `<a href="#${id}">${n}</a>`).join('');
+const pc = (p, m, c) => `<div class="pc"><div class="p"><b>Плюс</b>${p}</div><div class="m"><b>Минус</b>${m}</div><div class="c"><b>Цена</b>${c}</div></div>`;
+const root = document.getElementById('root');
+root.innerHTML =
+  block('a', 'А · Путь', 'Весь урок как одна тропа: эпизоды узлами по изгибу, главы — баннерами, «Ты здесь» и плавающая кнопка «Продолжить». Будущие главы свёрнуты, закрытые узлы можно открыть на просмотр.', [
+    col('Сумерки · в процессе', variantA('a1', 'ink', 'mid')), col('Океан · в процессе', variantA('a2', 'marine', 'mid')), col('Океан · новичок и входной тест', variantA('a3', 'marine', 'new')), col('Сумерки · тап по закрытому эпизоду', variantA('a4', 'ink', 'mid', { sheet: true })), col('Океан · прокрутка: конец главы и экзамен', variantA('a5', 'marine', 'mid', { scroll: ['.exnode', 640] }))]) +
+  `${pc('Видно всё путешествие и место на нём; самый живой вариант, «Ты здесь» снимает вопрос «где я».', 'Самая длинная прокрутка и самая тяжёлая отрисовка: на слабых Android (№39) риск лагов; главы трудно сравнивать между собой.', 'Большая: новая раскладка узлов, анимации, проверка на слабом телефоне.')}` +
+  block('b', 'Б · «Продолжить» и список', 'Сверху одна карточка действия: «Эпизод 4 · продолжить с задания 6». Ниже — привычные плашки глав, текущая развёрнута (8 эпизодов и «Экзамен главы»), остальные свёрнуты с кнопкой «Посмотреть».', [
+    col('Сумерки · в процессе', variantB('b1', 'ink', 'mid')), col('Океан · в процессе', variantB('b2', 'marine', 'mid')), col('Океан · новичок и входной тест', variantB('b3', 'marine', 'new')), col('Сумерки · тап по закрытому эпизоду', variantB('b4', 'ink', 'mid', { sheet: true })), col('Океан · прокрутка: остальные главы', variantB('b5', 'marine', 'mid', { scroll: ['.allrow', 640] }))]) +
+  `${pc('Вход в урок в один тап; почти всё знакомо по текущей карте — меньше всего риска и работы.', 'Не даёт ощущения пути; внутри главы остаётся прежняя сетка узлов, обзор курса — только через «Все уроки».', 'Малая: те же плашки и узлы, новая карточка «Продолжить» и шторка просмотра.')}` +
+  block('c', 'В · Сетка глав и экран главы', 'Первый уровень — обзор: 7 глав карточками 2×4 (восьмая — «Все уроки») и полоса «Продолжить». Тап по главе открывает экран главы со списком из 8 эпизодов и «Экзаменом главы». Один «назад» — «Карта урока».', [
+    col('Сумерки · карта урока', variantC1('c1', 'ink', 'mid')), col('Океан · карта урока', variantC1('c2', 'marine', 'mid')), col('Сумерки · экран главы', variantC2('c3', 'ink', 'mid')), col('Океан · экран главы, тап по закрытому', variantC2('c4', 'marine', 'mid', { sheet: true })), col('Сумерки · новичок и входной тест', variantC1('c5', 'ink', 'new'))]) +
+  `${pc('Все 7 глав видны сразу, выбор главы — один тап; экран главы крупный и чистый, эпизоды названы.', 'Лишний уровень навигации: нужен единый «назад» и «Продолжить» с карты; на карте нет самих эпизодов.', 'Средняя: новый экран главы, переход между уровнями, сетка карточек.')}` +
+  block('d', 'Г · Лента-история', 'Урок как сюжет «Первая неделя в Дублине»: каждая глава — сцена с названием («Первый рабочий день»). Текущая сцена раскрыта эпизодами с названиями, будущие свёрнуты и манят названием, у каждой «Посмотреть».', [
+    col('Сумерки · в процессе', variantD('d1', 'ink', 'mid')), col('Океан · в процессе', variantD('d2', 'marine', 'mid')), col('Океан · новичок и входной тест', variantD('d3', 'marine', 'new')), col('Сумерки · тап по закрытому эпизоду', variantD('d4', 'ink', 'mid', { sheet: true })), col('Океан · прокрутка: будущие сцены', variantD('d5', 'marine', 'mid', { scroll: ['.sc.lk-s', 200] }))]) +
+  `${pc('Названия сцен делают эпизоды живыми и отвечают на №7 («Занятие» ни о чём не говорит); будущее манит, прошлое сворачивается.', 'Нужны названия сцен и эпизодов в выпуске (сейчас их там нет, 3–4 ч); больше текста на экране; длинные названия на 9 языках.', 'Средняя: тексты в выпуске + перевод на 9 языков + раскладка ленты.')}` +
+  block('e', 'Д · Сегодня', 'Экран отвечает на вопрос «что мне делать сегодня»: цель дня и серия, следующий эпизод, полоса «Эта глава» в одну строку и карусель уроков. Полная карта — по «Все эпизоды».', [
+    col('Сумерки · в процессе', variantE('e1', 'ink', 'mid')), col('Океан · в процессе', variantE('e2', 'marine', 'mid')), col('Океан · новичок и входной тест', variantE('e3', 'marine', 'new')), col('Сумерки · тап по закрытому эпизоду', variantE('e4', 'ink', 'mid', { sheet: true })), col('Океан · прокрутка: уроки', variantE('e5', 'marine', 'mid', { scroll: ['.car', 380] }))]) +
+  `${pc('Один главный вопрос и одна кнопка; цель дня и серия мотивируют; уроки листаются на том же экране.', 'Прячет полную карту курса, вводит цель дня как новую сущность и перегружает первый экран; карусель уроков пока без данных о прогрессе.', 'Средняя–большая: цель дня на сервере и в Главной, новая раскладка, карусель.')}` +
+  block('x', 'Общее для всех: выход из эпизода и возврат к карте', 'Жалоба тестера: три разных способа выйти. Одно правило для любого варианта: крестик и системная «назад» ведут на карту; на финале — «Дальше: Эпизод N» и «К карте»; на середине эпизода — один вопрос, прогресс сохраняется (решение владельца 21.10: продолжение с места).', [
+    col('Сумерки · финал эпизода', finishScreen('x1', 'ink')), col('Океан · выход из середины эпизода', exitSheet('x2', 'marine'))]) +
+  `<section class="block" id="m"><h2>Сравнение по решениям владельца</h2><p>Как каждый вариант закрывает требования №40.</p><div class="mxwrap"><table class="mx"><tr><th>Требование</th><th>А · Путь</th><th>Б · Продолжить</th><th>В · Сетка глав</th><th>Г · Лента</th><th>Д · Сегодня</th></tr>
+  <tr><td>Слово «Эпизод»</td><td>подпись узла</td><td>узлы и карточка</td><td>строки списка</td><td>строки сцены</td><td>карточка и полоса</td></tr>
+  <tr><td>8 эпизодов и «Экзамен главы»</td><td>в конце тропы главы</td><td>под сеткой, как в эталоне</td><td>под списком главы</td><td>в конце сцены</td><td>под полосой главы</td></tr>
+  <tr><td>Экзамен заранее, глава открыта</td><td>«Сдашь — откроется глава 2»</td><td>то же</td><td>то же</td><td>«откроется сцена…»</td><td>то же</td></tr>
+  <tr><td>Входной тест</td><td>карточка над тропой</td><td>карточка под «Продолжить»</td><td>карточка над сеткой</td><td>карточка над лентой</td><td>карточка под «Начать»</td></tr>
+  <tr><td>Закрытое можно посмотреть</td><td>тап по узлу, «Посмотреть» у глав</td><td>шторка и «Посмотреть» у глав</td><td>«глаз» в карточке и строке</td><td>«Посмотреть» у сцен, «глаз» у эпизодов</td><td>шторка по узлу полосы</td></tr>
+  <tr><td>Продолжить с места</td><td>плавающая кнопка</td><td>карточка вверху</td><td>полоса «Продолжить»</td><td>кнопка в строке эпизода</td><td>карточка «Следующий эпизод»</td></tr>
+  <tr><td>Дальше / назад к карте</td><td>общее правило</td><td>общее правило</td><td>«Карта урока» + общее</td><td>общее правило</td><td>общее правило</td></tr>
+  <tr><td>Риск на слабом Android</td><td>высокий</td><td>низкий</td><td>низкий</td><td>средний</td><td>средний</td></tr></table></div>
+  <div class="rec"><b>Рекомендация.</b> Взять Б за основу: она закрывает главные жалобы (нет «продолжить», закрытое не посмотреть, непонятный выход) самым дешёвым и безопасным путём. Если владельцу нужен обзор всех глав, добавить уровень из В. Названия сцен из Г подключить к Б, когда они появятся в выпуске. А и Д показывать владельцу как «красивые, но дорогие», А — только после проверки на слабом телефоне.</div></section>`;
+
+K.init();
+const hash = location.hash.slice(1); if (hash) document.getElementById(hash)?.scrollIntoView();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-05:word:eat-out",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eat out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:eat-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eat out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:eat-out:audio",
+            "transcript": "eat out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:eat-out:r1",
+              "targetText": "eat out",
+              "meaningByLocale": {
+                "ru": "есть вне дома, например в ресторане.",
+                "uk": "їсти не вдома, наприклад у ресторані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eat out",
+            "definitionByLocale": {
+              "ru": "есть вне дома, например в ресторане.",
+              "uk": "їсти не вдома, наприклад у ресторані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты ел вне дома?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты ел вне дома?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you eat out?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ел вне дома?",
+            "uk": "Скажіть: Ти їв не вдома?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "eat",
+            "out"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i02:r1",
+            "text": "Did she eat out?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i02:r2",
+            "text": "Did you eat out?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i02:r3",
+            "text": "Did they eat out?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i02:audio",
+            "transcript": "Did she eat out?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i02:r1",
+              "targetText": "Did she eat out?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i02:r2",
+              "targetText": "Did you eat out?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i02:r3",
+              "targetText": "Did they eat out?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat out?",
+                "uk": "У записі звучить Did she eat out?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat out?",
+                "uk": "У записі звучить Did she eat out?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you eat out?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:word:eat-in",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eat in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:eat-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eat in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:eat-in:audio",
+            "transcript": "eat in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:eat-in:r1",
+              "targetText": "eat in",
+              "meaningByLocale": {
+                "ru": "есть дома вместо похода в ресторан.",
+                "uk": "їсти вдома замість походу до ресторану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eat in",
+            "definitionByLocale": {
+              "ru": "есть дома вместо похода в ресторан.",
+              "uk": "їсти вдома замість походу до ресторану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты ел дома?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты ел дома?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you eat in?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ел дома?",
+            "uk": "Скажіть: Ти їв удома?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "eat",
+            "in"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i05:r1",
+            "text": "Did she eat in?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i05:r2",
+            "text": "Did you eat in?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i05:r3",
+            "text": "Did they eat in?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i05:audio",
+            "transcript": "Did she eat in?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i05:r1",
+              "targetText": "Did she eat in?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i05:r2",
+              "targetText": "Did you eat in?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i05:r3",
+              "targetText": "Did they eat in?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat in?",
+                "uk": "У записі звучить Did she eat in?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat in?",
+                "uk": "У записі звучить Did she eat in?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you eat in?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:word:packed-lunch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — packed lunch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:packed-lunch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — packed lunch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:packed-lunch:audio",
+            "transcript": "packed lunch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:packed-lunch:r1",
+              "targetText": "packed lunch",
+              "meaningByLocale": {
+                "ru": "обед, упакованный с собой.",
+                "uk": "обід, спакований із собою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packed lunch",
+            "definitionByLocale": {
+              "ru": "обед, упакованный с собой.",
+              "uk": "обід, спакований із собою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты взял обед с собой?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты взял обед с собой?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you take a packed lunch?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты взял обед с собой?",
+            "uk": "Скажіть: Ти взяв обід із собою?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "take",
+            "a",
+            "packed",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i08:r1",
+            "text": "Did she take a packed lunch?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i08:r2",
+            "text": "Did you take a packed lunch?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i08:r3",
+            "text": "Did they take a packed lunch?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i08:audio",
+            "transcript": "Did she take a packed lunch?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i08:r1",
+              "targetText": "Did she take a packed lunch?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i08:r2",
+              "targetText": "Did you take a packed lunch?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i08:r3",
+              "targetText": "Did they take a packed lunch?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take a packed lunch?",
+                "uk": "У записі звучить Did she take a packed lunch?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take a packed lunch?",
+                "uk": "У записі звучить Did she take a packed lunch?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you take a packed lunch?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:word:set-menu",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — set menu",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:set-menu:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — set menu",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:set-menu:audio",
+            "transcript": "set menu"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:set-menu:r1",
+              "targetText": "set menu",
+              "meaningByLocale": {
+                "ru": "комплексное меню.",
+                "uk": "комплексне меню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "set menu",
+            "definitionByLocale": {
+              "ru": "комплексное меню.",
+              "uk": "комплексне меню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты выбрал комплексное меню?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты выбрал комплексное меню?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you choose the set menu?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты выбрал комплексное меню?",
+            "uk": "Скажіть: Ти вибрав комплексне меню?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "choose",
+            "the",
+            "set",
+            "menu"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i11:r1",
+            "text": "Did she choose the set menu?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i11:r2",
+            "text": "Did you choose the set menu?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i11:r3",
+            "text": "Did they choose the set menu?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i11:audio",
+            "transcript": "Did she choose the set menu?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i11:r1",
+              "targetText": "Did she choose the set menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i11:r2",
+              "targetText": "Did you choose the set menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i11:r3",
+              "targetText": "Did they choose the set menu?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she choose the set menu?",
+                "uk": "У записі звучить Did she choose the set menu?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she choose the set menu?",
+                "uk": "У записі звучить Did she choose the set menu?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you choose the set menu?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-05:i13:p1",
+              "target": "eat out",
+              "meaningByLocale": {
+                "ru": "есть вне дома, например в ресторане",
+                "uk": "їсти не вдома, наприклад у ресторані"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-05:i13:p2",
+              "target": "eat in",
+              "meaningByLocale": {
+                "ru": "есть дома вместо похода в ресторан",
+                "uk": "їсти вдома замість походу до ресторану"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-05:i13:p3",
+              "target": "packed lunch",
+              "meaningByLocale": {
+                "ru": "обед, упакованный с собой",
+                "uk": "обід, спакований із собою"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-05:i13:p4",
+              "target": "set menu",
+              "meaningByLocale": {
+                "ru": "комплексное меню",
+                "uk": "комплексне меню"
+              }
+            }
+          ],
+          "leftColumn": [
+            "eat out",
+            "eat in",
+            "packed lunch",
+            "set menu"
+          ],
+          "rightColumn": [
+            "есть вне дома, например в ресторане",
+            "есть дома вместо похода в ресторан",
+            "обед, упакованный с собой",
+            "комплексное меню"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i14:audio",
+            "transcript": "Did they have lunch at home?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did they have lunch at home?",
+          "orderedTokens": [
+            "Did",
+            "they",
+            "have",
+            "lunch",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i15:audio",
+            "transcript": "Did he visit the restaurant?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did he visit the restaurant?",
+          "orderedTokens": [
+            "Did",
+            "he",
+            "visit",
+            "the",
+            "restaurant"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга: ты вчера взял обед с собой?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите друга: ты вчера взял обед с собой?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i16:audio",
+            "transcript": "Did you take a packed lunch yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you take a packed lunch yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга: она вчера выбрала комплексное меню?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите друга: она вчера выбрала комплексное меню?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i17:audio",
+            "transcript": "Did she choose the set menu yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did she choose the set menu yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-05:word:eat-out",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eat out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:eat-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eat out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:eat-out:audio",
+            "transcript": "eat out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:eat-out:r1",
+              "targetText": "eat out",
+              "meaningByLocale": {
+                "ru": "есть вне дома, например в ресторане.",
+                "uk": "їсти не вдома, наприклад у ресторані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eat out",
+            "definitionByLocale": {
+              "ru": "есть вне дома, например в ресторане.",
+              "uk": "їсти не вдома, наприклад у ресторані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти їв не вдома?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти їв не вдома?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you eat out?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ел вне дома?",
+            "uk": "Скажіть: Ти їв не вдома?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "eat",
+            "out"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i02:r1",
+            "text": "Did she eat out?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i02:r2",
+            "text": "Did you eat out?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i02:r3",
+            "text": "Did they eat out?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i02:audio",
+            "transcript": "Did she eat out?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i02:r1",
+              "targetText": "Did she eat out?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i02:r2",
+              "targetText": "Did you eat out?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i02:r3",
+              "targetText": "Did they eat out?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat out?",
+                "uk": "У записі звучить Did she eat out?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat out?",
+                "uk": "У записі звучить Did she eat out?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you eat out?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:word:eat-in",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eat in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:eat-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eat in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:eat-in:audio",
+            "transcript": "eat in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:eat-in:r1",
+              "targetText": "eat in",
+              "meaningByLocale": {
+                "ru": "есть дома вместо похода в ресторан.",
+                "uk": "їсти вдома замість походу до ресторану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eat in",
+            "definitionByLocale": {
+              "ru": "есть дома вместо похода в ресторан.",
+              "uk": "їсти вдома замість походу до ресторану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти їв удома?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти їв удома?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you eat in?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ел дома?",
+            "uk": "Скажіть: Ти їв удома?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "eat",
+            "in"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i05:r1",
+            "text": "Did she eat in?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i05:r2",
+            "text": "Did you eat in?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i05:r3",
+            "text": "Did they eat in?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i05:audio",
+            "transcript": "Did she eat in?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i05:r1",
+              "targetText": "Did she eat in?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i05:r2",
+              "targetText": "Did you eat in?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i05:r3",
+              "targetText": "Did they eat in?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat in?",
+                "uk": "У записі звучить Did she eat in?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she eat in?",
+                "uk": "У записі звучить Did she eat in?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you eat in?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:word:packed-lunch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — packed lunch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:packed-lunch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — packed lunch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:packed-lunch:audio",
+            "transcript": "packed lunch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:packed-lunch:r1",
+              "targetText": "packed lunch",
+              "meaningByLocale": {
+                "ru": "обед, упакованный с собой.",
+                "uk": "обід, спакований із собою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packed lunch",
+            "definitionByLocale": {
+              "ru": "обед, упакованный с собой.",
+              "uk": "обід, спакований із собою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти взяв обід із собою?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти взяв обід із собою?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you take a packed lunch?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты взял обед с собой?",
+            "uk": "Скажіть: Ти взяв обід із собою?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "take",
+            "a",
+            "packed",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i08:r1",
+            "text": "Did she take a packed lunch?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i08:r2",
+            "text": "Did you take a packed lunch?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i08:r3",
+            "text": "Did they take a packed lunch?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i08:audio",
+            "transcript": "Did she take a packed lunch?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i08:r1",
+              "targetText": "Did she take a packed lunch?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i08:r2",
+              "targetText": "Did you take a packed lunch?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i08:r3",
+              "targetText": "Did they take a packed lunch?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take a packed lunch?",
+                "uk": "У записі звучить Did she take a packed lunch?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take a packed lunch?",
+                "uk": "У записі звучить Did she take a packed lunch?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you take a packed lunch?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:word:set-menu",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — set menu",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:word:set-menu:audio"
+        ],
+        "accessibilityLabel": "Картка слова — set menu",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:word:set-menu:audio",
+            "transcript": "set menu"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:word:set-menu:r1",
+              "targetText": "set menu",
+              "meaningByLocale": {
+                "ru": "комплексное меню.",
+                "uk": "комплексне меню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "set menu",
+            "definitionByLocale": {
+              "ru": "комплексное меню.",
+              "uk": "комплексне меню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вибрав комплексне меню?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти вибрав комплексне меню?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you choose the set menu?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты выбрал комплексное меню?",
+            "uk": "Скажіть: Ти вибрав комплексне меню?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "choose",
+            "the",
+            "set",
+            "menu"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i11:r1",
+            "text": "Did she choose the set menu?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i11:r2",
+            "text": "Did you choose the set menu?"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i11:r3",
+            "text": "Did they choose the set menu?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i11:audio",
+            "transcript": "Did she choose the set menu?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-05:i11:r1",
+              "targetText": "Did she choose the set menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i11:r2",
+              "targetText": "Did you choose the set menu?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i11:r3",
+              "targetText": "Did they choose the set menu?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she choose the set menu?",
+                "uk": "У записі звучить Did she choose the set menu?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she choose the set menu?",
+                "uk": "У записі звучить Did she choose the set menu?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-05:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-05:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you choose the set menu?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-05:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-05:i13:p1",
+              "target": "eat out",
+              "meaningByLocale": {
+                "ru": "есть вне дома, например в ресторане",
+                "uk": "їсти не вдома, наприклад у ресторані"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-05:i13:p2",
+              "target": "eat in",
+              "meaningByLocale": {
+                "ru": "есть дома вместо похода в ресторан",
+                "uk": "їсти вдома замість походу до ресторану"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-05:i13:p3",
+              "target": "packed lunch",
+              "meaningByLocale": {
+                "ru": "обед, упакованный с собой",
+                "uk": "обід, спакований із собою"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-05:i13:p4",
+              "target": "set menu",
+              "meaningByLocale": {
+                "ru": "комплексное меню",
+                "uk": "комплексне меню"
+              }
+            }
+          ],
+          "leftColumn": [
+            "eat out",
+            "eat in",
+            "packed lunch",
+            "set menu"
+          ],
+          "rightColumn": [
+            "їсти не вдома, наприклад у ресторані",
+            "їсти вдома замість походу до ресторану",
+            "обід, спакований із собою",
+            "комплексне меню"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i14:audio",
+            "transcript": "Did they have lunch at home?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did they have lunch at home?",
+          "orderedTokens": [
+            "Did",
+            "they",
+            "have",
+            "lunch",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i15:audio",
+            "transcript": "Did he visit the restaurant?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did he visit the restaurant?",
+          "orderedTokens": [
+            "Did",
+            "he",
+            "visit",
+            "the",
+            "restaurant"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга: ти вчора взяв обід із собою?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга: ти вчора взяв обід із собою?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i16:audio",
+            "transcript": "Did you take a packed lunch yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you take a packed lunch yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга: вона вчора вибрала комплексне меню?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга: вона вчора вибрала комплексне меню?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-05:i17:audio",
+            "transcript": "Did she choose the set menu yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did she choose the set menu yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-05:word:eat-out",
+      "correctText": "eat out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i01",
+      "correctText": "Did you eat out?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i02",
+      "correctText": "Did she eat out?",
+      "correctResponseId": "en:lesson-13:session-05:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:word:eat-in",
+      "correctText": "eat in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i04",
+      "correctText": "Did you eat in?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i05",
+      "correctText": "Did she eat in?",
+      "correctResponseId": "en:lesson-13:session-05:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-05:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:word:packed-lunch",
+      "correctText": "packed lunch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i07",
+      "correctText": "Did you take a packed lunch?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i08",
+      "correctText": "Did she take a packed lunch?",
+      "correctResponseId": "en:lesson-13:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:word:set-menu",
+      "correctText": "set menu",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i10",
+      "correctText": "Did you choose the set menu?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i11",
+      "correctText": "Did she choose the set menu?",
+      "correctResponseId": "en:lesson-13:session-05:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-05:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i14",
+      "correctText": "Did they have lunch at home?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i15",
+      "correctText": "Did he visit the restaurant?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i16",
+      "correctText": "Did you take a packed lunch yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:i17",
+      "correctText": "Did she choose the set menu yesterday?",
+      "correctResponseId": null
+    }
+  ]
+}

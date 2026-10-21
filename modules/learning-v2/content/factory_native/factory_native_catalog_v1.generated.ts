@@ -4739,4 +4739,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 5,
+    sourceFingerprint: "086b8081317aacbbb0874110cacc8389ad77de98f0857adb986048e960b7f716",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 6,
+    sourceFingerprint: "2de6112f76c44935bb55b522a9007af630f0eaed9f6b96ad216e7dcfec058573",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 7,
+    sourceFingerprint: "7e7d8fba4fba6b5111dd3d9c1bcb55799177eab08a4d9ba8634d34c29623a8d0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 8,
+    sourceFingerprint: "4700244905ba6cf8bb74e05e1f3b07437c3f3ddef4090443f7cf990256b52100",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
 ]);

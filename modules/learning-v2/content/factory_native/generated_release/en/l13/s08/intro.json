@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "review: Did + subject + base verb?",
+    "uk": "review: Did + subject + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Белый хлеб",
+        "uk": "Білий хліб"
+      },
+      "bodyByLocale": {
+        "ru": "White bread — белый хлеб. Did you buy white bread? — Ты купил белый хлеб? Buy в вопросе остаётся без изменения после did. Выберите вопрос о покупке.",
+        "uk": "White bread — білий хліб. Did you buy white bread? — Ти купив білий хліб? Buy у запитанні залишається без зміни після did. Виберіть запитання про купівлю."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-08:intro1:r1",
+              "text": "Did you buy white bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro1:r2",
+              "text": "Did you bought white bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro1:r3",
+              "text": "Did you eat white bread?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-08:intro1:r1",
+              "text": "Did you buy white bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro1:r2",
+              "text": "Did you bought white bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro1:r3",
+              "text": "Did you eat white bread?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два других вида хлеба",
+        "uk": "Два інші види хліба"
+      },
+      "bodyByLocale": {
+        "ru": "Wholemeal bread — цельнозерновой хлеб; rye bread — ржаной хлеб. Это названия видов хлеба, поэтому в этих фразах перед ними нет a. Выберите: ты купил ржаной хлеб?",
+        "uk": "Wholemeal bread — цільнозерновий хліб; rye bread — житній хліб. Це назви видів хліба, тому в цих фразах перед ними немає a. Виберіть: ти купив житній хліб?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-08:intro2:r1",
+              "text": "Did you buy rye bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro2:r2",
+              "text": "Did you buy wholemeal bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro2:r3",
+              "text": "Did you bought rye bread?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-08:intro2:r1",
+              "text": "Did you buy rye bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro2:r2",
+              "text": "Did you buy wholemeal bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro2:r3",
+              "text": "Did you bought rye bread?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Круглая пышка к чаю",
+        "uk": "Кругла пампушка до чаю"
+      },
+      "bodyByLocale": {
+        "ru": "Crumpet — британская круглая пышка с дырочками сверху, которую часто поджаривают. Did you try a crumpet? — Ты попробовал такую пышку? Выберите вопрос о пробе.",
+        "uk": "Crumpet — британська кругла пампушка з дірочками зверху, яку часто підсмажують. Did you try a crumpet? — Ти скуштував таку пампушку? Виберіть запитання про куштування."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-08:intro3:r1",
+              "text": "Did you try a crumpet?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro3:r2",
+              "text": "Did you tried a crumpet?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro3:r3",
+              "text": "Did you buy a crumpet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-08:intro3:r1",
+              "text": "Did you try a crumpet?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro3:r2",
+              "text": "Did you tried a crumpet?"
+            },
+            {
+              "responseId": "en:lesson-13:session-08:intro3:r3",
+              "text": "Did you buy a crumpet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "82675e4230392235f77129c0f5b42e631a9735710bef4e789d8008f680c91b9c"
+}

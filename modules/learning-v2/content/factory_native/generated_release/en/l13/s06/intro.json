@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "review: Did + subject + base verb?",
+    "uk": "review: Did + subject + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ложка для супа",
+        "uk": "Ложка для супу"
+      },
+      "bodyByLocale": {
+        "ru": "Soup spoon — суповая ложка. Did you use the soup spoon? — Ты использовал суповую ложку? Выберите вопрос о прошлом.",
+        "uk": "Soup spoon — супова ложка. Did you use the soup spoon? — Ти використав супову ложку? Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-06:intro1:r1",
+              "text": "Did you use the soup spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro1:r2",
+              "text": "Do you use the soup spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro1:r3",
+              "text": "Did you used the soup spoon?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-06:intro1:r1",
+              "text": "Did you use the soup spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro1:r2",
+              "text": "Do you use the soup spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro1:r3",
+              "text": "Did you used the soup spoon?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ложка для десерта",
+        "uk": "Ложка для десерту"
+      },
+      "bodyByLocale": {
+        "ru": "Dessert spoon — десертная ложка. Did she wash the dessert spoon? — Она помыла десертную ложку? Выберите десертную ложку, не суповую.",
+        "uk": "Dessert spoon — десертна ложка. Did she wash the dessert spoon? — Вона помила десертну ложку? Виберіть десертну ложку, не супову."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-06:intro2:r1",
+              "text": "Did she wash the dessert spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro2:r2",
+              "text": "Did she wash the soup spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro2:r3",
+              "text": "Did she washed the dessert spoon?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-06:intro2:r1",
+              "text": "Did she wash the dessert spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro2:r2",
+              "text": "Did she wash the soup spoon?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro2:r3",
+              "text": "Did she washed the dessert spoon?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общее блюдо и тарелка",
+        "uk": "Спільна таріль і тарілка"
+      },
+      "bodyByLocale": {
+        "ru": "Serving dish — блюдо, на котором подают еду для всех; dinner plate — большая тарелка для основного блюда одному человеку. Выберите: ты помыл большое блюдо для подачи?",
+        "uk": "Serving dish — таріль, на якій подають їжу для всіх; dinner plate — велика тарілка для основної страви одній людині. Виберіть: ти помив таріль для подавання?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-06:intro3:r1",
+              "text": "Did you wash the serving dish?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro3:r2",
+              "text": "Did you wash the dinner plate?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro3:r3",
+              "text": "Did you washed the serving dish?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-06:intro3:r1",
+              "text": "Did you wash the serving dish?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro3:r2",
+              "text": "Did you wash the dinner plate?"
+            },
+            {
+              "responseId": "en:lesson-13:session-06:intro3:r3",
+              "text": "Did you washed the serving dish?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a268489205e66297b4827ca5f2284c122e826829e4431629e3a244ce315bffad"
+}

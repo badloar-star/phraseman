@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-07:word:pick-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pick up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:word:pick-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pick up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:word:pick-up:audio",
+          "transcript": "pick up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:word:pick-up:r1",
+            "targetText": "pick up",
+            "meaningByLocale": {
+              "ru": "забрать, например посылку.",
+              "uk": "забрати, наприклад посилку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pick up",
+          "definitionByLocale": {
+            "ru": "забрать, например посылку.",
+            "uk": "забрати, наприклад посилку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты забрал посылку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты забрал посылку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you pick up the parcel?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты забрал посылку?",
+          "uk": "Скажіть: Ти забрав посилку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "pick",
+          "up",
+          "the",
+          "parcel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i02:r1",
+          "text": "Did she pick up the parcel?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i02:r2",
+          "text": "Did you pick up the parcel?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i02:r3",
+          "text": "Did they pick up the parcel?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i02:audio",
+          "transcript": "Did she pick up the parcel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:i02:r1",
+            "targetText": "Did she pick up the parcel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i02:r2",
+            "targetText": "Did you pick up the parcel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i02:r3",
+            "targetText": "Did they pick up the parcel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pick up the parcel?",
+              "uk": "У записі звучить Did she pick up the parcel?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pick up the parcel?",
+              "uk": "У записі звучить Did she pick up the parcel?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you pick up the parcel?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-07:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:word:put-away",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — put away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:word:put-away:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — put away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:word:put-away:audio",
+          "transcript": "put away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:word:put-away:r1",
+            "targetText": "put away",
+            "meaningByLocale": {
+              "ru": "убрать на место.",
+              "uk": "прибрати на місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "put away",
+          "definitionByLocale": {
+            "ru": "убрать на место.",
+            "uk": "прибрати на місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты убрал одежду на место?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты убрал одежду на место?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you put away the clothes?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты убрал одежду на место?",
+          "uk": "Скажіть: Ти прибрав одяг на місце?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "put",
+          "away",
+          "the",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i05:r1",
+          "text": "Did she put away the clothes?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i05:r2",
+          "text": "Did you put away the clothes?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i05:r3",
+          "text": "Did they put away the clothes?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i05:audio",
+          "transcript": "Did she put away the clothes?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:i05:r1",
+            "targetText": "Did she put away the clothes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i05:r2",
+            "targetText": "Did you put away the clothes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i05:r3",
+            "targetText": "Did they put away the clothes?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she put away the clothes?",
+              "uk": "У записі звучить Did she put away the clothes?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she put away the clothes?",
+              "uk": "У записі звучить Did she put away the clothes?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you put away the clothes?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-07:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:word:get-back",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — get back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:word:get-back:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — get back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:word:get-back:audio",
+          "transcript": "get back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:word:get-back:r1",
+            "targetText": "get back",
+            "meaningByLocale": {
+              "ru": "вернуться.",
+              "uk": "повернутися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get back",
+          "definitionByLocale": {
+            "ru": "вернуться.",
+            "uk": "повернутися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты вернулся поздно?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты вернулся поздно?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you get back late?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вернулся поздно?",
+          "uk": "Скажіть: Ти повернувся пізно?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "get",
+          "back",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i08:r1",
+          "text": "Did she get back late?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i08:r2",
+          "text": "Did you get back late?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i08:r3",
+          "text": "Did they get back late?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i08:audio",
+          "transcript": "Did she get back late?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:i08:r1",
+            "targetText": "Did she get back late?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i08:r2",
+            "targetText": "Did you get back late?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i08:r3",
+            "targetText": "Did they get back late?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she get back late?",
+              "uk": "У записі звучить Did she get back late?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she get back late?",
+              "uk": "У записі звучить Did she get back late?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you get back late?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-07:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:word:run-out-of",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — run out of",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:word:run-out-of:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — run out of",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:word:run-out-of:audio",
+          "transcript": "run out of"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:word:run-out-of:r1",
+            "targetText": "run out of",
+            "meaningByLocale": {
+              "ru": "остаться без чего-то из-за закончившегося запаса.",
+              "uk": "залишитися без чогось через вичерпаний запас."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "run out of",
+          "definitionByLocale": {
+            "ru": "остаться без чего-то из-за закончившегося запаса.",
+            "uk": "залишитися без чогось через вичерпаний запас."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: У тебя закончилось молоко?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: У тебя закончилось молоко?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you run out of milk?",
+        "localizedMeaning": {
+          "ru": "Скажите: У тебя закончилось молоко?",
+          "uk": "Скажіть: У тебе закінчилося молоко?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "run",
+          "out",
+          "of",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i11:r1",
+          "text": "Did she run out of milk?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i11:r2",
+          "text": "Did you run out of milk?"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i11:r3",
+          "text": "Did they run out of milk?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i11:audio",
+          "transcript": "Did she run out of milk?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-07:i11:r1",
+            "targetText": "Did she run out of milk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i11:r2",
+            "targetText": "Did you run out of milk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i11:r3",
+            "targetText": "Did they run out of milk?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she run out of milk?",
+              "uk": "У записі звучить Did she run out of milk?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she run out of milk?",
+              "uk": "У записі звучить Did she run out of milk?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-07:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-07:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you run out of milk?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-07:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-07:i13:p1",
+            "target": "pick up",
+            "meaningByLocale": {
+              "ru": "забрать, например посылку",
+              "uk": "забрати, наприклад посилку"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-07:i13:p2",
+            "target": "put away",
+            "meaningByLocale": {
+              "ru": "убрать на место",
+              "uk": "прибрати на місце"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-07:i13:p3",
+            "target": "get back",
+            "meaningByLocale": {
+              "ru": "вернуться",
+              "uk": "повернутися"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-07:i13:p4",
+            "target": "run out of",
+            "meaningByLocale": {
+              "ru": "остаться без чего-то из-за закончившегося запаса",
+              "uk": "залишитися без чогось через вичерпаний запас"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pick up",
+          "put away",
+          "get back",
+          "run out of"
+        ],
+        "rightColumn": [
+          "забрать, например посылку",
+          "убрать на место",
+          "вернуться",
+          "остаться без чего-то из-за закончившегося запаса"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i14:audio",
+          "transcript": "Did they put away the bags?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did they put away the bags?",
+        "orderedTokens": [
+          "Did",
+          "they",
+          "put",
+          "away",
+          "the",
+          "bags"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i15:audio",
+          "transcript": "Did he get back at six?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he get back at six?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "get",
+          "back",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: ты вчера забрал посылку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: ты вчера забрал посылку?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i16:audio",
+          "transcript": "Did you pick up the parcel yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you pick up the parcel yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: у неё вчера закончилось молоко?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: у неё вчера закончилось молоко?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-07:i17:audio",
+          "transcript": "Did she run out of milk yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did she run out of milk yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e250074481bb3eb1bd6b57d27d19230a4028524c8ce03d555d37961e065d0c3a"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-05:intro1:r2": {
+          "ru": "После did нужна eat, не ate.",
+          "uk": "Після did потрібна eat, не ate."
+        },
+        "en:lesson-13:session-05:intro1:r3": {
+          "ru": "Это вопрос о привычке каждый день.",
+          "uk": "Це запитання про щоденну звичку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-05:intro2:r2": {
+          "ru": "Здесь спрашивают, ел ли ты дома.",
+          "uk": "Тут запитують, чи їв ти вдома."
+        },
+        "en:lesson-13:session-05:intro2:r3": {
+          "ru": "После did нужна take, не took.",
+          "uk": "Після did потрібна take, не took."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-05:intro3:r2": {
+          "ru": "Read — прочитал, а нужно выбрал.",
+          "uk": "Read — прочитав, а потрібно вибрав."
+        },
+        "en:lesson-13:session-05:intro3:r3": {
+          "ru": "После did нужна choose.",
+          "uk": "Після did потрібна choose."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dc7840aaafa87ab65429e5fa91dbe12c0d562b2b4076df1da668a06fff6ddca0"
+}

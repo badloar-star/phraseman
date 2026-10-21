@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-06:intro1:r2": {
+          "ru": "Do — вопрос о настоящем.",
+          "uk": "Do — запитання про теперішнє."
+        },
+        "en:lesson-13:session-06:intro1:r3": {
+          "ru": "После did нужна use.",
+          "uk": "Після did потрібна use."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-06:intro2:r2": {
+          "ru": "Это суповая ложка.",
+          "uk": "Це супова ложка."
+        },
+        "en:lesson-13:session-06:intro2:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-06:intro3:r2": {
+          "ru": "Это тарелка для одного человека.",
+          "uk": "Це тарілка для однієї людини."
+        },
+        "en:lesson-13:session-06:intro3:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bf1e4a3375d60f244490ed2114160da35995ca6a63a2d3ebd2720258e91822b9"
+}

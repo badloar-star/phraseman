@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-07:word:pick-up",
+    "correctText": "pick up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i01",
+    "correctText": "Did you pick up the parcel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i02",
+    "correctText": "Did she pick up the parcel?",
+    "correctResponseId": "en:lesson-13:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:word:put-away",
+    "correctText": "put away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i04",
+    "correctText": "Did you put away the clothes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i05",
+    "correctText": "Did she put away the clothes?",
+    "correctResponseId": "en:lesson-13:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:word:get-back",
+    "correctText": "get back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i07",
+    "correctText": "Did you get back late?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i08",
+    "correctText": "Did she get back late?",
+    "correctResponseId": "en:lesson-13:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:word:run-out-of",
+    "correctText": "run out of",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i10",
+    "correctText": "Did you run out of milk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i11",
+    "correctText": "Did she run out of milk?",
+    "correctResponseId": "en:lesson-13:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i13",
+    "correctText": "en:lesson-13:session-07:i13:p1=pick up\nen:lesson-13:session-07:i13:p2=put away\nen:lesson-13:session-07:i13:p3=get back\nen:lesson-13:session-07:i13:p4=run out of",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i14",
+    "correctText": "Did they put away the bags?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i15",
+    "correctText": "Did he get back at six?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i16",
+    "correctText": "Did you pick up the parcel yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-07:i17",
+    "correctText": "Did she run out of milk yesterday?",
+    "correctResponseId": null
+  }
+]

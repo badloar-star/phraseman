@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "review: Did + subject + base verb?",
+    "uk": "review: Did + subject + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поесть вне дома",
+        "uk": "Поїсти не вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Eat out — поесть вне дома, например в кафе или ресторане. Did you eat out yesterday? — Ты вчера ел вне дома? После did нужна eat. Выберите этот вопрос.",
+        "uk": "Eat out — поїсти не вдома, наприклад у кафе чи ресторані. Did you eat out yesterday? — Ти вчора їв не вдома? Після did потрібна eat. Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-05:intro1:r1",
+              "text": "Did you eat out yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro1:r2",
+              "text": "Did you ate out yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro1:r3",
+              "text": "Do you eat out every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-05:intro1:r1",
+              "text": "Did you eat out yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro1:r2",
+              "text": "Did you ate out yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro1:r3",
+              "text": "Do you eat out every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Остаться дома на обед",
+        "uk": "Залишитися вдома на обід"
+      },
+      "bodyByLocale": {
+        "ru": "Eat in здесь значит поесть дома, не идти в ресторан. Packed lunch — обед, упакованный с собой, например на работу. Выберите вопрос: ты взял обед с собой?",
+        "uk": "Eat in тут означає поїсти вдома, не йти до ресторану. Packed lunch — обід, спакований із собою, наприклад на роботу. Виберіть запитання: ти взяв обід із собою?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-05:intro2:r1",
+              "text": "Did you take a packed lunch?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro2:r2",
+              "text": "Did you eat in?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro2:r3",
+              "text": "Did you took a packed lunch?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-05:intro2:r1",
+              "text": "Did you take a packed lunch?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro2:r2",
+              "text": "Did you eat in?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro2:r3",
+              "text": "Did you took a packed lunch?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Готовый набор блюд",
+        "uk": "Готовий набір страв"
+      },
+      "bodyByLocale": {
+        "ru": "Set menu — комплексное меню: предлагаемый набор блюд за общую цену. Did you choose the set menu? — Ты выбрал комплексное меню? Выберите вопрос о выборе.",
+        "uk": "Set menu — комплексне меню: запропонований набір страв за загальною ціною. Did you choose the set menu? — Ти вибрав комплексне меню? Виберіть запитання про вибір."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-05:intro3:r1",
+              "text": "Did you choose the set menu?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro3:r2",
+              "text": "Did you read the set menu?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro3:r3",
+              "text": "Did you chose the set menu?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-05:intro3:r1",
+              "text": "Did you choose the set menu?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro3:r2",
+              "text": "Did you read the set menu?"
+            },
+            {
+              "responseId": "en:lesson-13:session-05:intro3:r3",
+              "text": "Did you chose the set menu?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b41ce8902c88479c3ad54a7d830ec56c7948ad4c7baa2c50f334126b1a0a57a6"
+}

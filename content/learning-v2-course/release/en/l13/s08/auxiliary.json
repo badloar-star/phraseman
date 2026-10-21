@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-08:intro1:r2": {
+          "ru": "После did нужна buy, не bought.",
+          "uk": "Після did потрібна buy, не bought."
+        },
+        "en:lesson-13:session-08:intro1:r3": {
+          "ru": "Eat — есть, а нужно купить.",
+          "uk": "Eat — їсти, а потрібно купити."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-08:intro2:r2": {
+          "ru": "Это цельнозерновой хлеб.",
+          "uk": "Це цільнозерновий хліб."
+        },
+        "en:lesson-13:session-08:intro2:r3": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-08:intro3:r2": {
+          "ru": "После did нужна try.",
+          "uk": "Після did потрібна try."
+        },
+        "en:lesson-13:session-08:intro3:r3": {
+          "ru": "Buy — купить, а нужно попробовать.",
+          "uk": "Buy — купити, а потрібно скуштувати."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "58439460d56090a56e337fb2a07fcec36b9b7be2982e918aeffb868d23ebf860"
+}

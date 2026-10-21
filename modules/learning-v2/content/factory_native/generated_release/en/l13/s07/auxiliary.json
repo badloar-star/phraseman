@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-07:intro1:r2": {
+          "ru": "После did нужна pick, без -ed.",
+          "uk": "Після did потрібна pick, без -ed."
+        },
+        "en:lesson-13:session-07:intro1:r3": {
+          "ru": "Это вопрос о ежедневной привычке.",
+          "uk": "Це запитання про щоденну звичку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-07:intro2:r2": {
+          "ru": "Это вопрос о возвращении.",
+          "uk": "Це запитання про повернення."
+        },
+        "en:lesson-13:session-07:intro2:r3": {
+          "ru": "Здесь вопрос о привычке, не о вчерашнем действии.",
+          "uk": "Тут запитання про звичку, не про вчорашню дію."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-07:intro3:r2": {
+          "ru": "После did нужна run.",
+          "uk": "Після did потрібна run."
+        },
+        "en:lesson-13:session-07:intro3:r3": {
+          "ru": "Это вопрос о покупке, не о закончившемся запасе.",
+          "uk": "Це запитання про купівлю, не про запас, що закінчився."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e0b5b72aa8ab5d5bc6ad7b46e2d9f1a74cb6fbe734320188464e5efae50a9069"
+}

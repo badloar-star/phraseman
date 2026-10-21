@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "review: Did + subject + base verb?",
+    "uk": "review: Did + subject + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Забрать по дороге",
+        "uk": "Забрати дорогою"
+      },
+      "bodyByLocale": {
+        "ru": "Pick up здесь значит забрать, например посылку. Did you pick up the parcel? — Ты забрал посылку? Учим выражение целиком. Выберите этот вопрос.",
+        "uk": "Pick up тут означає забрати, наприклад посилку. Did you pick up the parcel? — Ти забрав посилку? Вчимо вираз цілком. Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-07:intro1:r1",
+              "text": "Did you pick up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro1:r2",
+              "text": "Did you picked up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro1:r3",
+              "text": "Do you pick up the parcel every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-07:intro1:r1",
+              "text": "Did you pick up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro1:r2",
+              "text": "Did you picked up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro1:r3",
+              "text": "Do you pick up the parcel every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Убрать вещи на место",
+        "uk": "Прибрати речі на місце"
+      },
+      "bodyByLocale": {
+        "ru": "Put away — убрать на место. Did you put away the clothes? — Ты убрал одежду на место? Get back — вернуться. Did she get back late? — Она вернулась поздно? Выберите вопрос об одежде.",
+        "uk": "Put away — прибрати на місце. Did you put away the clothes? — Ти прибрав одяг на місце? Get back — повернутися. Did she get back late? — Вона повернулася пізно? Виберіть запитання про одяг."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-07:intro2:r1",
+              "text": "Did you put away the clothes?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro2:r2",
+              "text": "Did she get back late?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro2:r3",
+              "text": "Do you put away the clothes every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-07:intro2:r1",
+              "text": "Did you put away the clothes?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro2:r2",
+              "text": "Did she get back late?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro2:r3",
+              "text": "Do you put away the clothes every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что-то закончилось",
+        "uk": "Щось закінчилося"
+      },
+      "bodyByLocale": {
+        "ru": "Run out of — остаться без чего-то, потому что запас закончился. Did you run out of milk? — У тебя закончилось молоко? После did — run, не ran. Выберите этот вопрос.",
+        "uk": "Run out of — залишитися без чогось, бо запас закінчився. Did you run out of milk? — У тебе закінчилося молоко? Після did — run, не ran. Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-07:intro3:r1",
+              "text": "Did you run out of milk?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro3:r2",
+              "text": "Did you ran out of milk?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro3:r3",
+              "text": "Did you buy milk?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-07:intro3:r1",
+              "text": "Did you run out of milk?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro3:r2",
+              "text": "Did you ran out of milk?"
+            },
+            {
+              "responseId": "en:lesson-13:session-07:intro3:r3",
+              "text": "Did you buy milk?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bc35145ca1dd312af1bf5d727e8bb45b15193670bf438944758986ab4fe667b0"
+}

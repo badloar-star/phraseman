@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-08:word:white-bread",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — white bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:word:white-bread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — white bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:word:white-bread:audio",
+          "transcript": "white bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:word:white-bread:r1",
+            "targetText": "white bread",
+            "meaningByLocale": {
+              "ru": "белый хлеб.",
+              "uk": "білий хліб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "white bread",
+          "definitionByLocale": {
+            "ru": "белый хлеб.",
+            "uk": "білий хліб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив білий хліб?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив білий хліб?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy white bread?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил белый хлеб?",
+          "uk": "Скажіть: Ти купив білий хліб?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "white",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i02:r1",
+          "text": "Did she buy white bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i02:r2",
+          "text": "Did you buy white bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i02:r3",
+          "text": "Did they buy white bread?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i02:audio",
+          "transcript": "Did she buy white bread?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:i02:r1",
+            "targetText": "Did she buy white bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i02:r2",
+            "targetText": "Did you buy white bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i02:r3",
+            "targetText": "Did they buy white bread?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy white bread?",
+              "uk": "У записі звучить Did she buy white bread?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy white bread?",
+              "uk": "У записі звучить Did she buy white bread?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy white bread?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-08:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:word:wholemeal-bread",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wholemeal bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:word:wholemeal-bread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wholemeal bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:word:wholemeal-bread:audio",
+          "transcript": "wholemeal bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:word:wholemeal-bread:r1",
+            "targetText": "wholemeal bread",
+            "meaningByLocale": {
+              "ru": "цельнозерновой хлеб.",
+              "uk": "цільнозерновий хліб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wholemeal bread",
+          "definitionByLocale": {
+            "ru": "цельнозерновой хлеб.",
+            "uk": "цільнозерновий хліб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив цільнозерновий хліб?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив цільнозерновий хліб?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy wholemeal bread?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил цельнозерновой хлеб?",
+          "uk": "Скажіть: Ти купив цільнозерновий хліб?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "wholemeal",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i05:r1",
+          "text": "Did she buy wholemeal bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i05:r2",
+          "text": "Did you buy wholemeal bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i05:r3",
+          "text": "Did they buy wholemeal bread?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i05:audio",
+          "transcript": "Did she buy wholemeal bread?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:i05:r1",
+            "targetText": "Did she buy wholemeal bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i05:r2",
+            "targetText": "Did you buy wholemeal bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i05:r3",
+            "targetText": "Did they buy wholemeal bread?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy wholemeal bread?",
+              "uk": "У записі звучить Did she buy wholemeal bread?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy wholemeal bread?",
+              "uk": "У записі звучить Did she buy wholemeal bread?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy wholemeal bread?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-08:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:word:rye-bread",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rye bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:word:rye-bread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rye bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:word:rye-bread:audio",
+          "transcript": "rye bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:word:rye-bread:r1",
+            "targetText": "rye bread",
+            "meaningByLocale": {
+              "ru": "ржаной хлеб.",
+              "uk": "житній хліб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rye bread",
+          "definitionByLocale": {
+            "ru": "ржаной хлеб.",
+            "uk": "житній хліб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив житній хліб?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив житній хліб?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy rye bread?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил ржаной хлеб?",
+          "uk": "Скажіть: Ти купив житній хліб?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "rye",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i08:r1",
+          "text": "Did she buy rye bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i08:r2",
+          "text": "Did you buy rye bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i08:r3",
+          "text": "Did they buy rye bread?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i08:audio",
+          "transcript": "Did she buy rye bread?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:i08:r1",
+            "targetText": "Did she buy rye bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i08:r2",
+            "targetText": "Did you buy rye bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i08:r3",
+            "targetText": "Did they buy rye bread?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy rye bread?",
+              "uk": "У записі звучить Did she buy rye bread?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy rye bread?",
+              "uk": "У записі звучить Did she buy rye bread?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy rye bread?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-08:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:word:crumpet",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crumpet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:word:crumpet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crumpet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:word:crumpet:audio",
+          "transcript": "crumpet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:word:crumpet:r1",
+            "targetText": "crumpet",
+            "meaningByLocale": {
+              "ru": "британская круглая пышка с дырочками сверху.",
+              "uk": "британська кругла пампушка з дірочками зверху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crumpet",
+          "definitionByLocale": {
+            "ru": "британская круглая пышка с дырочками сверху.",
+            "uk": "британська кругла пампушка з дірочками зверху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти скуштував британську пампушку з дірочками зверху?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти скуштував британську пампушку з дірочками зверху?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you try a crumpet?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты попробовал британскую пышку с дырочками сверху?",
+          "uk": "Скажіть: Ти скуштував британську пампушку з дірочками зверху?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "try",
+          "a",
+          "crumpet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i11:r1",
+          "text": "Did she try a crumpet?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i11:r2",
+          "text": "Did you try a crumpet?"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i11:r3",
+          "text": "Did they try a crumpet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i11:audio",
+          "transcript": "Did she try a crumpet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-08:i11:r1",
+            "targetText": "Did she try a crumpet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i11:r2",
+            "targetText": "Did you try a crumpet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i11:r3",
+            "targetText": "Did they try a crumpet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try a crumpet?",
+              "uk": "У записі звучить Did she try a crumpet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try a crumpet?",
+              "uk": "У записі звучить Did she try a crumpet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-08:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-08:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you try a crumpet?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-08:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-08:i13:p1",
+            "target": "white bread",
+            "meaningByLocale": {
+              "ru": "белый хлеб",
+              "uk": "білий хліб"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-08:i13:p2",
+            "target": "wholemeal bread",
+            "meaningByLocale": {
+              "ru": "цельнозерновой хлеб",
+              "uk": "цільнозерновий хліб"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-08:i13:p3",
+            "target": "rye bread",
+            "meaningByLocale": {
+              "ru": "ржаной хлеб",
+              "uk": "житній хліб"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-08:i13:p4",
+            "target": "crumpet",
+            "meaningByLocale": {
+              "ru": "британская круглая пышка с дырочками сверху",
+              "uk": "британська кругла пампушка з дірочками зверху"
+            }
+          }
+        ],
+        "leftColumn": [
+          "white bread",
+          "wholemeal bread",
+          "rye bread",
+          "crumpet"
+        ],
+        "rightColumn": [
+          "білий хліб",
+          "цільнозерновий хліб",
+          "житній хліб",
+          "британська кругла пампушка з дірочками зверху"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i14:audio",
+          "transcript": "Did they visit the bakery?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did they visit the bakery?",
+        "orderedTokens": [
+          "Did",
+          "they",
+          "visit",
+          "the",
+          "bakery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i15:audio",
+          "transcript": "Did he buy some bread?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he buy some bread?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "buy",
+          "some",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти вчора купив житній хліб?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти вчора купив житній хліб?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i16:audio",
+          "transcript": "Did you buy rye bread yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you buy rye bread yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: вона вчора скуштувала таку пампушку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: вона вчора скуштувала таку пампушку?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-08:i17:audio",
+          "transcript": "Did she try a crumpet yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did she try a crumpet yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f44bd6bb4a6a58c5a35b92dcba7a5fcd912855a1fdde4109cf884b37ff252217"
+}

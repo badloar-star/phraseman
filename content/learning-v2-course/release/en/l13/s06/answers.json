@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-06:word:soup-spoon",
+    "correctText": "soup spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i01",
+    "correctText": "Did you use the soup spoon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i02",
+    "correctText": "Did she use the soup spoon?",
+    "correctResponseId": "en:lesson-13:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:word:dessert-spoon",
+    "correctText": "dessert spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i04",
+    "correctText": "Did you wash the dessert spoon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i05",
+    "correctText": "Did she wash the dessert spoon?",
+    "correctResponseId": "en:lesson-13:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:word:serving-dish",
+    "correctText": "serving dish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i07",
+    "correctText": "Did you wash the serving dish?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i08",
+    "correctText": "Did she wash the serving dish?",
+    "correctResponseId": "en:lesson-13:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:word:dinner-plate",
+    "correctText": "dinner plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i10",
+    "correctText": "Did you use the dinner plate?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i11",
+    "correctText": "Did she use the dinner plate?",
+    "correctResponseId": "en:lesson-13:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i13",
+    "correctText": "en:lesson-13:session-06:i13:p1=soup spoon\nen:lesson-13:session-06:i13:p2=dessert spoon\nen:lesson-13:session-06:i13:p3=serving dish\nen:lesson-13:session-06:i13:p4=dinner plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i14",
+    "correctText": "Did they set the table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i15",
+    "correctText": "Did he wash the dishes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i16",
+    "correctText": "Did you wash the dessert spoon yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-06:i17",
+    "correctText": "Did she use the soup spoon yesterday?",
+    "correctResponseId": null
+  }
+]

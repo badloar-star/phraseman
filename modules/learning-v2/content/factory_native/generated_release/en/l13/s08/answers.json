@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-08:word:white-bread",
+    "correctText": "white bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i01",
+    "correctText": "Did you buy white bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i02",
+    "correctText": "Did she buy white bread?",
+    "correctResponseId": "en:lesson-13:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:word:wholemeal-bread",
+    "correctText": "wholemeal bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i04",
+    "correctText": "Did you buy wholemeal bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i05",
+    "correctText": "Did she buy wholemeal bread?",
+    "correctResponseId": "en:lesson-13:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:word:rye-bread",
+    "correctText": "rye bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i07",
+    "correctText": "Did you buy rye bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i08",
+    "correctText": "Did she buy rye bread?",
+    "correctResponseId": "en:lesson-13:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:word:crumpet",
+    "correctText": "crumpet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i10",
+    "correctText": "Did you try a crumpet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i11",
+    "correctText": "Did she try a crumpet?",
+    "correctResponseId": "en:lesson-13:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i13",
+    "correctText": "en:lesson-13:session-08:i13:p1=white bread\nen:lesson-13:session-08:i13:p2=wholemeal bread\nen:lesson-13:session-08:i13:p3=rye bread\nen:lesson-13:session-08:i13:p4=crumpet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i14",
+    "correctText": "Did they visit the bakery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i15",
+    "correctText": "Did he buy some bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i16",
+    "correctText": "Did you buy rye bread yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-08:i17",
+    "correctText": "Did she try a crumpet yesterday?",
+    "correctResponseId": null
+  }
+]

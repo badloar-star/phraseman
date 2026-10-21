@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-04:word:train-station",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — train station",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:train-station:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — train station",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:train-station:audio",
+            "transcript": "train station"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:train-station:r1",
+              "targetText": "train station",
+              "meaningByLocale": {
+                "ru": "железнодорожная станция, вокзал.",
+                "uk": "залізнична станція, вокзал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "train station",
+            "definitionByLocale": {
+              "ru": "железнодорожная станция, вокзал.",
+              "uk": "залізнична станція, вокзал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вчера вы были на вокзале. Начните с I, yesterday поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера вы были на вокзале. Начните с I, yesterday поставьте в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was at the train station yesterday.",
+          "localizedMeaning": {
+            "ru": "Вчера вы были на вокзале. Начните с I, yesterday поставьте в конце",
+            "uk": "Учора ви були на вокзалі. Почніть з I, yesterday поставте в кінці"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "at",
+            "the",
+            "train",
+            "station",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i02:r1",
+            "text": "The train station was busy."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i02:r2",
+            "text": "The train station was quiet."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i02:r3",
+            "text": "The train station was empty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i02:audio",
+            "transcript": "The train station was busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i02:r1",
+              "targetText": "The train station was busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i02:r2",
+              "targetText": "The train station was quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i02:r3",
+              "targetText": "The train station was empty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train station was busy.",
+                "uk": "У записі звучить The train station was busy."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train station was busy.",
+                "uk": "У записі звучить The train station was busy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, где были ваши друзья",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, где были ваши друзья",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, где были ваши друзья",
+            "uk": "Згадайте, де були ваші друзі"
+          },
+          "gappedTargetPhrase": "They ___ at the train station last night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вспомните, где были ваши друзья",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, где были ваши друзья",
+              "feedbackByLocale": {
+                "ru": "С they нужна were.",
+                "uk": "З they потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, где были ваши друзья",
+              "feedbackByLocale": {
+                "ru": "Last night — прошлое, нужна were.",
+                "uk": "Last night — минуле, потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:word:shopping-centre",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shopping centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:shopping-centre:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shopping centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:shopping-centre:audio",
+            "transcript": "shopping centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:shopping-centre:r1",
+              "targetText": "shopping centre",
+              "meaningByLocale": {
+                "ru": "торговый центр.",
+                "uk": "торговий центр."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopping centre",
+            "definitionByLocale": {
+              "ru": "торговый центр.",
+              "uk": "торговий центр."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Торговый центр был полон людей: переполнен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Торговый центр был полон людей: переполнен",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The shopping centre was crowded.",
+          "localizedMeaning": {
+            "ru": "Торговый центр был полон людей: переполнен",
+            "uk": "Торговий центр був повний людей: переповнений"
+          },
+          "orderedTokens": [
+            "The",
+            "shopping",
+            "centre",
+            "was",
+            "crowded"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i05:r1",
+            "text": "We were at the shopping centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i05:r2",
+            "text": "They were at the shopping centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i05:r3",
+            "text": "You were at the shopping centre."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i05:audio",
+            "transcript": "We were at the shopping centre."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i05:r1",
+              "targetText": "We were at the shopping centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i05:r2",
+              "targetText": "They were at the shopping centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i05:r3",
+              "targetText": "You were at the shopping centre.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were at the shopping centre.",
+                "uk": "У записі звучить We were at the shopping centre."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were at the shopping centre.",
+                "uk": "У записі звучить We were at the shopping centre."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сообщите о торговом центре сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите о торговом центре сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сообщите о торговом центре сейчас",
+            "uk": "Повідомте про торговий центр зараз"
+          },
+          "gappedTargetPhrase": "The shopping centre ___ open right now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Сообщите о торговом центре сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Сообщите о торговом центре сейчас",
+              "feedbackByLocale": {
+                "ru": "Один центр: is.",
+                "uk": "Один центр: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Сообщите о торговом центре сейчас",
+              "feedbackByLocale": {
+                "ru": "Am относится к I. Здесь is.",
+                "uk": "Am стосується I. Тут is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:word:sports-centre",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sports centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:sports-centre:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sports centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:sports-centre:audio",
+            "transcript": "sports centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:sports-centre:r1",
+              "targetText": "sports centre",
+              "meaningByLocale": {
+                "ru": "спортивный центр. В sports сохраняется s.",
+                "uk": "спортивний центр. У sports зберігається s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports centre",
+            "definitionByLocale": {
+              "ru": "спортивный центр. В sports сохраняется s.",
+              "uk": "спортивний центр. У sports зберігається s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спортивный центр был закрыт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спортивный центр был закрыт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sports centre was closed.",
+          "localizedMeaning": {
+            "ru": "Спортивный центр был закрыт",
+            "uk": "Спортивний центр був зачинений"
+          },
+          "orderedTokens": [
+            "The",
+            "sports",
+            "centre",
+            "was",
+            "closed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i08:r1",
+            "text": "He was at the sports centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i08:r2",
+            "text": "She was at the sports centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i08:r3",
+            "text": "I was at the sports centre."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i08:audio",
+            "transcript": "He was at the sports centre."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i08:r1",
+              "targetText": "He was at the sports centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i08:r2",
+              "targetText": "She was at the sports centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i08:r3",
+              "targetText": "I was at the sports centre.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was at the sports centre.",
+                "uk": "У записі звучить He was at the sports centre."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was at the sports centre.",
+                "uk": "У записі звучить He was at the sports centre."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, где вы с другом были на прошлой неделе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, где вы с другом были на прошлой неделе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, где вы с другом были на прошлой неделе",
+            "uk": "Згадайте, де ви з другом були минулого тижня"
+          },
+          "gappedTargetPhrase": "We ___ at the sports centre last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вспомните, где вы с другом были на прошлой неделе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, где вы с другом были на прошлой неделе",
+              "feedbackByLocale": {
+                "ru": "С we нужна were.",
+                "uk": "З we потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, где вы с другом были на прошлой неделе",
+              "feedbackByLocale": {
+                "ru": "В прошлом с we нужна were.",
+                "uk": "У минулому з we потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:word:hairdresser",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hairdresser",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:hairdresser:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hairdresser",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:hairdresser:audio",
+            "transcript": "hairdresser"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:hairdresser:r1",
+              "targetText": "hairdresser",
+              "meaningByLocale": {
+                "ru": "парикмахер, человек, который стрижёт волосы.",
+                "uk": "перукар, людина, яка стриже волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hairdresser",
+            "definitionByLocale": {
+              "ru": "парикмахер, человек, который стрижёт волосы.",
+              "uk": "перукар, людина, яка стриже волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Парикмахер был дружелюбным",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Парикмахер был дружелюбным",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The hairdresser was friendly.",
+          "localizedMeaning": {
+            "ru": "Парикмахер был дружелюбным",
+            "uk": "Перукар був привітний"
+          },
+          "orderedTokens": [
+            "The",
+            "hairdresser",
+            "was",
+            "friendly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i11:r1",
+            "text": "The hairdresser was tired."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i11:r2",
+            "text": "The hairdresser was busy."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i11:r3",
+            "text": "The hairdresser was late."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i11:audio",
+            "transcript": "The hairdresser was tired."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i11:r1",
+              "targetText": "The hairdresser was tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i11:r2",
+              "targetText": "The hairdresser was busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i11:r3",
+              "targetText": "The hairdresser was late.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hairdresser was tired.",
+                "uk": "У записі звучить The hairdresser was tired."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hairdresser was tired.",
+                "uk": "У записі звучить The hairdresser was tired."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Расскажите о вчерашней занятости одного парикмахера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о вчерашней занятости одного парикмахера",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о вчерашней занятости одного парикмахера",
+            "uk": "Розкажіть про вчорашню зайнятість одного перукаря"
+          },
+          "gappedTargetPhrase": "The hairdresser ___ busy yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i12:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Расскажите о вчерашней занятости одного парикмахера",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Расскажите о вчерашней занятости одного парикмахера",
+              "feedbackByLocale": {
+                "ru": "Один парикмахер: was.",
+                "uk": "Один перукар: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Расскажите о вчерашней занятости одного парикмахера",
+              "feedbackByLocale": {
+                "ru": "Здесь прошлое и один человек: was.",
+                "uk": "Тут минуле й одна людина: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-04:i13:p1",
+              "target": "train station",
+              "meaningByLocale": {
+                "ru": "вокзал",
+                "uk": "вокзал"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-04:i13:p2",
+              "target": "shopping centre",
+              "meaningByLocale": {
+                "ru": "торговый центр",
+                "uk": "торговий центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-04:i13:p3",
+              "target": "sports centre",
+              "meaningByLocale": {
+                "ru": "спортивный центр",
+                "uk": "спортивний центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-04:i13:p4",
+              "target": "hairdresser",
+              "meaningByLocale": {
+                "ru": "парикмахер",
+                "uk": "перукар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "train station",
+            "shopping centre",
+            "sports centre",
+            "hairdresser"
+          ],
+          "rightColumn": [
+            "вокзал",
+            "торговый центр",
+            "спортивный центр",
+            "парикмахер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i14:audio",
+            "transcript": "Please don't hurry."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't hurry.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "hurry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i15:audio",
+            "transcript": "The train station was quiet last night."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train station was quiet last night.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "station",
+            "was",
+            "quiet",
+            "last",
+            "night"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вчера парикмахер был на работе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вчера парикмахер был на работе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i16:audio",
+            "transcript": "The hairdresser was at work yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The hairdresser was at work yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что на прошлой неделе торговый центр был закрыт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что на прошлой неделе торговый центр был закрыт",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i17:audio",
+            "transcript": "The shopping centre was closed last week."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shopping centre was closed last week.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-04:word:train-station",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — train station",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:train-station:audio"
+        ],
+        "accessibilityLabel": "Картка слова — train station",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:train-station:audio",
+            "transcript": "train station"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:train-station:r1",
+              "targetText": "train station",
+              "meaningByLocale": {
+                "ru": "железнодорожная станция, вокзал.",
+                "uk": "залізнична станція, вокзал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "train station",
+            "definitionByLocale": {
+              "ru": "железнодорожная станция, вокзал.",
+              "uk": "залізнична станція, вокзал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учора ви були на вокзалі. Почніть з I, yesterday поставте в кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора ви були на вокзалі. Почніть з I, yesterday поставте в кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was at the train station yesterday.",
+          "localizedMeaning": {
+            "ru": "Вчера вы были на вокзале. Начните с I, yesterday поставьте в конце",
+            "uk": "Учора ви були на вокзалі. Почніть з I, yesterday поставте в кінці"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "at",
+            "the",
+            "train",
+            "station",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i02:r1",
+            "text": "The train station was busy."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i02:r2",
+            "text": "The train station was quiet."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i02:r3",
+            "text": "The train station was empty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i02:audio",
+            "transcript": "The train station was busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i02:r1",
+              "targetText": "The train station was busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i02:r2",
+              "targetText": "The train station was quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i02:r3",
+              "targetText": "The train station was empty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train station was busy.",
+                "uk": "У записі звучить The train station was busy."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train station was busy.",
+                "uk": "У записі звучить The train station was busy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Згадайте, де були ваші друзі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте, де були ваші друзі",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, где были ваши друзья",
+            "uk": "Згадайте, де були ваші друзі"
+          },
+          "gappedTargetPhrase": "They ___ at the train station last night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Згадайте, де були ваші друзі",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Згадайте, де були ваші друзі",
+              "feedbackByLocale": {
+                "ru": "С they нужна were.",
+                "uk": "З they потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Згадайте, де були ваші друзі",
+              "feedbackByLocale": {
+                "ru": "Last night — прошлое, нужна were.",
+                "uk": "Last night — минуле, потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:word:shopping-centre",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shopping centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:shopping-centre:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shopping centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:shopping-centre:audio",
+            "transcript": "shopping centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:shopping-centre:r1",
+              "targetText": "shopping centre",
+              "meaningByLocale": {
+                "ru": "торговый центр.",
+                "uk": "торговий центр."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopping centre",
+            "definitionByLocale": {
+              "ru": "торговый центр.",
+              "uk": "торговий центр."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Торговий центр був повний людей: переповнений",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Торговий центр був повний людей: переповнений",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The shopping centre was crowded.",
+          "localizedMeaning": {
+            "ru": "Торговый центр был полон людей: переполнен",
+            "uk": "Торговий центр був повний людей: переповнений"
+          },
+          "orderedTokens": [
+            "The",
+            "shopping",
+            "centre",
+            "was",
+            "crowded"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i05:r1",
+            "text": "We were at the shopping centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i05:r2",
+            "text": "They were at the shopping centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i05:r3",
+            "text": "You were at the shopping centre."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i05:audio",
+            "transcript": "We were at the shopping centre."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i05:r1",
+              "targetText": "We were at the shopping centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i05:r2",
+              "targetText": "They were at the shopping centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i05:r3",
+              "targetText": "You were at the shopping centre.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were at the shopping centre.",
+                "uk": "У записі звучить We were at the shopping centre."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were at the shopping centre.",
+                "uk": "У записі звучить We were at the shopping centre."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Повідомте про торговий центр зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте про торговий центр зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сообщите о торговом центре сейчас",
+            "uk": "Повідомте про торговий центр зараз"
+          },
+          "gappedTargetPhrase": "The shopping centre ___ open right now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Повідомте про торговий центр зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Повідомте про торговий центр зараз",
+              "feedbackByLocale": {
+                "ru": "Один центр: is.",
+                "uk": "Один центр: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Повідомте про торговий центр зараз",
+              "feedbackByLocale": {
+                "ru": "Am относится к I. Здесь is.",
+                "uk": "Am стосується I. Тут is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:word:sports-centre",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sports centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:sports-centre:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sports centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:sports-centre:audio",
+            "transcript": "sports centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:sports-centre:r1",
+              "targetText": "sports centre",
+              "meaningByLocale": {
+                "ru": "спортивный центр. В sports сохраняется s.",
+                "uk": "спортивний центр. У sports зберігається s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports centre",
+            "definitionByLocale": {
+              "ru": "спортивный центр. В sports сохраняется s.",
+              "uk": "спортивний центр. У sports зберігається s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спортивний центр був зачинений",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спортивний центр був зачинений",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sports centre was closed.",
+          "localizedMeaning": {
+            "ru": "Спортивный центр был закрыт",
+            "uk": "Спортивний центр був зачинений"
+          },
+          "orderedTokens": [
+            "The",
+            "sports",
+            "centre",
+            "was",
+            "closed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i08:r1",
+            "text": "He was at the sports centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i08:r2",
+            "text": "She was at the sports centre."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i08:r3",
+            "text": "I was at the sports centre."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i08:audio",
+            "transcript": "He was at the sports centre."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i08:r1",
+              "targetText": "He was at the sports centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i08:r2",
+              "targetText": "She was at the sports centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i08:r3",
+              "targetText": "I was at the sports centre.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was at the sports centre.",
+                "uk": "У записі звучить He was at the sports centre."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was at the sports centre.",
+                "uk": "У записі звучить He was at the sports centre."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Згадайте, де ви з другом були минулого тижня",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте, де ви з другом були минулого тижня",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, где вы с другом были на прошлой неделе",
+            "uk": "Згадайте, де ви з другом були минулого тижня"
+          },
+          "gappedTargetPhrase": "We ___ at the sports centre last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Згадайте, де ви з другом були минулого тижня",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Згадайте, де ви з другом були минулого тижня",
+              "feedbackByLocale": {
+                "ru": "С we нужна were.",
+                "uk": "З we потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Згадайте, де ви з другом були минулого тижня",
+              "feedbackByLocale": {
+                "ru": "В прошлом с we нужна were.",
+                "uk": "У минулому з we потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:word:hairdresser",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hairdresser",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:word:hairdresser:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hairdresser",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:word:hairdresser:audio",
+            "transcript": "hairdresser"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:word:hairdresser:r1",
+              "targetText": "hairdresser",
+              "meaningByLocale": {
+                "ru": "парикмахер, человек, который стрижёт волосы.",
+                "uk": "перукар, людина, яка стриже волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hairdresser",
+            "definitionByLocale": {
+              "ru": "парикмахер, человек, который стрижёт волосы.",
+              "uk": "перукар, людина, яка стриже волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перукар був привітний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перукар був привітний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The hairdresser was friendly.",
+          "localizedMeaning": {
+            "ru": "Парикмахер был дружелюбным",
+            "uk": "Перукар був привітний"
+          },
+          "orderedTokens": [
+            "The",
+            "hairdresser",
+            "was",
+            "friendly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i11:r1",
+            "text": "The hairdresser was tired."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i11:r2",
+            "text": "The hairdresser was busy."
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i11:r3",
+            "text": "The hairdresser was late."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i11:audio",
+            "transcript": "The hairdresser was tired."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-04:i11:r1",
+              "targetText": "The hairdresser was tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i11:r2",
+              "targetText": "The hairdresser was busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i11:r3",
+              "targetText": "The hairdresser was late.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hairdresser was tired.",
+                "uk": "У записі звучить The hairdresser was tired."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hairdresser was tired.",
+                "uk": "У записі звучить The hairdresser was tired."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Розкажіть про вчорашню зайнятість одного перукаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-04:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-04:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про вчорашню зайнятість одного перукаря",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о вчерашней занятости одного парикмахера",
+            "uk": "Розкажіть про вчорашню зайнятість одного перукаря"
+          },
+          "gappedTargetPhrase": "The hairdresser ___ busy yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-04:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i12:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Розкажіть про вчорашню зайнятість одного перукаря",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Розкажіть про вчорашню зайнятість одного перукаря",
+              "feedbackByLocale": {
+                "ru": "Один парикмахер: was.",
+                "uk": "Один перукар: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Розкажіть про вчорашню зайнятість одного перукаря",
+              "feedbackByLocale": {
+                "ru": "Здесь прошлое и один человек: was.",
+                "uk": "Тут минуле й одна людина: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-04:i13:p1",
+              "target": "train station",
+              "meaningByLocale": {
+                "ru": "вокзал",
+                "uk": "вокзал"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-04:i13:p2",
+              "target": "shopping centre",
+              "meaningByLocale": {
+                "ru": "торговый центр",
+                "uk": "торговий центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-04:i13:p3",
+              "target": "sports centre",
+              "meaningByLocale": {
+                "ru": "спортивный центр",
+                "uk": "спортивний центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-04:i13:p4",
+              "target": "hairdresser",
+              "meaningByLocale": {
+                "ru": "парикмахер",
+                "uk": "перукар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "train station",
+            "shopping centre",
+            "sports centre",
+            "hairdresser"
+          ],
+          "rightColumn": [
+            "вокзал",
+            "торговий центр",
+            "спортивний центр",
+            "перукар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i14:audio",
+            "transcript": "Please don't hurry."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't hurry.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "hurry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i15:audio",
+            "transcript": "The train station was quiet last night."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train station was quiet last night.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "station",
+            "was",
+            "quiet",
+            "last",
+            "night"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вчора перукар був на роботі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вчора перукар був на роботі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i16:audio",
+            "transcript": "The hairdresser was at work yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The hairdresser was at work yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що минулого тижня торговий центр був зачинений",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що минулого тижня торговий центр був зачинений",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-04:i17:audio",
+            "transcript": "The shopping centre was closed last week."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shopping centre was closed last week.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-04:word:train-station",
+      "correctText": "train station",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i01",
+      "correctText": "I was at the train station yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i02",
+      "correctText": "The train station was busy.",
+      "correctResponseId": "en:lesson-11:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i03",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:word:shopping-centre",
+      "correctText": "shopping centre",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i04",
+      "correctText": "The shopping centre was crowded.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i05",
+      "correctText": "We were at the shopping centre.",
+      "correctResponseId": "en:lesson-11:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:word:sports-centre",
+      "correctText": "sports centre",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i07",
+      "correctText": "The sports centre was closed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i08",
+      "correctText": "He was at the sports centre.",
+      "correctResponseId": "en:lesson-11:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:word:hairdresser",
+      "correctText": "hairdresser",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i10",
+      "correctText": "The hairdresser was friendly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i11",
+      "correctText": "The hairdresser was tired.",
+      "correctResponseId": "en:lesson-11:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i14",
+      "correctText": "Please don't hurry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i15",
+      "correctText": "The train station was quiet last night.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i16",
+      "correctText": "The hairdresser was at work yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:i17",
+      "correctText": "The shopping centre was closed last week.",
+      "correctResponseId": null
+    }
+  ]
+}

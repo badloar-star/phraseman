@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-06:word:Tuesday",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Tuesday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:word:Tuesday:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Tuesday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:word:Tuesday:audio",
+          "transcript": "Tuesday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:word:Tuesday:r1",
+            "targetText": "Tuesday",
+            "meaningByLocale": {
+              "ru": "вторник. On Tuesday — во вторник.",
+              "uk": "вівторок. On Tuesday — у вівторок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Tuesday",
+          "definitionByLocale": {
+            "ru": "вторник. On Tuesday — во вторник.",
+            "uk": "вівторок. On Tuesday — у вівторок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вівторок ви були вдома. Почніть з I, on Tuesday поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вівторок ви були вдома. Почніть з I, on Tuesday поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was at home on Tuesday.",
+        "localizedMeaning": {
+          "ru": "Во вторник вы были дома. Начните с I, on Tuesday поставьте в конце",
+          "uk": "У вівторок ви були вдома. Почніть з I, on Tuesday поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "at",
+          "home",
+          "on",
+          "Tuesday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i02:r1",
+          "text": "She was tired on Tuesday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i02:r2",
+          "text": "She was busy on Tuesday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i02:r3",
+          "text": "She was happy on Tuesday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i02:audio",
+          "transcript": "She was tired on Tuesday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:i02:r1",
+            "targetText": "She was tired on Tuesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i02:r2",
+            "targetText": "She was busy on Tuesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i02:r3",
+            "targetText": "She was happy on Tuesday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was tired on Tuesday.",
+              "uk": "У записі звучить She was tired on Tuesday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was tired on Tuesday.",
+              "uk": "У записі звучить She was tired on Tuesday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть прийменник перед Tuesday",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i03:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i03:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i03:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть прийменник перед Tuesday",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог перед Tuesday",
+          "uk": "Виберіть прийменник перед Tuesday"
+        },
+        "gappedTargetPhrase": "He was ill ___ Tuesday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-06:i03:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i03:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i03:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Виберіть прийменник перед Tuesday",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник перед Tuesday",
+            "feedbackByLocale": {
+              "ru": "Перед названием дня нужна on.",
+              "uk": "Перед назвою дня потрібна on."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник перед Tuesday",
+            "feedbackByLocale": {
+              "ru": "Перед названием дня нужна on.",
+              "uk": "Перед назвою дня потрібна on."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:word:Wednesday",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Wednesday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:word:Wednesday:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Wednesday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:word:Wednesday:audio",
+          "transcript": "Wednesday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:word:Wednesday:r1",
+            "targetText": "Wednesday",
+            "meaningByLocale": {
+              "ru": "среда. Пишется с заглавной буквы.",
+              "uk": "середа. Пишеться з великої літери."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Wednesday",
+          "definitionByLocale": {
+            "ru": "среда. Пишется с заглавной буквы.",
+            "uk": "середа. Пишеться з великої літери."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У середу ви з другом були зайняті. Почніть з We, on Wednesday поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У середу ви з другом були зайняті. Почніть з We, on Wednesday поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were busy on Wednesday.",
+        "localizedMeaning": {
+          "ru": "В среду вы с другом были заняты. Начните с We, on Wednesday поставьте в конце",
+          "uk": "У середу ви з другом були зайняті. Почніть з We, on Wednesday поставте в кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "busy",
+          "on",
+          "Wednesday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i05:r1",
+          "text": "It was cold on Wednesday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i05:r2",
+          "text": "It was warm on Wednesday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i05:r3",
+          "text": "It was sunny on Wednesday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i05:audio",
+          "transcript": "It was cold on Wednesday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:i05:r1",
+            "targetText": "It was cold on Wednesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i05:r2",
+            "targetText": "It was warm on Wednesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i05:r3",
+            "targetText": "It was sunny on Wednesday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was cold on Wednesday.",
+              "uk": "У записі звучить It was cold on Wednesday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was cold on Wednesday.",
+              "uk": "У записі звучить It was cold on Wednesday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму be для розповіді про друзів",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму be для розповіді про друзів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму be для рассказа о друзьях",
+          "uk": "Виберіть форму be для розповіді про друзів"
+        },
+        "gappedTargetPhrase": "They ___ here on Wednesday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-06:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму be для розповіді про друзів",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму be для розповіді про друзів",
+            "feedbackByLocale": {
+              "ru": "С they нужна were.",
+              "uk": "З they потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму be для розповіді про друзів",
+            "feedbackByLocale": {
+              "ru": "Am относится к I в настоящем. Здесь were.",
+              "uk": "Am стосується I в теперішньому. Тут were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:word:Thursday",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Thursday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:word:Thursday:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Thursday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:word:Thursday:audio",
+          "transcript": "Thursday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:word:Thursday:r1",
+            "targetText": "Thursday",
+            "meaningByLocale": {
+              "ru": "четверг. On Thursday — в четверг.",
+              "uk": "четвер. On Thursday — у четвер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Thursday",
+          "definitionByLocale": {
+            "ru": "четверг. On Thursday — в четверг.",
+            "uk": "четвер. On Thursday — у четвер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У четвер магазин був зачинений. Почніть з The shop, on Thursday поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У четвер магазин був зачинений. Почніть з The shop, on Thursday поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shop was closed on Thursday.",
+        "localizedMeaning": {
+          "ru": "В четверг магазин был закрыт. Начните с The shop, on Thursday поставьте в конце",
+          "uk": "У четвер магазин був зачинений. Почніть з The shop, on Thursday поставте в кінці"
+        },
+        "orderedTokens": [
+          "The",
+          "shop",
+          "was",
+          "closed",
+          "on",
+          "Thursday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i08:r1",
+          "text": "You were free on Thursday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i08:r2",
+          "text": "You were free on Tuesday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i08:r3",
+          "text": "You were free on Wednesday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i08:audio",
+          "transcript": "You were free on Thursday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:i08:r1",
+            "targetText": "You were free on Thursday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i08:r2",
+            "targetText": "You were free on Tuesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i08:r3",
+            "targetText": "You were free on Wednesday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were free on Thursday.",
+              "uk": "У записі звучить You were free on Thursday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were free on Thursday.",
+              "uk": "У записі звучить You were free on Thursday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму be для одного перукаря",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму be для одного перукаря",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму be для одного парикмахера",
+          "uk": "Виберіть форму be для одного перукаря"
+        },
+        "gappedTargetPhrase": "The hairdresser ___ busy on Thursday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-06:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму be для одного перукаря",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму be для одного перукаря",
+            "feedbackByLocale": {
+              "ru": "Один парикмахер: was.",
+              "uk": "Один перукар: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму be для одного перукаря",
+            "feedbackByLocale": {
+              "ru": "Am относится к I в настоящем. Здесь was.",
+              "uk": "Am стосується I в теперішньому. Тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:word:Saturday",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Saturday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:word:Saturday:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Saturday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:word:Saturday:audio",
+          "transcript": "Saturday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:word:Saturday:r1",
+            "targetText": "Saturday",
+            "meaningByLocale": {
+              "ru": "суббота. On Saturday — в субботу.",
+              "uk": "субота. On Saturday — у суботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Saturday",
+          "definitionByLocale": {
+            "ru": "суббота. On Saturday — в субботу.",
+            "uk": "субота. On Saturday — у суботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У суботу вона була в кафе. Почніть з She, on Saturday поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У суботу вона була в кафе. Почніть з She, on Saturday поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was in a cafe on Saturday.",
+        "localizedMeaning": {
+          "ru": "В субботу она была в кафе. Начните с She, on Saturday поставьте в конце",
+          "uk": "У суботу вона була в кафе. Почніть з She, on Saturday поставте в кінці"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "in",
+          "a",
+          "cafe",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i11:r1",
+          "text": "We were at home on Saturday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i11:r2",
+          "text": "We were at home on Thursday."
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i11:r3",
+          "text": "We were at home on Wednesday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i11:audio",
+          "transcript": "We were at home on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-06:i11:r1",
+            "targetText": "We were at home on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i11:r2",
+            "targetText": "We were at home on Thursday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i11:r3",
+            "targetText": "We were at home on Wednesday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were at home on Saturday.",
+              "uk": "У записі звучить We were at home on Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were at home on Saturday.",
+              "uk": "У записі звучить We were at home on Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Розкажіть, як діти почувалися в суботу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-06:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-06:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть, як діти почувалися в суботу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите, как дети чувствовали себя в субботу",
+          "uk": "Розкажіть, як діти почувалися в суботу"
+        },
+        "gappedTargetPhrase": "The children ___ happy on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-06:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Розкажіть, як діти почувалися в суботу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Розкажіть, як діти почувалися в суботу",
+            "feedbackByLocale": {
+              "ru": "Children — множественное число: were.",
+              "uk": "Children — множина: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Розкажіть, як діти почувалися в суботу",
+            "feedbackByLocale": {
+              "ru": "В прошлом с children нужна were.",
+              "uk": "У минулому з children потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте дні тижня з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте дні тижня з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-06:i13:p1",
+            "target": "Tuesday",
+            "meaningByLocale": {
+              "ru": "вторник",
+              "uk": "вівторок"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-06:i13:p2",
+            "target": "Wednesday",
+            "meaningByLocale": {
+              "ru": "среда",
+              "uk": "середа"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-06:i13:p3",
+            "target": "Thursday",
+            "meaningByLocale": {
+              "ru": "четверг",
+              "uk": "четвер"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-06:i13:p4",
+            "target": "Saturday",
+            "meaningByLocale": {
+              "ru": "суббота",
+              "uk": "субота"
+            }
+          }
+        ],
+        "leftColumn": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Saturday"
+        ],
+        "rightColumn": [
+          "вівторок",
+          "середа",
+          "четвер",
+          "субота"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i14:audio",
+          "transcript": "Please don't hurry me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't hurry me.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "hurry",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i15:audio",
+          "transcript": "I am working right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am working right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "working",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що у вівторок ви з другом були у спортивному центрі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що у вівторок ви з другом були у спортивному центрі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i16:audio",
+          "transcript": "We were at the sports centre on Tuesday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We were at the sports centre on Tuesday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-06:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що в суботу вони були на вокзалі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що в суботу вони були на вокзалі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-06:i17:audio",
+          "transcript": "They were at the train station on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They were at the train station on Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c0c73a67db2089da4d3828485d1a5df28eb7f8705bf1b142ef48dedfd00e6631"
+}

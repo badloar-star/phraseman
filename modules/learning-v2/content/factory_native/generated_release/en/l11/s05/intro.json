@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; two hours ago; during + событие; until + время",
+    "uk": "was/were; two hours ago; during + подія; until + час"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два часа назад",
+        "uk": "Дві години тому"
+      },
+      "bodyByLocale": {
+        "ru": "Ago — «назад»: two hours ago — «два часа назад», отсчитывая от сейчас. Ago ставим после количества времени. Earlier — «раньше»: I was here earlier — «Я был здесь раньше». Это может быть раньше сегодня; точное время понятно из разговора. Вы были дома два часа назад: I was at home two hours ago. Выберите эту фразу.",
+        "uk": "Ago — «тому»: two hours ago — «дві години тому», відраховуючи від зараз. Ago ставимо після кількості часу. Earlier — «раніше»: I was here earlier — «Я був тут раніше». Це може бути раніше сьогодні; точний час зрозумілий із розмови. Ви були вдома дві години тому: I was at home two hours ago. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-05:intro1:r1",
+              "text": "I was at home two hours ago."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro1:r2",
+              "text": "I was at home ago two hours."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro1:r3",
+              "text": "I were at home two hours ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-05:intro1:r1",
+              "text": "I was at home two hours ago."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro1:r2",
+              "text": "I was at home ago two hours."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro1:r3",
+              "text": "I were at home two hours ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Во время поездки",
+        "uk": "Під час поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "During — «во время». После during называем событие: during the trip — «во время поездки». Мы были уставшими во время поездки: We were tired during the trip. Здесь were описывает наше состояние. Для длительности «два часа» используется другая конструкция; during two hours для этого не подходит.",
+        "uk": "During — «під час». Після during називаємо подію: during the trip — «під час поїздки». Ми були втомлені під час поїздки: We were tired during the trip. Тут were описує наш стан. Для тривалості «дві години» використовується інша конструкція; during two hours для цього не підходить."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-05:intro2:r1",
+              "text": "We were tired during the trip."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro2:r2",
+              "text": "We was tired during the trip."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro2:r3",
+              "text": "We are tired during the trip yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-05:intro2:r1",
+              "text": "We were tired during the trip."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro2:r2",
+              "text": "We was tired during the trip."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro2:r3",
+              "text": "We are tired during the trip yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "До определённого часа",
+        "uk": "До певної години"
+      },
+      "bodyByLocale": {
+        "ru": "Until — «до», когда состояние или действие продолжается до указанного момента. Вчера вы были на работе до шести: I was at work until six. После шести работа закончилась. Не путайте: during the meeting — во время встречи, until six — до шести. Выберите фразу о работе до шести.",
+        "uk": "Until — «до», коли стан або дія триває до вказаного моменту. Учора ви були на роботі до шостої: I was at work until six. Після шостої робота закінчилася. Не плутайте: during the meeting — під час зустрічі, until six — до шостої. Виберіть фразу про роботу до шостої."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-05:intro3:r1",
+              "text": "I was at work until six."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro3:r2",
+              "text": "I was at work during six."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro3:r3",
+              "text": "I was at work ago six."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-05:intro3:r1",
+              "text": "I was at work until six."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro3:r2",
+              "text": "I was at work during six."
+            },
+            {
+              "responseId": "en:lesson-11:session-05:intro3:r3",
+              "text": "I was at work ago six."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "14850207f00dcd7eaf83d0e14365629cf6f443bdf3bde37246393cd378268ab3"
+}

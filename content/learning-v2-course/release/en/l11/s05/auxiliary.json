@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-05:intro1:r2": {
+          "ru": "Ago ставим после two hours.",
+          "uk": "Ago ставимо після two hours."
+        },
+        "en:lesson-11:session-05:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-05:intro2:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-11:session-05:intro2:r3": {
+          "ru": "Вчерашнее состояние описываем were, а не are.",
+          "uk": "Учорашній стан описуємо were, а не are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-05:intro3:r2": {
+          "ru": "Перед конечным временем нужна until, не during.",
+          "uk": "Перед кінцевим часом потрібна until, не during."
+        },
+        "en:lesson-11:session-05:intro3:r3": {
+          "ru": "Ago ставим после длительности, например two hours ago. Здесь until six.",
+          "uk": "Ago ставимо після тривалості, наприклад two hours ago. Тут until six."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c316fbfe58e1099d22360d7750b6a2465a6b6edc46cbc7c00fa08668429f3dc"
+}

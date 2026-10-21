@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; on + день недели",
+    "uk": "was/were; on + день тижня"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Во вторник",
+        "uk": "У вівторок"
+      },
+      "bodyByLocale": {
+        "ru": "Tuesday — «вторник». Названия дней недели пишем с заглавной буквы. Во вторник вы были дома: I was at home on Tuesday. Перед названием дня здесь нужна on. Мы вспоминаем прошлую неделю, поэтому was. Для того, где вы сейчас, говорим I am at home right now.",
+        "uk": "Tuesday — «вівторок». Назви днів тижня пишемо з великої літери. У вівторок ви були вдома: I was at home on Tuesday. Перед назвою дня тут потрібна on. Ми згадуємо минулий тиждень, тому was. Для того, де ви зараз, кажемо I am at home right now."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-06:intro1:r1",
+              "text": "I was at home on Tuesday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro1:r2",
+              "text": "I were at home on Tuesday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro1:r3",
+              "text": "I was at home in Tuesday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-06:intro1:r1",
+              "text": "I was at home on Tuesday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro1:r2",
+              "text": "I were at home on Tuesday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro1:r3",
+              "text": "I was at home in Tuesday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Среда и четверг",
+        "uk": "Середа й четвер"
+      },
+      "bodyByLocale": {
+        "ru": "Wednesday — «среда», Thursday — «четверг». В среду вы с другом были заняты: We were busy on Wednesday. В четверг были свободны: We were free on Thursday. С we нужна were. Сейчас выберите фразу о свободном четверге.",
+        "uk": "Wednesday — «середа», Thursday — «четвер». У середу ви з другом були зайняті: We were busy on Wednesday. У четвер були вільні: We were free on Thursday. З we потрібна were. Зараз виберіть фразу про вільний четвер."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-06:intro2:r1",
+              "text": "We were free on Thursday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro2:r2",
+              "text": "We was free on Thursday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro2:r3",
+              "text": "We were free on Wednesday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-06:intro2:r1",
+              "text": "We were free on Thursday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro2:r2",
+              "text": "We was free on Thursday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro2:r3",
+              "text": "We were free on Wednesday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В субботу",
+        "uk": "У суботу"
+      },
+      "bodyByLocale": {
+        "ru": "Saturday — «суббота». В субботу друзья были на вокзале: They were at the train station on Saturday. Если перед днём стоит last, on не добавляем: last Saturday — «в прошлую субботу». В этом занятии отрабатываем on Saturday. Друг торопит вас вспомнить время поездки; попросите Please don’t hurry me — «Пожалуйста, не торопи меня». Выберите фразу о друзьях на вокзале.",
+        "uk": "Saturday — «субота». У суботу друзі були на вокзалі: They were at the train station on Saturday. Якщо перед днем стоїть last, on не додаємо: last Saturday — «минулої суботи». У цьому занятті відпрацьовуємо on Saturday. Друг квапить вас згадати час поїздки; попросіть Please don’t hurry me — «Будь ласка, не квап мене». Виберіть фразу про друзів на вокзалі."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-06:intro3:r1",
+              "text": "They were at the train station on Saturday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro3:r2",
+              "text": "They was at the train station on Saturday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro3:r3",
+              "text": "They were at the train station in Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-06:intro3:r1",
+              "text": "They were at the train station on Saturday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro3:r2",
+              "text": "They was at the train station on Saturday."
+            },
+            {
+              "responseId": "en:lesson-11:session-06:intro3:r3",
+              "text": "They were at the train station in Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5592938eca88c8e32f7d258dc978615ae3d9bdf98eb950e5ed05bbf64847f1fc"
+}

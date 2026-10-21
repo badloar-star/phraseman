@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-05:word:ago",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ago",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:word:ago:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ago",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:word:ago:audio",
+          "transcript": "ago"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:word:ago:r1",
+            "targetText": "ago",
+            "meaningByLocale": {
+              "ru": "назад. Two days ago — два дня назад. Ставится после количества времени.",
+              "uk": "тому. Two days ago — два дні тому. Ставиться після кількості часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ago",
+          "definitionByLocale": {
+            "ru": "назад. Two days ago — два дня назад. Ставится после количества времени.",
+            "uk": "тому. Two days ago — два дні тому. Ставиться після кількості часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Она была здесь час назад. Начните с She, время поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Она была здесь час назад. Начните с She, время поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was here an hour ago.",
+        "localizedMeaning": {
+          "ru": "Она была здесь час назад. Начните с She, время поставьте в конце",
+          "uk": "Вона була тут годину тому. Почніть з She, час поставте в кінці"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "here",
+          "an",
+          "hour",
+          "ago"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i02:r1",
+          "text": "We were here two days ago."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i02:r2",
+          "text": "We were here two weeks ago."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i02:r3",
+          "text": "We were here two years ago."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i02:audio",
+          "transcript": "We were here two days ago."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:i02:r1",
+            "targetText": "We were here two days ago.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i02:r2",
+            "targetText": "We were here two weeks ago.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i02:r3",
+            "targetText": "We were here two years ago.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were here two days ago.",
+              "uk": "У записі звучить We were here two days ago."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were here two days ago.",
+              "uk": "У записі звучить We were here two days ago."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сообщите, что были дома два часа назад",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что были дома два часа назад",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите, что были дома два часа назад",
+          "uk": "Повідомте, що були вдома дві години тому"
+        },
+        "gappedTargetPhrase": "I ___ at home two hours ago.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-05:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сообщите, что были дома два часа назад",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Сообщите, что были дома два часа назад",
+            "feedbackByLocale": {
+              "ru": "С I в прошлом нужна was.",
+              "uk": "З I у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Сообщите, что были дома два часа назад",
+            "feedbackByLocale": {
+              "ru": "Ago указывает на прошлое: was.",
+              "uk": "Ago вказує на минуле: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:word:earlier",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — earlier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:word:earlier:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — earlier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:word:earlier:audio",
+          "transcript": "earlier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:word:earlier:r1",
+            "targetText": "earlier",
+            "meaningByLocale": {
+              "ru": "раньше, ранее. По сравнению с моментом, понятным из разговора.",
+              "uk": "раніше. Порівняно з моментом, зрозумілим із розмови."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "earlier",
+          "definitionByLocale": {
+            "ru": "раньше, ранее. По сравнению с моментом, понятным из разговора.",
+            "uk": "раніше. Порівняно з моментом, зрозумілим із розмови."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раньше сегодня вы были заняты. Начните с I, earlier поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раньше сегодня вы были заняты. Начните с I, earlier поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was busy earlier.",
+        "localizedMeaning": {
+          "ru": "Раньше сегодня вы были заняты. Начните с I, earlier поставьте в конце",
+          "uk": "Раніше сьогодні ви були зайняті. Почніть з I, earlier поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "busy",
+          "earlier"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i05:r1",
+          "text": "It was cold earlier."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i05:r2",
+          "text": "It was warm earlier."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i05:r3",
+          "text": "It was dark earlier."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i05:audio",
+          "transcript": "It was cold earlier."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:i05:r1",
+            "targetText": "It was cold earlier.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i05:r2",
+            "targetText": "It was warm earlier.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i05:r3",
+            "targetText": "It was dark earlier.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was cold earlier.",
+              "uk": "У записі звучить It was cold earlier."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was cold earlier.",
+              "uk": "У записі звучить It was cold earlier."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас друзья здесь, а раньше были на работе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас друзья здесь, а раньше были на работе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас друзья здесь, а раньше были на работе",
+          "uk": "Зараз друзі тут, а раніше були на роботі"
+        },
+        "gappedTargetPhrase": "They ___ at work earlier.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-05:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сейчас друзья здесь, а раньше были на работе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Сейчас друзья здесь, а раньше были на работе",
+            "feedbackByLocale": {
+              "ru": "С they нужна were.",
+              "uk": "З they потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Сейчас друзья здесь, а раньше были на работе",
+            "feedbackByLocale": {
+              "ru": "Вы говорите о прежнем месте: were.",
+              "uk": "Ви говорите про попереднє місце: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:word:during",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — during",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:word:during:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — during",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:word:during:audio",
+          "transcript": "during"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:word:during:r1",
+            "targetText": "during",
+            "meaningByLocale": {
+              "ru": "во время. During the trip — во время поездки. После слова называем событие.",
+              "uk": "під час. During the trip — під час поїздки. Після слова називаємо подію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "during",
+          "definitionByLocale": {
+            "ru": "во время. During the trip — во время поездки. После слова называем событие.",
+            "uk": "під час. During the trip — під час поїздки. Після слова називаємо подію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Во время фильма она была тихой. Начните с She, время поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Во время фильма она была тихой. Начните с She, время поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was quiet during the film.",
+        "localizedMeaning": {
+          "ru": "Во время фильма она была тихой. Начните с She, время поставьте в конце",
+          "uk": "Під час фільму вона була тихою. Почніть з She, час поставте в кінці"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "quiet",
+          "during",
+          "the",
+          "film"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i08:r1",
+          "text": "I was tired during the trip."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i08:r2",
+          "text": "I was hungry during the trip."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i08:r3",
+          "text": "I was happy during the trip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i08:audio",
+          "transcript": "I was tired during the trip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:i08:r1",
+            "targetText": "I was tired during the trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i08:r2",
+            "targetText": "I was hungry during the trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i08:r3",
+            "targetText": "I was happy during the trip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was tired during the trip.",
+              "uk": "У записі звучить I was tired during the trip."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was tired during the trip.",
+              "uk": "У записі звучить I was tired during the trip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о состоянии друзей во время поездки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о состоянии друзей во время поездки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о состоянии друзей во время поездки",
+          "uk": "Розкажіть про стан друзів під час поїздки"
+        },
+        "gappedTargetPhrase": "They ___ happy during the trip.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-05:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Расскажите о состоянии друзей во время поездки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о состоянии друзей во время поездки",
+            "feedbackByLocale": {
+              "ru": "С they нужна were.",
+              "uk": "З they потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о состоянии друзей во время поездки",
+            "feedbackByLocale": {
+              "ru": "Am относится к I в настоящем. Здесь were.",
+              "uk": "Am стосується I в теперішньому. Тут were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:word:until",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — until",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:word:until:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — until",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:word:until:audio",
+          "transcript": "until"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:word:until:r1",
+            "targetText": "until",
+            "meaningByLocale": {
+              "ru": "до указанного момента. Until six — до шести.",
+              "uk": "до вказаного моменту. Until six — до шостої."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "until",
+          "definitionByLocale": {
+            "ru": "до указанного момента. Until six — до шести.",
+            "uk": "до вказаного моменту. Until six — до шостої."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы были на работе до шести. Начните с I, until six поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы были на работе до шести. Начните с I, until six поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was at work until six.",
+        "localizedMeaning": {
+          "ru": "Вы были на работе до шести. Начните с I, until six поставьте в конце",
+          "uk": "Ви були на роботі до шостої. Почніть з I, until six поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "at",
+          "work",
+          "until",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i11:r1",
+          "text": "The shop was open until eight."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i11:r2",
+          "text": "The shop was open until six."
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i11:r3",
+          "text": "The shop was open until ten."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i11:audio",
+          "transcript": "The shop was open until eight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-05:i11:r1",
+            "targetText": "The shop was open until eight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i11:r2",
+            "targetText": "The shop was open until six.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i11:r3",
+            "targetText": "The shop was open until ten.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop was open until eight.",
+              "uk": "У записі звучить The shop was open until eight."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop was open until eight.",
+              "uk": "У записі звучить The shop was open until eight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера вы с другом были заняты до полудня",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-05:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-05:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вы с другом были заняты до полудня",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы с другом были заняты до полудня",
+          "uk": "Учора ви з другом були зайняті до полудня"
+        },
+        "gappedTargetPhrase": "We ___ busy until noon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-05:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вчера вы с другом были заняты до полудня",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Вчера вы с другом были заняты до полудня",
+            "feedbackByLocale": {
+              "ru": "С we нужна were.",
+              "uk": "З we потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Вчера вы с другом были заняты до полудня",
+            "feedbackByLocale": {
+              "ru": "С we в прошлом нужна were.",
+              "uk": "З we у минулому потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-05:i13:p1",
+            "target": "ago",
+            "meaningByLocale": {
+              "ru": "назад",
+              "uk": "тому"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-05:i13:p2",
+            "target": "earlier",
+            "meaningByLocale": {
+              "ru": "раньше",
+              "uk": "раніше"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-05:i13:p3",
+            "target": "during",
+            "meaningByLocale": {
+              "ru": "во время",
+              "uk": "під час"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-05:i13:p4",
+            "target": "until",
+            "meaningByLocale": {
+              "ru": "до указанного момента",
+              "uk": "до вказаного моменту"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ago",
+          "earlier",
+          "during",
+          "until"
+        ],
+        "rightColumn": [
+          "назад",
+          "раньше",
+          "во время",
+          "до указанного момента"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i14:audio",
+          "transcript": "Please don't talk during the film."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't talk during the film.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "talk",
+          "during",
+          "the",
+          "film"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i15:audio",
+          "transcript": "I am free right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am free right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "free",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что раньше сегодня дети были голодны",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что раньше сегодня дети были голодны",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i16:audio",
+          "transcript": "The children were hungry earlier."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The children were hungry earlier.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что магазин был закрыт до десяти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что магазин был закрыт до десяти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-05:i17:audio",
+          "transcript": "The shop was closed until ten."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shop was closed until ten.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f5098afbf2b41aa755dd34c251d92c50b1a32b9ebcb348d642ab5e8ea600115c"
+}

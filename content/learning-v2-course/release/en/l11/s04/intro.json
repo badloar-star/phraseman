@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; yesterday; right now; please don’t",
+    "uk": "was/were; yesterday; right now; please don’t"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вокзал",
+        "uk": "Вокзал"
+      },
+      "bodyByLocale": {
+        "ru": "Train station — «железнодорожная станция, вокзал». Вчера вы с другом были на вокзале: We were at the train station yesterday. Were относится к we: нас несколько. Теперь вы дома: We are at home right now. В рассказе о вчерашней поездке нужна were.",
+        "uk": "Train station — «залізнична станція, вокзал». Учора ви з другом були на вокзалі: We were at the train station yesterday. Were стосується we: нас кілька. Тепер ви вдома: We are at home right now. У розповіді про вчорашню поїздку потрібна were."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-04:intro1:r1",
+              "text": "We were at the train station yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro1:r2",
+              "text": "We was at the train station yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro1:r3",
+              "text": "We are at the train station yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-04:intro1:r1",
+              "text": "We were at the train station yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro1:r2",
+              "text": "We was at the train station yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro1:r3",
+              "text": "We are at the train station yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два центра",
+        "uk": "Два центри"
+      },
+      "bodyByLocale": {
+        "ru": "Shopping centre — «торговый центр», sports centre — «спортивный центр». Учим названия целиком: в sports сохраняем s. Вчера спортивный центр был закрыт: The sports centre was closed yesterday. Это один центр, поэтому was.",
+        "uk": "Shopping centre — «торговий центр», sports centre — «спортивний центр». Вчимо назви цілком: у sports зберігаємо s. Учора спортивний центр був зачинений: The sports centre was closed yesterday. Це один центр, тому was."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-04:intro2:r1",
+              "text": "The sports centre was closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro2:r2",
+              "text": "The sports centre were closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro2:r3",
+              "text": "The sports centre am closed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-04:intro2:r1",
+              "text": "The sports centre was closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro2:r2",
+              "text": "The sports centre were closed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro2:r3",
+              "text": "The sports centre am closed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Парикмахер был занят",
+        "uk": "Перукар був зайнятий"
+      },
+      "bodyByLocale": {
+        "ru": "Hairdresser — «парикмахер»: человек, который стрижёт волосы. Вчера знакомый парикмахер был занят: The hairdresser was busy yesterday. Это человек, а не название помещения. Пока друг разговаривает с ним, попросите не спешить: Please don’t hurry — «Пожалуйста, не спеши». Сейчас выберите фразу о вчерашней занятости парикмахера.",
+        "uk": "Hairdresser — «перукар»: людина, яка стриже волосся. Учора знайомий перукар був зайнятий: The hairdresser was busy yesterday. Це людина, а не назва приміщення. Поки друг розмовляє з ним, попросіть не поспішати: Please don’t hurry — «Будь ласка, не поспішай». Зараз виберіть фразу про вчорашню зайнятість перукаря."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-04:intro3:r1",
+              "text": "The hairdresser was busy yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro3:r2",
+              "text": "The hairdresser were busy yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro3:r3",
+              "text": "The hairdresser is busy yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-04:intro3:r1",
+              "text": "The hairdresser was busy yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro3:r2",
+              "text": "The hairdresser were busy yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-04:intro3:r3",
+              "text": "The hairdresser is busy yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "71e6704348006977afd12381ef6ae13dd04ee71f151a6eb9f93285647d415b5a"
+}

@@ -3948,4 +3948,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; yesterday и right now","uk":"was/were; yesterday і right now"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 4,
+    sourceFingerprint: "f3670066b82c56c706c9d19605854f7cdec5b087ef75999f80477a123d522f98",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; yesterday; right now; please don’t","uk":"was/were; yesterday; right now; please don’t"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 5,
+    sourceFingerprint: "6c5e18adc9e4c8089a14e96005da930e22658551883571aba07b4356c875ffc3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; two hours ago; during + событие; until + время","uk":"was/were; two hours ago; during + подія; until + час"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 6,
+    sourceFingerprint: "3f68e21dbecb3048065dac58b6b80787038cfaff2b724d76fdb3653c5494bbc4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; on + день недели","uk":"was/were; on + день тижня"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

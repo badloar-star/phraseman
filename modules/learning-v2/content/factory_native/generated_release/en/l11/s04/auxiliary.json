@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-04:intro1:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-11:session-04:intro1:r3": {
+          "ru": "Yesterday — прошлое: were, не are.",
+          "uk": "Yesterday — минуле: were, не are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-04:intro2:r2": {
+          "ru": "Один центр: was.",
+          "uk": "Один центр: was."
+        },
+        "en:lesson-11:session-04:intro2:r3": {
+          "ru": "Am относится к I в настоящем. Здесь was.",
+          "uk": "Am стосується I в теперішньому. Тут was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-04:intro3:r2": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        },
+        "en:lesson-11:session-04:intro3:r3": {
+          "ru": "Yesterday — прошлое, нужна was.",
+          "uk": "Yesterday — минуле, потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "008d54161199ae0812fe0210746a629bbc119746539ed021525c64f98112b6ec"
+}

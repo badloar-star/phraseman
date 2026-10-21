@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-04:word:train-station",
+    "correctText": "train station",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i01",
+    "correctText": "I was at the train station yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i02",
+    "correctText": "The train station was busy.",
+    "correctResponseId": "en:lesson-11:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:word:shopping-centre",
+    "correctText": "shopping centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i04",
+    "correctText": "The shopping centre was crowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i05",
+    "correctText": "We were at the shopping centre.",
+    "correctResponseId": "en:lesson-11:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:word:sports-centre",
+    "correctText": "sports centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i07",
+    "correctText": "The sports centre was closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i08",
+    "correctText": "He was at the sports centre.",
+    "correctResponseId": "en:lesson-11:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:word:hairdresser",
+    "correctText": "hairdresser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i10",
+    "correctText": "The hairdresser was friendly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i11",
+    "correctText": "The hairdresser was tired.",
+    "correctResponseId": "en:lesson-11:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i13",
+    "correctText": "en:lesson-11:session-04:i13:p1=train station\nen:lesson-11:session-04:i13:p2=shopping centre\nen:lesson-11:session-04:i13:p3=sports centre\nen:lesson-11:session-04:i13:p4=hairdresser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i14",
+    "correctText": "Please don't hurry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i15",
+    "correctText": "The train station was quiet last night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i16",
+    "correctText": "The hairdresser was at work yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-04:i17",
+    "correctText": "The shopping centre was closed last week.",
+    "correctResponseId": null
+  }
+]

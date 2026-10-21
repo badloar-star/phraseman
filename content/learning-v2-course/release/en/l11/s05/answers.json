@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-05:word:ago",
+    "correctText": "ago",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i01",
+    "correctText": "She was here an hour ago.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i02",
+    "correctText": "We were here two days ago.",
+    "correctResponseId": "en:lesson-11:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:word:earlier",
+    "correctText": "earlier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i04",
+    "correctText": "I was busy earlier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i05",
+    "correctText": "It was cold earlier.",
+    "correctResponseId": "en:lesson-11:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:word:during",
+    "correctText": "during",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i07",
+    "correctText": "She was quiet during the film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i08",
+    "correctText": "I was tired during the trip.",
+    "correctResponseId": "en:lesson-11:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:word:until",
+    "correctText": "until",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i10",
+    "correctText": "I was at work until six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i11",
+    "correctText": "The shop was open until eight.",
+    "correctResponseId": "en:lesson-11:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i13",
+    "correctText": "en:lesson-11:session-05:i13:p1=ago\nen:lesson-11:session-05:i13:p2=earlier\nen:lesson-11:session-05:i13:p3=during\nen:lesson-11:session-05:i13:p4=until",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i14",
+    "correctText": "Please don't talk during the film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i15",
+    "correctText": "I am free right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i16",
+    "correctText": "The children were hungry earlier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-05:i17",
+    "correctText": "The shop was closed until ten.",
+    "correctResponseId": null
+  }
+]

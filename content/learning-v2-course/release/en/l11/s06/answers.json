@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-06:word:Tuesday",
+    "correctText": "Tuesday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i01",
+    "correctText": "I was at home on Tuesday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i02",
+    "correctText": "She was tired on Tuesday.",
+    "correctResponseId": "en:lesson-11:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i03",
+    "correctText": "on",
+    "correctResponseId": "en:lesson-11:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:word:Wednesday",
+    "correctText": "Wednesday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i04",
+    "correctText": "We were busy on Wednesday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i05",
+    "correctText": "It was cold on Wednesday.",
+    "correctResponseId": "en:lesson-11:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:word:Thursday",
+    "correctText": "Thursday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i07",
+    "correctText": "The shop was closed on Thursday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i08",
+    "correctText": "You were free on Thursday.",
+    "correctResponseId": "en:lesson-11:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:word:Saturday",
+    "correctText": "Saturday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i10",
+    "correctText": "She was in a cafe on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i11",
+    "correctText": "We were at home on Saturday.",
+    "correctResponseId": "en:lesson-11:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i13",
+    "correctText": "en:lesson-11:session-06:i13:p1=Tuesday\nen:lesson-11:session-06:i13:p2=Wednesday\nen:lesson-11:session-06:i13:p3=Thursday\nen:lesson-11:session-06:i13:p4=Saturday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i14",
+    "correctText": "Please don't hurry me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i15",
+    "correctText": "I am working right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i16",
+    "correctText": "We were at the sports centre on Tuesday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-06:i17",
+    "correctText": "They were at the train station on Saturday.",
+    "correctResponseId": null
+  }
+]

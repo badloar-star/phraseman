@@ -98,6 +98,9 @@ import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard'
 import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
+// зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
+import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
+import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
@@ -2572,14 +2575,49 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         );
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
-        const renderHomeV2 = () => (
-          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
-            homeViewportHeightRef.current = event.nativeEvent.layout.height;
-            refreshDailyPhraseVisibility();
-          }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
-            <View style={{ paddingHorizontal: 12, paddingBottom: 6 }}>
+        // зачем (Главная A «Сцена»): тот же переход «Продолжить», что у карточки, — одной функцией для карточки и сцены (не две копии логики)
+        const openHomeContinuePriority = () => {
+          if (continueV2) {
+            // зачем (P23): тап ведёт в то же занятие V2 тем же маршрутом, что вкладка «Уроки» (без одноразовой подготовки — экран занятия готовит сам)
+            console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'v2', sessionId: continueV2.sessionId, done: continueV2Progress?.done ?? null, total: continueV2Progress?.total ?? null }));
+            // зачем (R09): тот же запуск, что на вкладке «Уроки» — подготовка и передача «готово» плееру, иначе в релизе карта
+            void launchHomeContinueV2(continueV2.route, { lang, studyTarget: String(studyTarget), push: (href) => nav.push(href as never) });
+            return;
+          }
+          if (!lastLesson) {
+            console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'no_last_lesson' })); // guard-ok: ранний выход логирует причину
+            return;
+          }
+          console.log('[HOME-CONTINUE] open', JSON.stringify({ lessonId: lastLesson.id, progress: lastLesson.progress ?? 0 }));
+          logFeatureOpened('lesson_menu');
+          trackFeatureOpened('lesson_menu').catch((error: unknown) => {
+            if (__DEV__) console.warn('[HOME-NAV] track_feature_failed', error instanceof Error ? error.message : String(error)); // guard-ok
+          });
+          perfNavStart('lesson_menu');
+          // зачем (аудит Optimistic UI): тот же гвард двойного тапа, что у плиток (раньше «Продолжить» открывал меню урока дважды при быстром втором тапе).
+          nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
+        };
+        const openHomeContinuePlace = () => {
+          if (continuePlace) {
+            // зачем: тап — сразу в то место; маршрут ведёт на экран-вход раздела со своими проверками доступа (диалог — брифинг, карточки — настройка тренировки с проверкой квоты)
+            console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: continueChoice.kind, id: continuePlace.id, pathname: continuePlace.route.pathname }));
+            nav.push({ pathname: continuePlace.route.pathname, params: continuePlace.route.params } as never);
+            return;
+          }
+          // зачем: меток нет вовсе — «Начать урок 1» ведёт в новые уроки (карта V2); при рубильнике «V2 скрыт» — в меню урока 1 старого курса
+          console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'start_lesson_1', v2Hidden: isLearningV2Hidden() }));
+          if (isLearningV2Hidden()) {
+            nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);
+            return;
+          }
+          go('/learning-v2/course');
+        };
+        const renderHomeV2Header = (tone: 'default' | 'scene', surface?: string) => (
               <HomeBellStateContext.Provider value={homeBellState}>
               <HomeV2Header
+                tone={tone}
+                // зачем (координатор 22.10: кольцо Plus на Главной — в эталоне A): свой статус Plus, вводный доступ кольца не даёт (как useIsPlus)
+                avatarPlus={tone === 'scene' ? { plus: isPremium || isVip || isPro, surface: surface ?? homeV2Palette.bg } : undefined}
                 refreshing={cloudProfileRefreshing}
                 // зачем (координатор 18.10, [HOME-CHILD-COST]): активность и счётчик фокусов уходят колокольчику через контекст (HomeBellStateContext, провайдер ниже) — элемент не меняется, шапка не перерисовывается на возврате
                 bellSlot={<NotificationCenterButton />}
@@ -2616,11 +2654,70 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     label: homeV2CoinsLabel,
                     accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? runesBalance : '—'}`,
                     onPress: () => { nav.push('/coin_rank'); },
+                    // зачем (эталон «Сцены»: «монеты | ⚡ энергия» в одной плашке): энергия — свой крошечный подписчик, шапку не перерисовывает
+                    trailing: tone === 'scene' ? <HomeSceneEnergy /> : undefined,
                   },
                 ]}
               />
               </HomeBellStateContext.Provider>
+        );
+        // зачем (владелец 21.10 ~23:40, эталон home-new-concepts.html раздел A): «Сцена» — те же данные, что у шапки и «Продолжить»; новых чтений нет
+        const homeSceneOnPlace = continuePlace !== null || continueStart;
+        const homeSceneLessonNo = continueV2 ? continueV2.lessonOrdinal : lastLesson ? lastLesson.id : continueStart ? 1 : null;
+        const renderHomeScene = () => (
+          <HomeScene
+            lang={lang}
+            header={(surface) => renderHomeV2Header('scene', surface)}
+            artTone={homeArtTone}
+            accent={homeV2Palette.accent}
+            streakDays={displayStreak}
+            streakToday={streakToday}
+            plus={hasPremiumAccess}
+            energy={energyPeekNow ? energyPeekNow.energy : null}
+            hasProgress={continueStart ? false : continueResolved ? true : null}
+            place={{
+              badge: continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards')
+                : homeSceneLessonNo !== null ? triLang(lang, { ru: `Урок ${homeSceneLessonNo}`, uk: `Урок ${homeSceneLessonNo}`, en: `Lesson ${homeSceneLessonNo}`, es: `Lección ${homeSceneLessonNo}`, 'pt-BR': `Lição ${homeSceneLessonNo}`, vi: `Bài ${homeSceneLessonNo}`, id: `Pelajaran ${homeSceneLessonNo}`, tr: `Ders ${homeSceneLessonNo}`, pl: `Lekcja ${homeSceneLessonNo}` }) : null,
+              episode: continueV2 && !homeSceneOnPlace ? continueV2.sessionOrdinal : null,
+              title: homeSceneOnPlace ? continuePlaceTitle : priorityCardTitle,
+              done: homeSceneOnPlace ? null : continueV2 && continueV2Progress ? continueV2Progress.done : lastLesson ? Math.max(0, Math.min(50, lastLesson.progress ?? 0)) : null,
+              total: homeSceneOnPlace ? null : continueV2 && continueV2Progress ? Math.max(1, continueV2Progress.total) : lastLesson ? 50 : null,
+              theoryLessonId: continueV2 && !homeSceneOnPlace ? continueV2.lessonOrdinal : null,
+            }}
+            courseProgress={continueV2Progress}
+            pending={!homeSceneOnPlace && !priorityCardVisible && continueCardPending}
+            busy={continueV2 !== null && continueV2Launching}
+            active={homeRuntimeActive}
+            onContinue={homeSceneOnPlace ? openHomeContinuePlace : openHomeContinuePriority}
+            onChip={(kind) => {
+              if (kind === 'words') { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'dictionary_not_connected' })); return; } // guard-ok: ранний выход называет причину
+              if (kind === 'theory') {
+                const lessonId = continueV2 ? continueV2.lessonOrdinal : null;
+                if (lessonId === null) { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'no_v2_lesson' })); return; } // guard-ok: ранний выход называет причину
+                nav.push({ pathname: '/lesson_theory_v2', params: { id: String(lessonId) } } as never);
+                return;
+              }
+              if (kind === 'cards' || kind === 'review') { quickItems[2]!.onPress(); return; }
+              if (kind === 'video') { go('/(tabs)/video'); return; }
+              // «Фраза дня» — та же карточка ниже на Главной: прокрутка к ней
+              const phraseTop = dailyPhraseLayoutRef.current.top;
+              if (phraseTop <= 0) { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'phrase_card_not_laid_out' })); return; } // guard-ok
+              homeScrollRef.current?.scrollTo({ y: Math.max(0, phraseTop - 12), animated: true });
+            }}
+          />
+        );
+        const renderHomeV2 = () => (
+          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+            homeViewportHeightRef.current = event.nativeEvent.layout.height;
+            refreshDailyPhraseVisibility();
+          }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
+            {HOME_SCENE_V2_ENABLED ? renderHomeScene() : (
+            <View style={{ paddingHorizontal: 12, paddingBottom: 6 }}>
+              {renderHomeV2Header('default')}
             </View>
+            )}
+            {/* зачем (Главная A «Сцена»): со сценой место продолжения показывает сцена — прежние карточки, пока HOME_SCENE_V2_ENABLED выключен (релиз до показа владельцу) */}
+            {HOME_SCENE_V2_ENABLED ? null : (<>
             {/* зачем (слово владельца 17.10): диалог / набор карточек / «Начать урок 1» рисует блок ниже; прежняя карточка урока и V2 со своей заготовкой — без изменений */}
             {continuePlace === null && !continueStart ? (
             <>
@@ -2636,27 +2733,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 artWide={!lastLessonCompleted}
                 badge={continueV2 ? triLang(lang, { ru: `Урок ${continueV2.lessonOrdinal}`, uk: `Урок ${continueV2.lessonOrdinal}`, en: `Lesson ${continueV2.lessonOrdinal}`, es: `Lección ${continueV2.lessonOrdinal}`, 'pt-BR': `Lição ${continueV2.lessonOrdinal}`, vi: `Bài ${continueV2.lessonOrdinal}`, id: `Pelajaran ${continueV2.lessonOrdinal}`, tr: `Ders ${continueV2.lessonOrdinal}`, pl: `Lekcja ${continueV2.lessonOrdinal}` }) : lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
                 accessibilityLabel={`${s.home.continueBtn}: ${priorityCardTitle}`}
-                onPress={() => {
-                  if (continueV2) {
-                    // зачем (P23): тап ведёт в то же занятие V2 тем же маршрутом, что вкладка «Уроки» (без одноразовой подготовки — экран занятия готовит сам)
-                    console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'v2', sessionId: continueV2.sessionId, done: continueV2Progress?.done ?? null, total: continueV2Progress?.total ?? null }));
-                    // зачем (R09): тот же запуск, что на вкладке «Уроки» — подготовка и передача «готово» плееру, иначе в релизе карта
-                    void launchHomeContinueV2(continueV2.route, { lang, studyTarget: String(studyTarget), push: (href) => nav.push(href as never) });
-                    return;
-                  }
-                  if (!lastLesson) {
-                    console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'no_last_lesson' })); // guard-ok: ранний выход логирует причину
-                    return;
-                  }
-                  console.log('[HOME-CONTINUE] open', JSON.stringify({ lessonId: lastLesson.id, progress: lastLesson.progress ?? 0 }));
-                  logFeatureOpened('lesson_menu');
-                  trackFeatureOpened('lesson_menu').catch((error: unknown) => {
-                    if (__DEV__) console.warn('[HOME-NAV] track_feature_failed', error instanceof Error ? error.message : String(error)); // guard-ok
-                  });
-                  perfNavStart('lesson_menu');
-                  // зачем (аудит Optimistic UI): тот же гвард двойного тапа, что у плиток (раньше «Продолжить» открывал меню урока дважды при быстром втором тапе).
-                  nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
-                }}
+                onPress={openHomeContinuePriority}
               />
             ) : null}
             </>
@@ -2672,23 +2749,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 artWide={false}
                 badge={continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards') : undefined}
                 accessibilityLabel={`${s.home.continueBtn}: ${continuePlaceTitle}`}
-                onPress={() => {
-                  if (continuePlace) {
-                    // зачем: тап — сразу в то место; маршрут ведёт на экран-вход раздела со своими проверками доступа (диалог — брифинг, карточки — настройка тренировки с проверкой квоты)
-                    console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: continueChoice.kind, id: continuePlace.id, pathname: continuePlace.route.pathname }));
-                    nav.push({ pathname: continuePlace.route.pathname, params: continuePlace.route.params } as never);
-                    return;
-                  }
-                  // зачем: меток нет вовсе — «Начать урок 1» ведёт в новые уроки (карта V2); при рубильнике «V2 скрыт» — в меню урока 1 старого курса
-                  console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'start_lesson_1', v2Hidden: isLearningV2Hidden() }));
-                  if (isLearningV2Hidden()) {
-                    nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);
-                    return;
-                  }
-                  go('/learning-v2/course');
-                }}
+                onPress={openHomeContinuePlace}
               />
             ) : null}
+            </>)}
             <View style={{ gap: 4 }}>
               {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget}`} spireLang={String(studyTarget)} uiLang={lang} /> : null}
               {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (

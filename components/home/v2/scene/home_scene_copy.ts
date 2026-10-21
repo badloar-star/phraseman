@@ -9,7 +9,7 @@
 import { triLang, type Lang } from '../../../../constants/i18n';
 import type { HomeSceneState } from './home_scene_state';
 
-export type HomeSceneChipKind = 'theory' | 'cards' | 'phrase' | 'video' | 'review';
+export type HomeSceneChipKind = 'words' | 'theory' | 'cards' | 'phrase' | 'video' | 'review';
 
 export type HomeSceneCopyInput = Readonly<{
   lang: Lang;
@@ -30,6 +30,10 @@ export type HomeSceneCopyInput = Readonly<{
   energyMinutes: number | null;
   /** Есть ли экран теории для урока (чип «Теория»). */
   theoryAvailable: boolean;
+  /** Словарь урока подключён к «Урокам» (чип «Слова»); до этого — false (координатор 22.10). */
+  wordsAvailable: boolean;
+  /** Сколько дней была серия до разрыва (для «серия прервалась»); null — не показываем число. */
+  lostStreakDays: number | null;
 }>;
 
 export type HomeSceneCopy = Readonly<{
@@ -79,6 +83,7 @@ const T = {
   lost: (lang: Lang) => triLang(lang, { ru: 'Серия прервалась', uk: 'Серія перервалася', en: 'Your streak ended', es: 'Tu racha se cortó', 'pt-BR': 'Sua sequência acabou', vi: 'Chuỗi đã bị ngắt', id: 'Runtunanmu terputus', tr: 'Serin bozuldu', pl: 'Seria przerwana' }),
   newStreak: (lang: Lang) => triLang(lang, { ru: 'Начнём новую серию', uk: 'Почнімо нову серію', en: "Let's start a new streak", es: 'Empecemos una nueva racha', 'pt-BR': 'Vamos começar uma nova sequência', vi: 'Bắt đầu chuỗi mới nào', id: 'Ayo mulai runtunan baru', tr: 'Yeni bir seri başlatalım', pl: 'Zacznijmy nową serię' }),
   flameBack: (lang: Lang) => triLang(lang, { ru: 'Одно занятие, и огонь снова загорится', uk: 'Одне заняття — і вогонь знову спалахне', en: 'One session and the flame is back', es: 'Una sesión y la llama vuelve', 'pt-BR': 'Uma sessão e a chama volta', vi: 'Một buổi học là ngọn lửa trở lại', id: 'Satu sesi dan apinya menyala lagi', tr: 'Bir oturum ve alev geri gelir', pl: 'Jedne zajęcia i płomień wraca' }),
+  wasDays: (lang: Lang, n: number) => triLang(lang, { ru: `Было ${n} ${ruDays(n)}.`, uk: `Було ${n} ${ukDays(n)}.`, en: `It was ${n} ${en1(n, 'day', 'days')}.`, es: `Eran ${n} ${en1(n, 'día', 'días')}.`, 'pt-BR': `Eram ${n} ${en1(n, 'dia', 'dias')}.`, vi: `Đã có ${n} ngày.`, id: `Sebelumnya ${n} hari.`, tr: `${n} gündü.`, pl: `Było ${n} ${plDays(n)}.` }),
   exam: (lang: Lang) => triLang(lang, { ru: 'Экзамен главы ждёт', uk: 'Іспит розділу чекає', en: 'Chapter exam is ready', es: 'El examen del capítulo te espera', 'pt-BR': 'A prova do capítulo te espera', vi: 'Bài kiểm tra chương đang chờ', id: 'Ujian bab menunggu', tr: 'Bölüm sınavı seni bekliyor', pl: 'Egzamin z rozdziału czeka' }),
   examLine: (lang: Lang) => triLang(lang, { ru: '12 вопросов, сдать от 10', uk: '12 питань, скласти від 10', en: '12 questions, pass with 10', es: '12 preguntas, aprueba con 10', 'pt-BR': '12 perguntas, passe com 10', vi: '12 câu hỏi, đạt từ 10', id: '12 soal, lulus dengan 10', tr: '12 soru, 10 ile geçersin', pl: '12 pytań, zdasz od 10' }),
   examCta: (lang: Lang) => triLang(lang, { ru: 'Сдать экзамен', uk: 'Скласти іспит', en: 'Take the exam', es: 'Hacer el examen', 'pt-BR': 'Fazer a prova', vi: 'Làm bài kiểm tra', id: 'Ikuti ujian', tr: 'Sınava gir', pl: 'Podejdź do egzaminu' }),
@@ -89,6 +94,7 @@ const T = {
 /** Подписи чипов сцены. */
 export function homeSceneChipLabel(lang: Lang, kind: HomeSceneChipKind): string {
   switch (kind) {
+    case 'words': return triLang(lang, { ru: 'Слова', uk: 'Слова', en: 'Words', es: 'Palabras', 'pt-BR': 'Palavras', vi: 'Từ vựng', id: 'Kata', tr: 'Kelimeler', pl: 'Słowa' });
     case 'theory': return triLang(lang, { ru: 'Теория', uk: 'Теорія', en: 'Theory', es: 'Teoría', 'pt-BR': 'Teoria', vi: 'Lý thuyết', id: 'Teori', tr: 'Teori', pl: 'Teoria' });
     case 'cards': return triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' });
     case 'phrase': return triLang(lang, { ru: 'Фраза дня', uk: 'Фраза дня', en: 'Phrase of the day', es: 'Frase del día', 'pt-BR': 'Frase do dia', vi: 'Câu của ngày', id: 'Frasa hari ini', tr: 'Günün ifadesi', pl: 'Zwrot dnia' });
@@ -111,10 +117,11 @@ export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
   const place = i.badge ? (i.episode !== null ? `${i.badge} · ${T.episode(lang)} ${i.episode}` : i.badge) : '';
   const progressLine = i.progress && i.progress.total > 0 ? T.of(lang, Math.min(i.progress.done, i.progress.total), i.progress.total) : null;
   const bar = i.progress && i.progress.total > 0 ? Math.max(0, Math.min(1, i.progress.done / i.progress.total)) : null;
-  const lessonChips: readonly HomeSceneChipKind[] = i.theoryAvailable ? ['theory'] : [];
+  // зачем (эталон: «Слова · Теория»; координатор 22.10: «Слова» — только когда словарь подключён к «Урокам»)
+  const lessonChips: readonly HomeSceneChipKind[] = [...(i.wordsAvailable ? ['words' as const] : []), ...(i.theoryAvailable ? ['theory' as const] : [])];
   const base = { warm: null, note: null, chips: [] as readonly HomeSceneChipKind[] };
   switch (i.state) {
-    case 'new':
+    case 'newbie':
       return { ...base, kicker: place, title: i.title, line: null, bar: null, cta: T.start(lang) };
     case 'continue':
     case 'offline':
@@ -130,7 +137,7 @@ export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
     case 'welcome_back':
       return { ...base, kicker: T.welcome(lang), title: i.episode !== null ? T.resumeAt(lang, i.episode) : i.title, line: i.daysAway !== null ? T.away(lang, i.daysAway) : null, bar: null, cta: T.cont(lang), chips: ['review', ...lessonChips] };
     case 'streak_lost':
-      return { ...base, kicker: T.lost(lang), title: T.newStreak(lang), line: T.flameBack(lang), bar: null, cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
+      return { ...base, kicker: T.lost(lang), title: T.newStreak(lang), line: i.lostStreakDays !== null && i.lostStreakDays >= 2 ? `${T.wasDays(lang, i.lostStreakDays)} ${T.flameBack(lang)}` : T.flameBack(lang), bar: null, cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
     case 'exam_ready':
       return { ...base, kicker: place, title: T.exam(lang), line: T.examLine(lang), bar: null, cta: T.examCta(lang), chips: lessonChips };
     case 'all_done':

@@ -30,6 +30,7 @@ export const HOME_SCENE_STAGE_MIN_HEIGHT = 540;
 /** Панель «Сегодня» наезжает на сцену (.a-panel margin-top −38). */
 export const HOME_SCENE_PANEL_OVERLAP = 38;
 const HERO = 214;
+const HERO_PAD = 13;
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 
 export type HomeSceneChip = Readonly<{ kind: HomeSceneChipKind; label: string; icon: React.ComponentProps<typeof Ionicons>['name'] }>;
@@ -175,9 +176,10 @@ function LiveEnergyText({ build, style, testID, header = false }: Readonly<{ bui
 const s = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden', justifyContent: 'space-between' },
-  hero: { position: 'absolute', right: -26, top: 92, width: HERO, height: HERO, opacity: 0.96 },
+  // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
+  hero: { position: 'absolute', right: -26, top: 92, width: HERO, height: HERO, padding: HERO_PAD, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
-  heroImage: { width: HERO, height: HERO },
+  heroImage: { width: HERO - HERO_PAD * 2, height: HERO - HERO_PAD * 2 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   // зачем: место под шапку — сама шапка лежит поверх сцены из контейнера HomeScene
   topSpace: { height: 64 },

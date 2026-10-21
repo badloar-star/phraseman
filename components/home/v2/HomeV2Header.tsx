@@ -7,6 +7,8 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateLog, useHomePlateStyle } from './homePlate';
 import KitSpinner from '../../v2/KitSpinner';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
+import { PlusAvatarRing } from '../../plus/PlusAvatarRing';
+import { STORY_RING_SLOT } from '../../stories/story_ring_constants';
 
 type StatChip = Readonly<{
   testID: string;
@@ -35,6 +37,8 @@ type Props = {
    * без плашек 50 % цвета фона. По умолчанию — прежний вид.
    */
   tone?: 'default' | 'scene';
+  /** Кольцо Plus у аватара (общий PlusAvatarRing): plus — свой статус Plus, surface — цвет под значком ◆. Нет — аватар как был. */
+  avatarPlus?: Readonly<{ plus: boolean; surface: string }>;
 };
 
 /** One compact utility row; the Home title and slogan are intentionally absent. */
@@ -75,7 +79,8 @@ function sameElement(a: React.ReactNode, b: React.ReactNode): boolean {
 }
 
 function sameHeaderData(a: ViewProps, b: ViewProps): boolean {
-  if (a.refreshing !== b.refreshing || a.tone !== b.tone || a.latestRef !== b.latestRef || a.stats.length !== b.stats.length) return false; // зачем (Ревизор 3.15): другое число показателей — не сравнивать по индексу (TypeError)
+  if (a.refreshing !== b.refreshing || a.tone !== b.tone || a.latestRef !== b.latestRef || a.stats.length !== b.stats.length) return false;
+  if ((a.avatarPlus?.plus ?? false) !== (b.avatarPlus?.plus ?? false) || a.avatarPlus?.surface !== b.avatarPlus?.surface) return false; // зачем (Ревизор 3.15): другое число показателей — не сравнивать по индексу (TypeError)
   if (!sameElement(a.bellSlot, b.bellSlot) || !sameElement(a.avatarSlot, b.avatarSlot)) return false;
   return a.stats.every((x, i) => {
     const y = b.stats[i];
@@ -86,7 +91,7 @@ function sameHeaderData(a: ViewProps, b: ViewProps): boolean {
 
 type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
 
-const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, stats, refreshing = false, tone = 'default', latestRef }: ViewProps) {
+const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, stats, refreshing = false, tone = 'default', avatarPlus, latestRef }: ViewProps) {
   useRenderCause('home:header', () => ({ bellSlot, avatarSlot, stats, refreshing, tone }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
@@ -130,7 +135,7 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
         </View>
         <View style={s.actions}>
           {bellSlot}
-          {avatarSlot}
+          {avatarPlus?.plus ? <PlusAvatarRing plus size={STORY_RING_SLOT} surface={avatarPlus.surface}>{avatarSlot}</PlusAvatarRing> : avatarSlot}
         </View>
       </View>
     </View>

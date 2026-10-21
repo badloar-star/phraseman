@@ -5,12 +5,12 @@
 // и приоритет при совпадении — таблица docs/design/v2-app/home-scene-states.html): чистая функция без React, хранилища
 // и сети. Главная передаёт только то, что уже знает; функция отдаёт состояние, строку «Нет сети» и ПРИЧИНУ решения —
 // её пишет журнал [HOME-SCENE]. Порядок сверху вниз, побеждает первое подходящее:
-// new → streak_risk → no_energy → welcome_back → streak_lost → exam_ready → all_done → day_done → offline → continue.
+// newbie → streak_risk → no_energy → welcome_back → streak_lost → exam_ready → all_done → day_done → offline → continue.
 // «Нет сети» при любом герое показывается ещё и строкой под шапкой (эталон, состояние «Нет сети»).
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const HOME_SCENE_STATES = [
-  'new', 'continue', 'streak_risk', 'day_done', 'no_energy', 'offline', 'exam_ready', 'streak_lost', 'welcome_back', 'all_done',
+  'newbie', 'continue', 'streak_risk', 'day_done', 'no_energy', 'offline', 'exam_ready', 'streak_lost', 'welcome_back', 'all_done',
 ] as const;
 export type HomeSceneState = typeof HOME_SCENE_STATES[number];
 
@@ -59,7 +59,7 @@ export function pickHomeSceneState(input: HomeSceneInput): HomeSceneDecision {
   const zeroEnergy = !input.plus && input.energy === 0;
   const decide = (state: HomeSceneState, reason: string, zeroEnergyNote = false): HomeSceneDecision =>
     Object.freeze({ state, offlineLine: offline, zeroEnergyNote, reason });
-  if (input.hasProgress === false) return decide('new', 'hasProgress=false');
+  if (input.hasProgress === false) return decide('newbie', 'hasProgress=false');
   if (input.hour >= HOME_SCENE_EVENING_HOUR && input.streakDays >= 1 && input.dayCounted === false) {
     return decide('streak_risk', `hour=${input.hour} streakDays=${input.streakDays} dayCounted=false energy=${String(input.energy)} plus=${String(input.plus)}`, zeroEnergy);
   }
@@ -78,7 +78,7 @@ export function pickHomeSceneState(input: HomeSceneInput): HomeSceneDecision {
  * имя добавляется в реестр картинок (components/theme/themed_art_registry.ts) — до этого стоит заглушка из нынешних картинок Главной.
  */
 export const HOME_SCENE_HERO: Readonly<Record<HomeSceneState, Readonly<{ file: string; placeholder: 'continue' | 'today' | 'lessons' }>>> = Object.freeze({
-  new: Object.freeze({ file: 'home_scene_new', placeholder: 'continue' }),
+  newbie: Object.freeze({ file: 'home_scene_newbie', placeholder: 'continue' }),
   continue: Object.freeze({ file: 'home_scene_continue', placeholder: 'continue' }),
   streak_risk: Object.freeze({ file: 'home_scene_streak_risk', placeholder: 'today' }),
   day_done: Object.freeze({ file: 'home_scene_day_done', placeholder: 'today' }),

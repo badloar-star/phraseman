@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plus — заставка, статус, подарок</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+<style>/* Карточки 2.0 — «стекло и градиент» для ВСЕХ экранов, состояний и окон раздела.
+   зачем (владелец 04.10): «в таком же стиле все остальные состояния, экраны, карточки — все модали раздела»; «карточки одного цвета темы, градиент внутри»; «наборы из видео
+   равнозначны другим разделам». Слой поверх cards-v2.html: те же экраны и тексты, другой вид — аврора на фоне, стеклянные поверхности с блеском, градиент цвета темы
+   внутри карточек, акцентная главная кнопка. Тема меняется чипами вверху (все телефоны сразу). */
+
+.ph.vis { background: var(--bg) !important; --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; --t: var(--g1); }
+.ph.vis::before { content: ""; position: absolute; inset: -18%; z-index: 0; pointer-events: none; opacity: .62;
+  background: radial-gradient(38% 26% at 18% 16%, var(--g1), transparent 70%), radial-gradient(40% 28% at 88% 44%, var(--g2), transparent 70%), radial-gradient(48% 28% at 32% 96%, var(--g1), transparent 72%);
+  animation: gdrift 18s ease-in-out infinite alternate; }
+@keyframes gdrift { to { transform: translate3d(3%, -2%, 0) scale(1.06); } }
+
+/* стеклянные поверхности: градиент темы внутри, блик по кромке, размытие под ними */
+.ph.vis .card, .ph.vis .note, .ph.vis .qc, .ph.vis .field, .ph.vis .seg3, .ph.vis .toast, .ph.vis .week, .ph.vis .acts .card {
+  background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%) !important;
+  border-color: rgba(255,255,255,.07) !important; }
+.ph.vis .card.c2 { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(24,24,30,.6)) 0%, rgba(14,14,18,.56) 58%, color-mix(in srgb, var(--g2) 20%, rgba(14,14,18,.56)) 100%) !important; }
+.ph.vis .qc { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 46%, rgba(10,10,14,.9)) 0%, rgba(8,8,12,.86) 56%, color-mix(in srgb, var(--g2) 40%, rgba(8,8,12,.86)) 100%) !important; }
+.ph.vis .srch, .ph.vis .chipbtn, .ph.vis .rb, .ph.vis .pill, .ph.vis .cntp, .ph.vis .lvl { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.1) !important; }
+.ph.vis .rb.fill { background: rgba(255,255,255,.14) !important; }
+.ph.vis .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)) !important; }
+.ph.vis .tile.t61, .ph.vis .empty .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 55%, #1a1a20), color-mix(in srgb, var(--g2) 35%, #0b0b0f)) !important; color: #fff !important; }
+
+/* главная кнопка — цвет акцента темы, как в градиентных темах */
+.ph.vis .cta:not(.gh):not(.dis):not(.red) { background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)) !important; color: var(--on) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent) !important; }
+.ph.vis .cta.gh { background: rgba(255,255,255,.06) !important; border-color: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.2)) !important; color: #fff !important; }
+.ph.vis .chipbtn.on, .ph.vis .seg3 span.on { background: var(--acc) !important; color: var(--on) !important; border-color: transparent !important; }
+.ph.vis .trk i { background: var(--acc) !important; }
+.ph.vis .ov { color: color-mix(in srgb, var(--acc) 78%, #fff); }
+
+/* окна и шторки */
+.ph.vis .sheet { background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.9)), rgba(16,16,20,.9) 55%, color-mix(in srgb, var(--g2) 14%, rgba(16,16,20,.9))) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(150%); backdrop-filter: blur(26px) saturate(150%); border-color: rgba(255,255,255,.1) !important; }
+.ph.vis .dim { background: rgba(2,2,4,.62) !important; }
+.ph.vis .toast { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(30,30,36,.85)), rgba(18,18,22,.85)) !important; }
+.ph.vis .bot { background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.9) 34%) !important; }
+.ph.vis .opt { background: rgba(255,255,255,.05) !important; }
+.ph.vis .opt.ok { background: rgba(111,208,140,.14) !important; }
+.ph.vis .opt.no { background: rgba(242,118,107,.14) !important; }
+
+/* ---------- общий стеклянный язык (хаб и «Из видео») ---------- */
+.gl { position: relative; border-radius: 26px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%); overflow: hidden;
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.26), inset -1px -1.5px 0 -.2px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.07), 0 18px 40px -18px rgba(0,0,0,.85); }
+.gl::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,0) 46%); }
+.gl.pad { padding: 18px; }
+.gl.sm { border-radius: 20px; }
+.ac-cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 26px; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); font-size: 17px; font-weight: 700; width: 100%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent); position: relative; }
+.ac-cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; }
+.ac-cta .ar { position: absolute; right: 20px; }
+.ov2 { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: color-mix(in srgb, var(--acc) 80%, #fff); }
+.mc { position: relative; border-radius: 18px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 600; letter-spacing: -.2px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 48%, rgba(10,10,14,.9)), rgba(8,8,12,.86) 58%, color-mix(in srgb, var(--g2) 38%, rgba(8,8,12,.86)));
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.3), inset 0 0 0 1px color-mix(in srgb, var(--g1) 42%, rgba(255,255,255,.08)), 0 14px 26px -12px rgba(0,0,0,.85); }
+.mc::before { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, rgba(255,255,255,.18), rgba(255,255,255,0) 52%); }
+.mc > span { position: relative; z-index: 1; padding: 0 8px; }
+.gpk { display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 12px; margin-top: 10px; }
+.gtile { width: 52px; height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; flex: none; position: relative; overflow: hidden;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.32), inset 0 0 0 1px rgba(255,255,255,.08); }
+.rise > * { animation: grise 640ms cubic-bezier(.2,1,.3,1) both; }
+.rise > *:nth-child(2) { animation-delay: 70ms; } .rise > *:nth-child(3) { animation-delay: 140ms; } .rise > *:nth-child(4) { animation-delay: 210ms; } .rise > *:nth-child(5) { animation-delay: 280ms; } .rise > *:nth-child(6) { animation-delay: 350ms; }
+@keyframes grise { from { opacity: 0; transform: translateY(22px) scale(.97); } }
+.vrow { display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 12px; margin-top: 10px; min-height: 87px; }
+.vth { position: relative; width: 112px; height: 63px; border-radius: 12px; flex: none; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #0c0c10), color-mix(in srgb, var(--g2) 40%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.vth .pl { width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; }
+.vth .du { position: absolute; right: 5px; bottom: 5px; font-size: 11px; font-weight: 700; padding: 1px 5px; border-radius: 5px; background: rgba(0,0,0,.6); }
+.vadd { height: 34px; padding: 0 14px; border-radius: 17px; background: var(--acc); color: var(--on); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; flex: none; }
+.vhero { position: relative; height: 218px; border-radius: 24px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-top: 18px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #0c0c10), color-mix(in srgb, var(--g2) 42%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 20px 40px -20px rgba(0,0,0,.8); }
+.vhero .pl { width: 64px; height: 64px; border-radius: 50%; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; }
+.gtime { font-size: 14px; font-weight: 700; color: var(--acc); min-width: 40px; font-variant-numeric: tabular-nums; }
+
+/* панель управления страницы */
+.ctl { position: sticky; top: 0; z-index: 90; background: rgba(5,5,6,.9); backdrop-filter: blur(14px); padding: 14px 0; margin-top: 18px; border-bottom: 1px solid var(--line); }
+.chips2 { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 7px 12px 7px 8px; border-radius: 999px; background: #161618; border: 1px solid var(--line); color: var(--sec); cursor: pointer; user-select: none; }
+.chip.on { color: #fff; border-color: rgba(255,255,255,.4); background: #222224; }
+.sw { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+.float { animation: gfloat 5s ease-in-out infinite alternate; }
+@keyframes gfloat { to { translate: 0 -8px; } }
+</style>
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 2 — «Визитка игрока», реестр overlays-players-001…007):
+     визитка — отдельный арт-экран (components/PlayerProfileModal.tsx + components/profile-card/*), он НЕ зависит от темы приложения: у обычной визитки своя палитра
+     (фон #151518, кант 1px 10%, монета ранга, имя 33/800, плашка ранга) — поэтому 7 состояний нарисованы один раз, а не парами «тёмная/светлая». Темы зависят только шторки
+     (Про визитка) и окно «Удалить друга?» — они показаны в обеих. Тексты — из кода (profile_card_copy.ts, usePlayerProfileSocial.ts); монеты — ассеты приложения coin_rank_XX.
+     Размеры текста 16 и 13 (имя 33/38 — по коду). Обводки только 1px полупрозрачные. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph.vis { --v-sheet: rgba(24,24,29,.985); --v-surf: #1D1D22; --v-tx: #fff; --v-sc: #A6A6A8; --v-mu: #75757A; --v-edge: rgba(255,255,255,.13); --v-ink: var(--on); --v-dim: rgba(0,0,0,.58); color: #fff; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.vis.lite { --v-sheet: #FBFBFD; --v-surf: #ECECF1; --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.11); --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
+  .ph.vis.lite::before { opacity: .22; } .ph.vis.lite .sb { color: #111; } .ph.vis.lite .sb svg { filter: invert(1); } .ph.vis.lite .hi { background: #111; }
+  .vund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .vund .t1 { font-size: 28px; font-weight: 700; } .vund .r { height: 66px; border-radius: 18px; background: var(--v-surf); margin-top: 12px; }
+  .vdim { position: absolute; inset: 0; z-index: 20; background: var(--v-dim); }
+  /* ---- сама визитка (PlayerProfileModal: left/right 10, r38, высота 640) ---- */
+  .vcard { position: absolute; left: 10px; right: 10px; bottom: 18px; height: 640px; z-index: 30; border-radius: 38px; overflow: hidden; background: #151518; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  .vcard::after { content: ""; position: absolute; inset: 0; border-radius: 38px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); pointer-events: none; z-index: 14; }
+  .vstage { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+  /* фон обычной визитки (NormalLayers): мягкое свечение и два тонких кольца вокруг монеты */
+  .vglow { position: absolute; left: 50%; top: 36%; width: 418px; height: 418px; margin: -209px 0 0 -209px; border-radius: 50%; background: radial-gradient(closest-side, rgba(200,194,180,.26), rgba(200,194,180,0) 62%); }
+  .vring { position: absolute; left: 50%; top: 36%; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); } .vring.a { width: 282px; height: 282px; margin: -141px 0 0 -141px; } .vring.b { width: 211px; height: 211px; margin: -105px 0 0 -105px; }
+  .vcoin { position: absolute; left: 50%; top: 36%; width: 165px; height: 165px; margin: -82px 0 0 -82px; }
+  .vcoin img { width: 100%; height: 100%; display: block; border-radius: 50%; }
+  .vtop { position: absolute; top: 16px; left: 16px; right: 16px; z-index: 12; display: flex; justify-content: flex-end; align-items: center; gap: 8px; min-height: 44px; }
+  .vic { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.34); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); color: #fff; }
+  .vbody { position: absolute; left: 0; right: 0; bottom: 14px; padding: 0 22px; display: flex; flex-direction: column; align-items: center; z-index: 6; }
+  .vname { align-self: stretch; text-align: center; font-size: 33px; line-height: 38px; font-weight: 800; letter-spacing: -.7px; color: #fff; }
+  .vrank { margin-top: 10px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+  .vchip { height: 36px; border-radius: 18px; padding: 0 14px 0 7px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.13); font-size: 16px; font-weight: 700; color: #fff; }
+  .vchip img { width: 24px; height: 24px; border-radius: 50%; display: block; } .vchip .nc { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.18); display: block; }
+  .vlock { margin-top: 12px; min-height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font-size: 13px; font-weight: 700; color: rgba(255,255,255,.72); }
+  /* ---- нижняя полоса кнопок ---- */
+  .vfoot { display: flex; gap: 10px; align-items: stretch; padding: 12px 16px 16px; z-index: 8; background: #151518; }
+  .vbtn { flex: 1; min-width: 0; min-height: 56px; padding: 8px 14px; border-radius: 28px; display: flex; align-items: center; justify-content: center; gap: 9px; overflow: hidden; background: #fff; color: #111; font-size: 16px; font-weight: 800; }
+  .vbtn.alt { background: rgba(255,255,255,.13); color: #fff; } .vbtn.off { background: rgba(255,255,255,.09); color: rgba(255,255,255,.55); } .vbtn.sq { flex: none; width: 80px; }
+  .v2l { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; } .v2l .a { font-size: 16px; line-height: 22px; font-weight: 700; } .v2l .b { display: flex; align-items: center; gap: 4px; font-size: 13px; line-height: 17px; font-weight: 700; opacity: .75; } .v2l .b img { width: 15px; height: 15px; border-radius: 50%; }
+  .vtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: rgba(30,30,34,.97); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 14px 34px rgba(0,0,0,.4); font-size: 16px; line-height: 22px; font-weight: 600; color: #fff; }
+  .vspin { width: 20px; height: 20px; border-radius: 50%; border: 3px solid rgba(255,255,255,.25); border-top-color: rgba(255,255,255,.8); animation: vsp 900ms linear infinite; flex: none; } @keyframes vsp { to { transform: rotate(360deg); } }
+  /* ---- шторка «Про визитка» (ProfileCardProSheet) и окно «Удалить друга?» ---- */
+  .vsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 40; border-radius: 34px 34px 0 0; padding: 12px 18px 30px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 -20px 30px rgba(0,0,0,.4); }
+  .vsh .hd { width: 42px; height: 5px; border-radius: 5px; background: var(--v-edge); margin: 0 auto; } .vsh .ti { margin-top: 12px; font-size: 24px; line-height: 30px; font-weight: 800; color: var(--v-tx); }
+  .vhero { position: relative; height: 250px; margin-top: 14px; border-radius: 28px; overflow: hidden; background: #0A0907; box-shadow: inset 0 0 0 1.5px rgba(233,200,130,.62); }
+  .vhero .g { position: absolute; left: 50%; top: 44%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; background: radial-gradient(closest-side, rgba(233,200,130,.28), rgba(233,200,130,0) 65%); }
+  .vhero .c { position: absolute; left: 50%; top: 44%; width: 118px; height: 118px; margin: -59px 0 0 -59px; } .vhero .c img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+  .vhero .bd { position: absolute; left: 14px; top: 14px; height: 30px; padding: 0 12px; border-radius: 12px; display: flex; align-items: center; background: linear-gradient(145deg, #FFF1C9, #D9B56C 55%, #F6DC9C); color: #2A1F0C; font-size: 13px; font-weight: 900; letter-spacing: 3px; }
+  .vhero .nm { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; color: #fff; font-size: 16px; font-weight: 700; }
+  .vsw { display: flex; gap: 10px; margin-top: 14px; justify-content: space-between; } .vsw i { flex: 1; max-width: 60px; aspect-ratio: 1; border-radius: 18px; padding: 2px; display: block; } .vsw i b { display: block; width: 100%; height: 100%; border-radius: 16px; } .vsw i.on { box-shadow: inset 0 0 0 2px var(--acc); }
+  .vcap { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--v-sc); } .vcap b { color: var(--v-tx); font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-items: center; gap: 5px; } .vcap img { width: 18px; height: 18px; border-radius: 50%; }
+  .vbuy { margin-top: 14px; min-height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--acc); color: var(--v-ink); font-size: 16px; font-weight: 800; } .vbuy.off { background: var(--v-surf); color: var(--v-mu); } .vbuy img { width: 20px; height: 20px; border-radius: 50%; }
+  .vcf { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 24px 60px rgba(0,0,0,.45); }
+  .vcf .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; color: var(--v-tx); } .vcf .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--v-sc); }
+  .vcf .ac { display: flex; gap: 9px; margin-top: 18px; } .vcf .bt { flex: 1; min-height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--acc); color: var(--v-ink); } .vcf .bt.gh { background: var(--v-surf); color: var(--v-tx); }
+/* зачем (раздел 6, 14.10: вторичная не сливается с листом): заливка вторичной кнопки — как buttonFill кода (deriveLiquidGlassButtonRoles, графит: тёмная #45474B, светлая #C0C0C3), подпись — текст темы */
+  .vcf .bt.gh { background: #45474B; } .ph.vis.lite .vcf .bt.gh { background: #C0C0C3; }
+  .vnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+<style>
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.ph.vis { --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
+/* Plus — фиолетово-голубой, как в «Plus заметно» (вариант B — кольцо аватара) */
+.pav { position: relative; display: inline-flex; flex: none; border-radius: 50%; vertical-align: middle; padding: 3px; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pav img { display: block; border-radius: 50%; box-shadow: 0 0 0 2px #0C0D10; }
+.pv-pin { position: absolute; right: -3px; bottom: -3px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0C0D10; }
+.ptag { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 11px; background: rgba(142,124,255,.20); color: #C9C0FF; font-size: 13px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
+.ptag .io { font-size: 11px; }
+/* подложка главной под окнами */
+.ghost { height: 118px; border-radius: 22px; background: var(--card); margin-top: 12px; opacity: .55; }
+.dim2 { position: absolute; inset: 0; z-index: 40; background: rgba(0,0,0,.55); }
+/* №35 — заставка Plus */
+.pz { position: absolute; z-index: 45; left: 0; right: 0; bottom: 0; top: 54px; border-radius: 34px 34px 0 0; padding: 18px 22px 40px; display: flex; flex-direction: column;
+  background: radial-gradient(90% 50% at 50% 0%, rgba(142,124,255,.42), transparent 70%), radial-gradient(60% 40% at 100% 60%, rgba(111,168,255,.18), transparent 70%), linear-gradient(180deg, #17172A, #0E0E14 60%, #0C0C10); }
+.pz .x { align-self: flex-end; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.10); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.pz .kick { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; letter-spacing: 1.6px; color: #C9C0FF; margin-top: 6px; }
+.pz .h { font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -.6px; margin-top: 10px; text-wrap: balance; }
+.pz .s { font-size: 17px; line-height: 24px; color: #B4B4BE; margin-top: 10px; }
+.bens { display: flex; flex-direction: column; gap: 14px; margin-top: 26px; }
+.ben { display: flex; gap: 14px; align-items: center; }
+.ben .t { width: 46px; height: 46px; border-radius: 14px; background: rgba(142,124,255,.18); color: #D6CFFF; display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.ben b { display: block; font-size: 17px; line-height: 22px; } .ben span { display: block; font-size: 14px; line-height: 19px; color: #A6A6AE; margin-top: 2px; }
+.pcta { height: 56px; border-radius: 28px; background: linear-gradient(135deg, #9C8CFF, #6FA8FF); color: #0B0B18; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; margin-top: auto; box-shadow: 0 14px 30px -12px rgba(124,140,255,.6); }
+.fine { text-align: center; font-size: 13px; line-height: 18px; color: #8E8E96; margin-top: 10px; }
+.pnot { height: 50px; border-radius: 25px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 10px; }
+.hs { position: absolute; z-index: 45; left: 0; right: 0; bottom: 0; border-radius: 30px 30px 0 0; padding: 12px 20px 40px; background: linear-gradient(180deg, #1D1C2E, #121218); }
+.hs .grab { width: 42px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.18); margin: 0 auto; }
+.tiles3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.tiles3 div { border-radius: 18px; background: rgba(255,255,255,.06); padding: 14px 10px; text-align: center; font-size: 14px; line-height: 18px; font-weight: 700; }
+.tiles3 .io { display: block; font-size: 26px; color: #C9C0FF; margin: 0 auto 8px; }
+.hcard { margin-top: 14px; border-radius: 22px; padding: 16px; background: linear-gradient(135deg, rgba(142,124,255,.32), rgba(111,168,255,.14) 60%, rgba(127,224,216,.10)), #17171C; position: relative; }
+.hcard .x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.10); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.hcard .k { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; color: #C9C0FF; display: flex; gap: 6px; align-items: center; }
+.hcard .t { font-size: 19px; line-height: 25px; font-weight: 800; margin-top: 8px; padding-right: 36px; }
+.hcard .row2 { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.hcard .pill2 { height: 42px; padding: 0 18px; border-radius: 21px; background: linear-gradient(135deg, #9C8CFF, #6FA8FF); color: #0B0B18; display: inline-flex; align-items: center; font-size: 15px; font-weight: 800; }
+.hcard small { font-size: 13px; line-height: 17px; color: #A6A6AE; }
+/* №36 — статус */
+.stat { margin-top: 18px; border-radius: 22px; padding: 16px; background: linear-gradient(135deg, rgba(142,124,255,.34), rgba(111,168,255,.16) 55%, rgba(127,224,216,.10)), #18181D; }
+.stat .k { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; color: #C9C0FF; display: flex; gap: 6px; align-items: center; }
+.stat .v { font-size: 22px; line-height: 28px; font-weight: 800; margin-top: 6px; }
+.stat .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.stat .chips span { height: 32px; padding: 0 12px; border-radius: 16px; background: rgba(255,255,255,.08); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+.sw { width: 40px; height: 40px; border-radius: 12px; flex: none; }
+.icons3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.icons3 > div { border-radius: 20px; background: var(--card); padding: 16px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: var(--sec); position: relative; }
+.icons3 > div.on { color: #fff; box-shadow: inset 0 0 0 1.5px #9B8CFF; }
+.appi { width: 72px; height: 72px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 900; color: #fff; box-shadow: 0 10px 22px -12px rgba(0,0,0,.8); }
+.lockp { position: absolute; top: 8px; right: 8px; font-size: 12px; color: #C9C0FF; }
+/* №37 — подарок */
+.gift-row { margin-top: 14px; }
+.gsheet { position: absolute; z-index: 45; left: 0; right: 0; bottom: 0; border-radius: 30px 30px 0 0; padding: 12px 20px 40px; background: #1B1B1D; }
+.gsheet .grab { width: 42px; height: 5px; border-radius: 3px; background: #4A4A4E; margin: 0 auto; }
+.gsheet .t { font-size: 25px; line-height: 31px; font-weight: 800; margin-top: 18px; }
+.to { display: flex; align-items: center; gap: 12px; margin-top: 16px; border-radius: 18px; background: #242426; padding: 12px 14px; }
+.to b { font-size: 16px; } .to span { font-size: 14px; color: #A6A6A8; display: block; margin-top: 2px; }
+.per { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.per div { border-radius: 18px; background: #242426; padding: 14px; } .per div.on { background: linear-gradient(135deg, rgba(142,124,255,.32), rgba(36,36,38,.95) 65%); box-shadow: inset 0 0 0 1.5px #9B8CFF; }
+.per b { display: block; font-size: 16px; } .per .pr { font-size: 22px; font-weight: 800; margin-top: 6px; }
+.msg { margin-top: 12px; border-radius: 18px; background: #242426; padding: 14px; font-size: 16px; color: #C9C9CF; }
+.gfine { font-size: 13px; line-height: 18px; color: #8E8E96; text-align: center; margin-top: 10px; }
+.reveal { position: absolute; z-index: 45; inset: 54px 0 0; border-radius: 34px 34px 0 0; padding: 26px 22px 40px; display: flex; flex-direction: column; align-items: center; text-align: center;
+  background: radial-gradient(80% 45% at 50% 20%, rgba(142,124,255,.45), transparent 70%), linear-gradient(180deg, #17172A, #0C0C10 70%); }
+.gcard { width: 250px; height: 160px; border-radius: 26px; margin-top: 26px; background: linear-gradient(135deg, #9C8CFF, #6FA8FF 55%, #7FE0D8); color: #0B0B18; display: flex; flex-direction: column; justify-content: space-between; padding: 18px; text-align: left; box-shadow: 0 30px 60px -24px rgba(124,140,255,.7); transform: rotate(-4deg); }
+.gcard .k { font-size: 13px; font-weight: 900; letter-spacing: 1.6px; } .gcard .v { font-size: 30px; font-weight: 900; letter-spacing: -.6px; }
+.reveal .h { font-size: 27px; line-height: 33px; font-weight: 800; margin-top: 34px; text-wrap: balance; }
+.bubble { margin-top: 16px; border-radius: 18px 18px 18px 6px; background: rgba(255,255,255,.08); padding: 12px 16px; font-size: 16px; line-height: 22px; display: flex; gap: 10px; align-items: center; text-align: left; }
+.freq { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 980px; width: 100%; color: #C9C9CF; }
+.freq td, .freq th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; } .freq th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.note { margin: 16px 0 0; max-width: 980px; font-size: 15px; line-height: 23px; color: #A6A6AE; } .note b { color: #F2F2F4; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Plus: заставка при входе, статус, подарок</h1>
+  <p class="page-lead">Реестр владельца №35–37. Экраны — настоящие эталоны 2.0. Выгоды Plus — из кода приложения, цена и пробный период — из выбранного пейвола (вариант A: €39,99 в год, 7 дней бесплатно). Plus везде одного цвета — фиолетово-голубой, как в «Plus заметно».</p>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const KK = K;
+const IC = { chats: 'f218', mic: 'f45e', refresh: 'f518', flash: 'f316', stats: 'f59c', palette: 'f27e', gift: 'f338', dia: 'f2a1', spark: 'f58c', close: 'f24a', okc: 'f21e', phone: 'f4b5', cal: 'f1d6', people: 'f4a3', link: 'f3b9', inf: 'f395', book: 'f1a6', fwd: 'f23b', lock: 'f3c7', heart: 'f36a', ribbon: 'f545', mail: 'f434' };
+const io = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
+const ring = (rank, size) => { const p = Math.max(16, Math.round(size * 0.38)); return `<span class="pav">${KK.coinImg(rank, size)}<span class="pv-pin" style="width:${p}px;height:${p}px"><i class="io" style="font-size:${Math.round(p * .58)}px">&#x${IC.dia};</i></span></span>`; };
+const PRF = (() => { const { icon, phone, block, sheet } = KK; const coinImg = (r, s) => r === 5 ? ring(r, s) : KK.coinImg(r, s);
+const chevron=`<span class="ch">${icon('fwd','s18')}</span>`;
+const back=(title,close=false)=>`<div class="topbar"><button class="rb${close?'':' bare'} t" type="button" aria-label="${close?'Закрыть':'Назад'}">${icon(close?'close':'back','s21')}</button></div><div class="screen-title" style="margin-top:10px">${title}</div>`;
+const row=(ic,title,sub='',value='',opts={})=>`<div class="card list-row t"><div class="tile">${ic.startsWith('<')?ic:icon(ic,'s20')}</div><div class="copy"><div class="title">${title}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>${opts.toggle?`<button type="button" class="switch${opts.on?' on':''}" aria-label="${title}" aria-pressed="${opts.on?'true':'false'}"></button>`:value?`<div class="value">${value}</div>${chevron}`:chevron}</div>`;
+const group=(title,rows)=>`<div class="eyebrow" style="margin:24px 4px 10px">${title}</div><div class="list">${rows.join('')}</div>`;
+function account(){return phone(`${back('Аккаунт')}<div class="center" style="margin-top:26px">${coinImg(5,102)}<div class="section-title" style="margin-top:10px">Алекс</div><button class="chipbtn t" type="button" style="margin-top:10px">Изменить имя</button></div>
+  ${group('Данные',[row('user','Имя','Показывается друзьям','Алекс'),`<div class="card list-row"><div class="tile">${icon('chat','s20')}</div><div class="copy"><div class="title">Email</div><div class="sub">alex@example.com</div></div><button class="chipbtn t" type="button" aria-label="Скопировать email">Скопировать</button></div>`,row('check','Способ входа','','Google'),row('trend','С нами с','','12.08.2025')])}
+  ${group('Аккаунт',[row('arrowR','Выйти и войти под другим аккаунтом'),`<button class="card list-row t" type="button" style="width:100%;color:#FF9A98;text-align:left"><div class="tile">${icon('trash','s20')}</div><div class="copy"><div class="title">Удалить аккаунт</div><div class="sub">Требует отдельного подтверждения</div></div>${chevron}</button>`])}`,{time:'13:11'});}
+
+function subscription(){return phone(`${back('Подписка Plus')}<div class="card c2" style="margin-top:20px;padding:20px"><div class="eyebrow">Plus активирован</div><div class="section-title" style="font-size:24px;margin-top:8px">Годовая подписка</div><div class="screen-sub">Следующее списание · дата из магазина</div></div>${group('Что включено',[row('bolt','Безлимитная энергия','Уроки и экзамены без ожидания'),row('layers','Умный тренажёр','Все режимы тренировки'),row('bookmark','Неограниченные сохранённые карточки'),row('trend','Глубокая статистика','Разбор недели и инсайты практики')])}<div class="list" style="margin-top:22px"><button class="cta gh t" type="button">Восстановить покупки</button><button class="cta red t" type="button">Перейти к отмене</button></div><div class="screen-sub center" style="margin-top:16px">Цена и период всегда берутся из App Store / Google Play.</div>`,{time:'13:18'});}
+  return { account, subscription, row, group };
+})();
+const VIS = (() => { const { icon, phone } = KK;
+const coin = (r) => `assets/coin_rank_${String(r).padStart(2, '0')}.webp`;
+const T = ['Стажёр', 'Кадет', 'Скаут', 'Агент', 'Спикер', 'Лектор', 'Эксперт', 'Профи', 'Мастер', 'Эрудит', 'Дипломат', 'Консул', 'Стратег', 'Магистр', 'Лидер', 'Элита', 'Кумир', 'Икона', 'Легенда', 'Титан'];
+const share = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 12v7h14v-7"/></svg>';
+const lockI = '<svg class="i s16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></svg>';
+const arrowUp = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5M6 11l6-6 6 6"/></svg>';
+const star = '<svg class="i s20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.5l6-.8z"/></svg>';
+const heart = (on) => `<svg class="i s20" viewBox="0 0 24 24" style="color:${on ? '#FF5C7A' : '#fff'}"><path d="M12 20s-7-4.4-9-8.6C1.6 8.3 3.6 5 7 5c2 0 3.2 1.1 5 3 1.8-1.9 3-3 5-3 3.4 0 5.4 3.3 4 6.4C19 15.6 12 20 12 20z" ${on ? 'fill="currentColor" stroke="none"' : 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"'}/></svg>`;
+const und = '<div class="vund"><div class="t1">Друзья</div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div></div><div class="vdim"></div>';
+const chip = (r) => (r === null ? '<span class="vchip"><span class="nc"></span>—</span>' : `<span class="vchip"><img src="${coin(r)}" alt="">${T[r]} · ранг ${r}</span>`);
+// o: name, rank, menu(показывать «⋯»), self, foot(html), lock, toast
+const card = (o) => `<div class="vcard"><div class="vstage"><div class="vglow"></div><div class="vring a"></div><div class="vring b"></div>
+  <div class="vcoin">${o.rank === null ? '<div style="width:100%;height:100%;border-radius:50%;background:rgba(255,255,255,.12)"></div>' : `<img src="${coin(o.rank)}" alt="">`}</div>
+  <div class="vtop">${o.self ? `<span class="vic t">${share}</span>` : o.menu ? `<span class="vic t">${icon('dotsH', 's20')}</span>` : ''}<span class="vic t">${icon('close', 's20')}</span></div>
+  <div class="vbody"><div class="vname">${o.name}</div><div class="vrank">${chip(o.rank)}</div>${o.lock ? `<span class="vlock t">${lockI}Свой текст — в Про визитке</span>` : ''}</div></div>
+  <div class="vfoot">${o.foot}</div></div>${o.toast ? `<div class="vtoast"><span class="vspin" style="display:${o.toast.spin ? 'block' : 'none'}"></span>${o.toast.text}</div>` : ''}`;
+const add = (cls, label, ico) => `<span class="vbtn ${cls} t">${icon(ico, 's20')}${label}</span>`;
+const like = (n, on, cls = 'alt sq') => `<span class="vbtn ${cls} t">${heart(on)}${n}</span>`;
+  return { card, add, like, und };
+})();
+const home = () => `<div class="flex" style="align-items:flex-start;margin-top:12px"><div class="grow"><div class="screen-title" style="font-size:34px;line-height:40px">Главная</div><div class="screen-sub">Урок 3 · эпизод 4</div></div>${KK.coinImg(5, 44)}</div><div class="ghost" style="height:180px;margin-top:20px"></div><div class="ghost"></div><div class="ghost"></div>`;
+const BEN = [['chats', 'Диалоги без счётчика', 'Рабочие и бытовые ситуации — без дневного лимита'], ['mic', 'Говоришь вслух', 'Phraseman оценивает, насколько точно сказано'], ['refresh', 'Слабые места', 'Трудные фразы возвращаются, пока не станут уверенными'], ['flash', 'Без дневных стопов', 'Энергия не тратится — занимайся сколько хочется']];
+const bens = BEN.map(([i, b, s]) => `<div class="ben"><span class="t">${io(i)}</span><div><b>${b}</b><span>${s}</span></div></div>`).join('');
+const FINE = 'Потом €39,99 в год. Отмена в любой момент.';
+
+/* №35 — три варианта заставки */
+const z1 = () => KK.phone(home(), { time: '9:41', overlay: `<div class="dim2"></div><div class="pz"><span class="x">${io('close')}</span><span class="kick">${io('dia', 'font-size:12px')}PHRASEMAN PLUS</span><div class="h">Больше практики — без стопов</div><div class="s">Всё, что помогает заговорить: живые диалоги, голос и повтор слабых мест.</div><div class="bens">${bens}</div><div class="pcta">Попробовать 7 дней бесплатно</div><div class="fine">${FINE}</div><div class="pnot">Не сейчас</div></div>` });
+const z2 = () => KK.phone(home(), { time: '9:41', overlay: `<div class="dim2"></div><div class="hs"><div class="grab"></div><div style="display:flex;align-items:center;gap:10px;margin-top:18px"><span class="kick" style="color:#C9C0FF;font-size:13px;font-weight:800;letter-spacing:1.6px;display:flex;gap:6px;align-items:center">${io('dia', 'font-size:12px')}PLUS</span></div><div style="font-size:25px;line-height:31px;font-weight:800;margin-top:6px">Говори без стопов</div>
+  <div class="tiles3"><div>${io('chats')}Диалоги без счётчика</div><div>${io('mic')}Оценка речи</div><div>${io('refresh')}Повтор слабых мест</div></div><div class="pcta" style="margin-top:20px">Попробовать бесплатно</div><div class="fine">7 дней бесплатно. ${FINE}</div><div class="pnot">Не сейчас</div></div>` });
+const z3 = () => KK.phone(`<div class="flex" style="align-items:flex-start;margin-top:12px"><div class="grow"><div class="screen-title" style="font-size:34px;line-height:40px">Главная</div><div class="screen-sub">Урок 3 · эпизод 4</div></div>${KK.coinImg(5, 44)}</div>
+  <div class="hcard"><span class="x">${io('close')}</span><div class="k">${io('dia', 'font-size:12px')}PLUS</div><div class="t">Диалоги, голос и повтор слабых мест — без дневных стопов</div><div class="row2"><span class="pill2">7 дней бесплатно</span><small>потом €39,99 в год</small></div></div>
+  <div class="ghost" style="height:180px"></div><div class="ghost"></div>`, { time: '9:41' });
+
+/* №36 — премиальность */
+const s1 = () => { let h = PRF.account(); h = h.replace('>Алекс</div>', `>Алекс<span class="ptag">${io('dia')}Plus</span></div>`);
+  return h.replace('<div class="eyebrow"', `<div class="stat"><div class="k">${io('dia', 'font-size:12px')}PLUS</div><div class="v">Третий месяц с Plus</div><div class="chips"><span>${io('chats', 'font-size:15px')}128 диалогов</span><span>${io('mic', 'font-size:15px')}340 фраз вслух</span><span>${io('ribbon', 'font-size:15px')}с августа</span></div></div><div class="eyebrow"`); };
+const s2 = () => KK.phone(`<div class="topbar"><button class="rb bare t" type="button">${KK.icon('back', 's21')}</button></div><div class="screen-title" style="margin-top:10px">Темы</div>
+  ${PRF.group('Бесплатно', [['linear-gradient(135deg,#4A4A52,#1A1A1E)', 'Графит', 'Тёмная по умолчанию']].map(([c, t, s]) => `<div class="card list-row t"><span class="sw" style="background:${c}"></span><div class="copy"><div class="title">${t}</div><div class="sub">${s}</div></div><span class="ch" style="color:#fff">${KK.icon('check', 's18')}</span></div>`))}
+  ${PRF.group('С Plus', [['linear-gradient(135deg,#5E5BB6,#ECE4F7)', 'Сумерки', 'Светлая'], ['linear-gradient(135deg,#002936,#63D6F1)', 'Океан', 'Тёмная'], ['linear-gradient(135deg,#38E0AA,#7C5CFF)', 'Аврора', 'Тёмная'], ['linear-gradient(135deg,#788CFF,#FF78C8)', 'Ирис', 'Тёмная']].map(([c, t, s]) => `<div class="card list-row t"><span class="sw" style="background:${c}"></span><div class="copy"><div class="title">${t}<span class="ptag" style="height:20px;font-size:12px">${io('dia')}Plus</span></div><div class="sub">${s}</div></div></div>`))}`, { time: '9:41' });
+const s3 = () => KK.phone(`<div class="topbar"><button class="rb bare t" type="button">${KK.icon('back', 's21')}</button></div><div class="screen-title" style="margin-top:10px">Значок приложения</div><div class="screen-sub">Как Phraseman выглядит на главном экране телефона</div>
+  <div class="icons3"><div><span class="appi" style="background:linear-gradient(160deg,#2A2A30,#0E0E12)">P</span>Обычный</div><div class="on"><span class="appi" style="background:conic-gradient(from 200deg,#8E7CFF,#6FA8FF,#7FE0D8,#C69BFF,#8E7CFF)">P</span>Сияние<span class="lockp">${io('dia')}</span></div><div><span class="appi" style="background:linear-gradient(160deg,#F3F4FD,#ECE4F7);color:#17181E">P</span>Светлый<span class="lockp">${io('dia')}</span></div></div>
+  <div style="font-size:14px;line-height:21px;color:var(--sec);margin-top:16px">Значки с ◆ — с Plus. Выбранный «Сияние» видно каждый раз, когда человек берёт телефон.</div>`, { time: '9:41' });
+
+/* №37 — подарок */
+const g1 = () => { const h = PRF.subscription(); const giftRow = `<div class="card list-row t gift-row"><div class="tile">${io('gift', 'font-size:20px')}</div><div class="copy"><div class="title">Подарить Plus другу</div><div class="sub">На месяц или на год</div></div><span class="ch">${KK.icon('fwd', 's18')}</span></div>`;
+  return h.replace('<div class="eyebrow" style="margin:24px', giftRow + '<div class="eyebrow" style="margin:24px'); };
+const g2 = () => KK.phone(VIS.und + VIS.card({ name: 'Дмитрий', rank: 12, menu: true, foot: `<span class="vbtn t">${io('gift', 'font-size:20px')}Подарить Plus</span>` + VIS.like(21, false) }), {}).replace('class="ph"', 'class="ph vis"');
+const g3 = () => KK.phone(`<div class="topbar"><button class="rb bare t" type="button">${KK.icon('back', 's21')}</button></div><div class="screen-title" style="margin-top:10px">Друзья</div><div class="ghost"></div><div class="ghost"></div>`, { time: '9:41', overlay: `<div class="dim2"></div><div class="gsheet"><div class="grab"></div><div class="t">Подарок другу</div>
+  <div class="to">${KK.coinImg(12, 44)}<div><b>Дмитрий</b><span>Кому дарим</span></div></div>
+  <div class="per"><div><b>Месяц</b><div class="pr">€7,99</div></div><div class="on"><b>Год</b><div class="pr">€39,99</div></div></div>
+  <div class="msg">Учись со мной — так веселее!</div>
+  <div class="pcta" style="margin-top:16px">${io('gift', 'font-size:20px;margin-right:8px')}Подарить за €39,99</div><div class="gfine">Оплата на сайте Phraseman. Дмитрий получит подарок в приложении, а мы пришлём код и на почту.</div><div class="pnot">Отправить ссылкой</div></div>` });
+const g4 = () => KK.phone(home().replace(KK.coinImg(5, 44), KK.coinImg(12, 44)), { time: '9:41', overlay: `<div class="dim2"></div><div class="reveal">${KK.coinImg(5, 64)}<div class="gcard"><span class="k">◆ PHRASEMAN PLUS</span><span class="v">на год</span></div>
+  <div class="h">Алекс дарит тебе Plus на год</div><div class="bubble">${KK.coinImg(5, 28)}Учись со мной — так веселее!</div>
+  <div class="pcta" style="width:100%;margin-top:auto">Принять подарок</div><div class="fine">Plus включится сразу, до 21 октября 2027. Платить ничего не нужно.</div><div class="pnot" style="width:100%">Позже</div></div>` });
+
+const { block, col } = KK;
+document.getElementById('root').innerHTML =
+  block('z', '№35 · Заставка Plus при входе', 'Как у YouTube Premium: иногда при запуске — что даёт Plus, понятно и красиво, закрыть легко (крестик и «Не сейчас» одинаково заметны). Кнопка ведёт в выбранный пейвол A, где уже выбирается год или месяц; под кнопкой — строка «Потом €39,99 в год», как требуют магазины.', [col('1 · Полный экран<span class="rec">рекомендую</span>', z1()), col('2 · Шторка', z2()), col('3 · Карточка на Главной', z3())]) +
+  `<section class="block"><h2>Как часто показывать</h2><table class="freq"><tr><th>Правило</th><th>Почему</th></tr>
+   <tr><td>Не чаще раза в 7 дней, только при холодном запуске (не при возврате из фона)</td><td>Ненавязчиво: человек видит её редко и не посреди занятия</td></tr>
+   <tr><td>Не в первые 3 дня после установки</td><td>Сначала человек должен почувствовать приложение</td></tr>
+   <tr><td>Не в день, когда уже было окно Plus по лимиту (энергия, диалоги)</td><td>Два предложения в день — уже давление</td></tr>
+   <tr><td>Три «Не сейчас» подряд → раз в 30 дней</td><td>Не раздражать тех, кто решил не покупать</td></tr>
+   <tr><td>Не показывать с Plus, в пробном периоде и 30 дней после отмены</td><td>Нечего предлагать / уважаем решение</td></tr>
+   <tr><td>Счётчик и дата — только на устройстве</td><td>Без запросов к серверу при запуске</td></tr></table></section>` +
+  block('st', '№36 · Plus как статус', 'Идеи: (1) в своём профиле — карточка «Третий месяц с Plus» с личными цифрами (диалоги, фразы вслух, с какого месяца) и кольцо аватара из «Plus заметно» — это видят и другие; (2) темы с Plus подписаны ◆ — сразу понятно, что это часть статуса (в приложении темы уже входят в Plus); (3) свой значок приложения «Сияние» на телефоне — статус видно каждый день, даже не открывая приложение. Ещё без макета: годовщина Plus в «Моментах», ранний доступ к новым урокам.', [col('Аккаунт · статус', s1()), col('Темы с Plus', s2()), col('Значок приложения', s3())]) +
+  block('gift', '№37 · Подарить Plus другу', 'Где кнопка: в «Подписке Plus» строкой «Подарить Plus другу» и на визитке друга — «Подарить Plus». Подарок оплачивается на сайте: подарочные сертификаты там уже есть (месяц / год / навсегда, код). Получатель видит окно «Алекс дарит тебе Plus на год» при следующем входе; принять — в один тап.', [col('Подписка Plus · строка', g1()), col('Визитка друга', g2()), col('Даритель · выбор', g3()), col('Получатель', g4())]);
+KK.init();
+})();
+</script>
+</body>
+</html>

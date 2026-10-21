@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. predictable — предсказуемый. Вы ещё не досмотрели фильм и делитесь предположением о концовке. I think the ending will be predictable. — Думаю, концовка будет предсказуемой. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. predictable — передбачуваний. Ви ще не додивилися фільм і ділитеся припущенням про кінцівку. I think the ending will be predictable. — Думаю, кінцівка буде передбачуваною. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-37:intro1:r1",
+              "text": "I think the ending will be predictable."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro1:r2",
+              "text": "I think the ending is going to be predictable."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro1:r3",
+              "text": "I think the ending will to be predictable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-37:intro1:r1",
+              "text": "I think the ending will be predictable."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro1:r2",
+              "text": "I think the ending is going to be predictable."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro1:r3",
+              "text": "I think the ending will to be predictable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "unpredictable — непредсказуемый. temporary — временный. Вы решили подработать только летом. Это намерение, работу ещё не нашли. I am going to find a temporary job. — Я собираюсь найти временную работу. Передайте заранее принятое намерение через going to.",
+        "uk": "unpredictable — непередбачуваний. temporary — тимчасовий. Ви вирішили підробити лише влітку. Це намір, роботу ще не знайшли. I am going to find a temporary job. — Я збираюся знайти тимчасову роботу. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-37:intro2:r1",
+              "text": "I am going to find a temporary job."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro2:r2",
+              "text": "I am finding a temporary job."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro2:r3",
+              "text": "I is going to find a temporary job."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-37:intro2:r1",
+              "text": "I am going to find a temporary job."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro2:r2",
+              "text": "I am finding a temporary job."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro2:r3",
+              "text": "I is going to find a temporary job."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "permanent — постоянный, не временный. Вы согласовали переезд из временного жилья на завтра; машина заказана. We are moving to our permanent home tomorrow. — Мы переезжаем в наш постоянный дом завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "permanent — постійний, не тимчасовий. Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. We are moving to our permanent home tomorrow. — Ми переїжджаємо до нашого постійного дому завтра. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-37:intro3:r1",
+              "text": "We are moving to our permanent home tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro3:r2",
+              "text": "We are going to move to our permanent home tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro3:r3",
+              "text": "We is moving to our permanent home tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-37:intro3:r1",
+              "text": "We are moving to our permanent home tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro3:r2",
+              "text": "We are going to move to our permanent home tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-37:intro3:r3",
+              "text": "We is moving to our permanent home tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eb7a024005bce68eba3807dcd1335b49db7e9f479f37fbdc7a6a1da765fe20ee"
+}

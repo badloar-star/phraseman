@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-37:word:predictable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — predictable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:word:predictable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — predictable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:word:predictable:audio",
+          "transcript": "predictable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:word:predictable:r1",
+            "targetText": "predictable",
+            "meaningByLocale": {
+              "ru": "предсказуемый.",
+              "uk": "передбачуваний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "predictable",
+          "definitionByLocale": {
+            "ru": "предсказуемый.",
+            "uk": "передбачуваний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will. Скажите: «Думаю, концовка будет предсказуемой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will. Скажите: «Думаю, концовка будет предсказуемой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the ending will be predictable.",
+        "localizedMeaning": {
+          "ru": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will. Скажите: «Думаю, концовка будет предсказуемой».",
+          "uk": "Ви ще не додивилися фільм і ділитеся припущенням про кінцівку. Передайте думку-прогноз через will. Скажіть: «Думаю, кінцівка буде передбачуваною»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "ending",
+          "will",
+          "be",
+          "predictable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i02:r1",
+          "text": "I think the ending will be predictable."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i02:r2",
+          "text": "I think the ending is going to be predictable."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i02:r3",
+          "text": "I think the ending will to be predictable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i02:audio",
+          "transcript": "I think the ending will be predictable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:i02:r1",
+            "targetText": "I think the ending will be predictable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i02:r2",
+            "targetText": "I think the ending is going to be predictable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i02:r3",
+            "targetText": "I think the ending will to be predictable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the ending will be predictable.",
+              "uk": "У записі звучить I think the ending will be predictable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the ending will be predictable.",
+              "uk": "У записі звучить I think the ending will be predictable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.",
+          "uk": "Ви ще не додивилися фільм і ділитеся припущенням про кінцівку. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the ending ___ predictable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-37:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:word:unpredictable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unpredictable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:word:unpredictable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unpredictable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:word:unpredictable:audio",
+          "transcript": "unpredictable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:word:unpredictable:r1",
+            "targetText": "unpredictable",
+            "meaningByLocale": {
+              "ru": "непредсказуемый.",
+              "uk": "непередбачуваний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unpredictable",
+          "definitionByLocale": {
+            "ru": "непредсказуемый.",
+            "uk": "непередбачуваний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will. Скажите: «Думаю, погода будет непредсказуемой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will. Скажите: «Думаю, погода будет непредсказуемой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the weather will be unpredictable.",
+        "localizedMeaning": {
+          "ru": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will. Скажите: «Думаю, погода будет непредсказуемой».",
+          "uk": "Ви ділитеся думкою про погоду під час майбутньої відпустки. Передайте думку-прогноз через will. Скажіть: «Думаю, погода буде непередбачуваною»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "weather",
+          "will",
+          "be",
+          "unpredictable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i05:r1",
+          "text": "I think the weather will be unpredictable."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i05:r2",
+          "text": "I think the weather is going to be unpredictable."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i05:r3",
+          "text": "I think the weather will to be unpredictable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i05:audio",
+          "transcript": "I think the weather will be unpredictable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:i05:r1",
+            "targetText": "I think the weather will be unpredictable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i05:r2",
+            "targetText": "I think the weather is going to be unpredictable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i05:r3",
+            "targetText": "I think the weather will to be unpredictable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the weather will be unpredictable.",
+              "uk": "У записі звучить I think the weather will be unpredictable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the weather will be unpredictable.",
+              "uk": "У записі звучить I think the weather will be unpredictable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.",
+          "uk": "Ви ділитеся думкою про погоду під час майбутньої відпустки. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the weather ___ unpredictable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-37:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:word:temporary",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — temporary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:word:temporary:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — temporary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:word:temporary:audio",
+          "transcript": "temporary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:word:temporary:r1",
+            "targetText": "temporary",
+            "meaningByLocale": {
+              "ru": "временный.",
+              "uk": "тимчасовий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "temporary",
+          "definitionByLocale": {
+            "ru": "временный.",
+            "uk": "тимчасовий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь найти временную работу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь найти временную работу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to find a temporary job.",
+        "localizedMeaning": {
+          "ru": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь найти временную работу».",
+          "uk": "Ви вирішили підробити лише влітку. Це намір, роботу ще не знайшли. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся знайти тимчасову роботу»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "find",
+          "a",
+          "temporary",
+          "job"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i08:r1",
+          "text": "I am going to find a temporary job."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i08:r2",
+          "text": "I am finding a temporary job."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i08:r3",
+          "text": "I is going to find a temporary job."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i08:audio",
+          "transcript": "I am going to find a temporary job."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:i08:r1",
+            "targetText": "I am going to find a temporary job.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i08:r2",
+            "targetText": "I am finding a temporary job.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i08:r3",
+            "targetText": "I is going to find a temporary job.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to find a temporary job.",
+              "uk": "У записі звучить I am going to find a temporary job."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to find a temporary job.",
+              "uk": "У записі звучить I am going to find a temporary job."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i09:r1",
+          "text": "am going to find"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i09:r2",
+          "text": "am finding"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили підробити лише влітку. Це намір, роботу ще не знайшли. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a temporary job.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-37:i09:r1",
+            "text": "am going to find"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i09:r2",
+            "text": "am finding"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы решили подработать только летом. Это намерение, работу ещё не нашли. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to find.",
+              "uk": "Потрібна правильно побудована повна форма: am going to find."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:word:permanent",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — permanent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:word:permanent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — permanent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:word:permanent:audio",
+          "transcript": "permanent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:word:permanent:r1",
+            "targetText": "permanent",
+            "meaningByLocale": {
+              "ru": "постоянный, не временный.",
+              "uk": "постійний, не тимчасовий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "permanent",
+          "definitionByLocale": {
+            "ru": "постоянный, не временный.",
+            "uk": "постійний, не тимчасовий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы переезжаем в наш постоянный дом завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы переезжаем в наш постоянный дом завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are moving to our permanent home tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы переезжаем в наш постоянный дом завтра».",
+          "uk": "Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми переїжджаємо до нашого постійного дому завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "moving",
+          "to",
+          "our",
+          "permanent",
+          "home",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i11:r1",
+          "text": "We are moving to our permanent home tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i11:r2",
+          "text": "We are going to move to our permanent home tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i11:r3",
+          "text": "We is moving to our permanent home tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i11:audio",
+          "transcript": "We are moving to our permanent home tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-37:i11:r1",
+            "targetText": "We are moving to our permanent home tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i11:r2",
+            "targetText": "We are going to move to our permanent home tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i11:r3",
+            "targetText": "We is moving to our permanent home tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are moving to our permanent home tomorrow.",
+              "uk": "У записі звучить We are moving to our permanent home tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are moving to our permanent home tomorrow.",
+              "uk": "У записі звучить We are moving to our permanent home tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-37:i12:r1",
+          "text": "are moving"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i12:r2",
+          "text": "are going to move"
+        },
+        {
+          "responseId": "en:lesson-16:session-37:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ to our permanent home tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-37:i12:r1",
+            "text": "are moving"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i12:r2",
+            "text": "are going to move"
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are moving.",
+              "uk": "Потрібна правильно побудована повна форма: are moving."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-37:i13:p1",
+            "target": "predictable",
+            "meaningByLocale": {
+              "ru": "предсказуемый",
+              "uk": "передбачуваний"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-37:i13:p2",
+            "target": "unpredictable",
+            "meaningByLocale": {
+              "ru": "непредсказуемый",
+              "uk": "непередбачуваний"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-37:i13:p3",
+            "target": "temporary",
+            "meaningByLocale": {
+              "ru": "временный",
+              "uk": "тимчасовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-37:i13:p4",
+            "target": "permanent",
+            "meaningByLocale": {
+              "ru": "постоянный, не временный",
+              "uk": "постійний, не тимчасовий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "predictable",
+          "unpredictable",
+          "temporary",
+          "permanent"
+        ],
+        "rightColumn": [
+          "предсказуемый",
+          "непредсказуемый",
+          "временный",
+          "постоянный, не временный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i14:audio",
+          "transcript": "I think the ending will be predictable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the ending will be predictable.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "ending",
+          "will",
+          "be",
+          "predictable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i15:audio",
+          "transcript": "I am going to find a temporary job."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to find a temporary job.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "find",
+          "a",
+          "temporary",
+          "job"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i16:audio",
+          "transcript": "We are moving to our permanent home tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are moving to our permanent home tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-37:i17:audio",
+          "transcript": "I think the weather will be unpredictable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the weather will be unpredictable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "df01c288dc5766969a45181b8bf6ec1e355a6fc4f3dafcbb337dadc06a84d678"
+}

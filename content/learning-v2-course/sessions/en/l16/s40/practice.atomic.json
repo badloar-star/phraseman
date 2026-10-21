@@ -1,0 +1,2347 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-40:word:airtight",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — airtight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:airtight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — airtight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:airtight:audio",
+            "transcript": "airtight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:airtight:r1",
+              "targetText": "airtight",
+              "meaningByLocale": {
+                "ru": "герметичный, не пропускающий воздух.",
+                "uk": "герметичний, що не пропускає повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airtight",
+            "definitionByLocale": {
+              "ru": "герметичный, не пропускающий воздух.",
+              "uk": "герметичний, що не пропускає повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will. Скажите: «Думаю, контейнер будет герметичным».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will. Скажите: «Думаю, контейнер будет герметичным».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the container will be airtight.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will. Скажите: «Думаю, контейнер будет герметичным».",
+            "uk": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will. Скажіть: «Думаю, контейнер буде герметичним»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "container",
+            "will",
+            "be",
+            "airtight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i02:r1",
+            "text": "I think the container will be airtight."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i02:r2",
+            "text": "I think the container is going to be airtight."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i02:r3",
+            "text": "I think the container will to be airtight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i02:audio",
+            "transcript": "I think the container will be airtight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i02:r1",
+              "targetText": "I think the container will be airtight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i02:r2",
+              "targetText": "I think the container is going to be airtight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i02:r3",
+              "targetText": "I think the container will to be airtight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the container will be airtight.",
+                "uk": "У записі звучить I think the container will be airtight."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the container will be airtight.",
+                "uk": "У записі звучить I think the container will be airtight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the container ___ airtight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:word:leakproof",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leakproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:leakproof:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leakproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:leakproof:audio",
+            "transcript": "leakproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:leakproof:r1",
+              "targetText": "leakproof",
+              "meaningByLocale": {
+                "ru": "не протекающий.",
+                "uk": "такий, що не протікає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leakproof",
+            "definitionByLocale": {
+              "ru": "не протекающий.",
+              "uk": "такий, що не протікає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылка не будет протекать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылка не будет протекать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the bottle will be leakproof.",
+          "localizedMeaning": {
+            "ru": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылка не будет протекать».",
+            "uk": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will. Скажіть: «Думаю, пляшка не протікатиме»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "bottle",
+            "will",
+            "be",
+            "leakproof"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i05:r1",
+            "text": "I think the bottle will be leakproof."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i05:r2",
+            "text": "I think the bottle is going to be leakproof."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i05:r3",
+            "text": "I think the bottle will to be leakproof."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i05:audio",
+            "transcript": "I think the bottle will be leakproof."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i05:r1",
+              "targetText": "I think the bottle will be leakproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i05:r2",
+              "targetText": "I think the bottle is going to be leakproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i05:r3",
+              "targetText": "I think the bottle will to be leakproof.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the bottle will be leakproof.",
+                "uk": "У записі звучить I think the bottle will be leakproof."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the bottle will be leakproof.",
+                "uk": "У записі звучить I think the bottle will be leakproof."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+            "uk": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the bottle ___ leakproof.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:word:non-stick",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — non-stick",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:non-stick:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — non-stick",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:non-stick:audio",
+            "transcript": "non-stick"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:non-stick:r1",
+              "targetText": "non-stick",
+              "meaningByLocale": {
+                "ru": "с антипригарным покрытием.",
+                "uk": "з антипригарним покриттям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "non-stick",
+            "definitionByLocale": {
+              "ru": "с антипригарным покрытием.",
+              "uk": "з антипригарним покриттям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить сковороду с антипригарным покрытием».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить сковороду с антипригарным покрытием».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a non-stick pan.",
+          "localizedMeaning": {
+            "ru": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить сковороду с антипригарным покрытием».",
+            "uk": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити сковороду з антипригарним покриттям»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "non-stick",
+            "pan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i08:r1",
+            "text": "I am going to buy a non-stick pan."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i08:r2",
+            "text": "I am buying a non-stick pan."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i08:r3",
+            "text": "I is going to buy a non-stick pan."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i08:audio",
+            "transcript": "I am going to buy a non-stick pan."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i08:r1",
+              "targetText": "I am going to buy a non-stick pan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i08:r2",
+              "targetText": "I am buying a non-stick pan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i08:r3",
+              "targetText": "I is going to buy a non-stick pan.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a non-stick pan.",
+                "uk": "У записі звучить I am going to buy a non-stick pan."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a non-stick pan.",
+                "uk": "У записі звучить I am going to buy a non-stick pan."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i09:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i09:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a non-stick pan.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i09:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i09:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to buy.",
+                "uk": "Потрібна правильно побудована повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:word:foldable",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — foldable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:foldable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — foldable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:foldable:audio",
+            "transcript": "foldable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:foldable:r1",
+              "targetText": "foldable",
+              "meaningByLocale": {
+                "ru": "складной.",
+                "uk": "складаний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foldable",
+            "definitionByLocale": {
+              "ru": "складной.",
+              "uk": "складаний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем складной стол завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем складной стол завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting a foldable table tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем складной стол завтра».",
+            "uk": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "a",
+            "foldable",
+            "table",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i11:r1",
+            "text": "We are collecting a foldable table tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i11:r2",
+            "text": "We are going to collect a foldable table tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i11:r3",
+            "text": "We is collecting a foldable table tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i11:audio",
+            "transcript": "We are collecting a foldable table tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i11:r1",
+              "targetText": "We are collecting a foldable table tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i11:r2",
+              "targetText": "We are going to collect a foldable table tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i11:r3",
+              "targetText": "We is collecting a foldable table tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting a foldable table tomorrow.",
+                "uk": "У записі звучить We are collecting a foldable table tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting a foldable table tomorrow.",
+                "uk": "У записі звучить We are collecting a foldable table tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a foldable table tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i12:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i12:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are collecting.",
+                "uk": "Потрібна правильно побудована повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-40:i13:p1",
+              "target": "airtight",
+              "meaningByLocale": {
+                "ru": "герметичный, не пропускающий воздух",
+                "uk": "герметичний, що не пропускає повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-40:i13:p2",
+              "target": "leakproof",
+              "meaningByLocale": {
+                "ru": "не протекающий",
+                "uk": "такий, що не протікає"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-40:i13:p3",
+              "target": "non-stick",
+              "meaningByLocale": {
+                "ru": "с антипригарным покрытием",
+                "uk": "з антипригарним покриттям"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-40:i13:p4",
+              "target": "foldable",
+              "meaningByLocale": {
+                "ru": "складной",
+                "uk": "складаний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "airtight",
+            "leakproof",
+            "non-stick",
+            "foldable"
+          ],
+          "rightColumn": [
+            "герметичный, не пропускающий воздух",
+            "не протекающий",
+            "с антипригарным покрытием",
+            "складной"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i14:audio",
+            "transcript": "I think the container will be airtight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the container will be airtight.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "container",
+            "will",
+            "be",
+            "airtight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i15:audio",
+            "transcript": "I am going to buy a non-stick pan."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a non-stick pan.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "non-stick",
+            "pan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i16:audio",
+            "transcript": "We are collecting a foldable table tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are collecting a foldable table tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте мнение-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i17:audio",
+            "transcript": "I think the bottle will be leakproof."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the bottle will be leakproof.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-40:word:airtight",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — airtight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:airtight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — airtight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:airtight:audio",
+            "transcript": "airtight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:airtight:r1",
+              "targetText": "airtight",
+              "meaningByLocale": {
+                "ru": "герметичный, не пропускающий воздух.",
+                "uk": "герметичний, що не пропускає повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airtight",
+            "definitionByLocale": {
+              "ru": "герметичный, не пропускающий воздух.",
+              "uk": "герметичний, що не пропускає повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will. Скажіть: «Думаю, контейнер буде герметичним».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will. Скажіть: «Думаю, контейнер буде герметичним».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the container will be airtight.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will. Скажите: «Думаю, контейнер будет герметичным».",
+            "uk": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will. Скажіть: «Думаю, контейнер буде герметичним»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "container",
+            "will",
+            "be",
+            "airtight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i02:r1",
+            "text": "I think the container will be airtight."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i02:r2",
+            "text": "I think the container is going to be airtight."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i02:r3",
+            "text": "I think the container will to be airtight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i02:audio",
+            "transcript": "I think the container will be airtight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i02:r1",
+              "targetText": "I think the container will be airtight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i02:r2",
+              "targetText": "I think the container is going to be airtight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i02:r3",
+              "targetText": "I think the container will to be airtight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the container will be airtight.",
+                "uk": "У записі звучить I think the container will be airtight."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the container will be airtight.",
+                "uk": "У записі звучить I think the container will be airtight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the container ___ airtight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:word:leakproof",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leakproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:leakproof:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leakproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:leakproof:audio",
+            "transcript": "leakproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:leakproof:r1",
+              "targetText": "leakproof",
+              "meaningByLocale": {
+                "ru": "не протекающий.",
+                "uk": "такий, що не протікає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leakproof",
+            "definitionByLocale": {
+              "ru": "не протекающий.",
+              "uk": "такий, що не протікає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will. Скажіть: «Думаю, пляшка не протікатиме».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will. Скажіть: «Думаю, пляшка не протікатиме».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the bottle will be leakproof.",
+          "localizedMeaning": {
+            "ru": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылка не будет протекать».",
+            "uk": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will. Скажіть: «Думаю, пляшка не протікатиме»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "bottle",
+            "will",
+            "be",
+            "leakproof"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i05:r1",
+            "text": "I think the bottle will be leakproof."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i05:r2",
+            "text": "I think the bottle is going to be leakproof."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i05:r3",
+            "text": "I think the bottle will to be leakproof."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i05:audio",
+            "transcript": "I think the bottle will be leakproof."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i05:r1",
+              "targetText": "I think the bottle will be leakproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i05:r2",
+              "targetText": "I think the bottle is going to be leakproof.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i05:r3",
+              "targetText": "I think the bottle will to be leakproof.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the bottle will be leakproof.",
+                "uk": "У записі звучить I think the bottle will be leakproof."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the bottle will be leakproof.",
+                "uk": "У записі звучить I think the bottle will be leakproof."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не испытали новую бутылку и делитесь ожиданием, что она не протечёт. Передайте мнение-прогноз через will.",
+            "uk": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the bottle ___ leakproof.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:word:non-stick",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — non-stick",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:non-stick:audio"
+        ],
+        "accessibilityLabel": "Картка слова — non-stick",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:non-stick:audio",
+            "transcript": "non-stick"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:non-stick:r1",
+              "targetText": "non-stick",
+              "meaningByLocale": {
+                "ru": "с антипригарным покрытием.",
+                "uk": "з антипригарним покриттям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "non-stick",
+            "definitionByLocale": {
+              "ru": "с антипригарным покрытием.",
+              "uk": "з антипригарним покриттям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити сковороду з антипригарним покриттям».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити сковороду з антипригарним покриттям».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a non-stick pan.",
+          "localizedMeaning": {
+            "ru": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить сковороду с антипригарным покрытием».",
+            "uk": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити сковороду з антипригарним покриттям»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "non-stick",
+            "pan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i08:r1",
+            "text": "I am going to buy a non-stick pan."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i08:r2",
+            "text": "I am buying a non-stick pan."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i08:r3",
+            "text": "I is going to buy a non-stick pan."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i08:audio",
+            "transcript": "I am going to buy a non-stick pan."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i08:r1",
+              "targetText": "I am going to buy a non-stick pan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i08:r2",
+              "targetText": "I am buying a non-stick pan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i08:r3",
+              "targetText": "I is going to buy a non-stick pan.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a non-stick pan.",
+                "uk": "У записі звучить I am going to buy a non-stick pan."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a non-stick pan.",
+                "uk": "У записі звучить I am going to buy a non-stick pan."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i09:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i09:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили купить такую сковороду, но ещё не выбрали магазин или день. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a non-stick pan.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i09:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i09:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to buy.",
+                "uk": "Потрібна правильно побудована повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:word:foldable",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — foldable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:word:foldable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — foldable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:word:foldable:audio",
+            "transcript": "foldable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:word:foldable:r1",
+              "targetText": "foldable",
+              "meaningByLocale": {
+                "ru": "складной.",
+                "uk": "складаний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foldable",
+            "definitionByLocale": {
+              "ru": "складной.",
+              "uk": "складаний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting a foldable table tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем складной стол завтра».",
+            "uk": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "a",
+            "foldable",
+            "table",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i11:r1",
+            "text": "We are collecting a foldable table tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i11:r2",
+            "text": "We are going to collect a foldable table tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i11:r3",
+            "text": "We is collecting a foldable table tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i11:audio",
+            "transcript": "We are collecting a foldable table tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-40:i11:r1",
+              "targetText": "We are collecting a foldable table tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i11:r2",
+              "targetText": "We are going to collect a foldable table tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i11:r3",
+              "targetText": "We is collecting a foldable table tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting a foldable table tomorrow.",
+                "uk": "У записі звучить We are collecting a foldable table tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting a foldable table tomorrow.",
+                "uk": "У записі звучить We are collecting a foldable table tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-40:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-16:session-40:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a foldable table tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-40:i12:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i12:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are collecting.",
+                "uk": "Потрібна правильно побудована повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-40:i13:p1",
+              "target": "airtight",
+              "meaningByLocale": {
+                "ru": "герметичный, не пропускающий воздух",
+                "uk": "герметичний, що не пропускає повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-40:i13:p2",
+              "target": "leakproof",
+              "meaningByLocale": {
+                "ru": "не протекающий",
+                "uk": "такий, що не протікає"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-40:i13:p3",
+              "target": "non-stick",
+              "meaningByLocale": {
+                "ru": "с антипригарным покрытием",
+                "uk": "з антипригарним покриттям"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-40:i13:p4",
+              "target": "foldable",
+              "meaningByLocale": {
+                "ru": "складной",
+                "uk": "складаний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "airtight",
+            "leakproof",
+            "non-stick",
+            "foldable"
+          ],
+          "rightColumn": [
+            "герметичний, що не пропускає повітря",
+            "такий, що не протікає",
+            "з антипригарним покриттям",
+            "складаний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i14:audio",
+            "transcript": "I think the container will be airtight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the container will be airtight.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "container",
+            "will",
+            "be",
+            "airtight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i15:audio",
+            "transcript": "I am going to buy a non-stick pan."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a non-stick pan.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "non-stick",
+            "pan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i16:audio",
+            "transcript": "We are collecting a foldable table tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are collecting a foldable table tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте думку-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-40:i17:audio",
+            "transcript": "I think the bottle will be leakproof."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the bottle will be leakproof.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-40:word:airtight",
+      "correctText": "airtight",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i01",
+      "correctText": "I think the container will be airtight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i02",
+      "correctText": "I think the container will be airtight.",
+      "correctResponseId": "en:lesson-16:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i03",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:word:leakproof",
+      "correctText": "leakproof",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i04",
+      "correctText": "I think the bottle will be leakproof.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i05",
+      "correctText": "I think the bottle will be leakproof.",
+      "correctResponseId": "en:lesson-16:session-40:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i06",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-40:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:word:non-stick",
+      "correctText": "non-stick",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i07",
+      "correctText": "I am going to buy a non-stick pan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i08",
+      "correctText": "I am going to buy a non-stick pan.",
+      "correctResponseId": "en:lesson-16:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i09",
+      "correctText": "am going to buy",
+      "correctResponseId": "en:lesson-16:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:word:foldable",
+      "correctText": "foldable",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i10",
+      "correctText": "We are collecting a foldable table tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i11",
+      "correctText": "We are collecting a foldable table tomorrow.",
+      "correctResponseId": "en:lesson-16:session-40:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i12",
+      "correctText": "are collecting",
+      "correctResponseId": "en:lesson-16:session-40:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i14",
+      "correctText": "I think the container will be airtight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i15",
+      "correctText": "I am going to buy a non-stick pan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i16",
+      "correctText": "We are collecting a foldable table tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-40:i17",
+      "correctText": "I think the bottle will be leakproof.",
+      "correctResponseId": null
+    }
+  ]
+}

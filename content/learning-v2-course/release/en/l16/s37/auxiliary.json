@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-37:intro1:r2": {
+          "ru": "Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте мнение-прогноз через will.",
+          "uk": "Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте думку-прогноз через will."
+        },
+        "en:lesson-16:session-37:intro1:r3": {
+          "ru": "Нарушено построение формы.",
+          "uk": "Порушено побудову форми."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-37:intro2:r2": {
+          "ru": "Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте заранее принятое намерение через going to.",
+          "uk": "Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "en:lesson-16:session-37:intro2:r3": {
+          "ru": "Нарушено построение формы.",
+          "uk": "Порушено побудову форми."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-37:intro3:r2": {
+          "ru": "Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "en:lesson-16:session-37:intro3:r3": {
+          "ru": "Нарушено построение формы.",
+          "uk": "Порушено побудову форми."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "058309a25ff7d2f183fe6d25bbc25faeb9d334d3e628f7fea577438f0582737b"
+}

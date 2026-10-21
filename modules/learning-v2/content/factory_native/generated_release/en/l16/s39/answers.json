@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-39:word:windproof",
+    "correctText": "windproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i01",
+    "correctText": "I think the new jacket will be windproof.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i02",
+    "correctText": "I think the new jacket will be windproof.",
+    "correctResponseId": "en:lesson-16:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:word:breathable",
+    "correctText": "breathable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i04",
+    "correctText": "I think the fabric will be breathable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i05",
+    "correctText": "I think the fabric will be breathable.",
+    "correctResponseId": "en:lesson-16:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:word:roomy",
+    "correctText": "roomy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i07",
+    "correctText": "I am going to choose a roomy backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i08",
+    "correctText": "I am going to choose a roomy backpack.",
+    "correctResponseId": "en:lesson-16:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i09",
+    "correctText": "am going to choose",
+    "correctResponseId": "en:lesson-16:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:word:compact",
+    "correctText": "compact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i10",
+    "correctText": "We are collecting a compact tent tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i11",
+    "correctText": "We are collecting a compact tent tomorrow.",
+    "correctResponseId": "en:lesson-16:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-16:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i13",
+    "correctText": "en:lesson-16:session-39:i13:p1=windproof\nen:lesson-16:session-39:i13:p2=breathable\nen:lesson-16:session-39:i13:p3=roomy\nen:lesson-16:session-39:i13:p4=compact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i14",
+    "correctText": "I think the new jacket will be windproof.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i15",
+    "correctText": "I am going to choose a roomy backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i16",
+    "correctText": "We are collecting a compact tent tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-39:i17",
+    "correctText": "I think the fabric will be breathable.",
+    "correctResponseId": null
+  }
+]

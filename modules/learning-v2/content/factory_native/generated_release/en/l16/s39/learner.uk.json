@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-39:word:windproof",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — windproof",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:word:windproof:audio"
+      ],
+      "accessibilityLabel": "Картка слова — windproof",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:word:windproof:audio",
+          "transcript": "windproof"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:word:windproof:r1",
+            "targetText": "windproof",
+            "meaningByLocale": {
+              "ru": "не пропускающий ветер.",
+              "uk": "такий, що не пропускає вітер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "windproof",
+          "definitionByLocale": {
+            "ru": "не пропускающий ветер.",
+            "uk": "такий, що не пропускає вітер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will. Скажіть: «Думаю, нова куртка не пропускатиме вітер».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will. Скажіть: «Думаю, нова куртка не пропускатиме вітер».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the new jacket will be windproof.",
+        "localizedMeaning": {
+          "ru": "Вы пока не получили новую куртку и предполагаете, что она защитит от ветра. Передайте мнение-прогноз через will. Скажите: «Думаю, новая куртка не будет пропускать ветер».",
+          "uk": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will. Скажіть: «Думаю, нова куртка не пропускатиме вітер»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "new",
+          "jacket",
+          "will",
+          "be",
+          "windproof"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i02:r1",
+          "text": "I think the new jacket will be windproof."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i02:r2",
+          "text": "I think the new jacket is going to be windproof."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i02:r3",
+          "text": "I think the new jacket will to be windproof."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i02:audio",
+          "transcript": "I think the new jacket will be windproof."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:i02:r1",
+            "targetText": "I think the new jacket will be windproof.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i02:r2",
+            "targetText": "I think the new jacket is going to be windproof.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i02:r3",
+            "targetText": "I think the new jacket will to be windproof.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the new jacket will be windproof.",
+              "uk": "У записі звучить I think the new jacket will be windproof."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the new jacket will be windproof.",
+              "uk": "У записі звучить I think the new jacket will be windproof."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пока не получили новую куртку и предполагаете, что она защитит от ветра. Передайте мнение-прогноз через will.",
+          "uk": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the new jacket ___ windproof.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-39:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:word:breathable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — breathable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:word:breathable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — breathable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:word:breathable:audio",
+          "transcript": "breathable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:word:breathable:r1",
+            "targetText": "breathable",
+            "meaningByLocale": {
+              "ru": "дышащий, пропускающий воздух — о материале.",
+              "uk": "дихаючий, такий, що пропускає повітря — про матеріал."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breathable",
+          "definitionByLocale": {
+            "ru": "дышащий, пропускающий воздух — о материале.",
+            "uk": "дихаючий, такий, що пропускає повітря — про матеріал."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will. Скажіть: «Думаю, тканина пропускатиме повітря».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will. Скажіть: «Думаю, тканина пропускатиме повітря».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the fabric will be breathable.",
+        "localizedMeaning": {
+          "ru": "Вы высказываете ожидание о ткани заказанной одежды. Передайте мнение-прогноз через will. Скажите: «Думаю, ткань будет пропускать воздух».",
+          "uk": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will. Скажіть: «Думаю, тканина пропускатиме повітря»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "fabric",
+          "will",
+          "be",
+          "breathable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i05:r1",
+          "text": "I think the fabric will be breathable."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i05:r2",
+          "text": "I think the fabric is going to be breathable."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i05:r3",
+          "text": "I think the fabric will to be breathable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i05:audio",
+          "transcript": "I think the fabric will be breathable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:i05:r1",
+            "targetText": "I think the fabric will be breathable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i05:r2",
+            "targetText": "I think the fabric is going to be breathable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i05:r3",
+            "targetText": "I think the fabric will to be breathable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the fabric will be breathable.",
+              "uk": "У записі звучить I think the fabric will be breathable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the fabric will be breathable.",
+              "uk": "У записі звучить I think the fabric will be breathable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы высказываете ожидание о ткани заказанной одежды. Передайте мнение-прогноз через will.",
+          "uk": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the fabric ___ breathable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-39:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте очікування щодо тканини замовленого одягу. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:word:roomy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roomy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:word:roomy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roomy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:word:roomy:audio",
+          "transcript": "roomy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:word:roomy:r1",
+            "targetText": "roomy",
+            "meaningByLocale": {
+              "ru": "вместительный, с большим количеством места внутри.",
+              "uk": "місткий, з великою кількістю місця всередині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roomy",
+          "definitionByLocale": {
+            "ru": "вместительный, с большим количеством места внутри.",
+            "uk": "місткий, з великою кількістю місця всередині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся вибрати місткий рюкзак».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся вибрати місткий рюкзак».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to choose a roomy backpack.",
+        "localizedMeaning": {
+          "ru": "Вы решили выбрать рюкзак, в который поместятся все вещи; пока ещё не выбрали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь выбрать вместительный рюкзак».",
+          "uk": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся вибрати місткий рюкзак»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "choose",
+          "a",
+          "roomy",
+          "backpack"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i08:r1",
+          "text": "I am going to choose a roomy backpack."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i08:r2",
+          "text": "I am choosing a roomy backpack."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i08:r3",
+          "text": "I is going to choose a roomy backpack."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i08:audio",
+          "transcript": "I am going to choose a roomy backpack."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:i08:r1",
+            "targetText": "I am going to choose a roomy backpack.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i08:r2",
+            "targetText": "I am choosing a roomy backpack.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i08:r3",
+            "targetText": "I is going to choose a roomy backpack.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to choose a roomy backpack.",
+              "uk": "У записі звучить I am going to choose a roomy backpack."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to choose a roomy backpack.",
+              "uk": "У записі звучить I am going to choose a roomy backpack."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i09:r1",
+          "text": "am going to choose"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i09:r2",
+          "text": "am choosing"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили выбрать рюкзак, в который поместятся все вещи; пока ещё не выбрали. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a roomy backpack.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-39:i09:r1",
+            "text": "am going to choose"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i09:r2",
+            "text": "am choosing"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to choose.",
+              "uk": "Потрібна правильно побудована повна форма: am going to choose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:word:compact",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — compact",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:word:compact:audio"
+      ],
+      "accessibilityLabel": "Картка слова — compact",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:word:compact:audio",
+          "transcript": "compact"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:word:compact:r1",
+            "targetText": "compact",
+            "meaningByLocale": {
+              "ru": "компактный, занимающий мало места.",
+              "uk": "компактний, що займає мало місця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compact",
+          "definitionByLocale": {
+            "ru": "компактный, занимающий мало места.",
+            "uk": "компактний, що займає мало місця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо компактний намет завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо компактний намет завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are collecting a compact tent tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем компактную палатку завтра».",
+          "uk": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо компактний намет завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "a",
+          "compact",
+          "tent",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i11:r1",
+          "text": "We are collecting a compact tent tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i11:r2",
+          "text": "We are going to collect a compact tent tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i11:r3",
+          "text": "We is collecting a compact tent tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i11:audio",
+          "transcript": "We are collecting a compact tent tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-39:i11:r1",
+            "targetText": "We are collecting a compact tent tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i11:r2",
+            "targetText": "We are going to collect a compact tent tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i11:r3",
+            "targetText": "We is collecting a compact tent tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting a compact tent tomorrow.",
+              "uk": "У записі звучить We are collecting a compact tent tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting a compact tent tomorrow.",
+              "uk": "У записі звучить We are collecting a compact tent tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-39:i12:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i12:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-16:session-39:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a compact tent tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-39:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are collecting.",
+              "uk": "Потрібна правильно побудована повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-39:i13:p1",
+            "target": "windproof",
+            "meaningByLocale": {
+              "ru": "не пропускающий ветер",
+              "uk": "такий, що не пропускає вітер"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-39:i13:p2",
+            "target": "breathable",
+            "meaningByLocale": {
+              "ru": "дышащий, пропускающий воздух",
+              "uk": "дихаючий, такий, що пропускає повітря"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-39:i13:p3",
+            "target": "roomy",
+            "meaningByLocale": {
+              "ru": "вместительный, с большим количеством места внутри",
+              "uk": "місткий, з великою кількістю місця всередині"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-39:i13:p4",
+            "target": "compact",
+            "meaningByLocale": {
+              "ru": "компактный, занимающий мало места",
+              "uk": "компактний, що займає мало місця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "windproof",
+          "breathable",
+          "roomy",
+          "compact"
+        ],
+        "rightColumn": [
+          "такий, що не пропускає вітер",
+          "дихаючий, такий, що пропускає повітря",
+          "місткий, з великою кількістю місця всередині",
+          "компактний, що займає мало місця"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i14:audio",
+          "transcript": "I think the new jacket will be windproof."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the new jacket will be windproof.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "new",
+          "jacket",
+          "will",
+          "be",
+          "windproof"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i15:audio",
+          "transcript": "I am going to choose a roomy backpack."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to choose a roomy backpack.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "choose",
+          "a",
+          "roomy",
+          "backpack"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i16:audio",
+          "transcript": "We are collecting a compact tent tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are collecting a compact tent tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-39:i17:audio",
+          "transcript": "I think the fabric will be breathable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the fabric will be breathable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3b35009188b448009876c1a1856d0fbc5609ac5d9fa7c7f26d16cfab797cca10"
+}

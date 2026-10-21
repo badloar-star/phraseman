@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. airtight — герметичный, не пропускающий воздух. Вы предполагаете, что новый контейнер будет плотно закрываться и не пропускать воздух. I think the container will be airtight. — Думаю, контейнер будет герметичным. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. airtight — герметичний, що не пропускає повітря. Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. I think the container will be airtight. — Думаю, контейнер буде герметичним. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-40:intro1:r1",
+              "text": "I think the container will be airtight."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro1:r2",
+              "text": "I think the container is going to be airtight."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro1:r3",
+              "text": "I think the container will to be airtight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-40:intro1:r1",
+              "text": "I think the container will be airtight."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro1:r2",
+              "text": "I think the container is going to be airtight."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro1:r3",
+              "text": "I think the container will to be airtight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "leakproof — не протекающий. non-stick — с антипригарным покрытием. Вы решили купить такую сковороду, но ещё не выбрали магазин или день. I am going to buy a non-stick pan. — Я собираюсь купить сковороду с антипригарным покрытием. Передайте заранее принятое намерение через going to.",
+        "uk": "leakproof — такий, що не протікає. non-stick — з антипригарним покриттям. Ви вирішили купити таку сковороду, але ще не вибрали магазин або день. I am going to buy a non-stick pan. — Я збираюся купити сковороду з антипригарним покриттям. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-40:intro2:r1",
+              "text": "I am going to buy a non-stick pan."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro2:r2",
+              "text": "I am buying a non-stick pan."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro2:r3",
+              "text": "I is going to buy a non-stick pan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-40:intro2:r1",
+              "text": "I am going to buy a non-stick pan."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro2:r2",
+              "text": "I am buying a non-stick pan."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro2:r3",
+              "text": "I is going to buy a non-stick pan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "foldable — складной. Вы согласовали с продавцом получение складного стола на завтра. We are collecting a foldable table tomorrow. — Мы забираем складной стол завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "foldable — складаний. Ви узгодили з продавцем отримання складаного столу на завтра. We are collecting a foldable table tomorrow. — Ми забираємо складаний стіл завтра. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-40:intro3:r1",
+              "text": "We are collecting a foldable table tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro3:r2",
+              "text": "We are going to collect a foldable table tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro3:r3",
+              "text": "We is collecting a foldable table tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-40:intro3:r1",
+              "text": "We are collecting a foldable table tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro3:r2",
+              "text": "We are going to collect a foldable table tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-40:intro3:r3",
+              "text": "We is collecting a foldable table tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6233c12841c162fe55031c0dee8f4bcf5295cab8b8a8656b74ee64349056b7d"
+}

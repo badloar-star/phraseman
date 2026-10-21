@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-37:word:predictable",
+    "correctText": "predictable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i01",
+    "correctText": "I think the ending will be predictable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i02",
+    "correctText": "I think the ending will be predictable.",
+    "correctResponseId": "en:lesson-16:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:word:unpredictable",
+    "correctText": "unpredictable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i04",
+    "correctText": "I think the weather will be unpredictable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i05",
+    "correctText": "I think the weather will be unpredictable.",
+    "correctResponseId": "en:lesson-16:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:word:temporary",
+    "correctText": "temporary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i07",
+    "correctText": "I am going to find a temporary job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i08",
+    "correctText": "I am going to find a temporary job.",
+    "correctResponseId": "en:lesson-16:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i09",
+    "correctText": "am going to find",
+    "correctResponseId": "en:lesson-16:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:word:permanent",
+    "correctText": "permanent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i10",
+    "correctText": "We are moving to our permanent home tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i11",
+    "correctText": "We are moving to our permanent home tomorrow.",
+    "correctResponseId": "en:lesson-16:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i12",
+    "correctText": "are moving",
+    "correctResponseId": "en:lesson-16:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i13",
+    "correctText": "en:lesson-16:session-37:i13:p1=predictable\nen:lesson-16:session-37:i13:p2=unpredictable\nen:lesson-16:session-37:i13:p3=temporary\nen:lesson-16:session-37:i13:p4=permanent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i14",
+    "correctText": "I think the ending will be predictable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i15",
+    "correctText": "I am going to find a temporary job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i16",
+    "correctText": "We are moving to our permanent home tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-37:i17",
+    "correctText": "I think the weather will be unpredictable.",
+    "correctResponseId": null
+  }
+]

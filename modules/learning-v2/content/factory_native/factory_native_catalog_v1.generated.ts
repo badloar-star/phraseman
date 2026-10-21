@@ -6139,4 +6139,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will / going to / Present Continuous: future form contrast","uk":"will / going to / Present Continuous: future form contrast"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 37,
+    sourceFingerprint: "0d7fc4e42f2685ae7b53e70d19d64b6f96e4391f0d87c189f45632325c4264de",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will / going to / Present Continuous: future form contrast","uk":"will / going to / Present Continuous: future form contrast"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 38,
+    sourceFingerprint: "3d876369cde6cffdc6f556a16d78ccbac771fa2b16b72001280470ec793a7cdb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will / going to / Present Continuous: future form contrast","uk":"will / going to / Present Continuous: future form contrast"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 39,
+    sourceFingerprint: "e298752df9a627a2ee4341d07870880f1e769e5e052207ba436de2bc5593efc2",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will / going to / Present Continuous: future form contrast","uk":"will / going to / Present Continuous: future form contrast"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 40,
+    sourceFingerprint: "8c66c77b4c8592c28adc0ab8e23422050fc0301b97ca41f7732c23987bb1a9ae",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will / going to / Present Continuous: future form contrast","uk":"will / going to / Present Continuous: future form contrast"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
 ]);

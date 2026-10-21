@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. windproof — не пропускающий ветер. Вы пока не получили новую куртку и предполагаете, что она защитит от ветра. I think the new jacket will be windproof. — Думаю, новая куртка не будет пропускать ветер. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. windproof — такий, що не пропускає вітер. Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. I think the new jacket will be windproof. — Думаю, нова куртка не пропускатиме вітер. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-39:intro1:r1",
+              "text": "I think the new jacket will be windproof."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro1:r2",
+              "text": "I think the new jacket is going to be windproof."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro1:r3",
+              "text": "I think the new jacket will to be windproof."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-39:intro1:r1",
+              "text": "I think the new jacket will be windproof."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro1:r2",
+              "text": "I think the new jacket is going to be windproof."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro1:r3",
+              "text": "I think the new jacket will to be windproof."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "breathable — дышащий, пропускающий воздух — о материале. roomy — вместительный, с большим количеством места внутри. Вы решили выбрать рюкзак, в который поместятся все вещи; пока ещё не выбрали. I am going to choose a roomy backpack. — Я собираюсь выбрать вместительный рюкзак. Передайте заранее принятое намерение через going to.",
+        "uk": "breathable — дихаючий, такий, що пропускає повітря — про матеріал. roomy — місткий, з великою кількістю місця всередині. Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. I am going to choose a roomy backpack. — Я збираюся вибрати місткий рюкзак. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-39:intro2:r1",
+              "text": "I am going to choose a roomy backpack."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro2:r2",
+              "text": "I am choosing a roomy backpack."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro2:r3",
+              "text": "I is going to choose a roomy backpack."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-39:intro2:r1",
+              "text": "I am going to choose a roomy backpack."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro2:r2",
+              "text": "I am choosing a roomy backpack."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro2:r3",
+              "text": "I is going to choose a roomy backpack."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "compact — компактный, занимающий мало места. Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. We are collecting a compact tent tomorrow. — Мы забираем компактную палатку завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "compact — компактний, що займає мало місця. Ви домовилися з прокатом забрати компактний намет завтра в призначений час. We are collecting a compact tent tomorrow. — Ми забираємо компактний намет завтра. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-39:intro3:r1",
+              "text": "We are collecting a compact tent tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro3:r2",
+              "text": "We are going to collect a compact tent tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro3:r3",
+              "text": "We is collecting a compact tent tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-39:intro3:r1",
+              "text": "We are collecting a compact tent tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro3:r2",
+              "text": "We are going to collect a compact tent tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-39:intro3:r3",
+              "text": "We is collecting a compact tent tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "08763bee7fb643c37f109b976f2f5d5b74909ec3c8799aaab336d3f55b3f1e1c"
+}

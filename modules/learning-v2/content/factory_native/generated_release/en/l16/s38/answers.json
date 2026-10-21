@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-38:word:durable",
+    "correctText": "durable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i01",
+    "correctText": "I think the bag will be durable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i02",
+    "correctText": "I think the bag will be durable.",
+    "correctResponseId": "en:lesson-16:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:word:lightweight",
+    "correctText": "lightweight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i04",
+    "correctText": "I think the suitcase will be lightweight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i05",
+    "correctText": "I think the suitcase will be lightweight.",
+    "correctResponseId": "en:lesson-16:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:word:disposable",
+    "correctText": "disposable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i07",
+    "correctText": "I am going to avoid disposable plates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i08",
+    "correctText": "I am going to avoid disposable plates.",
+    "correctResponseId": "en:lesson-16:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i09",
+    "correctText": "am going to avoid",
+    "correctResponseId": "en:lesson-16:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:word:portable",
+    "correctText": "portable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i10",
+    "correctText": "We are buying portable chairs tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i11",
+    "correctText": "We are buying portable chairs tomorrow.",
+    "correctResponseId": "en:lesson-16:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i12",
+    "correctText": "are buying",
+    "correctResponseId": "en:lesson-16:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i13",
+    "correctText": "en:lesson-16:session-38:i13:p1=durable\nen:lesson-16:session-38:i13:p2=lightweight\nen:lesson-16:session-38:i13:p3=disposable\nen:lesson-16:session-38:i13:p4=portable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i14",
+    "correctText": "I think the bag will be durable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i15",
+    "correctText": "I am going to avoid disposable plates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i16",
+    "correctText": "We are buying portable chairs tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-38:i17",
+    "correctText": "I think the suitcase will be lightweight.",
+    "correctResponseId": null
+  }
+]

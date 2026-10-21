@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-40:word:airtight",
+    "correctText": "airtight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i01",
+    "correctText": "I think the container will be airtight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i02",
+    "correctText": "I think the container will be airtight.",
+    "correctResponseId": "en:lesson-16:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:word:leakproof",
+    "correctText": "leakproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i04",
+    "correctText": "I think the bottle will be leakproof.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i05",
+    "correctText": "I think the bottle will be leakproof.",
+    "correctResponseId": "en:lesson-16:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:word:non-stick",
+    "correctText": "non-stick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i07",
+    "correctText": "I am going to buy a non-stick pan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i08",
+    "correctText": "I am going to buy a non-stick pan.",
+    "correctResponseId": "en:lesson-16:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i09",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-16:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:word:foldable",
+    "correctText": "foldable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i10",
+    "correctText": "We are collecting a foldable table tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i11",
+    "correctText": "We are collecting a foldable table tomorrow.",
+    "correctResponseId": "en:lesson-16:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-16:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i13",
+    "correctText": "en:lesson-16:session-40:i13:p1=airtight\nen:lesson-16:session-40:i13:p2=leakproof\nen:lesson-16:session-40:i13:p3=non-stick\nen:lesson-16:session-40:i13:p4=foldable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i14",
+    "correctText": "I think the container will be airtight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i15",
+    "correctText": "I am going to buy a non-stick pan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i16",
+    "correctText": "We are collecting a foldable table tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-40:i17",
+    "correctText": "I think the bottle will be leakproof.",
+    "correctResponseId": null
+  }
+]

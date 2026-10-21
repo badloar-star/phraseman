@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. draughty — со сквозняками. Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. I think the room will be draughty. — Думаю, в комнате будут сквозняки. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. draughty — з протягами. Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. I think the room will be draughty. — Думаю, у кімнаті будуть протяги. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-51:intro1:r1",
+              "text": "I think the room will be draughty."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro1:r2",
+              "text": "I think the room is going to be draughty."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro1:r3",
+              "text": "I think the room will to be draughty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-51:intro1:r1",
+              "text": "I think the room will be draughty."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro1:r2",
+              "text": "I think the room is going to be draughty."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro1:r3",
+              "text": "I think the room will to be draughty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "well-lit — хорошо освещённый. soundproof — со звукоизоляцией, не пропускающий звук. Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. I am going to look for a soundproof room. — Я собираюсь искать комнату со звукоизоляцией. Передайте заранее принятое намерение через going to.",
+        "uk": "well-lit — добре освітлений. soundproof — зі звукоізоляцією, що не пропускає звук. Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. I am going to look for a soundproof room. — Я збираюся шукати кімнату зі звукоізоляцією. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-51:intro2:r1",
+              "text": "I am going to look for a soundproof room."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro2:r2",
+              "text": "I am looking for a soundproof room."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro2:r3",
+              "text": "I is going to look for a soundproof room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-51:intro2:r1",
+              "text": "I am going to look for a soundproof room."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro2:r2",
+              "text": "I am looking for a soundproof room."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro2:r3",
+              "text": "I is going to look for a soundproof room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "well-kept — ухоженный, в хорошем состоянии. Вы согласовали с владельцем просмотр квартиры на завтра. We are viewing a well-kept flat tomorrow. — Завтра мы осматриваем ухоженную квартиру. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "well-kept — доглянутий, у доброму стані. Ви узгодили з власником перегляд квартири на завтра. We are viewing a well-kept flat tomorrow. — Завтра ми оглядаємо доглянуту квартиру. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-51:intro3:r1",
+              "text": "We are viewing a well-kept flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro3:r2",
+              "text": "We are going to view a well-kept flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro3:r3",
+              "text": "We is viewing a well-kept flat tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-51:intro3:r1",
+              "text": "We are viewing a well-kept flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro3:r2",
+              "text": "We are going to view a well-kept flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-51:intro3:r3",
+              "text": "We is viewing a well-kept flat tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6366c8f116ec8b45f4240d1b411d43bc9a6f6d628a96011769addc8ff691f55a"
+}

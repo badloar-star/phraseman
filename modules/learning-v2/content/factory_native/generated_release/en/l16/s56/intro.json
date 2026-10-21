@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. south-facing — выходящий на юг. Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. I think the garden will be south-facing. — Думаю, сад будет выходить на юг. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. south-facing — що виходить на південь. Ви припускаєте, у який бік виходить сад біля будинку, який ще не оглянули. I think the garden will be south-facing. — Думаю, сад виходитиме на південь. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-56:intro1:r1",
+              "text": "I think the garden will be south-facing."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro1:r2",
+              "text": "I think the garden is going to be south-facing."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro1:r3",
+              "text": "I think the garden will to be south-facing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-56:intro1:r1",
+              "text": "I think the garden will be south-facing."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro1:r2",
+              "text": "I think the garden is going to be south-facing."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro1:r3",
+              "text": "I think the garden will to be south-facing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "north-facing — выходящий на север. built-in — встроенный. Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. I am going to look for a flat with a built-in wardrobe. — Я собираюсь искать квартиру со встроенным шкафом. Передайте заранее принятое намерение через going to.",
+        "uk": "north-facing — що виходить на північ. built-in — вбудований. Ви вирішили, що в новій квартирі потрібна вбудована шафа; пошуки ще не почали. I am going to look for a flat with a built-in wardrobe. — Я збираюся шукати квартиру із вбудованою шафою. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-56:intro2:r1",
+              "text": "I am going to look for a flat with a built-in wardrobe."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro2:r2",
+              "text": "I am looking for a flat with a built-in wardrobe."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro2:r3",
+              "text": "I is going to look for a flat with a built-in wardrobe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-56:intro2:r1",
+              "text": "I am going to look for a flat with a built-in wardrobe."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro2:r2",
+              "text": "I am looking for a flat with a built-in wardrobe."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro2:r3",
+              "text": "I is going to look for a flat with a built-in wardrobe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "waterfront — расположенный у самой воды. Вы договорились с агентом завтра посмотреть квартиру у набережной. We are viewing a waterfront flat tomorrow. — Завтра мы осматриваем квартиру у самой воды. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "waterfront — розташований біля самої води. Ви домовилися з агентом завтра подивитися квартиру біля набережної. We are viewing a waterfront flat tomorrow. — Завтра ми оглядаємо квартиру біля самої води. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-56:intro3:r1",
+              "text": "We are viewing a waterfront flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro3:r2",
+              "text": "We are going to view a waterfront flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro3:r3",
+              "text": "We is viewing a waterfront flat tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-56:intro3:r1",
+              "text": "We are viewing a waterfront flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro3:r2",
+              "text": "We are going to view a waterfront flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-56:intro3:r3",
+              "text": "We is viewing a waterfront flat tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "db766accb0bb390c11b4fb6a94165dac5d83756c23f8ba6a71359abe982808bf"
+}

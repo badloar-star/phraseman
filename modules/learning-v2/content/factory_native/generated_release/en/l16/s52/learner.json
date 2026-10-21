@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-52:word:uneven",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — uneven",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:word:uneven:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — uneven",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:word:uneven:audio",
+          "transcript": "uneven"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:word:uneven:r1",
+            "targetText": "uneven",
+            "meaningByLocale": {
+              "ru": "неровный — о поверхности.",
+              "uk": "нерівний — про поверхню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "uneven",
+          "definitionByLocale": {
+            "ru": "неровный — о поверхности.",
+            "uk": "нерівний — про поверхню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will. Скажите: «Думаю, дорожка будет неровной».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will. Скажите: «Думаю, дорожка будет неровной».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the path will be uneven.",
+        "localizedMeaning": {
+          "ru": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will. Скажите: «Думаю, дорожка будет неровной».",
+          "uk": "Ви ще не гуляли цією доріжкою й припускаєте, що поверхня буде нерівною. Передайте думку-прогноз через will. Скажіть: «Думаю, доріжка буде нерівною»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "path",
+          "will",
+          "be",
+          "uneven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i02:r1",
+          "text": "I think the path will be uneven."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i02:r2",
+          "text": "I think the path is going to be uneven."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i02:r3",
+          "text": "I think the path will to be uneven."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i02:audio",
+          "transcript": "I think the path will be uneven."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:i02:r1",
+            "targetText": "I think the path will be uneven.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i02:r2",
+            "targetText": "I think the path is going to be uneven.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i02:r3",
+            "targetText": "I think the path will to be uneven.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the path will be uneven.",
+              "uk": "У записі звучить I think the path will be uneven."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the path will be uneven.",
+              "uk": "У записі звучить I think the path will be uneven."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.",
+          "uk": "Ви ще не гуляли цією доріжкою й припускаєте, що поверхня буде нерівною. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the path ___ uneven.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-52:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:word:shaded",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shaded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:word:shaded:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shaded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:word:shaded:audio",
+          "transcript": "shaded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:word:shaded:r1",
+            "targetText": "shaded",
+            "meaningByLocale": {
+              "ru": "затенённый, находящийся в тени.",
+              "uk": "затінений, такий, що перебуває в затінку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shaded",
+          "definitionByLocale": {
+            "ru": "затенённый, находящийся в тени.",
+            "uk": "затінений, такий, що перебуває в затінку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will. Скажите: «Думаю, после обеда скамейка будет в тени».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will. Скажите: «Думаю, после обеда скамейка будет в тени».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the bench will be shaded in the afternoon.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will. Скажите: «Думаю, после обеда скамейка будет в тени».",
+          "uk": "Ви припускаєте, чи буде лавка в затінку після обіду. Передайте думку-прогноз через will. Скажіть: «Думаю, після обіду лавка буде в затінку»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "bench",
+          "will",
+          "be",
+          "shaded",
+          "in",
+          "the",
+          "afternoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i05:r1",
+          "text": "I think the bench will be shaded in the afternoon."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i05:r2",
+          "text": "I think the bench is going to be shaded in the afternoon."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i05:r3",
+          "text": "I think the bench will to be shaded in the afternoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i05:audio",
+          "transcript": "I think the bench will be shaded in the afternoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:i05:r1",
+            "targetText": "I think the bench will be shaded in the afternoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i05:r2",
+            "targetText": "I think the bench is going to be shaded in the afternoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i05:r3",
+            "targetText": "I think the bench will to be shaded in the afternoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the bench will be shaded in the afternoon.",
+              "uk": "У записі звучить I think the bench will be shaded in the afternoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the bench will be shaded in the afternoon.",
+              "uk": "У записі звучить I think the bench will be shaded in the afternoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, чи буде лавка в затінку після обіду. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the bench ___ shaded in the afternoon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-52:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:word:paved",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — paved",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:word:paved:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — paved",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:word:paved:audio",
+          "transcript": "paved"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:word:paved:r1",
+            "targetText": "paved",
+            "meaningByLocale": {
+              "ru": "с твёрдым покрытием — о дорожке или дороге.",
+              "uk": "із твердим покриттям — про доріжку або дорогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paved",
+          "definitionByLocale": {
+            "ru": "с твёрдым покрытием — о дорожке или дороге.",
+            "uk": "із твердим покриттям — про доріжку або дорогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь выбрать дорожку с твёрдым покрытием».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь выбрать дорожку с твёрдым покрытием».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to choose a paved path.",
+        "localizedMeaning": {
+          "ru": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь выбрать дорожку с твёрдым покрытием».",
+          "uk": "Ви вирішили вибрати для прогулянки доріжку з покриттям; поки маршрут не вибрано. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся вибрати доріжку із твердим покриттям»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "choose",
+          "a",
+          "paved",
+          "path"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i08:r1",
+          "text": "I am going to choose a paved path."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i08:r2",
+          "text": "I am choosing a paved path."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i08:r3",
+          "text": "I is going to choose a paved path."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i08:audio",
+          "transcript": "I am going to choose a paved path."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:i08:r1",
+            "targetText": "I am going to choose a paved path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i08:r2",
+            "targetText": "I am choosing a paved path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i08:r3",
+            "targetText": "I is going to choose a paved path.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to choose a paved path.",
+              "uk": "У записі звучить I am going to choose a paved path."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to choose a paved path.",
+              "uk": "У записі звучить I am going to choose a paved path."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i09:r1",
+          "text": "am going to choose"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i09:r2",
+          "text": "am choosing"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили вибрати для прогулянки доріжку з покриттям; поки маршрут не вибрано. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a paved path.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-52:i09:r1",
+            "text": "am going to choose"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i09:r2",
+            "text": "am choosing"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to choose.",
+              "uk": "Потрібна правильно побудована повна форма: am going to choose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:word:unpaved",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unpaved",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:word:unpaved:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unpaved",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:word:unpaved:audio",
+          "transcript": "unpaved"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:word:unpaved:r1",
+            "targetText": "unpaved",
+            "meaningByLocale": {
+              "ru": "без твёрдого покрытия — о дороге.",
+              "uk": "без твердого покриття — про дорогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unpaved",
+          "definitionByLocale": {
+            "ru": "без твёрдого покрытия — о дороге.",
+            "uk": "без твердого покриття — про дорогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are walking along the unpaved road tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».",
+          "uk": "Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми йдемо дорогою без твердого покриття»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "walking",
+          "along",
+          "the",
+          "unpaved",
+          "road",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i11:r1",
+          "text": "We are walking along the unpaved road tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i11:r2",
+          "text": "We are going to walk along the unpaved road tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i11:r3",
+          "text": "We is walking along the unpaved road tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i11:audio",
+          "transcript": "We are walking along the unpaved road tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-52:i11:r1",
+            "targetText": "We are walking along the unpaved road tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i11:r2",
+            "targetText": "We are going to walk along the unpaved road tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i11:r3",
+            "targetText": "We is walking along the unpaved road tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are walking along the unpaved road tomorrow.",
+              "uk": "У записі звучить We are walking along the unpaved road tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are walking along the unpaved road tomorrow.",
+              "uk": "У записі звучить We are walking along the unpaved road tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-52:i12:r1",
+          "text": "are walking"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i12:r2",
+          "text": "are going to walk"
+        },
+        {
+          "responseId": "en:lesson-16:session-52:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ along the unpaved road tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-52:i12:r1",
+            "text": "are walking"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i12:r2",
+            "text": "are going to walk"
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are walking.",
+              "uk": "Потрібна правильно побудована повна форма: are walking."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-52:i13:p1",
+            "target": "uneven",
+            "meaningByLocale": {
+              "ru": "неровный",
+              "uk": "нерівний"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-52:i13:p2",
+            "target": "shaded",
+            "meaningByLocale": {
+              "ru": "затенённый, находящийся в тени",
+              "uk": "затінений, такий, що перебуває в затінку"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-52:i13:p3",
+            "target": "paved",
+            "meaningByLocale": {
+              "ru": "с твёрдым покрытием",
+              "uk": "із твердим покриттям"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-52:i13:p4",
+            "target": "unpaved",
+            "meaningByLocale": {
+              "ru": "без твёрдого покрытия",
+              "uk": "без твердого покриття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "uneven",
+          "shaded",
+          "paved",
+          "unpaved"
+        ],
+        "rightColumn": [
+          "неровный",
+          "затенённый, находящийся в тени",
+          "с твёрдым покрытием",
+          "без твёрдого покрытия"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i14:audio",
+          "transcript": "I think the path will be uneven."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the path will be uneven.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "path",
+          "will",
+          "be",
+          "uneven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i15:audio",
+          "transcript": "I am going to choose a paved path."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to choose a paved path.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "choose",
+          "a",
+          "paved",
+          "path"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i16:audio",
+          "transcript": "We are walking along the unpaved road tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are walking along the unpaved road tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-52:i17:audio",
+          "transcript": "I think the bench will be shaded in the afternoon."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the bench will be shaded in the afternoon.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "841f59c159368d9c1fbdbc83dd426da97133e2c4c436e4c2bbc08eb97442a26c"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-52:word:uneven",
+    "correctText": "uneven",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i01",
+    "correctText": "I think the path will be uneven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i02",
+    "correctText": "I think the path will be uneven.",
+    "correctResponseId": "en:lesson-16:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:word:shaded",
+    "correctText": "shaded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i04",
+    "correctText": "I think the bench will be shaded in the afternoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i05",
+    "correctText": "I think the bench will be shaded in the afternoon.",
+    "correctResponseId": "en:lesson-16:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:word:paved",
+    "correctText": "paved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i07",
+    "correctText": "I am going to choose a paved path.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i08",
+    "correctText": "I am going to choose a paved path.",
+    "correctResponseId": "en:lesson-16:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i09",
+    "correctText": "am going to choose",
+    "correctResponseId": "en:lesson-16:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:word:unpaved",
+    "correctText": "unpaved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i10",
+    "correctText": "We are walking along the unpaved road tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i11",
+    "correctText": "We are walking along the unpaved road tomorrow.",
+    "correctResponseId": "en:lesson-16:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i12",
+    "correctText": "are walking",
+    "correctResponseId": "en:lesson-16:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i13",
+    "correctText": "en:lesson-16:session-52:i13:p1=uneven\nen:lesson-16:session-52:i13:p2=shaded\nen:lesson-16:session-52:i13:p3=paved\nen:lesson-16:session-52:i13:p4=unpaved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i14",
+    "correctText": "I think the path will be uneven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i15",
+    "correctText": "I am going to choose a paved path.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i16",
+    "correctText": "We are walking along the unpaved road tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-52:i17",
+    "correctText": "I think the bench will be shaded in the afternoon.",
+    "correctResponseId": null
+  }
+]

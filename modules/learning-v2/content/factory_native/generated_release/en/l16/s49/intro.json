@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. call off — отменить запланированное событие. Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. I think they will call off the picnic. — Думаю, они отменят пикник. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. call off — скасувати заплановану подію. Ви припускаєте, що друзі скасують пікнік, але їхнього рішення ще не знаєте. I think they will call off the picnic. — Думаю, вони скасують пікнік. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-49:intro1:r1",
+              "text": "I think they will call off the picnic."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro1:r2",
+              "text": "I think they are going to call off the picnic."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro1:r3",
+              "text": "I think they will to call off the picnic."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-49:intro1:r1",
+              "text": "I think they will call off the picnic."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro1:r2",
+              "text": "I think they are going to call off the picnic."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro1:r3",
+              "text": "I think they will to call off the picnic."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "give up — сдаться, прекратить попытки. sign up — записаться на занятие или мероприятие. Вы решили записаться на кулинарное занятие, но ещё не записались. I am going to sign up for a cooking class. — Я собираюсь записаться на кулинарное занятие. Передайте заранее принятое намерение через going to.",
+        "uk": "give up — здатися, припинити спроби. sign up — записатися на заняття або захід. Ви вирішили записатися на кулінарне заняття, але ще не записалися. I am going to sign up for a cooking class. — Я збираюся записатися на кулінарне заняття. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-49:intro2:r1",
+              "text": "I am going to sign up for a cooking class."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro2:r2",
+              "text": "I am signing up for a cooking class."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro2:r3",
+              "text": "I is going to sign up for a cooking class."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-49:intro2:r1",
+              "text": "I am going to sign up for a cooking class."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro2:r2",
+              "text": "I am signing up for a cooking class."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro2:r3",
+              "text": "I is going to sign up for a cooking class."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "check out — выписаться из гостиницы. Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. We are checking out at ten tomorrow. — Мы выписываемся из гостиницы завтра в десять. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "check out — виписатися з готелю. Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. We are checking out at ten tomorrow. — Ми виписуємося з готелю завтра о десятій. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-49:intro3:r1",
+              "text": "We are checking out at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro3:r2",
+              "text": "We are going to check out at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro3:r3",
+              "text": "We is checking out at ten tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-49:intro3:r1",
+              "text": "We are checking out at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro3:r2",
+              "text": "We are going to check out at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-49:intro3:r3",
+              "text": "We is checking out at ten tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "888bb6ebf3c6253208bc796274e48c237a625381d08f37e040a01cfa78679991"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-51:word:draughty",
+    "correctText": "draughty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i01",
+    "correctText": "I think the room will be draughty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i02",
+    "correctText": "I think the room will be draughty.",
+    "correctResponseId": "en:lesson-16:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:word:well-lit",
+    "correctText": "well-lit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i04",
+    "correctText": "I think the entrance will be well-lit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i05",
+    "correctText": "I think the entrance will be well-lit.",
+    "correctResponseId": "en:lesson-16:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:word:soundproof",
+    "correctText": "soundproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i07",
+    "correctText": "I am going to look for a soundproof room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i08",
+    "correctText": "I am going to look for a soundproof room.",
+    "correctResponseId": "en:lesson-16:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i09",
+    "correctText": "am going to look",
+    "correctResponseId": "en:lesson-16:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:word:well-kept",
+    "correctText": "well-kept",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i10",
+    "correctText": "We are viewing a well-kept flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i11",
+    "correctText": "We are viewing a well-kept flat tomorrow.",
+    "correctResponseId": "en:lesson-16:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i12",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-16:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i13",
+    "correctText": "en:lesson-16:session-51:i13:p1=draughty\nen:lesson-16:session-51:i13:p2=well-lit\nen:lesson-16:session-51:i13:p3=soundproof\nen:lesson-16:session-51:i13:p4=well-kept",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i14",
+    "correctText": "I think the room will be draughty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i15",
+    "correctText": "I am going to look for a soundproof room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i16",
+    "correctText": "We are viewing a well-kept flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-51:i17",
+    "correctText": "I think the entrance will be well-lit.",
+    "correctResponseId": null
+  }
+]

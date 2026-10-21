@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-56:word:south-facing",
+    "correctText": "south-facing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i01",
+    "correctText": "I think the garden will be south-facing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i02",
+    "correctText": "I think the garden will be south-facing.",
+    "correctResponseId": "en:lesson-16:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:word:north-facing",
+    "correctText": "north-facing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i04",
+    "correctText": "I think the bedroom will be north-facing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i05",
+    "correctText": "I think the bedroom will be north-facing.",
+    "correctResponseId": "en:lesson-16:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:word:built-in",
+    "correctText": "built-in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i07",
+    "correctText": "I am going to look for a flat with a built-in wardrobe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i08",
+    "correctText": "I am going to look for a flat with a built-in wardrobe.",
+    "correctResponseId": "en:lesson-16:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i09",
+    "correctText": "am going to look",
+    "correctResponseId": "en:lesson-16:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:word:waterfront",
+    "correctText": "waterfront",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i10",
+    "correctText": "We are viewing a waterfront flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i11",
+    "correctText": "We are viewing a waterfront flat tomorrow.",
+    "correctResponseId": "en:lesson-16:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i12",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-16:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i13",
+    "correctText": "en:lesson-16:session-56:i13:p1=south-facing\nen:lesson-16:session-56:i13:p2=north-facing\nen:lesson-16:session-56:i13:p3=built-in\nen:lesson-16:session-56:i13:p4=waterfront",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i14",
+    "correctText": "I think the garden will be south-facing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i15",
+    "correctText": "I am going to look for a flat with a built-in wardrobe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i16",
+    "correctText": "We are viewing a waterfront flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-56:i17",
+    "correctText": "I think the bedroom will be north-facing.",
+    "correctResponseId": null
+  }
+]

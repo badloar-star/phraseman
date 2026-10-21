@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-54:word:semi-detached",
+    "correctText": "semi-detached",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i01",
+    "correctText": "I think the house will be semi-detached.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i02",
+    "correctText": "I think the house will be semi-detached.",
+    "correctResponseId": "en:lesson-16:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:word:double-glazed",
+    "correctText": "double-glazed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i04",
+    "correctText": "I think the windows will be double-glazed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i05",
+    "correctText": "I think the windows will be double-glazed.",
+    "correctResponseId": "en:lesson-16:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:word:central-heating",
+    "correctText": "central heating",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i07",
+    "correctText": "I am going to look for a flat with central heating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i08",
+    "correctText": "I am going to look for a flat with central heating.",
+    "correctResponseId": "en:lesson-16:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i09",
+    "correctText": "am going to look",
+    "correctResponseId": "en:lesson-16:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:word:utility-room",
+    "correctText": "utility room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i10",
+    "correctText": "We are viewing a house with a utility room tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i11",
+    "correctText": "We are viewing a house with a utility room tomorrow.",
+    "correctResponseId": "en:lesson-16:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i12",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-16:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i13",
+    "correctText": "en:lesson-16:session-54:i13:p1=semi-detached\nen:lesson-16:session-54:i13:p2=double-glazed\nen:lesson-16:session-54:i13:p3=central heating\nen:lesson-16:session-54:i13:p4=utility room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i14",
+    "correctText": "I think the house will be semi-detached.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i15",
+    "correctText": "I am going to look for a flat with central heating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i16",
+    "correctText": "We are viewing a house with a utility room tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-54:i17",
+    "correctText": "I think the windows will be double-glazed.",
+    "correctResponseId": null
+  }
+]

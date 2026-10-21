@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-55:word:open-plan",
+    "correctText": "open-plan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i01",
+    "correctText": "I think the kitchen will be open-plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i02",
+    "correctText": "I think the kitchen will be open-plan.",
+    "correctResponseId": "en:lesson-16:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:word:step-free",
+    "correctText": "step-free",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i04",
+    "correctText": "I think the entrance will be step-free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i05",
+    "correctText": "I think the entrance will be step-free.",
+    "correctResponseId": "en:lesson-16:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:word:top-floor",
+    "correctText": "top-floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i07",
+    "correctText": "I am going to look for a top-floor flat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i08",
+    "correctText": "I am going to look for a top-floor flat.",
+    "correctResponseId": "en:lesson-16:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i09",
+    "correctText": "am going to look",
+    "correctResponseId": "en:lesson-16:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:word:new-build",
+    "correctText": "new-build",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i10",
+    "correctText": "We are viewing a new-build flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i11",
+    "correctText": "We are viewing a new-build flat tomorrow.",
+    "correctResponseId": "en:lesson-16:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i12",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-16:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i13",
+    "correctText": "en:lesson-16:session-55:i13:p1=open-plan\nen:lesson-16:session-55:i13:p2=step-free\nen:lesson-16:session-55:i13:p3=top-floor\nen:lesson-16:session-55:i13:p4=new-build",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i14",
+    "correctText": "I think the kitchen will be open-plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i15",
+    "correctText": "I am going to look for a top-floor flat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i16",
+    "correctText": "We are viewing a new-build flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-55:i17",
+    "correctText": "I think the entrance will be step-free.",
+    "correctResponseId": null
+  }
+]

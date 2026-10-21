@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-53:word:furnished",
+    "correctText": "furnished",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i01",
+    "correctText": "I think the flat will be furnished.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i02",
+    "correctText": "I think the flat will be furnished.",
+    "correctResponseId": "en:lesson-16:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:word:unfurnished",
+    "correctText": "unfurnished",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i04",
+    "correctText": "I think the house will be unfurnished.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i05",
+    "correctText": "I think the house will be unfurnished.",
+    "correctResponseId": "en:lesson-16:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:word:detached",
+    "correctText": "detached",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i07",
+    "correctText": "I am going to look for a detached house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i08",
+    "correctText": "I am going to look for a detached house.",
+    "correctResponseId": "en:lesson-16:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i09",
+    "correctText": "am going to look",
+    "correctResponseId": "en:lesson-16:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:word:terraced",
+    "correctText": "terraced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i10",
+    "correctText": "We are viewing a terraced house tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i11",
+    "correctText": "We are viewing a terraced house tomorrow.",
+    "correctResponseId": "en:lesson-16:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i12",
+    "correctText": "are viewing",
+    "correctResponseId": "en:lesson-16:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i13",
+    "correctText": "en:lesson-16:session-53:i13:p1=furnished\nen:lesson-16:session-53:i13:p2=unfurnished\nen:lesson-16:session-53:i13:p3=detached\nen:lesson-16:session-53:i13:p4=terraced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i14",
+    "correctText": "I think the flat will be furnished.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i15",
+    "correctText": "I am going to look for a detached house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i16",
+    "correctText": "We are viewing a terraced house tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-53:i17",
+    "correctText": "I think the house will be unfurnished.",
+    "correctResponseId": null
+  }
+]

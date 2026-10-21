@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. open-plan — открытой планировки, без перегородок между зонами. Вы предполагаете, будет ли кухня объединена с жилой зоной; квартиру ещё не видели. I think the kitchen will be open-plan. — Думаю, кухня будет открытой планировки. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. open-plan — відкритого планування, без перегородок між зонами. Ви припускаєте, чи буде кухня поєднана з житловою зоною; квартири ще не бачили. I think the kitchen will be open-plan. — Думаю, кухня буде відкритого планування. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-55:intro1:r1",
+              "text": "I think the kitchen will be open-plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro1:r2",
+              "text": "I think the kitchen is going to be open-plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro1:r3",
+              "text": "I think the kitchen will to be open-plan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-55:intro1:r1",
+              "text": "I think the kitchen will be open-plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro1:r2",
+              "text": "I think the kitchen is going to be open-plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro1:r3",
+              "text": "I think the kitchen will to be open-plan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "step-free — без ступенек на пути. top-floor — на последнем этаже. Вы решили искать жильё на последнем этаже; пока это намерение. I am going to look for a top-floor flat. — Я собираюсь искать квартиру на последнем этаже. Передайте заранее принятое намерение через going to.",
+        "uk": "step-free — без сходинок на шляху. top-floor — на останньому поверсі. Ви вирішили шукати житло на останньому поверсі; поки це намір. I am going to look for a top-floor flat. — Я збираюся шукати квартиру на останньому поверсі. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-55:intro2:r1",
+              "text": "I am going to look for a top-floor flat."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro2:r2",
+              "text": "I am looking for a top-floor flat."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro2:r3",
+              "text": "I is going to look for a top-floor flat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-55:intro2:r1",
+              "text": "I am going to look for a top-floor flat."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro2:r2",
+              "text": "I am looking for a top-floor flat."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro2:r3",
+              "text": "I is going to look for a top-floor flat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "new-build — недавно построенный — о жилье. Вы согласовали с агентом завтрашний просмотр новой квартиры. We are viewing a new-build flat tomorrow. — Завтра мы осматриваем квартиру в новостройке. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "new-build — нещодавно збудований — про житло. Ви узгодили з агентом завтрашній перегляд нової квартири. We are viewing a new-build flat tomorrow. — Завтра ми оглядаємо квартиру в новобудові. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-55:intro3:r1",
+              "text": "We are viewing a new-build flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro3:r2",
+              "text": "We are going to view a new-build flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro3:r3",
+              "text": "We is viewing a new-build flat tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-55:intro3:r1",
+              "text": "We are viewing a new-build flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro3:r2",
+              "text": "We are going to view a new-build flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-55:intro3:r3",
+              "text": "We is viewing a new-build flat tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "314158d3d4058994e1b987b3ecd125b178dc5156787d81b51996885767bd4766"
+}

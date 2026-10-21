@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. bring in — занести внутрь. Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. I think Anna will bring in the washing. — Думаю, Анна занесёт высохшее бельё в дом. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. bring in — занести всередину. Ви припускаєте, що Анна занесе білизну з вулиці, але ще не обговорювали це з нею. I think Anna will bring in the washing. — Думаю, Анна занесе висохлу білизну в дім. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-50:intro1:r1",
+              "text": "I think Anna will bring in the washing."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro1:r2",
+              "text": "I think Anna is going to bring in the washing."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro1:r3",
+              "text": "I think Anna will to bring in the washing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-50:intro1:r1",
+              "text": "I think Anna will bring in the washing."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro1:r2",
+              "text": "I think Anna is going to bring in the washing."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro1:r3",
+              "text": "I think Anna will to bring in the washing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "keep out — не заходить, держаться вне чего-либо. clear up — убрать беспорядок. Вы решили убрать игрушки и сообщаете о своём намерении. I am going to clear up the toys. — Я собираюсь убрать разбросанные игрушки. Передайте заранее принятое намерение через going to.",
+        "uk": "keep out — не заходити, триматися поза чимось. clear up — прибрати безлад. Ви вирішили прибрати іграшки й повідомляєте про свій намір. I am going to clear up the toys. — Я збираюся прибрати розкидані іграшки. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-50:intro2:r1",
+              "text": "I am going to clear up the toys."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro2:r2",
+              "text": "I am clearing up the toys."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro2:r3",
+              "text": "I is going to clear up the toys."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-50:intro2:r1",
+              "text": "I am going to clear up the toys."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro2:r2",
+              "text": "I am clearing up the toys."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro2:r3",
+              "text": "I is going to clear up the toys."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "clean out — вычистить, убрав всё лишнее изнутри. Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. We are cleaning out the garage on Saturday. — В субботу мы вычищаем гараж и убираем из него всё лишнее. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "clean out — вичистити, прибравши все зайве зсередини. Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. We are cleaning out the garage on Saturday. — У суботу ми вичищаємо гараж і прибираємо з нього все зайве. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-50:intro3:r1",
+              "text": "We are cleaning out the garage on Saturday."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro3:r2",
+              "text": "We are going to clean out the garage on Saturday."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro3:r3",
+              "text": "We is cleaning out the garage on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-50:intro3:r1",
+              "text": "We are cleaning out the garage on Saturday."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro3:r2",
+              "text": "We are going to clean out the garage on Saturday."
+            },
+            {
+              "responseId": "en:lesson-16:session-50:intro3:r3",
+              "text": "We is cleaning out the garage on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5d53b6328e055d3c6d3ccb91262025c840218e94960df6c32f68356123fe8833"
+}

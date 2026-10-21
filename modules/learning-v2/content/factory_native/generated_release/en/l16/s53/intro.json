@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. furnished — с мебелью — о жилье. Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. I think the flat will be furnished. — Думаю, квартира будет с мебелью. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. furnished — з меблями — про житло. Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. I think the flat will be furnished. — Думаю, квартира буде з меблями. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-53:intro1:r1",
+              "text": "I think the flat will be furnished."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro1:r2",
+              "text": "I think the flat is going to be furnished."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro1:r3",
+              "text": "I think the flat will to be furnished."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-53:intro1:r1",
+              "text": "I think the flat will be furnished."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro1:r2",
+              "text": "I think the flat is going to be furnished."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro1:r3",
+              "text": "I think the flat will to be furnished."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "unfurnished — без мебели — о жилье. detached — отдельно стоящий — о доме. Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. I am going to look for a detached house. — Я собираюсь искать отдельно стоящий дом. Передайте заранее принятое намерение через going to.",
+        "uk": "unfurnished — без меблів — про житло. detached — окремо розташований — про будинок. Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. I am going to look for a detached house. — Я збираюся шукати окремо розташований будинок. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-53:intro2:r1",
+              "text": "I am going to look for a detached house."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro2:r2",
+              "text": "I am looking for a detached house."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro2:r3",
+              "text": "I is going to look for a detached house."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-53:intro2:r1",
+              "text": "I am going to look for a detached house."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro2:r2",
+              "text": "I am looking for a detached house."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro2:r3",
+              "text": "I is going to look for a detached house."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "terraced — стоящий в ряду домов с общими боковыми стенами. Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. We are viewing a terraced house tomorrow. — Завтра мы осматриваем дом в ряду домов с общими стенами. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "terraced — розташований у ряду будинків зі спільними бічними стінами. Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. We are viewing a terraced house tomorrow. — Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-53:intro3:r1",
+              "text": "We are viewing a terraced house tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro3:r2",
+              "text": "We are going to view a terraced house tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro3:r3",
+              "text": "We is viewing a terraced house tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-53:intro3:r1",
+              "text": "We are viewing a terraced house tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro3:r2",
+              "text": "We are going to view a terraced house tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-53:intro3:r3",
+              "text": "We is viewing a terraced house tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8ad9db35148e5dc2ca23236933f04436d106ebfe6a9fa0311a1dfc34cbd0c4cb"
+}

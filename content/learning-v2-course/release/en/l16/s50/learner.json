@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-50:word:bring-in",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bring in",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:word:bring-in:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bring in",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:word:bring-in:audio",
+          "transcript": "bring in"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:word:bring-in:r1",
+            "targetText": "bring in",
+            "meaningByLocale": {
+              "ru": "занести внутрь.",
+              "uk": "занести всередину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bring in",
+          "definitionByLocale": {
+            "ru": "занести внутрь.",
+            "uk": "занести всередину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна занесёт высохшее бельё в дом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна занесёт высохшее бельё в дом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think Anna will bring in the washing.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна занесёт высохшее бельё в дом».",
+          "uk": "Ви припускаєте, що Анна занесе білизну з вулиці, але ще не обговорювали це з нею. Передайте думку-прогноз через will. Скажіть: «Думаю, Анна занесе висохлу білизну в дім»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "Anna",
+          "will",
+          "bring",
+          "in",
+          "the",
+          "washing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i02:r1",
+          "text": "I think Anna will bring in the washing."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i02:r2",
+          "text": "I think Anna is going to bring in the washing."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i02:r3",
+          "text": "I think Anna will to bring in the washing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i02:audio",
+          "transcript": "I think Anna will bring in the washing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:i02:r1",
+            "targetText": "I think Anna will bring in the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i02:r2",
+            "targetText": "I think Anna is going to bring in the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i02:r3",
+            "targetText": "I think Anna will to bring in the washing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think Anna will bring in the washing.",
+              "uk": "У записі звучить I think Anna will bring in the washing."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think Anna will bring in the washing.",
+              "uk": "У записі звучить I think Anna will bring in the washing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i03:r1",
+          "text": "will bring in"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i03:r2",
+          "text": "is going to bring in"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що Анна занесе білизну з вулиці, але ще не обговорювали це з нею. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think Anna ___ the washing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-50:i03:r1",
+            "text": "will bring in"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i03:r2",
+            "text": "is going to bring in"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will bring in.",
+              "uk": "Потрібна правильно побудована повна форма: will bring in."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:word:keep-out",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:word:keep-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:word:keep-out:audio",
+          "transcript": "keep out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:word:keep-out:r1",
+            "targetText": "keep out",
+            "meaningByLocale": {
+              "ru": "не заходить, держаться вне чего-либо.",
+              "uk": "не заходити, триматися поза чимось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep out",
+          "definitionByLocale": {
+            "ru": "не заходить, держаться вне чего-либо.",
+            "uk": "не заходити, триматися поза чимось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will. Скажите: «Думаю, собака не будет заходить на кухню».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will. Скажите: «Думаю, собака не будет заходить на кухню».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the dog will keep out of the kitchen.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will. Скажите: «Думаю, собака не будет заходить на кухню».",
+          "uk": "Ви припускаєте, що собака залишиться за межами кухні, поки ви готуєте. Передайте думку-прогноз через will. Скажіть: «Думаю, собака не заходитиме на кухню»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "dog",
+          "will",
+          "keep",
+          "out",
+          "of",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i05:r1",
+          "text": "I think the dog will keep out of the kitchen."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i05:r2",
+          "text": "I think the dog is going to keep out of the kitchen."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i05:r3",
+          "text": "I think the dog will to keep out of the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i05:audio",
+          "transcript": "I think the dog will keep out of the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:i05:r1",
+            "targetText": "I think the dog will keep out of the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i05:r2",
+            "targetText": "I think the dog is going to keep out of the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i05:r3",
+            "targetText": "I think the dog will to keep out of the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the dog will keep out of the kitchen.",
+              "uk": "У записі звучить I think the dog will keep out of the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the dog will keep out of the kitchen.",
+              "uk": "У записі звучить I think the dog will keep out of the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i06:r1",
+          "text": "will keep out"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i06:r2",
+          "text": "is going to keep out"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i06:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що собака залишиться за межами кухні, поки ви готуєте. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the dog ___ of the kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-50:i06:r1",
+            "text": "will keep out"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i06:r2",
+            "text": "is going to keep out"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i06:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will keep out.",
+              "uk": "Потрібна правильно побудована повна форма: will keep out."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:word:clear-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clear up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:word:clear-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clear up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:word:clear-up:audio",
+          "transcript": "clear up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:word:clear-up:r1",
+            "targetText": "clear up",
+            "meaningByLocale": {
+              "ru": "убрать беспорядок.",
+              "uk": "прибрати безлад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clear up",
+          "definitionByLocale": {
+            "ru": "убрать беспорядок.",
+            "uk": "прибрати безлад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь убрать разбросанные игрушки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь убрать разбросанные игрушки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to clear up the toys.",
+        "localizedMeaning": {
+          "ru": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь убрать разбросанные игрушки».",
+          "uk": "Ви вирішили прибрати іграшки й повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся прибрати розкидані іграшки»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "clear",
+          "up",
+          "the",
+          "toys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i08:r1",
+          "text": "I am going to clear up the toys."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i08:r2",
+          "text": "I am clearing up the toys."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i08:r3",
+          "text": "I is going to clear up the toys."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i08:audio",
+          "transcript": "I am going to clear up the toys."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:i08:r1",
+            "targetText": "I am going to clear up the toys.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i08:r2",
+            "targetText": "I am clearing up the toys.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i08:r3",
+            "targetText": "I is going to clear up the toys.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to clear up the toys.",
+              "uk": "У записі звучить I am going to clear up the toys."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to clear up the toys.",
+              "uk": "У записі звучить I am going to clear up the toys."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i09:r1",
+          "text": "am going to clear up"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i09:r2",
+          "text": "am clearing up"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили прибрати іграшки й повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ the toys.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-50:i09:r1",
+            "text": "am going to clear up"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i09:r2",
+            "text": "am clearing up"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to clear up.",
+              "uk": "Потрібна правильно побудована повна форма: am going to clear up."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:word:clean-out",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clean out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:word:clean-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clean out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:word:clean-out:audio",
+          "transcript": "clean out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:word:clean-out:r1",
+            "targetText": "clean out",
+            "meaningByLocale": {
+              "ru": "вычистить, убрав всё лишнее изнутри.",
+              "uk": "вичистити, прибравши все зайве зсередини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clean out",
+          "definitionByLocale": {
+            "ru": "вычистить, убрав всё лишнее изнутри.",
+            "uk": "вичистити, прибравши все зайве зсередини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are cleaning out the garage on Saturday.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
+          "uk": "Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «У суботу ми вичищаємо гараж і прибираємо з нього все зайве»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "cleaning",
+          "out",
+          "the",
+          "garage",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i11:r1",
+          "text": "We are cleaning out the garage on Saturday."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i11:r2",
+          "text": "We are going to clean out the garage on Saturday."
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i11:r3",
+          "text": "We is cleaning out the garage on Saturday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i11:audio",
+          "transcript": "We are cleaning out the garage on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-50:i11:r1",
+            "targetText": "We are cleaning out the garage on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i11:r2",
+            "targetText": "We are going to clean out the garage on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i11:r3",
+            "targetText": "We is cleaning out the garage on Saturday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are cleaning out the garage on Saturday.",
+              "uk": "У записі звучить We are cleaning out the garage on Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are cleaning out the garage on Saturday.",
+              "uk": "У записі звучить We are cleaning out the garage on Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-50:i12:r1",
+          "text": "are cleaning out"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i12:r2",
+          "text": "are going to clean out"
+        },
+        {
+          "responseId": "en:lesson-16:session-50:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ the garage on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-50:i12:r1",
+            "text": "are cleaning out"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i12:r2",
+            "text": "are going to clean out"
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are cleaning out.",
+              "uk": "Потрібна правильно побудована повна форма: are cleaning out."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-50:i13:p1",
+            "target": "bring in",
+            "meaningByLocale": {
+              "ru": "занести внутрь",
+              "uk": "занести всередину"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-50:i13:p2",
+            "target": "keep out",
+            "meaningByLocale": {
+              "ru": "не заходить, держаться вне чего-либо",
+              "uk": "не заходити, триматися поза чимось"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-50:i13:p3",
+            "target": "clear up",
+            "meaningByLocale": {
+              "ru": "убрать беспорядок",
+              "uk": "прибрати безлад"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-50:i13:p4",
+            "target": "clean out",
+            "meaningByLocale": {
+              "ru": "вычистить, убрав всё лишнее изнутри",
+              "uk": "вичистити, прибравши все зайве зсередини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bring in",
+          "keep out",
+          "clear up",
+          "clean out"
+        ],
+        "rightColumn": [
+          "занести внутрь",
+          "не заходить, держаться вне чего-либо",
+          "убрать беспорядок",
+          "вычистить, убрав всё лишнее изнутри"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i14:audio",
+          "transcript": "I think Anna will bring in the washing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think Anna will bring in the washing.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "Anna",
+          "will",
+          "bring",
+          "in",
+          "the",
+          "washing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i15:audio",
+          "transcript": "I am going to clear up the toys."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to clear up the toys.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "clear",
+          "up",
+          "the",
+          "toys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i16:audio",
+          "transcript": "We are cleaning out the garage on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are cleaning out the garage on Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-50:i17:audio",
+          "transcript": "I think the dog will keep out of the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the dog will keep out of the kitchen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9b2b432b3466358cda0e1fdf2647b3966b55acf00937ad55aa8b5a9cb4df1748"
+}

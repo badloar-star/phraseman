@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-49:word:call-off",
+    "correctText": "call off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i01",
+    "correctText": "I think they will call off the picnic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i02",
+    "correctText": "I think they will call off the picnic.",
+    "correctResponseId": "en:lesson-16:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i03",
+    "correctText": "will call off",
+    "correctResponseId": "en:lesson-16:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:word:give-up",
+    "correctText": "give up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i04",
+    "correctText": "I think he will give up soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i05",
+    "correctText": "I think he will give up soon.",
+    "correctResponseId": "en:lesson-16:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i06",
+    "correctText": "will give up",
+    "correctResponseId": "en:lesson-16:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:word:sign-up",
+    "correctText": "sign up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i07",
+    "correctText": "I am going to sign up for a cooking class.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i08",
+    "correctText": "I am going to sign up for a cooking class.",
+    "correctResponseId": "en:lesson-16:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i09",
+    "correctText": "am going to sign up",
+    "correctResponseId": "en:lesson-16:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:word:check-out",
+    "correctText": "check out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i10",
+    "correctText": "We are checking out at ten tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i11",
+    "correctText": "We are checking out at ten tomorrow.",
+    "correctResponseId": "en:lesson-16:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i12",
+    "correctText": "are checking out",
+    "correctResponseId": "en:lesson-16:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i13",
+    "correctText": "en:lesson-16:session-49:i13:p1=call off\nen:lesson-16:session-49:i13:p2=give up\nen:lesson-16:session-49:i13:p3=sign up\nen:lesson-16:session-49:i13:p4=check out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i14",
+    "correctText": "I think they will call off the picnic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i15",
+    "correctText": "I am going to sign up for a cooking class.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i16",
+    "correctText": "We are checking out at ten tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-49:i17",
+    "correctText": "I think he will give up soon.",
+    "correctResponseId": null
+  }
+]

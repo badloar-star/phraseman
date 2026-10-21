@@ -1,0 +1,1138 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-54:word:semi-detached",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — semi-detached",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:word:semi-detached:audio"
+      ],
+      "accessibilityLabel": "Картка слова — semi-detached",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:word:semi-detached:audio",
+          "transcript": "semi-detached"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:word:semi-detached:r1",
+            "targetText": "semi-detached",
+            "meaningByLocale": {
+              "ru": "с одной общей стеной с соседним домом.",
+              "uk": "з однією спільною стіною із сусіднім будинком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "semi-detached",
+          "definitionByLocale": {
+            "ru": "с одной общей стеной с соседним домом.",
+            "uk": "з однією спільною стіною із сусіднім будинком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок матиме одну спільну стіну із сусіднім будинком».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок матиме одну спільну стіну із сусіднім будинком».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the house will be semi-detached.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, какой дом вам покажет агент; адрес ещё не получили. Передайте мнение-прогноз через will. Скажите: «Думаю, у дома будет одна общая стена с соседним домом».",
+          "uk": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок матиме одну спільну стіну із сусіднім будинком»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "house",
+          "will",
+          "be",
+          "semi-detached"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i02:r1",
+          "text": "I think the house will be semi-detached."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i02:r2",
+          "text": "I think the house is going to be semi-detached."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i02:r3",
+          "text": "I think the house will to be semi-detached."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i02:audio",
+          "transcript": "I think the house will be semi-detached."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:i02:r1",
+            "targetText": "I think the house will be semi-detached.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i02:r2",
+            "targetText": "I think the house is going to be semi-detached.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i02:r3",
+            "targetText": "I think the house will to be semi-detached.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the house will be semi-detached.",
+              "uk": "У записі звучить I think the house will be semi-detached."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the house will be semi-detached.",
+              "uk": "У записі звучить I think the house will be semi-detached."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, какой дом вам покажет агент; адрес ещё не получили. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the house ___ semi-detached.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-54:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:word:double-glazed",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — double-glazed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:word:double-glazed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — double-glazed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:word:double-glazed:audio",
+          "transcript": "double-glazed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:word:double-glazed:r1",
+            "targetText": "double-glazed",
+            "meaningByLocale": {
+              "ru": "с двойным остеклением.",
+              "uk": "із подвійним склінням."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "double-glazed",
+          "definitionByLocale": {
+            "ru": "с двойным остеклением.",
+            "uk": "із подвійним склінням."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will. Скажіть: «Думаю, вікна будуть із подвійним склінням».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will. Скажіть: «Думаю, вікна будуть із подвійним склінням».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the windows will be double-glazed.",
+        "localizedMeaning": {
+          "ru": "Вы ещё не были в доме и предполагаете, какие в нём окна. Передайте мнение-прогноз через will. Скажите: «Думаю, окна будут с двойным остеклением».",
+          "uk": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will. Скажіть: «Думаю, вікна будуть із подвійним склінням»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "windows",
+          "will",
+          "be",
+          "double-glazed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i05:r1",
+          "text": "I think the windows will be double-glazed."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i05:r2",
+          "text": "I think the windows are going to be double-glazed."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i05:r3",
+          "text": "I think the windows will to be double-glazed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i05:audio",
+          "transcript": "I think the windows will be double-glazed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:i05:r1",
+            "targetText": "I think the windows will be double-glazed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i05:r2",
+            "targetText": "I think the windows are going to be double-glazed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i05:r3",
+            "targetText": "I think the windows will to be double-glazed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the windows will be double-glazed.",
+              "uk": "У записі звучить I think the windows will be double-glazed."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the windows will be double-glazed.",
+              "uk": "У записі звучить I think the windows will be double-glazed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i06:r2",
+          "text": "are going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не были в доме и предполагаете, какие в нём окна. Передайте мнение-прогноз через will.",
+          "uk": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the windows ___ double-glazed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-54:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i06:r2",
+            "text": "are going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:word:central-heating",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — central heating",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:word:central-heating:audio"
+      ],
+      "accessibilityLabel": "Картка слова — central heating",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:word:central-heating:audio",
+          "transcript": "central heating"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:word:central-heating:r1",
+            "targetText": "central heating",
+            "meaningByLocale": {
+              "ru": "центральное отопление.",
+              "uk": "центральне опалення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "central heating",
+          "definitionByLocale": {
+            "ru": "центральное отопление.",
+            "uk": "центральне опалення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати квартиру з центральним опаленням».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати квартиру з центральним опаленням».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to look for a flat with central heating.",
+        "localizedMeaning": {
+          "ru": "Вы решили искать квартиру с отоплением для всего жилья; это пока намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать квартиру с центральным отоплением».",
+          "uk": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати квартиру з центральним опаленням»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "look",
+          "for",
+          "a",
+          "flat",
+          "with",
+          "central",
+          "heating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i08:r1",
+          "text": "I am going to look for a flat with central heating."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i08:r2",
+          "text": "I am looking for a flat with central heating."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i08:r3",
+          "text": "I is going to look for a flat with central heating."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i08:audio",
+          "transcript": "I am going to look for a flat with central heating."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:i08:r1",
+            "targetText": "I am going to look for a flat with central heating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i08:r2",
+            "targetText": "I am looking for a flat with central heating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i08:r3",
+            "targetText": "I is going to look for a flat with central heating.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to look for a flat with central heating.",
+              "uk": "У записі звучить I am going to look for a flat with central heating."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to look for a flat with central heating.",
+              "uk": "У записі звучить I am going to look for a flat with central heating."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i09:r1",
+          "text": "am going to look"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i09:r2",
+          "text": "am looking"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили искать квартиру с отоплением для всего жилья; это пока намерение. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ for a flat with central heating.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-54:i09:r1",
+            "text": "am going to look"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i09:r2",
+            "text": "am looking"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to look.",
+              "uk": "Потрібна правильно побудована повна форма: am going to look."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:word:utility-room",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — utility room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:word:utility-room:audio"
+      ],
+      "accessibilityLabel": "Картка слова — utility room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:word:utility-room:audio",
+          "transcript": "utility room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:word:utility-room:r1",
+            "targetText": "utility room",
+            "meaningByLocale": {
+              "ru": "хозяйственная комната, обычно со стиральной машиной.",
+              "uk": "господарська кімната, зазвичай із пральною машиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "utility room",
+          "definitionByLocale": {
+            "ru": "хозяйственная комната, обычно со стиральной машиной.",
+            "uk": "господарська кімната, зазвичай із пральною машиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок із господарською кімнатою».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок із господарською кімнатою».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are viewing a house with a utility room tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом с хозяйственной комнатой».",
+          "uk": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок із господарською кімнатою»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "viewing",
+          "a",
+          "house",
+          "with",
+          "a",
+          "utility",
+          "room",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i11:r1",
+          "text": "We are viewing a house with a utility room tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i11:r2",
+          "text": "We are going to view a house with a utility room tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i11:r3",
+          "text": "We is viewing a house with a utility room tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i11:audio",
+          "transcript": "We are viewing a house with a utility room tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-54:i11:r1",
+            "targetText": "We are viewing a house with a utility room tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i11:r2",
+            "targetText": "We are going to view a house with a utility room tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i11:r3",
+            "targetText": "We is viewing a house with a utility room tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are viewing a house with a utility room tomorrow.",
+              "uk": "У записі звучить We are viewing a house with a utility room tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are viewing a house with a utility room tomorrow.",
+              "uk": "У записі звучить We are viewing a house with a utility room tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-54:i12:r1",
+          "text": "are viewing"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i12:r2",
+          "text": "are going to view"
+        },
+        {
+          "responseId": "en:lesson-16:session-54:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a house with a utility room tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-54:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are viewing.",
+              "uk": "Потрібна правильно побудована повна форма: are viewing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-54:i13:p1",
+            "target": "semi-detached",
+            "meaningByLocale": {
+              "ru": "с одной общей стеной с соседним домом",
+              "uk": "з однією спільною стіною із сусіднім будинком"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-54:i13:p2",
+            "target": "double-glazed",
+            "meaningByLocale": {
+              "ru": "с двойным остеклением",
+              "uk": "із подвійним склінням"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-54:i13:p3",
+            "target": "central heating",
+            "meaningByLocale": {
+              "ru": "центральное отопление",
+              "uk": "центральне опалення"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-54:i13:p4",
+            "target": "utility room",
+            "meaningByLocale": {
+              "ru": "хозяйственная комната, обычно со стиральной машиной",
+              "uk": "господарська кімната, зазвичай із пральною машиною"
+            }
+          }
+        ],
+        "leftColumn": [
+          "semi-detached",
+          "double-glazed",
+          "central heating",
+          "utility room"
+        ],
+        "rightColumn": [
+          "з однією спільною стіною із сусіднім будинком",
+          "із подвійним склінням",
+          "центральне опалення",
+          "господарська кімната, зазвичай із пральною машиною"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i14:audio",
+          "transcript": "I think the house will be semi-detached."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the house will be semi-detached.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "house",
+          "will",
+          "be",
+          "semi-detached"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i15:audio",
+          "transcript": "I am going to look for a flat with central heating."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to look for a flat with central heating.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "look",
+          "for",
+          "a",
+          "flat",
+          "with",
+          "central",
+          "heating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i16:audio",
+          "transcript": "We are viewing a house with a utility room tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are viewing a house with a utility room tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-54:i17:audio",
+          "transcript": "I think the windows will be double-glazed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the windows will be double-glazed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e6f0b9d5f1ef4a4f9e817956d1606d3aaa9cdf03a68369ce99dafea034c2bad6"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-50:word:bring-in",
+    "correctText": "bring in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i01",
+    "correctText": "I think Anna will bring in the washing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i02",
+    "correctText": "I think Anna will bring in the washing.",
+    "correctResponseId": "en:lesson-16:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i03",
+    "correctText": "will bring in",
+    "correctResponseId": "en:lesson-16:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:word:keep-out",
+    "correctText": "keep out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i04",
+    "correctText": "I think the dog will keep out of the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i05",
+    "correctText": "I think the dog will keep out of the kitchen.",
+    "correctResponseId": "en:lesson-16:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i06",
+    "correctText": "will keep out",
+    "correctResponseId": "en:lesson-16:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:word:clear-up",
+    "correctText": "clear up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i07",
+    "correctText": "I am going to clear up the toys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i08",
+    "correctText": "I am going to clear up the toys.",
+    "correctResponseId": "en:lesson-16:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i09",
+    "correctText": "am going to clear up",
+    "correctResponseId": "en:lesson-16:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:word:clean-out",
+    "correctText": "clean out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i10",
+    "correctText": "We are cleaning out the garage on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i11",
+    "correctText": "We are cleaning out the garage on Saturday.",
+    "correctResponseId": "en:lesson-16:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i12",
+    "correctText": "are cleaning out",
+    "correctResponseId": "en:lesson-16:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i13",
+    "correctText": "en:lesson-16:session-50:i13:p1=bring in\nen:lesson-16:session-50:i13:p2=keep out\nen:lesson-16:session-50:i13:p3=clear up\nen:lesson-16:session-50:i13:p4=clean out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i14",
+    "correctText": "I think Anna will bring in the washing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i15",
+    "correctText": "I am going to clear up the toys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i16",
+    "correctText": "We are cleaning out the garage on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-50:i17",
+    "correctText": "I think the dog will keep out of the kitchen.",
+    "correctResponseId": null
+  }
+]

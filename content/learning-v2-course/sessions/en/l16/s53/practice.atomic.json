@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-53:word:furnished",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — furnished",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:furnished:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — furnished",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:furnished:audio",
+            "transcript": "furnished"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:furnished:r1",
+              "targetText": "furnished",
+              "meaningByLocale": {
+                "ru": "с мебелью — о жилье.",
+                "uk": "з меблями — про житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "furnished",
+            "definitionByLocale": {
+              "ru": "с мебелью — о жилье.",
+              "uk": "з меблями — про житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will. Скажите: «Думаю, квартира будет с мебелью».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will. Скажите: «Думаю, квартира будет с мебелью».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the flat will be furnished.",
+          "localizedMeaning": {
+            "ru": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will. Скажите: «Думаю, квартира будет с мебелью».",
+            "uk": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will. Скажіть: «Думаю, квартира буде з меблями»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "flat",
+            "will",
+            "be",
+            "furnished"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i02:r1",
+            "text": "I think the flat will be furnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i02:r2",
+            "text": "I think the flat is going to be furnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i02:r3",
+            "text": "I think the flat will to be furnished."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i02:audio",
+            "transcript": "I think the flat will be furnished."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i02:r1",
+              "targetText": "I think the flat will be furnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i02:r2",
+              "targetText": "I think the flat is going to be furnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i02:r3",
+              "targetText": "I think the flat will to be furnished.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the flat will be furnished.",
+                "uk": "У записі звучить I think the flat will be furnished."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the flat will be furnished.",
+                "uk": "У записі звучить I think the flat will be furnished."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+            "uk": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the flat ___ furnished.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:word:unfurnished",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unfurnished",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:unfurnished:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unfurnished",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:unfurnished:audio",
+            "transcript": "unfurnished"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:unfurnished:r1",
+              "targetText": "unfurnished",
+              "meaningByLocale": {
+                "ru": "без мебели — о жилье.",
+                "uk": "без меблів — про житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unfurnished",
+            "definitionByLocale": {
+              "ru": "без мебели — о жилье.",
+              "uk": "без меблів — про житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will. Скажите: «Думаю, дом будет без мебели».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will. Скажите: «Думаю, дом будет без мебели».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the house will be unfurnished.",
+          "localizedMeaning": {
+            "ru": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will. Скажите: «Думаю, дом будет без мебели».",
+            "uk": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок буде без меблів»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "house",
+            "will",
+            "be",
+            "unfurnished"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i05:r1",
+            "text": "I think the house will be unfurnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i05:r2",
+            "text": "I think the house is going to be unfurnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i05:r3",
+            "text": "I think the house will to be unfurnished."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i05:audio",
+            "transcript": "I think the house will be unfurnished."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i05:r1",
+              "targetText": "I think the house will be unfurnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i05:r2",
+              "targetText": "I think the house is going to be unfurnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i05:r3",
+              "targetText": "I think the house will to be unfurnished.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the house will be unfurnished.",
+                "uk": "У записі звучить I think the house will be unfurnished."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the house will be unfurnished.",
+                "uk": "У записі звучить I think the house will be unfurnished."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+            "uk": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the house ___ unfurnished.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:word:detached",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — detached",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:detached:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — detached",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:detached:audio",
+            "transcript": "detached"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:detached:r1",
+              "targetText": "detached",
+              "meaningByLocale": {
+                "ru": "отдельно стоящий — о доме.",
+                "uk": "окремо розташований — про будинок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "detached",
+            "definitionByLocale": {
+              "ru": "отдельно стоящий — о доме.",
+              "uk": "окремо розташований — про будинок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать отдельно стоящий дом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать отдельно стоящий дом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to look for a detached house.",
+          "localizedMeaning": {
+            "ru": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать отдельно стоящий дом».",
+            "uk": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати окремо розташований будинок»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "detached",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i08:r1",
+            "text": "I am going to look for a detached house."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i08:r2",
+            "text": "I am looking for a detached house."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i08:r3",
+            "text": "I is going to look for a detached house."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i08:audio",
+            "transcript": "I am going to look for a detached house."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i08:r1",
+              "targetText": "I am going to look for a detached house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i08:r2",
+              "targetText": "I am looking for a detached house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i08:r3",
+              "targetText": "I is going to look for a detached house.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a detached house.",
+                "uk": "У записі звучить I am going to look for a detached house."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a detached house.",
+                "uk": "У записі звучить I am going to look for a detached house."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i09:r1",
+            "text": "am going to look"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i09:r2",
+            "text": "am looking"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ for a detached house.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i09:r1",
+              "text": "am going to look"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i09:r2",
+              "text": "am looking"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to look.",
+                "uk": "Потрібна правильно побудована повна форма: am going to look."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:word:terraced",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — terraced",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:terraced:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — terraced",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:terraced:audio",
+            "transcript": "terraced"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:terraced:r1",
+              "targetText": "terraced",
+              "meaningByLocale": {
+                "ru": "стоящий в ряду домов с общими боковыми стенами.",
+                "uk": "розташований у ряду будинків зі спільними бічними стінами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "terraced",
+            "definitionByLocale": {
+              "ru": "стоящий в ряду домов с общими боковыми стенами.",
+              "uk": "розташований у ряду будинків зі спільними бічними стінами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are viewing a terraced house tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+            "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "viewing",
+            "a",
+            "terraced",
+            "house",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i11:r1",
+            "text": "We are viewing a terraced house tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i11:r2",
+            "text": "We are going to view a terraced house tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i11:r3",
+            "text": "We is viewing a terraced house tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i11:audio",
+            "transcript": "We are viewing a terraced house tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i11:r1",
+              "targetText": "We are viewing a terraced house tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i11:r2",
+              "targetText": "We are going to view a terraced house tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i11:r3",
+              "targetText": "We is viewing a terraced house tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a terraced house tomorrow.",
+                "uk": "У записі звучить We are viewing a terraced house tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a terraced house tomorrow.",
+                "uk": "У записі звучить We are viewing a terraced house tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a terraced house tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i12:r1",
+              "text": "are viewing"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i12:r2",
+              "text": "are going to view"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are viewing.",
+                "uk": "Потрібна правильно побудована повна форма: are viewing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-53:i13:p1",
+              "target": "furnished",
+              "meaningByLocale": {
+                "ru": "с мебелью",
+                "uk": "з меблями"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-53:i13:p2",
+              "target": "unfurnished",
+              "meaningByLocale": {
+                "ru": "без мебели",
+                "uk": "без меблів"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-53:i13:p3",
+              "target": "detached",
+              "meaningByLocale": {
+                "ru": "отдельно стоящий",
+                "uk": "окремо розташований"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-53:i13:p4",
+              "target": "terraced",
+              "meaningByLocale": {
+                "ru": "стоящий в ряду домов с общими боковыми стенами",
+                "uk": "розташований у ряду будинків зі спільними бічними стінами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "furnished",
+            "unfurnished",
+            "detached",
+            "terraced"
+          ],
+          "rightColumn": [
+            "с мебелью",
+            "без мебели",
+            "отдельно стоящий",
+            "стоящий в ряду домов с общими боковыми стенами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i14:audio",
+            "transcript": "I think the flat will be furnished."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the flat will be furnished.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "flat",
+            "will",
+            "be",
+            "furnished"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i15:audio",
+            "transcript": "I am going to look for a detached house."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to look for a detached house.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "detached",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i16:audio",
+            "transcript": "We are viewing a terraced house tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are viewing a terraced house tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте мнение-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i17:audio",
+            "transcript": "I think the house will be unfurnished."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the house will be unfurnished.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-53:word:furnished",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — furnished",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:furnished:audio"
+        ],
+        "accessibilityLabel": "Картка слова — furnished",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:furnished:audio",
+            "transcript": "furnished"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:furnished:r1",
+              "targetText": "furnished",
+              "meaningByLocale": {
+                "ru": "с мебелью — о жилье.",
+                "uk": "з меблями — про житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "furnished",
+            "definitionByLocale": {
+              "ru": "с мебелью — о жилье.",
+              "uk": "з меблями — про житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will. Скажіть: «Думаю, квартира буде з меблями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will. Скажіть: «Думаю, квартира буде з меблями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the flat will be furnished.",
+          "localizedMeaning": {
+            "ru": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will. Скажите: «Думаю, квартира будет с мебелью».",
+            "uk": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will. Скажіть: «Думаю, квартира буде з меблями»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "flat",
+            "will",
+            "be",
+            "furnished"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i02:r1",
+            "text": "I think the flat will be furnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i02:r2",
+            "text": "I think the flat is going to be furnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i02:r3",
+            "text": "I think the flat will to be furnished."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i02:audio",
+            "transcript": "I think the flat will be furnished."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i02:r1",
+              "targetText": "I think the flat will be furnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i02:r2",
+              "targetText": "I think the flat is going to be furnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i02:r3",
+              "targetText": "I think the flat will to be furnished.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the flat will be furnished.",
+                "uk": "У записі звучить I think the flat will be furnished."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the flat will be furnished.",
+                "uk": "У записі звучить I think the flat will be furnished."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
+            "uk": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the flat ___ furnished.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:word:unfurnished",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unfurnished",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:unfurnished:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unfurnished",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:unfurnished:audio",
+            "transcript": "unfurnished"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:unfurnished:r1",
+              "targetText": "unfurnished",
+              "meaningByLocale": {
+                "ru": "без мебели — о жилье.",
+                "uk": "без меблів — про житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unfurnished",
+            "definitionByLocale": {
+              "ru": "без мебели — о жилье.",
+              "uk": "без меблів — про житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок буде без меблів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок буде без меблів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the house will be unfurnished.",
+          "localizedMeaning": {
+            "ru": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will. Скажите: «Думаю, дом будет без мебели».",
+            "uk": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will. Скажіть: «Думаю, будинок буде без меблів»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "house",
+            "will",
+            "be",
+            "unfurnished"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i05:r1",
+            "text": "I think the house will be unfurnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i05:r2",
+            "text": "I think the house is going to be unfurnished."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i05:r3",
+            "text": "I think the house will to be unfurnished."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i05:audio",
+            "transcript": "I think the house will be unfurnished."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i05:r1",
+              "targetText": "I think the house will be unfurnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i05:r2",
+              "targetText": "I think the house is going to be unfurnished.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i05:r3",
+              "targetText": "I think the house will to be unfurnished.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the house will be unfurnished.",
+                "uk": "У записі звучить I think the house will be unfurnished."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the house will be unfurnished.",
+                "uk": "У записі звучить I think the house will be unfurnished."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
+            "uk": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the house ___ unfurnished.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:word:detached",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — detached",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:detached:audio"
+        ],
+        "accessibilityLabel": "Картка слова — detached",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:detached:audio",
+            "transcript": "detached"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:detached:r1",
+              "targetText": "detached",
+              "meaningByLocale": {
+                "ru": "отдельно стоящий — о доме.",
+                "uk": "окремо розташований — про будинок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "detached",
+            "definitionByLocale": {
+              "ru": "отдельно стоящий — о доме.",
+              "uk": "окремо розташований — про будинок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати окремо розташований будинок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати окремо розташований будинок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to look for a detached house.",
+          "localizedMeaning": {
+            "ru": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать отдельно стоящий дом».",
+            "uk": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати окремо розташований будинок»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "detached",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i08:r1",
+            "text": "I am going to look for a detached house."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i08:r2",
+            "text": "I am looking for a detached house."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i08:r3",
+            "text": "I is going to look for a detached house."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i08:audio",
+            "transcript": "I am going to look for a detached house."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i08:r1",
+              "targetText": "I am going to look for a detached house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i08:r2",
+              "targetText": "I am looking for a detached house.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i08:r3",
+              "targetText": "I is going to look for a detached house.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a detached house.",
+                "uk": "У записі звучить I am going to look for a detached house."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a detached house.",
+                "uk": "У записі звучить I am going to look for a detached house."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i09:r1",
+            "text": "am going to look"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i09:r2",
+            "text": "am looking"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ for a detached house.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i09:r1",
+              "text": "am going to look"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i09:r2",
+              "text": "am looking"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to look.",
+                "uk": "Потрібна правильно побудована повна форма: am going to look."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:word:terraced",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — terraced",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:word:terraced:audio"
+        ],
+        "accessibilityLabel": "Картка слова — terraced",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:word:terraced:audio",
+            "transcript": "terraced"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:word:terraced:r1",
+              "targetText": "terraced",
+              "meaningByLocale": {
+                "ru": "стоящий в ряду домов с общими боковыми стенами.",
+                "uk": "розташований у ряду будинків зі спільними бічними стінами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "terraced",
+            "definitionByLocale": {
+              "ru": "стоящий в ряду домов с общими боковыми стенами.",
+              "uk": "розташований у ряду будинків зі спільними бічними стінами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are viewing a terraced house tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+            "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "viewing",
+            "a",
+            "terraced",
+            "house",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i11:r1",
+            "text": "We are viewing a terraced house tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i11:r2",
+            "text": "We are going to view a terraced house tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i11:r3",
+            "text": "We is viewing a terraced house tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i11:audio",
+            "transcript": "We are viewing a terraced house tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-53:i11:r1",
+              "targetText": "We are viewing a terraced house tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i11:r2",
+              "targetText": "We are going to view a terraced house tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i11:r3",
+              "targetText": "We is viewing a terraced house tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a terraced house tomorrow.",
+                "uk": "У записі звучить We are viewing a terraced house tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a terraced house tomorrow.",
+                "uk": "У записі звучить We are viewing a terraced house tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-53:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-16:session-53:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a terraced house tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-53:i12:r1",
+              "text": "are viewing"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i12:r2",
+              "text": "are going to view"
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are viewing.",
+                "uk": "Потрібна правильно побудована повна форма: are viewing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-53:i13:p1",
+              "target": "furnished",
+              "meaningByLocale": {
+                "ru": "с мебелью",
+                "uk": "з меблями"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-53:i13:p2",
+              "target": "unfurnished",
+              "meaningByLocale": {
+                "ru": "без мебели",
+                "uk": "без меблів"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-53:i13:p3",
+              "target": "detached",
+              "meaningByLocale": {
+                "ru": "отдельно стоящий",
+                "uk": "окремо розташований"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-53:i13:p4",
+              "target": "terraced",
+              "meaningByLocale": {
+                "ru": "стоящий в ряду домов с общими боковыми стенами",
+                "uk": "розташований у ряду будинків зі спільними бічними стінами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "furnished",
+            "unfurnished",
+            "detached",
+            "terraced"
+          ],
+          "rightColumn": [
+            "з меблями",
+            "без меблів",
+            "окремо розташований",
+            "розташований у ряду будинків зі спільними бічними стінами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i14:audio",
+            "transcript": "I think the flat will be furnished."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the flat will be furnished.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "flat",
+            "will",
+            "be",
+            "furnished"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i15:audio",
+            "transcript": "I am going to look for a detached house."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to look for a detached house.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "detached",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i16:audio",
+            "transcript": "We are viewing a terraced house tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are viewing a terraced house tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-53:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте думку-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-53:i17:audio",
+            "transcript": "I think the house will be unfurnished."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the house will be unfurnished.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-53:word:furnished",
+      "correctText": "furnished",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i01",
+      "correctText": "I think the flat will be furnished.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i02",
+      "correctText": "I think the flat will be furnished.",
+      "correctResponseId": "en:lesson-16:session-53:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i03",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-53:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:word:unfurnished",
+      "correctText": "unfurnished",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i04",
+      "correctText": "I think the house will be unfurnished.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i05",
+      "correctText": "I think the house will be unfurnished.",
+      "correctResponseId": "en:lesson-16:session-53:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i06",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-53:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:word:detached",
+      "correctText": "detached",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i07",
+      "correctText": "I am going to look for a detached house.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i08",
+      "correctText": "I am going to look for a detached house.",
+      "correctResponseId": "en:lesson-16:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i09",
+      "correctText": "am going to look",
+      "correctResponseId": "en:lesson-16:session-53:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:word:terraced",
+      "correctText": "terraced",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i10",
+      "correctText": "We are viewing a terraced house tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i11",
+      "correctText": "We are viewing a terraced house tomorrow.",
+      "correctResponseId": "en:lesson-16:session-53:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i12",
+      "correctText": "are viewing",
+      "correctResponseId": "en:lesson-16:session-53:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i14",
+      "correctText": "I think the flat will be furnished.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i15",
+      "correctText": "I am going to look for a detached house.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i16",
+      "correctText": "We are viewing a terraced house tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-53:i17",
+      "correctText": "I think the house will be unfurnished.",
+      "correctResponseId": null
+    }
+  ]
+}

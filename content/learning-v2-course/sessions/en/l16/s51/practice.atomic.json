@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-51:word:draughty",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — draughty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:draughty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — draughty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:draughty:audio",
+            "transcript": "draughty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:draughty:r1",
+              "targetText": "draughty",
+              "meaningByLocale": {
+                "ru": "со сквозняками.",
+                "uk": "з протягами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "draughty",
+            "definitionByLocale": {
+              "ru": "со сквозняками.",
+              "uk": "з протягами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will. Скажите: «Думаю, в комнате будут сквозняки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will. Скажите: «Думаю, в комнате будут сквозняки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the room will be draughty.",
+          "localizedMeaning": {
+            "ru": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will. Скажите: «Думаю, в комнате будут сквозняки».",
+            "uk": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will. Скажіть: «Думаю, у кімнаті будуть протяги»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "room",
+            "will",
+            "be",
+            "draughty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i02:r1",
+            "text": "I think the room will be draughty."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i02:r2",
+            "text": "I think the room is going to be draughty."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i02:r3",
+            "text": "I think the room will to be draughty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i02:audio",
+            "transcript": "I think the room will be draughty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i02:r1",
+              "targetText": "I think the room will be draughty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i02:r2",
+              "targetText": "I think the room is going to be draughty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i02:r3",
+              "targetText": "I think the room will to be draughty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the room will be draughty.",
+                "uk": "У записі звучить I think the room will be draughty."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the room will be draughty.",
+                "uk": "У записі звучить I think the room will be draughty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+            "uk": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the room ___ draughty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:word:well-lit",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — well-lit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:well-lit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — well-lit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:well-lit:audio",
+            "transcript": "well-lit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:well-lit:r1",
+              "targetText": "well-lit",
+              "meaningByLocale": {
+                "ru": "хорошо освещённый.",
+                "uk": "добре освітлений."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "well-lit",
+            "definitionByLocale": {
+              "ru": "хорошо освещённый.",
+              "uk": "добре освітлений."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will. Скажите: «Думаю, вход будет хорошо освещён».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will. Скажите: «Думаю, вход будет хорошо освещён».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the entrance will be well-lit.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will. Скажите: «Думаю, вход будет хорошо освещён».",
+            "uk": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will. Скажіть: «Думаю, вхід буде добре освітлений»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "entrance",
+            "will",
+            "be",
+            "well-lit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i05:r1",
+            "text": "I think the entrance will be well-lit."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i05:r2",
+            "text": "I think the entrance is going to be well-lit."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i05:r3",
+            "text": "I think the entrance will to be well-lit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i05:audio",
+            "transcript": "I think the entrance will be well-lit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i05:r1",
+              "targetText": "I think the entrance will be well-lit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i05:r2",
+              "targetText": "I think the entrance is going to be well-lit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i05:r3",
+              "targetText": "I think the entrance will to be well-lit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the entrance will be well-lit.",
+                "uk": "У записі звучить I think the entrance will be well-lit."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the entrance will be well-lit.",
+                "uk": "У записі звучить I think the entrance will be well-lit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the entrance ___ well-lit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:word:soundproof",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soundproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:soundproof:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soundproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:soundproof:audio",
+            "transcript": "soundproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:soundproof:r1",
+              "targetText": "soundproof",
+              "meaningByLocale": {
+                "ru": "со звукоизоляцией, не пропускающий звук.",
+                "uk": "зі звукоізоляцією, що не пропускає звук."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soundproof",
+            "definitionByLocale": {
+              "ru": "со звукоизоляцией, не пропускающий звук.",
+              "uk": "зі звукоізоляцією, що не пропускає звук."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать комнату со звукоизоляцией».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать комнату со звукоизоляцией».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to look for a soundproof room.",
+          "localizedMeaning": {
+            "ru": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать комнату со звукоизоляцией».",
+            "uk": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати кімнату зі звукоізоляцією»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "soundproof",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i08:r1",
+            "text": "I am going to look for a soundproof room."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i08:r2",
+            "text": "I am looking for a soundproof room."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i08:r3",
+            "text": "I is going to look for a soundproof room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i08:audio",
+            "transcript": "I am going to look for a soundproof room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i08:r1",
+              "targetText": "I am going to look for a soundproof room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i08:r2",
+              "targetText": "I am looking for a soundproof room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i08:r3",
+              "targetText": "I is going to look for a soundproof room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a soundproof room.",
+                "uk": "У записі звучить I am going to look for a soundproof room."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a soundproof room.",
+                "uk": "У записі звучить I am going to look for a soundproof room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i09:r1",
+            "text": "am going to look"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i09:r2",
+            "text": "am looking"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ for a soundproof room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i09:r1",
+              "text": "am going to look"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i09:r2",
+              "text": "am looking"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to look.",
+                "uk": "Потрібна правильно побудована повна форма: am going to look."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:word:well-kept",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — well-kept",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:well-kept:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — well-kept",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:well-kept:audio",
+            "transcript": "well-kept"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:well-kept:r1",
+              "targetText": "well-kept",
+              "meaningByLocale": {
+                "ru": "ухоженный, в хорошем состоянии.",
+                "uk": "доглянутий, у доброму стані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "well-kept",
+            "definitionByLocale": {
+              "ru": "ухоженный, в хорошем состоянии.",
+              "uk": "доглянутий, у доброму стані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are viewing a well-kept flat tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "viewing",
+            "a",
+            "well-kept",
+            "flat",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i11:r1",
+            "text": "We are viewing a well-kept flat tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i11:r2",
+            "text": "We are going to view a well-kept flat tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i11:r3",
+            "text": "We is viewing a well-kept flat tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i11:audio",
+            "transcript": "We are viewing a well-kept flat tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i11:r1",
+              "targetText": "We are viewing a well-kept flat tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i11:r2",
+              "targetText": "We are going to view a well-kept flat tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i11:r3",
+              "targetText": "We is viewing a well-kept flat tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a well-kept flat tomorrow.",
+                "uk": "У записі звучить We are viewing a well-kept flat tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a well-kept flat tomorrow.",
+                "uk": "У записі звучить We are viewing a well-kept flat tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a well-kept flat tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i12:r1",
+              "text": "are viewing"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i12:r2",
+              "text": "are going to view"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are viewing.",
+                "uk": "Потрібна правильно побудована повна форма: are viewing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-51:i13:p1",
+              "target": "draughty",
+              "meaningByLocale": {
+                "ru": "со сквозняками",
+                "uk": "з протягами"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-51:i13:p2",
+              "target": "well-lit",
+              "meaningByLocale": {
+                "ru": "хорошо освещённый",
+                "uk": "добре освітлений"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-51:i13:p3",
+              "target": "soundproof",
+              "meaningByLocale": {
+                "ru": "со звукоизоляцией, не пропускающий звук",
+                "uk": "зі звукоізоляцією, що не пропускає звук"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-51:i13:p4",
+              "target": "well-kept",
+              "meaningByLocale": {
+                "ru": "ухоженный, в хорошем состоянии",
+                "uk": "доглянутий, у доброму стані"
+              }
+            }
+          ],
+          "leftColumn": [
+            "draughty",
+            "well-lit",
+            "soundproof",
+            "well-kept"
+          ],
+          "rightColumn": [
+            "со сквозняками",
+            "хорошо освещённый",
+            "со звукоизоляцией, не пропускающий звук",
+            "ухоженный, в хорошем состоянии"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i14:audio",
+            "transcript": "I think the room will be draughty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the room will be draughty.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "room",
+            "will",
+            "be",
+            "draughty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i15:audio",
+            "transcript": "I am going to look for a soundproof room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to look for a soundproof room.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "soundproof",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i16:audio",
+            "transcript": "We are viewing a well-kept flat tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are viewing a well-kept flat tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте мнение-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i17:audio",
+            "transcript": "I think the entrance will be well-lit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the entrance will be well-lit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-51:word:draughty",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — draughty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:draughty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — draughty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:draughty:audio",
+            "transcript": "draughty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:draughty:r1",
+              "targetText": "draughty",
+              "meaningByLocale": {
+                "ru": "со сквозняками.",
+                "uk": "з протягами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "draughty",
+            "definitionByLocale": {
+              "ru": "со сквозняками.",
+              "uk": "з протягами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will. Скажіть: «Думаю, у кімнаті будуть протяги».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will. Скажіть: «Думаю, у кімнаті будуть протяги».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the room will be draughty.",
+          "localizedMeaning": {
+            "ru": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will. Скажите: «Думаю, в комнате будут сквозняки».",
+            "uk": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will. Скажіть: «Думаю, у кімнаті будуть протяги»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "room",
+            "will",
+            "be",
+            "draughty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i02:r1",
+            "text": "I think the room will be draughty."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i02:r2",
+            "text": "I think the room is going to be draughty."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i02:r3",
+            "text": "I think the room will to be draughty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i02:audio",
+            "transcript": "I think the room will be draughty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i02:r1",
+              "targetText": "I think the room will be draughty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i02:r2",
+              "targetText": "I think the room is going to be draughty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i02:r3",
+              "targetText": "I think the room will to be draughty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the room will be draughty.",
+                "uk": "У записі звучить I think the room will be draughty."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the room will be draughty.",
+                "uk": "У записі звучить I think the room will be draughty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
+            "uk": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the room ___ draughty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:word:well-lit",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — well-lit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:well-lit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — well-lit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:well-lit:audio",
+            "transcript": "well-lit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:well-lit:r1",
+              "targetText": "well-lit",
+              "meaningByLocale": {
+                "ru": "хорошо освещённый.",
+                "uk": "добре освітлений."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "well-lit",
+            "definitionByLocale": {
+              "ru": "хорошо освещённый.",
+              "uk": "добре освітлений."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will. Скажіть: «Думаю, вхід буде добре освітлений».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will. Скажіть: «Думаю, вхід буде добре освітлений».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the entrance will be well-lit.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will. Скажите: «Думаю, вход будет хорошо освещён».",
+            "uk": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will. Скажіть: «Думаю, вхід буде добре освітлений»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "entrance",
+            "will",
+            "be",
+            "well-lit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i05:r1",
+            "text": "I think the entrance will be well-lit."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i05:r2",
+            "text": "I think the entrance is going to be well-lit."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i05:r3",
+            "text": "I think the entrance will to be well-lit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i05:audio",
+            "transcript": "I think the entrance will be well-lit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i05:r1",
+              "targetText": "I think the entrance will be well-lit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i05:r2",
+              "targetText": "I think the entrance is going to be well-lit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i05:r3",
+              "targetText": "I think the entrance will to be well-lit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the entrance will be well-lit.",
+                "uk": "У записі звучить I think the entrance will be well-lit."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the entrance will be well-lit.",
+                "uk": "У записі звучить I think the entrance will be well-lit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the entrance ___ well-lit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:word:soundproof",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soundproof",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:soundproof:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soundproof",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:soundproof:audio",
+            "transcript": "soundproof"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:soundproof:r1",
+              "targetText": "soundproof",
+              "meaningByLocale": {
+                "ru": "со звукоизоляцией, не пропускающий звук.",
+                "uk": "зі звукоізоляцією, що не пропускає звук."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soundproof",
+            "definitionByLocale": {
+              "ru": "со звукоизоляцией, не пропускающий звук.",
+              "uk": "зі звукоізоляцією, що не пропускає звук."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати кімнату зі звукоізоляцією».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати кімнату зі звукоізоляцією».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to look for a soundproof room.",
+          "localizedMeaning": {
+            "ru": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать комнату со звукоизоляцией».",
+            "uk": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати кімнату зі звукоізоляцією»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "soundproof",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i08:r1",
+            "text": "I am going to look for a soundproof room."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i08:r2",
+            "text": "I am looking for a soundproof room."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i08:r3",
+            "text": "I is going to look for a soundproof room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i08:audio",
+            "transcript": "I am going to look for a soundproof room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i08:r1",
+              "targetText": "I am going to look for a soundproof room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i08:r2",
+              "targetText": "I am looking for a soundproof room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i08:r3",
+              "targetText": "I is going to look for a soundproof room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a soundproof room.",
+                "uk": "У записі звучить I am going to look for a soundproof room."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to look for a soundproof room.",
+                "uk": "У записі звучить I am going to look for a soundproof room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i09:r1",
+            "text": "am going to look"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i09:r2",
+            "text": "am looking"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ for a soundproof room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i09:r1",
+              "text": "am going to look"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i09:r2",
+              "text": "am looking"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to look.",
+                "uk": "Потрібна правильно побудована повна форма: am going to look."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:word:well-kept",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — well-kept",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:word:well-kept:audio"
+        ],
+        "accessibilityLabel": "Картка слова — well-kept",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:word:well-kept:audio",
+            "transcript": "well-kept"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:word:well-kept:r1",
+              "targetText": "well-kept",
+              "meaningByLocale": {
+                "ru": "ухоженный, в хорошем состоянии.",
+                "uk": "доглянутий, у доброму стані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "well-kept",
+            "definitionByLocale": {
+              "ru": "ухоженный, в хорошем состоянии.",
+              "uk": "доглянутий, у доброму стані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are viewing a well-kept flat tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "viewing",
+            "a",
+            "well-kept",
+            "flat",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i11:r1",
+            "text": "We are viewing a well-kept flat tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i11:r2",
+            "text": "We are going to view a well-kept flat tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i11:r3",
+            "text": "We is viewing a well-kept flat tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i11:audio",
+            "transcript": "We are viewing a well-kept flat tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-51:i11:r1",
+              "targetText": "We are viewing a well-kept flat tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i11:r2",
+              "targetText": "We are going to view a well-kept flat tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i11:r3",
+              "targetText": "We is viewing a well-kept flat tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a well-kept flat tomorrow.",
+                "uk": "У записі звучить We are viewing a well-kept flat tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are viewing a well-kept flat tomorrow.",
+                "uk": "У записі звучить We are viewing a well-kept flat tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-51:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-16:session-51:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a well-kept flat tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-51:i12:r1",
+              "text": "are viewing"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i12:r2",
+              "text": "are going to view"
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are viewing.",
+                "uk": "Потрібна правильно побудована повна форма: are viewing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-51:i13:p1",
+              "target": "draughty",
+              "meaningByLocale": {
+                "ru": "со сквозняками",
+                "uk": "з протягами"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-51:i13:p2",
+              "target": "well-lit",
+              "meaningByLocale": {
+                "ru": "хорошо освещённый",
+                "uk": "добре освітлений"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-51:i13:p3",
+              "target": "soundproof",
+              "meaningByLocale": {
+                "ru": "со звукоизоляцией, не пропускающий звук",
+                "uk": "зі звукоізоляцією, що не пропускає звук"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-51:i13:p4",
+              "target": "well-kept",
+              "meaningByLocale": {
+                "ru": "ухоженный, в хорошем состоянии",
+                "uk": "доглянутий, у доброму стані"
+              }
+            }
+          ],
+          "leftColumn": [
+            "draughty",
+            "well-lit",
+            "soundproof",
+            "well-kept"
+          ],
+          "rightColumn": [
+            "з протягами",
+            "добре освітлений",
+            "зі звукоізоляцією, що не пропускає звук",
+            "доглянутий, у доброму стані"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i14:audio",
+            "transcript": "I think the room will be draughty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the room will be draughty.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "room",
+            "will",
+            "be",
+            "draughty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i15:audio",
+            "transcript": "I am going to look for a soundproof room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to look for a soundproof room.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "look",
+            "for",
+            "a",
+            "soundproof",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i16:audio",
+            "transcript": "We are viewing a well-kept flat tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are viewing a well-kept flat tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-51:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте думку-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-51:i17:audio",
+            "transcript": "I think the entrance will be well-lit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the entrance will be well-lit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-51:word:draughty",
+      "correctText": "draughty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i01",
+      "correctText": "I think the room will be draughty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i02",
+      "correctText": "I think the room will be draughty.",
+      "correctResponseId": "en:lesson-16:session-51:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i03",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-51:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:word:well-lit",
+      "correctText": "well-lit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i04",
+      "correctText": "I think the entrance will be well-lit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i05",
+      "correctText": "I think the entrance will be well-lit.",
+      "correctResponseId": "en:lesson-16:session-51:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i06",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-51:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:word:soundproof",
+      "correctText": "soundproof",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i07",
+      "correctText": "I am going to look for a soundproof room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i08",
+      "correctText": "I am going to look for a soundproof room.",
+      "correctResponseId": "en:lesson-16:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i09",
+      "correctText": "am going to look",
+      "correctResponseId": "en:lesson-16:session-51:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:word:well-kept",
+      "correctText": "well-kept",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i10",
+      "correctText": "We are viewing a well-kept flat tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i11",
+      "correctText": "We are viewing a well-kept flat tomorrow.",
+      "correctResponseId": "en:lesson-16:session-51:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i12",
+      "correctText": "are viewing",
+      "correctResponseId": "en:lesson-16:session-51:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i14",
+      "correctText": "I think the room will be draughty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i15",
+      "correctText": "I am going to look for a soundproof room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i16",
+      "correctText": "We are viewing a well-kept flat tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-51:i17",
+      "correctText": "I think the entrance will be well-lit.",
+      "correctResponseId": null
+    }
+  ]
+}

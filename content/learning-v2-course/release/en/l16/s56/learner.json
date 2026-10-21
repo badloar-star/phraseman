@@ -1,0 +1,1137 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-56:word:south-facing",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — south-facing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:word:south-facing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — south-facing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:word:south-facing:audio",
+          "transcript": "south-facing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:word:south-facing:r1",
+            "targetText": "south-facing",
+            "meaningByLocale": {
+              "ru": "выходящий на юг.",
+              "uk": "що виходить на південь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "south-facing",
+          "definitionByLocale": {
+            "ru": "выходящий на юг.",
+            "uk": "що виходить на південь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will. Скажите: «Думаю, сад будет выходить на юг».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will. Скажите: «Думаю, сад будет выходить на юг».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the garden will be south-facing.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will. Скажите: «Думаю, сад будет выходить на юг».",
+          "uk": "Ви припускаєте, у який бік виходить сад біля будинку, який ще не оглянули. Передайте думку-прогноз через will. Скажіть: «Думаю, сад виходитиме на південь»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "garden",
+          "will",
+          "be",
+          "south-facing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i02:r1",
+          "text": "I think the garden will be south-facing."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i02:r2",
+          "text": "I think the garden is going to be south-facing."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i02:r3",
+          "text": "I think the garden will to be south-facing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i02:audio",
+          "transcript": "I think the garden will be south-facing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:i02:r1",
+            "targetText": "I think the garden will be south-facing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i02:r2",
+            "targetText": "I think the garden is going to be south-facing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i02:r3",
+            "targetText": "I think the garden will to be south-facing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the garden will be south-facing.",
+              "uk": "У записі звучить I think the garden will be south-facing."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the garden will be south-facing.",
+              "uk": "У записі звучить I think the garden will be south-facing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, у який бік виходить сад біля будинку, який ще не оглянули. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the garden ___ south-facing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-56:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:word:north-facing",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — north-facing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:word:north-facing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — north-facing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:word:north-facing:audio",
+          "transcript": "north-facing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:word:north-facing:r1",
+            "targetText": "north-facing",
+            "meaningByLocale": {
+              "ru": "выходящий на север.",
+              "uk": "що виходить на північ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "north-facing",
+          "definitionByLocale": {
+            "ru": "выходящий на север.",
+            "uk": "що виходить на північ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will. Скажите: «Думаю, спальня будет выходить на север».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will. Скажите: «Думаю, спальня будет выходить на север».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the bedroom will be north-facing.",
+        "localizedMeaning": {
+          "ru": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will. Скажите: «Думаю, спальня будет выходить на север».",
+          "uk": "Ви висловлюєте припущення про розташування спальні в новій квартирі. Передайте думку-прогноз через will. Скажіть: «Думаю, спальня виходитиме на північ»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "bedroom",
+          "will",
+          "be",
+          "north-facing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i05:r1",
+          "text": "I think the bedroom will be north-facing."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i05:r2",
+          "text": "I think the bedroom is going to be north-facing."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i05:r3",
+          "text": "I think the bedroom will to be north-facing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i05:audio",
+          "transcript": "I think the bedroom will be north-facing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:i05:r1",
+            "targetText": "I think the bedroom will be north-facing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i05:r2",
+            "targetText": "I think the bedroom is going to be north-facing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i05:r3",
+            "targetText": "I think the bedroom will to be north-facing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the bedroom will be north-facing.",
+              "uk": "У записі звучить I think the bedroom will be north-facing."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the bedroom will be north-facing.",
+              "uk": "У записі звучить I think the bedroom will be north-facing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.",
+          "uk": "Ви висловлюєте припущення про розташування спальні в новій квартирі. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the bedroom ___ north-facing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-56:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:word:built-in",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — built-in",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:word:built-in:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — built-in",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:word:built-in:audio",
+          "transcript": "built-in"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:word:built-in:r1",
+            "targetText": "built-in",
+            "meaningByLocale": {
+              "ru": "встроенный.",
+              "uk": "вбудований."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "built-in",
+          "definitionByLocale": {
+            "ru": "встроенный.",
+            "uk": "вбудований."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать квартиру со встроенным шкафом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать квартиру со встроенным шкафом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to look for a flat with a built-in wardrobe.",
+        "localizedMeaning": {
+          "ru": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь искать квартиру со встроенным шкафом».",
+          "uk": "Ви вирішили, що в новій квартирі потрібна вбудована шафа; пошуки ще не почали. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся шукати квартиру із вбудованою шафою»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "look",
+          "for",
+          "a",
+          "flat",
+          "with",
+          "a",
+          "built-in",
+          "wardrobe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i08:r1",
+          "text": "I am going to look for a flat with a built-in wardrobe."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i08:r2",
+          "text": "I am looking for a flat with a built-in wardrobe."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i08:r3",
+          "text": "I is going to look for a flat with a built-in wardrobe."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i08:audio",
+          "transcript": "I am going to look for a flat with a built-in wardrobe."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:i08:r1",
+            "targetText": "I am going to look for a flat with a built-in wardrobe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i08:r2",
+            "targetText": "I am looking for a flat with a built-in wardrobe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i08:r3",
+            "targetText": "I is going to look for a flat with a built-in wardrobe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to look for a flat with a built-in wardrobe.",
+              "uk": "У записі звучить I am going to look for a flat with a built-in wardrobe."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to look for a flat with a built-in wardrobe.",
+              "uk": "У записі звучить I am going to look for a flat with a built-in wardrobe."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i09:r1",
+          "text": "am going to look"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i09:r2",
+          "text": "am looking"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили, що в новій квартирі потрібна вбудована шафа; пошуки ще не почали. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ for a flat with a built-in wardrobe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-56:i09:r1",
+            "text": "am going to look"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i09:r2",
+            "text": "am looking"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to look.",
+              "uk": "Потрібна правильно побудована повна форма: am going to look."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:word:waterfront",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — waterfront",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:word:waterfront:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — waterfront",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:word:waterfront:audio",
+          "transcript": "waterfront"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:word:waterfront:r1",
+            "targetText": "waterfront",
+            "meaningByLocale": {
+              "ru": "расположенный у самой воды.",
+              "uk": "розташований біля самої води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waterfront",
+          "definitionByLocale": {
+            "ru": "расположенный у самой воды.",
+            "uk": "розташований біля самої води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем квартиру у самой воды».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем квартиру у самой воды».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are viewing a waterfront flat tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем квартиру у самой воды».",
+          "uk": "Ви домовилися з агентом завтра подивитися квартиру біля набережної. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо квартиру біля самої води»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "viewing",
+          "a",
+          "waterfront",
+          "flat",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i11:r1",
+          "text": "We are viewing a waterfront flat tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i11:r2",
+          "text": "We are going to view a waterfront flat tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i11:r3",
+          "text": "We is viewing a waterfront flat tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i11:audio",
+          "transcript": "We are viewing a waterfront flat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-56:i11:r1",
+            "targetText": "We are viewing a waterfront flat tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i11:r2",
+            "targetText": "We are going to view a waterfront flat tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i11:r3",
+            "targetText": "We is viewing a waterfront flat tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are viewing a waterfront flat tomorrow.",
+              "uk": "У записі звучить We are viewing a waterfront flat tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are viewing a waterfront flat tomorrow.",
+              "uk": "У записі звучить We are viewing a waterfront flat tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-56:i12:r1",
+          "text": "are viewing"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i12:r2",
+          "text": "are going to view"
+        },
+        {
+          "responseId": "en:lesson-16:session-56:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з агентом завтра подивитися квартиру біля набережної. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a waterfront flat tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-56:i12:r1",
+            "text": "are viewing"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i12:r2",
+            "text": "are going to view"
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are viewing.",
+              "uk": "Потрібна правильно побудована повна форма: are viewing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-56:i13:p1",
+            "target": "south-facing",
+            "meaningByLocale": {
+              "ru": "выходящий на юг",
+              "uk": "що виходить на південь"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-56:i13:p2",
+            "target": "north-facing",
+            "meaningByLocale": {
+              "ru": "выходящий на север",
+              "uk": "що виходить на північ"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-56:i13:p3",
+            "target": "built-in",
+            "meaningByLocale": {
+              "ru": "встроенный",
+              "uk": "вбудований"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-56:i13:p4",
+            "target": "waterfront",
+            "meaningByLocale": {
+              "ru": "расположенный у самой воды",
+              "uk": "розташований біля самої води"
+            }
+          }
+        ],
+        "leftColumn": [
+          "south-facing",
+          "north-facing",
+          "built-in",
+          "waterfront"
+        ],
+        "rightColumn": [
+          "выходящий на юг",
+          "выходящий на север",
+          "встроенный",
+          "расположенный у самой воды"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i14:audio",
+          "transcript": "I think the garden will be south-facing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the garden will be south-facing.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "garden",
+          "will",
+          "be",
+          "south-facing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i15:audio",
+          "transcript": "I am going to look for a flat with a built-in wardrobe."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to look for a flat with a built-in wardrobe.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "look",
+          "for",
+          "a",
+          "flat",
+          "with",
+          "a",
+          "built-in",
+          "wardrobe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i16:audio",
+          "transcript": "We are viewing a waterfront flat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are viewing a waterfront flat tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-56:i17:audio",
+          "transcript": "I think the bedroom will be north-facing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the bedroom will be north-facing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "476aa410d8c781375326c5a24ce36e6329f1ea67875bcaaeb3480d2d3571748c"
+}

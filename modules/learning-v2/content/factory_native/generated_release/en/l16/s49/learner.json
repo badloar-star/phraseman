@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-49:word:call-off",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — call off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:word:call-off:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — call off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:word:call-off:audio",
+          "transcript": "call off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:word:call-off:r1",
+            "targetText": "call off",
+            "meaningByLocale": {
+              "ru": "отменить запланированное событие.",
+              "uk": "скасувати заплановану подію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "call off",
+          "definitionByLocale": {
+            "ru": "отменить запланированное событие.",
+            "uk": "скасувати заплановану подію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will. Скажите: «Думаю, они отменят пикник».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will. Скажите: «Думаю, они отменят пикник».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think they will call off the picnic.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will. Скажите: «Думаю, они отменят пикник».",
+          "uk": "Ви припускаєте, що друзі скасують пікнік, але їхнього рішення ще не знаєте. Передайте думку-прогноз через will. Скажіть: «Думаю, вони скасують пікнік»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "they",
+          "will",
+          "call",
+          "off",
+          "the",
+          "picnic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i02:r1",
+          "text": "I think they will call off the picnic."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i02:r2",
+          "text": "I think they are going to call off the picnic."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i02:r3",
+          "text": "I think they will to call off the picnic."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i02:audio",
+          "transcript": "I think they will call off the picnic."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:i02:r1",
+            "targetText": "I think they will call off the picnic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i02:r2",
+            "targetText": "I think they are going to call off the picnic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i02:r3",
+            "targetText": "I think they will to call off the picnic.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think they will call off the picnic.",
+              "uk": "У записі звучить I think they will call off the picnic."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think they will call off the picnic.",
+              "uk": "У записі звучить I think they will call off the picnic."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i03:r1",
+          "text": "will call off"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i03:r2",
+          "text": "are going to call off"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що друзі скасують пікнік, але їхнього рішення ще не знаєте. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think they ___ the picnic.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-49:i03:r1",
+            "text": "will call off"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i03:r2",
+            "text": "are going to call off"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will call off.",
+              "uk": "Потрібна правильно побудована повна форма: will call off."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:word:give-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — give up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:word:give-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — give up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:word:give-up:audio",
+          "transcript": "give up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:word:give-up:r1",
+            "targetText": "give up",
+            "meaningByLocale": {
+              "ru": "сдаться, прекратить попытки.",
+              "uk": "здатися, припинити спроби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "give up",
+          "definitionByLocale": {
+            "ru": "сдаться, прекратить попытки.",
+            "uk": "здатися, припинити спроби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will. Скажите: «Думаю, он скоро сдастся».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will. Скажите: «Думаю, он скоро сдастся».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think he will give up soon.",
+        "localizedMeaning": {
+          "ru": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will. Скажите: «Думаю, он скоро сдастся».",
+          "uk": "Друг довго розв’язує складну головоломку. Ви припускаєте, що він скоро перестане намагатися. Передайте думку-прогноз через will. Скажіть: «Думаю, він скоро здасться»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "he",
+          "will",
+          "give",
+          "up",
+          "soon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i05:r1",
+          "text": "I think he will give up soon."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i05:r2",
+          "text": "I think he is going to give up soon."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i05:r3",
+          "text": "I think he will to give up soon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i05:audio",
+          "transcript": "I think he will give up soon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:i05:r1",
+            "targetText": "I think he will give up soon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i05:r2",
+            "targetText": "I think he is going to give up soon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i05:r3",
+            "targetText": "I think he will to give up soon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think he will give up soon.",
+              "uk": "У записі звучить I think he will give up soon."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think he will give up soon.",
+              "uk": "У записі звучить I think he will give up soon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i06:r1",
+          "text": "will give up"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i06:r2",
+          "text": "is going to give up"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i06:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.",
+          "uk": "Друг довго розв’язує складну головоломку. Ви припускаєте, що він скоро перестане намагатися. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think he ___ soon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-49:i06:r1",
+            "text": "will give up"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i06:r2",
+            "text": "is going to give up"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i06:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will give up.",
+              "uk": "Потрібна правильно побудована повна форма: will give up."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:word:sign-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sign up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:word:sign-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sign up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:word:sign-up:audio",
+          "transcript": "sign up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:word:sign-up:r1",
+            "targetText": "sign up",
+            "meaningByLocale": {
+              "ru": "записаться на занятие или мероприятие.",
+              "uk": "записатися на заняття або захід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sign up",
+          "definitionByLocale": {
+            "ru": "записаться на занятие или мероприятие.",
+            "uk": "записатися на заняття або захід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь записаться на кулинарное занятие».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь записаться на кулинарное занятие».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to sign up for a cooking class.",
+        "localizedMeaning": {
+          "ru": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь записаться на кулинарное занятие».",
+          "uk": "Ви вирішили записатися на кулінарне заняття, але ще не записалися. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся записатися на кулінарне заняття»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "sign",
+          "up",
+          "for",
+          "a",
+          "cooking",
+          "class"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i08:r1",
+          "text": "I am going to sign up for a cooking class."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i08:r2",
+          "text": "I am signing up for a cooking class."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i08:r3",
+          "text": "I is going to sign up for a cooking class."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i08:audio",
+          "transcript": "I am going to sign up for a cooking class."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:i08:r1",
+            "targetText": "I am going to sign up for a cooking class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i08:r2",
+            "targetText": "I am signing up for a cooking class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i08:r3",
+            "targetText": "I is going to sign up for a cooking class.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to sign up for a cooking class.",
+              "uk": "У записі звучить I am going to sign up for a cooking class."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to sign up for a cooking class.",
+              "uk": "У записі звучить I am going to sign up for a cooking class."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i09:r1",
+          "text": "am going to sign up"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i09:r2",
+          "text": "am signing up"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили записатися на кулінарне заняття, але ще не записалися. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ for a cooking class.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-49:i09:r1",
+            "text": "am going to sign up"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i09:r2",
+            "text": "am signing up"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы решили записаться на кулинарное занятие, но ещё не записались. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to sign up.",
+              "uk": "Потрібна правильно побудована повна форма: am going to sign up."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:word:check-out",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — check out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:word:check-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — check out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:word:check-out:audio",
+          "transcript": "check out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:word:check-out:r1",
+            "targetText": "check out",
+            "meaningByLocale": {
+              "ru": "выписаться из гостиницы.",
+              "uk": "виписатися з готелю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "check out",
+          "definitionByLocale": {
+            "ru": "выписаться из гостиницы.",
+            "uk": "виписатися з готелю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы выписываемся из гостиницы завтра в десять».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы выписываемся из гостиницы завтра в десять».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are checking out at ten tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы выписываемся из гостиницы завтра в десять».",
+          "uk": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми виписуємося з готелю завтра о десятій»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "checking",
+          "out",
+          "at",
+          "ten",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i11:r1",
+          "text": "We are checking out at ten tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i11:r2",
+          "text": "We are going to check out at ten tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i11:r3",
+          "text": "We is checking out at ten tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i11:audio",
+          "transcript": "We are checking out at ten tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-49:i11:r1",
+            "targetText": "We are checking out at ten tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i11:r2",
+            "targetText": "We are going to check out at ten tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i11:r3",
+            "targetText": "We is checking out at ten tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are checking out at ten tomorrow.",
+              "uk": "У записі звучить We are checking out at ten tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are checking out at ten tomorrow.",
+              "uk": "У записі звучить We are checking out at ten tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-49:i12:r1",
+          "text": "are checking out"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i12:r2",
+          "text": "are going to check out"
+        },
+        {
+          "responseId": "en:lesson-16:session-49:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ at ten tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-49:i12:r1",
+            "text": "are checking out"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i12:r2",
+            "text": "are going to check out"
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are checking out.",
+              "uk": "Потрібна правильно побудована повна форма: are checking out."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-49:i13:p1",
+            "target": "call off",
+            "meaningByLocale": {
+              "ru": "отменить запланированное событие",
+              "uk": "скасувати заплановану подію"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-49:i13:p2",
+            "target": "give up",
+            "meaningByLocale": {
+              "ru": "сдаться, прекратить попытки",
+              "uk": "здатися, припинити спроби"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-49:i13:p3",
+            "target": "sign up",
+            "meaningByLocale": {
+              "ru": "записаться на занятие или мероприятие",
+              "uk": "записатися на заняття або захід"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-49:i13:p4",
+            "target": "check out",
+            "meaningByLocale": {
+              "ru": "выписаться из гостиницы",
+              "uk": "виписатися з готелю"
+            }
+          }
+        ],
+        "leftColumn": [
+          "call off",
+          "give up",
+          "sign up",
+          "check out"
+        ],
+        "rightColumn": [
+          "отменить запланированное событие",
+          "сдаться, прекратить попытки",
+          "записаться на занятие или мероприятие",
+          "выписаться из гостиницы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i14:audio",
+          "transcript": "I think they will call off the picnic."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think they will call off the picnic.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "they",
+          "will",
+          "call",
+          "off",
+          "the",
+          "picnic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i15:audio",
+          "transcript": "I am going to sign up for a cooking class."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to sign up for a cooking class.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "sign",
+          "up",
+          "for",
+          "a",
+          "cooking",
+          "class"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i16:audio",
+          "transcript": "We are checking out at ten tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are checking out at ten tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-49:i17:audio",
+          "transcript": "I think he will give up soon."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think he will give up soon.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "18d05699f2ccced504fc66b388efd19d27c1a8f5143976449e7ba45f6946900c"
+}

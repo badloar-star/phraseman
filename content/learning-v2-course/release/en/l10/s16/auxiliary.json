@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-16:intro1:r2": {
-          "ru": "С she нужна works.",
-          "uk": "З she потрібна works."
+          "ru": "После I нужна need без s.",
+          "uk": "Після I потрібна need без s."
         },
         "en:lesson-10:session-16:intro1:r3": {
-          "ru": "Для обычной работы здесь нужна works.",
-          "uk": "Для звичайної роботи тут потрібна works."
+          "ru": "Для потребности здесь нужна need без am.",
+          "uk": "Для потреби тут потрібна need без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-16:intro2:r2": {
-          "ru": "Перед working нужна is.",
-          "uk": "Перед working потрібна is."
+          "ru": "Перед using нужна am.",
+          "uk": "Перед using потрібна am."
         },
         "en:lesson-10:session-16:intro2:r3": {
-          "ru": "После is нужна working.",
-          "uk": "Після is потрібна working."
+          "ru": "После am нужна using.",
+          "uk": "Після am потрібна using."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-16:intro3:r2": {
-          "ru": "Sit → sitting с двумя t.",
-          "uk": "Sit → sitting із двома t."
+          "ru": "После I нужна need.",
+          "uk": "Після I потрібна need."
         },
         "en:lesson-10:session-16:intro3:r3": {
-          "ru": "Перед sitting нужна is.",
-          "uk": "Перед sitting потрібна is."
+          "ru": "Здесь нужна need без am.",
+          "uk": "Тут потрібна need без am."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "56013bc23e8117e3a92134825e85470212622d89f67a81362a0c10589d7ff40b"
+  "auxiliaryFingerprint": "42bdaeb1942c65d1ae91a45b02ffa777e584c6cb2343baadeea169bd74176708"
 }

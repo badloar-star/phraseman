@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-16:word:trainee",
+        "interactionId": "en:lesson-10:session-16:word:foil",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — trainee",
+        "prompt": "Карточка слова — foil",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:trainee:audio"
+          "en:lesson-10:session-16:word:foil:audio"
         ],
-        "accessibilityLabel": "Карточка слова — trainee",
+        "accessibilityLabel": "Карточка слова — foil",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:trainee:audio",
-            "transcript": "trainee"
+            "audioTargetId": "en:lesson-10:session-16:word:foil:audio",
+            "transcript": "foil"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:trainee:r1",
-              "targetText": "trainee",
+              "responseId": "en:lesson-10:session-16:word:foil:r1",
+              "targetText": "foil",
               "meaningByLocale": {
-                "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
-                "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+                "ru": "«фольга». I need some foil. — «Мне нужно немного фольги».",
+                "uk": "«фольга». I need some foil. — «Мені потрібно трохи фольги»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "trainee",
+            "word": "foil",
             "definitionByLocale": {
-              "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
-              "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+              "ru": "«фольга». I need some foil. — «Мне нужно немного фольги».",
+              "uk": "«фольга». I need some foil. — «Мені потрібно трохи фольги»."
             }
           }
         },
@@ -52,23 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
+        "prompt": "Вы хотите завернуть хлеб. Скажите: «Мне нужно немного фольги»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
+        "accessibilityLabel": "Вы хотите завернуть хлеб. Скажите: «Мне нужно немного фольги»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is a trainee.",
+          "targetPhrase": "I need some foil.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
-            "uk": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»"
+            "ru": "Вы хотите завернуть хлеб. Скажите: «Мне нужно немного фольги»",
+            "uk": "Ви хочете загорнути хліб. Скажіть: «Мені потрібно трохи фольги»"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "a",
-            "trainee"
+            "I",
+            "need",
+            "some",
+            "foil"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -89,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i02:r1",
-            "text": "She usually works upstairs."
+            "text": "The foil is in the drawer."
           },
           {
             "responseId": "en:lesson-10:session-16:i02:r2",
-            "text": "He usually works upstairs."
+            "text": "The foil is on the table."
           },
           {
             "responseId": "en:lesson-10:session-16:i02:r3",
-            "text": "She usually works downstairs."
+            "text": "The fork is in the drawer."
           }
         ],
         "mediaIds": [],
@@ -109,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i02:audio",
-            "transcript": "She usually works upstairs."
+            "transcript": "The foil is in the drawer."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i02:r1",
-              "targetText": "She usually works upstairs.",
+              "targetText": "The foil is in the drawer.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i02:r2",
-              "targetText": "He usually works upstairs.",
+              "targetText": "The foil is on the table.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i02:r3",
-              "targetText": "She usually works downstairs.",
+              "targetText": "The fork is in the drawer.",
               "meaningByLocale": null
             }
           ],
@@ -136,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually works upstairs.",
-                "uk": "У записі звучить She usually works upstairs."
+                "ru": "В записи звучит The foil is in the drawer.",
+                "uk": "У записі звучить The foil is in the drawer."
               }
             },
             {
@@ -145,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually works upstairs.",
-                "uk": "У записі звучить She usually works upstairs."
+                "ru": "В записи звучит The foil is in the drawer.",
+                "uk": "У записі звучить The foil is in the drawer."
               }
             }
           ],
@@ -161,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму work для обычной работы с she",
+        "prompt": "Выберите форму need после I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i03:r1",
-            "text": "works"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-16:i03:r2",
-            "text": "work"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-16:i03:r3",
-            "text": "working"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму work для обычной работы с she",
+        "accessibilityLabel": "Выберите форму need после I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму work для обычной работы с she",
-            "uk": "Виберіть форму work для звичайної роботи з she"
+            "ru": "Выберите форму need после I",
+            "uk": "Виберіть форму need після I"
           },
-          "gappedTargetPhrase": "She usually ___ upstairs.",
+          "gappedTargetPhrase": "I ___ some foil.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i03:r1",
-              "text": "works"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-16:i03:r2",
-              "text": "work"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-16:i03:r3",
-              "text": "working"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Выберите форму work для обычной работы с she",
+          "testedDimension": "Выберите форму need после I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i03:r2",
               "correct": false,
-              "testedDimension": "Выберите форму work для обычной работы с she",
+              "testedDimension": "Выберите форму need после I",
               "feedbackByLocale": {
-                "ru": "С she нужна works.",
-                "uk": "З she потрібна works."
+                "ru": "После I нужна need.",
+                "uk": "Після I потрібна need."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i03:r3",
               "correct": false,
-              "testedDimension": "Выберите форму work для обычной работы с she",
+              "testedDimension": "Выберите форму need после I",
               "feedbackByLocale": {
-                "ru": "Для обычной работы здесь нужна works.",
-                "uk": "Для звичайної роботи тут потрібна works."
+                "ru": "Потребность выражаем формой need.",
+                "uk": "Потребу виражаємо формою need."
               }
             }
           ]
@@ -225,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:word:supervisor",
+        "interactionId": "en:lesson-10:session-16:word:cling-film",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — supervisor",
+        "prompt": "Карточка слова — cling film",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:supervisor:audio"
+          "en:lesson-10:session-16:word:cling-film:audio"
         ],
-        "accessibilityLabel": "Карточка слова — supervisor",
+        "accessibilityLabel": "Карточка слова — cling film",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:supervisor:audio",
-            "transcript": "supervisor"
+            "audioTargetId": "en:lesson-10:session-16:word:cling-film:audio",
+            "transcript": "cling film"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:supervisor:r1",
-              "targetText": "supervisor",
+              "responseId": "en:lesson-10:session-16:word:cling-film:r1",
+              "targetText": "cling film",
               "meaningByLocale": {
-                "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
-                "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+                "ru": "«пищевая плёнка». I am using cling film. — «Я использую пищевую плёнку».",
+                "uk": "«харчова плівка». I am using cling film. — «Я використовую харчову плівку»."
               }
             }
           ],
@@ -258,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "supervisor",
+            "word": "cling film",
             "definitionByLocale": {
-              "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
-              "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+              "ru": "«пищевая плёнка». I am using cling film. — «Я использую пищевую плёнку».",
+              "uk": "«харчова плівка». I am using cling film. — «Я використовую харчову плівку»."
             }
           }
         },
@@ -273,23 +273,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
+        "prompt": "Вы сейчас накрываете миску плёнкой. Скажите: «Я использую пищевую плёнку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
+        "accessibilityLabel": "Вы сейчас накрываете миску плёнкой. Скажите: «Я использую пищевую плёнку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "My supervisor is here.",
+          "targetPhrase": "I am using cling film.",
           "localizedMeaning": {
-            "ru": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
-            "uk": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»"
+            "ru": "Вы сейчас накрываете миску плёнкой. Скажите: «Я использую пищевую плёнку»",
+            "uk": "Ви зараз накриваєте миску плівкою. Скажіть: «Я використовую харчову плівку»"
           },
           "orderedTokens": [
-            "My",
-            "supervisor",
-            "is",
-            "here"
+            "I",
+            "am",
+            "using",
+            "cling",
+            "film"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -310,15 +311,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i05:r1",
-            "text": "The supervisor is busy."
+            "text": "She is using cling film."
           },
           {
             "responseId": "en:lesson-10:session-16:i05:r2",
-            "text": "The supervisor is ready."
+            "text": "He is using cling film."
           },
           {
             "responseId": "en:lesson-10:session-16:i05:r3",
-            "text": "The trainee is busy."
+            "text": "She is buying cling film."
           }
         ],
         "mediaIds": [],
@@ -330,23 +331,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i05:audio",
-            "transcript": "The supervisor is busy."
+            "transcript": "She is using cling film."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i05:r1",
-              "targetText": "The supervisor is busy.",
+              "targetText": "She is using cling film.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i05:r2",
-              "targetText": "The supervisor is ready.",
+              "targetText": "He is using cling film.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i05:r3",
-              "targetText": "The trainee is busy.",
+              "targetText": "She is buying cling film.",
               "meaningByLocale": null
             }
           ],
@@ -357,8 +358,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The supervisor is busy.",
-                "uk": "У записі звучить The supervisor is busy."
+                "ru": "В записи звучит She is using cling film.",
+                "uk": "У записі звучить She is using cling film."
               }
             },
             {
@@ -366,8 +367,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The supervisor is busy.",
-                "uk": "У записі звучить The supervisor is busy."
+                "ru": "В записи звучит She is using cling film.",
+                "uk": "У записі звучить She is using cling film."
               }
             }
           ],
@@ -382,63 +383,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одного руководителя",
+        "prompt": "Плёнка у вас в руках сейчас. Выберите форму use",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i06:r1",
-            "text": "is"
+            "text": "using"
           },
           {
             "responseId": "en:lesson-10:session-16:i06:r2",
-            "text": "are"
+            "text": "use"
           },
           {
             "responseId": "en:lesson-10:session-16:i06:r3",
-            "text": "am"
+            "text": "uses"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одного руководителя",
+        "accessibilityLabel": "Плёнка у вас в руках сейчас. Выберите форму use",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одного руководителя",
-            "uk": "Виберіть зв’язку для одного керівника"
+            "ru": "Плёнка у вас в руках сейчас. Выберите форму use",
+            "uk": "Плівка у вас у руках зараз. Виберіть форму use"
           },
-          "gappedTargetPhrase": "My supervisor ___ here.",
+          "gappedTargetPhrase": "I am ___ cling film.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i06:r1",
-              "text": "is"
+              "text": "using"
             },
             {
               "responseId": "en:lesson-10:session-16:i06:r2",
-              "text": "are"
+              "text": "use"
             },
             {
               "responseId": "en:lesson-10:session-16:i06:r3",
-              "text": "am"
+              "text": "uses"
             }
           ],
-          "testedDimension": "Выберите связку для одного руководителя",
+          "testedDimension": "Плёнка у вас в руках сейчас. Выберите форму use",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите связку для одного руководителя",
+              "testedDimension": "Плёнка у вас в руках сейчас. Выберите форму use",
               "feedbackByLocale": {
-                "ru": "Один человек: is.",
-                "uk": "Одна людина: is."
+                "ru": "После am нужна using.",
+                "uk": "Після am потрібна using."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите связку для одного руководителя",
+              "testedDimension": "Плёнка у вас в руках сейчас. Выберите форму use",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "После am нужна using, не uses.",
+                "uk": "Після am потрібна using, не uses."
               }
             }
           ]
@@ -446,32 +447,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:word:placement",
+        "interactionId": "en:lesson-10:session-16:word:tea-towel",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — placement",
+        "prompt": "Карточка слова — tea towel",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:placement:audio"
+          "en:lesson-10:session-16:word:tea-towel:audio"
         ],
-        "accessibilityLabel": "Карточка слова — placement",
+        "accessibilityLabel": "Карточка слова — tea towel",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:placement:audio",
-            "transcript": "placement"
+            "audioTargetId": "en:lesson-10:session-16:word:tea-towel:audio",
+            "transcript": "tea towel"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:placement:r1",
-              "targetText": "placement",
+              "responseId": "en:lesson-10:session-16:word:tea-towel:r1",
+              "targetText": "tea towel",
               "meaningByLocale": {
-                "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
-                "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+                "ru": "«кухонное полотенце». a clean tea towel — «чистое кухонное полотенце».",
+                "uk": "«кухонний рушник». a clean tea towel — «чистий кухонний рушник»."
               }
             }
           ],
@@ -479,10 +480,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "placement",
+            "word": "tea towel",
             "definitionByLocale": {
-              "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
-              "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+              "ru": "«кухонное полотенце». a clean tea towel — «чистое кухонное полотенце».",
+              "uk": "«кухонний рушник». a clean tea towel — «чистий кухонний рушник»."
             }
           }
         },
@@ -494,24 +495,28 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
+        "prompt": "Вы вытираете тарелку кухонным полотенцем. Скажите, что вы делаете",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
+        "accessibilityLabel": "Вы вытираете тарелку кухонным полотенцем. Скажите, что вы делаете",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is on a placement.",
+          "targetPhrase": "I am drying a plate with a tea towel.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
-            "uk": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»"
+            "ru": "Вы вытираете тарелку кухонным полотенцем. Скажите, что вы делаете",
+            "uk": "Ви витираєте тарілку кухонним рушником. Скажіть, що ви робите"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "on",
+            "I",
+            "am",
+            "drying",
             "a",
-            "placement"
+            "plate",
+            "with",
+            "a",
+            "tea",
+            "towel"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -532,15 +537,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i08:r1",
-            "text": "The placement is in London."
+            "text": "The tea towel is wet."
           },
           {
             "responseId": "en:lesson-10:session-16:i08:r2",
-            "text": "The placement is in Paris."
+            "text": "The tea towel is clean."
           },
           {
             "responseId": "en:lesson-10:session-16:i08:r3",
-            "text": "The meeting is in London."
+            "text": "The tea towel is dry."
           }
         ],
         "mediaIds": [],
@@ -552,23 +557,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i08:audio",
-            "transcript": "The placement is in London."
+            "transcript": "The tea towel is wet."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i08:r1",
-              "targetText": "The placement is in London.",
+              "targetText": "The tea towel is wet.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i08:r2",
-              "targetText": "The placement is in Paris.",
+              "targetText": "The tea towel is clean.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i08:r3",
-              "targetText": "The meeting is in London.",
+              "targetText": "The tea towel is dry.",
               "meaningByLocale": null
             }
           ],
@@ -579,8 +584,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The placement is in London.",
-                "uk": "У записі звучить The placement is in London."
+                "ru": "В записи звучит The tea towel is wet.",
+                "uk": "У записі звучить The tea towel is wet."
               }
             },
             {
@@ -588,8 +593,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The placement is in London.",
-                "uk": "У записі звучить The placement is in London."
+                "ru": "В записи звучит The tea towel is wet.",
+                "uk": "У записі звучить The tea towel is wet."
               }
             }
           ],
@@ -604,63 +609,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед placement в выражении on a placement",
+        "prompt": "Вы вытираете тарелку сейчас. Выберите форму dry",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i09:r1",
-            "text": "a"
+            "text": "drying"
           },
           {
             "responseId": "en:lesson-10:session-16:i09:r2",
-            "text": "an"
+            "text": "dry"
           },
           {
             "responseId": "en:lesson-10:session-16:i09:r3",
-            "text": "are"
+            "text": "dries"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед placement в выражении on a placement",
+        "accessibilityLabel": "Вы вытираете тарелку сейчас. Выберите форму dry",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед placement в выражении on a placement",
-            "uk": "Виберіть артикль перед placement у виразі on a placement"
+            "ru": "Вы вытираете тарелку сейчас. Выберите форму dry",
+            "uk": "Ви витираєте тарілку зараз. Виберіть форму dry"
           },
-          "gappedTargetPhrase": "She is on ___ placement.",
+          "gappedTargetPhrase": "I am ___ a plate with a tea towel.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i09:r1",
-              "text": "a"
+              "text": "drying"
             },
             {
               "responseId": "en:lesson-10:session-16:i09:r2",
-              "text": "an"
+              "text": "dry"
             },
             {
               "responseId": "en:lesson-10:session-16:i09:r3",
-              "text": "are"
+              "text": "dries"
             }
           ],
-          "testedDimension": "Выберите артикль перед placement в выражении on a placement",
+          "testedDimension": "Вы вытираете тарелку сейчас. Выберите форму dry",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите артикль перед placement в выражении on a placement",
+              "testedDimension": "Вы вытираете тарелку сейчас. Выберите форму dry",
               "feedbackByLocale": {
-                "ru": "Placement начинается с согласного звука: a.",
-                "uk": "Placement починається з приголосного звука: a."
+                "ru": "После am нужна drying.",
+                "uk": "Після am потрібна drying."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите артикль перед placement в выражении on a placement",
+              "testedDimension": "Вы вытираете тарелку сейчас. Выберите форму dry",
               "feedbackByLocale": {
-                "ru": "Are — глагол; здесь нужен артикль a.",
-                "uk": "Are — дієслово; тут потрібен артикль a."
+                "ru": "После am нужна drying, не dries.",
+                "uk": "Після am потрібна drying, не dries."
               }
             }
           ]
@@ -668,32 +673,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:word:workstation",
+        "interactionId": "en:lesson-10:session-16:word:bin-bag",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — workstation",
+        "prompt": "Карточка слова — bin bag",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:workstation:audio"
+          "en:lesson-10:session-16:word:bin-bag:audio"
         ],
-        "accessibilityLabel": "Карточка слова — workstation",
+        "accessibilityLabel": "Карточка слова — bin bag",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:workstation:audio",
-            "transcript": "workstation"
+            "audioTargetId": "en:lesson-10:session-16:word:bin-bag:audio",
+            "transcript": "bin bag"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:workstation:r1",
-              "targetText": "workstation",
+              "responseId": "en:lesson-10:session-16:word:bin-bag:r1",
+              "targetText": "bin bag",
               "meaningByLocale": {
-                "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
-                "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+                "ru": "«пакет для мусора». I need a bin bag. — «Мне нужен пакет для мусора».",
+                "uk": "«пакет для сміття». I need a bin bag. — «Мені потрібен пакет для сміття»."
               }
             }
           ],
@@ -701,10 +706,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "workstation",
+            "word": "bin bag",
             "definitionByLocale": {
-              "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
-              "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+              "ru": "«пакет для мусора». I need a bin bag. — «Мне нужен пакет для мусора».",
+              "uk": "«пакет для сміття». I need a bin bag. — «Мені потрібен пакет для сміття»."
             }
           }
         },
@@ -716,25 +721,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
+        "prompt": "В мусорном ведре нет пакета. Скажите: «Мне нужен пакет для мусора»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
+        "accessibilityLabel": "В мусорном ведре нет пакета. Скажите: «Мне нужен пакет для мусора»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is sitting at her workstation.",
+          "targetPhrase": "I need a bin bag.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
-            "uk": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»"
+            "ru": "В мусорном ведре нет пакета. Скажите: «Мне нужен пакет для мусора»",
+            "uk": "У відрі для сміття немає пакета. Скажіть: «Мені потрібен пакет для сміття»"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "sitting",
-            "at",
-            "her",
-            "workstation"
+            "I",
+            "need",
+            "a",
+            "bin",
+            "bag"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +759,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i11:r1",
-            "text": "The workstation is near the window."
+            "text": "The bin bag is full."
           },
           {
             "responseId": "en:lesson-10:session-16:i11:r2",
-            "text": "The workstation is near the door."
+            "text": "The bin bag is empty."
           },
           {
             "responseId": "en:lesson-10:session-16:i11:r3",
-            "text": "The printer is near the window."
+            "text": "The bin bag is black."
           }
         ],
         "mediaIds": [],
@@ -775,23 +779,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i11:audio",
-            "transcript": "The workstation is near the window."
+            "transcript": "The bin bag is full."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i11:r1",
-              "targetText": "The workstation is near the window.",
+              "targetText": "The bin bag is full.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i11:r2",
-              "targetText": "The workstation is near the door.",
+              "targetText": "The bin bag is empty.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i11:r3",
-              "targetText": "The printer is near the window.",
+              "targetText": "The bin bag is black.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +806,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workstation is near the window.",
-                "uk": "У записі звучить The workstation is near the window."
+                "ru": "В записи звучит The bin bag is full.",
+                "uk": "У записі звучить The bin bag is full."
               }
             },
             {
@@ -811,8 +815,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workstation is near the window.",
-                "uk": "У записі звучить The workstation is near the window."
+                "ru": "В записи звучит The bin bag is full.",
+                "uk": "У записі звучить The bin bag is full."
               }
             }
           ],
@@ -827,63 +831,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму sit после is",
+        "prompt": "Выберите связку: один пакет",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i12:r1",
-            "text": "sitting"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-16:i12:r2",
-            "text": "siting"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-16:i12:r3",
-            "text": "sit"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму sit после is",
+        "accessibilityLabel": "Выберите связку: один пакет",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму sit после is",
-            "uk": "Виберіть форму sit після is"
+            "ru": "Выберите связку: один пакет",
+            "uk": "Виберіть зв’язку: один пакет"
           },
-          "gappedTargetPhrase": "She is ___ at her workstation.",
+          "gappedTargetPhrase": "The bin bag ___ full.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i12:r1",
-              "text": "sitting"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-16:i12:r2",
-              "text": "siting"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-16:i12:r3",
-              "text": "sit"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите форму sit после is",
+          "testedDimension": "Выберите связку: один пакет",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите форму sit после is",
+              "testedDimension": "Выберите связку: один пакет",
               "feedbackByLocale": {
-                "ru": "Sit удваивает t: sitting.",
-                "uk": "Sit подвоює t: sitting."
+                "ru": "Один пакет: is.",
+                "uk": "Один пакет: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите форму sit после is",
+              "testedDimension": "Выберите связку: один пакет",
               "feedbackByLocale": {
-                "ru": "После is нужна sitting.",
-                "uk": "Після is потрібна sitting."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -896,58 +900,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините названия с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините названия с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-16:i13:p1",
-              "target": "trainee",
+              "target": "foil",
               "meaningByLocale": {
-                "ru": "стажёр",
-                "uk": "стажер"
+                "ru": "фольга",
+                "uk": "фольга"
               }
             },
             {
               "pairId": "en:lesson-10:session-16:i13:p2",
-              "target": "supervisor",
+              "target": "cling film",
               "meaningByLocale": {
-                "ru": "руководитель",
-                "uk": "керівник"
+                "ru": "пищевая плёнка",
+                "uk": "харчова плівка"
               }
             },
             {
               "pairId": "en:lesson-10:session-16:i13:p3",
-              "target": "placement",
+              "target": "tea towel",
               "meaningByLocale": {
-                "ru": "практика",
-                "uk": "практика"
+                "ru": "кухонное полотенце",
+                "uk": "кухонний рушник"
               }
             },
             {
               "pairId": "en:lesson-10:session-16:i13:p4",
-              "target": "workstation",
+              "target": "bin bag",
               "meaningByLocale": {
-                "ru": "рабочее место",
-                "uk": "робоче місце"
+                "ru": "пакет для мусора",
+                "uk": "пакет для сміття"
               }
             }
           ],
           "leftColumn": [
-            "trainee",
-            "supervisor",
-            "placement",
-            "workstation"
+            "foil",
+            "cling film",
+            "tea towel",
+            "bin bag"
           ],
           "rightColumn": [
-            "стажёр",
-            "руководитель",
-            "практика",
-            "рабочее место"
+            "фольга",
+            "пищевая плёнка",
+            "кухонное полотенце",
+            "пакет для мусора"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -969,28 +973,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-16:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i14:audio",
-            "transcript": "Is she working here this month?"
+            "transcript": "I am using cling film."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Is she working here this month?",
+          "hiddenTargetPhrase": "I am using cling film.",
           "orderedTokens": [
-            "Is",
-            "she",
-            "working",
-            "here",
-            "this",
-            "month"
+            "I",
+            "am",
+            "using",
+            "cling",
+            "film"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1004,24 +1007,61 @@
       {
         "interactionId": "en:lesson-10:session-16:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Руководитель спрашивает, где стажёрка обычно работает. Скажите: «Обычно она работает наверху»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-16:i15:audio"
         ],
-        "accessibilityLabel": "Руководитель спрашивает, где стажёрка обычно работает. Скажите: «Обычно она работает наверху»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i15:audio",
+            "transcript": "I need a bin bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need a bin bag.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "bin",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг помогает убрать еду. Скажите ему: «Мне нужно немного фольги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Друг помогает убрать еду. Скажите ему: «Мне нужно немного фольги»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:i15:audio",
-            "transcript": "She usually works upstairs."
+            "audioTargetId": "en:lesson-10:session-16:i16:audio",
+            "transcript": "I need some foil."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She usually works upstairs.",
+          "targetPhrase": "I need some foil.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1035,72 +1075,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She is working here this month.",
-          "localizedMeaning": {
-            "ru": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-            "uk": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
-          },
-          "orderedTokens": [
-            "She",
-            "is",
-            "working",
-            "here",
-            "this",
-            "month"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-16:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Стажёрка обычно работает наверху. На один месяц её направили на практику в ваш офис. Сейчас у неё перерыв. Коллега спрашивает о её месте работы в этот период. Ответьте: «В этом месяце она работает здесь»",
+        "prompt": "Вы готовите ведро для мусора. Скажите: «Мне нужен пакет для мусора»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-16:i17:audio"
         ],
-        "accessibilityLabel": "Стажёрка обычно работает наверху. На один месяц её направили на практику в ваш офис. Сейчас у неё перерыв. Коллега спрашивает о её месте работы в этот период. Ответьте: «В этом месяце она работает здесь»",
+        "accessibilityLabel": "Вы готовите ведро для мусора. Скажите: «Мне нужен пакет для мусора»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i17:audio",
-            "transcript": "She is working here this month."
+            "transcript": "I need a bin bag."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She is working here this month.",
+          "targetPhrase": "I need a bin bag.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1113,32 +1110,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-16:word:trainee",
+        "interactionId": "en:lesson-10:session-16:word:foil",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — trainee",
+        "prompt": "Картка слова — foil",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:trainee:audio"
+          "en:lesson-10:session-16:word:foil:audio"
         ],
-        "accessibilityLabel": "Картка слова — trainee",
+        "accessibilityLabel": "Картка слова — foil",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:trainee:audio",
-            "transcript": "trainee"
+            "audioTargetId": "en:lesson-10:session-16:word:foil:audio",
+            "transcript": "foil"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:trainee:r1",
-              "targetText": "trainee",
+              "responseId": "en:lesson-10:session-16:word:foil:r1",
+              "targetText": "foil",
               "meaningByLocale": {
-                "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
-                "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+                "ru": "«фольга». I need some foil. — «Мне нужно немного фольги».",
+                "uk": "«фольга». I need some foil. — «Мені потрібно трохи фольги»."
               }
             }
           ],
@@ -1146,10 +1143,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "trainee",
+            "word": "foil",
             "definitionByLocale": {
-              "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
-              "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+              "ru": "«фольга». I need some foil. — «Мне нужно немного фольги».",
+              "uk": "«фольга». I need some foil. — «Мені потрібно трохи фольги»."
             }
           }
         },
@@ -1161,23 +1158,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»",
+        "prompt": "Ви хочете загорнути хліб. Скажіть: «Мені потрібно трохи фольги»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»",
+        "accessibilityLabel": "Ви хочете загорнути хліб. Скажіть: «Мені потрібно трохи фольги»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is a trainee.",
+          "targetPhrase": "I need some foil.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
-            "uk": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»"
+            "ru": "Вы хотите завернуть хлеб. Скажите: «Мне нужно немного фольги»",
+            "uk": "Ви хочете загорнути хліб. Скажіть: «Мені потрібно трохи фольги»"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "a",
-            "trainee"
+            "I",
+            "need",
+            "some",
+            "foil"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1198,15 +1195,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i02:r1",
-            "text": "She usually works upstairs."
+            "text": "The foil is in the drawer."
           },
           {
             "responseId": "en:lesson-10:session-16:i02:r2",
-            "text": "He usually works upstairs."
+            "text": "The foil is on the table."
           },
           {
             "responseId": "en:lesson-10:session-16:i02:r3",
-            "text": "She usually works downstairs."
+            "text": "The fork is in the drawer."
           }
         ],
         "mediaIds": [],
@@ -1218,23 +1215,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i02:audio",
-            "transcript": "She usually works upstairs."
+            "transcript": "The foil is in the drawer."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i02:r1",
-              "targetText": "She usually works upstairs.",
+              "targetText": "The foil is in the drawer.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i02:r2",
-              "targetText": "He usually works upstairs.",
+              "targetText": "The foil is on the table.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i02:r3",
-              "targetText": "She usually works downstairs.",
+              "targetText": "The fork is in the drawer.",
               "meaningByLocale": null
             }
           ],
@@ -1245,8 +1242,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually works upstairs.",
-                "uk": "У записі звучить She usually works upstairs."
+                "ru": "В записи звучит The foil is in the drawer.",
+                "uk": "У записі звучить The foil is in the drawer."
               }
             },
             {
@@ -1254,8 +1251,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually works upstairs.",
-                "uk": "У записі звучить She usually works upstairs."
+                "ru": "В записи звучит The foil is in the drawer.",
+                "uk": "У записі звучить The foil is in the drawer."
               }
             }
           ],
@@ -1270,63 +1267,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму work для звичайної роботи з she",
+        "prompt": "Виберіть форму need після I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i03:r1",
-            "text": "works"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-16:i03:r2",
-            "text": "work"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-16:i03:r3",
-            "text": "working"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму work для звичайної роботи з she",
+        "accessibilityLabel": "Виберіть форму need після I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму work для обычной работы с she",
-            "uk": "Виберіть форму work для звичайної роботи з she"
+            "ru": "Выберите форму need после I",
+            "uk": "Виберіть форму need після I"
           },
-          "gappedTargetPhrase": "She usually ___ upstairs.",
+          "gappedTargetPhrase": "I ___ some foil.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i03:r1",
-              "text": "works"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-16:i03:r2",
-              "text": "work"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-16:i03:r3",
-              "text": "working"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Виберіть форму work для звичайної роботи з she",
+          "testedDimension": "Виберіть форму need після I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i03:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму work для звичайної роботи з she",
+              "testedDimension": "Виберіть форму need після I",
               "feedbackByLocale": {
-                "ru": "С she нужна works.",
-                "uk": "З she потрібна works."
+                "ru": "После I нужна need.",
+                "uk": "Після I потрібна need."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i03:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму work для звичайної роботи з she",
+              "testedDimension": "Виберіть форму need після I",
               "feedbackByLocale": {
-                "ru": "Для обычной работы здесь нужна works.",
-                "uk": "Для звичайної роботи тут потрібна works."
+                "ru": "Потребность выражаем формой need.",
+                "uk": "Потребу виражаємо формою need."
               }
             }
           ]
@@ -1334,32 +1331,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:word:supervisor",
+        "interactionId": "en:lesson-10:session-16:word:cling-film",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — supervisor",
+        "prompt": "Картка слова — cling film",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:supervisor:audio"
+          "en:lesson-10:session-16:word:cling-film:audio"
         ],
-        "accessibilityLabel": "Картка слова — supervisor",
+        "accessibilityLabel": "Картка слова — cling film",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:supervisor:audio",
-            "transcript": "supervisor"
+            "audioTargetId": "en:lesson-10:session-16:word:cling-film:audio",
+            "transcript": "cling film"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:supervisor:r1",
-              "targetText": "supervisor",
+              "responseId": "en:lesson-10:session-16:word:cling-film:r1",
+              "targetText": "cling film",
               "meaningByLocale": {
-                "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
-                "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+                "ru": "«пищевая плёнка». I am using cling film. — «Я использую пищевую плёнку».",
+                "uk": "«харчова плівка». I am using cling film. — «Я використовую харчову плівку»."
               }
             }
           ],
@@ -1367,10 +1364,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "supervisor",
+            "word": "cling film",
             "definitionByLocale": {
-              "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
-              "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+              "ru": "«пищевая плёнка». I am using cling film. — «Я использую пищевую плёнку».",
+              "uk": "«харчова плівка». I am using cling film. — «Я використовую харчову плівку»."
             }
           }
         },
@@ -1382,23 +1379,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»",
+        "prompt": "Ви зараз накриваєте миску плівкою. Скажіть: «Я використовую харчову плівку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»",
+        "accessibilityLabel": "Ви зараз накриваєте миску плівкою. Скажіть: «Я використовую харчову плівку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "My supervisor is here.",
+          "targetPhrase": "I am using cling film.",
           "localizedMeaning": {
-            "ru": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
-            "uk": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»"
+            "ru": "Вы сейчас накрываете миску плёнкой. Скажите: «Я использую пищевую плёнку»",
+            "uk": "Ви зараз накриваєте миску плівкою. Скажіть: «Я використовую харчову плівку»"
           },
           "orderedTokens": [
-            "My",
-            "supervisor",
-            "is",
-            "here"
+            "I",
+            "am",
+            "using",
+            "cling",
+            "film"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1419,15 +1417,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i05:r1",
-            "text": "The supervisor is busy."
+            "text": "She is using cling film."
           },
           {
             "responseId": "en:lesson-10:session-16:i05:r2",
-            "text": "The supervisor is ready."
+            "text": "He is using cling film."
           },
           {
             "responseId": "en:lesson-10:session-16:i05:r3",
-            "text": "The trainee is busy."
+            "text": "She is buying cling film."
           }
         ],
         "mediaIds": [],
@@ -1439,23 +1437,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i05:audio",
-            "transcript": "The supervisor is busy."
+            "transcript": "She is using cling film."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i05:r1",
-              "targetText": "The supervisor is busy.",
+              "targetText": "She is using cling film.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i05:r2",
-              "targetText": "The supervisor is ready.",
+              "targetText": "He is using cling film.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i05:r3",
-              "targetText": "The trainee is busy.",
+              "targetText": "She is buying cling film.",
               "meaningByLocale": null
             }
           ],
@@ -1466,8 +1464,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The supervisor is busy.",
-                "uk": "У записі звучить The supervisor is busy."
+                "ru": "В записи звучит She is using cling film.",
+                "uk": "У записі звучить She is using cling film."
               }
             },
             {
@@ -1475,8 +1473,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The supervisor is busy.",
-                "uk": "У записі звучить The supervisor is busy."
+                "ru": "В записи звучит She is using cling film.",
+                "uk": "У записі звучить She is using cling film."
               }
             }
           ],
@@ -1491,63 +1489,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для одного керівника",
+        "prompt": "Плівка у вас у руках зараз. Виберіть форму use",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i06:r1",
-            "text": "is"
+            "text": "using"
           },
           {
             "responseId": "en:lesson-10:session-16:i06:r2",
-            "text": "are"
+            "text": "use"
           },
           {
             "responseId": "en:lesson-10:session-16:i06:r3",
-            "text": "am"
+            "text": "uses"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для одного керівника",
+        "accessibilityLabel": "Плівка у вас у руках зараз. Виберіть форму use",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одного руководителя",
-            "uk": "Виберіть зв’язку для одного керівника"
+            "ru": "Плёнка у вас в руках сейчас. Выберите форму use",
+            "uk": "Плівка у вас у руках зараз. Виберіть форму use"
           },
-          "gappedTargetPhrase": "My supervisor ___ here.",
+          "gappedTargetPhrase": "I am ___ cling film.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i06:r1",
-              "text": "is"
+              "text": "using"
             },
             {
               "responseId": "en:lesson-10:session-16:i06:r2",
-              "text": "are"
+              "text": "use"
             },
             {
               "responseId": "en:lesson-10:session-16:i06:r3",
-              "text": "am"
+              "text": "uses"
             }
           ],
-          "testedDimension": "Виберіть зв’язку для одного керівника",
+          "testedDimension": "Плівка у вас у руках зараз. Виберіть форму use",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для одного керівника",
+              "testedDimension": "Плівка у вас у руках зараз. Виберіть форму use",
               "feedbackByLocale": {
-                "ru": "Один человек: is.",
-                "uk": "Одна людина: is."
+                "ru": "После am нужна using.",
+                "uk": "Після am потрібна using."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для одного керівника",
+              "testedDimension": "Плівка у вас у руках зараз. Виберіть форму use",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "После am нужна using, не uses.",
+                "uk": "Після am потрібна using, не uses."
               }
             }
           ]
@@ -1555,32 +1553,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:word:placement",
+        "interactionId": "en:lesson-10:session-16:word:tea-towel",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — placement",
+        "prompt": "Картка слова — tea towel",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:placement:audio"
+          "en:lesson-10:session-16:word:tea-towel:audio"
         ],
-        "accessibilityLabel": "Картка слова — placement",
+        "accessibilityLabel": "Картка слова — tea towel",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:placement:audio",
-            "transcript": "placement"
+            "audioTargetId": "en:lesson-10:session-16:word:tea-towel:audio",
+            "transcript": "tea towel"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:placement:r1",
-              "targetText": "placement",
+              "responseId": "en:lesson-10:session-16:word:tea-towel:r1",
+              "targetText": "tea towel",
               "meaningByLocale": {
-                "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
-                "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+                "ru": "«кухонное полотенце». a clean tea towel — «чистое кухонное полотенце».",
+                "uk": "«кухонний рушник». a clean tea towel — «чистий кухонний рушник»."
               }
             }
           ],
@@ -1588,10 +1586,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "placement",
+            "word": "tea towel",
             "definitionByLocale": {
-              "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
-              "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+              "ru": "«кухонное полотенце». a clean tea towel — «чистое кухонное полотенце».",
+              "uk": "«кухонний рушник». a clean tea towel — «чистий кухонний рушник»."
             }
           }
         },
@@ -1603,24 +1601,28 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»",
+        "prompt": "Ви витираєте тарілку кухонним рушником. Скажіть, що ви робите",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»",
+        "accessibilityLabel": "Ви витираєте тарілку кухонним рушником. Скажіть, що ви робите",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is on a placement.",
+          "targetPhrase": "I am drying a plate with a tea towel.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
-            "uk": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»"
+            "ru": "Вы вытираете тарелку кухонным полотенцем. Скажите, что вы делаете",
+            "uk": "Ви витираєте тарілку кухонним рушником. Скажіть, що ви робите"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "on",
+            "I",
+            "am",
+            "drying",
             "a",
-            "placement"
+            "plate",
+            "with",
+            "a",
+            "tea",
+            "towel"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1641,15 +1643,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i08:r1",
-            "text": "The placement is in London."
+            "text": "The tea towel is wet."
           },
           {
             "responseId": "en:lesson-10:session-16:i08:r2",
-            "text": "The placement is in Paris."
+            "text": "The tea towel is clean."
           },
           {
             "responseId": "en:lesson-10:session-16:i08:r3",
-            "text": "The meeting is in London."
+            "text": "The tea towel is dry."
           }
         ],
         "mediaIds": [],
@@ -1661,23 +1663,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i08:audio",
-            "transcript": "The placement is in London."
+            "transcript": "The tea towel is wet."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i08:r1",
-              "targetText": "The placement is in London.",
+              "targetText": "The tea towel is wet.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i08:r2",
-              "targetText": "The placement is in Paris.",
+              "targetText": "The tea towel is clean.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i08:r3",
-              "targetText": "The meeting is in London.",
+              "targetText": "The tea towel is dry.",
               "meaningByLocale": null
             }
           ],
@@ -1688,8 +1690,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The placement is in London.",
-                "uk": "У записі звучить The placement is in London."
+                "ru": "В записи звучит The tea towel is wet.",
+                "uk": "У записі звучить The tea towel is wet."
               }
             },
             {
@@ -1697,8 +1699,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The placement is in London.",
-                "uk": "У записі звучить The placement is in London."
+                "ru": "В записи звучит The tea towel is wet.",
+                "uk": "У записі звучить The tea towel is wet."
               }
             }
           ],
@@ -1713,63 +1715,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед placement у виразі on a placement",
+        "prompt": "Ви витираєте тарілку зараз. Виберіть форму dry",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i09:r1",
-            "text": "a"
+            "text": "drying"
           },
           {
             "responseId": "en:lesson-10:session-16:i09:r2",
-            "text": "an"
+            "text": "dry"
           },
           {
             "responseId": "en:lesson-10:session-16:i09:r3",
-            "text": "are"
+            "text": "dries"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед placement у виразі on a placement",
+        "accessibilityLabel": "Ви витираєте тарілку зараз. Виберіть форму dry",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед placement в выражении on a placement",
-            "uk": "Виберіть артикль перед placement у виразі on a placement"
+            "ru": "Вы вытираете тарелку сейчас. Выберите форму dry",
+            "uk": "Ви витираєте тарілку зараз. Виберіть форму dry"
           },
-          "gappedTargetPhrase": "She is on ___ placement.",
+          "gappedTargetPhrase": "I am ___ a plate with a tea towel.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i09:r1",
-              "text": "a"
+              "text": "drying"
             },
             {
               "responseId": "en:lesson-10:session-16:i09:r2",
-              "text": "an"
+              "text": "dry"
             },
             {
               "responseId": "en:lesson-10:session-16:i09:r3",
-              "text": "are"
+              "text": "dries"
             }
           ],
-          "testedDimension": "Виберіть артикль перед placement у виразі on a placement",
+          "testedDimension": "Ви витираєте тарілку зараз. Виберіть форму dry",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть артикль перед placement у виразі on a placement",
+              "testedDimension": "Ви витираєте тарілку зараз. Виберіть форму dry",
               "feedbackByLocale": {
-                "ru": "Placement начинается с согласного звука: a.",
-                "uk": "Placement починається з приголосного звука: a."
+                "ru": "После am нужна drying.",
+                "uk": "Після am потрібна drying."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть артикль перед placement у виразі on a placement",
+              "testedDimension": "Ви витираєте тарілку зараз. Виберіть форму dry",
               "feedbackByLocale": {
-                "ru": "Are — глагол; здесь нужен артикль a.",
-                "uk": "Are — дієслово; тут потрібен артикль a."
+                "ru": "После am нужна drying, не dries.",
+                "uk": "Після am потрібна drying, не dries."
               }
             }
           ]
@@ -1777,32 +1779,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:word:workstation",
+        "interactionId": "en:lesson-10:session-16:word:bin-bag",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — workstation",
+        "prompt": "Картка слова — bin bag",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-16:word:workstation:audio"
+          "en:lesson-10:session-16:word:bin-bag:audio"
         ],
-        "accessibilityLabel": "Картка слова — workstation",
+        "accessibilityLabel": "Картка слова — bin bag",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:word:workstation:audio",
-            "transcript": "workstation"
+            "audioTargetId": "en:lesson-10:session-16:word:bin-bag:audio",
+            "transcript": "bin bag"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-16:word:workstation:r1",
-              "targetText": "workstation",
+              "responseId": "en:lesson-10:session-16:word:bin-bag:r1",
+              "targetText": "bin bag",
               "meaningByLocale": {
-                "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
-                "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+                "ru": "«пакет для мусора». I need a bin bag. — «Мне нужен пакет для мусора».",
+                "uk": "«пакет для сміття». I need a bin bag. — «Мені потрібен пакет для сміття»."
               }
             }
           ],
@@ -1810,10 +1812,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "workstation",
+            "word": "bin bag",
             "definitionByLocale": {
-              "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
-              "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+              "ru": "«пакет для мусора». I need a bin bag. — «Мне нужен пакет для мусора».",
+              "uk": "«пакет для сміття». I need a bin bag. — «Мені потрібен пакет для сміття»."
             }
           }
         },
@@ -1825,25 +1827,24 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»",
+        "prompt": "У відрі для сміття немає пакета. Скажіть: «Мені потрібен пакет для сміття»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»",
+        "accessibilityLabel": "У відрі для сміття немає пакета. Скажіть: «Мені потрібен пакет для сміття»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is sitting at her workstation.",
+          "targetPhrase": "I need a bin bag.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
-            "uk": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»"
+            "ru": "В мусорном ведре нет пакета. Скажите: «Мне нужен пакет для мусора»",
+            "uk": "У відрі для сміття немає пакета. Скажіть: «Мені потрібен пакет для сміття»"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "sitting",
-            "at",
-            "her",
-            "workstation"
+            "I",
+            "need",
+            "a",
+            "bin",
+            "bag"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1864,15 +1865,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i11:r1",
-            "text": "The workstation is near the window."
+            "text": "The bin bag is full."
           },
           {
             "responseId": "en:lesson-10:session-16:i11:r2",
-            "text": "The workstation is near the door."
+            "text": "The bin bag is empty."
           },
           {
             "responseId": "en:lesson-10:session-16:i11:r3",
-            "text": "The printer is near the window."
+            "text": "The bin bag is black."
           }
         ],
         "mediaIds": [],
@@ -1884,23 +1885,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i11:audio",
-            "transcript": "The workstation is near the window."
+            "transcript": "The bin bag is full."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-16:i11:r1",
-              "targetText": "The workstation is near the window.",
+              "targetText": "The bin bag is full.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i11:r2",
-              "targetText": "The workstation is near the door.",
+              "targetText": "The bin bag is empty.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-16:i11:r3",
-              "targetText": "The printer is near the window.",
+              "targetText": "The bin bag is black.",
               "meaningByLocale": null
             }
           ],
@@ -1911,8 +1912,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workstation is near the window.",
-                "uk": "У записі звучить The workstation is near the window."
+                "ru": "В записи звучит The bin bag is full.",
+                "uk": "У записі звучить The bin bag is full."
               }
             },
             {
@@ -1920,8 +1921,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workstation is near the window.",
-                "uk": "У записі звучить The workstation is near the window."
+                "ru": "В записи звучит The bin bag is full.",
+                "uk": "У записі звучить The bin bag is full."
               }
             }
           ],
@@ -1936,63 +1937,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму sit після is",
+        "prompt": "Виберіть зв’язку: один пакет",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-16:i12:r1",
-            "text": "sitting"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-16:i12:r2",
-            "text": "siting"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-16:i12:r3",
-            "text": "sit"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму sit після is",
+        "accessibilityLabel": "Виберіть зв’язку: один пакет",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму sit после is",
-            "uk": "Виберіть форму sit після is"
+            "ru": "Выберите связку: один пакет",
+            "uk": "Виберіть зв’язку: один пакет"
           },
-          "gappedTargetPhrase": "She is ___ at her workstation.",
+          "gappedTargetPhrase": "The bin bag ___ full.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-16:i12:r1",
-              "text": "sitting"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-16:i12:r2",
-              "text": "siting"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-16:i12:r3",
-              "text": "sit"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть форму sit після is",
+          "testedDimension": "Виберіть зв’язку: один пакет",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-16:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму sit після is",
+              "testedDimension": "Виберіть зв’язку: один пакет",
               "feedbackByLocale": {
-                "ru": "Sit удваивает t: sitting.",
-                "uk": "Sit подвоює t: sitting."
+                "ru": "Один пакет: is.",
+                "uk": "Один пакет: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-16:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму sit після is",
+              "testedDimension": "Виберіть зв’язку: один пакет",
               "feedbackByLocale": {
-                "ru": "После is нужна sitting.",
-                "uk": "Після is потрібна sitting."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -2005,58 +2006,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте назви з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте назви з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-16:i13:p1",
-              "target": "trainee",
+              "target": "foil",
               "meaningByLocale": {
-                "ru": "стажёр",
-                "uk": "стажер"
+                "ru": "фольга",
+                "uk": "фольга"
               }
             },
             {
               "pairId": "en:lesson-10:session-16:i13:p2",
-              "target": "supervisor",
+              "target": "cling film",
               "meaningByLocale": {
-                "ru": "руководитель",
-                "uk": "керівник"
+                "ru": "пищевая плёнка",
+                "uk": "харчова плівка"
               }
             },
             {
               "pairId": "en:lesson-10:session-16:i13:p3",
-              "target": "placement",
+              "target": "tea towel",
               "meaningByLocale": {
-                "ru": "практика",
-                "uk": "практика"
+                "ru": "кухонное полотенце",
+                "uk": "кухонний рушник"
               }
             },
             {
               "pairId": "en:lesson-10:session-16:i13:p4",
-              "target": "workstation",
+              "target": "bin bag",
               "meaningByLocale": {
-                "ru": "рабочее место",
-                "uk": "робоче місце"
+                "ru": "пакет для мусора",
+                "uk": "пакет для сміття"
               }
             }
           ],
           "leftColumn": [
-            "trainee",
-            "supervisor",
-            "placement",
-            "workstation"
+            "foil",
+            "cling film",
+            "tea towel",
+            "bin bag"
           ],
           "rightColumn": [
-            "стажер",
-            "керівник",
-            "практика",
-            "робоче місце"
+            "фольга",
+            "харчова плівка",
+            "кухонний рушник",
+            "пакет для сміття"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2078,28 +2079,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-16:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i14:audio",
-            "transcript": "Is she working here this month?"
+            "transcript": "I am using cling film."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Is she working here this month?",
+          "hiddenTargetPhrase": "I am using cling film.",
           "orderedTokens": [
-            "Is",
-            "she",
-            "working",
-            "here",
-            "this",
-            "month"
+            "I",
+            "am",
+            "using",
+            "cling",
+            "film"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2113,24 +2113,61 @@
       {
         "interactionId": "en:lesson-10:session-16:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Керівник запитує, де стажерка зазвичай працює. Скажіть: «Зазвичай вона працює нагорі»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-16:i15:audio"
         ],
-        "accessibilityLabel": "Керівник запитує, де стажерка зазвичай працює. Скажіть: «Зазвичай вона працює нагорі»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i15:audio",
+            "transcript": "I need a bin bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need a bin bag.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "bin",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг допомагає прибрати їжу. Скажіть йому: «Мені потрібно трохи фольги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Друг допомагає прибрати їжу. Скажіть йому: «Мені потрібно трохи фольги»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-16:i15:audio",
-            "transcript": "She usually works upstairs."
+            "audioTargetId": "en:lesson-10:session-16:i16:audio",
+            "transcript": "I need some foil."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She usually works upstairs.",
+          "targetPhrase": "I need some foil.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2144,72 +2181,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-16:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She is working here this month.",
-          "localizedMeaning": {
-            "ru": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-            "uk": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
-          },
-          "orderedTokens": [
-            "She",
-            "is",
-            "working",
-            "here",
-            "this",
-            "month"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-16:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Стажерка зазвичай працює нагорі. На один місяць її направили на практику до вашого офісу. Зараз у неї перерва. Колега запитує про її місце роботи в цей період. Дайте відповідь: «Цього місяця вона працює тут»",
+        "prompt": "Ви готуєте відро для сміття. Скажіть: «Мені потрібен пакет для сміття»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-16:i17:audio"
         ],
-        "accessibilityLabel": "Стажерка зазвичай працює нагорі. На один місяць її направили на практику до вашого офісу. Зараз у неї перерва. Колега запитує про її місце роботи в цей період. Дайте відповідь: «Цього місяця вона працює тут»",
+        "accessibilityLabel": "Ви готуєте відро для сміття. Скажіть: «Мені потрібен пакет для сміття»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-16:i17:audio",
-            "transcript": "She is working here this month."
+            "transcript": "I need a bin bag."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She is working here this month.",
+          "targetPhrase": "I need a bin bag.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2223,83 +2217,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-16:word:trainee",
-      "correctText": "trainee",
+      "interactionId": "en:lesson-10:session-16:word:foil",
+      "correctText": "foil",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i01",
-      "correctText": "She is a trainee.",
+      "correctText": "I need some foil.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i02",
-      "correctText": "She usually works upstairs.",
+      "correctText": "The foil is in the drawer.",
       "correctResponseId": "en:lesson-10:session-16:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-16:i03",
-      "correctText": "works",
+      "correctText": "need",
       "correctResponseId": "en:lesson-10:session-16:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-16:word:supervisor",
-      "correctText": "supervisor",
+      "interactionId": "en:lesson-10:session-16:word:cling-film",
+      "correctText": "cling film",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i04",
-      "correctText": "My supervisor is here.",
+      "correctText": "I am using cling film.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i05",
-      "correctText": "The supervisor is busy.",
+      "correctText": "She is using cling film.",
       "correctResponseId": "en:lesson-10:session-16:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-16:i06",
-      "correctText": "is",
+      "correctText": "using",
       "correctResponseId": "en:lesson-10:session-16:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-16:word:placement",
-      "correctText": "placement",
+      "interactionId": "en:lesson-10:session-16:word:tea-towel",
+      "correctText": "tea towel",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i07",
-      "correctText": "She is on a placement.",
+      "correctText": "I am drying a plate with a tea towel.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i08",
-      "correctText": "The placement is in London.",
+      "correctText": "The tea towel is wet.",
       "correctResponseId": "en:lesson-10:session-16:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-16:i09",
-      "correctText": "a",
+      "correctText": "drying",
       "correctResponseId": "en:lesson-10:session-16:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-16:word:workstation",
-      "correctText": "workstation",
+      "interactionId": "en:lesson-10:session-16:word:bin-bag",
+      "correctText": "bin bag",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i10",
-      "correctText": "She is sitting at her workstation.",
+      "correctText": "I need a bin bag.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i11",
-      "correctText": "The workstation is near the window.",
+      "correctText": "The bin bag is full.",
       "correctResponseId": "en:lesson-10:session-16:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-16:i12",
-      "correctText": "sitting",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-16:i12:r1"
     },
     {
@@ -2309,22 +2303,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-16:i14",
-      "correctText": "Is she working here this month?",
+      "correctText": "I am using cling film.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i15",
-      "correctText": "She usually works upstairs.",
+      "correctText": "I need a bin bag.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i16",
-      "correctText": "She is working here this month.",
+      "correctText": "I need some foil.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-16:i17",
-      "correctText": "She is working here this month.",
+      "correctText": "I need a bin bag.",
       "correctResponseId": null
     }
   ]

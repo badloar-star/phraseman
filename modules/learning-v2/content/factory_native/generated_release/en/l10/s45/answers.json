@@ -1,17 +1,17 @@
 [
   {
-    "interactionId": "en:lesson-10:session-45:word:achievement",
-    "correctText": "achievement",
+    "interactionId": "en:lesson-10:session-45:word:heel",
+    "correctText": "heel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i01",
-    "correctText": "This is a major achievement.",
+    "correctText": "The heel is low.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i02",
-    "correctText": "The achievement is important.",
+    "correctText": "The heel is high.",
     "correctResponseId": "en:lesson-10:session-45:i02:r1"
   },
   {
@@ -20,88 +20,88 @@
     "correctResponseId": "en:lesson-10:session-45:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-45:word:benchmark",
-    "correctText": "benchmark",
+    "interactionId": "en:lesson-10:session-45:word:sole",
+    "correctText": "sole",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i04",
-    "correctText": "We are using this result as a benchmark.",
+    "correctText": "I am checking the sole.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i05",
-    "correctText": "The benchmark is in the report.",
+    "correctText": "She is checking the sole.",
     "correctResponseId": "en:lesson-10:session-45:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-45:i06",
-    "correctText": "are",
+    "correctText": "checking",
     "correctResponseId": "en:lesson-10:session-45:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-45:word:breakthrough",
-    "correctText": "breakthrough",
+    "interactionId": "en:lesson-10:session-45:word:firm",
+    "correctText": "firm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i07",
-    "correctText": "We are making a breakthrough.",
+    "correctText": "The sole is firm.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i08",
-    "correctText": "The breakthrough is significant.",
+    "correctText": "This mattress is firm.",
     "correctResponseId": "en:lesson-10:session-45:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-45:i09",
-    "correctText": "making",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-45:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-45:word:track-record",
-    "correctText": "track record",
+    "interactionId": "en:lesson-10:session-45:word:owe",
+    "correctText": "owe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i10",
-    "correctText": "The team has a strong track record.",
+    "correctText": "I owe you ten euros.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i11",
-    "correctText": "Her track record is impressive.",
+    "correctText": "I owe you five euros.",
     "correctResponseId": "en:lesson-10:session-45:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-45:i12",
-    "correctText": "is",
+    "correctText": "owe",
     "correctResponseId": "en:lesson-10:session-45:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-45:i13",
-    "correctText": "en:lesson-10:session-45:i13:p1=achievement\nen:lesson-10:session-45:i13:p2=benchmark\nen:lesson-10:session-45:i13:p3=breakthrough\nen:lesson-10:session-45:i13:p4=track record",
+    "correctText": "en:lesson-10:session-45:i13:p1=heel\nen:lesson-10:session-45:i13:p2=sole\nen:lesson-10:session-45:i13:p3=firm\nen:lesson-10:session-45:i13:p4=owe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i14",
-    "correctText": "We are making a breakthrough.",
+    "correctText": "I am checking the sole.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i15",
-    "correctText": "We review our progress every month.",
+    "correctText": "I owe you ten euros.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i16",
-    "correctText": "This is a major achievement.",
+    "correctText": "I am checking the sole.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-45:i17",
-    "correctText": "We are making a breakthrough.",
+    "correctText": "I owe you ten euros.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-45",
   "learningOutcomeByLocale": {
-    "ru": "We review our progress every month; This is a major achievement; We are making a breakthrough",
-    "uk": "We review our progress every month; This is a major achievement; We are making a breakthrough"
+    "ru": "The heel is low; I am checking the sole; I owe you ten euros",
+    "uk": "The heel is low; I am checking the sole; I owe you ten euros"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Проверяем продвижение",
-        "uk": "Перевіряємо поступ"
+        "ru": "Низкий каблук",
+        "uk": "Низький підбор"
       },
       "bodyByLocale": {
-        "ru": "Повторим milestone — «важная веха». Команда близка к важному этапу проекта. Вы обсуждаете продвижение каждый месяц: We review our progress every month — «Мы анализируем свой прогресс каждый месяц». Это регулярное действие: используем Present Simple.",
-        "uk": "Повторімо milestone — «важлива віха». Команда наближається до важливого етапу проєкту. Ви обговорюєте поступ щомісяця: We review our progress every month — «Ми аналізуємо свій поступ щомісяця». Це регулярна дія: використовуємо Present Simple."
+        "ru": "Вы примеряете туфлю для прогулок. Heel здесь — «каблук»: The heel is low — «Каблук низкий». Вы описываете часть обуви, поэтому is low. У heel есть и значение «пятка», но здесь речь о туфле.",
+        "uk": "Ви приміряєте туфлю для прогулянок. Heel тут — «підбор»: The heel is low — «Підбор низький». Ви описуєте частину взуття, тому is low. Heel також означає «п’ята», але тут ідеться про туфлю."
       },
       "question": {
         "interactionId": "en:lesson-10:session-45:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-45:intro1:r1",
-              "text": "We review our progress every month."
+              "text": "The heel is low."
             },
             {
               "responseId": "en:lesson-10:session-45:intro1:r2",
-              "text": "We reviews our progress every month."
+              "text": "The heel low."
             },
             {
               "responseId": "en:lesson-10:session-45:intro1:r3",
-              "text": "We reviewing our progress every month."
+              "text": "The heel are low."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-45:intro1:r1",
-              "text": "We review our progress every month."
+              "text": "The heel is low."
             },
             {
               "responseId": "en:lesson-10:session-45:intro1:r2",
-              "text": "We reviews our progress every month."
+              "text": "The heel low."
             },
             {
               "responseId": "en:lesson-10:session-45:intro1:r3",
-              "text": "We reviewing our progress every month."
+              "text": "The heel are low."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Важный результат",
-        "uk": "Важливий результат"
+        "ru": "Проверяю подошву",
+        "uk": "Перевіряю підошву"
       },
       "bodyByLocale": {
-        "ru": "Achievement — «достижение»: успешный результат, для которого потребовались усилия. Команда завершила сложную часть проекта: This is a major achievement — «Это большое достижение». Is связывает this с оценкой результата; это Present Simple.",
-        "uk": "Achievement — «досягнення»: успішний результат, для якого були потрібні зусилля. Команда завершила складну частину проєкту: This is a major achievement — «Це велике досягнення». Is поєднує this з оцінкою результату; це Present Simple."
+        "ru": "Вы переворачиваете туфлю и смотрите снизу. Sole — «подошва»: I am checking the sole — «Я проверяю подошву». Действие идёт сейчас: am checking. Вы нажимаете на подошву, и она почти не поддаётся. Firm — «плотный, упругий»: The sole is firm — «Подошва плотная». Firm здесь описывает материал, который не слишком мягкий.",
+        "uk": "Ви перевертаєте туфлю й дивитеся знизу. Sole — «підошва»: I am checking the sole — «Я перевіряю підошву». Дія триває зараз: am checking. Ви натискаєте на підошву, і вона майже не піддається. Firm — «щільний, пружний»: The sole is firm — «Підошва щільна». Firm тут описує матеріал, який не надто м’який."
       },
       "question": {
         "interactionId": "en:lesson-10:session-45:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-45:intro2:r1",
-              "text": "This is a major achievement."
+              "text": "I am checking the sole."
             },
             {
               "responseId": "en:lesson-10:session-45:intro2:r2",
-              "text": "This are a major achievement."
+              "text": "I checking the sole."
             },
             {
               "responseId": "en:lesson-10:session-45:intro2:r3",
-              "text": "This a major achievement."
+              "text": "I am check the sole."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-45:intro2:r1",
-              "text": "This is a major achievement."
+              "text": "I am checking the sole."
             },
             {
               "responseId": "en:lesson-10:session-45:intro2:r2",
-              "text": "This are a major achievement."
+              "text": "I checking the sole."
             },
             {
               "responseId": "en:lesson-10:session-45:intro2:r3",
-              "text": "This a major achievement."
+              "text": "I am check the sole."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Прорыв происходит сейчас",
-        "uk": "Прорив відбувається зараз"
+        "ru": "Вернуть деньги другу",
+        "uk": "Повернути гроші другові"
       },
       "bodyByLocale": {
-        "ru": "Breakthrough — «прорыв»: важный шаг вперёд после трудностей. Команда прямо сейчас находит решение давней проблемы: We are making a breakthrough — «Мы совершаем прорыв». Для происходящего изменения используем are + making. У make перед ing убираем e.",
-        "uk": "Breakthrough — «прорив»: важливий крок уперед після труднощів. Команда саме зараз знаходить розв’язання давньої проблеми: We are making a breakthrough — «Ми здійснюємо прорив». Для зміни, що відбувається, використовуємо are + making. У make перед ing прибираємо e."
+        "ru": "На кассе вам не хватило десяти евро, и друг одолжил их. Owe — «быть должным»: I owe you ten euros — «Я должен тебе десять евро». Owe описывает долг, а не действие сейчас. Поэтому owe без am owing. После owe здесь идёт человек, затем сумма: you ten euros.",
+        "uk": "На касі вам не вистачило десяти євро, і друг позичив їх. Owe — «бути винним»: I owe you ten euros — «Я винен тобі десять євро». Owe описує борг, а не дію зараз. Тому owe без am owing. Після owe тут іде людина, потім сума: you ten euros."
       },
       "question": {
         "interactionId": "en:lesson-10:session-45:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-45:intro3:r1",
-              "text": "We are making a breakthrough."
+              "text": "I owe you ten euros."
             },
             {
               "responseId": "en:lesson-10:session-45:intro3:r2",
-              "text": "We are makeing a breakthrough."
+              "text": "I owes you ten euros."
             },
             {
               "responseId": "en:lesson-10:session-45:intro3:r3",
-              "text": "We making a breakthrough."
+              "text": "I am owe you ten euros."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-45:intro3:r1",
-              "text": "We are making a breakthrough."
+              "text": "I owe you ten euros."
             },
             {
               "responseId": "en:lesson-10:session-45:intro3:r2",
-              "text": "We are makeing a breakthrough."
+              "text": "I owes you ten euros."
             },
             {
               "responseId": "en:lesson-10:session-45:intro3:r3",
-              "text": "We making a breakthrough."
+              "text": "I am owe you ten euros."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1daa699d310a4a5de02a696fb1c83964bc180bc775ac5c6ff6842dde9c523d75"
+  "introFingerprint": "866c2478faa5bbc16280fbcea4a9bc7cf3bc05d43bc09f06254de7d577365ea5"
 }

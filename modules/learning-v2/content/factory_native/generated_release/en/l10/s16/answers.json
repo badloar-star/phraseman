@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-16:word:trainee",
-    "correctText": "trainee",
+    "interactionId": "en:lesson-10:session-16:word:foil",
+    "correctText": "foil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i01",
-    "correctText": "She is a trainee.",
+    "correctText": "I need some foil.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i02",
-    "correctText": "She usually works upstairs.",
+    "correctText": "The foil is in the drawer.",
     "correctResponseId": "en:lesson-10:session-16:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-16:i03",
-    "correctText": "works",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-16:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-16:word:supervisor",
-    "correctText": "supervisor",
+    "interactionId": "en:lesson-10:session-16:word:cling-film",
+    "correctText": "cling film",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i04",
-    "correctText": "My supervisor is here.",
+    "correctText": "I am using cling film.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i05",
-    "correctText": "The supervisor is busy.",
+    "correctText": "She is using cling film.",
     "correctResponseId": "en:lesson-10:session-16:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-16:i06",
-    "correctText": "is",
+    "correctText": "using",
     "correctResponseId": "en:lesson-10:session-16:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-16:word:placement",
-    "correctText": "placement",
+    "interactionId": "en:lesson-10:session-16:word:tea-towel",
+    "correctText": "tea towel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i07",
-    "correctText": "She is on a placement.",
+    "correctText": "I am drying a plate with a tea towel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i08",
-    "correctText": "The placement is in London.",
+    "correctText": "The tea towel is wet.",
     "correctResponseId": "en:lesson-10:session-16:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-16:i09",
-    "correctText": "a",
+    "correctText": "drying",
     "correctResponseId": "en:lesson-10:session-16:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-16:word:workstation",
-    "correctText": "workstation",
+    "interactionId": "en:lesson-10:session-16:word:bin-bag",
+    "correctText": "bin bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i10",
-    "correctText": "She is sitting at her workstation.",
+    "correctText": "I need a bin bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i11",
-    "correctText": "The workstation is near the window.",
+    "correctText": "The bin bag is full.",
     "correctResponseId": "en:lesson-10:session-16:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-16:i12",
-    "correctText": "sitting",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-16:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-16:i13",
-    "correctText": "en:lesson-10:session-16:i13:p1=trainee\nen:lesson-10:session-16:i13:p2=supervisor\nen:lesson-10:session-16:i13:p3=placement\nen:lesson-10:session-16:i13:p4=workstation",
+    "correctText": "en:lesson-10:session-16:i13:p1=foil\nen:lesson-10:session-16:i13:p2=cling film\nen:lesson-10:session-16:i13:p3=tea towel\nen:lesson-10:session-16:i13:p4=bin bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i14",
-    "correctText": "Is she working here this month?",
+    "correctText": "I am using cling film.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i15",
-    "correctText": "She usually works upstairs.",
+    "correctText": "I need a bin bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i16",
-    "correctText": "She is working here this month.",
+    "correctText": "I need some foil.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-16:i17",
-    "correctText": "She is working here this month.",
+    "correctText": "I need a bin bag.",
     "correctResponseId": null
   }
 ]

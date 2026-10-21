@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-16",
   "learningOutcomeByLocale": {
-    "ru": "She usually works upstairs; She is working here this month; She is sitting at her workstation",
-    "uk": "She usually works upstairs; She is working here this month; She is sitting at her workstation"
+    "ru": "I need some foil; I am using cling film; I am drying a plate with a tea towel",
+    "uk": "I need some foil; I am using cling film; I am drying a plate with a tea towel"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто учится на работе",
-        "uk": "Хто навчається на роботі"
+        "ru": "Нужна фольга",
+        "uk": "Потрібна фольга"
       },
       "bodyByLocale": {
-        "ru": "Trainee — «стажёр»: человек, который обучается работе. Ваша знакомая — стажёрка. She usually works upstairs — «Обычно она работает наверху». Present Simple описывает её обычное место работы. Usually стоит перед works; с she нужна works.",
-        "uk": "Trainee — «стажер»: людина, яка навчається роботі. Ваша знайома — стажерка. She usually works upstairs — «Зазвичай вона працює нагорі». Present Simple описує її звичайне місце роботи. Usually стоїть перед works; з she потрібна works."
+        "ru": "После ужина вы хотите завернуть оставшийся хлеб. Foil — «фольга»: I need some foil — «Мне нужно немного фольги». Foil — материал, поэтому some foil без a. Need описывает потребность: I need, без am needing.",
+        "uk": "Після вечері ви хочете загорнути хліб, що залишився. Foil — «фольга»: I need some foil — «Мені потрібно трохи фольги». Foil — матеріал, тому some foil без a. Need описує потребу: I need, без am needing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-16:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-16:intro1:r1",
-              "text": "She usually works upstairs."
+              "text": "I need some foil."
             },
             {
               "responseId": "en:lesson-10:session-16:intro1:r2",
-              "text": "She usually work upstairs."
+              "text": "I needs some foil."
             },
             {
               "responseId": "en:lesson-10:session-16:intro1:r3",
-              "text": "She usually working upstairs."
+              "text": "I am need some foil."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-16:intro1:r1",
-              "text": "She usually works upstairs."
+              "text": "I need some foil."
             },
             {
               "responseId": "en:lesson-10:session-16:intro1:r2",
-              "text": "She usually work upstairs."
+              "text": "I needs some foil."
             },
             {
               "responseId": "en:lesson-10:session-16:intro1:r3",
-              "text": "She usually working upstairs."
+              "text": "I am need some foil."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Практика на месяц",
-        "uk": "Практика на місяць"
+        "ru": "Накрываю миску",
+        "uk": "Накриваю миску"
       },
       "bodyByLocale": {
-        "ru": "Placement — «практика»: здесь ограниченный период работы для получения опыта. Стажёрку на месяц направили в ваш офис. She is on a placement — «Она на практике». В этой фразе is связывает человека с его положением. А She is working here this month — «В этом месяце она работает здесь» — описывает временную работу с помощью Present Continuous.",
-        "uk": "Placement — «практика»: тут обмежений період роботи для здобуття досвіду. Стажерку на місяць направили до вашого офісу. She is on a placement — «Вона на практиці». У цій фразі is поєднує людину з її становищем. А She is working here this month — «Цього місяця вона працює тут» — описує тимчасову роботу за допомогою Present Continuous."
+        "ru": "Рядом остался салат в миске. Вы накрываете её прозрачной пищевой плёнкой. Cling film — «пищевая плёнка»: I am using cling film — «Я использую пищевую плёнку». Это действие сейчас: am using. Cling film — одно название из двух слов; здесь артикль a не нужен.",
+        "uk": "Поруч залишився салат у мисці. Ви накриваєте її прозорою харчовою плівкою. Cling film — «харчова плівка»: I am using cling film — «Я використовую харчову плівку». Це дія зараз: am using. Cling film — одна назва з двох слів; тут артикль a не потрібний."
       },
       "question": {
         "interactionId": "en:lesson-10:session-16:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-16:intro2:r1",
-              "text": "She is working here this month."
+              "text": "I am using cling film."
             },
             {
               "responseId": "en:lesson-10:session-16:intro2:r2",
-              "text": "She working here this month."
+              "text": "I using cling film."
             },
             {
               "responseId": "en:lesson-10:session-16:intro2:r3",
-              "text": "She is works here this month."
+              "text": "I am use cling film."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-16:intro2:r1",
-              "text": "She is working here this month."
+              "text": "I am using cling film."
             },
             {
               "responseId": "en:lesson-10:session-16:intro2:r2",
-              "text": "She working here this month."
+              "text": "I using cling film."
             },
             {
               "responseId": "en:lesson-10:session-16:intro2:r3",
-              "text": "She is works here this month."
+              "text": "I am use cling film."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что происходит сейчас",
-        "uk": "Що відбувається зараз"
+        "ru": "Посуда и мусор",
+        "uk": "Посуд і сміття"
       },
       "bodyByLocale": {
-        "ru": "Workstation — «рабочее место»: здесь стол и оборудование для работы. Коллега смотрит в комнату и видит стажёрку за её столом. She is sitting at her workstation — «Она сидит на своём рабочем месте». Is sitting описывает действие сейчас. У sit удваивается t: sitting. Временное место работы и действие в эту секунду различаем по ситуации.",
-        "uk": "Workstation — «робоче місце»: тут стіл та обладнання для роботи. Колега дивиться до кімнати й бачить стажерку за її столом. She is sitting at her workstation — «Вона сидить на своєму робочому місці». Is sitting описує дію зараз. У sit подвоюється t: sitting. Тимчасове місце роботи й дію цієї секунди розрізняємо за ситуацією."
+        "ru": "Вы вымыли тарелку и вытираете её. Tea towel — «кухонное полотенце»: I am drying a plate with a tea towel — «Я вытираю тарелку кухонным полотенцем». Am drying — действие сейчас. Затем замечаете, что в ведре нет пакета. Bin bag — «пакет для мусора»: I need a bin bag — «Мне нужен пакет для мусора». Оба названия из двух слов; перед одним предметом нужна a.",
+        "uk": "Ви вимили тарілку й витираєте її. Tea towel — «кухонний рушник»: I am drying a plate with a tea towel — «Я витираю тарілку кухонним рушником». Am drying — дія зараз. Потім помічаєте, що у відрі немає пакета. Bin bag — «пакет для сміття»: I need a bin bag — «Мені потрібен пакет для сміття». Обидві назви з двох слів; перед одним предметом потрібна a."
       },
       "question": {
         "interactionId": "en:lesson-10:session-16:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-16:intro3:r1",
-              "text": "She is sitting at her workstation."
+              "text": "I need a bin bag."
             },
             {
               "responseId": "en:lesson-10:session-16:intro3:r2",
-              "text": "She is siting at her workstation."
+              "text": "I needs a bin bag."
             },
             {
               "responseId": "en:lesson-10:session-16:intro3:r3",
-              "text": "She sitting at her workstation."
+              "text": "I am need a bin bag."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-16:intro3:r1",
-              "text": "She is sitting at her workstation."
+              "text": "I need a bin bag."
             },
             {
               "responseId": "en:lesson-10:session-16:intro3:r2",
-              "text": "She is siting at her workstation."
+              "text": "I needs a bin bag."
             },
             {
               "responseId": "en:lesson-10:session-16:intro3:r3",
-              "text": "She sitting at her workstation."
+              "text": "I am need a bin bag."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "69a1ee6b61b6d7fab6383021b883fdb0c5f17d5220c3ef2483a677b1091deb54"
+  "introFingerprint": "ed899746bb67ca43e9a46eaad9865620159178fbb6da07794f3467e5ec6bfcba"
 }

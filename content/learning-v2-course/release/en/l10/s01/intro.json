@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-01",
   "learningOutcomeByLocale": {
-    "ru": "I row here every Saturday; I am watching the regatta",
-    "uk": "I row here every Saturday; I am watching the regatta"
+    "ru": "I often travel abroad; We are staying at the seaside; I need a return ticket",
+    "uk": "I often travel abroad; We are staying at the seaside; I need a return ticket"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Привычное место тренировок",
-        "uk": "Звичне місце тренувань"
+        "ru": "Часто езжу за границу",
+        "uk": "Часто їжджу за кордон"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете подруге место, где тренируетесь каждую субботу. Рядом здание для хранения лодок — boathouse, «лодочный сарай». I row near the boathouse every Saturday — «Я гребу рядом с лодочным сараем каждую субботу». Вы рассказываете о привычке, а не о действии в эту секунду: I row. Row уже знакомо.",
-        "uk": "Ви показуєте подрузі місце, де тренуєтеся щосуботи. Поруч будівля для зберігання човнів — boathouse, «човновий сарай». I row near the boathouse every Saturday — «Я веслую біля човнового сараю щосуботи». Ви розповідаєте про звичку, а не про дію цієї секунди: I row. Row уже знайоме."
+        "ru": "Друг спрашивает, как вы проводите отпуск. Abroad — «за границу, за границей»: I often travel abroad — «Я часто путешествую за границу». Often указывает на привычку, поэтому travel без am. Перед abroad не ставим to: travel abroad.",
+        "uk": "Друг запитує, як ви проводите відпустку. Abroad — «за кордон, за кордоном»: I often travel abroad — «Я часто подорожую за кордон». Often вказує на звичку, тому travel без am. Перед abroad не ставимо to: travel abroad."
       },
       "question": {
         "interactionId": "en:lesson-10:session-01:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-01:intro1:r1",
-              "text": "I row near the boathouse every Saturday."
+              "text": "I often travel abroad."
             },
             {
               "responseId": "en:lesson-10:session-01:intro1:r2",
-              "text": "I rows near the boathouse every Saturday."
+              "text": "I often travels abroad."
             },
             {
               "responseId": "en:lesson-10:session-01:intro1:r3",
-              "text": "I am row near the boathouse every Saturday."
+              "text": "I often travel to abroad."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-01:intro1:r1",
-              "text": "I row near the boathouse every Saturday."
+              "text": "I often travel abroad."
             },
             {
               "responseId": "en:lesson-10:session-01:intro1:r2",
-              "text": "I rows near the boathouse every Saturday."
+              "text": "I often travels abroad."
             },
             {
               "responseId": "en:lesson-10:session-01:intro1:r3",
-              "text": "I am row near the boathouse every Saturday."
+              "text": "I often travel to abroad."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сегодня вы зритель",
-        "uk": "Сьогодні ви глядач"
+        "ru": "Сейчас у моря",
+        "uk": "Зараз біля моря"
       },
       "bodyByLocale": {
-        "ru": "Обычно вы тренируетесь на реке. Сегодня здесь регата — regatta, соревнования лодок. Вы стоите на берегу и следите за гонкой. Друг звонит и спрашивает, чем вы заняты. I am watching the regatta — «Я смотрю регату». Сейчас вы наблюдаете, а не гребёте: am watching. Привычка I row и происходящее сейчас I am watching могут описывать одного человека.",
-        "uk": "Зазвичай ви тренуєтеся на річці. Сьогодні тут регата — regatta, змагання човнів. Ви стоїте на березі й стежите за перегонами. Друг телефонує й запитує, чим ви зайняті. I am watching the regatta — «Я дивлюся регату». Зараз ви спостерігаєте, а не веслуєте: am watching. Звичка I row і те, що відбувається зараз, I am watching можуть описувати одну людину."
+        "ru": "На этой неделе вы отдыхаете у моря. Seaside — «морское побережье»: We are staying at the seaside — «Мы отдыхаем у моря». Are staying описывает временное проживание во время этой поездки. Обычно вы предпочитаете деревни и поля: I like the countryside — «Мне нравится сельская местность». Countryside — «сельская местность». Like описывает предпочтение, поэтому без am liking.",
+        "uk": "Цього тижня ви відпочиваєте біля моря. Seaside — «морське узбережжя»: We are staying at the seaside — «Ми відпочиваємо біля моря». Are staying описує тимчасове проживання під час цієї поїздки. Зазвичай ви віддаєте перевагу селам і полям: I like the countryside — «Мені подобається сільська місцевість». Countryside — «сільська місцевість». Like описує вподобання, тому без am liking."
       },
       "question": {
         "interactionId": "en:lesson-10:session-01:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-01:intro2:r1",
-              "text": "I am watching the regatta."
+              "text": "We are staying at the seaside."
             },
             {
               "responseId": "en:lesson-10:session-01:intro2:r2",
-              "text": "I watching the regatta."
+              "text": "We staying at the seaside."
             },
             {
               "responseId": "en:lesson-10:session-01:intro2:r3",
-              "text": "I am watch the regatta."
+              "text": "We are stay at the seaside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-01:intro2:r1",
-              "text": "I am watching the regatta."
+              "text": "We are staying at the seaside."
             },
             {
               "responseId": "en:lesson-10:session-01:intro2:r2",
-              "text": "I watching the regatta."
+              "text": "We staying at the seaside."
             },
             {
               "responseId": "en:lesson-10:session-01:intro2:r3",
-              "text": "I am watch the regatta."
+              "text": "We are stay at the seaside."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто проверяет лодку",
-        "uk": "Хто перевіряє човен"
+        "ru": "Билет туда и обратно",
+        "uk": "Квиток туди й назад"
       },
       "bodyByLocale": {
-        "ru": "Coxswain — рулевой гребной лодки: он управляет направлением и координирует гребцов. Hull — корпус лодки. В вашей команде рулевой обычно проверяет корпус: The coxswain checks the hull. Но сейчас он занят другим, и проверку делаете вы: I am checking the hull — «Я проверяю корпус лодки». Для обычной задачи одного человека checks, для вашего действия сейчас am checking.",
-        "uk": "Coxswain — стерновий веслувального човна: він керує напрямком і координує веслярів. Hull — корпус човна. У вашій команді стерновий зазвичай перевіряє корпус: The coxswain checks the hull. Але зараз він зайнятий іншим, і перевірку робите ви: I am checking the hull — «Я перевіряю корпус човна». Для звичайного завдання однієї людини checks, для вашої дії зараз am checking."
+        "ru": "Вы хотите съездить на поезде в соседний город и вернуться. Return ticket — «билет туда и обратно»: I need a return ticket — «Мне нужен билет туда и обратно». Это один билет, поэтому a. Need выражает потребность: I need, без am needing.",
+        "uk": "Ви хочете поїхати потягом до сусіднього міста й повернутися. Return ticket — «квиток туди й назад»: I need a return ticket — «Мені потрібен квиток туди й назад». Це один квиток, тому a. Need виражає потребу: I need, без am needing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-01:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-01:intro3:r1",
-              "text": "I am checking the hull."
+              "text": "I need a return ticket."
             },
             {
               "responseId": "en:lesson-10:session-01:intro3:r2",
-              "text": "I am checks the hull."
+              "text": "I needs a return ticket."
             },
             {
               "responseId": "en:lesson-10:session-01:intro3:r3",
-              "text": "I checking the hull."
+              "text": "I am need a return ticket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-01:intro3:r1",
-              "text": "I am checking the hull."
+              "text": "I need a return ticket."
             },
             {
               "responseId": "en:lesson-10:session-01:intro3:r2",
-              "text": "I am checks the hull."
+              "text": "I needs a return ticket."
             },
             {
               "responseId": "en:lesson-10:session-01:intro3:r3",
-              "text": "I checking the hull."
+              "text": "I am need a return ticket."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9047ac0f081cd170dafb0de10acf22ab7ef817a0049f77c3b0e74d1723a45524"
+  "introFingerprint": "c60d9d51c5bf15d6226ede76636a6bd2f3302dce390c241fcdaae5855dd7defe"
 }

@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 16 — Практика в другом офисе
+# Английский · Урок 10 · Занятие 16 — Убираем после ужина
 
-**Ситуация.** Различить обычное место работы, временную практику и действие прямо сейчас.
+**Ситуация.** Найти упаковку для еды, вытереть посуду и подготовить мусорный пакет.
 
-**Что вы освоите:** She usually works upstairs; She is working here this month; She is sitting at her workstation
-**Новые слова:** trainee, supervisor, placement, workstation
+**Что вы освоите:** I need some foil; I am using cling film; I am drying a plate with a tea towel
+**Новые слова:** foil, cling film, tea towel, bin bag
 
 ## Интро 1
 
-### Кто учится на работе
+### Нужна фольга
 
-Trainee — «стажёр»: человек, который обучается работе. Ваша знакомая — стажёрка. She usually works upstairs — «Обычно она работает наверху». Present Simple описывает её обычное место работы. Usually стоит перед works; с she нужна works.
+После ужина вы хотите завернуть оставшийся хлеб. Foil — «фольга»: I need some foil — «Мне нужно немного фольги». Foil — материал, поэтому some foil без a. Need описывает потребность: I need, без am needing.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She usually works upstairs.**
-- ❌ She usually work upstairs. — *С she нужна works.*
-- ❌ She usually working upstairs. — *Для обычной работы здесь нужна works.*
+- ✅ **I need some foil.**
+- ❌ I needs some foil. — *После I нужна need без s.*
+- ❌ I am need some foil. — *Для потребности здесь нужна need без am.*
 
 ---
 
 ## Интро 2
 
-### Практика на месяц
+### Накрываю миску
 
-Placement — «практика»: здесь ограниченный период работы для получения опыта. Стажёрку на месяц направили в ваш офис. She is on a placement — «Она на практике». В этой фразе is связывает человека с его положением. А She is working here this month — «В этом месяце она работает здесь» — описывает временную работу с помощью Present Continuous.
+Рядом остался салат в миске. Вы накрываете её прозрачной пищевой плёнкой. Cling film — «пищевая плёнка»: I am using cling film — «Я использую пищевую плёнку». Это действие сейчас: am using. Cling film — одно название из двух слов; здесь артикль a не нужен.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is working here this month.**
-- ❌ She working here this month. — *Перед working нужна is.*
-- ❌ She is works here this month. — *После is нужна working.*
+- ✅ **I am using cling film.**
+- ❌ I using cling film. — *Перед using нужна am.*
+- ❌ I am use cling film. — *После am нужна using.*
 
 ---
 
 ## Интро 3
 
-### Что происходит сейчас
+### Посуда и мусор
 
-Workstation — «рабочее место»: здесь стол и оборудование для работы. Коллега смотрит в комнату и видит стажёрку за её столом. She is sitting at her workstation — «Она сидит на своём рабочем месте». Is sitting описывает действие сейчас. У sit удваивается t: sitting. Временное место работы и действие в эту секунду различаем по ситуации.
+Вы вымыли тарелку и вытираете её. Tea towel — «кухонное полотенце»: I am drying a plate with a tea towel — «Я вытираю тарелку кухонным полотенцем». Am drying — действие сейчас. Затем замечаете, что в ведре нет пакета. Bin bag — «пакет для мусора»: I need a bin bag — «Мне нужен пакет для мусора». Оба названия из двух слов; перед одним предметом нужна a.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is sitting at her workstation.**
-- ❌ She is siting at her workstation. — *Sit → sitting с двумя t.*
-- ❌ She sitting at her workstation. — *Перед sitting нужна is.*
+- ✅ **I need a bin bag.**
+- ❌ I needs a bin bag. — *После I нужна need.*
+- ❌ I am need a bin bag. — *Здесь нужна need без am.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — trainee**
-<!-- interaction_id: en:lesson-10:session-16:word:trainee; family: word_card -->
-> **trainee** — «стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.
+**1 · Карточка слова — foil**
+<!-- interaction_id: en:lesson-10:session-16:word:foil; family: word_card -->
+> **foil** — «фольга». I need some foil. — «Мне нужно немного фольги».
 
-**2 · Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»**
+**2 · Вы хотите завернуть хлеб. Скажите: «Мне нужно немного фольги»**
 <!-- interaction_id: en:lesson-10:session-16:i01; family: phrase_builder -->
-Плитки: `trainee` `a` `is` `She` → **She is a trainee.**
+Плитки: `foil` `some` `need` `I` → **I need some foil.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-16:i02; family: listen_choose -->
-🔊 *She usually works upstairs.* → **She usually works upstairs.** · He usually works upstairs. · She usually works downstairs.
-- He usually works upstairs. — *В записи звучит She usually works upstairs.*
-- She usually works downstairs. — *В записи звучит She usually works upstairs.*
+🔊 *The foil is in the drawer.* → **The foil is in the drawer.** · The foil is on the table. · The fork is in the drawer.
+- The foil is on the table. — *В записи звучит The foil is in the drawer.*
+- The fork is in the drawer. — *В записи звучит The foil is in the drawer.*
 
-**4 · Выберите форму work для обычной работы с she**
+**4 · Выберите форму need после I**
 <!-- interaction_id: en:lesson-10:session-16:i03; family: context_gap_grammar -->
-She usually ___ upstairs. → **works** · work · working
-- work — *С she нужна works.*
-- working — *Для обычной работы здесь нужна works.*
+I ___ some foil. → **need** · needs · needing
+- needs — *После I нужна need.*
+- needing — *Потребность выражаем формой need.*
 
-**5 · Карточка слова — supervisor**
-<!-- interaction_id: en:lesson-10:session-16:word:supervisor; family: word_card -->
-> **supervisor** — «руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.
+**5 · Карточка слова — cling film**
+<!-- interaction_id: en:lesson-10:session-16:word:cling-film; family: word_card -->
+> **cling film** — «пищевая плёнка». I am using cling film. — «Я использую пищевую плёнку».
 
-**6 · Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»**
+**6 · Вы сейчас накрываете миску плёнкой. Скажите: «Я использую пищевую плёнку»**
 <!-- interaction_id: en:lesson-10:session-16:i04; family: phrase_builder -->
-Плитки: `here` `is` `supervisor` `My` → **My supervisor is here.**
+Плитки: `film` `cling` `using` `am` `I` → **I am using cling film.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-16:i05; family: listen_choose -->
-🔊 *The supervisor is busy.* → **The supervisor is busy.** · The supervisor is ready. · The trainee is busy.
-- The supervisor is ready. — *В записи звучит The supervisor is busy.*
-- The trainee is busy. — *В записи звучит The supervisor is busy.*
+🔊 *She is using cling film.* → **She is using cling film.** · He is using cling film. · She is buying cling film.
+- He is using cling film. — *В записи звучит She is using cling film.*
+- She is buying cling film. — *В записи звучит She is using cling film.*
 
-**8 · Выберите связку для одного руководителя**
+**8 · Плёнка у вас в руках сейчас. Выберите форму use**
 <!-- interaction_id: en:lesson-10:session-16:i06; family: context_gap_grammar -->
-My supervisor ___ here. → **is** · are · am
-- are — *Один человек: is.*
-- am — *Am употребляется с I.*
+I am ___ cling film. → **using** · use · uses
+- use — *После am нужна using.*
+- uses — *После am нужна using, не uses.*
 
-**9 · Карточка слова — placement**
-<!-- interaction_id: en:lesson-10:session-16:word:placement; family: word_card -->
-> **placement** — «практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.
+**9 · Карточка слова — tea towel**
+<!-- interaction_id: en:lesson-10:session-16:word:tea-towel; family: word_card -->
+> **tea towel** — «кухонное полотенце». a clean tea towel — «чистое кухонное полотенце».
 
-**10 · Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»**
+**10 · Вы вытираете тарелку кухонным полотенцем. Скажите, что вы делаете**
 <!-- interaction_id: en:lesson-10:session-16:i07; family: phrase_builder -->
-Плитки: `placement` `a` `on` `is` `She` → **She is on a placement.**
+Плитки: `towel` `tea` `a` `with` `plate` `a` `drying` `am` `I` → **I am drying a plate with a tea towel.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-16:i08; family: listen_choose -->
-🔊 *The placement is in London.* → **The placement is in London.** · The placement is in Paris. · The meeting is in London.
-- The placement is in Paris. — *В записи звучит The placement is in London.*
-- The meeting is in London. — *В записи звучит The placement is in London.*
+🔊 *The tea towel is wet.* → **The tea towel is wet.** · The tea towel is clean. · The tea towel is dry.
+- The tea towel is clean. — *В записи звучит The tea towel is wet.*
+- The tea towel is dry. — *В записи звучит The tea towel is wet.*
 
-**12 · Выберите артикль перед placement в выражении on a placement**
+**12 · Вы вытираете тарелку сейчас. Выберите форму dry**
 <!-- interaction_id: en:lesson-10:session-16:i09; family: context_gap_grammar -->
-She is on ___ placement. → **a** · an · are
-- an — *Placement начинается с согласного звука: a.*
-- are — *Are — глагол; здесь нужен артикль a.*
+I am ___ a plate with a tea towel. → **drying** · dry · dries
+- dry — *После am нужна drying.*
+- dries — *После am нужна drying, не dries.*
 
-**13 · Карточка слова — workstation**
-<!-- interaction_id: en:lesson-10:session-16:word:workstation; family: word_card -->
-> **workstation** — «рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.
+**13 · Карточка слова — bin bag**
+<!-- interaction_id: en:lesson-10:session-16:word:bin-bag; family: word_card -->
+> **bin bag** — «пакет для мусора». I need a bin bag. — «Мне нужен пакет для мусора».
 
-**14 · Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»**
+**14 · В мусорном ведре нет пакета. Скажите: «Мне нужен пакет для мусора»**
 <!-- interaction_id: en:lesson-10:session-16:i10; family: phrase_builder -->
-Плитки: `workstation` `her` `at` `sitting` `is` `She` → **She is sitting at her workstation.**
+Плитки: `bag` `bin` `a` `need` `I` → **I need a bin bag.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-16:i11; family: listen_choose -->
-🔊 *The workstation is near the window.* → **The workstation is near the window.** · The workstation is near the door. · The printer is near the window.
-- The workstation is near the door. — *В записи звучит The workstation is near the window.*
-- The printer is near the window. — *В записи звучит The workstation is near the window.*
+🔊 *The bin bag is full.* → **The bin bag is full.** · The bin bag is empty. · The bin bag is black.
+- The bin bag is empty. — *В записи звучит The bin bag is full.*
+- The bin bag is black. — *В записи звучит The bin bag is full.*
 
-**16 · Выберите форму sit после is**
+**16 · Выберите связку: один пакет**
 <!-- interaction_id: en:lesson-10:session-16:i12; family: context_gap_grammar -->
-She is ___ at her workstation. → **sitting** · siting · sit
-- siting — *Sit удваивает t: sitting.*
-- sit — *После is нужна sitting.*
+The bin bag ___ full. → **is** · are · am
+- are — *Один пакет: is.*
+- am — *Am используется с I.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините названия с переводом**
 <!-- interaction_id: en:lesson-10:session-16:i13; family: speed_match -->
-trainee — стажёр · supervisor — руководитель · placement — практика · workstation — рабочее место
+foil — фольга · cling film — пищевая плёнка · tea towel — кухонное полотенце · bin bag — пакет для мусора
 
-**18 · Послушайте и соберите вопрос; this month поставьте в конце**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-16:i14; family: listen_build_dictation -->
-🔊 *Is she working here this month?* Плитки: `month` `this` `here` `working` `she` `Is` → **Is she working here this month?**
+🔊 *I am using cling film.* Плитки: `film` `cling` `using` `am` `I` → **I am using cling film.**
 
-**19 · Руководитель спрашивает, где стажёрка обычно работает. Скажите: «Обычно она работает наверху»**
-<!-- interaction_id: en:lesson-10:session-16:i15; family: scripted_repeat_compare -->
-🎙 **She usually works upstairs.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-16:i15; family: listen_build_dictation -->
+🔊 *I need a bin bag.* Плитки: `bag` `bin` `a` `need` `I` → **I need a bin bag.**
 
-**20 · Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце**
-<!-- interaction_id: en:lesson-10:session-16:i16; family: phrase_builder -->
-Плитки: `month` `this` `here` `working` `is` `She` → **She is working here this month.**
+**20 · Друг помогает убрать еду. Скажите ему: «Мне нужно немного фольги»**
+<!-- interaction_id: en:lesson-10:session-16:i16; family: scripted_repeat_compare -->
+🎙 **I need some foil.**
 
-**21 · Стажёрка обычно работает наверху. На один месяц её направили на практику в ваш офис. Сейчас у неё перерыв. Коллега спрашивает о её месте работы в этот период. Ответьте: «В этом месяце она работает здесь»**
-<!-- interaction_id: en:lesson-10:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is working here this month.**
+**21 · Вы готовите ведро для мусора. Скажите: «Мне нужен пакет для мусора»**
+<!-- interaction_id: en:lesson-10:session-16:i17; family: scripted_repeat_compare -->
+🎙 **I need a bin bag.**
 

@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 45 — Достижения команды
+# Английский · Урок 10 · Занятие 45 — Покупаем обувь
 
-**Ситуация.** Обсудить важный этап проекта, результаты и текущий прогресс команды.
+**Ситуация.** Осмотреть обувь, описать подошву и сказать другу, сколько денег нужно вернуть.
 
-**Что вы освоите:** We review our progress every month; This is a major achievement; We are making a breakthrough
-**Новые слова:** achievement, benchmark, breakthrough, track record
+**Что вы освоите:** The heel is low; I am checking the sole; I owe you ten euros
+**Новые слова:** heel, sole, firm, owe
 
 ## Интро 1
 
-### Проверяем продвижение
+### Низкий каблук
 
-Повторим milestone — «важная веха». Команда близка к важному этапу проекта. Вы обсуждаете продвижение каждый месяц: We review our progress every month — «Мы анализируем свой прогресс каждый месяц». Это регулярное действие: используем Present Simple.
+Вы примеряете туфлю для прогулок. Heel здесь — «каблук»: The heel is low — «Каблук низкий». Вы описываете часть обуви, поэтому is low. У heel есть и значение «пятка», но здесь речь о туфле.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We review our progress every month.**
-- ❌ We reviews our progress every month. — *С we нужна review без s.*
-- ❌ We reviewing our progress every month. — *Для регулярного действия здесь нужна review.*
+- ✅ **The heel is low.**
+- ❌ The heel low. — *Перед low нужна связка is.*
+- ❌ The heel are low. — *Один каблук: is.*
 
 ---
 
 ## Интро 2
 
-### Важный результат
+### Проверяю подошву
 
-Achievement — «достижение»: успешный результат, для которого потребовались усилия. Команда завершила сложную часть проекта: This is a major achievement — «Это большое достижение». Is связывает this с оценкой результата; это Present Simple.
+Вы переворачиваете туфлю и смотрите снизу. Sole — «подошва»: I am checking the sole — «Я проверяю подошву». Действие идёт сейчас: am checking. Вы нажимаете на подошву, и она почти не поддаётся. Firm — «плотный, упругий»: The sole is firm — «Подошва плотная». Firm здесь описывает материал, который не слишком мягкий.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **This is a major achievement.**
-- ❌ This are a major achievement. — *С this нужна is.*
-- ❌ This a major achievement. — *После this нужна связка is.*
+- ✅ **I am checking the sole.**
+- ❌ I checking the sole. — *Перед checking нужна am.*
+- ❌ I am check the sole. — *После am нужна checking.*
 
 ---
 
 ## Интро 3
 
-### Прорыв происходит сейчас
+### Вернуть деньги другу
 
-Breakthrough — «прорыв»: важный шаг вперёд после трудностей. Команда прямо сейчас находит решение давней проблемы: We are making a breakthrough — «Мы совершаем прорыв». Для происходящего изменения используем are + making. У make перед ing убираем e.
+На кассе вам не хватило десяти евро, и друг одолжил их. Owe — «быть должным»: I owe you ten euros — «Я должен тебе десять евро». Owe описывает долг, а не действие сейчас. Поэтому owe без am owing. После owe здесь идёт человек, затем сумма: you ten euros.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are making a breakthrough.**
-- ❌ We are makeing a breakthrough. — *Правильно making, без e.*
-- ❌ We making a breakthrough. — *Перед making нужна are.*
+- ✅ **I owe you ten euros.**
+- ❌ I owes you ten euros. — *После I нужна owe без s.*
+- ❌ I am owe you ten euros. — *Здесь нужна owe без am.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — achievement**
-<!-- interaction_id: en:lesson-10:session-45:word:achievement; family: word_card -->
-> **achievement** — «достижение». This is a major achievement. — «Это большое достижение». Успешный результат, достигнутый благодаря усилиям.
+**1 · Карточка слова — heel**
+<!-- interaction_id: en:lesson-10:session-45:word:heel; family: word_card -->
+> **heel** — «каблук» в этой ситуации. The heel is low. — «Каблук низкий».
 
-**2 · Команда завершила сложную часть проекта. Оцените результат: «Это большое достижение»**
+**2 · Вы показываете каблук туфли. Скажите: «Каблук низкий»**
 <!-- interaction_id: en:lesson-10:session-45:i01; family: phrase_builder -->
-Плитки: `achievement` `major` `a` `is` `This` → **This is a major achievement.**
+Плитки: `low` `is` `heel` `The` → **The heel is low.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-45:i02; family: listen_choose -->
-🔊 *The achievement is important.* → **The achievement is important.** · The achievement is impressive. · The project is important.
-- The achievement is impressive. — *В записи звучит The achievement is important.*
-- The project is important. — *В записи звучит The achievement is important.*
+🔊 *The heel is high.* → **The heel is high.** · The heel is low. · The shoe is light.
+- The heel is low. — *В записи звучит The heel is high.*
+- The shoe is light. — *В записи звучит The heel is high.*
 
-**4 · Вы оцениваете один результат. Выберите связку**
+**4 · Выберите связку: один каблук**
 <!-- interaction_id: en:lesson-10:session-45:i03; family: context_gap_grammar -->
-This ___ a major achievement. → **is** · are · am
-- are — *С this нужна is.*
-- am — *Am используется с I; здесь нужна is.*
+The heel ___ low. → **is** · are · am
+- are — *Один каблук: is.*
+- am — *Am используется с I.*
 
-**5 · Карточка слова — benchmark**
-<!-- interaction_id: en:lesson-10:session-45:word:benchmark; family: word_card -->
-> **benchmark** — «эталон для сравнения». We are using this result as a benchmark. — «Мы используем этот результат как эталон для сравнения». Показатель, с которым сравнивают другие результаты.
+**5 · Карточка слова — sole**
+<!-- interaction_id: en:lesson-10:session-45:word:sole; family: word_card -->
+> **sole** — «подошва». I am checking the sole. — «Я проверяю подошву».
 
-**6 · Сейчас вы сравниваете новые результаты с одним выбранным. Скажите: «Мы используем этот результат как эталон для сравнения»**
+**6 · Вы смотрите на туфлю снизу. Скажите: «Я проверяю подошву»**
 <!-- interaction_id: en:lesson-10:session-45:i04; family: phrase_builder -->
-Плитки: `benchmark` `a` `as` `result` `this` `using` `are` `We` → **We are using this result as a benchmark.**
+Плитки: `sole` `the` `checking` `am` `I` → **I am checking the sole.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-45:i05; family: listen_choose -->
-🔊 *The benchmark is in the report.* → **The benchmark is in the report.** · The benchmark is in the email. · The photo is in the report.
-- The benchmark is in the email. — *В записи звучит The benchmark is in the report.*
-- The photo is in the report. — *В записи звучит The benchmark is in the report.*
+🔊 *She is checking the sole.* → **She is checking the sole.** · He is checking the sole. · She is cleaning the sole.
+- He is checking the sole. — *В записи звучит She is checking the sole.*
+- She is cleaning the sole. — *В записи звучит She is checking the sole.*
 
-**8 · Команда сейчас использует результат для сравнения. Выберите связку**
+**8 · Проверка идёт сейчас. Выберите форму check**
 <!-- interaction_id: en:lesson-10:session-45:i06; family: context_gap_grammar -->
-We ___ using this result as a benchmark. → **are** · is · am
-- is — *С we нужна are.*
-- am — *Am используется с I; с we нужна are.*
+I am ___ the sole. → **checking** · check · checks
+- check — *После am нужна checking.*
+- checks — *После am нужна checking, не checks.*
 
-**9 · Карточка слова — breakthrough**
-<!-- interaction_id: en:lesson-10:session-45:word:breakthrough; family: word_card -->
-> **breakthrough** — «прорыв». We are making a breakthrough. — «Мы совершаем прорыв». Важный шаг вперёд после трудностей.
+**9 · Карточка слова — firm**
+<!-- interaction_id: en:lesson-10:session-45:word:firm; family: word_card -->
+> **firm** — «плотный, упругий». The sole is firm. — «Подошва плотная».
 
-**10 · Вы прямо сейчас находите решение давней проблемы. Скажите: «Мы совершаем прорыв»**
+**10 · Подошва почти не поддаётся нажатию. Скажите: «Подошва плотная»**
 <!-- interaction_id: en:lesson-10:session-45:i07; family: phrase_builder -->
-Плитки: `breakthrough` `a` `making` `are` `We` → **We are making a breakthrough.**
+Плитки: `firm` `is` `sole` `The` → **The sole is firm.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-45:i08; family: listen_choose -->
-🔊 *The breakthrough is significant.* → **The breakthrough is significant.** · The breakthrough is unexpected. · The change is significant.
-- The breakthrough is unexpected. — *В записи звучит The breakthrough is significant.*
-- The change is significant. — *В записи звучит The breakthrough is significant.*
+🔊 *This mattress is firm.* → **This mattress is firm.** · This mattress is soft. · This pillow is firm.
+- This mattress is soft. — *В записи звучит This mattress is firm.*
+- This pillow is firm. — *В записи звучит This mattress is firm.*
 
-**12 · Выберите правильное написание формы make**
+**12 · Выберите связку для свойства подошвы**
 <!-- interaction_id: en:lesson-10:session-45:i09; family: context_gap_grammar -->
-We are ___ a breakthrough. → **making** · makeing · make
-- makeing — *Перед ing убираем e: making.*
-- make — *После are для текущего действия нужна making.*
+The sole ___ firm. → **is** · are · am
+- are — *Одна подошва: is.*
+- am — *Am используется с I.*
 
-**13 · Карточка слова — track record**
-<!-- interaction_id: en:lesson-10:session-45:word:track-record; family: word_card -->
-> **track record** — «послужной список». The team has a strong track record. — «У команды солидный послужной список». Здесь результаты команды за время её работы, а не спортивная дорожка.
+**13 · Карточка слова — owe**
+<!-- interaction_id: en:lesson-10:session-45:word:owe; family: word_card -->
+> **owe** — «быть должным». I owe you ten euros. — «Я должен тебе десять евро».
 
-**14 · Команда успешно выполнила много проектов. Скажите: «У команды солидный послужной список»**
+**14 · Друг одолжил вам десять евро. Скажите: «Я должен тебе десять евро»**
 <!-- interaction_id: en:lesson-10:session-45:i10; family: phrase_builder -->
-Плитки: `record` `track` `strong` `a` `has` `team` `The` → **The team has a strong track record.**
+Плитки: `euros` `ten` `you` `owe` `I` → **I owe you ten euros.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-45:i11; family: listen_choose -->
-🔊 *Her track record is impressive.* → **Her track record is impressive.** · His track record is impressive. · Her report is impressive.
-- His track record is impressive. — *В записи звучит Her track record is impressive.*
-- Her report is impressive. — *В записи звучит Her track record is impressive.*
+🔊 *I owe you five euros.* → **I owe you five euros.** · I owe you ten euros. · You owe me five euros.
+- I owe you ten euros. — *В записи звучит I owe you five euros.*
+- You owe me five euros. — *В записи звучит I owe you five euros.*
 
-**16 · Выберите связку в оценке её послужного списка**
+**16 · Выберите форму owe после I**
 <!-- interaction_id: en:lesson-10:session-45:i12; family: context_gap_grammar -->
-Her track record ___ impressive. → **is** · are · am
-- are — *Track record в единственном числе: is.*
-- am — *Am используется с I; здесь нужна is.*
+I ___ you ten euros. → **owe** · owes · owing
+- owes — *После I нужна owe без s.*
+- owing — *Описываем долг: owe.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-45:i13; family: speed_match -->
-achievement — достижение · benchmark — эталон для сравнения · breakthrough — прорыв · track record — послужной список
+heel — каблук · sole — подошва · firm — плотный · owe — быть должным
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-45:i14; family: listen_build_dictation -->
-🔊 *We are making a breakthrough.* Плитки: `breakthrough` `a` `making` `are` `We` → **We are making a breakthrough.**
+🔊 *I am checking the sole.* Плитки: `sole` `the` `checking` `am` `I` → **I am checking the sole.**
 
-**19 · Коллега спрашивает, как часто команда обсуждает продвижение проекта. Скажите: «Мы анализируем свой прогресс каждый месяц»**
-<!-- interaction_id: en:lesson-10:session-45:i15; family: scripted_repeat_compare -->
-🎙 **We review our progress every month.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-45:i15; family: listen_build_dictation -->
+🔊 *I owe you ten euros.* Плитки: `euros` `ten` `you` `owe` `I` → **I owe you ten euros.**
 
-**20 · Коллега показывает успешно завершённую сложную работу. Скажите: «Это большое достижение»**
-<!-- interaction_id: en:lesson-10:session-45:i16; family: phrase_builder -->
-Плитки: `achievement` `major` `a` `is` `This` → **This is a major achievement.**
+**20 · Продавец спрашивает, что вы рассматриваете. Скажите: «Я проверяю подошву»**
+<!-- interaction_id: en:lesson-10:session-45:i16; family: scripted_repeat_compare -->
+🎙 **I am checking the sole.**
 
-**21 · После долгих трудностей команда прямо сейчас находит способ решить проблему. Коллега спрашивает о ходе работы. Скажите: «Мы совершаем прорыв»**
-<!-- interaction_id: en:lesson-10:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are making a breakthrough.**
+**21 · После покупки уточните долг другу: «Я должен тебе десять евро»**
+<!-- interaction_id: en:lesson-10:session-45:i17; family: scripted_repeat_compare -->
+🎙 **I owe you ten euros.**
 

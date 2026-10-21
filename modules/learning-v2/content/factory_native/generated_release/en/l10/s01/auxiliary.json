@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-01:intro1:r2": {
-          "ru": "С I в Present Simple употребляем row без -s.",
-          "uk": "З I у Present Simple вживаємо row без -s."
+          "ru": "После I нужна travel без s.",
+          "uk": "Після I потрібна travel без s."
         },
         "en:lesson-10:session-01:intro1:r3": {
-          "ru": "Для привычки здесь достаточно I row; am row неверно.",
-          "uk": "Для звички тут достатньо I row; am row неправильно."
+          "ru": "Перед abroad здесь не нужна to.",
+          "uk": "Перед abroad тут не потрібна to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-01:intro2:r2": {
-          "ru": "Перед watching с I нужно am.",
-          "uk": "Перед watching з I потрібне am."
+          "ru": "Перед staying нужна are.",
+          "uk": "Перед staying потрібна are."
         },
         "en:lesson-10:session-01:intro2:r3": {
-          "ru": "После am нужна форма watching.",
-          "uk": "Після am потрібна форма watching."
+          "ru": "После are нужна staying.",
+          "uk": "Після are потрібна staying."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-01:intro3:r2": {
-          "ru": "После am нужна checking, не checks.",
-          "uk": "Після am потрібна checking, не checks."
+          "ru": "После I нужна need.",
+          "uk": "Після I потрібна need."
         },
         "en:lesson-10:session-01:intro3:r3": {
-          "ru": "С I перед checking нужно am.",
-          "uk": "З I перед checking потрібне am."
+          "ru": "Здесь нужна need без am.",
+          "uk": "Тут потрібна need без am."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e0e53850b27b2adc67a409d0765d78d6f4f543ce13dc125211d8126d2a4f0c52"
+  "auxiliaryFingerprint": "cebf9d0a7978022211c4600852d3c663fba3574f70c578b343414912ff2ff7f9"
 }

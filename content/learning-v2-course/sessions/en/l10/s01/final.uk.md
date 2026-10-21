@@ -1,152 +1,151 @@
-# Англійська · Урок 10 · Заняття 1 — Звичайне тренування й сьогоднішня регата
+# Англійська · Урок 10 · Заняття 1 — Поїздка на відпочинок
 
-**Ситуація.** Пояснити, що ви зазвичай робите на річці й чим зайняті зараз.
+**Ситуація.** Розповісти про звичні поїздки, відпочинок біля моря зараз і купити квиток туди й назад.
 
-**Що ви опануєте:** I row here every Saturday; I am watching the regatta
-**Нові слова:** boathouse, regatta, coxswain, hull
-**Повторення:** row (7.32), Present Simple, Present Continuous
+**Що ви опануєте:** I often travel abroad; We are staying at the seaside; I need a return ticket
+**Нові слова:** abroad, seaside, countryside, return ticket
 
 ## Інтро 1
 
-### Звичне місце тренувань
+### Часто їжджу за кордон
 
-Ви показуєте подрузі місце, де тренуєтеся щосуботи. Поруч будівля для зберігання човнів — boathouse, «човновий сарай». I row near the boathouse every Saturday — «Я веслую біля човнового сараю щосуботи». Ви розповідаєте про звичку, а не про дію цієї секунди: I row. Row уже знайоме.
+Друг запитує, як ви проводите відпустку. Abroad — «за кордон, за кордоном»: I often travel abroad — «Я часто подорожую за кордон». Often вказує на звичку, тому travel без am. Перед abroad не ставимо to: travel abroad.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I row near the boathouse every Saturday.**
-- ❌ I rows near the boathouse every Saturday. — *З I у Present Simple вживаємо row без -s.*
-- ❌ I am row near the boathouse every Saturday. — *Для звички тут достатньо I row; am row неправильно.*
+- ✅ **I often travel abroad.**
+- ❌ I often travels abroad. — *Після I потрібна travel без s.*
+- ❌ I often travel to abroad. — *Перед abroad тут не потрібна to.*
 
 ---
 
 ## Інтро 2
 
-### Сьогодні ви глядач
+### Зараз біля моря
 
-Зазвичай ви тренуєтеся на річці. Сьогодні тут регата — regatta, змагання човнів. Ви стоїте на березі й стежите за перегонами. Друг телефонує й запитує, чим ви зайняті. I am watching the regatta — «Я дивлюся регату». Зараз ви спостерігаєте, а не веслуєте: am watching. Звичка I row і те, що відбувається зараз, I am watching можуть описувати одну людину.
+Цього тижня ви відпочиваєте біля моря. Seaside — «морське узбережжя»: We are staying at the seaside — «Ми відпочиваємо біля моря». Are staying описує тимчасове проживання під час цієї поїздки. Зазвичай ви віддаєте перевагу селам і полям: I like the countryside — «Мені подобається сільська місцевість». Countryside — «сільська місцевість». Like описує вподобання, тому без am liking.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am watching the regatta.**
-- ❌ I watching the regatta. — *Перед watching з I потрібне am.*
-- ❌ I am watch the regatta. — *Після am потрібна форма watching.*
+- ✅ **We are staying at the seaside.**
+- ❌ We staying at the seaside. — *Перед staying потрібна are.*
+- ❌ We are stay at the seaside. — *Після are потрібна staying.*
 
 ---
 
 ## Інтро 3
 
-### Хто перевіряє човен
+### Квиток туди й назад
 
-Coxswain — стерновий веслувального човна: він керує напрямком і координує веслярів. Hull — корпус човна. У вашій команді стерновий зазвичай перевіряє корпус: The coxswain checks the hull. Але зараз він зайнятий іншим, і перевірку робите ви: I am checking the hull — «Я перевіряю корпус човна». Для звичайного завдання однієї людини checks, для вашої дії зараз am checking.
+Ви хочете поїхати потягом до сусіднього міста й повернутися. Return ticket — «квиток туди й назад»: I need a return ticket — «Мені потрібен квиток туди й назад». Це один квиток, тому a. Need виражає потребу: I need, без am needing.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am checking the hull.**
-- ❌ I am checks the hull. — *Після am потрібна checking, не checks.*
-- ❌ I checking the hull. — *З I перед checking потрібне am.*
+- ✅ **I need a return ticket.**
+- ❌ I needs a return ticket. — *Після I потрібна need.*
+- ❌ I am need a return ticket. — *Тут потрібна need без am.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — boathouse**
-<!-- interaction_id: en:lesson-10:session-01:word:boathouse; family: word_card -->
-> **boathouse** — «човновий сарай». The boathouse is near the river. — «Човновий сарай біля річки». Будівля для зберігання човнів.
+**1 · Картка слова — abroad**
+<!-- interaction_id: en:lesson-10:session-01:word:abroad; family: word_card -->
+> **abroad** — «за кордон, за кордоном». I often travel abroad. — «Я часто подорожую за кордон».
 
-**2 · Подруга шукає будівлю, де зберігають човни. Скажіть: «Човновий сарай біля річки»**
+**2 · Розкажіть про відпустки: «Я часто подорожую за кордон». Поставте often перед travel**
 <!-- interaction_id: en:lesson-10:session-01:i01; family: phrase_builder -->
-Плитки: `river` `the` `near` `is` `boathouse` `The` → **The boathouse is near the river.**
+Плитки: `abroad` `travel` `often` `I` → **I often travel abroad.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-01:i02; family: listen_choose -->
-🔊 *I row here every Saturday.* → **I row here every Saturday.** · I run here every Saturday. · I row here every Sunday.
-- I run here every Saturday. — *У записі звучить I row here every Saturday.*
-- I row here every Sunday. — *У записі звучить I row here every Saturday.*
+🔊 *She is working abroad.* → **She is working abroad.** · He is working abroad. · She is studying abroad.
+- He is working abroad. — *У записі звучить She is working abroad.*
+- She is studying abroad. — *У записі звучить She is working abroad.*
 
-**4 · Виберіть правильну форму для звички з I**
+**4 · Виберіть форму travel для звички після I**
 <!-- interaction_id: en:lesson-10:session-01:i03; family: context_gap_grammar -->
-I ___ here every Saturday. → **row** · rows · rowing
-- rows — *З I не додаємо -s.*
-- rowing — *Для цієї звички потрібна форма row.*
+I often ___ abroad. → **travel** · travels · travelling
+- travels — *Після I потрібна travel.*
+- travelling — *Для звички тут потрібна travel.*
 
-**5 · Картка слова — regatta**
-<!-- interaction_id: en:lesson-10:session-01:word:regatta; family: word_card -->
-> **regatta** — «регата». I am watching the regatta. — «Я дивлюся регату». Змагання з веслування чи вітрильного спорту; тут веслувальні перегони.
+**5 · Картка слова — seaside**
+<!-- interaction_id: en:lesson-10:session-01:word:seaside; family: word_card -->
+> **seaside** — «морське узбережжя». at the seaside — «біля моря, на морському узбережжі».
 
-**6 · Ви на березі стежите за перегонами човнів. Дайте відповідь другові: «Я дивлюся регату»**
+**6 · Ви тимчасово живете біля моря під час відпустки. Скажіть: «Ми відпочиваємо біля моря»**
 <!-- interaction_id: en:lesson-10:session-01:i04; family: phrase_builder -->
-Плитки: `regatta` `the` `watching` `am` `I` → **I am watching the regatta.**
+Плитки: `seaside` `the` `at` `staying` `are` `We` → **We are staying at the seaside.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-01:i05; family: listen_choose -->
-🔊 *She is watching the regatta.* → **She is watching the regatta.** · She is not watching the regatta. · He is watching the regatta.
-- She is not watching the regatta. — *У записі звучить She is watching the regatta.*
-- He is watching the regatta. — *У записі звучить She is watching the regatta.*
+🔊 *They are staying at the seaside.* → **They are staying at the seaside.** · We are staying at the seaside. · They are walking at the seaside.
+- We are staying at the seaside. — *У записі звучить They are staying at the seaside.*
+- They are walking at the seaside. — *У записі звучить They are staying at the seaside.*
 
-**8 · Виберіть форму watch після am**
+**8 · Це тимчасова поїздка зараз. Виберіть форму stay**
 <!-- interaction_id: en:lesson-10:session-01:i06; family: context_gap_grammar -->
-I am ___ the regatta. → **watching** · watch · watches
-- watch — *Після am потрібна watching.*
-- watches — *Watches не вживається після am.*
+We are ___ at the seaside. → **staying** · stay · stays
+- stay — *Після are потрібна staying.*
+- stays — *Після are потрібна staying, не stays.*
 
-**9 · Картка слова — coxswain**
-<!-- interaction_id: en:lesson-10:session-01:word:coxswain; family: word_card -->
-> **coxswain** — «стерновий веслувального човна». The coxswain is waiting. — «Стерновий чекає». Керує напрямком човна й координує веслярів.
+**9 · Картка слова — countryside**
+<!-- interaction_id: en:lesson-10:session-01:word:countryside; family: word_card -->
+> **countryside** — «сільська місцевість». I like the countryside. — «Мені подобається сільська місцевість».
 
-**10 · Стерновий чекає на команду біля човна. Скажіть: «Стерновий чекає»**
+**10 · Вам подобаються села й поля. Скажіть: «Мені подобається сільська місцевість»**
 <!-- interaction_id: en:lesson-10:session-01:i07; family: phrase_builder -->
-Плитки: `waiting` `is` `coxswain` `The` → **The coxswain is waiting.**
+Плитки: `countryside` `the` `like` `I` → **I like the countryside.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-01:i08; family: listen_choose -->
-🔊 *The coxswain is speaking.* → **The coxswain is speaking.** · The coxswain is sleeping. · The visitor is speaking.
-- The coxswain is sleeping. — *У записі звучить The coxswain is speaking.*
-- The visitor is speaking. — *У записі звучить The coxswain is speaking.*
+🔊 *We live in the countryside.* → **We live in the countryside.** · They live in the countryside. · We work in the countryside.
+- They live in the countryside. — *У записі звучить We live in the countryside.*
+- We work in the countryside. — *У записі звучить We live in the countryside.*
 
-**12 · Виберіть правильну форму check: це звичайне завдання стернового у вашій команді**
+**12 · Виберіть форму like після I**
 <!-- interaction_id: en:lesson-10:session-01:i09; family: context_gap_grammar -->
-The coxswain usually ___ the boat. → **checks** · check · checking
-- check — *Для однієї людини у Present Simple потрібне checks.*
-- checking — *Checking без is не утворює присудок.*
+I ___ the countryside. → **like** · likes · liking
+- likes — *Після I потрібна like.*
+- liking — *Уподобання виражаємо формою like.*
 
-**13 · Картка слова — hull**
-<!-- interaction_id: en:lesson-10:session-01:word:hull; family: word_card -->
-> **hull** — «корпус човна». I am checking the hull. — «Я перевіряю корпус човна». Основна частина човна, яка тримається на воді.
+**13 · Картка слова — return ticket**
+<!-- interaction_id: en:lesson-10:session-01:word:return-ticket; family: word_card -->
+> **return ticket** — «квиток туди й назад». I need a return ticket. — «Мені потрібен квиток туди й назад».
 
-**14 · Ви оглядаєте корпус човна перед виходом. Скажіть колезі: «Я перевіряю корпус човна»**
+**14 · Ви збираєтеся поїхати до міста й повернутися. Скажіть касирові: «Мені потрібен квиток туди й назад»**
 <!-- interaction_id: en:lesson-10:session-01:i10; family: phrase_builder -->
-Плитки: `hull` `the` `checking` `am` `I` → **I am checking the hull.**
+Плитки: `ticket` `return` `a` `need` `I` → **I need a return ticket.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-01:i11; family: listen_choose -->
-🔊 *Are you checking the hull?* → **Are you checking the hull?** · You are checking the hull. · Is she checking the hull?
-- You are checking the hull. — *У записі звучить Are you checking the hull?*
-- Is she checking the hull? — *У записі звучить Are you checking the hull?*
+🔊 *She needs a return ticket.* → **She needs a return ticket.** · He needs a return ticket. · She has a return ticket.
+- He needs a return ticket. — *У записі звучить She needs a return ticket.*
+- She has a return ticket. — *У записі звучить She needs a return ticket.*
 
-**16 · Виберіть зв’язку для дії зараз з I**
+**16 · Виберіть форму need після I**
 <!-- interaction_id: en:lesson-10:session-01:i12; family: context_gap_grammar -->
-I ___ checking the hull. → **am** · is · are
-- is — *З I потрібна am, не is.*
-- are — *З I потрібна am, не are.*
+I ___ a return ticket. → **need** · needs · needing
+- needs — *Після I потрібна need.*
+- needing — *Потребу виражаємо формою need.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-01:i13; family: speed_match -->
-boathouse — човновий сарай · regatta — регата · coxswain — стерновий веслувального човна · hull — корпус човна
+abroad — за кордон · seaside — морське узбережжя · countryside — сільська місцевість · return ticket — квиток туди й назад
 
-**18 · Послухайте й складіть запитання про дію зараз**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-01:i14; family: listen_build_dictation -->
-🔊 *Are you watching the regatta?* Плитки: `regatta` `the` `watching` `you` `Are` → **Are you watching the regatta?**
+🔊 *We are staying at the seaside.* Плитки: `seaside` `the` `at` `staying` `are` `We` → **We are staying at the seaside.**
 
-**19 · Подруга запитує про ваш звичний розклад тренувань. Скажіть: «Я веслую тут щосуботи»**
-<!-- interaction_id: en:lesson-10:session-01:i15; family: scripted_repeat_compare -->
-🎙 **I row here every Saturday.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-01:i15; family: listen_build_dictation -->
+🔊 *I need a return ticket.* Плитки: `ticket` `return` `a` `need` `I` → **I need a return ticket.**
 
-**20 · Друг думає, що ви зараз у човні, але ви на березі. Скажіть: «Я зараз не веслую». Поставте now наприкінці**
-<!-- interaction_id: en:lesson-10:session-01:i16; family: phrase_builder -->
-Плитки: `now` `rowing` `not` `am` `I` → **I am not rowing now.**
+**20 · Друг запитує, де ви проводите відпустку цього тижня. Скажіть: «Ми відпочиваємо біля моря»**
+<!-- interaction_id: en:lesson-10:session-01:i16; family: scripted_repeat_compare -->
+🎙 **We are staying at the seaside.**
 
-**21 · Зазвичай ви веслуєте щосуботи. Сьогодні ви на березі й спостерігаєте за перегонами. Друг телефонує: «Чим ти зайнятий?» Дайте відповідь: «Я дивлюся регату»**
-<!-- interaction_id: en:lesson-10:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am watching the regatta.**
+**21 · У касі скажіть, що хочете поїхати й повернутися: «Мені потрібен квиток туди й назад»**
+<!-- interaction_id: en:lesson-10:session-01:i17; family: scripted_repeat_compare -->
+🎙 **I need a return ticket.**
 

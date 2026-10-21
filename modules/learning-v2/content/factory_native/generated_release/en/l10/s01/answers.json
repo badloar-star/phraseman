@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-01:word:boathouse",
-    "correctText": "boathouse",
+    "interactionId": "en:lesson-10:session-01:word:abroad",
+    "correctText": "abroad",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i01",
-    "correctText": "The boathouse is near the river.",
+    "correctText": "I often travel abroad.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i02",
-    "correctText": "I row here every Saturday.",
+    "correctText": "She is working abroad.",
     "correctResponseId": "en:lesson-10:session-01:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-01:i03",
-    "correctText": "row",
+    "correctText": "travel",
     "correctResponseId": "en:lesson-10:session-01:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-01:word:regatta",
-    "correctText": "regatta",
+    "interactionId": "en:lesson-10:session-01:word:seaside",
+    "correctText": "seaside",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i04",
-    "correctText": "I am watching the regatta.",
+    "correctText": "We are staying at the seaside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i05",
-    "correctText": "She is watching the regatta.",
+    "correctText": "They are staying at the seaside.",
     "correctResponseId": "en:lesson-10:session-01:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-01:i06",
-    "correctText": "watching",
+    "correctText": "staying",
     "correctResponseId": "en:lesson-10:session-01:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-01:word:coxswain",
-    "correctText": "coxswain",
+    "interactionId": "en:lesson-10:session-01:word:countryside",
+    "correctText": "countryside",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i07",
-    "correctText": "The coxswain is waiting.",
+    "correctText": "I like the countryside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i08",
-    "correctText": "The coxswain is speaking.",
+    "correctText": "We live in the countryside.",
     "correctResponseId": "en:lesson-10:session-01:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-01:i09",
-    "correctText": "checks",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-01:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-01:word:hull",
-    "correctText": "hull",
+    "interactionId": "en:lesson-10:session-01:word:return-ticket",
+    "correctText": "return ticket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i10",
-    "correctText": "I am checking the hull.",
+    "correctText": "I need a return ticket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i11",
-    "correctText": "Are you checking the hull?",
+    "correctText": "She needs a return ticket.",
     "correctResponseId": "en:lesson-10:session-01:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-01:i12",
-    "correctText": "am",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-01:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-01:i13",
-    "correctText": "en:lesson-10:session-01:i13:p1=boathouse\nen:lesson-10:session-01:i13:p2=regatta\nen:lesson-10:session-01:i13:p3=coxswain\nen:lesson-10:session-01:i13:p4=hull",
+    "correctText": "en:lesson-10:session-01:i13:p1=abroad\nen:lesson-10:session-01:i13:p2=seaside\nen:lesson-10:session-01:i13:p3=countryside\nen:lesson-10:session-01:i13:p4=return ticket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i14",
-    "correctText": "Are you watching the regatta?",
+    "correctText": "We are staying at the seaside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i15",
-    "correctText": "I row here every Saturday.",
+    "correctText": "I need a return ticket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i16",
-    "correctText": "I am not rowing now.",
+    "correctText": "We are staying at the seaside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-01:i17",
-    "correctText": "I am watching the regatta.",
+    "correctText": "I need a return ticket.",
     "correctResponseId": null
   }
 ]

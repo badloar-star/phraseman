@@ -3537,9 +3537,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 1,
-    sourceFingerprint: "b3d9f9f8c4c224f90b89c81278112a6d47360c76bde68f0fa32278733b110930",
+    sourceFingerprint: "761fcbceebb04d3b59f5a4225f4680c1fc6428de94ff698eb5aa433b5e6525d5",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I row here every Saturday; I am watching the regatta","uk":"I row here every Saturday; I am watching the regatta"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I often travel abroad; We are staying at the seaside; I need a return ticket","uk":"I often travel abroad; We are staying at the seaside; I need a return ticket"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3642,9 +3642,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 16,
-    sourceFingerprint: "78514985f36ff2b28d9091fa2155f176509bac5c0ba537c8c463bb7f7f98bf7c",
+    sourceFingerprint: "005ec5c23d4f61afc449ce5df935c22a965d6b0dca29ccb39f9ae239e41b71a4",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She usually works upstairs; She is working here this month; She is sitting at her workstation","uk":"She usually works upstairs; She is working here this month; She is sitting at her workstation"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I need some foil; I am using cling film; I am drying a plate with a tea towel","uk":"I need some foil; I am using cling film; I am drying a plate with a tea towel"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3845,9 +3845,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 45,
-    sourceFingerprint: "5821113f72b4cbef03b56b90692e8fbddb8cf5628704bc5b54b9c9b0dea4b0ae",
+    sourceFingerprint: "bc9c8980cc834e6b8ccc48408cd9e84008c3ea44498ae46297788c3664fc2f0e",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We review our progress every month; This is a major achievement; We are making a breakthrough","uk":"We review our progress every month; This is a major achievement; We are making a breakthrough"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The heel is low; I am checking the sole; I owe you ten euros","uk":"The heel is low; I am checking the sole; I owe you ten euros"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

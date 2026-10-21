@@ -135,7 +135,7 @@
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
     import {
-      getFirestore, collection, getDocs, query, orderBy, limit, doc, getDoc, setDoc, updateDoc,
+      getFirestore, collection, getDocs, query, orderBy, limit, doc, getDoc, setDoc, updateDoc, where,
     } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
     import {
       getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, setPersistence, browserLocalPersistence,
@@ -255,23 +255,39 @@
     /* зачем (Ревизор и Ядро 21.10, подарок Plus): отмена подарка покупателем = ручной возврат денег.
        Фильтр «К возврату» показывает только такие заказы, кнопка закрывает возврат (refundStatus → refunded). */
     let ordersRefundOnly = false;
-    async function loadOrders() {
-      const snap = await getDocs(query(collection(db, 'web_premium_orders'), orderBy('createdAtIso', 'desc'), limit(100)));
-      if (snap.empty) {
-        $('orders').innerHTML = '<div class="empty">Заказов пока нет. Появятся после первой оплаты на /start/.</div>';
-        return;
+    /* зачем (Ревизор 21.10): «К возврату» — отдельный запрос по refundStatus (до 50), а не фильтр по последним 100 заказам:
+       старая отмена не должна пропадать из списка, когда её вытеснят новые заказы. Одно равенство без сортировки —
+       хватает автоматического индекса поля, составной не нужен; порядок «свежие отмены сверху» — здесь. */
+    async function loadRefundDue() {
+      try {
+        const snap = await getDocs(query(collection(db, 'web_premium_orders'), where('refundStatus', '==', 'manual_pending'), limit(50)));
+        return snap.docs.slice().sort((a, b) => (Number(b.data().cancelledAtMs) || 0) - (Number(a.data().cancelledAtMs) || 0));
+      } catch (e) {
+        console.warn('[GIFT-PLUS] admin:refund_query_failed', e);
+        return null;
       }
-      const rows = [];
-      let refundPending = 0;
-      snap.forEach((d) => { if (d.data().refundStatus === 'manual_pending') refundPending += 1; });
+    }
+    async function loadOrders() {
+      const [snap, refundDocs] = await Promise.all([
+        getDocs(query(collection(db, 'web_premium_orders'), orderBy('createdAtIso', 'desc'), limit(100))),
+        loadRefundDue(),
+      ]);
+      const refundCount = refundDocs === null ? '?' : (refundDocs.length >= 50 ? '50+' : String(refundDocs.length));
       $('refund-filter').innerHTML = `<button class="btn-sm${ordersRefundOnly ? '' : ' on'}" data-refund-filter="all">Все</button>
-        <button class="btn-sm${ordersRefundOnly ? ' on' : ''}" data-refund-filter="refund">К возврату · ${refundPending}</button>`;
+        <button class="btn-sm${ordersRefundOnly ? ' on' : ''}" data-refund-filter="refund">К возврату · ${refundCount}</button>`;
       $('refund-filter').querySelectorAll('[data-refund-filter]').forEach((btn) => {
         btn.addEventListener('click', () => { ordersRefundOnly = btn.dataset.refundFilter === 'refund'; loadOrders(); });
       });
-      snap.forEach((d) => {
+      const docs = ordersRefundOnly ? (refundDocs || []) : snap.docs;
+      if (!docs.length) {
+        $('orders').innerHTML = ordersRefundOnly
+          ? '<div class="empty">Возвращать некому — отменённых подарков нет.</div>'
+          : '<div class="empty">Заказов пока нет. Появятся после первой оплаты на /start/.</div>';
+        return;
+      }
+      const rows = [];
+      docs.forEach((d) => {
         const o = d.data();
-        if (ordersRefundOnly && o.refundStatus !== 'manual_pending') return;
         const utm = o.utm?.params ? (o.utm.params.utm_campaign || o.utm.params.utm_source || '') : '';
         const date = String(o.paidAtIso || o.createdAtIso || '').replace('T', ' ').slice(0, 16);
         const amount = o.amountCents ? '$' + (o.amountCents / 100).toFixed(2) : '—';

@@ -3214,6 +3214,8 @@ export const stripeWebhook = onRequest(
         amountCents: Number(session.amount_total) || 0,
         currency: String(session.currency ?? 'usd'),
         email: cleanEmail(details?.email) ?? cleanEmail(session.customer_email) ?? undefined,
+        // зачем (Ядро 21.10): тестовая оплата помечается, чтобы оповещения о ней (возврат по отмене подарка) не будили владельца.
+        paymentLivemode: session.livemode !== false,
       });
       if (paid) {
         await handlePaidOrderSideEffects(db, paid);
@@ -3396,6 +3398,7 @@ export const paypalOrderCapture = onRequest(
         amountCents: Math.round(Number(capture?.amount?.value ?? 0) * 100),
         currency: String(capture?.amount?.currency_code ?? 'USD').toLowerCase(),
         payerEmail: cleanEmail(data.payer?.email_address) ?? undefined,
+        paymentLivemode: config.paypalLive,
       });
       if (paid) {
         await handlePaidOrderSideEffects(db, paid);

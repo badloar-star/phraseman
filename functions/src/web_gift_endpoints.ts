@@ -49,6 +49,9 @@ export function buildGiftCancelRefundAlert(
     occurredAtMs: cancelledAtMs,
     payload: {
       provider,
+      // зачем (Ядро 21.10): тестовая оплата (Stripe livemode=false, PayPal sandbox) — 'SANDBOX', такое оповещение владельцу не придёт.
+      // Поля нет у заказов до 21.10 — считаем их боевыми, чтобы не потерять настоящий возврат.
+      environment: order.paymentLivemode === false ? 'SANDBOX' : 'PRODUCTION',
       product: cleanShortText(order.plan, 20) || 'gift',
       amount: Math.max(0, Number(order.amountCents) || 0) / 100,
       currency: cleanShortText(order.currency, 8).toUpperCase() || undefined,
@@ -92,8 +95,19 @@ export function buildGiftCancelEmail(order: Readonly<Record<string, unknown>>, s
   return { subject, text, html };
 }
 
-/** Отправка письма об отмене. Ключ идемпотентности — заказ: повторная отмена не шлёт второе письмо. */
-async function sendGiftCancelEmail(orderId: string, order: Readonly<Record<string, unknown>>): Promise<void> {
+/**
+ * Отправка письма об отмене. Повтор не шлёт второе письмо: флаг cancelEmailSentAtMs в заказе (навсегда)
+ * плюс ключ идемпотентности Resend (он живёт только 24 ч — поэтому одного ключа мало, Ревизор 21.10).
+ */
+async function sendGiftCancelEmail(
+  orderRef: FirebaseFirestore.DocumentReference,
+  order: Readonly<Record<string, unknown>>,
+): Promise<void> {
+  const orderId = orderRef.id;
+  if (Number(order.cancelEmailSentAtMs) > 0) {
+    giftLog('cancel:email_skipped', { orderId, reason: 'already_sent', sentAtMs: Number(order.cancelEmailSentAtMs) });
+    return;
+  }
   const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
   const key = RESEND_API_KEY.value();
   const from = webCheckoutEmailFrom.value().trim();
@@ -112,6 +126,9 @@ async function sendGiftCancelEmail(orderId: string, order: Readonly<Record<strin
     return;
   }
   giftLog('cancel:email_sent', { orderId });
+  await orderRef.set({ cancelEmailSentAtMs: Date.now() }, { merge: true }).catch((error: unknown) => {
+    giftWarn('cancel:email_flag_failed', { orderId, message: error instanceof Error ? error.message.slice(0, 200) : String(error) });
+  });
 }
 
 /** Лимит ручки: false — отказ (лимит или занятое окно), причина уже в журнале. */
@@ -251,7 +268,7 @@ export const giftCancel = onRequest({ ...PUBLIC_OPTIONS, secrets: [RESEND_API_KE
       giftWarn('cancel:refund_alert_failed', { orderId: orderRef.id, message: error instanceof Error ? error.message.slice(0, 200) : String(error) });
     }
     try {
-      await sendGiftCancelEmail(orderRef.id, outcome.order);
+      await sendGiftCancelEmail(orderRef, outcome.order);
     } catch (error) {
       giftWarn('cancel:email_threw', { orderId: orderRef.id, message: error instanceof Error ? error.message.slice(0, 200) : String(error) });
     }

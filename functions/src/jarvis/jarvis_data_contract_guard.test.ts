@@ -408,7 +408,7 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     collection: 'web_premium_orders',
     writer: 'functions/src/web_gift_endpoints.ts',
     authority: 'server-owned website gift delivery and buyer cancellation before activation (manual refund pending); intentionally unread by Jarvis',
-    fields: ['giftDelivery', 'cancelledAtMs', 'cancelledAtIso', 'refundStatus'],
+    fields: ['giftDelivery', 'cancelledAtMs', 'cancelledAtIso', 'refundStatus', 'cancelEmailSentAtMs', 'paymentLivemode'],
   },
   {
     collection: 'account_deletion_jobs',

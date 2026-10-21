@@ -92,6 +92,14 @@ describe('buildGiftCancelRefundAlert', () => {
     expect(text).toContain('Причина возврата');
   });
 
+  it('marks test payments as SANDBOX and everything else (incl. orders before the field) as PRODUCTION', () => {
+    expect(buildGiftCancelRefundAlert('o1', { ...order, paymentLivemode: false }, 1).payload.environment).toBe('SANDBOX');
+    expect(buildGiftCancelRefundAlert('o2', { ...order, paymentLivemode: true }, 1).payload.environment).toBe('PRODUCTION');
+    expect(buildGiftCancelRefundAlert('o3', order, 1).payload.environment).toBe('PRODUCTION');
+    const doc = buildAdminAlertOutboxDocument(buildGiftCancelRefundAlert('o4', { ...order, paymentLivemode: false }, 1), 2) as { payload: { environment?: string } };
+    expect(doc.payload.environment).toBe('SANDBOX');
+  });
+
   it('defaults to Stripe and tolerates a missing currency', () => {
     const alert = buildGiftCancelRefundAlert('ord9', { plan: 'monthly', amountCents: 799 }, 1_700_000_000_000);
     expect(alert.payload.provider).toBe('Stripe');

@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диалоги: сцена</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+
+/* ── темы ── */
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --top: #F3F4FD; --bot: #ECE4F7; --tx: #17181E; --sec: #595A63;
+  --card: #FCFCFF; --ctl: #E6E7F4; --ctl2: #D8D9EA; --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --sh2: 0 26px 50px -22px rgba(51, 51, 87, .55); --acc: oklch(.52 .14 282); --solid: #17181E; --on-solid: #FFFFFF; --good: #2B8A5E;
+  --sb: #111; --dimc: rgba(23, 24, 30, .38); --lz: .55; --cz: .15; --lw: .58; --cw: .14; }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --top: #002936; --bot: #001B17; --tx: #F6FBFD; --sec: #B8CFD6;
+  --card: #002027; --ctl: #123037; --ctl2: #1D3F47; --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06);
+  --sh2: 0 30px 60px -24px rgba(0, 0, 0, .9); --acc: oklch(.82 .11 215); --solid: #F6FBFD; --on-solid: #00131A; --good: #4CC98C;
+  --sb: #fff; --dimc: rgba(0, 0, 0, .55); --lz: .40; --cz: .11; --lw: .78; --cw: .11; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+/* статус-бар поверх обложки — белый в обеих темах */
+.ph.onart .sb { color: #fff; } .ph.onart .sb .sys svg { filter: none !important; }
+
+/* ── общие детали ── */
+.qhd { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qhd .tt { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; display: flex; align-items: center; gap: 6px; }
+.qhd .tt .io { font-size: 17px; color: var(--sec); margin-top: 3px; }
+.qhd .sp { flex: 1; }
+.qsub { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 2px; }
+.qround { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--sh); font-size: 20px; color: var(--tx); flex: none; }
+.qround.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; padding: 0 22px; white-space: nowrap; }
+.qbtn .io { font-size: 18px; }
+.qbtn.solid { background: var(--solid); color: var(--on-solid); }
+.qbtn.white { background: #FFFFFF; color: #121318; }
+.qbtn.ctl { background: var(--ctl); color: var(--tx); height: 50px; border-radius: 25px; font-size: 16px; }
+.qbtn.glass { background: rgba(255, 255, 255, .16); color: #fff; height: 50px; border-radius: 25px; font-size: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn + .qbtn { margin-top: 12px; }
+.qnote { font-size: 13px; line-height: 17px; color: var(--sec); text-align: center; margin-top: 8px; }
+.qchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.qchip { height: 34px; padding: 0 12px; border-radius: 17px; background: var(--ctl); font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; color: var(--tx); }
+.qchip.glass { background: rgba(255, 255, 255, .16); color: #fff; }
+.qcard { border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.qk { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.qk .io { font-size: 14px; }
+.qt { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; text-wrap: balance; margin-top: 4px; }
+.qm { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qsay { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.qsay .sp { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; color: var(--tx); }
+.qsay .sp.on { background: var(--solid); color: var(--on-solid); }
+.qsay .en { font-size: 19px; line-height: 24px; font-weight: 700; }
+.qsay .ru { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qlock { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 20px; color: var(--sec); }
+.qlock .io { font-size: 15px; }
+.stars { display: inline-flex; gap: 2px; font-size: 12px; color: var(--acc); vertical-align: middle; }
+.stars .off { opacity: .28; }
+.rbar { height: 4px; border-radius: 2px; background: var(--ctl); overflow: hidden; }
+.rbar i { display: block; height: 100%; background: var(--acc); border-radius: 2px; }
+
+/* аватар с кольцом Plus (эталон plus-ring-etalon.html): зазор — подложкой, чтобы его не снимала страховка обводок */
+.pav { position: relative; display: inline-flex; border-radius: 50%; padding: 2.5px; flex: none; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pav .gap { display: flex; padding: 2px; border-radius: 50%; background: var(--top); }
+.pav .gap img { display: block; border-radius: 50%; }
+.pav .pin { position: absolute; right: -2px; bottom: -2px; width: 15px; height: 15px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 8.5px; box-shadow: 0 0 0 2px var(--top); }
+.onart .pav .gap { background: rgba(0, 0, 0, .25); } .onart .pav .pin { box-shadow: 0 0 0 2px rgba(0, 0, 0, .25); }
+
+/* плавающий таббар 2.0 (как в эталоне Главной), подписи из кода: Главная · Обучение · Видео · Сообщество · Настройки */
+.qfade { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; z-index: 30; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--bot) 0%, transparent), var(--bot) 72%); }
+.tbar { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .tbar { background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(246, 246, 253, .92)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 20px 40px -18px rgba(51, 51, 87, .5); }
+.th-marine .tbar { background: linear-gradient(180deg, rgba(6, 56, 70, .84), rgba(0, 28, 36, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.tbar .cap { position: absolute; top: 9px; bottom: 9px; left: calc(9px + (100% - 18px) / 5); width: calc((100% - 18px) / 5); border-radius: 18px; }
+.th-ink .tbar .cap { background: rgba(23, 24, 30, .07); }
+.th-marine .tbar .cap { background: rgba(255, 255, 255, .11); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .14); }
+.tbar .ti { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 10.5px; line-height: 12px; position: relative; z-index: 1; color: var(--sec); }
+.tbar .ti .io { font-size: 22px; }
+.tbar .ti.on { color: var(--tx); font-weight: 700; }
+
+/* шторка и затемнение */
+.qdim { position: absolute; inset: 0; z-index: 40; background: var(--dimc); }
+.qsheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 45; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -20px 50px -20px rgba(0, 0, 0, .45); padding: 10px 20px 34px; }
+.qgrab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl2); margin: 0 auto 14px; }
+
+/* кадр эпизода: градиент главы + фраза эпизода (вместо стоп-кадра сериала) */
+.still { position: relative; border-radius: 18px; overflow: hidden; color: #fff; }
+.still .gl { position: absolute; right: -14px; top: -10px; font-size: 120px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.still .ph1 { position: absolute; left: 14px; right: 14px; bottom: 12px; font-size: 21px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
+.still .no { position: absolute; left: 10px; top: 10px; height: 26px; padding: 0 9px; border-radius: 13px; background: rgba(0, 0, 0, .24); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.still .no .io { font-size: 12px; }
+.still .st { position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 13px; background: rgba(255, 255, 255, .24); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.still .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .26); }
+.still .prog i { display: block; height: 100%; background: #fff; }
+.still.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .40); }
+.still.lock .no, .still.lock .ph1 { z-index: 1; }
+.still.lock .ph1 { opacity: .78; }
+
+.thm { padding: 14px 0 0; display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; }
+.chp.on { background: #F2F1F6; color: #0B0C0E; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.cmp { border-collapse: collapse; width: 100%; max-width: 1400px; font-size: 14px; line-height: 20px; color: #C9C9CF; margin-top: 6px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 11px 16px 11px 0; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .08); }
+.cmp th { color: #8E8E96; font-size: 13px; font-weight: 700; }
+.cmp td b { color: #F2F2F4; }
+@media (prefers-reduced-motion: reduce) { .ph *, .ph *::before, .ph *::after { transition: none !important; animation: none !important; } }
+
+/* ── общее ── */
+.hm-top { display: flex; align-items: center; gap: 8px; }
+.hm-pill { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; background: var(--card); box-shadow: var(--sh); font-size: 15px; font-weight: 700; color: var(--tx); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hm-pill img { width: 20px; height: 20px; border-radius: 50%; display: block; }
+.hm-pill .io { font-size: 18px; }
+.hm-pill.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.hm-pill.ember { color: oklch(.64 .19 28); }
+.th-marine .hm-pill.ember { color: oklch(.76 .15 30); }
+.hm-pill.glass.ember { color: #FFB4A3; }
+.hm-pill .sub { font-size: 12px; font-weight: 700; opacity: .8; }
+.hm-bell { position: relative; }
+.hm-bell i.dot { position: absolute; right: 9px; top: 9px; width: 8px; height: 8px; border-radius: 4px; background: oklch(.64 .19 28); box-shadow: 0 0 0 2px var(--card); }
+.hm-sp { flex: 1; }
+.hm-off { display: flex; align-items: center; gap: 10px; border-radius: 16px; padding: 10px 14px; font-size: 14px; line-height: 19px; background: var(--card); box-shadow: var(--sh); color: var(--tx); }
+.hm-off .io { font-size: 18px; color: var(--sec); }
+.hm-off b { font-weight: 700; }
+.hm-off.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2); backdrop-filter: blur(16px); }
+.hm-off.glass .io { color: #fff; }
+.hm-h { display: flex; align-items: baseline; gap: 8px; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.hm-h span { margin-left: auto; font-size: 15px; font-weight: 400; color: var(--sec); }
+/* ───────── PhraseMan 2.0 · Диалоги в стиле «Сцена» (заказ владельца 21.10) ─────────
+   зачем: «хочу, чтобы в таком же стиле, как Сцена, мне показать макеты раздела ДИАЛОГИ». Эталон — вариант A в home-new-concepts.html:
+   сцена со светом и глубиной, 3D-герой справа, крупный заголовок, стеклянная панель наезжает на сцену, вечером тёплое свечение.
+   Тексты — из кода (shared/generated/dialogue_v2_ui_copy.ru.json, dialogue_v2_session/completion/briefing, AiDialogConsentModal,
+   DialogsTabContent). Веса 400/700, обводок контейнеров нет. Места под 3D-героев — пунктира нет, только мягкий свет и подпись-метка. */
+.page-lead b { color: #F2F2F4; }
+.dl-rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.dl-need { max-width: 430px; margin-top: 12px; font-size: 13px; line-height: 19px; color: #A9A9B2; }
+.dl-need b { color: #E6E6EA; font-weight: 700; }
+.dl-need ul { margin: 4px 0 0; padding-left: 18px; }
+.dl-need li { margin: 2px 0; }
+.dl-why { max-width: 1100px; margin-top: 14px; font-size: 15px; line-height: 23px; color: #C9C9CF; }
+.dl-why b { color: #F2F2F4; }
+.dl-why ul { margin: 8px 0 0; padding-left: 20px; }
+
+/* ── сцена ── */
+.sc { position: relative; overflow: hidden; color: #fff; isolation: isolate; }
+.sc .light { position: absolute; inset: 0; z-index: -2; }
+.sc .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; z-index: -1; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .42)); }
+.sc.eve .light::after { content: ''; position: absolute; right: -10%; top: -6%; width: 80%; height: 60%; background: radial-gradient(closest-side, oklch(.70 .16 45 / .55), transparent); }
+/* место под 3D-героя: мягкий свет, тень на «полу» и метка, кого рисовать */
+.h3d { position: absolute; z-index: 0; pointer-events: none; }
+.h3d .halo { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .30), rgba(255, 255, 255, .06) 62%, transparent); }
+.h3d .floor { position: absolute; left: 14%; right: 14%; bottom: -2%; height: 9%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .38), transparent); }
+.h3d .ini { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); font-size: 96px; font-weight: 700; letter-spacing: -2px; color: rgba(255, 255, 255, .20); }
+.h3d .tag { position: absolute; left: 50%; top: 4%; transform: translateX(-50%); white-space: nowrap; height: 26px; padding: 0 10px; border-radius: 13px; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, .92); background: rgba(0, 0, 0, .26); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+/* зачем: filter на родителе ломает размытие метки (квадрат) — приглушаем только свет и букву */
+.h3d.dim .halo, .h3d.dim .ini { opacity: .45; }
+.sc-top { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 2; display: flex; align-items: center; gap: 8px; }
+.sc-body { position: absolute; left: 20px; right: 20px; bottom: 56px; z-index: 2; }
+.sc-kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); display: flex; align-items: center; gap: 6px; }
+.sc-kick .io { font-size: 14px; }
+.sc-title { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: 4px; text-wrap: balance; max-width: 300px; }
+.sc-title.s { font-size: 28px; line-height: 34px; max-width: 280px; }
+.sc-sub { font-size: 15px; line-height: 21px; color: rgba(255, 255, 255, .88); margin-top: 8px; max-width: 300px; text-wrap: pretty; }
+.sc-prog { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; color: rgba(255, 255, 255, .88); }
+.sc-prog .bar { flex: 0 0 72px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.sc-prog .bar i { display: block; height: 100%; background: #fff; }
+.sc-cta { display: flex; gap: 10px; margin-top: 16px; }
+.sc-cta .qbtn { flex: 1; margin: 0; }
+.sc-cta .qround.glass { width: 54px; height: 54px; border-radius: 27px; font-size: 22px; }
+.qbtn.white.off, .qbtn.solid.off { opacity: .45; }
+.gpill { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #fff; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gpill .io { font-size: 16px; }
+.gpill.plus { background: linear-gradient(135deg, rgba(142, 124, 255, .55), rgba(111, 168, 255, .45)); }
+.sp { flex: 1; }
+
+/* ── стеклянная панель, наезжает на сцену ── */
+.dpanel { position: relative; z-index: 3; margin: -38px 16px 0; border-radius: 28px; background: var(--card); box-shadow: var(--sh2); padding: 16px; }
+.dpanel + .dpanel { margin-top: 14px; }
+.ph-h { display: flex; align-items: baseline; gap: 8px; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.ph-h span { margin-left: auto; font-size: 15px; font-weight: 400; color: var(--sec); }
+.sec-h { margin: 22px 20px 10px; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; display: flex; align-items: baseline; }
+.sec-h span { margin-left: auto; font-size: 15px; font-weight: 400; color: var(--sec); }
+
+/* собеседники: монетки-лица с цветом героя */
+.cast { display: flex; gap: 12px; overflow: hidden; margin-top: 12px; }
+.face { flex: none; width: 58px; text-align: center; font-size: 12.5px; line-height: 16px; color: var(--sec); }
+.face .f { width: 52px; height: 52px; margin: 0 auto 6px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 8px 18px -10px rgba(0, 0, 0, .6); }
+.face.on .f { box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--acc); }
+.face.on { color: var(--tx); font-weight: 700; }
+.av { flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3); }
+
+/* миры */
+.worlds { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 16px; }
+.world { position: relative; height: 112px; border-radius: 22px; overflow: hidden; color: #fff; padding: 14px; display: flex; flex-direction: column; justify-content: flex-end; }
+.world .io.big { position: absolute; right: -6px; top: -8px; font-size: 74px; color: rgba(255, 255, 255, .16); transform: rotate(-8deg); }
+.world b { font-size: 17px; line-height: 21px; }
+.world small { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .86); margin-top: 2px; }
+.world .tr { height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .28); margin-top: 8px; overflow: hidden; }
+.world .tr i { display: block; height: 100%; background: #fff; }
+
+/* строка сценки */
+.srow { display: flex; align-items: center; gap: 12px; padding: 11px 0; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--tx) 7%, transparent); }
+.srow:last-child { box-shadow: none; }
+.srow .tx { flex: 1; min-width: 0; }
+.srow .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.srow .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.srow .ok { width: 26px; height: 26px; border-radius: 13px; background: var(--good); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; flex: none; }
+.srow .go { font-size: 18px; color: var(--sec); }
+.srow.cur .t { color: var(--acc); }
+
+/* ── диалог ── */
+.dl-head { position: relative; height: 250px; }
+.dl-bar { position: absolute; left: 16px; right: 16px; top: 54px; z-index: 3; display: flex; align-items: center; gap: 8px; }
+.dl-who { position: absolute; left: 20px; bottom: 44px; z-index: 2; }
+.dl-who b { display: block; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; }
+.dl-who span { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.chat { position: relative; z-index: 3; margin: -26px 0 0; border-radius: 28px 28px 0 0; background: var(--card); box-shadow: var(--sh2); padding: 18px 16px 0; min-height: 700px; }
+.goal-toast { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 15px; font-size: 13.5px; font-weight: 700; background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); margin: 4px auto 10px; }
+.msg { max-width: 82%; margin: 0 0 10px; padding: 11px 14px; border-radius: 20px; font-size: 16.5px; line-height: 23px; }
+.msg.them { background: var(--ctl); color: var(--tx); border-bottom-left-radius: 6px; }
+.msg.me { margin-left: auto; background: var(--solid); color: var(--on-solid); border-bottom-right-radius: 6px; }
+.msg .tr { display: block; margin-top: 8px; padding-top: 8px; font-size: 14.5px; line-height: 20px; color: var(--sec); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--tx) 10%, transparent); }
+.msg .tap { display: flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.msg .tap .io { font-size: 14px; }
+.typing { display: inline-flex; gap: 4px; padding: 14px 16px; border-radius: 20px; border-bottom-left-radius: 6px; background: var(--ctl); }
+.typing i { width: 7px; height: 7px; border-radius: 4px; background: var(--sec); opacity: .6; }
+.composer { position: absolute; left: 0; right: 0; bottom: 0; z-index: 35; padding: 12px 16px 34px; background: linear-gradient(to bottom, color-mix(in srgb, var(--card) 0%, transparent), var(--card) 28%); }
+.composer .row { display: flex; align-items: center; gap: 10px; }
+.composer .dfield { flex: 1; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: var(--sec); }
+.composer .mic { width: 64px; height: 64px; border-radius: 32px; flex: none; background: var(--solid); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 14px 28px -12px rgba(0, 0, 0, .55); }
+.composer .hint { text-align: center; font-size: 13px; color: var(--sec); margin-top: 8px; }
+.goals-chip { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #fff; background: rgba(255, 255, 255, .16); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+
+/* цели */
+.goal { display: flex; align-items: center; gap: 12px; padding: 9px 0; font-size: 16px; line-height: 21px; }
+.goal .ck { width: 26px; height: 26px; border-radius: 13px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--tx) 22%, transparent); color: transparent; }
+.goal.on .ck { background: var(--good); box-shadow: none; color: #fff; }
+.goal.miss { color: var(--sec); }
+.stats3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+.stat { border-radius: 18px; padding: 12px; background: rgba(255, 255, 255, .14); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.stat b { display: block; font-size: 24px; line-height: 28px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: rgba(255, 255, 255, .86); }
+.btns { display: grid; gap: 10px; margin: 16px; }
+.btns .qbtn + .qbtn { margin-top: 0; }
+
+/* согласие: лист над сценой */
+.consent .qsheet { padding-top: 0; overflow: hidden; }
+.consent .sheet-art { position: relative; height: 190px; margin: 0 -20px 16px; overflow: hidden; color: #fff; }
+.consent h3 { margin: 0; font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.3px; }
+.consent p { margin: 10px 0 0; font-size: 16px; line-height: 23px; color: var(--sec); }
+.consent .dnote { display: flex; gap: 8px; align-items: flex-start; margin-top: 12px; font-size: 14px; line-height: 20px; color: var(--sec); }
+.consent .dnote .io { font-size: 18px; color: var(--acc); }
+
+/* лимит */
+.meter { display: flex; gap: 4px; margin-top: 12px; }
+.meter i { flex: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .26); }
+.meter i.on { background: #fff; }
+.plus-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 16px; line-height: 21px; }
+.plus-row .io { font-size: 20px; color: var(--acc); width: 26px; text-align: center; }
+
+/* ── B · Театр: сцена во весь экран, реплики стеклом ── */
+.b-full { position: absolute; inset: 0; }
+.b-glass { background: rgba(255, 255, 255, .14); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.b-chat { position: absolute; left: 14px; right: 14px; bottom: 150px; z-index: 3; }
+.b-chat .msg.them { background: rgba(255, 255, 255, .16); color: #fff; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.b-chat .msg.them .tr { color: rgba(255, 255, 255, .8); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18); }
+.b-chat .msg.them .tap { color: rgba(255, 255, 255, .8); }
+.b-chat .msg.me { background: #fff; color: #121318; }
+.b-chat .goal-toast { background: rgba(76, 201, 140, .22); color: #8CF0BD; }
+.b-comp { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; padding: 14px 16px 34px; }
+.b-comp .dfield { flex: 1; height: 52px; border-radius: 26px; display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: rgba(255, 255, 255, .8); }
+.b-comp .mic { width: 64px; height: 64px; border-radius: 32px; background: #fff; color: #121318; display: flex; align-items: center; justify-content: center; font-size: 28px; flex: none; }
+.posters { display: flex; gap: 12px; padding: 0 16px; overflow: hidden; }
+.poster { position: relative; flex: none; width: 236px; height: 318px; border-radius: 26px; overflow: hidden; color: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: var(--sh2); }
+.poster .k { font-size: 13px; color: rgba(255, 255, 255, .86); }
+.poster b { font-size: 21px; line-height: 26px; margin-top: 4px; text-wrap: balance; }
+.poster .s { font-size: 13.5px; line-height: 18px; color: rgba(255, 255, 255, .86); margin-top: 6px; }
+.poster .h3d { right: -20px; top: 10px; width: 190px; height: 190px; }
+.poster .h3d .ini { font-size: 64px; }
+.poster .h3d .tag { top: 2%; }
+.poster.small { width: 150px; height: 200px; padding: 12px; }
+.poster.small b { font-size: 16px; line-height: 20px; }
+.poster.small .h3d { width: 130px; height: 130px; right: -18px; top: 4px; }
+.poster.small .h3d .ini { font-size: 46px; }
+.poster.small .h3d .tag { display: none; }
+.wtabs { display: flex; gap: 8px; padding: 0 16px; margin-top: 14px; }
+.wtabs .qchip.on { background: var(--solid); color: var(--on-solid); }
+
+/* ── C · Труппа: карусель 12 героев ── */
+.c-ring { position: relative; height: 330px; margin-top: 4px; }
+.c-ring .h3d { top: 6px; }
+.c-ring .side { position: absolute; top: 70px; width: 120px; height: 200px; border-radius: 60px; opacity: .55; }
+.c-dots { display: flex; justify-content: center; gap: 6px; margin-top: 4px; }
+.c-dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .35); }
+.c-dots i.on { width: 18px; background: #fff; }
+.c-name { text-align: center; margin-top: 10px; }
+.c-name b { display: block; font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.c-name span { display: block; font-size: 15px; line-height: 21px; color: rgba(255, 255, 255, .88); max-width: 320px; margin: 4px auto 0; text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { .ph *, .ph *::before, .ph *::after { transition: none !important; animation: none !important; } }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Диалоги в стиле «Сцена»: три варианта</h1>
+  <p class="page-lead">Заказ владельца 21.10: раздел «Диалоги» в том же стиле, что Главная «Сцена» (вариант A в home-new-concepts.html). Восемь состояний в каждом варианте: вход, выбор сценки, сам диалог с переводом по тапу и целями, итог, согласие на разговоры с ИИ, лимит Free, Plus без лимита, нет сети. Персонажи, сценки, цели и служебные тексты — из кода, реплики собеседника — на английском. <b>Под каждым экраном — список картинок: 3D-героев и свет сцены владелец рисует сам</b>, на макете на их месте мягкое свечение и метка «3D · имя». Код приложения не менялся.</p>
+  <div class="thm"><span style="font-size:13px;color:#8E8E96;font-weight:700;margin-right:6px">Тема</span><span class="chp" data-t="ink">Сумерки</span><span class="chp" data-t="marine">Океан</span></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>window.__ICODE = {"mic": "f454", "language-outline": "f3aa", "flag-outline": "f311", "lock-closed": "f3c7", "cloud-offline-outline": "f25b", "chevron-back": "f229", "chevron-forward": "f23b", "checkmark": "f21d", "checkmark-circle": "f21e", "close": "f24a", "diamond": "f2a1", "flash": "f316", "play": "f4c6", "book": "f1a5", "book-outline": "f1a6", "play-circle-outline": "f4ce", "people-outline": "f4a3", "settings-outline": "f56c", "home-outline": "f383", "chatbubbles-outline": "f218", "chatbubble-ellipses-outline": "f213", "briefcase-outline": "f1b2", "airplane-outline": "f10a", "cafe-outline": "f1ca", "sparkles": "f58c", "refresh": "f514", "shield-checkmark-outline": "f579", "time-outline": "f5de", "infinite": "f394", "reload": "f51a"};</script>
+<script>
+/* зачем (владелец 21.10): «Диалоги» в стиле «Сцена» — 3 варианта × 8 состояний. Персонажи, сценки, цели и служебные тексты —
+   из кода (dialogue_v2_ui_copy.ru.json и экраны Диалогов V2). Реплики собеседника — на изучаемом языке (английский), перевод — по тапу.
+   Под каждым экраном — что нарисовать: 3D-герой и свет сцены (владелец рисует сам). */
+(() => {
+const { phone, block, col, coinImg } = K;
+const CODE = window.__ICODE || {};
+const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[DIALOGS-SCENE] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+let TH = 'ink';
+const T = (h, extra = '') => h.replace('class="ph"', `class="ph th-${TH}${extra ? ' ' + extra : ''}"`);
+
+/* ── 12 собеседников (styleNote — из снимка ru) и их свет ── */
+const P = {
+  mila: ['Мила', 'Тепло подхватывает разговор и задаёт живые уточняющие вопросы.', 345],
+  zoe: ['Зоя', 'Общается легко, иногда с мягкой шуткой помогает сказать естественнее.', 28],
+  denis: ['Денис', 'Не торопится, внимательно читает детали и отвечает без лишнего шума.', 222],
+  marina: ['Марина', 'Ценит сроки, конкретику и сразу просит назвать следующий шаг.', 268],
+  oleg: ['Олег', 'Держит деловой тон, проверяет договорённости и фиксирует решения.', 240],
+  sam: ['Сэм', 'Снимает напряжение, но не даёт разговору уйти от главной задачи.', 165],
+  lea: ['Лея', 'Помогает сориентироваться и доброжелательно уточняет недостающие детали.', 195],
+  niko: ['Нико', 'Быстро собирает факты, предлагает варианты и просит выбрать один.', 140],
+  clara: ['Клара', 'Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.', 290],
+  ira: ['Ира', 'Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.', 320],
+  nikita: ['Никита', 'Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.', 205],
+  vera: ['Вера', 'Помогает договориться и сохраняет дружелюбный тон даже при разногласии.', 305],
+};
+const ORDER_P = Object.keys(P);
+const light = (h, eve) => {
+  const ink = TH === 'ink';
+  const base = ink
+    ? `radial-gradient(70% 48% at 80% 12%, oklch(.74 .12 ${h} / .85), transparent 70%), linear-gradient(165deg, oklch(.50 .13 ${h - 18}) 0%, oklch(.27 .10 ${h - 30}) 100%)`
+    : `radial-gradient(70% 48% at 80% 12%, oklch(.60 .10 ${h} / .8), transparent 70%), linear-gradient(165deg, oklch(.36 .08 ${h - 18}) 0%, oklch(.14 .05 ${h - 30}) 100%)`;
+  return eve ? `radial-gradient(60% 40% at 86% 6%, oklch(.70 .16 45 / .6), transparent 70%), ${base}` : base;
+};
+const faceBg = (h) => `background:linear-gradient(150deg, oklch(.66 .13 ${h}), oklch(.40 .12 ${h - 24}))`;
+const av = (pid, s = 40) => `<span class="av" style="width:${s}px;height:${s}px;font-size:${Math.round(s * .42)}px;${faceBg(P[pid][2])}">${P[pid][0][0]}</span>`;
+/* место под 3D-героя */
+const hero = (pid, box, pose = '', dim = false) => `<div class="h3d${dim ? ' dim' : ''}" style="${box}"><div class="halo"></div><div class="floor"></div><div class="ini">${P[pid][0][0]}</div><span class="tag">${io('sparkles')}3D · ${P[pid][0]}${pose ? ' · ' + pose : ''}</span></div>`;
+
+/* ── сценки (заголовки и цели — из снимка ru) ── */
+const SC = {
+  social_01: { t: 'Поздороваться после знакомства', w: 'Общение', p: 'mila', n: 6 },
+  work_01: { t: 'Представиться коллеге', w: 'Дела', p: 'marina', n: 6,
+    brief: 'Ты в команде первый день — представься Марине, скажи, чем занимаешься, и задай рабочий вопрос. Марина ценит конкретику, так что лучше сразу к делу.',
+    goals: ['поздороваться', 'назвать себя', 'назвать команду или роль', 'сказать, чем занимаешься сегодня', 'задать простой рабочий вопрос', 'поблагодарить и завершить.'] },
+};
+const WORK = [['work_01', 'Представиться коллеге', 'marina', 6, 'cur'], ['work_02', 'Спросить файл', 'oleg', 6, 'done'], ['work_03', 'Подтвердить время созвона', 'sam', 6, 'done'], ['work_04', 'Написать, что опаздываешь', 'marina', 6, ''], ['work_05', 'Поблагодарить за инструкцию', 'oleg', 6, ''], ['work_06', 'Уточнить простую задачу', 'sam', 7, '']];
+const MILA = [['Поздороваться после знакомства', 6, 'cur'], ['Поблагодарить за помощь', 6, 'done'], ['Познакомиться в чате по интересу', 7, ''], ['Договориться о времени и месте', 7, ''], ['Вежливо отменить планы', 7, '']];
+const WORLDS = [['Общение', 'people-outline', 345, 5], ['Дела', 'briefcase-outline', 262, 2], ['Поездки', 'airplane-outline', 200, 0], ['Повседневное', 'cafe-outline', 25, 1]];
+const goalsWord = (n) => `${n} ${n === 1 ? 'цель' : n < 5 ? 'цели' : 'целей'}`;
+
+/* ── общие детали ── */
+const avatarMe = (plus) => plus
+  ? `<span class="pav"><span class="gap">${coinImg(5, 34)}</span><span class="pin">${io('diamond')}</span></span>`
+  : `<span class="pav" style="background:none;padding:0"><span class="gap" style="padding:0;background:none">${coinImg(5, 43)}</span></span>`;
+const TABS = [['home-outline', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people-outline', 'Сообщество'], ['settings-outline', 'Настройки']];
+const tabbar = () => `<div class="qfade"></div><div class="tbar"><div class="cap"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 1 ? ' on' : ''}">${io(i)}<span>${l}</span></div>`).join('')}</div>`;
+const quota = (s) => s.plus ? `<span class="gpill plus t">${io('infinite')}Без лимита</span>` : s.limit ? `<span class="gpill t">${io('chatbubbles-outline')}0 из 30</span>` : `<span class="gpill t">${io('chatbubbles-outline')}28 из 30</span>`;
+const offBar = () => `<div class="hm-off glass" style="margin-top:10px">${io('cloud-offline-outline')}<span><b>Нет сети.</b> Собеседник отвечает с сервера. Уроки и карточки работают.</span></div>`;
+const worldsGrid = () => `<div class="worlds">${WORLDS.map(([t, ic, h, d]) => `<div class="world t" style="background:${light(h)}"><i class="io big" aria-hidden="true">&#x${CODE[ic]};</i><b>${t}</b><small>${d} из 19 сценок</small><div class="tr"><i style="width:${Math.round(d / 19 * 100)}%"></i></div></div>`).join('')}</div>`;
+const cast = (on = 'mila', dim = false) => `<div class="cast"${dim ? ' style="opacity:.55"' : ''}>${ORDER_P.slice(0, 6).map((pid) => `<div class="face${pid === on ? ' on' : ''} t"><div class="f" style="${faceBg(P[pid][2])}">${P[pid][0][0]}</div>${P[pid][0]}</div>`).join('')}</div>`;
+const sceneRows = (rows) => rows.map(([id, t, pid, n, st]) => `<div class="srow${st === 'cur' ? ' cur' : ''} t">${av(pid, 42)}<div class="tx"><div class="t">${t}</div><div class="s">${P[pid][0]} · ${goalsWord(n)}</div></div>${st === 'done' ? `<span class="ok">${io('checkmark')}</span>` : `<span class="go">${io('chevron-forward')}</span>`}</div>`).join('');
+const goalsList = (goals, done) => goals.map((g, i) => `<div class="goal${done.includes(i) ? ' on' : done.length === goals.length - 1 && !done.includes(i) ? ' miss' : ''}"><span class="ck">${io('checkmark')}</span>${g.replace(/\.$/, '')}</div>`).join('');
+const chat = (glassy) => `
+  <div class="msg them">Hi! You must be new here. I'm Marina, I run the design team.</div>
+  <div class="msg me">Hi Marina, I'm Alex. I'm the new QA engineer.</div>
+  <div style="text-align:center"><span class="goal-toast">${io('checkmark-circle')}назвать себя</span></div>
+  <div class="msg them t">Nice to meet you, Alex! What are you working on today?<span class="tr">Приятно познакомиться, Алекс! Над чем ты сегодня работаешь?</span></div>
+  <div class="msg them t">Do you need anything from my team?<span class="tap">${io('language-outline')}Перевести</span></div>
+  ${glassy ? '' : `<div class="typing" aria-label="Марина пишет"><i></i><i></i><i></i></div>`}`;
+
+/* что нарисовать под каждым состоянием */
+const NEED = {
+  hub: ['3D: Мила по пояс, смотрит на зрителя, рука приподнята «привет»', 'Свет сцены «Общение»: тёплый розовый ключ справа сверху', '12 лиц-монет собеседников (для ленты «Собеседники»)', '4 обложки миров: Общение, Дела, Поездки, Повседневное'],
+  pick: ['3D: Марина по пояс, с планшетом, деловая полуулыбка', 'Свет сцены «Дела»: холодный фиолетовый', 'Лица Олега и Сэма для строк сценок'],
+  talk: ['3D: Марина крупно (плечи и голова), 3 эмоции: слушает · улыбается · ждёт ответа', 'Тот же свет «Дела», без деталей фона (под ним идёт переписка)'],
+  done: ['3D: Марина довольна, кивает или большой палец вверх', 'Праздничный свет: мягкое золотое сияние за героем'],
+  consent: ['3D: Мила и Денис вместе, приветливо, для шапки листа', 'Свет нейтральный, без цвета мира'],
+  limit: ['3D: Мила сидит, ждёт (поза «до встречи»), приглушённо', 'Свет вечерний, тёплое свечение справа сверху'],
+  plus: ['3D: Мила, как на входе, но с кольцом Plus в свете', 'Знак «без лимита» на стеклянной плашке (из набора Plus)'],
+  off: ['3D: Мила, приглушённо, «на паузе» (взгляд в сторону)', 'Тот же свет сцены, обесцвеченный на 40%'],
+};
+const need = (k) => `<div class="dl-need"><b>Картинки:</b><ul>${NEED[k].map((x) => `<li>${x}</li>`).join('')}</ul></div>`;
+
+/* ═════ A · Сцена ═════ */
+const aStage = (s, inner, h = 520, pid = 'mila', pose = '', heroBox = 'right:-36px;top:96px;width:260px;height:300px', top = '') => `<div class="sc${s.eve ? ' eve' : ''}" style="height:${h}px;border-radius:0 0 36px 36px"><div class="light" style="background:${light(P[pid][2], s.eve)}"></div>${hero(pid, heroBox, pose, s.off || s.limit)}<div class="scrim"></div>`
+  + `<div class="sc-top">${top || `${quota(s)}<span class="sp"></span>${avatarMe(s.plus)}`}</div>${s.off ? `<div style="position:absolute;left:20px;right:20px;top:100px;z-index:2">${offBar()}</div>` : ''}<div class="sc-body">${inner}</div></div>`;
+const aHubInner = (s) => {
+  if (s.off) return `<div class="sc-kick">Общение · Мила</div><div class="sc-title">Диалоги недоступны</div><div class="sc-sub">Собеседник отвечает с сервера — разговор продолжится, когда появится сеть.</div><div class="sc-cta"><div class="qbtn white off">${io('reload')}Повторить</div></div>`;
+  if (s.limit) return `<div class="sc-kick">${io('time-outline')}Новые ответы 1 ноября</div><div class="sc-title s">Ответы месяца закончились — продолжи с Plus</div><div class="meter">${Array.from({ length: 10 }, () => '<i class="on"></i>').join('')}</div><div class="sc-prog">30 из 30 ответов · голосом 3 раза в день</div><div class="sc-cta"><div class="qbtn white t">${io('diamond')}Plus снимает лимит ответов</div></div>`;
+  return `<div class="sc-kick">Продолжить · Общение</div><div class="sc-title">Поздороваться после знакомства</div><div class="sc-prog"><span class="bar"><i style="width:33%"></i></span>Мила · 2 из 6 целей</div><div class="sc-cta"><div class="qbtn white t">${io('play')}Продолжить</div><span class="qround glass t" aria-label="Сказать голосом">${io('mic')}</span></div>`;
+};
+const aHub = (s) => T(phone(`${aStage(s, aHubInner(s))}<div class="dpanel"><div class="ph-h">Собеседники<span>12</span></div>${cast('mila', s.off)}</div>`
+  + (s.limit ? `<div class="dpanel" style="margin-top:14px"><div class="plus-row">${io('infinite')}Диалоги без лимита</div><div class="plus-row">${io('mic')}Голосом без лимита</div><div class="plus-row">${io('flash')}Уроки без энергии</div></div>` : `<div class="sec-h">Ситуации<span>76 сценок</span></div>${worldsGrid()}`)
+  + '<div style="height:140px"></div>', { time: s.time, inStyle: 'padding:0', fixed: tabbar() }), 'onart');
+const aPick = (s) => T(phone(aStage(s, `<div class="sc-kick">Дела · 2 из 19 пройдено</div><div class="sc-title s">${SC.work_01.t}</div><div class="sc-sub">${SC.work_01.brief}</div><div class="sc-cta"><div class="qbtn white t">${io('play')}Начать диалог</div></div>`, 560, 'marina', 'с планшетом', 'right:-40px;top:90px;width:240px;height:280px', `<span class="qround glass t">${io('chevron-back')}</span><b style="font-size:17px">Дела</b><span class="sp"></span>${quota(s)}`)
+  + `<div class="dpanel"><div class="ph-h">Сценки<span>19</span></div>${sceneRows(WORK.slice(1))}</div><div style="height:140px"></div>`, { time: s.time, inStyle: 'padding:0', fixed: tabbar() }), 'onart');
+const talkHead = (s) => `<div class="sc dl-head"><div class="light" style="background:${light(P.marina[2])}"></div>${hero('marina', 'right:-10px;top:40px;width:220px;height:230px', 'слушает')}<div class="scrim"></div>`
+  + `<div class="dl-bar"><span class="qround glass t">${io('close')}</span><span class="sp"></span><span class="goals-chip t">${io('flag-outline')}Цели 2 из 6</span></div><div class="dl-who"><b>Марина</b><span>Представиться коллеге</span></div></div>`;
+const composer = () => `<div class="composer"><div class="row"><div class="dfield">Напиши или говори</div><span class="mic t" aria-label="Зажми и говори">${io('mic')}</span></div><div class="hint">Или зажми и говори</div></div>`;
+const aTalk = (s) => T(phone(`${talkHead(s)}<div class="chat">${chat(false)}</div>`, { time: s.time, inStyle: 'padding:0', fixed: composer() }), 'onart');
+const aDone = (s) => T(phone(aStage(s, `<div class="sc-kick">Представиться коллеге · Марина</div><div class="sc-title">Диалог пройден</div><div class="stats3"><div class="stat"><b>5/6</b><span>целей</span></div><div class="stat"><b>92%</b><span>точность</span></div><div class="stat"><b>1</b><span>ошибка</span></div></div>`, 520, 'marina', 'довольна', 'right:-30px;top:84px;width:250px;height:280px', `<span class="qround glass t">${io('close')}</span><span class="sp"></span>`)
+  + `<div class="dpanel"><div class="ph-h">Цели<span>5 из 6</span></div>${goalsList(SC.work_01.goals, [0, 1, 2, 3, 4])}</div><div class="btns"><div class="qbtn solid t">Готово</div><div class="qbtn ctl t">${io('refresh')}Повторить ошибки</div><div class="qbtn ctl t">Ещё раз</div></div>`,
+  { time: s.time, inStyle: 'padding:0' }), 'onart');
+const consentSheet = () => `<div class="qdim"></div><div class="qsheet consent"><div class="sheet-art"><div class="sc" style="position:absolute;inset:0"><div class="light" style="background:${light(250)}"></div>${hero('mila', 'left:30px;top:20px;width:170px;height:180px', 'вместе с Денисом')}${hero('denis', 'right:30px;top:24px;width:160px;height:170px')}</div></div>`
+  + `<div class="qgrab" style="margin-top:-6px;position:relative"></div><h3>Включить AI-диалоги?</h3><p>Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</p><div class="dnote">${io('shield-checkmark-outline')}<span>Можно выключить в настройках в любой момент.</span></div>`
+  + `<div style="margin-top:18px"><div class="qbtn solid t">Включить</div><div class="qbtn ctl t">Не сейчас</div></div></div>`;
+const aConsent = (s) => T(phone(`${aStage(s, aHubInner(s))}<div class="dpanel"><div class="ph-h">Собеседники<span>12</span></div>${cast()}</div>`, { time: s.time, inStyle: 'padding:0', fixed: tabbar(), overlay: consentSheet() }), 'onart');
+const A = { hub: aHub, pick: aPick, talk: aTalk, done: aDone, consent: aConsent, limit: aHub, plus: aHub, off: aHub };
+
+/* ═════ B · Театр: сцена во весь экран, реплики стеклом ═════ */
+const bFull = (s, pid, pose, inner, heroBox = 'left:50%;top:120px;width:330px;height:420px;transform:translateX(-50%)') => `<div class="sc b-full${s.eve ? ' eve' : ''}"><div class="light" style="background:${light(P[pid][2], s.eve)}"></div>${hero(pid, heroBox, pose, s.off || s.limit)}<div class="scrim" style="height:70%"></div>${inner}</div>`;
+const bHub = (s) => {
+  let body;
+  if (s.off) body = `<div class="sc-kick">Общение · Мила</div><div class="sc-title">Диалоги недоступны</div><div class="sc-sub">Собеседник отвечает с сервера. Уроки и карточки работают без сети.</div><div class="sc-cta"><div class="qbtn white off">${io('reload')}Повторить</div></div>`;
+  else if (s.limit) body = `<div class="sc-kick">${io('time-outline')}Новые ответы 1 ноября</div><div class="sc-title s">Ответы месяца закончились — продолжи с Plus</div><div class="sc-cta"><div class="qbtn white t">${io('diamond')}Plus снимает лимит ответов</div></div><div class="qchips" style="margin-top:12px"><span class="qchip glass t">${io('book-outline')}Уроки</span><span class="qchip glass t">${io('chatbubble-ellipses-outline')}Карточки</span></div>`;
+  else body = `<div class="sc-kick">Сейчас на сцене · Мила</div><div class="sc-title">Поздороваться после знакомства</div><div class="sc-prog"><span class="bar"><i style="width:33%"></i></span>2 из 6 целей</div><div class="sc-cta"><div class="qbtn white t">${io('play')}Продолжить</div><span class="qround glass t">${io('mic')}</span></div>`;
+  const posters = `<div style="position:absolute;left:0;right:0;bottom:112px;z-index:3"><div class="posters">${[['zoe', 'Перенести встречу'], ['denis', 'Спросить, как добраться'], ['marina', 'Представиться коллеге']].map(([pid, t]) => `<div class="poster small t" style="background:${light(P[pid][2])}${s.off ? ';opacity:.55' : ''}">${hero(pid, '')}<b>${t}</b><div class="s">${P[pid][0]}</div></div>`).join('')}</div></div>`;
+  return T(phone(bFull(s, 'mila', s.limit ? 'ждёт' : 'машет', `<div class="sc-top">${quota(s)}<span class="sp"></span>${avatarMe(s.plus)}</div>${s.off ? `<div style="position:absolute;left:20px;right:20px;top:100px;z-index:2">${offBar()}</div>` : ''}<div class="sc-body" style="bottom:340px">${body}</div>${posters}`, 'right:-50px;top:96px;width:300px;height:380px'), { time: s.time, inStyle: 'padding:0;height:100%', fixed: tabbar() }), 'onart');
+};
+const bPick = (s) => T(phone(`<div class="qhd" style="margin-top:56px;padding:0 16px"><span class="qround t">${io('chevron-back')}</span><div class="tt" style="font-size:26px">Ситуации</div><span class="sp"></span>${quota(s).replace('gpill', 'hm-pill')}</div>`
+  + `<div class="wtabs">${WORLDS.map(([t], i) => `<span class="qchip${i === 1 ? ' on' : ''} t">${t}</span>`).join('')}</div>`
+  + `<div class="posters" style="margin-top:16px">${[['marina', SC.work_01.t, 'Марина · 6 целей', true], ['oleg', 'Спросить файл', 'Олег · пройдено'], ['sam', 'Подтвердить время созвона', 'Сэм · пройдено']].map(([pid, t, sub, cur]) => `<div class="poster t" style="background:${light(P[pid][2])}">${hero(pid, '', cur ? 'с планшетом' : '')}<div class="k">Дела</div><b>${t}</b><div class="s">${sub}</div>${cur ? `<div class="qbtn white t" style="height:44px;font-size:15px;margin-top:12px">${io('play')}Начать диалог</div>` : ''}</div>`).join('')}</div>`
+  + `<div class="sec-h">Ещё в «Делах»<span>19</span></div><div class="qcard" style="margin:0 16px">${sceneRows(WORK.slice(3))}</div><div style="height:140px"></div>`, { time: s.time, inStyle: 'padding:0', fixed: tabbar() }));
+const bTalk = (s) => T(phone(bFull(s, 'marina', 'слушает', `<div class="dl-bar"><span class="qround glass t">${io('close')}</span><span class="sp"></span><span class="goals-chip t">${io('flag-outline')}Цели 2 из 6</span></div><div class="dl-who" style="top:108px;bottom:auto"><b>Марина</b><span>Представиться коллеге</span></div><div class="b-chat">${chat(true)}</div>`
+  + `<div class="b-comp"><div class="row" style="display:flex;gap:10px;align-items:center"><div class="dfield b-glass">Напиши или говори</div><span class="mic t">${io('mic')}</span></div><div style="text-align:center;font-size:13px;color:rgba(255,255,255,.8);margin-top:8px">Или зажми и говори</div></div>`, 'right:-40px;top:80px;width:280px;height:340px'), { time: s.time, inStyle: 'padding:0;height:100%' }), 'onart');
+const bDone = (s) => T(phone(bFull({ ...s, eve: true }, 'marina', 'довольна', `<div class="sc-top"><span class="qround glass t">${io('close')}</span></div><div class="sc-body" style="bottom:auto;top:400px"><div class="sc-kick">Представиться коллеге · Марина</div><div class="sc-title">Диалог пройден</div><div class="stats3"><div class="stat"><b>5/6</b><span>целей</span></div><div class="stat"><b>92%</b><span>точность</span></div><div class="stat"><b>1</b><span>ошибка</span></div></div><div class="b-glass" style="border-radius:22px;padding:6px 14px;margin-top:12px">${goalsList(SC.work_01.goals.slice(3), [0, 1]).replace(/goal miss/g, 'goal')}</div><div class="sc-cta"><div class="qbtn white t">Готово</div><span class="qround glass t">${io('refresh')}</span></div></div>`, 'left:50%;top:70px;width:300px;height:330px;transform:translateX(-50%)'), { time: s.time, inStyle: 'padding:0;height:100%' }), 'onart');
+const bConsent = (s) => T(phone(bFull(s, 'mila', 'машет', `<div class="sc-top">${quota(s)}</div>`, 'right:-50px;top:96px;width:300px;height:380px'), { time: s.time, inStyle: 'padding:0;height:100%', overlay: consentSheet() }), 'onart');
+const B = { hub: bHub, pick: bPick, talk: bTalk, done: bDone, consent: bConsent, limit: bHub, plus: bHub, off: bHub };
+
+/* ═════ C · Труппа: 12 героев каруселью, сценки — у героя ═════ */
+const cStage = (s, pid = 'mila', below = '', h = 0) => `<div class="sc" style="height:${h || (s.off ? 790 : s.limit ? 800 : 740)}px;border-radius:0 0 36px 36px"><div class="light" style="background:${light(P[pid][2], s.eve)}"></div><div class="scrim"></div>`
+  + `<div class="sc-top">${quota(s)}<span class="sp"></span>${avatarMe(s.plus)}</div>${s.off ? `<div style="position:absolute;left:20px;right:20px;top:100px;z-index:2">${offBar()}</div>` : ''}`
+  + `<div class="c-ring" style="margin-top:${s.off ? 170 : 104}px">${hero('zoe', 'left:-70px;top:70px;width:150px;height:200px', '', true).replace('<span class="tag">', '<span class="tag" style="display:none">')}${hero('denis', 'right:-70px;top:70px;width:150px;height:200px', '', true).replace('<span class="tag">', '<span class="tag" style="display:none">')}${hero(pid, 'left:50%;top:0;width:260px;height:310px;transform:translateX(-50%)', s.limit ? 'ждёт' : 'машет', s.off || s.limit)}</div>`
+  + `<div class="c-dots">${ORDER_P.map((k) => `<i class="${k === pid ? 'on' : ''}"></i>`).join('')}</div><div class="c-name"><b>${P[pid][0]}</b><span>${P[pid][1]}</span></div>${below}</div>`;
+const cHub = (s) => {
+  let cta;
+  if (s.off) cta = `<div style="padding:16px 20px 0"><div class="qbtn white off">Диалоги недоступны</div></div>`;
+  else if (s.limit) cta = `<div style="padding:12px 20px 0;text-align:center"><div class="sc-sub" style="margin:0 auto 12px">Ответы месяца закончились — продолжи с Plus</div><div class="qbtn white t">${io('diamond')}Plus снимает лимит ответов</div></div>`;
+  else cta = `<div style="padding:16px 20px 0" class="sc-cta"><div class="qbtn white t">${io('play')}Поговорить с Милой</div><span class="qround glass t">${io('mic')}</span></div>`;
+  return T(phone(cStage(s, 'mila', cta) + `<div class="dpanel"><div class="ph-h">Сценки Милы<span>9</span></div>${MILA.map(([t, n, st]) => `<div class="srow${st === 'cur' ? ' cur' : ''} t"><div class="tx"><div class="t">${t}</div><div class="s">${st === 'cur' ? '2 из 6 целей' : goalsWord(n)}</div></div>${st === 'done' ? `<span class="ok">${io('checkmark')}</span>` : `<span class="go">${io('chevron-forward')}</span>`}</div>`).join('')}</div><div style="height:140px"></div>`, { time: s.time, inStyle: 'padding:0', fixed: tabbar() }), 'onart');
+};
+const cPick = (s) => T(phone(cStage(s, 'marina', `<div style="padding:16px 20px 0"><div class="b-glass" style="border-radius:24px;padding:14px 16px;text-align:left"><div style="font-size:13px;color:rgba(255,255,255,.86)">Дела · сценка Марины</div><b style="display:block;font-size:21px;line-height:26px;margin-top:2px">${SC.work_01.t}</b><div style="font-size:14.5px;line-height:20px;color:rgba(255,255,255,.88);margin-top:6px">${SC.work_01.brief}</div><div class="qbtn white t" style="margin-top:12px;height:48px">${io('play')}Начать диалог</div></div></div>`, 930)
+  + `<div class="dpanel"><div class="ph-h">Цели сценки<span>6</span></div>${goalsList(SC.work_01.goals, [])}</div><div style="height:140px"></div>`, { time: s.time, inStyle: 'padding:0', fixed: tabbar() }), 'onart');
+const cTalk = (s) => T(phone(`<div class="sc" style="height:150px"><div class="light" style="background:${light(P.marina[2])}"></div>${hero('marina', 'right:6px;top:44px;width:120px;height:120px', '').replace('<span class="tag">', '<span class="tag" style="display:none">')}<div class="dl-bar"><span class="qround glass t">${io('close')}</span><div style="flex:1;min-width:0"><b style="font-size:18px">Марина</b><div style="font-size:13px;color:rgba(255,255,255,.86)">Представиться коллеге</div></div></div></div>`
+  + `<div style="padding:12px 16px 0;display:flex;gap:8px;flex-wrap:wrap">${SC.work_01.goals.slice(0, 3).map((g, i) => `<span class="qchip t" style="${i < 2 ? 'background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)' : ''}">${i < 2 ? io('checkmark') : ''}${g}</span>`).join('')}<span class="qchip t">+3</span></div><div style="padding:14px 16px 0">${chat(false)}</div>`, { time: s.time, inStyle: 'padding:0', fixed: composer() }), 'onart');
+const C = { hub: cHub, pick: cPick, talk: cTalk, done: aDone, consent: aConsent, limit: cHub, plus: cHub, off: cHub };
+
+/* ── состояния ── */
+const S = {
+  hub: { time: '18:10' }, pick: { time: '18:11' }, talk: { time: '18:12' }, done: { time: '18:16' }, consent: { time: '9:41' },
+  limit: { time: '21:40', limit: true, eve: true }, plus: { time: '18:10', plus: true }, off: { time: '13:05', off: true },
+};
+const ORDER = ['hub', 'pick', 'talk', 'done', 'consent', 'limit', 'plus', 'off'];
+const LBL = ['Вход в раздел', 'Выбор сценки · Дела', 'Диалог: «Перевести» по тапу, цели', 'Итог с целями', 'Согласие «Включить AI-диалоги»', 'Free: ответы месяца закончились', 'Plus: без лимита', 'Нет сети'];
+const CONCEPTS = [
+  ['a', 'A · Сцена<span class="dl-rec">рекомендую</span>', 'Как Главная «Сцена»: наверху сцена со светом мира и 3D-героем справа, крупно — следующий шаг и «Продолжить», рядом микрофон. Стеклянная панель «Собеседники» наезжает на сцену, ниже четыре мира. В диалоге сцена сжимается в шапку с героем, переписка — на панели, цели видны чипом «Цели 2 из 6» и вспыхивают по ходу. Итог — та же сцена с довольным героем и списком целей.', A],
+  ['b', 'B · Театр', 'Сцена на весь экран, герой в полный рост, всё остальное — стекло поверх света. Сценки — афиши с героями, их листают пальцем. В диалоге реплики плывут стеклянными пузырями прямо на сцене, как субтитры. Самый «кинематографичный», но тяжелее читать длинные реплики.', B],
+  ['c', 'C · Труппа', 'Вход — карусель 12 собеседников: герой в центре, соседи по краям, точки снизу. Сначала выбираешь, с кем говорить, потом его сценки. В диалоге сцена — узкая полоса с героем, сверху чипы целей. Итог и согласие — как в A.', C],
+];
+const why = () => `<div class="dl-why"><b>Почему A.</b><ul><li>Тот же язык, что на Главной: один свет, один герой, одно главное действие — раздел сразу узнаётся как часть 2.0.</li><li>Переписка остаётся читаемой: реплики на спокойной панели, а не поверх картинки (в B длинные фразы спорят со светом).</li><li>Цели не прячутся: чип «Цели 2 из 6» в шапке и короткая вспышка «✓ назвать себя» в ленте, итог перечисляет все шесть.</li><li>Ложится на код: те же данные (миры, сценки, персонажи, цели с сервера, лимит, согласие), новых запросов нет.</li></ul></div>`;
+const motion = () => `<section class="block" id="dmo"><h2>Движение и отклик</h2><table class="cmp"><tr><th>Где</th><th>Что происходит</th><th>Время и кривая</th></tr>`
+  + [['Любая кнопка и строка', 'сжатие до 0,97 сразу под пальцем', '120 мс, (0.23, 1, 0.32, 1)'],
+    ['Вход в диалог', 'сцена сжимается в шапку, герой уменьшается и остаётся справа; панель переписки поднимается снизу', '360 мс, (0.32, 0.72, 0, 1)'],
+    ['Отправка реплики', 'своя реплика появляется сразу (до ответа сервера), «пишет…» — пока ждём ответ', 'появление 180 мс, ease-out'],
+    ['Цель выполнена', 'чип «✓ назвать себя» коротко вспыхивает в ленте, счётчик в шапке докручивается', '240 мс; с уменьшенным движением — без вспышки'],
+    ['«Перевести»', 'перевод раскрывается под репликой без прыжка ленты', '200 мс, ease-out'],
+    ['Микрофон', 'зажал — кнопка растёт до 1,08 и дышит, пока идёт запись; отпустил — уходит в отправку', '160 мс; дыхание 1,2 с'],
+    ['C · карусель', 'листание героев за пальцем, отпускание по скорости, соседи затемнены', 'пружина без отскока'],
+    ['Итог', 'цели отмечаются по очереди, затем цифры', '80 мс шаг; с уменьшенным движением сразу']]
+    .map((r) => `<tr>${r.map((c, i) => `<td>${i === 0 ? `<b>${c}</b>` : c}</td>`).join('')}</tr>`).join('') + '</table></section>';
+const render = () => {
+  document.getElementById('root').innerHTML = CONCEPTS.map(([id, title, lead, V], k) => block(id, title, lead, ORDER.map((st, i) => col(LBL[i], V[st](S[st]) + need(st)))) + (k === 0 ? why() : '')).join('') + motion();
+  document.querySelectorAll('.thm .chp').forEach((c) => c.classList.toggle('on', c.dataset.t === TH));
+};
+document.querySelector('.thm').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { TH = c.dataset.t; render(); K.init(); } });
+if (new URLSearchParams(location.search).get('t') === 'marine') TH = 'marine';
+render();
+K.init();
+})();
+
+</script>
+</body>
+</html>

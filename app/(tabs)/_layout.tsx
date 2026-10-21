@@ -18,6 +18,12 @@ import { TabProvider, useTabNav } from '../TabContext';
 import { createTapLatencyProfilerHandler, noteTapAction, TAP_LATENCY_TRACE_ENABLED, traceLog } from '../tap_latency_trace';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
+import { isLiteModeOn } from '../../constants/lite_mode_flag';
+import { initLiteMode } from '../lite_mode';
+
+// зачем (Сверка 21.10, «Лёгкий режим»): флаг выставляем при загрузке слоя вкладок — до первого рендера плашек с тенями. Дёшево:
+// чтение ОЗУ из кэша expo-device + один getItem (его и так делает low_power.ts), повтор безопасен.
+initLiteMode();
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
 import V2TabBar, { V2_TAB_BAR_HEIGHT, type V2TabBarItem } from '../../components/v2/V2TabBar';
 import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
@@ -1099,6 +1105,13 @@ function ReleasedTabLayout() {
         cleanTicks = tickClean ? cleanTicks + 1 : 0;
         const isQuiet = cleanTicks >= BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS;
         // выбранная вкладка монтируется — потолок ожидания её не перебивает
+        // зачем (Сверка 21.10, «Лёгкий режим»): на слабом телефоне принудительный монтаж вкладки по потолку 8 с сам даёт лаг в самый
+        // неудобный момент — не монтируем; вкладка поднимется по первому тапу (путь foreground ниже). Тихий момент по-прежнему монтирует.
+        if (!isQuiet && quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS && !foregroundBusy && isLiteModeOn()) {
+          console.log('[PERF-LITE] premount_ceiling_skipped', JSON.stringify({ idx, quietWaitMs, cleanTicks, lastLagMs, maxLagMs })); // guard-ok: ранний выход логирует причину
+          finish('skipped_lite_ceiling', { quietWaitMs });
+          return;
+        }
         if (isQuiet || (quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS && !foregroundBusy)) {
           startWork({ quietReason: isQuiet ? 'quiet' : 'ceiling', quietWaitMs, cleanTicks, lastLagMs, maxLagMs, sinceTouchMs: Math.min(sinceTouchMs, 99999) });
           return;

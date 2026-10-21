@@ -1,4 +1,7 @@
 import type { GlassTokens } from './liquidGlassThemePalette';
+import { isLiteModeOn } from './lite_mode_flag';
+// зачем (Сверка 21.10, пункт №39, Galaxy A04): мягкие размытые тени — самое дорогое в отрисовке на слабом GPU. В «Лёгком режиме»
+// (ОЗУ < 3 ГБ или ручной переключатель) все четыре функции тени отдают пустой список слоёв; плашки и блики остаются, вид отделяется тоном.
 
 // зачем (владелец 12.10, «ВТОРОЙ ВАРИАНТ ДЕЛАЕМ!»): контейнеры БЕЗ обводок — плашку отделяют тень и мягкий блик-градиент сверху,
 // выбранное/главное приподнято. Это ЕДИНСТВЕННЫЙ источник чисел спеки docs/design/v2-app/SHADOW_STYLE_SPEC.md в виде готовых
@@ -48,7 +51,7 @@ export function raisedGradient(g: Tokens): VerticalGradient {
 
 /** Тень плашки: тёмная `0 16 28 −14`, светлая `0 14 26 −14` + мягкий `0 1 3`. */
 export function plateShadowStyle(g: Tokens): readonly ShadowLayer[] {
-  if (devShadowsOff) return NO_SHADOW;
+  if (devShadowsOff || isLiteModeOn()) return NO_SHADOW;
   return g.isLight
     ? [layer(14, 26, -14, g.plateShadow), layer(1, 3, 0, g.plateShadowSoft)]
     : [layer(16, 28, -14, g.plateShadow)];
@@ -56,13 +59,13 @@ export function plateShadowStyle(g: Tokens): readonly ShadowLayer[] {
 
 /** Тень вложенного (плитка-иконка, кнопка внутри плашки): тёмная `0 6 12 −6`, светлая `0 5 10 −5`. */
 export function nestedShadowStyle(g: Tokens): readonly ShadowLayer[] {
-  if (devShadowsOff) return NO_SHADOW;
+  if (devShadowsOff || isLiteModeOn()) return NO_SHADOW;
   return [g.isLight ? layer(5, 10, -5, g.nestedShadow) : layer(6, 12, -6, g.nestedShadow)];
 }
 
 /** Тень выбранного/главного: `0 26 40 −14` (+ мягкий `0 2 4` в светлой); сам элемент сдвигается на RAISED_LIFT. */
 export function raisedShadowStyle(g: Tokens): readonly ShadowLayer[] {
-  if (devShadowsOff) return NO_SHADOW;
+  if (devShadowsOff || isLiteModeOn()) return NO_SHADOW;
   return g.isLight
     ? [layer(26, 40, -14, g.raisedShadow), layer(2, 4, 0, g.raisedShadowSoft)]
     : [layer(26, 40, -14, g.raisedShadow)];
@@ -70,6 +73,6 @@ export function raisedShadowStyle(g: Tokens): readonly ShadowLayer[] {
 
 /** Кнопка действия: цветная тень `0 14 24 −10` цвета темы 60 %. */
 export function actionShadowStyle(g: Pick<Tokens, 'accent'>): readonly ShadowLayer[] {
-  if (devShadowsOff) return NO_SHADOW;
+  if (devShadowsOff || isLiteModeOn()) return NO_SHADOW;
   return [layer(14, 24, -10, `${g.accent.slice(0, 7)}99`)];
 }

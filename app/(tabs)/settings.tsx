@@ -46,6 +46,7 @@ import { useLang } from '../../components/LangContext';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
+import { setLiteModeOverride, useLiteMode } from '../lite_mode';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { type StudyTarget } from '../study_target';
@@ -1072,6 +1073,10 @@ export default function SettingsMain() {
     uiSounds: soundSettings.uiSounds, voiceOut: soundSettings.voiceOut, snapshotProfile: appSnapshot.profile, snapshotSettings: appSnapshot.settings,
     tabContentBottomPad, insetTop: insets.top, insetBottom: insets.bottom,
   }));
+  // зачем (Сверка 21.10, пункт №39, Galaxy A04): «Лёгкий режим» — тени и принудительная предзагрузка вкладок выключаются. Название самодостаточное
+  // (правило владельца: без подписи-расшифровки). Переключатель мгновенный: флаг меняется сразу, запись в хранилище догоняет (app/lite_mode.ts).
+  const liteModeOn = useLiteMode();
+  const liteModeLabel = L('Лёгкий режим', 'Легкий режим', 'Lite mode', 'Modo ligero', 'Modo leve', 'Chế độ nhẹ', 'Mode ringan', 'Hafif mod', 'Tryb lekki');
   const tapHapticsLabel = L('Тактильный отклик', 'Тактильний відгук', 'Haptic feedback', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna');
 
   return (
@@ -1285,6 +1290,21 @@ export default function SettingsMain() {
                 value={hapticTap}
                 onValueChange={toggleTapHaptics}
                 accessibilityLabel={tapHapticsLabel}
+              />
+            )}
+          />
+          <SettingsGlassRow
+            glass={glass}
+            testID="settings-lite-mode-row"
+            icon="speedometer-outline"
+            title={liteModeLabel}
+            right={(
+              <SettingsGlassSwitch
+                testID="settings-lite-mode-switch"
+                glass={glass}
+                value={liteModeOn}
+                onValueChange={(value) => { void setLiteModeOverride(value); }}
+                accessibilityLabel={liteModeLabel}
               />
             )}
           />

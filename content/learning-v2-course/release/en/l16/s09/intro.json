@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. plunger — вантуз. Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. I'll get the plunger. — Я принесу вантуз.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. plunger — вантуз. Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. I'll get the plunger. — Я принесу вантуз."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-09:intro1:r1",
+              "text": "I'll get the plunger."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro1:r2",
+              "text": "I'll to get the plunger."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro1:r3",
+              "text": "I get the plunger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-09:intro1:r1",
+              "text": "I'll get the plunger."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro1:r2",
+              "text": "I'll to get the plunger."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro1:r3",
+              "text": "I get the plunger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "loofah — мочалка из люфы. Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. I'll use a loofah. — Я воспользуюсь мочалкой из люфы.",
+        "uk": "loofah — мочалка з люфи. Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. I'll use a loofah. — Я скористаюся мочалкою з люфи."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-09:intro2:r1",
+              "text": "I'll use a loofah."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro2:r2",
+              "text": "I'll to use a loofah."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro2:r3",
+              "text": "I use a loofah."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-09:intro2:r1",
+              "text": "I'll use a loofah."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro2:r2",
+              "text": "I'll to use a loofah."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro2:r3",
+              "text": "I use a loofah."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "bath plug — пробка для сливного отверстия ванны. draining board — поверхность рядом с мойкой для стекания воды с посуды. Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. I'll clear the draining board. — Я освобожу поверхность для стекания воды с посуды.",
+        "uk": "bath plug — затичка для зливного отвору ванни. draining board — поверхня біля мийки для стікання води з посуду. Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. I'll clear the draining board. — Я звільню поверхню для стікання води з посуду."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-09:intro3:r1",
+              "text": "I'll clear the draining board."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro3:r2",
+              "text": "I'll to clear the draining board."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro3:r3",
+              "text": "I clear the draining board."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-09:intro3:r1",
+              "text": "I'll clear the draining board."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro3:r2",
+              "text": "I'll to clear the draining board."
+            },
+            {
+              "responseId": "en:lesson-16:session-09:intro3:r3",
+              "text": "I clear the draining board."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6b534690d57c765413088ec00802daf7fd94ce07b843b9a0afde19bd826b9b9d"
+}

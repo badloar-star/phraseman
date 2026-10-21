@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-09:word:plunger",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — plunger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:plunger:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — plunger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:plunger:audio",
+            "transcript": "plunger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:plunger:r1",
+              "targetText": "plunger",
+              "meaningByLocale": {
+                "ru": "вантуз.",
+                "uk": "вантуз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plunger",
+            "definitionByLocale": {
+              "ru": "вантуз.",
+              "uk": "вантуз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Скажите: «Я принесу вантуз».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Скажите: «Я принесу вантуз».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll get the plunger.",
+          "localizedMeaning": {
+            "ru": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Скажите: «Я принесу вантуз».",
+            "uk": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Скажіть: «Я принесу вантуз»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "get",
+            "the",
+            "plunger"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i02:r1",
+            "text": "I'll get the plunger."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i02:r2",
+            "text": "We'll get the plunger."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i02:r3",
+            "text": "They'll get the plunger."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i02:audio",
+            "transcript": "I'll get the plunger."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i02:r1",
+              "targetText": "I'll get the plunger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i02:r2",
+              "targetText": "We'll get the plunger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i02:r3",
+              "targetText": "They'll get the plunger.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll get the plunger.",
+                "uk": "У записі звучить I'll get the plunger."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll get the plunger.",
+                "uk": "У записі звучить I'll get the plunger."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i03:r1",
+            "text": "I'll get"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i03:r2",
+            "text": "I'll to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i03:r3",
+            "text": "I get"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+            "uk": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the plunger.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i03:r1",
+              "text": "I'll get"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i03:r2",
+              "text": "I'll to get"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i03:r3",
+              "text": "I get"
+            }
+          ],
+          "testedDimension": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:word:loofah",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — loofah",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:loofah:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — loofah",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:loofah:audio",
+            "transcript": "loofah"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:loofah:r1",
+              "targetText": "loofah",
+              "meaningByLocale": {
+                "ru": "мочалка из люфы.",
+                "uk": "мочалка з люфи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "loofah",
+            "definitionByLocale": {
+              "ru": "мочалка из люфы.",
+              "uk": "мочалка з люфи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Скажите: «Я воспользуюсь мочалкой из люфы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Скажите: «Я воспользуюсь мочалкой из люфы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll use a loofah.",
+          "localizedMeaning": {
+            "ru": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Скажите: «Я воспользуюсь мочалкой из люфы».",
+            "uk": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Скажіть: «Я скористаюся мочалкою з люфи»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "use",
+            "a",
+            "loofah"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i05:r1",
+            "text": "I'll use a loofah."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i05:r2",
+            "text": "We'll use a loofah."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i05:r3",
+            "text": "They'll use a loofah."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i05:audio",
+            "transcript": "I'll use a loofah."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i05:r1",
+              "targetText": "I'll use a loofah.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i05:r2",
+              "targetText": "We'll use a loofah.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i05:r3",
+              "targetText": "They'll use a loofah.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use a loofah.",
+                "uk": "У записі звучить I'll use a loofah."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use a loofah.",
+                "uk": "У записі звучить I'll use a loofah."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i06:r1",
+            "text": "I'll use"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i06:r2",
+            "text": "I'll to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i06:r3",
+            "text": "I use"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+            "uk": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ a loofah.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i06:r1",
+              "text": "I'll use"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i06:r2",
+              "text": "I'll to use"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i06:r3",
+              "text": "I use"
+            }
+          ],
+          "testedDimension": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:word:bath-plug",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bath plug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:bath-plug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bath plug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:bath-plug:audio",
+            "transcript": "bath plug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:bath-plug:r1",
+              "targetText": "bath plug",
+              "meaningByLocale": {
+                "ru": "пробка для сливного отверстия ванны.",
+                "uk": "затичка для зливного отвору ванни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bath plug",
+            "definitionByLocale": {
+              "ru": "пробка для сливного отверстия ванны.",
+              "uk": "затичка для зливного отвору ванни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Скажите: «Я вставлю пробку в слив ванны».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Скажите: «Я вставлю пробку в слив ванны».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll put in the bath plug.",
+          "localizedMeaning": {
+            "ru": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Скажите: «Я вставлю пробку в слив ванны».",
+            "uk": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Скажіть: «Я вставлю затичку в злив ванни»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "put",
+            "in",
+            "the",
+            "bath",
+            "plug"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i08:r1",
+            "text": "I'll put in the bath plug."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i08:r2",
+            "text": "We'll put in the bath plug."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i08:r3",
+            "text": "They'll put in the bath plug."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i08:audio",
+            "transcript": "I'll put in the bath plug."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i08:r1",
+              "targetText": "I'll put in the bath plug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i08:r2",
+              "targetText": "We'll put in the bath plug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i08:r3",
+              "targetText": "They'll put in the bath plug.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put in the bath plug.",
+                "uk": "У записі звучить I'll put in the bath plug."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put in the bath plug.",
+                "uk": "У записі звучить I'll put in the bath plug."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i09:r1",
+            "text": "I'll put"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i09:r2",
+            "text": "I'll to put"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i09:r3",
+            "text": "I put"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+            "uk": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ in the bath plug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i09:r1",
+              "text": "I'll put"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i09:r2",
+              "text": "I'll to put"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i09:r3",
+              "text": "I put"
+            }
+          ],
+          "testedDimension": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:word:draining-board",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — draining board",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:draining-board:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — draining board",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:draining-board:audio",
+            "transcript": "draining board"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:draining-board:r1",
+              "targetText": "draining board",
+              "meaningByLocale": {
+                "ru": "поверхность рядом с мойкой для стекания воды с посуды.",
+                "uk": "поверхня біля мийки для стікання води з посуду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "draining board",
+            "definitionByLocale": {
+              "ru": "поверхность рядом с мойкой для стекания воды с посуды.",
+              "uk": "поверхня біля мийки для стікання води з посуду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Скажите: «Я освобожу поверхность для стекания воды с посуды».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Скажите: «Я освобожу поверхность для стекания воды с посуды».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll clear the draining board.",
+          "localizedMeaning": {
+            "ru": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Скажите: «Я освобожу поверхность для стекания воды с посуды».",
+            "uk": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Скажіть: «Я звільню поверхню для стікання води з посуду»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "clear",
+            "the",
+            "draining",
+            "board"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i11:r1",
+            "text": "I'll clear the draining board."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i11:r2",
+            "text": "We'll clear the draining board."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i11:r3",
+            "text": "They'll clear the draining board."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i11:audio",
+            "transcript": "I'll clear the draining board."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i11:r1",
+              "targetText": "I'll clear the draining board.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i11:r2",
+              "targetText": "We'll clear the draining board.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i11:r3",
+              "targetText": "They'll clear the draining board.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear the draining board.",
+                "uk": "У записі звучить I'll clear the draining board."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear the draining board.",
+                "uk": "У записі звучить I'll clear the draining board."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i12:r1",
+            "text": "I'll clear"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i12:r2",
+            "text": "I'll to clear"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i12:r3",
+            "text": "I clear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+            "uk": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the draining board.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i12:r1",
+              "text": "I'll clear"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i12:r2",
+              "text": "I'll to clear"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i12:r3",
+              "text": "I clear"
+            }
+          ],
+          "testedDimension": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-09:i13:p1",
+              "target": "plunger",
+              "meaningByLocale": {
+                "ru": "вантуз",
+                "uk": "вантуз"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-09:i13:p2",
+              "target": "loofah",
+              "meaningByLocale": {
+                "ru": "мочалка из люфы",
+                "uk": "мочалка з люфи"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-09:i13:p3",
+              "target": "bath plug",
+              "meaningByLocale": {
+                "ru": "пробка для сливного отверстия ванны",
+                "uk": "затичка для зливного отвору ванни"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-09:i13:p4",
+              "target": "draining board",
+              "meaningByLocale": {
+                "ru": "поверхность рядом с мойкой для стекания воды с посуды",
+                "uk": "поверхня біля мийки для стікання води з посуду"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plunger",
+            "loofah",
+            "bath plug",
+            "draining board"
+          ],
+          "rightColumn": [
+            "вантуз",
+            "мочалка из люфы",
+            "пробка для сливного отверстия ванны",
+            "поверхность рядом с мойкой для стекания воды с посуды"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i14:audio",
+            "transcript": "I'll get the plunger."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll get the plunger.",
+          "orderedTokens": [
+            "I'll",
+            "get",
+            "the",
+            "plunger"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i15:audio",
+            "transcript": "I'll put in the bath plug."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll put in the bath plug.",
+          "orderedTokens": [
+            "I'll",
+            "put",
+            "in",
+            "the",
+            "bath",
+            "plug"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i16:audio",
+            "transcript": "I'll use a loofah."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll use a loofah.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i17:audio",
+            "transcript": "I'll clear the draining board."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll clear the draining board.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-09:word:plunger",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — plunger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:plunger:audio"
+        ],
+        "accessibilityLabel": "Картка слова — plunger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:plunger:audio",
+            "transcript": "plunger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:plunger:r1",
+              "targetText": "plunger",
+              "meaningByLocale": {
+                "ru": "вантуз.",
+                "uk": "вантуз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plunger",
+            "definitionByLocale": {
+              "ru": "вантуз.",
+              "uk": "вантуз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Скажіть: «Я принесу вантуз».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Скажіть: «Я принесу вантуз».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll get the plunger.",
+          "localizedMeaning": {
+            "ru": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Скажите: «Я принесу вантуз».",
+            "uk": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Скажіть: «Я принесу вантуз»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "get",
+            "the",
+            "plunger"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i02:r1",
+            "text": "I'll get the plunger."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i02:r2",
+            "text": "We'll get the plunger."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i02:r3",
+            "text": "They'll get the plunger."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i02:audio",
+            "transcript": "I'll get the plunger."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i02:r1",
+              "targetText": "I'll get the plunger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i02:r2",
+              "targetText": "We'll get the plunger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i02:r3",
+              "targetText": "They'll get the plunger.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll get the plunger.",
+                "uk": "У записі звучить I'll get the plunger."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll get the plunger.",
+                "uk": "У записі звучить I'll get the plunger."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i03:r1",
+            "text": "I'll get"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i03:r2",
+            "text": "I'll to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i03:r3",
+            "text": "I get"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вода не уходит из раковины. Вы только что это заметили и решаете принести вантуз. Используйте I'll.",
+            "uk": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the plunger.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i03:r1",
+              "text": "I'll get"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i03:r2",
+              "text": "I'll to get"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i03:r3",
+              "text": "I get"
+            }
+          ],
+          "testedDimension": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Вода не стікає з раковини. Ви щойно це помітили й вирішуєте принести вантуз. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:word:loofah",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — loofah",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:loofah:audio"
+        ],
+        "accessibilityLabel": "Картка слова — loofah",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:loofah:audio",
+            "transcript": "loofah"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:loofah:r1",
+              "targetText": "loofah",
+              "meaningByLocale": {
+                "ru": "мочалка из люфы.",
+                "uk": "мочалка з люфи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "loofah",
+            "definitionByLocale": {
+              "ru": "мочалка из люфы.",
+              "uk": "мочалка з люфи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Скажіть: «Я скористаюся мочалкою з люфи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Скажіть: «Я скористаюся мочалкою з люфи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll use a loofah.",
+          "localizedMeaning": {
+            "ru": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Скажите: «Я воспользуюсь мочалкой из люфы».",
+            "uk": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Скажіть: «Я скористаюся мочалкою з люфи»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "use",
+            "a",
+            "loofah"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i05:r1",
+            "text": "I'll use a loofah."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i05:r2",
+            "text": "We'll use a loofah."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i05:r3",
+            "text": "They'll use a loofah."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i05:audio",
+            "transcript": "I'll use a loofah."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i05:r1",
+              "targetText": "I'll use a loofah.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i05:r2",
+              "targetText": "We'll use a loofah.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i05:r3",
+              "targetText": "They'll use a loofah.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use a loofah.",
+                "uk": "У записі звучить I'll use a loofah."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use a loofah.",
+                "uk": "У записі звучить I'll use a loofah."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i06:r1",
+            "text": "I'll use"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i06:r2",
+            "text": "I'll to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i06:r3",
+            "text": "I use"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы собираетесь мыться и только сейчас выбираете между губкой и мочалкой из люфы. Выбрали вторую. Используйте I'll.",
+            "uk": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ a loofah.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i06:r1",
+              "text": "I'll use"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i06:r2",
+              "text": "I'll to use"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i06:r3",
+              "text": "I use"
+            }
+          ],
+          "testedDimension": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:word:bath-plug",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bath plug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:bath-plug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bath plug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:bath-plug:audio",
+            "transcript": "bath plug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:bath-plug:r1",
+              "targetText": "bath plug",
+              "meaningByLocale": {
+                "ru": "пробка для сливного отверстия ванны.",
+                "uk": "затичка для зливного отвору ванни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bath plug",
+            "definitionByLocale": {
+              "ru": "пробка для сливного отверстия ванны.",
+              "uk": "затичка для зливного отвору ванни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Скажіть: «Я вставлю затичку в злив ванни».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Скажіть: «Я вставлю затичку в злив ванни».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll put in the bath plug.",
+          "localizedMeaning": {
+            "ru": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Скажите: «Я вставлю пробку в слив ванны».",
+            "uk": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Скажіть: «Я вставлю затичку в злив ванни»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "put",
+            "in",
+            "the",
+            "bath",
+            "plug"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i08:r1",
+            "text": "I'll put in the bath plug."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i08:r2",
+            "text": "We'll put in the bath plug."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i08:r3",
+            "text": "They'll put in the bath plug."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i08:audio",
+            "transcript": "I'll put in the bath plug."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i08:r1",
+              "targetText": "I'll put in the bath plug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i08:r2",
+              "targetText": "We'll put in the bath plug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i08:r3",
+              "targetText": "They'll put in the bath plug.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put in the bath plug.",
+                "uk": "У записі звучить I'll put in the bath plug."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put in the bath plug.",
+                "uk": "У записі звучить I'll put in the bath plug."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i09:r1",
+            "text": "I'll put"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i09:r2",
+            "text": "I'll to put"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i09:r3",
+            "text": "I put"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы открыли воду и заметили, что она уходит в слив. Решаете сейчас вставить пробку. Используйте I'll.",
+            "uk": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ in the bath plug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i09:r1",
+              "text": "I'll put"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i09:r2",
+              "text": "I'll to put"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i09:r3",
+              "text": "I put"
+            }
+          ],
+          "testedDimension": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви відкрили воду й помітили, що вона стікає в злив. Вирішуєте зараз вставити затичку. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:word:draining-board",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — draining board",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:word:draining-board:audio"
+        ],
+        "accessibilityLabel": "Картка слова — draining board",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:word:draining-board:audio",
+            "transcript": "draining board"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:word:draining-board:r1",
+              "targetText": "draining board",
+              "meaningByLocale": {
+                "ru": "поверхность рядом с мойкой для стекания воды с посуды.",
+                "uk": "поверхня біля мийки для стікання води з посуду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "draining board",
+            "definitionByLocale": {
+              "ru": "поверхность рядом с мойкой для стекания воды с посуды.",
+              "uk": "поверхня біля мийки для стікання води з посуду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Скажіть: «Я звільню поверхню для стікання води з посуду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Скажіть: «Я звільню поверхню для стікання води з посуду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll clear the draining board.",
+          "localizedMeaning": {
+            "ru": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Скажите: «Я освобожу поверхность для стекания воды с посуды».",
+            "uk": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Скажіть: «Я звільню поверхню для стікання води з посуду»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "clear",
+            "the",
+            "draining",
+            "board"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i11:r1",
+            "text": "I'll clear the draining board."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i11:r2",
+            "text": "We'll clear the draining board."
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i11:r3",
+            "text": "They'll clear the draining board."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i11:audio",
+            "transcript": "I'll clear the draining board."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-09:i11:r1",
+              "targetText": "I'll clear the draining board.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i11:r2",
+              "targetText": "We'll clear the draining board.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i11:r3",
+              "targetText": "They'll clear the draining board.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear the draining board.",
+                "uk": "У записі звучить I'll clear the draining board."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear the draining board.",
+                "uk": "У записі звучить I'll clear the draining board."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-09:i12:r1",
+            "text": "I'll clear"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i12:r2",
+            "text": "I'll to clear"
+          },
+          {
+            "responseId": "en:lesson-16:session-09:i12:r3",
+            "text": "I clear"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите поставить мокрые тарелки рядом с мойкой, но места нет. Сейчас решаете его освободить. Используйте I'll.",
+            "uk": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the draining board.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-09:i12:r1",
+              "text": "I'll clear"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i12:r2",
+              "text": "I'll to clear"
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i12:r3",
+              "text": "I clear"
+            }
+          ],
+          "testedDimension": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-09:i13:p1",
+              "target": "plunger",
+              "meaningByLocale": {
+                "ru": "вантуз",
+                "uk": "вантуз"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-09:i13:p2",
+              "target": "loofah",
+              "meaningByLocale": {
+                "ru": "мочалка из люфы",
+                "uk": "мочалка з люфи"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-09:i13:p3",
+              "target": "bath plug",
+              "meaningByLocale": {
+                "ru": "пробка для сливного отверстия ванны",
+                "uk": "затичка для зливного отвору ванни"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-09:i13:p4",
+              "target": "draining board",
+              "meaningByLocale": {
+                "ru": "поверхность рядом с мойкой для стекания воды с посуды",
+                "uk": "поверхня біля мийки для стікання води з посуду"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plunger",
+            "loofah",
+            "bath plug",
+            "draining board"
+          ],
+          "rightColumn": [
+            "вантуз",
+            "мочалка з люфи",
+            "затичка для зливного отвору ванни",
+            "поверхня біля мийки для стікання води з посуду"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i14:audio",
+            "transcript": "I'll get the plunger."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll get the plunger.",
+          "orderedTokens": [
+            "I'll",
+            "get",
+            "the",
+            "plunger"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i15:audio",
+            "transcript": "I'll put in the bath plug."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll put in the bath plug.",
+          "orderedTokens": [
+            "I'll",
+            "put",
+            "in",
+            "the",
+            "bath",
+            "plug"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Ви збираєтеся митися й лише зараз вибираєте між губкою та мочалкою з люфи. Вибрали другу. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i16:audio",
+            "transcript": "I'll use a loofah."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll use a loofah.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Ви хочете поставити мокрі тарілки біля мийки, але місця немає. Зараз вирішуєте його звільнити. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-09:i17:audio",
+            "transcript": "I'll clear the draining board."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll clear the draining board.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-09:word:plunger",
+      "correctText": "plunger",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i01",
+      "correctText": "I'll get the plunger.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i02",
+      "correctText": "I'll get the plunger.",
+      "correctResponseId": "en:lesson-16:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i03",
+      "correctText": "I'll get",
+      "correctResponseId": "en:lesson-16:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:word:loofah",
+      "correctText": "loofah",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i04",
+      "correctText": "I'll use a loofah.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i05",
+      "correctText": "I'll use a loofah.",
+      "correctResponseId": "en:lesson-16:session-09:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i06",
+      "correctText": "I'll use",
+      "correctResponseId": "en:lesson-16:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:word:bath-plug",
+      "correctText": "bath plug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i07",
+      "correctText": "I'll put in the bath plug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i08",
+      "correctText": "I'll put in the bath plug.",
+      "correctResponseId": "en:lesson-16:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i09",
+      "correctText": "I'll put",
+      "correctResponseId": "en:lesson-16:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:word:draining-board",
+      "correctText": "draining board",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i10",
+      "correctText": "I'll clear the draining board.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i11",
+      "correctText": "I'll clear the draining board.",
+      "correctResponseId": "en:lesson-16:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i12",
+      "correctText": "I'll clear",
+      "correctResponseId": "en:lesson-16:session-09:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i14",
+      "correctText": "I'll get the plunger.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i15",
+      "correctText": "I'll put in the bath plug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i16",
+      "correctText": "I'll use a loofah.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-09:i17",
+      "correctText": "I'll clear the draining board.",
+      "correctResponseId": null
+    }
+  ]
+}

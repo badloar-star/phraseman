@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-13:word:wring-out",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wring out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:word:wring-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wring out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:word:wring-out:audio",
+          "transcript": "wring out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:word:wring-out:r1",
+            "targetText": "wring out",
+            "meaningByLocale": {
+              "ru": "выжать воду, скручивая ткань.",
+              "uk": "викрутити воду, скручуючи тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wring out",
+          "definitionByLocale": {
+            "ru": "выжать воду, скручивая ткань.",
+            "uk": "викрутити воду, скручуючи тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Скажите: «Я выжму тряпку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Скажите: «Я выжму тряпку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll wring out the cloth.",
+        "localizedMeaning": {
+          "ru": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Скажите: «Я выжму тряпку».",
+          "uk": "З мокрої ганчірки капає вода. Ви зараз вирішуєте її викрутити. Скажіть: «Я викручу ганчірку»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "wring",
+          "out",
+          "the",
+          "cloth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i02:r1",
+          "text": "I'll wring out the cloth."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i02:r2",
+          "text": "We'll wring out the cloth."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i02:r3",
+          "text": "They'll wring out the cloth."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i02:audio",
+          "transcript": "I'll wring out the cloth."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:i02:r1",
+            "targetText": "I'll wring out the cloth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i02:r2",
+            "targetText": "We'll wring out the cloth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i02:r3",
+            "targetText": "They'll wring out the cloth.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll wring out the cloth.",
+              "uk": "У записі звучить I'll wring out the cloth."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll wring out the cloth.",
+              "uk": "У записі звучить I'll wring out the cloth."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i03:r1",
+          "text": "I'll wring out"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i03:r2",
+          "text": "I'll to wring out"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i03:r3",
+          "text": "I wring out"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Используйте I'll.",
+          "uk": "З мокрої ганчірки капає вода. Ви зараз вирішуєте її викрутити. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the cloth.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-13:i03:r1",
+            "text": "I'll wring out"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i03:r2",
+            "text": "I'll to wring out"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i03:r3",
+            "text": "I wring out"
+          }
+        ],
+        "testedDimension": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "С мокрой тряпки капает вода. Вы сейчас решаете её выжать. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:word:mop-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mop up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:word:mop-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mop up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:word:mop-up:audio",
+          "transcript": "mop up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:word:mop-up:r1",
+            "targetText": "mop up",
+            "meaningByLocale": {
+              "ru": "собрать пролитую жидкость тряпкой или шваброй.",
+              "uk": "зібрати розлиту рідину ганчіркою або шваброю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mop up",
+          "definitionByLocale": {
+            "ru": "собрать пролитую жидкость тряпкой или шваброй.",
+            "uk": "зібрати розлиту рідину ганчіркою або шваброю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Скажите: «Я соберу разлитую воду».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Скажите: «Я соберу разлитую воду».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll mop up the water.",
+        "localizedMeaning": {
+          "ru": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Скажите: «Я соберу разлитую воду».",
+          "uk": "На підлозі розлилася вода. Ви берете швабру й зараз вирішуєте зібрати воду. Скажіть: «Я зберу розлиту воду»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "mop",
+          "up",
+          "the",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i05:r1",
+          "text": "I'll mop up the water."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i05:r2",
+          "text": "We'll mop up the water."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i05:r3",
+          "text": "They'll mop up the water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i05:audio",
+          "transcript": "I'll mop up the water."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:i05:r1",
+            "targetText": "I'll mop up the water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i05:r2",
+            "targetText": "We'll mop up the water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i05:r3",
+            "targetText": "They'll mop up the water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll mop up the water.",
+              "uk": "У записі звучить I'll mop up the water."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll mop up the water.",
+              "uk": "У записі звучить I'll mop up the water."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i06:r1",
+          "text": "I'll mop up"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i06:r2",
+          "text": "I'll to mop up"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i06:r3",
+          "text": "I mop up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Используйте I'll.",
+          "uk": "На підлозі розлилася вода. Ви берете швабру й зараз вирішуєте зібрати воду. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-13:i06:r1",
+            "text": "I'll mop up"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i06:r2",
+            "text": "I'll to mop up"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i06:r3",
+            "text": "I mop up"
+          }
+        ],
+        "testedDimension": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:word:scrub-off",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scrub off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:word:scrub-off:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scrub off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:word:scrub-off:audio",
+          "transcript": "scrub off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:word:scrub-off:r1",
+            "targetText": "scrub off",
+            "meaningByLocale": {
+              "ru": "оттереть с поверхности, усиленно натирая.",
+              "uk": "відтерти з поверхні, посилено натираючи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scrub off",
+          "definitionByLocale": {
+            "ru": "оттереть с поверхности, усиленно натирая.",
+            "uk": "відтерти з поверхні, посилено натираючи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Скажите: «Я ототру грязь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Скажите: «Я ототру грязь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll scrub off the mud.",
+        "localizedMeaning": {
+          "ru": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Скажите: «Я ототру грязь».",
+          "uk": "На підошві засох бруд. Ви помічаєте щітку й зараз вирішуєте відтерти бруд. Скажіть: «Я відітру бруд»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "scrub",
+          "off",
+          "the",
+          "mud"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i08:r1",
+          "text": "I'll scrub off the mud."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i08:r2",
+          "text": "We'll scrub off the mud."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i08:r3",
+          "text": "They'll scrub off the mud."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i08:audio",
+          "transcript": "I'll scrub off the mud."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:i08:r1",
+            "targetText": "I'll scrub off the mud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i08:r2",
+            "targetText": "We'll scrub off the mud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i08:r3",
+            "targetText": "They'll scrub off the mud.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll scrub off the mud.",
+              "uk": "У записі звучить I'll scrub off the mud."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll scrub off the mud.",
+              "uk": "У записі звучить I'll scrub off the mud."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i09:r1",
+          "text": "I'll scrub off"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i09:r2",
+          "text": "I'll to scrub off"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i09:r3",
+          "text": "I scrub off"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Используйте I'll.",
+          "uk": "На підошві засох бруд. Ви помічаєте щітку й зараз вирішуєте відтерти бруд. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the mud.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-13:i09:r1",
+            "text": "I'll scrub off"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i09:r2",
+            "text": "I'll to scrub off"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i09:r3",
+            "text": "I scrub off"
+          }
+        ],
+        "testedDimension": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "На подошве засохла грязь. Вы замечаете щётку и сейчас решаете оттереть грязь. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:word:sweep-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sweep up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:word:sweep-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sweep up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:word:sweep-up:audio",
+          "transcript": "sweep up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:word:sweep-up:r1",
+            "targetText": "sweep up",
+            "meaningByLocale": {
+              "ru": "смести и собрать веником или щёткой.",
+              "uk": "змести й зібрати віником або щіткою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweep up",
+          "definitionByLocale": {
+            "ru": "смести и собрать веником или щёткой.",
+            "uk": "змести й зібрати віником або щіткою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Скажите: «Я смету крошки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Скажите: «Я смету крошки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll sweep up the crumbs.",
+        "localizedMeaning": {
+          "ru": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Скажите: «Я смету крошки».",
+          "uk": "Після сніданку на підлозі залишилися крихти. Ви зараз вирішуєте зібрати їх віником. Скажіть: «Я змету крихти»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "sweep",
+          "up",
+          "the",
+          "crumbs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i11:r1",
+          "text": "I'll sweep up the crumbs."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i11:r2",
+          "text": "We'll sweep up the crumbs."
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i11:r3",
+          "text": "They'll sweep up the crumbs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i11:audio",
+          "transcript": "I'll sweep up the crumbs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-13:i11:r1",
+            "targetText": "I'll sweep up the crumbs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i11:r2",
+            "targetText": "We'll sweep up the crumbs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i11:r3",
+            "targetText": "They'll sweep up the crumbs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll sweep up the crumbs.",
+              "uk": "У записі звучить I'll sweep up the crumbs."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll sweep up the crumbs.",
+              "uk": "У записі звучить I'll sweep up the crumbs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-13:i12:r1",
+          "text": "I'll sweep up"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i12:r2",
+          "text": "I'll to sweep up"
+        },
+        {
+          "responseId": "en:lesson-16:session-13:i12:r3",
+          "text": "I sweep up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Используйте I'll.",
+          "uk": "Після сніданку на підлозі залишилися крихти. Ви зараз вирішуєте зібрати їх віником. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the crumbs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-13:i12:r1",
+            "text": "I'll sweep up"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i12:r2",
+            "text": "I'll to sweep up"
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i12:r3",
+            "text": "I sweep up"
+          }
+        ],
+        "testedDimension": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-13:i13:p1",
+            "target": "wring out",
+            "meaningByLocale": {
+              "ru": "выжать воду, скручивая ткань",
+              "uk": "викрутити воду, скручуючи тканину"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-13:i13:p2",
+            "target": "mop up",
+            "meaningByLocale": {
+              "ru": "собрать пролитую жидкость тряпкой или шваброй",
+              "uk": "зібрати розлиту рідину ганчіркою або шваброю"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-13:i13:p3",
+            "target": "scrub off",
+            "meaningByLocale": {
+              "ru": "оттереть с поверхности, усиленно натирая",
+              "uk": "відтерти з поверхні, посилено натираючи"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-13:i13:p4",
+            "target": "sweep up",
+            "meaningByLocale": {
+              "ru": "смести и собрать веником или щёткой",
+              "uk": "змести й зібрати віником або щіткою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wring out",
+          "mop up",
+          "scrub off",
+          "sweep up"
+        ],
+        "rightColumn": [
+          "выжать воду, скручивая ткань",
+          "собрать пролитую жидкость тряпкой или шваброй",
+          "оттереть с поверхности, усиленно натирая",
+          "смести и собрать веником или щёткой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное решение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное решение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i14:audio",
+          "transcript": "I'll wring out the cloth."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll wring out the cloth.",
+        "orderedTokens": [
+          "I'll",
+          "wring",
+          "out",
+          "the",
+          "cloth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное решение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное решение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i15:audio",
+          "transcript": "I'll scrub off the mud."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll scrub off the mud.",
+        "orderedTokens": [
+          "I'll",
+          "scrub",
+          "off",
+          "the",
+          "mud"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Произнесите своё решение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. Произнесите своё решение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i16:audio",
+          "transcript": "I'll mop up the water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll mop up the water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Произнесите своё решение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. Произнесите своё решение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-13:i17:audio",
+          "transcript": "I'll sweep up the crumbs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll sweep up the crumbs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a8a8d6ee0bbdcaf428d425ae576f8174904fe1ab24a2669c676b00e26a657fe1"
+}

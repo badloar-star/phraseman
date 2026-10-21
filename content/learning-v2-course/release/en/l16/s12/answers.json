@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-12:word:unzip",
+    "correctText": "unzip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i01",
+    "correctText": "I'll unzip my jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i02",
+    "correctText": "I'll unzip my jacket.",
+    "correctResponseId": "en:lesson-16:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i03",
+    "correctText": "I'll unzip",
+    "correctResponseId": "en:lesson-16:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:word:zip-up",
+    "correctText": "zip up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i04",
+    "correctText": "I'll zip up my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i05",
+    "correctText": "I'll zip up my coat.",
+    "correctResponseId": "en:lesson-16:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i06",
+    "correctText": "I'll zip up",
+    "correctResponseId": "en:lesson-16:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:word:tuck-in",
+    "correctText": "tuck in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i07",
+    "correctText": "I'll tuck in my shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i08",
+    "correctText": "I'll tuck in my shirt.",
+    "correctResponseId": "en:lesson-16:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i09",
+    "correctText": "I'll tuck in",
+    "correctResponseId": "en:lesson-16:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:word:roll-up",
+    "correctText": "roll up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i10",
+    "correctText": "I'll roll up my sleeves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i11",
+    "correctText": "I'll roll up my sleeves.",
+    "correctResponseId": "en:lesson-16:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i12",
+    "correctText": "I'll roll up",
+    "correctResponseId": "en:lesson-16:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i13",
+    "correctText": "en:lesson-16:session-12:i13:p1=unzip\nen:lesson-16:session-12:i13:p2=zip up\nen:lesson-16:session-12:i13:p3=tuck in\nen:lesson-16:session-12:i13:p4=roll up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i14",
+    "correctText": "I'll unzip my jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i15",
+    "correctText": "I'll tuck in my shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i16",
+    "correctText": "I'll zip up my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-12:i17",
+    "correctText": "I'll roll up my sleeves.",
+    "correctResponseId": null
+  }
+]

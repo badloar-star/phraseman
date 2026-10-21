@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. wipe down — протереть всю поверхность влажной тканью. На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. I'll wipe down the table. — Я протру стол.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. wipe down — протерти всю поверхню вологою тканиною. На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. I'll wipe down the table. — Я протру стіл."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-15:intro1:r1",
+              "text": "I'll wipe down the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro1:r2",
+              "text": "I'll to wipe down the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro1:r3",
+              "text": "I wipe down the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-15:intro1:r1",
+              "text": "I'll wipe down the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro1:r2",
+              "text": "I'll to wipe down the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro1:r3",
+              "text": "I wipe down the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "shake out — вытряхнуть из ткани пыль или крошки. На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. I'll shake out the rug. — Я вытряхну коврик.",
+        "uk": "shake out — витрусити з тканини пил або крихти. На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. I'll shake out the rug. — Я витрушу килимок."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-15:intro2:r1",
+              "text": "I'll shake out the rug."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro2:r2",
+              "text": "I'll to shake out the rug."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro2:r3",
+              "text": "I shake out the rug."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-15:intro2:r1",
+              "text": "I'll shake out the rug."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro2:r2",
+              "text": "I'll to shake out the rug."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro2:r3",
+              "text": "I shake out the rug."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "air out — проветрить, выпуская затхлый воздух. soak up — впитать жидкость. На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. I'll soak up the water with a towel. — Я впитаю воду полотенцем.",
+        "uk": "air out — провітрити, випускаючи затхле повітря. soak up — увібрати рідину. На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. I'll soak up the water with a towel. — Я вберу воду рушником."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-15:intro3:r1",
+              "text": "I'll soak up the water with a towel."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro3:r2",
+              "text": "I'll to soak up the water with a towel."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro3:r3",
+              "text": "I soak up the water with a towel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-15:intro3:r1",
+              "text": "I'll soak up the water with a towel."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro3:r2",
+              "text": "I'll to soak up the water with a towel."
+            },
+            {
+              "responseId": "en:lesson-16:session-15:intro3:r3",
+              "text": "I soak up the water with a towel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "660fde15cd5ed3b91a075b9f32e94198be157afc97d5c04add75bddfeb3ca8b5"
+}

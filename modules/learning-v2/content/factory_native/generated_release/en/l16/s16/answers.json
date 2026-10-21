@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-16:word:fill-up",
+    "correctText": "fill up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i01",
+    "correctText": "I'll fill up the water bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i02",
+    "correctText": "I'll fill up the water bottle.",
+    "correctResponseId": "en:lesson-16:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i03",
+    "correctText": "I'll fill up",
+    "correctResponseId": "en:lesson-16:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:word:empty-out",
+    "correctText": "empty out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i04",
+    "correctText": "I'll empty out my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i05",
+    "correctText": "I'll empty out my bag.",
+    "correctResponseId": "en:lesson-16:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i06",
+    "correctText": "I'll empty out",
+    "correctResponseId": "en:lesson-16:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:word:pack-away",
+    "correctText": "pack away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i07",
+    "correctText": "I'll pack away the decorations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i08",
+    "correctText": "I'll pack away the decorations.",
+    "correctResponseId": "en:lesson-16:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i09",
+    "correctText": "I'll pack away",
+    "correctResponseId": "en:lesson-16:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:word:clear-out",
+    "correctText": "clear out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i10",
+    "correctText": "I'll clear out the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i11",
+    "correctText": "I'll clear out the cupboard.",
+    "correctResponseId": "en:lesson-16:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i12",
+    "correctText": "I'll clear out",
+    "correctResponseId": "en:lesson-16:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i13",
+    "correctText": "en:lesson-16:session-16:i13:p1=fill up\nen:lesson-16:session-16:i13:p2=empty out\nen:lesson-16:session-16:i13:p3=pack away\nen:lesson-16:session-16:i13:p4=clear out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i14",
+    "correctText": "I'll fill up the water bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i15",
+    "correctText": "I'll pack away the decorations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i16",
+    "correctText": "I'll empty out my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-16:i17",
+    "correctText": "I'll clear out the cupboard.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-15:intro1:r2": {
+          "ru": "После I'll не нужно to.",
+          "uk": "Після I'll не потрібне to."
+        },
+        "en:lesson-16:session-15:intro1:r3": {
+          "ru": "Без will фраза не передаёт это решение на будущее. Здесь нужно I'll.",
+          "uk": "Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-15:intro2:r2": {
+          "ru": "После I'll не нужно to.",
+          "uk": "Після I'll не потрібне to."
+        },
+        "en:lesson-16:session-15:intro2:r3": {
+          "ru": "Без will фраза не передаёт это решение на будущее. Здесь нужно I'll.",
+          "uk": "Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-15:intro3:r2": {
+          "ru": "После I'll не нужно to.",
+          "uk": "Після I'll не потрібне to."
+        },
+        "en:lesson-16:session-15:intro3:r3": {
+          "ru": "Без will фраза не передаёт это решение на будущее. Здесь нужно I'll.",
+          "uk": "Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df44f075f6e4d3f3b40a67de37fc6caf031b741aad32c4a5cc74d6840492871f"
+}

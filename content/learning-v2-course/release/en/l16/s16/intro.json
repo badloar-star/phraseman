@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. fill up — наполнить до полного объёма. Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. I'll fill up the water bottle. — Я наполню бутылку водой доверху.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. fill up — наповнити до повного об’єму. Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. I'll fill up the water bottle. — Я наповню пляшку водою доверху."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-16:intro1:r1",
+              "text": "I'll fill up the water bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro1:r2",
+              "text": "I'll to fill up the water bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro1:r3",
+              "text": "I fill up the water bottle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-16:intro1:r1",
+              "text": "I'll fill up the water bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro1:r2",
+              "text": "I'll to fill up the water bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro1:r3",
+              "text": "I fill up the water bottle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "empty out — полностью вынуть содержимое ёмкости или сумки. Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. I'll empty out my bag. — Я выну из сумки всё содержимое.",
+        "uk": "empty out — повністю вийняти вміст місткості або сумки. Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. I'll empty out my bag. — Я вийму із сумки весь вміст."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-16:intro2:r1",
+              "text": "I'll empty out my bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro2:r2",
+              "text": "I'll to empty out my bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro2:r3",
+              "text": "I empty out my bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-16:intro2:r1",
+              "text": "I'll empty out my bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro2:r2",
+              "text": "I'll to empty out my bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro2:r3",
+              "text": "I empty out my bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "pack away — сложить вещи и убрать на хранение. clear out — освободить место, убрав ненужные вещи. Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. I'll clear out the cupboard. — Я освобожу шкаф от ненужных вещей.",
+        "uk": "pack away — скласти речі й прибрати на зберігання. clear out — звільнити місце, прибравши непотрібні речі. Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. I'll clear out the cupboard. — Я звільню шафу від непотрібних речей."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-16:intro3:r1",
+              "text": "I'll clear out the cupboard."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro3:r2",
+              "text": "I'll to clear out the cupboard."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro3:r3",
+              "text": "I clear out the cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-16:intro3:r1",
+              "text": "I'll clear out the cupboard."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro3:r2",
+              "text": "I'll to clear out the cupboard."
+            },
+            {
+              "responseId": "en:lesson-16:session-16:intro3:r3",
+              "text": "I clear out the cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27f634d94c47c023885411392f9d32e0416bee8ba71416c5219f265934a1cd8c"
+}

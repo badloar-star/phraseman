@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-12",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-12:word:unzip",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unzip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:unzip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unzip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:unzip:audio",
+            "transcript": "unzip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:unzip:r1",
+              "targetText": "unzip",
+              "meaningByLocale": {
+                "ru": "расстегнуть молнию.",
+                "uk": "розстебнути блискавку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unzip",
+            "definitionByLocale": {
+              "ru": "расстегнуть молнию.",
+              "uk": "розстебнути блискавку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Скажите: «Я расстегну молнию на куртке».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Скажите: «Я расстегну молнию на куртке».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll unzip my jacket.",
+          "localizedMeaning": {
+            "ru": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Скажите: «Я расстегну молнию на куртке».",
+            "uk": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Скажіть: «Я розстебну блискавку на куртці»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "unzip",
+            "my",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i02:r1",
+            "text": "I'll unzip my jacket."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i02:r2",
+            "text": "We'll unzip my jacket."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i02:r3",
+            "text": "They'll unzip my jacket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i02:audio",
+            "transcript": "I'll unzip my jacket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i02:r1",
+              "targetText": "I'll unzip my jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i02:r2",
+              "targetText": "We'll unzip my jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i02:r3",
+              "targetText": "They'll unzip my jacket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll unzip my jacket.",
+                "uk": "У записі звучить I'll unzip my jacket."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll unzip my jacket.",
+                "uk": "У записі звучить I'll unzip my jacket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i03:r1",
+            "text": "I'll unzip"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i03:r2",
+            "text": "I'll to unzip"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i03:r3",
+            "text": "I unzip"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+            "uk": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my jacket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i03:r1",
+              "text": "I'll unzip"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i03:r2",
+              "text": "I'll to unzip"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i03:r3",
+              "text": "I unzip"
+            }
+          ],
+          "testedDimension": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:word:zip-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — zip up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:zip-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — zip up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:zip-up:audio",
+            "transcript": "zip up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:zip-up:r1",
+              "targetText": "zip up",
+              "meaningByLocale": {
+                "ru": "застегнуть молнию.",
+                "uk": "застебнути блискавку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "zip up",
+            "definitionByLocale": {
+              "ru": "застегнуть молнию.",
+              "uk": "застебнути блискавку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Скажите: «Я застегну молнию на пальто».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Скажите: «Я застегну молнию на пальто».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll zip up my coat.",
+          "localizedMeaning": {
+            "ru": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Скажите: «Я застегну молнию на пальто».",
+            "uk": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Скажіть: «Я застебну блискавку на пальті»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "zip",
+            "up",
+            "my",
+            "coat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i05:r1",
+            "text": "I'll zip up my coat."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i05:r2",
+            "text": "We'll zip up my coat."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i05:r3",
+            "text": "They'll zip up my coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i05:audio",
+            "transcript": "I'll zip up my coat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i05:r1",
+              "targetText": "I'll zip up my coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i05:r2",
+              "targetText": "We'll zip up my coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i05:r3",
+              "targetText": "They'll zip up my coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll zip up my coat.",
+                "uk": "У записі звучить I'll zip up my coat."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll zip up my coat.",
+                "uk": "У записі звучить I'll zip up my coat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i06:r1",
+            "text": "I'll zip up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i06:r2",
+            "text": "I'll to zip up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i06:r3",
+            "text": "I zip up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+            "uk": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my coat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i06:r1",
+              "text": "I'll zip up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i06:r2",
+              "text": "I'll to zip up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i06:r3",
+              "text": "I zip up"
+            }
+          ],
+          "testedDimension": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i06:r2",
+              "correct": false,
+              "testedDimension": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i06:r3",
+              "correct": false,
+              "testedDimension": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:word:tuck-in",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tuck in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:tuck-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tuck in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:tuck-in:audio",
+            "transcript": "tuck in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:tuck-in:r1",
+              "targetText": "tuck in",
+              "meaningByLocale": {
+                "ru": "заправить одежду внутрь другой одежды.",
+                "uk": "заправити одяг усередину іншого одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tuck in",
+            "definitionByLocale": {
+              "ru": "заправить одежду внутрь другой одежды.",
+              "uk": "заправити одяг усередину іншого одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Скажите: «Я заправлю рубашку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Скажите: «Я заправлю рубашку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll tuck in my shirt.",
+          "localizedMeaning": {
+            "ru": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Скажите: «Я заправлю рубашку».",
+            "uk": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Скажіть: «Я заправлю сорочку»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "tuck",
+            "in",
+            "my",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i08:r1",
+            "text": "I'll tuck in my shirt."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i08:r2",
+            "text": "We'll tuck in my shirt."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i08:r3",
+            "text": "They'll tuck in my shirt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i08:audio",
+            "transcript": "I'll tuck in my shirt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i08:r1",
+              "targetText": "I'll tuck in my shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i08:r2",
+              "targetText": "We'll tuck in my shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i08:r3",
+              "targetText": "They'll tuck in my shirt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tuck in my shirt.",
+                "uk": "У записі звучить I'll tuck in my shirt."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tuck in my shirt.",
+                "uk": "У записі звучить I'll tuck in my shirt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i09:r1",
+            "text": "I'll tuck in"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i09:r2",
+            "text": "I'll to tuck in"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i09:r3",
+            "text": "I tuck in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+            "uk": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my shirt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i09:r1",
+              "text": "I'll tuck in"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i09:r2",
+              "text": "I'll to tuck in"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i09:r3",
+              "text": "I tuck in"
+            }
+          ],
+          "testedDimension": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:word:roll-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — roll up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:roll-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — roll up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:roll-up:audio",
+            "transcript": "roll up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:roll-up:r1",
+              "targetText": "roll up",
+              "meaningByLocale": {
+                "ru": "закатать — о рукавах или штанинах.",
+                "uk": "закотити — про рукави або холоші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "roll up",
+            "definitionByLocale": {
+              "ru": "закатать — о рукавах или штанинах.",
+              "uk": "закотити — про рукави або холоші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Скажите: «Я закатаю рукава».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Скажите: «Я закатаю рукава».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll roll up my sleeves.",
+          "localizedMeaning": {
+            "ru": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Скажите: «Я закатаю рукава».",
+            "uk": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Скажіть: «Я закочу рукави»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "roll",
+            "up",
+            "my",
+            "sleeves"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i11:r1",
+            "text": "I'll roll up my sleeves."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i11:r2",
+            "text": "We'll roll up my sleeves."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i11:r3",
+            "text": "They'll roll up my sleeves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i11:audio",
+            "transcript": "I'll roll up my sleeves."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i11:r1",
+              "targetText": "I'll roll up my sleeves.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i11:r2",
+              "targetText": "We'll roll up my sleeves.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i11:r3",
+              "targetText": "They'll roll up my sleeves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll roll up my sleeves.",
+                "uk": "У записі звучить I'll roll up my sleeves."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll roll up my sleeves.",
+                "uk": "У записі звучить I'll roll up my sleeves."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i12:r1",
+            "text": "I'll roll up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i12:r2",
+            "text": "I'll to roll up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i12:r3",
+            "text": "I roll up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+            "uk": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my sleeves.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i12:r1",
+              "text": "I'll roll up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i12:r2",
+              "text": "I'll to roll up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i12:r3",
+              "text": "I roll up"
+            }
+          ],
+          "testedDimension": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-12:i13:p1",
+              "target": "unzip",
+              "meaningByLocale": {
+                "ru": "расстегнуть молнию",
+                "uk": "розстебнути блискавку"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-12:i13:p2",
+              "target": "zip up",
+              "meaningByLocale": {
+                "ru": "застегнуть молнию",
+                "uk": "застебнути блискавку"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-12:i13:p3",
+              "target": "tuck in",
+              "meaningByLocale": {
+                "ru": "заправить одежду внутрь другой одежды",
+                "uk": "заправити одяг усередину іншого одягу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-12:i13:p4",
+              "target": "roll up",
+              "meaningByLocale": {
+                "ru": "закатать",
+                "uk": "закотити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unzip",
+            "zip up",
+            "tuck in",
+            "roll up"
+          ],
+          "rightColumn": [
+            "расстегнуть молнию",
+            "застегнуть молнию",
+            "заправить одежду внутрь другой одежды",
+            "закатать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i14:audio",
+            "transcript": "I'll unzip my jacket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll unzip my jacket.",
+          "orderedTokens": [
+            "I'll",
+            "unzip",
+            "my",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i15:audio",
+            "transcript": "I'll tuck in my shirt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll tuck in my shirt.",
+          "orderedTokens": [
+            "I'll",
+            "tuck",
+            "in",
+            "my",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i16:audio"
+        ],
+        "accessibilityLabel": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i16:audio",
+            "transcript": "I'll zip up my coat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll zip up my coat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i17:audio",
+            "transcript": "I'll roll up my sleeves."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll roll up my sleeves.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-12:word:unzip",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unzip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:unzip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unzip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:unzip:audio",
+            "transcript": "unzip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:unzip:r1",
+              "targetText": "unzip",
+              "meaningByLocale": {
+                "ru": "расстегнуть молнию.",
+                "uk": "розстебнути блискавку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unzip",
+            "definitionByLocale": {
+              "ru": "расстегнуть молнию.",
+              "uk": "розстебнути блискавку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Скажіть: «Я розстебну блискавку на куртці».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Скажіть: «Я розстебну блискавку на куртці».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll unzip my jacket.",
+          "localizedMeaning": {
+            "ru": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Скажите: «Я расстегну молнию на куртке».",
+            "uk": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Скажіть: «Я розстебну блискавку на куртці»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "unzip",
+            "my",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i02:r1",
+            "text": "I'll unzip my jacket."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i02:r2",
+            "text": "We'll unzip my jacket."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i02:r3",
+            "text": "They'll unzip my jacket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i02:audio",
+            "transcript": "I'll unzip my jacket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i02:r1",
+              "targetText": "I'll unzip my jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i02:r2",
+              "targetText": "We'll unzip my jacket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i02:r3",
+              "targetText": "They'll unzip my jacket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll unzip my jacket.",
+                "uk": "У записі звучить I'll unzip my jacket."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll unzip my jacket.",
+                "uk": "У записі звучить I'll unzip my jacket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i03:r1",
+            "text": "I'll unzip"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i03:r2",
+            "text": "I'll to unzip"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i03:r3",
+            "text": "I unzip"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. Используйте I'll.",
+            "uk": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my jacket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i03:r1",
+              "text": "I'll unzip"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i03:r2",
+              "text": "I'll to unzip"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i03:r3",
+              "text": "I unzip"
+            }
+          ],
+          "testedDimension": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:word:zip-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — zip up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:zip-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — zip up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:zip-up:audio",
+            "transcript": "zip up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:zip-up:r1",
+              "targetText": "zip up",
+              "meaningByLocale": {
+                "ru": "застегнуть молнию.",
+                "uk": "застебнути блискавку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "zip up",
+            "definitionByLocale": {
+              "ru": "застегнуть молнию.",
+              "uk": "застебнути блискавку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Скажіть: «Я застебну блискавку на пальті».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Скажіть: «Я застебну блискавку на пальті».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll zip up my coat.",
+          "localizedMeaning": {
+            "ru": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Скажите: «Я застегну молнию на пальто».",
+            "uk": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Скажіть: «Я застебну блискавку на пальті»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "zip",
+            "up",
+            "my",
+            "coat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i05:r1",
+            "text": "I'll zip up my coat."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i05:r2",
+            "text": "We'll zip up my coat."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i05:r3",
+            "text": "They'll zip up my coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i05:audio",
+            "transcript": "I'll zip up my coat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i05:r1",
+              "targetText": "I'll zip up my coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i05:r2",
+              "targetText": "We'll zip up my coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i05:r3",
+              "targetText": "They'll zip up my coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll zip up my coat.",
+                "uk": "У записі звучить I'll zip up my coat."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll zip up my coat.",
+                "uk": "У записі звучить I'll zip up my coat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i06:r1",
+            "text": "I'll zip up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i06:r2",
+            "text": "I'll to zip up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i06:r3",
+            "text": "I zip up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. Используйте I'll.",
+            "uk": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my coat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i06:r1",
+              "text": "I'll zip up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i06:r2",
+              "text": "I'll to zip up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i06:r3",
+              "text": "I zip up"
+            }
+          ],
+          "testedDimension": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i06:r2",
+              "correct": false,
+              "testedDimension": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i06:r3",
+              "correct": false,
+              "testedDimension": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:word:tuck-in",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tuck in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:tuck-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tuck in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:tuck-in:audio",
+            "transcript": "tuck in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:tuck-in:r1",
+              "targetText": "tuck in",
+              "meaningByLocale": {
+                "ru": "заправить одежду внутрь другой одежды.",
+                "uk": "заправити одяг усередину іншого одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tuck in",
+            "definitionByLocale": {
+              "ru": "заправить одежду внутрь другой одежды.",
+              "uk": "заправити одяг усередину іншого одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Скажіть: «Я заправлю сорочку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Скажіть: «Я заправлю сорочку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll tuck in my shirt.",
+          "localizedMeaning": {
+            "ru": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Скажите: «Я заправлю рубашку».",
+            "uk": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Скажіть: «Я заправлю сорочку»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "tuck",
+            "in",
+            "my",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i08:r1",
+            "text": "I'll tuck in my shirt."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i08:r2",
+            "text": "We'll tuck in my shirt."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i08:r3",
+            "text": "They'll tuck in my shirt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i08:audio",
+            "transcript": "I'll tuck in my shirt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i08:r1",
+              "targetText": "I'll tuck in my shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i08:r2",
+              "targetText": "We'll tuck in my shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i08:r3",
+              "targetText": "They'll tuck in my shirt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tuck in my shirt.",
+                "uk": "У записі звучить I'll tuck in my shirt."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tuck in my shirt.",
+                "uk": "У записі звучить I'll tuck in my shirt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i09:r1",
+            "text": "I'll tuck in"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i09:r2",
+            "text": "I'll to tuck in"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i09:r3",
+            "text": "I tuck in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы посмотрели в зеркало: рубашка выбилась из брюк. Сейчас решаете её заправить. Используйте I'll.",
+            "uk": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my shirt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i09:r1",
+              "text": "I'll tuck in"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i09:r2",
+              "text": "I'll to tuck in"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i09:r3",
+              "text": "I tuck in"
+            }
+          ],
+          "testedDimension": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви подивилися в дзеркало: сорочка вибилася зі штанів. Зараз вирішуєте її заправити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:word:roll-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — roll up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:word:roll-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — roll up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:word:roll-up:audio",
+            "transcript": "roll up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:word:roll-up:r1",
+              "targetText": "roll up",
+              "meaningByLocale": {
+                "ru": "закатать — о рукавах или штанинах.",
+                "uk": "закотити — про рукави або холоші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "roll up",
+            "definitionByLocale": {
+              "ru": "закатать — о рукавах или штанинах.",
+              "uk": "закотити — про рукави або холоші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Скажіть: «Я закочу рукави».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Скажіть: «Я закочу рукави».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll roll up my sleeves.",
+          "localizedMeaning": {
+            "ru": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Скажите: «Я закатаю рукава».",
+            "uk": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Скажіть: «Я закочу рукави»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "roll",
+            "up",
+            "my",
+            "sleeves"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i11:r1",
+            "text": "I'll roll up my sleeves."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i11:r2",
+            "text": "We'll roll up my sleeves."
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i11:r3",
+            "text": "They'll roll up my sleeves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i11:audio",
+            "transcript": "I'll roll up my sleeves."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-12:i11:r1",
+              "targetText": "I'll roll up my sleeves.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i11:r2",
+              "targetText": "We'll roll up my sleeves.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i11:r3",
+              "targetText": "They'll roll up my sleeves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll roll up my sleeves.",
+                "uk": "У записі звучить I'll roll up my sleeves."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll roll up my sleeves.",
+                "uk": "У записі звучить I'll roll up my sleeves."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-12:i12:r1",
+            "text": "I'll roll up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i12:r2",
+            "text": "I'll to roll up"
+          },
+          {
+            "responseId": "en:lesson-16:session-12:i12:r3",
+            "text": "I roll up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. Используйте I'll.",
+            "uk": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my sleeves.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-12:i12:r1",
+              "text": "I'll roll up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i12:r2",
+              "text": "I'll to roll up"
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i12:r3",
+              "text": "I roll up"
+            }
+          ],
+          "testedDimension": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-12:i13:p1",
+              "target": "unzip",
+              "meaningByLocale": {
+                "ru": "расстегнуть молнию",
+                "uk": "розстебнути блискавку"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-12:i13:p2",
+              "target": "zip up",
+              "meaningByLocale": {
+                "ru": "застегнуть молнию",
+                "uk": "застебнути блискавку"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-12:i13:p3",
+              "target": "tuck in",
+              "meaningByLocale": {
+                "ru": "заправить одежду внутрь другой одежды",
+                "uk": "заправити одяг усередину іншого одягу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-12:i13:p4",
+              "target": "roll up",
+              "meaningByLocale": {
+                "ru": "закатать",
+                "uk": "закотити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unzip",
+            "zip up",
+            "tuck in",
+            "roll up"
+          ],
+          "rightColumn": [
+            "розстебнути блискавку",
+            "застебнути блискавку",
+            "заправити одяг усередину іншого одягу",
+            "закотити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i14:audio",
+            "transcript": "I'll unzip my jacket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll unzip my jacket.",
+          "orderedTokens": [
+            "I'll",
+            "unzip",
+            "my",
+            "jacket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i15:audio",
+            "transcript": "I'll tuck in my shirt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll tuck in my shirt.",
+          "orderedTokens": [
+            "I'll",
+            "tuck",
+            "in",
+            "my",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i16:audio"
+        ],
+        "accessibilityLabel": "Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i16:audio",
+            "transcript": "I'll zip up my coat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll zip up my coat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-12:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-12:i17:audio",
+            "transcript": "I'll roll up my sleeves."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll roll up my sleeves.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-12:word:unzip",
+      "correctText": "unzip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i01",
+      "correctText": "I'll unzip my jacket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i02",
+      "correctText": "I'll unzip my jacket.",
+      "correctResponseId": "en:lesson-16:session-12:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i03",
+      "correctText": "I'll unzip",
+      "correctResponseId": "en:lesson-16:session-12:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:word:zip-up",
+      "correctText": "zip up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i04",
+      "correctText": "I'll zip up my coat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i05",
+      "correctText": "I'll zip up my coat.",
+      "correctResponseId": "en:lesson-16:session-12:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i06",
+      "correctText": "I'll zip up",
+      "correctResponseId": "en:lesson-16:session-12:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:word:tuck-in",
+      "correctText": "tuck in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i07",
+      "correctText": "I'll tuck in my shirt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i08",
+      "correctText": "I'll tuck in my shirt.",
+      "correctResponseId": "en:lesson-16:session-12:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i09",
+      "correctText": "I'll tuck in",
+      "correctResponseId": "en:lesson-16:session-12:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:word:roll-up",
+      "correctText": "roll up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i10",
+      "correctText": "I'll roll up my sleeves.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i11",
+      "correctText": "I'll roll up my sleeves.",
+      "correctResponseId": "en:lesson-16:session-12:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i12",
+      "correctText": "I'll roll up",
+      "correctResponseId": "en:lesson-16:session-12:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i14",
+      "correctText": "I'll unzip my jacket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i15",
+      "correctText": "I'll tuck in my shirt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i16",
+      "correctText": "I'll zip up my coat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-12:i17",
+      "correctText": "I'll roll up my sleeves.",
+      "correctResponseId": null
+    }
+  ]
+}

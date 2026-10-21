@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-09:word:plunger",
+    "correctText": "plunger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i01",
+    "correctText": "I'll get the plunger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i02",
+    "correctText": "I'll get the plunger.",
+    "correctResponseId": "en:lesson-16:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i03",
+    "correctText": "I'll get",
+    "correctResponseId": "en:lesson-16:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:word:loofah",
+    "correctText": "loofah",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i04",
+    "correctText": "I'll use a loofah.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i05",
+    "correctText": "I'll use a loofah.",
+    "correctResponseId": "en:lesson-16:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i06",
+    "correctText": "I'll use",
+    "correctResponseId": "en:lesson-16:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:word:bath-plug",
+    "correctText": "bath plug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i07",
+    "correctText": "I'll put in the bath plug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i08",
+    "correctText": "I'll put in the bath plug.",
+    "correctResponseId": "en:lesson-16:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i09",
+    "correctText": "I'll put",
+    "correctResponseId": "en:lesson-16:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:word:draining-board",
+    "correctText": "draining board",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i10",
+    "correctText": "I'll clear the draining board.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i11",
+    "correctText": "I'll clear the draining board.",
+    "correctResponseId": "en:lesson-16:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i12",
+    "correctText": "I'll clear",
+    "correctResponseId": "en:lesson-16:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i13",
+    "correctText": "en:lesson-16:session-09:i13:p1=plunger\nen:lesson-16:session-09:i13:p2=loofah\nen:lesson-16:session-09:i13:p3=bath plug\nen:lesson-16:session-09:i13:p4=draining board",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i14",
+    "correctText": "I'll get the plunger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i15",
+    "correctText": "I'll put in the bath plug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i16",
+    "correctText": "I'll use a loofah.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-09:i17",
+    "correctText": "I'll clear the draining board.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-14:word:fold-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fold up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:word:fold-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fold up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:word:fold-up:audio",
+          "transcript": "fold up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:word:fold-up:r1",
+            "targetText": "fold up",
+            "meaningByLocale": {
+              "ru": "сложить вещь в более компактную форму.",
+              "uk": "скласти річ у компактнішу форму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fold up",
+          "definitionByLocale": {
+            "ru": "сложить вещь в более компактную форму.",
+            "uk": "скласти річ у компактнішу форму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Скажите: «Я сложу одеяло».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Скажите: «Я сложу одеяло».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll fold up the blanket.",
+        "localizedMeaning": {
+          "ru": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Скажите: «Я сложу одеяло».",
+          "uk": "Ковдра займає весь диван. Ви зараз вирішуєте скласти її, щоб звільнити місце. Скажіть: «Я складу ковдру»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "fold",
+          "up",
+          "the",
+          "blanket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i02:r1",
+          "text": "I'll fold up the blanket."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i02:r2",
+          "text": "We'll fold up the blanket."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i02:r3",
+          "text": "They'll fold up the blanket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i02:audio",
+          "transcript": "I'll fold up the blanket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:i02:r1",
+            "targetText": "I'll fold up the blanket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i02:r2",
+            "targetText": "We'll fold up the blanket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i02:r3",
+            "targetText": "They'll fold up the blanket.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll fold up the blanket.",
+              "uk": "У записі звучить I'll fold up the blanket."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll fold up the blanket.",
+              "uk": "У записі звучить I'll fold up the blanket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i03:r1",
+          "text": "I'll fold up"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i03:r2",
+          "text": "I'll to fold up"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i03:r3",
+          "text": "I fold up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Используйте I'll.",
+          "uk": "Ковдра займає весь диван. Ви зараз вирішуєте скласти її, щоб звільнити місце. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the blanket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-14:i03:r1",
+            "text": "I'll fold up"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i03:r2",
+            "text": "I'll to fold up"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i03:r3",
+            "text": "I fold up"
+          }
+        ],
+        "testedDimension": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:word:spread-out",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spread out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:word:spread-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spread out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:word:spread-out:audio",
+          "transcript": "spread out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:word:spread-out:r1",
+            "targetText": "spread out",
+            "meaningByLocale": {
+              "ru": "разложить или расправить на поверхности.",
+              "uk": "розкласти або розправити на поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spread out",
+          "definitionByLocale": {
+            "ru": "разложить или расправить на поверхности.",
+            "uk": "розкласти або розправити на поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Скажите: «Я расправлю скатерть».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Скажите: «Я расправлю скатерть».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll spread out the tablecloth.",
+        "localizedMeaning": {
+          "ru": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Скажите: «Я расправлю скатерть».",
+          "uk": "На стіл поклали скатертину жмутом. Ви зараз вирішуєте розправити її по столу. Скажіть: «Я розправлю скатертину»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "spread",
+          "out",
+          "the",
+          "tablecloth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i05:r1",
+          "text": "I'll spread out the tablecloth."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i05:r2",
+          "text": "We'll spread out the tablecloth."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i05:r3",
+          "text": "They'll spread out the tablecloth."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i05:audio",
+          "transcript": "I'll spread out the tablecloth."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:i05:r1",
+            "targetText": "I'll spread out the tablecloth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i05:r2",
+            "targetText": "We'll spread out the tablecloth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i05:r3",
+            "targetText": "They'll spread out the tablecloth.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll spread out the tablecloth.",
+              "uk": "У записі звучить I'll spread out the tablecloth."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll spread out the tablecloth.",
+              "uk": "У записі звучить I'll spread out the tablecloth."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i06:r1",
+          "text": "I'll spread out"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i06:r2",
+          "text": "I'll to spread out"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i06:r3",
+          "text": "I spread out"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Используйте I'll.",
+          "uk": "На стіл поклали скатертину жмутом. Ви зараз вирішуєте розправити її по столу. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the tablecloth.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-14:i06:r1",
+            "text": "I'll spread out"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i06:r2",
+            "text": "I'll to spread out"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i06:r3",
+            "text": "I spread out"
+          }
+        ],
+        "testedDimension": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:word:lay-out",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lay out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:word:lay-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lay out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:word:lay-out:audio",
+          "transcript": "lay out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:word:lay-out:r1",
+            "targetText": "lay out",
+            "meaningByLocale": {
+              "ru": "разложить предметы, подготовив их к использованию.",
+              "uk": "розкласти предмети, підготувавши їх до використання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lay out",
+          "definitionByLocale": {
+            "ru": "разложить предметы, подготовив их к использованию.",
+            "uk": "розкласти предмети, підготувавши їх до використання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Скажите: «Я разложу свою одежду».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Скажите: «Я разложу свою одежду».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll lay out my clothes.",
+        "localizedMeaning": {
+          "ru": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Скажите: «Я разложу свою одежду».",
+          "uk": "Ви згадали, що вранці доведеться швидко збиратися. Зараз вирішуєте заздалегідь розкласти одяг. Скажіть: «Я розкладу свій одяг»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "lay",
+          "out",
+          "my",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i08:r1",
+          "text": "I'll lay out my clothes."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i08:r2",
+          "text": "We'll lay out my clothes."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i08:r3",
+          "text": "They'll lay out my clothes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i08:audio",
+          "transcript": "I'll lay out my clothes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:i08:r1",
+            "targetText": "I'll lay out my clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i08:r2",
+            "targetText": "We'll lay out my clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i08:r3",
+            "targetText": "They'll lay out my clothes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll lay out my clothes.",
+              "uk": "У записі звучить I'll lay out my clothes."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll lay out my clothes.",
+              "uk": "У записі звучить I'll lay out my clothes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i09:r1",
+          "text": "I'll lay out"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i09:r2",
+          "text": "I'll to lay out"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i09:r3",
+          "text": "I lay out"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Используйте I'll.",
+          "uk": "Ви згадали, що вранці доведеться швидко збиратися. Зараз вирішуєте заздалегідь розкласти одяг. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ my clothes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-14:i09:r1",
+            "text": "I'll lay out"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i09:r2",
+            "text": "I'll to lay out"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i09:r3",
+            "text": "I lay out"
+          }
+        ],
+        "testedDimension": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы вспомнили, что утром придётся быстро собираться. Сейчас решаете заранее разложить одежду. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:word:rinse-out",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rinse out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:word:rinse-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rinse out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:word:rinse-out:audio",
+          "transcript": "rinse out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:word:rinse-out:r1",
+            "targetText": "rinse out",
+            "meaningByLocale": {
+              "ru": "прополоскать изнутри или вымыть остатки водой.",
+              "uk": "прополоскати зсередини або вимити залишки водою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rinse out",
+          "definitionByLocale": {
+            "ru": "прополоскать изнутри или вымыть остатки водой.",
+            "uk": "прополоскати зсередини або вимити залишки водою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Скажите: «Я прополощу бутылку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Скажите: «Я прополощу бутылку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll rinse out the bottle.",
+        "localizedMeaning": {
+          "ru": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Скажите: «Я прополощу бутылку».",
+          "uk": "Ви хочете налити воду, але в пляшці залишилося трохи соку. Зараз вирішуєте прополоскати її. Скажіть: «Я прополощу пляшку»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "rinse",
+          "out",
+          "the",
+          "bottle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i11:r1",
+          "text": "I'll rinse out the bottle."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i11:r2",
+          "text": "We'll rinse out the bottle."
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i11:r3",
+          "text": "They'll rinse out the bottle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i11:audio",
+          "transcript": "I'll rinse out the bottle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-14:i11:r1",
+            "targetText": "I'll rinse out the bottle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i11:r2",
+            "targetText": "We'll rinse out the bottle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i11:r3",
+            "targetText": "They'll rinse out the bottle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll rinse out the bottle.",
+              "uk": "У записі звучить I'll rinse out the bottle."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll rinse out the bottle.",
+              "uk": "У записі звучить I'll rinse out the bottle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-14:i12:r1",
+          "text": "I'll rinse out"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i12:r2",
+          "text": "I'll to rinse out"
+        },
+        {
+          "responseId": "en:lesson-16:session-14:i12:r3",
+          "text": "I rinse out"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Используйте I'll.",
+          "uk": "Ви хочете налити воду, але в пляшці залишилося трохи соку. Зараз вирішуєте прополоскати її. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the bottle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-14:i12:r1",
+            "text": "I'll rinse out"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i12:r2",
+            "text": "I'll to rinse out"
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i12:r3",
+            "text": "I rinse out"
+          }
+        ],
+        "testedDimension": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-14:i13:p1",
+            "target": "fold up",
+            "meaningByLocale": {
+              "ru": "сложить вещь в более компактную форму",
+              "uk": "скласти річ у компактнішу форму"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-14:i13:p2",
+            "target": "spread out",
+            "meaningByLocale": {
+              "ru": "разложить или расправить на поверхности",
+              "uk": "розкласти або розправити на поверхні"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-14:i13:p3",
+            "target": "lay out",
+            "meaningByLocale": {
+              "ru": "разложить предметы, подготовив их к использованию",
+              "uk": "розкласти предмети, підготувавши їх до використання"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-14:i13:p4",
+            "target": "rinse out",
+            "meaningByLocale": {
+              "ru": "прополоскать изнутри или вымыть остатки водой",
+              "uk": "прополоскати зсередини або вимити залишки водою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fold up",
+          "spread out",
+          "lay out",
+          "rinse out"
+        ],
+        "rightColumn": [
+          "сложить вещь в более компактную форму",
+          "разложить или расправить на поверхности",
+          "разложить предметы, подготовив их к использованию",
+          "прополоскать изнутри или вымыть остатки водой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное решение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное решение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i14:audio",
+          "transcript": "I'll fold up the blanket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll fold up the blanket.",
+        "orderedTokens": [
+          "I'll",
+          "fold",
+          "up",
+          "the",
+          "blanket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное решение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное решение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i15:audio",
+          "transcript": "I'll lay out my clothes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll lay out my clothes.",
+        "orderedTokens": [
+          "I'll",
+          "lay",
+          "out",
+          "my",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Произнесите своё решение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. Произнесите своё решение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i16:audio",
+          "transcript": "I'll spread out the tablecloth."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll spread out the tablecloth.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-14:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Произнесите своё решение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. Произнесите своё решение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-14:i17:audio",
+          "transcript": "I'll rinse out the bottle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll rinse out the bottle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "910413ff04cdc02c4b53dabd4292c1fe93153719e6b1c66b8b5ef2c7c9756457"
+}

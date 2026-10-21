@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-11:word:drawstring",
+    "correctText": "drawstring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i01",
+    "correctText": "I'll tighten the drawstring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i02",
+    "correctText": "I'll tighten the drawstring.",
+    "correctResponseId": "en:lesson-16:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i03",
+    "correctText": "I'll tighten",
+    "correctResponseId": "en:lesson-16:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:word:buttonhole",
+    "correctText": "buttonhole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i04",
+    "correctText": "I'll check the buttonhole.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i05",
+    "correctText": "I'll check the buttonhole.",
+    "correctResponseId": "en:lesson-16:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i06",
+    "correctText": "I'll check",
+    "correctResponseId": "en:lesson-16:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:word:waistband",
+    "correctText": "waistband",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i07",
+    "correctText": "I'll adjust the waistband.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i08",
+    "correctText": "I'll adjust the waistband.",
+    "correctResponseId": "en:lesson-16:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i09",
+    "correctText": "I'll adjust",
+    "correctResponseId": "en:lesson-16:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:word:belt-loop",
+    "correctText": "belt loop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i10",
+    "correctText": "I'll use the belt loop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i11",
+    "correctText": "I'll use the belt loop.",
+    "correctResponseId": "en:lesson-16:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i12",
+    "correctText": "I'll use",
+    "correctResponseId": "en:lesson-16:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i13",
+    "correctText": "en:lesson-16:session-11:i13:p1=drawstring\nen:lesson-16:session-11:i13:p2=buttonhole\nen:lesson-16:session-11:i13:p3=waistband\nen:lesson-16:session-11:i13:p4=belt loop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i14",
+    "correctText": "I'll tighten the drawstring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i15",
+    "correctText": "I'll adjust the waistband.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i16",
+    "correctText": "I'll check the buttonhole.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-11:i17",
+    "correctText": "I'll use the belt loop.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-10:word:tablespoon",
+    "correctText": "tablespoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i01",
+    "correctText": "I'll get a tablespoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i02",
+    "correctText": "I'll get a tablespoon.",
+    "correctResponseId": "en:lesson-16:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i03",
+    "correctText": "I'll get",
+    "correctResponseId": "en:lesson-16:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:word:trivet",
+    "correctText": "trivet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i04",
+    "correctText": "I'll use the trivet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i05",
+    "correctText": "I'll use the trivet.",
+    "correctResponseId": "en:lesson-16:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i06",
+    "correctText": "I'll use",
+    "correctResponseId": "en:lesson-16:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:word:bottle-opener",
+    "correctText": "bottle opener",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i07",
+    "correctText": "I'll bring the bottle opener.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i08",
+    "correctText": "I'll bring the bottle opener.",
+    "correctResponseId": "en:lesson-16:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i09",
+    "correctText": "I'll bring",
+    "correctResponseId": "en:lesson-16:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:word:pizza-cutter",
+    "correctText": "pizza cutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i10",
+    "correctText": "I'll try the pizza cutter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i11",
+    "correctText": "I'll try the pizza cutter.",
+    "correctResponseId": "en:lesson-16:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i12",
+    "correctText": "I'll try",
+    "correctResponseId": "en:lesson-16:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i13",
+    "correctText": "en:lesson-16:session-10:i13:p1=tablespoon\nen:lesson-16:session-10:i13:p2=trivet\nen:lesson-16:session-10:i13:p3=bottle opener\nen:lesson-16:session-10:i13:p4=pizza cutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i14",
+    "correctText": "I'll get a tablespoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i15",
+    "correctText": "I'll bring the bottle opener.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i16",
+    "correctText": "I'll use the trivet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-10:i17",
+    "correctText": "I'll try the pizza cutter.",
+    "correctResponseId": null
+  }
+]

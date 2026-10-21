@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-15:word:wipe-down",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wipe down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:wipe-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wipe down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:wipe-down:audio",
+            "transcript": "wipe down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:wipe-down:r1",
+              "targetText": "wipe down",
+              "meaningByLocale": {
+                "ru": "протереть всю поверхность влажной тканью.",
+                "uk": "протерти всю поверхню вологою тканиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wipe down",
+            "definitionByLocale": {
+              "ru": "протереть всю поверхность влажной тканью.",
+              "uk": "протерти всю поверхню вологою тканиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Скажите: «Я протру стол».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Скажите: «Я протру стол».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll wipe down the table.",
+          "localizedMeaning": {
+            "ru": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Скажите: «Я протру стол».",
+            "uk": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Скажіть: «Я протру стіл»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "wipe",
+            "down",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i02:r1",
+            "text": "I'll wipe down the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i02:r2",
+            "text": "We'll wipe down the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i02:r3",
+            "text": "They'll wipe down the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i02:audio",
+            "transcript": "I'll wipe down the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i02:r1",
+              "targetText": "I'll wipe down the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i02:r2",
+              "targetText": "We'll wipe down the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i02:r3",
+              "targetText": "They'll wipe down the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll wipe down the table.",
+                "uk": "У записі звучить I'll wipe down the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll wipe down the table.",
+                "uk": "У записі звучить I'll wipe down the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i03:r1",
+            "text": "I'll wipe down"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i03:r2",
+            "text": "I'll to wipe down"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i03:r3",
+            "text": "I wipe down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+            "uk": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i03:r1",
+              "text": "I'll wipe down"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i03:r2",
+              "text": "I'll to wipe down"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i03:r3",
+              "text": "I wipe down"
+            }
+          ],
+          "testedDimension": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:word:shake-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shake out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:shake-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shake out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:shake-out:audio",
+            "transcript": "shake out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:shake-out:r1",
+              "targetText": "shake out",
+              "meaningByLocale": {
+                "ru": "вытряхнуть из ткани пыль или крошки.",
+                "uk": "витрусити з тканини пил або крихти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shake out",
+            "definitionByLocale": {
+              "ru": "вытряхнуть из ткани пыль или крошки.",
+              "uk": "витрусити з тканини пил або крихти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Скажите: «Я вытряхну коврик».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Скажите: «Я вытряхну коврик».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll shake out the rug.",
+          "localizedMeaning": {
+            "ru": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Скажите: «Я вытряхну коврик».",
+            "uk": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Скажіть: «Я витрушу килимок»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "shake",
+            "out",
+            "the",
+            "rug"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i05:r1",
+            "text": "I'll shake out the rug."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i05:r2",
+            "text": "We'll shake out the rug."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i05:r3",
+            "text": "They'll shake out the rug."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i05:audio",
+            "transcript": "I'll shake out the rug."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i05:r1",
+              "targetText": "I'll shake out the rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i05:r2",
+              "targetText": "We'll shake out the rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i05:r3",
+              "targetText": "They'll shake out the rug.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll shake out the rug.",
+                "uk": "У записі звучить I'll shake out the rug."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll shake out the rug.",
+                "uk": "У записі звучить I'll shake out the rug."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i06:r1",
+            "text": "I'll shake out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i06:r2",
+            "text": "I'll to shake out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i06:r3",
+            "text": "I shake out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+            "uk": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the rug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i06:r1",
+              "text": "I'll shake out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i06:r2",
+              "text": "I'll to shake out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i06:r3",
+              "text": "I shake out"
+            }
+          ],
+          "testedDimension": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i06:r2",
+              "correct": false,
+              "testedDimension": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i06:r3",
+              "correct": false,
+              "testedDimension": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:word:air-out",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — air out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:air-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — air out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:air-out:audio",
+            "transcript": "air out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:air-out:r1",
+              "targetText": "air out",
+              "meaningByLocale": {
+                "ru": "проветрить, выпуская затхлый воздух.",
+                "uk": "провітрити, випускаючи затхле повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "air out",
+            "definitionByLocale": {
+              "ru": "проветрить, выпуская затхлый воздух.",
+              "uk": "провітрити, випускаючи затхле повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Скажите: «Я проветрю комнату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Скажите: «Я проветрю комнату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll air out the room.",
+          "localizedMeaning": {
+            "ru": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Скажите: «Я проветрю комнату».",
+            "uk": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Скажіть: «Я провітрю кімнату»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "air",
+            "out",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i08:r1",
+            "text": "I'll air out the room."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i08:r2",
+            "text": "We'll air out the room."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i08:r3",
+            "text": "They'll air out the room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i08:audio",
+            "transcript": "I'll air out the room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i08:r1",
+              "targetText": "I'll air out the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i08:r2",
+              "targetText": "We'll air out the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i08:r3",
+              "targetText": "They'll air out the room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll air out the room.",
+                "uk": "У записі звучить I'll air out the room."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll air out the room.",
+                "uk": "У записі звучить I'll air out the room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i09:r1",
+            "text": "I'll air out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i09:r2",
+            "text": "I'll to air out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i09:r3",
+            "text": "I air out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+            "uk": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i09:r1",
+              "text": "I'll air out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i09:r2",
+              "text": "I'll to air out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i09:r3",
+              "text": "I air out"
+            }
+          ],
+          "testedDimension": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:word:soak-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soak up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:soak-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soak up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:soak-up:audio",
+            "transcript": "soak up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:soak-up:r1",
+              "targetText": "soak up",
+              "meaningByLocale": {
+                "ru": "впитать жидкость.",
+                "uk": "увібрати рідину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soak up",
+            "definitionByLocale": {
+              "ru": "впитать жидкость.",
+              "uk": "увібрати рідину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Скажите: «Я впитаю воду полотенцем».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Скажите: «Я впитаю воду полотенцем».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll soak up the water with a towel.",
+          "localizedMeaning": {
+            "ru": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Скажите: «Я впитаю воду полотенцем».",
+            "uk": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Скажіть: «Я вберу воду рушником»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "soak",
+            "up",
+            "the",
+            "water",
+            "with",
+            "a",
+            "towel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i11:r1",
+            "text": "I'll soak up the water with a towel."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i11:r2",
+            "text": "We'll soak up the water with a towel."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i11:r3",
+            "text": "They'll soak up the water with a towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i11:audio",
+            "transcript": "I'll soak up the water with a towel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i11:r1",
+              "targetText": "I'll soak up the water with a towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i11:r2",
+              "targetText": "We'll soak up the water with a towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i11:r3",
+              "targetText": "They'll soak up the water with a towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll soak up the water with a towel.",
+                "uk": "У записі звучить I'll soak up the water with a towel."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll soak up the water with a towel.",
+                "uk": "У записі звучить I'll soak up the water with a towel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i12:r1",
+            "text": "I'll soak up"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i12:r2",
+            "text": "I'll to soak up"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i12:r3",
+            "text": "I soak up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+            "uk": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the water with a towel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i12:r1",
+              "text": "I'll soak up"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i12:r2",
+              "text": "I'll to soak up"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i12:r3",
+              "text": "I soak up"
+            }
+          ],
+          "testedDimension": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-15:i13:p1",
+              "target": "wipe down",
+              "meaningByLocale": {
+                "ru": "протереть всю поверхность влажной тканью",
+                "uk": "протерти всю поверхню вологою тканиною"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-15:i13:p2",
+              "target": "shake out",
+              "meaningByLocale": {
+                "ru": "вытряхнуть из ткани пыль или крошки",
+                "uk": "витрусити з тканини пил або крихти"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-15:i13:p3",
+              "target": "air out",
+              "meaningByLocale": {
+                "ru": "проветрить, выпуская затхлый воздух",
+                "uk": "провітрити, випускаючи затхле повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-15:i13:p4",
+              "target": "soak up",
+              "meaningByLocale": {
+                "ru": "впитать жидкость",
+                "uk": "увібрати рідину"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wipe down",
+            "shake out",
+            "air out",
+            "soak up"
+          ],
+          "rightColumn": [
+            "протереть всю поверхность влажной тканью",
+            "вытряхнуть из ткани пыль или крошки",
+            "проветрить, выпуская затхлый воздух",
+            "впитать жидкость"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i14:audio",
+            "transcript": "I'll wipe down the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll wipe down the table.",
+          "orderedTokens": [
+            "I'll",
+            "wipe",
+            "down",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i15:audio",
+            "transcript": "I'll air out the room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll air out the room.",
+          "orderedTokens": [
+            "I'll",
+            "air",
+            "out",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i16:audio",
+            "transcript": "I'll shake out the rug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll shake out the rug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i17:audio",
+            "transcript": "I'll soak up the water with a towel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll soak up the water with a towel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-15:word:wipe-down",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wipe down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:wipe-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wipe down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:wipe-down:audio",
+            "transcript": "wipe down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:wipe-down:r1",
+              "targetText": "wipe down",
+              "meaningByLocale": {
+                "ru": "протереть всю поверхность влажной тканью.",
+                "uk": "протерти всю поверхню вологою тканиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wipe down",
+            "definitionByLocale": {
+              "ru": "протереть всю поверхность влажной тканью.",
+              "uk": "протерти всю поверхню вологою тканиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Скажіть: «Я протру стіл».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Скажіть: «Я протру стіл».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll wipe down the table.",
+          "localizedMeaning": {
+            "ru": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Скажите: «Я протру стол».",
+            "uk": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Скажіть: «Я протру стіл»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "wipe",
+            "down",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i02:r1",
+            "text": "I'll wipe down the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i02:r2",
+            "text": "We'll wipe down the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i02:r3",
+            "text": "They'll wipe down the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i02:audio",
+            "transcript": "I'll wipe down the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i02:r1",
+              "targetText": "I'll wipe down the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i02:r2",
+              "targetText": "We'll wipe down the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i02:r3",
+              "targetText": "They'll wipe down the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll wipe down the table.",
+                "uk": "У записі звучить I'll wipe down the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll wipe down the table.",
+                "uk": "У записі звучить I'll wipe down the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i03:r1",
+            "text": "I'll wipe down"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i03:r2",
+            "text": "I'll to wipe down"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i03:r3",
+            "text": "I wipe down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе остались следы еды. Вы сейчас решаете протереть всю поверхность влажной тряпкой. Используйте I'll.",
+            "uk": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i03:r1",
+              "text": "I'll wipe down"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i03:r2",
+              "text": "I'll to wipe down"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i03:r3",
+              "text": "I wipe down"
+            }
+          ],
+          "testedDimension": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "На столі залишилися сліди їжі. Ви зараз вирішуєте протерти всю поверхню вологою ганчіркою. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:word:shake-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shake out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:shake-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shake out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:shake-out:audio",
+            "transcript": "shake out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:shake-out:r1",
+              "targetText": "shake out",
+              "meaningByLocale": {
+                "ru": "вытряхнуть из ткани пыль или крошки.",
+                "uk": "витрусити з тканини пил або крихти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shake out",
+            "definitionByLocale": {
+              "ru": "вытряхнуть из ткани пыль или крошки.",
+              "uk": "витрусити з тканини пил або крихти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Скажіть: «Я витрушу килимок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Скажіть: «Я витрушу килимок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll shake out the rug.",
+          "localizedMeaning": {
+            "ru": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Скажите: «Я вытряхну коврик».",
+            "uk": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Скажіть: «Я витрушу килимок»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "shake",
+            "out",
+            "the",
+            "rug"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i05:r1",
+            "text": "I'll shake out the rug."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i05:r2",
+            "text": "We'll shake out the rug."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i05:r3",
+            "text": "They'll shake out the rug."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i05:audio",
+            "transcript": "I'll shake out the rug."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i05:r1",
+              "targetText": "I'll shake out the rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i05:r2",
+              "targetText": "We'll shake out the rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i05:r3",
+              "targetText": "They'll shake out the rug.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll shake out the rug.",
+                "uk": "У записі звучить I'll shake out the rug."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll shake out the rug.",
+                "uk": "У записі звучить I'll shake out the rug."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i06:r1",
+            "text": "I'll shake out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i06:r2",
+            "text": "I'll to shake out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i06:r3",
+            "text": "I shake out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На маленьком коврике песок. Вы сейчас решаете вынести его и вытряхнуть. Используйте I'll.",
+            "uk": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the rug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i06:r1",
+              "text": "I'll shake out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i06:r2",
+              "text": "I'll to shake out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i06:r3",
+              "text": "I shake out"
+            }
+          ],
+          "testedDimension": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i06:r2",
+              "correct": false,
+              "testedDimension": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i06:r3",
+              "correct": false,
+              "testedDimension": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:word:air-out",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — air out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:air-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — air out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:air-out:audio",
+            "transcript": "air out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:air-out:r1",
+              "targetText": "air out",
+              "meaningByLocale": {
+                "ru": "проветрить, выпуская затхлый воздух.",
+                "uk": "провітрити, випускаючи затхле повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "air out",
+            "definitionByLocale": {
+              "ru": "проветрить, выпуская затхлый воздух.",
+              "uk": "провітрити, випускаючи затхле повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Скажіть: «Я провітрю кімнату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Скажіть: «Я провітрю кімнату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll air out the room.",
+          "localizedMeaning": {
+            "ru": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Скажите: «Я проветрю комнату».",
+            "uk": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Скажіть: «Я провітрю кімнату»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "air",
+            "out",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i08:r1",
+            "text": "I'll air out the room."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i08:r2",
+            "text": "We'll air out the room."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i08:r3",
+            "text": "They'll air out the room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i08:audio",
+            "transcript": "I'll air out the room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i08:r1",
+              "targetText": "I'll air out the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i08:r2",
+              "targetText": "We'll air out the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i08:r3",
+              "targetText": "They'll air out the room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll air out the room.",
+                "uk": "У записі звучить I'll air out the room."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll air out the room.",
+                "uk": "У записі звучить I'll air out the room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i09:r1",
+            "text": "I'll air out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i09:r2",
+            "text": "I'll to air out"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i09:r3",
+            "text": "I air out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В комнате затхлый воздух. Вы это заметили и сейчас решаете открыть окна. Используйте I'll.",
+            "uk": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i09:r1",
+              "text": "I'll air out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i09:r2",
+              "text": "I'll to air out"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i09:r3",
+              "text": "I air out"
+            }
+          ],
+          "testedDimension": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "У кімнаті затхле повітря. Ви це помітили й зараз вирішуєте відчинити вікна. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:word:soak-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soak up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:word:soak-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soak up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:word:soak-up:audio",
+            "transcript": "soak up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:word:soak-up:r1",
+              "targetText": "soak up",
+              "meaningByLocale": {
+                "ru": "впитать жидкость.",
+                "uk": "увібрати рідину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soak up",
+            "definitionByLocale": {
+              "ru": "впитать жидкость.",
+              "uk": "увібрати рідину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Скажіть: «Я вберу воду рушником».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Скажіть: «Я вберу воду рушником».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll soak up the water with a towel.",
+          "localizedMeaning": {
+            "ru": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Скажите: «Я впитаю воду полотенцем».",
+            "uk": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Скажіть: «Я вберу воду рушником»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "soak",
+            "up",
+            "the",
+            "water",
+            "with",
+            "a",
+            "towel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i11:r1",
+            "text": "I'll soak up the water with a towel."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i11:r2",
+            "text": "We'll soak up the water with a towel."
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i11:r3",
+            "text": "They'll soak up the water with a towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i11:audio",
+            "transcript": "I'll soak up the water with a towel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-15:i11:r1",
+              "targetText": "I'll soak up the water with a towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i11:r2",
+              "targetText": "We'll soak up the water with a towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i11:r3",
+              "targetText": "They'll soak up the water with a towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll soak up the water with a towel.",
+                "uk": "У записі звучить I'll soak up the water with a towel."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll soak up the water with a towel.",
+                "uk": "У записі звучить I'll soak up the water with a towel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-15:i12:r1",
+            "text": "I'll soak up"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i12:r2",
+            "text": "I'll to soak up"
+          },
+          {
+            "responseId": "en:lesson-16:session-15:i12:r3",
+            "text": "I soak up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе лужица воды. Рядом сухое полотенце; вы сейчас решаете промокнуть им воду. Используйте I'll.",
+            "uk": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the water with a towel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-15:i12:r1",
+              "text": "I'll soak up"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i12:r2",
+              "text": "I'll to soak up"
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i12:r3",
+              "text": "I soak up"
+            }
+          ],
+          "testedDimension": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-15:i13:p1",
+              "target": "wipe down",
+              "meaningByLocale": {
+                "ru": "протереть всю поверхность влажной тканью",
+                "uk": "протерти всю поверхню вологою тканиною"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-15:i13:p2",
+              "target": "shake out",
+              "meaningByLocale": {
+                "ru": "вытряхнуть из ткани пыль или крошки",
+                "uk": "витрусити з тканини пил або крихти"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-15:i13:p3",
+              "target": "air out",
+              "meaningByLocale": {
+                "ru": "проветрить, выпуская затхлый воздух",
+                "uk": "провітрити, випускаючи затхле повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-15:i13:p4",
+              "target": "soak up",
+              "meaningByLocale": {
+                "ru": "впитать жидкость",
+                "uk": "увібрати рідину"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wipe down",
+            "shake out",
+            "air out",
+            "soak up"
+          ],
+          "rightColumn": [
+            "протерти всю поверхню вологою тканиною",
+            "витрусити з тканини пил або крихти",
+            "провітрити, випускаючи затхле повітря",
+            "увібрати рідину"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i14:audio",
+            "transcript": "I'll wipe down the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll wipe down the table.",
+          "orderedTokens": [
+            "I'll",
+            "wipe",
+            "down",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i15:audio",
+            "transcript": "I'll air out the room."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll air out the room.",
+          "orderedTokens": [
+            "I'll",
+            "air",
+            "out",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "На маленькому килимку пісок. Ви зараз вирішуєте винести його й витрусити. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i16:audio",
+            "transcript": "I'll shake out the rug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll shake out the rug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "На столі калюжка води. Поруч сухий рушник; ви зараз вирішуєте промокнути ним воду. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-15:i17:audio",
+            "transcript": "I'll soak up the water with a towel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll soak up the water with a towel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-15:word:wipe-down",
+      "correctText": "wipe down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i01",
+      "correctText": "I'll wipe down the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i02",
+      "correctText": "I'll wipe down the table.",
+      "correctResponseId": "en:lesson-16:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i03",
+      "correctText": "I'll wipe down",
+      "correctResponseId": "en:lesson-16:session-15:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:word:shake-out",
+      "correctText": "shake out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i04",
+      "correctText": "I'll shake out the rug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i05",
+      "correctText": "I'll shake out the rug.",
+      "correctResponseId": "en:lesson-16:session-15:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i06",
+      "correctText": "I'll shake out",
+      "correctResponseId": "en:lesson-16:session-15:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:word:air-out",
+      "correctText": "air out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i07",
+      "correctText": "I'll air out the room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i08",
+      "correctText": "I'll air out the room.",
+      "correctResponseId": "en:lesson-16:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i09",
+      "correctText": "I'll air out",
+      "correctResponseId": "en:lesson-16:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:word:soak-up",
+      "correctText": "soak up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i10",
+      "correctText": "I'll soak up the water with a towel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i11",
+      "correctText": "I'll soak up the water with a towel.",
+      "correctResponseId": "en:lesson-16:session-15:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i12",
+      "correctText": "I'll soak up",
+      "correctResponseId": "en:lesson-16:session-15:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i14",
+      "correctText": "I'll wipe down the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i15",
+      "correctText": "I'll air out the room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i16",
+      "correctText": "I'll shake out the rug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-15:i17",
+      "correctText": "I'll soak up the water with a towel.",
+      "correctResponseId": null
+    }
+  ]
+}

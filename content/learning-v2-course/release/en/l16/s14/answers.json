@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-14:word:fold-up",
+    "correctText": "fold up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i01",
+    "correctText": "I'll fold up the blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i02",
+    "correctText": "I'll fold up the blanket.",
+    "correctResponseId": "en:lesson-16:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i03",
+    "correctText": "I'll fold up",
+    "correctResponseId": "en:lesson-16:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:word:spread-out",
+    "correctText": "spread out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i04",
+    "correctText": "I'll spread out the tablecloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i05",
+    "correctText": "I'll spread out the tablecloth.",
+    "correctResponseId": "en:lesson-16:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i06",
+    "correctText": "I'll spread out",
+    "correctResponseId": "en:lesson-16:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:word:lay-out",
+    "correctText": "lay out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i07",
+    "correctText": "I'll lay out my clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i08",
+    "correctText": "I'll lay out my clothes.",
+    "correctResponseId": "en:lesson-16:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i09",
+    "correctText": "I'll lay out",
+    "correctResponseId": "en:lesson-16:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:word:rinse-out",
+    "correctText": "rinse out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i10",
+    "correctText": "I'll rinse out the bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i11",
+    "correctText": "I'll rinse out the bottle.",
+    "correctResponseId": "en:lesson-16:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i12",
+    "correctText": "I'll rinse out",
+    "correctResponseId": "en:lesson-16:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i13",
+    "correctText": "en:lesson-16:session-14:i13:p1=fold up\nen:lesson-16:session-14:i13:p2=spread out\nen:lesson-16:session-14:i13:p3=lay out\nen:lesson-16:session-14:i13:p4=rinse out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i14",
+    "correctText": "I'll fold up the blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i15",
+    "correctText": "I'll lay out my clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i16",
+    "correctText": "I'll spread out the tablecloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-14:i17",
+    "correctText": "I'll rinse out the bottle.",
+    "correctResponseId": null
+  }
+]

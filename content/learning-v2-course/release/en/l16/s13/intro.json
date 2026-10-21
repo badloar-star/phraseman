@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. wring out — выжать воду, скручивая ткань. С мокрой тряпки капает вода. Вы сейчас решаете её выжать. I'll wring out the cloth. — Я выжму тряпку.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. wring out — викрутити воду, скручуючи тканину. З мокрої ганчірки капає вода. Ви зараз вирішуєте її викрутити. I'll wring out the cloth. — Я викручу ганчірку."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-13:intro1:r1",
+              "text": "I'll wring out the cloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro1:r2",
+              "text": "I'll to wring out the cloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro1:r3",
+              "text": "I wring out the cloth."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-13:intro1:r1",
+              "text": "I'll wring out the cloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro1:r2",
+              "text": "I'll to wring out the cloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro1:r3",
+              "text": "I wring out the cloth."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "mop up — собрать пролитую жидкость тряпкой или шваброй. На полу разлилась вода. Вы берёте швабру и сейчас решаете собрать воду. I'll mop up the water. — Я соберу разлитую воду.",
+        "uk": "mop up — зібрати розлиту рідину ганчіркою або шваброю. На підлозі розлилася вода. Ви берете швабру й зараз вирішуєте зібрати воду. I'll mop up the water. — Я зберу розлиту воду."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-13:intro2:r1",
+              "text": "I'll mop up the water."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro2:r2",
+              "text": "I'll to mop up the water."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro2:r3",
+              "text": "I mop up the water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-13:intro2:r1",
+              "text": "I'll mop up the water."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro2:r2",
+              "text": "I'll to mop up the water."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro2:r3",
+              "text": "I mop up the water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "scrub off — оттереть с поверхности, усиленно натирая. sweep up — смести и собрать веником или щёткой. После завтрака на полу остались крошки. Вы сейчас решаете собрать их веником. I'll sweep up the crumbs. — Я смету крошки.",
+        "uk": "scrub off — відтерти з поверхні, посилено натираючи. sweep up — змести й зібрати віником або щіткою. Після сніданку на підлозі залишилися крихти. Ви зараз вирішуєте зібрати їх віником. I'll sweep up the crumbs. — Я змету крихти."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-13:intro3:r1",
+              "text": "I'll sweep up the crumbs."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro3:r2",
+              "text": "I'll to sweep up the crumbs."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro3:r3",
+              "text": "I sweep up the crumbs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-13:intro3:r1",
+              "text": "I'll sweep up the crumbs."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro3:r2",
+              "text": "I'll to sweep up the crumbs."
+            },
+            {
+              "responseId": "en:lesson-16:session-13:intro3:r3",
+              "text": "I sweep up the crumbs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ec46328c734a9a87b8b4dea766ba2344f25c08a63fd3686fdbb5085c9b84095d"
+}

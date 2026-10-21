@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-10:word:tablespoon",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tablespoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:word:tablespoon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tablespoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:word:tablespoon:audio",
+          "transcript": "tablespoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:word:tablespoon:r1",
+            "targetText": "tablespoon",
+            "meaningByLocale": {
+              "ru": "столовая ложка.",
+              "uk": "столова ложка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tablespoon",
+          "definitionByLocale": {
+            "ru": "столовая ложка.",
+            "uk": "столова ложка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Скажіть: «Я принесу столову ложку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Скажіть: «Я принесу столову ложку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll get a tablespoon.",
+        "localizedMeaning": {
+          "ru": "Вы прочитали рецепт: нужна большая ложка. Сейчас решаете принести столовую ложку. Скажите: «Я принесу столовую ложку».",
+          "uk": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Скажіть: «Я принесу столову ложку»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "get",
+          "a",
+          "tablespoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i02:r1",
+          "text": "I'll get a tablespoon."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i02:r2",
+          "text": "We'll get a tablespoon."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i02:r3",
+          "text": "They'll get a tablespoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i02:audio",
+          "transcript": "I'll get a tablespoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:i02:r1",
+            "targetText": "I'll get a tablespoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i02:r2",
+            "targetText": "We'll get a tablespoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i02:r3",
+            "targetText": "They'll get a tablespoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll get a tablespoon.",
+              "uk": "У записі звучить I'll get a tablespoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll get a tablespoon.",
+              "uk": "У записі звучить I'll get a tablespoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i03:r1",
+          "text": "I'll get"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i03:r2",
+          "text": "I'll to get"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i03:r3",
+          "text": "I get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы прочитали рецепт: нужна большая ложка. Сейчас решаете принести столовую ложку. Используйте I'll.",
+          "uk": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ a tablespoon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-10:i03:r1",
+            "text": "I'll get"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i03:r2",
+            "text": "I'll to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i03:r3",
+            "text": "I get"
+          }
+        ],
+        "testedDimension": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви прочитали рецепт: потрібна велика ложка. Зараз вирішуєте принести столову ложку. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:word:trivet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trivet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:word:trivet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trivet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:word:trivet:audio",
+          "transcript": "trivet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:word:trivet:r1",
+            "targetText": "trivet",
+            "meaningByLocale": {
+              "ru": "подставка под горячую посуду.",
+              "uk": "підставка під гарячий посуд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trivet",
+          "definitionByLocale": {
+            "ru": "подставка под горячую посуду.",
+            "uk": "підставка під гарячий посуд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Скажіть: «Я скористаюся підставкою під гаряче».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Скажіть: «Я скористаюся підставкою під гаряче».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll use the trivet.",
+        "localizedMeaning": {
+          "ru": "Кастрюлю нужно поставить на стол. Вы видите подставку под горячее и сейчас решаете воспользоваться ею. Скажите: «Я воспользуюсь подставкой под горячее».",
+          "uk": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Скажіть: «Я скористаюся підставкою під гаряче»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "use",
+          "the",
+          "trivet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i05:r1",
+          "text": "I'll use the trivet."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i05:r2",
+          "text": "We'll use the trivet."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i05:r3",
+          "text": "They'll use the trivet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i05:audio",
+          "transcript": "I'll use the trivet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:i05:r1",
+            "targetText": "I'll use the trivet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i05:r2",
+            "targetText": "We'll use the trivet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i05:r3",
+            "targetText": "They'll use the trivet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll use the trivet.",
+              "uk": "У записі звучить I'll use the trivet."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll use the trivet.",
+              "uk": "У записі звучить I'll use the trivet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i06:r1",
+          "text": "I'll use"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i06:r2",
+          "text": "I'll to use"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i06:r3",
+          "text": "I use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кастрюлю нужно поставить на стол. Вы видите подставку под горячее и сейчас решаете воспользоваться ею. Используйте I'll.",
+          "uk": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the trivet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-10:i06:r1",
+            "text": "I'll use"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i06:r2",
+            "text": "I'll to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i06:r3",
+            "text": "I use"
+          }
+        ],
+        "testedDimension": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:word:bottle-opener",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bottle opener",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:word:bottle-opener:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bottle opener",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:word:bottle-opener:audio",
+          "transcript": "bottle opener"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:word:bottle-opener:r1",
+            "targetText": "bottle opener",
+            "meaningByLocale": {
+              "ru": "открывалка для бутылок.",
+              "uk": "відкривачка для пляшок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottle opener",
+          "definitionByLocale": {
+            "ru": "открывалка для бутылок.",
+            "uk": "відкривачка для пляшок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Скажіть: «Я принесу відкривачку для пляшок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Скажіть: «Я принесу відкривачку для пляшок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll bring the bottle opener.",
+        "localizedMeaning": {
+          "ru": "Друг не может открыть бутылку с металлической крышкой. В ответ вы сейчас решаете принести открывалку. Скажите: «Я принесу открывалку для бутылок».",
+          "uk": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Скажіть: «Я принесу відкривачку для пляшок»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "bring",
+          "the",
+          "bottle",
+          "opener"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i08:r1",
+          "text": "I'll bring the bottle opener."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i08:r2",
+          "text": "We'll bring the bottle opener."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i08:r3",
+          "text": "They'll bring the bottle opener."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i08:audio",
+          "transcript": "I'll bring the bottle opener."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:i08:r1",
+            "targetText": "I'll bring the bottle opener.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i08:r2",
+            "targetText": "We'll bring the bottle opener.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i08:r3",
+            "targetText": "They'll bring the bottle opener.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll bring the bottle opener.",
+              "uk": "У записі звучить I'll bring the bottle opener."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll bring the bottle opener.",
+              "uk": "У записі звучить I'll bring the bottle opener."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i09:r1",
+          "text": "I'll bring"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i09:r2",
+          "text": "I'll to bring"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i09:r3",
+          "text": "I bring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг не может открыть бутылку с металлической крышкой. В ответ вы сейчас решаете принести открывалку. Используйте I'll.",
+          "uk": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the bottle opener.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-10:i09:r1",
+            "text": "I'll bring"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i09:r2",
+            "text": "I'll to bring"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i09:r3",
+            "text": "I bring"
+          }
+        ],
+        "testedDimension": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг не може відкрити пляшку з металевою кришкою. У відповідь ви зараз вирішуєте принести відкривачку. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:word:pizza-cutter",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pizza cutter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:word:pizza-cutter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pizza cutter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:word:pizza-cutter:audio",
+          "transcript": "pizza cutter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:word:pizza-cutter:r1",
+            "targetText": "pizza cutter",
+            "meaningByLocale": {
+              "ru": "нож-колёсико для пиццы.",
+              "uk": "ніж-коліщатко для піци."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pizza cutter",
+          "definitionByLocale": {
+            "ru": "нож-колёсико для пиццы.",
+            "uk": "ніж-коліщатко для піци."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Скажіть: «Я спробую ніж-коліщатко для піци».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Скажіть: «Я спробую ніж-коліщатко для піци».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll try the pizza cutter.",
+        "localizedMeaning": {
+          "ru": "Пицца готова. Вы замечаете нож-колёсико и сейчас решаете попробовать разрезать пиццу им. Скажите: «Я попробую нож-колёсико для пиццы».",
+          "uk": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Скажіть: «Я спробую ніж-коліщатко для піци»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "try",
+          "the",
+          "pizza",
+          "cutter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i11:r1",
+          "text": "I'll try the pizza cutter."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i11:r2",
+          "text": "We'll try the pizza cutter."
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i11:r3",
+          "text": "They'll try the pizza cutter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i11:audio",
+          "transcript": "I'll try the pizza cutter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-10:i11:r1",
+            "targetText": "I'll try the pizza cutter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i11:r2",
+            "targetText": "We'll try the pizza cutter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i11:r3",
+            "targetText": "They'll try the pizza cutter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll try the pizza cutter.",
+              "uk": "У записі звучить I'll try the pizza cutter."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll try the pizza cutter.",
+              "uk": "У записі звучить I'll try the pizza cutter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-10:i12:r1",
+          "text": "I'll try"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i12:r2",
+          "text": "I'll to try"
+        },
+        {
+          "responseId": "en:lesson-16:session-10:i12:r3",
+          "text": "I try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пицца готова. Вы замечаете нож-колёсико и сейчас решаете попробовать разрезать пиццу им. Используйте I'll.",
+          "uk": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the pizza cutter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-10:i12:r1",
+            "text": "I'll try"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i12:r2",
+            "text": "I'll to try"
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i12:r3",
+            "text": "I try"
+          }
+        ],
+        "testedDimension": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте решение: I'll + глагол.",
+              "uk": "Передайте рішення: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-10:i13:p1",
+            "target": "tablespoon",
+            "meaningByLocale": {
+              "ru": "столовая ложка",
+              "uk": "столова ложка"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-10:i13:p2",
+            "target": "trivet",
+            "meaningByLocale": {
+              "ru": "подставка под горячую посуду",
+              "uk": "підставка під гарячий посуд"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-10:i13:p3",
+            "target": "bottle opener",
+            "meaningByLocale": {
+              "ru": "открывалка для бутылок",
+              "uk": "відкривачка для пляшок"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-10:i13:p4",
+            "target": "pizza cutter",
+            "meaningByLocale": {
+              "ru": "нож-колёсико для пиццы",
+              "uk": "ніж-коліщатко для піци"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tablespoon",
+          "trivet",
+          "bottle opener",
+          "pizza cutter"
+        ],
+        "rightColumn": [
+          "столова ложка",
+          "підставка під гарячий посуд",
+          "відкривачка для пляшок",
+          "ніж-коліщатко для піци"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте рішення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте рішення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i14:audio",
+          "transcript": "I'll get a tablespoon."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll get a tablespoon.",
+        "orderedTokens": [
+          "I'll",
+          "get",
+          "a",
+          "tablespoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте рішення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте рішення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i15:audio",
+          "transcript": "I'll bring the bottle opener."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll bring the bottle opener.",
+        "orderedTokens": [
+          "I'll",
+          "bring",
+          "the",
+          "bottle",
+          "opener"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Промовте своє рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Каструлю потрібно поставити на стіл. Ви бачите підставку під гаряче й зараз вирішуєте скористатися нею. Промовте своє рішення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i16:audio",
+          "transcript": "I'll use the trivet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll use the trivet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Промовте своє рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Піца готова. Ви помічаєте ніж-коліщатко й зараз вирішуєте спробувати розрізати піцу ним. Промовте своє рішення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-10:i17:audio",
+          "transcript": "I'll try the pizza cutter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll try the pizza cutter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c002095e689d7a62308f6d28729cb3c9d303b13d3fbd0b9f6f1af9dfa762c849"
+}

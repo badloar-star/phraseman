@@ -1,0 +1,2309 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-11",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-11:word:drawstring",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — drawstring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:drawstring:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — drawstring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:drawstring:audio",
+            "transcript": "drawstring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:drawstring:r1",
+              "targetText": "drawstring",
+              "meaningByLocale": {
+                "ru": "шнурок для стягивания одежды или сумки.",
+                "uk": "шнурок для стягування одягу або сумки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drawstring",
+            "definitionByLocale": {
+              "ru": "шнурок для стягивания одежды или сумки.",
+              "uk": "шнурок для стягування одягу або сумки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Скажите: «Я затяну шнурок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Скажите: «Я затяну шнурок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll tighten the drawstring.",
+          "localizedMeaning": {
+            "ru": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Скажите: «Я затяну шнурок».",
+            "uk": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Скажіть: «Я затягну шнурок»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "tighten",
+            "the",
+            "drawstring"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i02:r1",
+            "text": "I'll tighten the drawstring."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i02:r2",
+            "text": "We'll tighten the drawstring."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i02:r3",
+            "text": "They'll tighten the drawstring."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i02:audio",
+            "transcript": "I'll tighten the drawstring."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i02:r1",
+              "targetText": "I'll tighten the drawstring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i02:r2",
+              "targetText": "We'll tighten the drawstring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i02:r3",
+              "targetText": "They'll tighten the drawstring.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tighten the drawstring.",
+                "uk": "У записі звучить I'll tighten the drawstring."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tighten the drawstring.",
+                "uk": "У записі звучить I'll tighten the drawstring."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i03:r1",
+            "text": "I'll tighten"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i03:r2",
+            "text": "I'll to tighten"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i03:r3",
+            "text": "I tighten"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+            "uk": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the drawstring.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i03:r1",
+              "text": "I'll tighten"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i03:r2",
+              "text": "I'll to tighten"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i03:r3",
+              "text": "I tighten"
+            }
+          ],
+          "testedDimension": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:word:buttonhole",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — buttonhole",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:buttonhole:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — buttonhole",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:buttonhole:audio",
+            "transcript": "buttonhole"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:buttonhole:r1",
+              "targetText": "buttonhole",
+              "meaningByLocale": {
+                "ru": "петля для пуговицы.",
+                "uk": "петля для ґудзика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buttonhole",
+            "definitionByLocale": {
+              "ru": "петля для пуговицы.",
+              "uk": "петля для ґудзика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Скажите: «Я проверю петлю для пуговицы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Скажите: «Я проверю петлю для пуговицы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll check the buttonhole.",
+          "localizedMeaning": {
+            "ru": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Скажите: «Я проверю петлю для пуговицы».",
+            "uk": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Скажіть: «Я перевірю петлю для ґудзика»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "check",
+            "the",
+            "buttonhole"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i05:r1",
+            "text": "I'll check the buttonhole."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i05:r2",
+            "text": "We'll check the buttonhole."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i05:r3",
+            "text": "They'll check the buttonhole."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i05:audio",
+            "transcript": "I'll check the buttonhole."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i05:r1",
+              "targetText": "I'll check the buttonhole.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i05:r2",
+              "targetText": "We'll check the buttonhole.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i05:r3",
+              "targetText": "They'll check the buttonhole.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check the buttonhole.",
+                "uk": "У записі звучить I'll check the buttonhole."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check the buttonhole.",
+                "uk": "У записі звучить I'll check the buttonhole."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i06:r1",
+            "text": "I'll check"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i06:r2",
+            "text": "I'll to check"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i06:r3",
+            "text": "I check"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+            "uk": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the buttonhole.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i06:r1",
+              "text": "I'll check"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i06:r2",
+              "text": "I'll to check"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i06:r3",
+              "text": "I check"
+            }
+          ],
+          "testedDimension": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i06:r2",
+              "correct": false,
+              "testedDimension": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i06:r3",
+              "correct": false,
+              "testedDimension": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:word:waistband",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waistband",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:waistband:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waistband",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:waistband:audio",
+            "transcript": "waistband"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:waistband:r1",
+              "targetText": "waistband",
+              "meaningByLocale": {
+                "ru": "пояс одежды — её часть вокруг талии.",
+                "uk": "пояс одягу — його частина навколо талії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waistband",
+            "definitionByLocale": {
+              "ru": "пояс одежды — её часть вокруг талии.",
+              "uk": "пояс одягу — його частина навколо талії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Скажите: «Я поправлю пояс одежды».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Скажите: «Я поправлю пояс одежды».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll adjust the waistband.",
+          "localizedMeaning": {
+            "ru": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Скажите: «Я поправлю пояс одежды».",
+            "uk": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Скажіть: «Я поправлю пояс одягу»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "adjust",
+            "the",
+            "waistband"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i08:r1",
+            "text": "I'll adjust the waistband."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i08:r2",
+            "text": "We'll adjust the waistband."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i08:r3",
+            "text": "They'll adjust the waistband."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i08:audio",
+            "transcript": "I'll adjust the waistband."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i08:r1",
+              "targetText": "I'll adjust the waistband.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i08:r2",
+              "targetText": "We'll adjust the waistband.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i08:r3",
+              "targetText": "They'll adjust the waistband.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll adjust the waistband.",
+                "uk": "У записі звучить I'll adjust the waistband."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll adjust the waistband.",
+                "uk": "У записі звучить I'll adjust the waistband."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i09:r1",
+            "text": "I'll adjust"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i09:r2",
+            "text": "I'll to adjust"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i09:r3",
+            "text": "I adjust"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+            "uk": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the waistband.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i09:r1",
+              "text": "I'll adjust"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i09:r2",
+              "text": "I'll to adjust"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i09:r3",
+              "text": "I adjust"
+            }
+          ],
+          "testedDimension": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:word:belt-loop",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — belt loop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:belt-loop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — belt loop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:belt-loop:audio",
+            "transcript": "belt loop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:belt-loop:r1",
+              "targetText": "belt loop",
+              "meaningByLocale": {
+                "ru": "петелька на одежде для ремня.",
+                "uk": "петелька на одязі для ременя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "belt loop",
+            "definitionByLocale": {
+              "ru": "петелька на одежде для ремня.",
+              "uk": "петелька на одязі для ременя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Скажите: «Я воспользуюсь петелькой для ремня».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Скажите: «Я воспользуюсь петелькой для ремня».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll use the belt loop.",
+          "localizedMeaning": {
+            "ru": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Скажите: «Я воспользуюсь петелькой для ремня».",
+            "uk": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Скажіть: «Я скористаюся петелькою для ременя»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "use",
+            "the",
+            "belt",
+            "loop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i11:r1",
+            "text": "I'll use the belt loop."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i11:r2",
+            "text": "We'll use the belt loop."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i11:r3",
+            "text": "They'll use the belt loop."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i11:audio",
+            "transcript": "I'll use the belt loop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i11:r1",
+              "targetText": "I'll use the belt loop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i11:r2",
+              "targetText": "We'll use the belt loop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i11:r3",
+              "targetText": "They'll use the belt loop.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use the belt loop.",
+                "uk": "У записі звучить I'll use the belt loop."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use the belt loop.",
+                "uk": "У записі звучить I'll use the belt loop."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i12:r1",
+            "text": "I'll use"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i12:r2",
+            "text": "I'll to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i12:r3",
+            "text": "I use"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+            "uk": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the belt loop.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i12:r1",
+              "text": "I'll use"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i12:r2",
+              "text": "I'll to use"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i12:r3",
+              "text": "I use"
+            }
+          ],
+          "testedDimension": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-11:i13:p1",
+              "target": "drawstring",
+              "meaningByLocale": {
+                "ru": "шнурок для стягивания одежды или сумки",
+                "uk": "шнурок для стягування одягу або сумки"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-11:i13:p2",
+              "target": "buttonhole",
+              "meaningByLocale": {
+                "ru": "петля для пуговицы",
+                "uk": "петля для ґудзика"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-11:i13:p3",
+              "target": "waistband",
+              "meaningByLocale": {
+                "ru": "пояс одежды",
+                "uk": "пояс одягу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-11:i13:p4",
+              "target": "belt loop",
+              "meaningByLocale": {
+                "ru": "петелька на одежде для ремня",
+                "uk": "петелька на одязі для ременя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "drawstring",
+            "buttonhole",
+            "waistband",
+            "belt loop"
+          ],
+          "rightColumn": [
+            "шнурок для стягивания одежды или сумки",
+            "петля для пуговицы",
+            "пояс одежды",
+            "петелька на одежде для ремня"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i14:audio",
+            "transcript": "I'll tighten the drawstring."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll tighten the drawstring.",
+          "orderedTokens": [
+            "I'll",
+            "tighten",
+            "the",
+            "drawstring"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i15:audio",
+            "transcript": "I'll adjust the waistband."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll adjust the waistband.",
+          "orderedTokens": [
+            "I'll",
+            "adjust",
+            "the",
+            "waistband"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i16:audio"
+        ],
+        "accessibilityLabel": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i16:audio",
+            "transcript": "I'll check the buttonhole."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll check the buttonhole.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i17:audio",
+            "transcript": "I'll use the belt loop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll use the belt loop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-11:word:drawstring",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — drawstring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:drawstring:audio"
+        ],
+        "accessibilityLabel": "Картка слова — drawstring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:drawstring:audio",
+            "transcript": "drawstring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:drawstring:r1",
+              "targetText": "drawstring",
+              "meaningByLocale": {
+                "ru": "шнурок для стягивания одежды или сумки.",
+                "uk": "шнурок для стягування одягу або сумки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drawstring",
+            "definitionByLocale": {
+              "ru": "шнурок для стягивания одежды или сумки.",
+              "uk": "шнурок для стягування одягу або сумки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Скажіть: «Я затягну шнурок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Скажіть: «Я затягну шнурок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll tighten the drawstring.",
+          "localizedMeaning": {
+            "ru": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Скажите: «Я затяну шнурок».",
+            "uk": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Скажіть: «Я затягну шнурок»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "tighten",
+            "the",
+            "drawstring"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i02:r1",
+            "text": "I'll tighten the drawstring."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i02:r2",
+            "text": "We'll tighten the drawstring."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i02:r3",
+            "text": "They'll tighten the drawstring."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i02:audio",
+            "transcript": "I'll tighten the drawstring."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i02:r1",
+              "targetText": "I'll tighten the drawstring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i02:r2",
+              "targetText": "We'll tighten the drawstring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i02:r3",
+              "targetText": "They'll tighten the drawstring.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tighten the drawstring.",
+                "uk": "У записі звучить I'll tighten the drawstring."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tighten the drawstring.",
+                "uk": "У записі звучить I'll tighten the drawstring."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i03:r1",
+            "text": "I'll tighten"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i03:r2",
+            "text": "I'll to tighten"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i03:r3",
+            "text": "I tighten"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. Используйте I'll.",
+            "uk": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the drawstring.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i03:r1",
+              "text": "I'll tighten"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i03:r2",
+              "text": "I'll to tighten"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i03:r3",
+              "text": "I tighten"
+            }
+          ],
+          "testedDimension": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:word:buttonhole",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — buttonhole",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:buttonhole:audio"
+        ],
+        "accessibilityLabel": "Картка слова — buttonhole",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:buttonhole:audio",
+            "transcript": "buttonhole"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:buttonhole:r1",
+              "targetText": "buttonhole",
+              "meaningByLocale": {
+                "ru": "петля для пуговицы.",
+                "uk": "петля для ґудзика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buttonhole",
+            "definitionByLocale": {
+              "ru": "петля для пуговицы.",
+              "uk": "петля для ґудзика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Скажіть: «Я перевірю петлю для ґудзика».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Скажіть: «Я перевірю петлю для ґудзика».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll check the buttonhole.",
+          "localizedMeaning": {
+            "ru": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Скажите: «Я проверю петлю для пуговицы».",
+            "uk": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Скажіть: «Я перевірю петлю для ґудзика»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "check",
+            "the",
+            "buttonhole"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i05:r1",
+            "text": "I'll check the buttonhole."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i05:r2",
+            "text": "We'll check the buttonhole."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i05:r3",
+            "text": "They'll check the buttonhole."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i05:audio",
+            "transcript": "I'll check the buttonhole."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i05:r1",
+              "targetText": "I'll check the buttonhole.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i05:r2",
+              "targetText": "We'll check the buttonhole.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i05:r3",
+              "targetText": "They'll check the buttonhole.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check the buttonhole.",
+                "uk": "У записі звучить I'll check the buttonhole."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll check the buttonhole.",
+                "uk": "У записі звучить I'll check the buttonhole."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i06:r1",
+            "text": "I'll check"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i06:r2",
+            "text": "I'll to check"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i06:r3",
+            "text": "I check"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. Используйте I'll.",
+            "uk": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the buttonhole.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i06:r1",
+              "text": "I'll check"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i06:r2",
+              "text": "I'll to check"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i06:r3",
+              "text": "I check"
+            }
+          ],
+          "testedDimension": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i06:r2",
+              "correct": false,
+              "testedDimension": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i06:r3",
+              "correct": false,
+              "testedDimension": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:word:waistband",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waistband",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:waistband:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waistband",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:waistband:audio",
+            "transcript": "waistband"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:waistband:r1",
+              "targetText": "waistband",
+              "meaningByLocale": {
+                "ru": "пояс одежды — её часть вокруг талии.",
+                "uk": "пояс одягу — його частина навколо талії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waistband",
+            "definitionByLocale": {
+              "ru": "пояс одежды — её часть вокруг талии.",
+              "uk": "пояс одягу — його частина навколо талії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Скажіть: «Я поправлю пояс одягу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Скажіть: «Я поправлю пояс одягу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll adjust the waistband.",
+          "localizedMeaning": {
+            "ru": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Скажите: «Я поправлю пояс одежды».",
+            "uk": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Скажіть: «Я поправлю пояс одягу»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "adjust",
+            "the",
+            "waistband"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i08:r1",
+            "text": "I'll adjust the waistband."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i08:r2",
+            "text": "We'll adjust the waistband."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i08:r3",
+            "text": "They'll adjust the waistband."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i08:audio",
+            "transcript": "I'll adjust the waistband."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i08:r1",
+              "targetText": "I'll adjust the waistband.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i08:r2",
+              "targetText": "We'll adjust the waistband.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i08:r3",
+              "targetText": "They'll adjust the waistband.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll adjust the waistband.",
+                "uk": "У записі звучить I'll adjust the waistband."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll adjust the waistband.",
+                "uk": "У записі звучить I'll adjust the waistband."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i09:r1",
+            "text": "I'll adjust"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i09:r2",
+            "text": "I'll to adjust"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i09:r3",
+            "text": "I adjust"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пояс юбки перекрутился. Вы сейчас решаете его поправить. Используйте I'll.",
+            "uk": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the waistband.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i09:r1",
+              "text": "I'll adjust"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i09:r2",
+              "text": "I'll to adjust"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i09:r3",
+              "text": "I adjust"
+            }
+          ],
+          "testedDimension": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Пояс спідниці перекрутився. Ви зараз вирішуєте його поправити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:word:belt-loop",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — belt loop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:word:belt-loop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — belt loop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:word:belt-loop:audio",
+            "transcript": "belt loop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:word:belt-loop:r1",
+              "targetText": "belt loop",
+              "meaningByLocale": {
+                "ru": "петелька на одежде для ремня.",
+                "uk": "петелька на одязі для ременя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "belt loop",
+            "definitionByLocale": {
+              "ru": "петелька на одежде для ремня.",
+              "uk": "петелька на одязі для ременя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Скажіть: «Я скористаюся петелькою для ременя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Скажіть: «Я скористаюся петелькою для ременя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll use the belt loop.",
+          "localizedMeaning": {
+            "ru": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Скажите: «Я воспользуюсь петелькой для ремня».",
+            "uk": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Скажіть: «Я скористаюся петелькою для ременя»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "use",
+            "the",
+            "belt",
+            "loop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i11:r1",
+            "text": "I'll use the belt loop."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i11:r2",
+            "text": "We'll use the belt loop."
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i11:r3",
+            "text": "They'll use the belt loop."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i11:audio",
+            "transcript": "I'll use the belt loop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-11:i11:r1",
+              "targetText": "I'll use the belt loop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i11:r2",
+              "targetText": "We'll use the belt loop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i11:r3",
+              "targetText": "They'll use the belt loop.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use the belt loop.",
+                "uk": "У записі звучить I'll use the belt loop."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll use the belt loop.",
+                "uk": "У записі звучить I'll use the belt loop."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-11:i12:r1",
+            "text": "I'll use"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i12:r2",
+            "text": "I'll to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-11:i12:r3",
+            "text": "I use"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. Используйте I'll.",
+            "uk": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the belt loop.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-11:i12:r1",
+              "text": "I'll use"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i12:r2",
+              "text": "I'll to use"
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i12:r3",
+              "text": "I use"
+            }
+          ],
+          "testedDimension": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-11:i13:p1",
+              "target": "drawstring",
+              "meaningByLocale": {
+                "ru": "шнурок для стягивания одежды или сумки",
+                "uk": "шнурок для стягування одягу або сумки"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-11:i13:p2",
+              "target": "buttonhole",
+              "meaningByLocale": {
+                "ru": "петля для пуговицы",
+                "uk": "петля для ґудзика"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-11:i13:p3",
+              "target": "waistband",
+              "meaningByLocale": {
+                "ru": "пояс одежды",
+                "uk": "пояс одягу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-11:i13:p4",
+              "target": "belt loop",
+              "meaningByLocale": {
+                "ru": "петелька на одежде для ремня",
+                "uk": "петелька на одязі для ременя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "drawstring",
+            "buttonhole",
+            "waistband",
+            "belt loop"
+          ],
+          "rightColumn": [
+            "шнурок для стягування одягу або сумки",
+            "петля для ґудзика",
+            "пояс одягу",
+            "петелька на одязі для ременя"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i14:audio",
+            "transcript": "I'll tighten the drawstring."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll tighten the drawstring.",
+          "orderedTokens": [
+            "I'll",
+            "tighten",
+            "the",
+            "drawstring"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i15:audio",
+            "transcript": "I'll adjust the waistband."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll adjust the waistband.",
+          "orderedTokens": [
+            "I'll",
+            "adjust",
+            "the",
+            "waistband"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i16:audio"
+        ],
+        "accessibilityLabel": "Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i16:audio",
+            "transcript": "I'll check the buttonhole."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll check the buttonhole.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-11:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-11:i17:audio",
+            "transcript": "I'll use the belt loop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll use the belt loop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-11:word:drawstring",
+      "correctText": "drawstring",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i01",
+      "correctText": "I'll tighten the drawstring.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i02",
+      "correctText": "I'll tighten the drawstring.",
+      "correctResponseId": "en:lesson-16:session-11:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i03",
+      "correctText": "I'll tighten",
+      "correctResponseId": "en:lesson-16:session-11:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:word:buttonhole",
+      "correctText": "buttonhole",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i04",
+      "correctText": "I'll check the buttonhole.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i05",
+      "correctText": "I'll check the buttonhole.",
+      "correctResponseId": "en:lesson-16:session-11:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i06",
+      "correctText": "I'll check",
+      "correctResponseId": "en:lesson-16:session-11:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:word:waistband",
+      "correctText": "waistband",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i07",
+      "correctText": "I'll adjust the waistband.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i08",
+      "correctText": "I'll adjust the waistband.",
+      "correctResponseId": "en:lesson-16:session-11:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i09",
+      "correctText": "I'll adjust",
+      "correctResponseId": "en:lesson-16:session-11:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:word:belt-loop",
+      "correctText": "belt loop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i10",
+      "correctText": "I'll use the belt loop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i11",
+      "correctText": "I'll use the belt loop.",
+      "correctResponseId": "en:lesson-16:session-11:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i12",
+      "correctText": "I'll use",
+      "correctResponseId": "en:lesson-16:session-11:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i14",
+      "correctText": "I'll tighten the drawstring.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i15",
+      "correctText": "I'll adjust the waistband.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i16",
+      "correctText": "I'll check the buttonhole.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-11:i17",
+      "correctText": "I'll use the belt loop.",
+      "correctResponseId": null
+    }
+  ]
+}

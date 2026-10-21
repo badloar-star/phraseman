@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-13:word:wring-out",
+    "correctText": "wring out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i01",
+    "correctText": "I'll wring out the cloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i02",
+    "correctText": "I'll wring out the cloth.",
+    "correctResponseId": "en:lesson-16:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i03",
+    "correctText": "I'll wring out",
+    "correctResponseId": "en:lesson-16:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:word:mop-up",
+    "correctText": "mop up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i04",
+    "correctText": "I'll mop up the water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i05",
+    "correctText": "I'll mop up the water.",
+    "correctResponseId": "en:lesson-16:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i06",
+    "correctText": "I'll mop up",
+    "correctResponseId": "en:lesson-16:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:word:scrub-off",
+    "correctText": "scrub off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i07",
+    "correctText": "I'll scrub off the mud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i08",
+    "correctText": "I'll scrub off the mud.",
+    "correctResponseId": "en:lesson-16:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i09",
+    "correctText": "I'll scrub off",
+    "correctResponseId": "en:lesson-16:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:word:sweep-up",
+    "correctText": "sweep up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i10",
+    "correctText": "I'll sweep up the crumbs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i11",
+    "correctText": "I'll sweep up the crumbs.",
+    "correctResponseId": "en:lesson-16:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i12",
+    "correctText": "I'll sweep up",
+    "correctResponseId": "en:lesson-16:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i13",
+    "correctText": "en:lesson-16:session-13:i13:p1=wring out\nen:lesson-16:session-13:i13:p2=mop up\nen:lesson-16:session-13:i13:p3=scrub off\nen:lesson-16:session-13:i13:p4=sweep up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i14",
+    "correctText": "I'll wring out the cloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i15",
+    "correctText": "I'll scrub off the mud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i16",
+    "correctText": "I'll mop up the water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-13:i17",
+    "correctText": "I'll sweep up the crumbs.",
+    "correctResponseId": null
+  }
+]

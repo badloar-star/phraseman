@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-16:word:fill-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fill up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:fill-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fill up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:fill-up:audio",
+            "transcript": "fill up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:fill-up:r1",
+              "targetText": "fill up",
+              "meaningByLocale": {
+                "ru": "наполнить до полного объёма.",
+                "uk": "наповнити до повного об’єму."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fill up",
+            "definitionByLocale": {
+              "ru": "наполнить до полного объёма.",
+              "uk": "наповнити до повного об’єму."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Скажите: «Я наполню бутылку водой доверху».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Скажите: «Я наполню бутылку водой доверху».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll fill up the water bottle.",
+          "localizedMeaning": {
+            "ru": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Скажите: «Я наполню бутылку водой доверху».",
+            "uk": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Скажіть: «Я наповню пляшку водою доверху»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "fill",
+            "up",
+            "the",
+            "water",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i02:r1",
+            "text": "I'll fill up the water bottle."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i02:r2",
+            "text": "We'll fill up the water bottle."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i02:r3",
+            "text": "They'll fill up the water bottle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i02:audio",
+            "transcript": "I'll fill up the water bottle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i02:r1",
+              "targetText": "I'll fill up the water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i02:r2",
+              "targetText": "We'll fill up the water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i02:r3",
+              "targetText": "They'll fill up the water bottle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll fill up the water bottle.",
+                "uk": "У записі звучить I'll fill up the water bottle."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll fill up the water bottle.",
+                "uk": "У записі звучить I'll fill up the water bottle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i03:r1",
+            "text": "I'll fill up"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i03:r2",
+            "text": "I'll to fill up"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i03:r3",
+            "text": "I fill up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+            "uk": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the water bottle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i03:r1",
+              "text": "I'll fill up"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i03:r2",
+              "text": "I'll to fill up"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i03:r3",
+              "text": "I fill up"
+            }
+          ],
+          "testedDimension": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:word:empty-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — empty out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:empty-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — empty out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:empty-out:audio",
+            "transcript": "empty out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:empty-out:r1",
+              "targetText": "empty out",
+              "meaningByLocale": {
+                "ru": "полностью вынуть содержимое ёмкости или сумки.",
+                "uk": "повністю вийняти вміст місткості або сумки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "empty out",
+            "definitionByLocale": {
+              "ru": "полностью вынуть содержимое ёмкости или сумки.",
+              "uk": "повністю вийняти вміст місткості або сумки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Скажите: «Я выну из сумки всё содержимое».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Скажите: «Я выну из сумки всё содержимое».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll empty out my bag.",
+          "localizedMeaning": {
+            "ru": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Скажите: «Я выну из сумки всё содержимое».",
+            "uk": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Скажіть: «Я вийму із сумки весь вміст»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "empty",
+            "out",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i05:r1",
+            "text": "I'll empty out my bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i05:r2",
+            "text": "We'll empty out my bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i05:r3",
+            "text": "They'll empty out my bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i05:audio",
+            "transcript": "I'll empty out my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i05:r1",
+              "targetText": "I'll empty out my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i05:r2",
+              "targetText": "We'll empty out my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i05:r3",
+              "targetText": "They'll empty out my bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll empty out my bag.",
+                "uk": "У записі звучить I'll empty out my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll empty out my bag.",
+                "uk": "У записі звучить I'll empty out my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i06:r1",
+            "text": "I'll empty out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i06:r2",
+            "text": "I'll to empty out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i06:r3",
+            "text": "I empty out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+            "uk": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i06:r1",
+              "text": "I'll empty out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i06:r2",
+              "text": "I'll to empty out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i06:r3",
+              "text": "I empty out"
+            }
+          ],
+          "testedDimension": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:word:pack-away",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pack away",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:pack-away:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pack away",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:pack-away:audio",
+            "transcript": "pack away"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:pack-away:r1",
+              "targetText": "pack away",
+              "meaningByLocale": {
+                "ru": "сложить вещи и убрать на хранение.",
+                "uk": "скласти речі й прибрати на зберігання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack away",
+            "definitionByLocale": {
+              "ru": "сложить вещи и убрать на хранение.",
+              "uk": "скласти речі й прибрати на зберігання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Скажите: «Я сложу и уберу украшения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Скажите: «Я сложу и уберу украшения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll pack away the decorations.",
+          "localizedMeaning": {
+            "ru": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Скажите: «Я сложу и уберу украшения».",
+            "uk": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Скажіть: «Я складу й приберу прикраси»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "pack",
+            "away",
+            "the",
+            "decorations"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i08:r1",
+            "text": "I'll pack away the decorations."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i08:r2",
+            "text": "We'll pack away the decorations."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i08:r3",
+            "text": "They'll pack away the decorations."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i08:audio",
+            "transcript": "I'll pack away the decorations."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i08:r1",
+              "targetText": "I'll pack away the decorations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i08:r2",
+              "targetText": "We'll pack away the decorations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i08:r3",
+              "targetText": "They'll pack away the decorations.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack away the decorations.",
+                "uk": "У записі звучить I'll pack away the decorations."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack away the decorations.",
+                "uk": "У записі звучить I'll pack away the decorations."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i09:r1",
+            "text": "I'll pack away"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i09:r2",
+            "text": "I'll to pack away"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i09:r3",
+            "text": "I pack away"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+            "uk": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the decorations.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i09:r1",
+              "text": "I'll pack away"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i09:r2",
+              "text": "I'll to pack away"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i09:r3",
+              "text": "I pack away"
+            }
+          ],
+          "testedDimension": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:word:clear-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clear out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:clear-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clear out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:clear-out:audio",
+            "transcript": "clear out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:clear-out:r1",
+              "targetText": "clear out",
+              "meaningByLocale": {
+                "ru": "освободить место, убрав ненужные вещи.",
+                "uk": "звільнити місце, прибравши непотрібні речі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clear out",
+            "definitionByLocale": {
+              "ru": "освободить место, убрав ненужные вещи.",
+              "uk": "звільнити місце, прибравши непотрібні речі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Скажите: «Я освобожу шкаф от ненужных вещей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Скажите: «Я освобожу шкаф от ненужных вещей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll clear out the cupboard.",
+          "localizedMeaning": {
+            "ru": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Скажите: «Я освобожу шкаф от ненужных вещей».",
+            "uk": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Скажіть: «Я звільню шафу від непотрібних речей»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "clear",
+            "out",
+            "the",
+            "cupboard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i11:r1",
+            "text": "I'll clear out the cupboard."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i11:r2",
+            "text": "We'll clear out the cupboard."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i11:r3",
+            "text": "They'll clear out the cupboard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i11:audio",
+            "transcript": "I'll clear out the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i11:r1",
+              "targetText": "I'll clear out the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i11:r2",
+              "targetText": "We'll clear out the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i11:r3",
+              "targetText": "They'll clear out the cupboard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear out the cupboard.",
+                "uk": "У записі звучить I'll clear out the cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear out the cupboard.",
+                "uk": "У записі звучить I'll clear out the cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i12:r1",
+            "text": "I'll clear out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i12:r2",
+            "text": "I'll to clear out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i12:r3",
+            "text": "I clear out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+            "uk": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the cupboard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i12:r1",
+              "text": "I'll clear out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i12:r2",
+              "text": "I'll to clear out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i12:r3",
+              "text": "I clear out"
+            }
+          ],
+          "testedDimension": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-16:i13:p1",
+              "target": "fill up",
+              "meaningByLocale": {
+                "ru": "наполнить до полного объёма",
+                "uk": "наповнити до повного об’єму"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-16:i13:p2",
+              "target": "empty out",
+              "meaningByLocale": {
+                "ru": "полностью вынуть содержимое ёмкости или сумки",
+                "uk": "повністю вийняти вміст місткості або сумки"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-16:i13:p3",
+              "target": "pack away",
+              "meaningByLocale": {
+                "ru": "сложить вещи и убрать на хранение",
+                "uk": "скласти речі й прибрати на зберігання"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-16:i13:p4",
+              "target": "clear out",
+              "meaningByLocale": {
+                "ru": "освободить место, убрав ненужные вещи",
+                "uk": "звільнити місце, прибравши непотрібні речі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fill up",
+            "empty out",
+            "pack away",
+            "clear out"
+          ],
+          "rightColumn": [
+            "наполнить до полного объёма",
+            "полностью вынуть содержимое ёмкости или сумки",
+            "сложить вещи и убрать на хранение",
+            "освободить место, убрав ненужные вещи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i14:audio",
+            "transcript": "I'll fill up the water bottle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll fill up the water bottle.",
+          "orderedTokens": [
+            "I'll",
+            "fill",
+            "up",
+            "the",
+            "water",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное решение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i15:audio",
+            "transcript": "I'll pack away the decorations."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll pack away the decorations.",
+          "orderedTokens": [
+            "I'll",
+            "pack",
+            "away",
+            "the",
+            "decorations"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i16:audio",
+            "transcript": "I'll empty out my bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll empty out my bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Произнесите своё решение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Произнесите своё решение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i17:audio",
+            "transcript": "I'll clear out the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll clear out the cupboard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-16:word:fill-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fill up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:fill-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fill up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:fill-up:audio",
+            "transcript": "fill up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:fill-up:r1",
+              "targetText": "fill up",
+              "meaningByLocale": {
+                "ru": "наполнить до полного объёма.",
+                "uk": "наповнити до повного об’єму."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fill up",
+            "definitionByLocale": {
+              "ru": "наполнить до полного объёма.",
+              "uk": "наповнити до повного об’єму."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Скажіть: «Я наповню пляшку водою доверху».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Скажіть: «Я наповню пляшку водою доверху».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll fill up the water bottle.",
+          "localizedMeaning": {
+            "ru": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Скажите: «Я наполню бутылку водой доверху».",
+            "uk": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Скажіть: «Я наповню пляшку водою доверху»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "fill",
+            "up",
+            "the",
+            "water",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i02:r1",
+            "text": "I'll fill up the water bottle."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i02:r2",
+            "text": "We'll fill up the water bottle."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i02:r3",
+            "text": "They'll fill up the water bottle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i02:audio",
+            "transcript": "I'll fill up the water bottle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i02:r1",
+              "targetText": "I'll fill up the water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i02:r2",
+              "targetText": "We'll fill up the water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i02:r3",
+              "targetText": "They'll fill up the water bottle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll fill up the water bottle.",
+                "uk": "У записі звучить I'll fill up the water bottle."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll fill up the water bottle.",
+                "uk": "У записі звучить I'll fill up the water bottle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i03:r1",
+            "text": "I'll fill up"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i03:r2",
+            "text": "I'll to fill up"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i03:r3",
+            "text": "I fill up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Перед прогулкой вы замечаете полупустую бутылку. Сейчас решаете наполнить её полностью. Используйте I'll.",
+            "uk": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the water bottle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i03:r1",
+              "text": "I'll fill up"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i03:r2",
+              "text": "I'll to fill up"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i03:r3",
+              "text": "I fill up"
+            }
+          ],
+          "testedDimension": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Перед прогулянкою ви помічаєте напівпорожню пляшку. Зараз вирішуєте наповнити її повністю. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:word:empty-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — empty out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:empty-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — empty out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:empty-out:audio",
+            "transcript": "empty out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:empty-out:r1",
+              "targetText": "empty out",
+              "meaningByLocale": {
+                "ru": "полностью вынуть содержимое ёмкости или сумки.",
+                "uk": "повністю вийняти вміст місткості або сумки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "empty out",
+            "definitionByLocale": {
+              "ru": "полностью вынуть содержимое ёмкости или сумки.",
+              "uk": "повністю вийняти вміст місткості або сумки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Скажіть: «Я вийму із сумки весь вміст».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Скажіть: «Я вийму із сумки весь вміст».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll empty out my bag.",
+          "localizedMeaning": {
+            "ru": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Скажите: «Я выну из сумки всё содержимое».",
+            "uk": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Скажіть: «Я вийму із сумки весь вміст»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "empty",
+            "out",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i05:r1",
+            "text": "I'll empty out my bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i05:r2",
+            "text": "We'll empty out my bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i05:r3",
+            "text": "They'll empty out my bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i05:audio",
+            "transcript": "I'll empty out my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i05:r1",
+              "targetText": "I'll empty out my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i05:r2",
+              "targetText": "We'll empty out my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i05:r3",
+              "targetText": "They'll empty out my bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll empty out my bag.",
+                "uk": "У записі звучить I'll empty out my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll empty out my bag.",
+                "uk": "У записі звучить I'll empty out my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i06:r1",
+            "text": "I'll empty out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i06:r2",
+            "text": "I'll to empty out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i06:r3",
+            "text": "I empty out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ключи где-то в сумке, но вы не можете их найти. Сейчас решаете вынуть всё содержимое. Используйте I'll.",
+            "uk": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ my bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i06:r1",
+              "text": "I'll empty out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i06:r2",
+              "text": "I'll to empty out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i06:r3",
+              "text": "I empty out"
+            }
+          ],
+          "testedDimension": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:word:pack-away",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pack away",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:pack-away:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pack away",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:pack-away:audio",
+            "transcript": "pack away"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:pack-away:r1",
+              "targetText": "pack away",
+              "meaningByLocale": {
+                "ru": "сложить вещи и убрать на хранение.",
+                "uk": "скласти речі й прибрати на зберігання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack away",
+            "definitionByLocale": {
+              "ru": "сложить вещи и убрать на хранение.",
+              "uk": "скласти речі й прибрати на зберігання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Скажіть: «Я складу й приберу прикраси».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Скажіть: «Я складу й приберу прикраси».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll pack away the decorations.",
+          "localizedMeaning": {
+            "ru": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Скажите: «Я сложу и уберу украшения».",
+            "uk": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Скажіть: «Я складу й приберу прикраси»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "pack",
+            "away",
+            "the",
+            "decorations"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i08:r1",
+            "text": "I'll pack away the decorations."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i08:r2",
+            "text": "We'll pack away the decorations."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i08:r3",
+            "text": "They'll pack away the decorations."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i08:audio",
+            "transcript": "I'll pack away the decorations."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i08:r1",
+              "targetText": "I'll pack away the decorations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i08:r2",
+              "targetText": "We'll pack away the decorations.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i08:r3",
+              "targetText": "They'll pack away the decorations.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack away the decorations.",
+                "uk": "У записі звучить I'll pack away the decorations."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack away the decorations.",
+                "uk": "У записі звучить I'll pack away the decorations."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i09:r1",
+            "text": "I'll pack away"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i09:r2",
+            "text": "I'll to pack away"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i09:r3",
+            "text": "I pack away"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Праздник закончился. Вы видите пустую коробку и сейчас решаете сложить в неё украшения. Используйте I'll.",
+            "uk": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the decorations.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i09:r1",
+              "text": "I'll pack away"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i09:r2",
+              "text": "I'll to pack away"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i09:r3",
+              "text": "I pack away"
+            }
+          ],
+          "testedDimension": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Свято закінчилося. Ви бачите порожню коробку й зараз вирішуєте скласти в неї прикраси. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:word:clear-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clear out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:word:clear-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clear out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:word:clear-out:audio",
+            "transcript": "clear out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:word:clear-out:r1",
+              "targetText": "clear out",
+              "meaningByLocale": {
+                "ru": "освободить место, убрав ненужные вещи.",
+                "uk": "звільнити місце, прибравши непотрібні речі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clear out",
+            "definitionByLocale": {
+              "ru": "освободить место, убрав ненужные вещи.",
+              "uk": "звільнити місце, прибравши непотрібні речі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Скажіть: «Я звільню шафу від непотрібних речей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Скажіть: «Я звільню шафу від непотрібних речей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll clear out the cupboard.",
+          "localizedMeaning": {
+            "ru": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Скажите: «Я освобожу шкаф от ненужных вещей».",
+            "uk": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Скажіть: «Я звільню шафу від непотрібних речей»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "clear",
+            "out",
+            "the",
+            "cupboard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i11:r1",
+            "text": "I'll clear out the cupboard."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i11:r2",
+            "text": "We'll clear out the cupboard."
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i11:r3",
+            "text": "They'll clear out the cupboard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i11:audio",
+            "transcript": "I'll clear out the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-16:i11:r1",
+              "targetText": "I'll clear out the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i11:r2",
+              "targetText": "We'll clear out the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i11:r3",
+              "targetText": "They'll clear out the cupboard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear out the cupboard.",
+                "uk": "У записі звучить I'll clear out the cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll clear out the cupboard.",
+                "uk": "У записі звучить I'll clear out the cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-16:i12:r1",
+            "text": "I'll clear out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i12:r2",
+            "text": "I'll to clear out"
+          },
+          {
+            "responseId": "en:lesson-16:session-16:i12:r3",
+            "text": "I clear out"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Новую посуду некуда поставить. Вы сейчас решаете убрать из шкафа ненужные вещи. Используйте I'll.",
+            "uk": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ the cupboard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-16:i12:r1",
+              "text": "I'll clear out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i12:r2",
+              "text": "I'll to clear out"
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i12:r3",
+              "text": "I clear out"
+            }
+          ],
+          "testedDimension": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте решение: I'll + глагол.",
+                "uk": "Передайте рішення: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-16:i13:p1",
+              "target": "fill up",
+              "meaningByLocale": {
+                "ru": "наполнить до полного объёма",
+                "uk": "наповнити до повного об’єму"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-16:i13:p2",
+              "target": "empty out",
+              "meaningByLocale": {
+                "ru": "полностью вынуть содержимое ёмкости или сумки",
+                "uk": "повністю вийняти вміст місткості або сумки"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-16:i13:p3",
+              "target": "pack away",
+              "meaningByLocale": {
+                "ru": "сложить вещи и убрать на хранение",
+                "uk": "скласти речі й прибрати на зберігання"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-16:i13:p4",
+              "target": "clear out",
+              "meaningByLocale": {
+                "ru": "освободить место, убрав ненужные вещи",
+                "uk": "звільнити місце, прибравши непотрібні речі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fill up",
+            "empty out",
+            "pack away",
+            "clear out"
+          ],
+          "rightColumn": [
+            "наповнити до повного об’єму",
+            "повністю вийняти вміст місткості або сумки",
+            "скласти речі й прибрати на зберігання",
+            "звільнити місце, прибравши непотрібні речі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i14:audio",
+            "transcript": "I'll fill up the water bottle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll fill up the water bottle.",
+          "orderedTokens": [
+            "I'll",
+            "fill",
+            "up",
+            "the",
+            "water",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте рішення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i15:audio",
+            "transcript": "I'll pack away the decorations."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll pack away the decorations.",
+          "orderedTokens": [
+            "I'll",
+            "pack",
+            "away",
+            "the",
+            "decorations"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Ключі десь у сумці, але ви не можете їх знайти. Зараз вирішуєте вийняти весь вміст. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i16:audio",
+            "transcript": "I'll empty out my bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll empty out my bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Промовте своє рішення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Новий посуд нікуди поставити. Ви зараз вирішуєте прибрати із шафи непотрібні речі. Промовте своє рішення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-16:i17:audio",
+            "transcript": "I'll clear out the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll clear out the cupboard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-16:word:fill-up",
+      "correctText": "fill up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i01",
+      "correctText": "I'll fill up the water bottle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i02",
+      "correctText": "I'll fill up the water bottle.",
+      "correctResponseId": "en:lesson-16:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i03",
+      "correctText": "I'll fill up",
+      "correctResponseId": "en:lesson-16:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:word:empty-out",
+      "correctText": "empty out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i04",
+      "correctText": "I'll empty out my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i05",
+      "correctText": "I'll empty out my bag.",
+      "correctResponseId": "en:lesson-16:session-16:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i06",
+      "correctText": "I'll empty out",
+      "correctResponseId": "en:lesson-16:session-16:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:word:pack-away",
+      "correctText": "pack away",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i07",
+      "correctText": "I'll pack away the decorations.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i08",
+      "correctText": "I'll pack away the decorations.",
+      "correctResponseId": "en:lesson-16:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i09",
+      "correctText": "I'll pack away",
+      "correctResponseId": "en:lesson-16:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:word:clear-out",
+      "correctText": "clear out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i10",
+      "correctText": "I'll clear out the cupboard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i11",
+      "correctText": "I'll clear out the cupboard.",
+      "correctResponseId": "en:lesson-16:session-16:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i12",
+      "correctText": "I'll clear out",
+      "correctResponseId": "en:lesson-16:session-16:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i14",
+      "correctText": "I'll fill up the water bottle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i15",
+      "correctText": "I'll pack away the decorations.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i16",
+      "correctText": "I'll empty out my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-16:i17",
+      "correctText": "I'll clear out the cupboard.",
+      "correctResponseId": null
+    }
+  ]
+}

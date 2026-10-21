@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. drawstring — шнурок для стягивания одежды или сумки. Шорты сползают. Вы сейчас решаете затянуть шнурок на поясе. I'll tighten the drawstring. — Я затяну шнурок.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. drawstring — шнурок для стягування одягу або сумки. Шорти сповзають. Ви зараз вирішуєте затягнути шнурок на поясі. I'll tighten the drawstring. — Я затягну шнурок."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-11:intro1:r1",
+              "text": "I'll tighten the drawstring."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro1:r2",
+              "text": "I'll to tighten the drawstring."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro1:r3",
+              "text": "I tighten the drawstring."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-11:intro1:r1",
+              "text": "I'll tighten the drawstring."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro1:r2",
+              "text": "I'll to tighten the drawstring."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro1:r3",
+              "text": "I tighten the drawstring."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "buttonhole — петля для пуговицы. Пуговица не проходит в петлю. Вы сейчас решаете осмотреть петлю. I'll check the buttonhole. — Я проверю петлю для пуговицы.",
+        "uk": "buttonhole — петля для ґудзика. Ґудзик не проходить у петлю. Ви зараз вирішуєте оглянути петлю. I'll check the buttonhole. — Я перевірю петлю для ґудзика."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-11:intro2:r1",
+              "text": "I'll check the buttonhole."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro2:r2",
+              "text": "I'll to check the buttonhole."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro2:r3",
+              "text": "I check the buttonhole."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-11:intro2:r1",
+              "text": "I'll check the buttonhole."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro2:r2",
+              "text": "I'll to check the buttonhole."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro2:r3",
+              "text": "I check the buttonhole."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "waistband — пояс одежды — её часть вокруг талии. belt loop — петелька на одежде для ремня. Конец ремня болтается. Вы замечаете свободную петельку на брюках и решаете продеть ремень в неё. I'll use the belt loop. — Я воспользуюсь петелькой для ремня.",
+        "uk": "waistband — пояс одягу — його частина навколо талії. belt loop — петелька на одязі для ременя. Кінець ременя бовтається. Ви помічаєте вільну петельку на штанах і вирішуєте просунути ремінь у неї. I'll use the belt loop. — Я скористаюся петелькою для ременя."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-11:intro3:r1",
+              "text": "I'll use the belt loop."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro3:r2",
+              "text": "I'll to use the belt loop."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro3:r3",
+              "text": "I use the belt loop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-11:intro3:r1",
+              "text": "I'll use the belt loop."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro3:r2",
+              "text": "I'll to use the belt loop."
+            },
+            {
+              "responseId": "en:lesson-16:session-11:intro3:r3",
+              "text": "I use the belt loop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4ae8db8c085696e597f422b756fced6c34f13cafbee4e162bfcb2dc98848e615"
+}

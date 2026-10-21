@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. unzip — расстегнуть молнию. Вы вошли в тёплую комнату. Стало жарко, и вы сейчас решаете расстегнуть молнию на куртке. I'll unzip my jacket. — Я расстегну молнию на куртке.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. unzip — розстебнути блискавку. Ви зайшли в теплу кімнату. Стало спекотно, і ви зараз вирішуєте розстебнути блискавку на куртці. I'll unzip my jacket. — Я розстебну блискавку на куртці."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-12:intro1:r1",
+              "text": "I'll unzip my jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro1:r2",
+              "text": "I'll to unzip my jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro1:r3",
+              "text": "I unzip my jacket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-12:intro1:r1",
+              "text": "I'll unzip my jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro1:r2",
+              "text": "I'll to unzip my jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro1:r3",
+              "text": "I unzip my jacket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "zip up — застегнуть молнию. На улице подул холодный ветер. Вы сейчас решаете застегнуть молнию на пальто. I'll zip up my coat. — Я застегну молнию на пальто.",
+        "uk": "zip up — застебнути блискавку. Надворі подув холодний вітер. Ви зараз вирішуєте застебнути блискавку на пальті. I'll zip up my coat. — Я застебну блискавку на пальті."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-12:intro2:r1",
+              "text": "I'll zip up my coat."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro2:r2",
+              "text": "I'll to zip up my coat."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro2:r3",
+              "text": "I zip up my coat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-12:intro2:r1",
+              "text": "I'll zip up my coat."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro2:r2",
+              "text": "I'll to zip up my coat."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro2:r3",
+              "text": "I zip up my coat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "tuck in — заправить одежду внутрь другой одежды. roll up — закатать — о рукавах или штанинах. Вы начинаете мыть посуду. Рукава мешают, и вы сейчас решаете их закатать. I'll roll up my sleeves. — Я закатаю рукава.",
+        "uk": "tuck in — заправити одяг усередину іншого одягу. roll up — закотити — про рукави або холоші. Ви починаєте мити посуд. Рукави заважають, і ви зараз вирішуєте їх закотити. I'll roll up my sleeves. — Я закочу рукави."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-12:intro3:r1",
+              "text": "I'll roll up my sleeves."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro3:r2",
+              "text": "I'll to roll up my sleeves."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro3:r3",
+              "text": "I roll up my sleeves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-12:intro3:r1",
+              "text": "I'll roll up my sleeves."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro3:r2",
+              "text": "I'll to roll up my sleeves."
+            },
+            {
+              "responseId": "en:lesson-16:session-12:intro3:r3",
+              "text": "I roll up my sleeves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1abf8caf4aac61e4a9046c68cc3cfe4578250fe8a005d4c0edc17890f51588d6"
+}

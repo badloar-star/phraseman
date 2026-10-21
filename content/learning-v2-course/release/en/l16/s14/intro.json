@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: spontaneous decision",
+    "uk": "I'll + base verb: spontaneous decision"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение сейчас",
+        "uk": "Рішення зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Когда решаем что-то сделать прямо сейчас, говорим I'll + глагол в начальной форме. Например, видим задачу и сразу выбираем действие. После I'll не нужно to. fold up — сложить вещь в более компактную форму. Одеяло занимает весь диван. Вы сейчас решаете сложить его, чтобы освободить место. I'll fold up the blanket. — Я сложу одеяло.",
+        "uk": "I'll — скорочення I will. Коли вирішуємо щось зробити просто зараз, кажемо I'll + дієслово в початковій формі. Наприклад, бачимо завдання й одразу вибираємо дію. Після I'll не потрібне to. fold up — скласти річ у компактнішу форму. Ковдра займає весь диван. Ви зараз вирішуєте скласти її, щоб звільнити місце. I'll fold up the blanket. — Я складу ковдру."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-14:intro1:r1",
+              "text": "I'll fold up the blanket."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro1:r2",
+              "text": "I'll to fold up the blanket."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro1:r3",
+              "text": "I fold up the blanket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-14:intro1:r1",
+              "text": "I'll fold up the blanket."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro1:r2",
+              "text": "I'll to fold up the blanket."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro1:r3",
+              "text": "I fold up the blanket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбираем действие",
+        "uk": "Вибираємо дію"
+      },
+      "bodyByLocale": {
+        "ru": "spread out — разложить или расправить на поверхности. На стол положили скатерть комком. Вы сейчас решаете расправить её по столу. I'll spread out the tablecloth. — Я расправлю скатерть.",
+        "uk": "spread out — розкласти або розправити на поверхні. На стіл поклали скатертину жмутом. Ви зараз вирішуєте розправити її по столу. I'll spread out the tablecloth. — Я розправлю скатертину."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-14:intro2:r1",
+              "text": "I'll spread out the tablecloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro2:r2",
+              "text": "I'll to spread out the tablecloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro2:r3",
+              "text": "I spread out the tablecloth."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-14:intro2:r1",
+              "text": "I'll spread out the tablecloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro2:r2",
+              "text": "I'll to spread out the tablecloth."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro2:r3",
+              "text": "I spread out the tablecloth."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Реагируем на ситуацию",
+        "uk": "Реагуємо на ситуацію"
+      },
+      "bodyByLocale": {
+        "ru": "lay out — разложить предметы, подготовив их к использованию. rinse out — прополоскать изнутри или вымыть остатки водой. Вы хотите налить воду, но в бутылке осталось немного сока. Сейчас решаете прополоскать её. I'll rinse out the bottle. — Я прополощу бутылку.",
+        "uk": "lay out — розкласти предмети, підготувавши їх до використання. rinse out — прополоскати зсередини або вимити залишки водою. Ви хочете налити воду, але в пляшці залишилося трохи соку. Зараз вирішуєте прополоскати її. I'll rinse out the bottle. — Я прополощу пляшку."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-14:intro3:r1",
+              "text": "I'll rinse out the bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro3:r2",
+              "text": "I'll to rinse out the bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro3:r3",
+              "text": "I rinse out the bottle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-14:intro3:r1",
+              "text": "I'll rinse out the bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro3:r2",
+              "text": "I'll to rinse out the bottle."
+            },
+            {
+              "responseId": "en:lesson-16:session-14:intro3:r3",
+              "text": "I rinse out the bottle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0b42b33f99c2f2d6f157763308bdd2c1537bf21bf2fcfa9c06a48e50cf2ea502"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-15:word:wipe-down",
+    "correctText": "wipe down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i01",
+    "correctText": "I'll wipe down the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i02",
+    "correctText": "I'll wipe down the table.",
+    "correctResponseId": "en:lesson-16:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i03",
+    "correctText": "I'll wipe down",
+    "correctResponseId": "en:lesson-16:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:word:shake-out",
+    "correctText": "shake out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i04",
+    "correctText": "I'll shake out the rug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i05",
+    "correctText": "I'll shake out the rug.",
+    "correctResponseId": "en:lesson-16:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i06",
+    "correctText": "I'll shake out",
+    "correctResponseId": "en:lesson-16:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:word:air-out",
+    "correctText": "air out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i07",
+    "correctText": "I'll air out the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i08",
+    "correctText": "I'll air out the room.",
+    "correctResponseId": "en:lesson-16:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i09",
+    "correctText": "I'll air out",
+    "correctResponseId": "en:lesson-16:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:word:soak-up",
+    "correctText": "soak up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i10",
+    "correctText": "I'll soak up the water with a towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i11",
+    "correctText": "I'll soak up the water with a towel.",
+    "correctResponseId": "en:lesson-16:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i12",
+    "correctText": "I'll soak up",
+    "correctResponseId": "en:lesson-16:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i13",
+    "correctText": "en:lesson-16:session-15:i13:p1=wipe down\nen:lesson-16:session-15:i13:p2=shake out\nen:lesson-16:session-15:i13:p3=air out\nen:lesson-16:session-15:i13:p4=soak up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i14",
+    "correctText": "I'll wipe down the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i15",
+    "correctText": "I'll air out the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i16",
+    "correctText": "I'll shake out the rug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-15:i17",
+    "correctText": "I'll soak up the water with a towel.",
+    "correctResponseId": null
+  }
+]

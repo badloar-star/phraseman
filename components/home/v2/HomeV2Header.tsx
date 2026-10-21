@@ -15,6 +15,8 @@ type StatChip = Readonly<{
   label: string;
   accessibilityLabel: string;
   onPress?: () => void;
+  /** Справа в той же плашке через черту (энергия рядом с монетами на «Сцене»). */
+  trailing?: React.ReactNode;
 }>;
 
 type Props = {
@@ -28,6 +30,11 @@ type Props = {
    * тихий KitSpinner кита на месте значка, без сдвига разметки и без блокировки экрана.
    */
   refreshing?: boolean;
+  /**
+   * зачем (Главная A «Сцена», владелец 21.10): на сцене шапка лежит на цветном свете — текст белый, плашки стеклом (белый 16 %),
+   * без плашек 50 % цвета фона. По умолчанию — прежний вид.
+   */
+  tone?: 'default' | 'scene';
 };
 
 /** One compact utility row; the Home title and slogan are intentionally absent. */
@@ -68,34 +75,39 @@ function sameElement(a: React.ReactNode, b: React.ReactNode): boolean {
 }
 
 function sameHeaderData(a: ViewProps, b: ViewProps): boolean {
-  if (a.refreshing !== b.refreshing || a.latestRef !== b.latestRef || a.stats.length !== b.stats.length) return false; // зачем (Ревизор 3.15): другое число показателей — не сравнивать по индексу (TypeError)
+  if (a.refreshing !== b.refreshing || a.tone !== b.tone || a.latestRef !== b.latestRef || a.stats.length !== b.stats.length) return false; // зачем (Ревизор 3.15): другое число показателей — не сравнивать по индексу (TypeError)
   if (!sameElement(a.bellSlot, b.bellSlot) || !sameElement(a.avatarSlot, b.avatarSlot)) return false;
   return a.stats.every((x, i) => {
     const y = b.stats[i];
     return x.testID === y.testID && x.value === y.value && x.label === y.label && x.accessibilityLabel === y.accessibilityLabel
-      && Boolean(x.onPress) === Boolean(y.onPress) && sameElement(x.icon, y.icon);
+      && Boolean(x.onPress) === Boolean(y.onPress) && sameElement(x.icon, y.icon) && sameElement(x.trailing, y.trailing);
   });
 }
 
 type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
 
-const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, stats, refreshing = false, latestRef }: ViewProps) {
-  useRenderCause('home:header', () => ({ bellSlot, avatarSlot, stats, refreshing }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, stats, refreshing = false, tone = 'default', latestRef }: ViewProps) {
+  useRenderCause('home:header', () => ({ bellSlot, avatarSlot, stats, refreshing, tone }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   useHomePlateLog(); // [HOME-PLATE]: один раз на показ Главной
+  const scene = tone === 'scene';
+  const plate = scene ? s.scenePlate : glass;
+  const textColor = scene ? '#FFFFFF' : p.text;
+  const subColor = scene ? 'rgba(255,255,255,0.78)' : p.textSecondary;
   return (
     <View testID="home-v2-header" style={s.root}>
       <View style={s.topRow}>
         <View style={s.stats}>
           {stats.map((stat) => {
             const content = <>
-              <View style={s.statIcon}>{refreshing ? <KitSpinner testID={`${stat.testID}-refreshing`} color={p.text} /> : stat.icon}</View>
+              <View style={s.statIcon}>{refreshing ? <KitSpinner testID={`${stat.testID}-refreshing`} color={textColor} /> : stat.icon}</View>
               {/* зачем (Сверка font13, координатор 18.10): при системном шрифте 1,3 «Hoy aún no» (es/pt-BR/vi/id) уходило в 3 строки плашки (значение + 2 строки подписи); потолок роста кегля 1,1 держит 2 строки (значение + подпись), не ужатие. Расчёт по кадру: подпись ≈65 dp при 1,0 в колонке ≈72 dp */}
               <View style={s.statCopy}>
-                <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statValue, { color: p.text }]}>{stat.value}</FlowText>
-                {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</FlowText> : null}
+                <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statValue, { color: textColor }]}>{stat.value}</FlowText>
+                {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
               </View>
+              {stat.trailing ? <><View style={[s.divider, { backgroundColor: textColor }]} />{stat.trailing}</> : null}
             </>;
             return stat.onPress ? (
               <V2Pressable
@@ -106,11 +118,11 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
                 onPress={() => latestRef.current.stats.find((x) => x.testID === stat.testID)?.onPress?.()}
                 scaleTo={0.96}
                 outerStyle={s.statSlot}
-                style={[s.stat, glass]}
+                style={[s.stat, plate]}
               >{content}</V2Pressable>
             ) : (
               <View key={stat.testID} testID={stat.testID} accessible accessibilityRole="text"
-                accessibilityLabel={stat.accessibilityLabel} style={[s.statSlot, s.stat, glass]}>
+                accessibilityLabel={stat.accessibilityLabel} style={[s.statSlot, s.stat, plate]}>
                 {content}
               </View>
             );
@@ -149,4 +161,8 @@ const s = StyleSheet.create({
   statCopy: { flexShrink: 1, minWidth: 0 },
   statValue: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17 },
+  // зачем (эталон .hm-pill.glass): на сцене плашка — белый 16 %, без тени и без кромки
+  scenePlate: { backgroundColor: 'rgba(255,255,255,0.16)' },
+  // зачем (эталон .hm-pill i.dv): черта между монетами и энергией — 1 × 18, прозрачность 22 %
+  divider: { width: 1, height: 18, opacity: 0.22, marginHorizontal: 4 },
 });

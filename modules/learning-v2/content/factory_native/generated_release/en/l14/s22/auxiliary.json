@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-22:intro1:r2": {
+          "ru": "Am adding — сейчас.",
+          "uk": "Am adding — зараз."
+        },
+        "en:lesson-14:session-22:intro1:r3": {
+          "ru": "После was нужна форма adding.",
+          "uk": "Після was потрібна форма adding."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-22:intro2:r2": {
+          "ru": "Sunflower oil — подсолнечное масло.",
+          "uk": "Sunflower oil — соняшникова олія."
+        },
+        "en:lesson-14:session-22:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-22:intro3:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-22:intro3:r3": {
+          "ru": "Are adding — сейчас.",
+          "uk": "Are adding — зараз."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d6bd97c6b8b7bfd9909ec16570ff9c5147a802eb1bcc6c7de228b37331c53191"
+}

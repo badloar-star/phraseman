@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-21:word:cotton-pad",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cotton pad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:word:cotton-pad:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cotton pad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:word:cotton-pad:audio",
+          "transcript": "cotton pad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:word:cotton-pad:r1",
+            "targetText": "cotton pad",
+            "meaningByLocale": {
+              "ru": "ватный диск.",
+              "uk": "ватний диск."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cotton pad",
+          "definitionByLocale": {
+            "ru": "ватный диск.",
+            "uk": "ватний диск."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я користувався ватним диском",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я користувався ватним диском",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was using a cotton pad.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пользовался ватным диском",
+          "uk": "Скажіть: Я користувався ватним диском"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "using",
+          "a",
+          "cotton",
+          "pad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i02:r1",
+          "text": "You were using a cotton pad."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i02:r2",
+          "text": "I was using a cotton pad."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i02:r3",
+          "text": "They were using a cotton pad."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i02:audio",
+          "transcript": "You were using a cotton pad."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:i02:r1",
+            "targetText": "You were using a cotton pad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i02:r2",
+            "targetText": "I was using a cotton pad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i02:r3",
+            "targetText": "They were using a cotton pad.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a cotton pad.",
+              "uk": "У записі звучить You were using a cotton pad."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a cotton pad.",
+              "uk": "У записі звучить You were using a cotton pad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ using a cotton pad.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-21:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:word:face-cloth",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — face cloth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:word:face-cloth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — face cloth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:word:face-cloth:audio",
+          "transcript": "face cloth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:word:face-cloth:r1",
+            "targetText": "face cloth",
+            "meaningByLocale": {
+              "ru": "тканевая салфетка для умывания.",
+              "uk": "тканинна серветка для вмивання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "face cloth",
+          "definitionByLocale": {
+            "ru": "тканевая салфетка для умывания.",
+            "uk": "тканинна серветка для вмивання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона прала серветку для вмивання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона прала серветку для вмивання",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was washing a face cloth.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она стирала салфетку для умывания",
+          "uk": "Скажіть: Вона прала серветку для вмивання"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "washing",
+          "a",
+          "face",
+          "cloth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i05:r1",
+          "text": "You were washing a face cloth."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i05:r2",
+          "text": "She was washing a face cloth."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i05:r3",
+          "text": "They were washing a face cloth."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i05:audio",
+          "transcript": "You were washing a face cloth."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:i05:r1",
+            "targetText": "You were washing a face cloth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i05:r2",
+            "targetText": "She was washing a face cloth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i05:r3",
+            "targetText": "They were washing a face cloth.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were washing a face cloth.",
+              "uk": "У записі звучить You were washing a face cloth."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were washing a face cloth.",
+              "uk": "У записі звучить You were washing a face cloth."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ washing a face cloth.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-21:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:word:dental-floss",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dental floss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:word:dental-floss:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dental floss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:word:dental-floss:audio",
+          "transcript": "dental floss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:word:dental-floss:r1",
+            "targetText": "dental floss",
+            "meaningByLocale": {
+              "ru": "зубная нить.",
+              "uk": "зубна нитка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dental floss",
+          "definitionByLocale": {
+            "ru": "зубная нить.",
+            "uk": "зубна нитка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Він користувався зубною ниткою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Він користувався зубною ниткою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He was using dental floss.",
+        "localizedMeaning": {
+          "ru": "Скажите: Он пользовался зубной нитью",
+          "uk": "Скажіть: Він користувався зубною ниткою"
+        },
+        "orderedTokens": [
+          "He",
+          "was",
+          "using",
+          "dental",
+          "floss"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i08:r1",
+          "text": "You were using dental floss."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i08:r2",
+          "text": "He was using dental floss."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i08:r3",
+          "text": "They were using dental floss."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i08:audio",
+          "transcript": "You were using dental floss."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:i08:r1",
+            "targetText": "You were using dental floss.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i08:r2",
+            "targetText": "He was using dental floss.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i08:r3",
+            "targetText": "They were using dental floss.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using dental floss.",
+              "uk": "У записі звучить You were using dental floss."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using dental floss.",
+              "uk": "У записі звучить You were using dental floss."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "He ___ using dental floss.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-21:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:word:mouthwash",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mouthwash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:word:mouthwash:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mouthwash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:word:mouthwash:audio",
+          "transcript": "mouthwash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:word:mouthwash:r1",
+            "targetText": "mouthwash",
+            "meaningByLocale": {
+              "ru": "ополаскиватель для рта.",
+              "uk": "ополіскувач для рота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mouthwash",
+          "definitionByLocale": {
+            "ru": "ополаскиватель для рта.",
+            "uk": "ополіскувач для рота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми шукали ополіскувач для рота",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми шукали ополіскувач для рота",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were looking for the mouthwash.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы искали ополаскиватель для рта",
+          "uk": "Скажіть: Ми шукали ополіскувач для рота"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "looking",
+          "for",
+          "the",
+          "mouthwash"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i11:r1",
+          "text": "You were looking for the mouthwash."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i11:r2",
+          "text": "We were looking for the mouthwash."
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i11:r3",
+          "text": "She was looking for the mouthwash."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i11:audio",
+          "transcript": "You were looking for the mouthwash."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-21:i11:r1",
+            "targetText": "You were looking for the mouthwash.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i11:r2",
+            "targetText": "We were looking for the mouthwash.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i11:r3",
+            "targetText": "She was looking for the mouthwash.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for the mouthwash.",
+              "uk": "У записі звучить You were looking for the mouthwash."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for the mouthwash.",
+              "uk": "У записі звучить You were looking for the mouthwash."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-21:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-21:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ looking for the mouthwash.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-21:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-21:i13:p1",
+            "target": "cotton pad",
+            "meaningByLocale": {
+              "ru": "ватный диск",
+              "uk": "ватний диск"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-21:i13:p2",
+            "target": "face cloth",
+            "meaningByLocale": {
+              "ru": "тканевая салфетка для умывания",
+              "uk": "тканинна серветка для вмивання"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-21:i13:p3",
+            "target": "dental floss",
+            "meaningByLocale": {
+              "ru": "зубная нить",
+              "uk": "зубна нитка"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-21:i13:p4",
+            "target": "mouthwash",
+            "meaningByLocale": {
+              "ru": "ополаскиватель для рта",
+              "uk": "ополіскувач для рота"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cotton pad",
+          "face cloth",
+          "dental floss",
+          "mouthwash"
+        ],
+        "rightColumn": [
+          "ватний диск",
+          "тканинна серветка для вмивання",
+          "зубна нитка",
+          "ополіскувач для рота"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i14:audio",
+          "transcript": "Everyone was getting ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Everyone was getting ready.",
+        "orderedTokens": [
+          "Everyone",
+          "was",
+          "getting",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i15:audio",
+          "transcript": "She was washing her face."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She was washing her face.",
+        "orderedTokens": [
+          "She",
+          "was",
+          "washing",
+          "her",
+          "face"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишіть тло: учора о восьмій я шукав зубну нитку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Опишіть тло: учора о восьмій я шукав зубну нитку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i16:audio",
+          "transcript": "I was looking for the dental floss at eight yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was looking for the dental floss at eight yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишіть тло: учора о восьмій вона користувалася ватним диском",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Опишіть тло: учора о восьмій вона користувалася ватним диском",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-21:i17:audio",
+          "transcript": "She was using a cotton pad at eight yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was using a cotton pad at eight yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a00d0f217d035918adfd32a7ff2cf1d063a3e2d45be0efcbb7abb539ec87f5a4"
+}

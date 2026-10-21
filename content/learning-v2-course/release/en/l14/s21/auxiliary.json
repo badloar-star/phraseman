@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-21:intro1:r2": {
+          "ru": "Am using — сейчас.",
+          "uk": "Am using — зараз."
+        },
+        "en:lesson-14:session-21:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-21:intro2:r2": {
+          "ru": "Это использование зубной нити.",
+          "uk": "Це використання зубної нитки."
+        },
+        "en:lesson-14:session-21:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-21:intro3:r2": {
+          "ru": "Are looking — настоящее.",
+          "uk": "Are looking — теперішній час."
+        },
+        "en:lesson-14:session-21:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "42ed0a2f5d4d386c86fa986c9d201c9232174efdc7ce301a38b5e50f6d619754"
+}

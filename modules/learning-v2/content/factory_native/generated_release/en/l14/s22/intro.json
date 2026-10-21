@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous as background",
+    "uk": "review: Past Continuous as background"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Соевый соус",
+        "uk": "Соєвий соус"
+      },
+      "bodyByLocale": {
+        "ru": "Soy sauce — соевый соус. I was adding soy sauce. — Я добавлял соевый соус. Описываем процесс как фон истории. Выберите прошлый процесс.",
+        "uk": "Soy sauce — соєвий соус. I was adding soy sauce. — Я додавав соєвий соус. Описуємо процес як тло історії. Виберіть минулий процес."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-22:intro1:r1",
+              "text": "I was adding soy sauce."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro1:r2",
+              "text": "I am adding soy sauce."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro1:r3",
+              "text": "I was add soy sauce."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-22:intro1:r1",
+              "text": "I was adding soy sauce."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro1:r2",
+              "text": "I am adding soy sauce."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro1:r3",
+              "text": "I was add soy sauce."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два вида масла",
+        "uk": "Два види олії"
+      },
+      "bodyByLocale": {
+        "ru": "Sesame oil — кунжутное масло; sunflower oil — подсолнечное масло. She was using sesame oil. — Она использовала кунжутное масло. Выберите кунжутное масло.",
+        "uk": "Sesame oil — кунжутна олія; sunflower oil — соняшникова олія. She was using sesame oil. — Вона використовувала кунжутну олію. Виберіть кунжутну олію."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-22:intro2:r1",
+              "text": "She was using sesame oil."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro2:r2",
+              "text": "She was using sunflower oil."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro2:r3",
+              "text": "She were using sesame oil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-22:intro2:r1",
+              "text": "She was using sesame oil."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro2:r2",
+              "text": "She was using sunflower oil."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro2:r3",
+              "text": "She were using sesame oil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Томатная паста",
+        "uk": "Томатна паста"
+      },
+      "bodyByLocale": {
+        "ru": "Tomato paste — густая томатная паста. We were adding tomato paste. — Мы добавляли томатную пасту. С we используем were.",
+        "uk": "Tomato paste — густа томатна паста. We were adding tomato paste. — Ми додавали томатну пасту. З we вживаємо were."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-22:intro3:r1",
+              "text": "We were adding tomato paste."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro3:r2",
+              "text": "We was adding tomato paste."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro3:r3",
+              "text": "We are adding tomato paste."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-22:intro3:r1",
+              "text": "We were adding tomato paste."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro3:r2",
+              "text": "We was adding tomato paste."
+            },
+            {
+              "responseId": "en:lesson-14:session-22:intro3:r3",
+              "text": "We are adding tomato paste."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b16cee3e88f453c02643ac057a2dcc5987eb21ec816ea6896e24deee2efae014"
+}

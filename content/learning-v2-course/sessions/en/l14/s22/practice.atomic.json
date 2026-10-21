@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-22:word:soy-sauce",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soy sauce",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:soy-sauce:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soy sauce",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:soy-sauce:audio",
+            "transcript": "soy sauce"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:soy-sauce:r1",
+              "targetText": "soy sauce",
+              "meaningByLocale": {
+                "ru": "соевый соус.",
+                "uk": "соєвий соус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soy sauce",
+            "definitionByLocale": {
+              "ru": "соевый соус.",
+              "uk": "соєвий соус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я добавлял соевый соус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я добавлял соевый соус",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was adding soy sauce.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я добавлял соевый соус",
+            "uk": "Скажіть: Я додавав соєвий соус"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "adding",
+            "soy",
+            "sauce"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i02:r1",
+            "text": "You were adding soy sauce."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i02:r2",
+            "text": "I was adding soy sauce."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i02:r3",
+            "text": "They were adding soy sauce."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i02:audio",
+            "transcript": "You were adding soy sauce."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i02:r1",
+              "targetText": "You were adding soy sauce.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i02:r2",
+              "targetText": "I was adding soy sauce.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i02:r3",
+              "targetText": "They were adding soy sauce.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding soy sauce.",
+                "uk": "У записі звучить You were adding soy sauce."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding soy sauce.",
+                "uk": "У записі звучить You were adding soy sauce."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ adding soy sauce.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:word:sesame-oil",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sesame oil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:sesame-oil:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sesame oil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:sesame-oil:audio",
+            "transcript": "sesame oil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:sesame-oil:r1",
+              "targetText": "sesame oil",
+              "meaningByLocale": {
+                "ru": "кунжутное масло.",
+                "uk": "кунжутна олія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sesame oil",
+            "definitionByLocale": {
+              "ru": "кунжутное масло.",
+              "uk": "кунжутна олія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она использовала кунжутное масло",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она использовала кунжутное масло",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was using sesame oil.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она использовала кунжутное масло",
+            "uk": "Скажіть: Вона використовувала кунжутну олію"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "using",
+            "sesame",
+            "oil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i05:r1",
+            "text": "You were using sesame oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i05:r2",
+            "text": "She was using sesame oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i05:r3",
+            "text": "They were using sesame oil."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i05:audio",
+            "transcript": "You were using sesame oil."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i05:r1",
+              "targetText": "You were using sesame oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i05:r2",
+              "targetText": "She was using sesame oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i05:r3",
+              "targetText": "They were using sesame oil.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sesame oil.",
+                "uk": "У записі звучить You were using sesame oil."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sesame oil.",
+                "uk": "У записі звучить You were using sesame oil."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ using sesame oil.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:word:sunflower-oil",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sunflower oil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:sunflower-oil:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sunflower oil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:sunflower-oil:audio",
+            "transcript": "sunflower oil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:sunflower-oil:r1",
+              "targetText": "sunflower oil",
+              "meaningByLocale": {
+                "ru": "подсолнечное масло.",
+                "uk": "соняшникова олія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunflower oil",
+            "definitionByLocale": {
+              "ru": "подсолнечное масло.",
+              "uk": "соняшникова олія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они использовали подсолнечное масло",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они использовали подсолнечное масло",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were using sunflower oil.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они использовали подсолнечное масло",
+            "uk": "Скажіть: Вони використовували соняшникову олію"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "using",
+            "sunflower",
+            "oil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i08:r1",
+            "text": "You were using sunflower oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i08:r2",
+            "text": "They were using sunflower oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i08:r3",
+            "text": "She was using sunflower oil."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i08:audio",
+            "transcript": "You were using sunflower oil."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i08:r1",
+              "targetText": "You were using sunflower oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i08:r2",
+              "targetText": "They were using sunflower oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i08:r3",
+              "targetText": "She was using sunflower oil.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sunflower oil.",
+                "uk": "У записі звучить You were using sunflower oil."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sunflower oil.",
+                "uk": "У записі звучить You were using sunflower oil."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ using sunflower oil.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:word:tomato-paste",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tomato paste",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:tomato-paste:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tomato paste",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:tomato-paste:audio",
+            "transcript": "tomato paste"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:tomato-paste:r1",
+              "targetText": "tomato paste",
+              "meaningByLocale": {
+                "ru": "томатная паста.",
+                "uk": "томатна паста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tomato paste",
+            "definitionByLocale": {
+              "ru": "томатная паста.",
+              "uk": "томатна паста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы добавляли томатную пасту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы добавляли томатную пасту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were adding tomato paste.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы добавляли томатную пасту",
+            "uk": "Скажіть: Ми додавали томатну пасту"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "adding",
+            "tomato",
+            "paste"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i11:r1",
+            "text": "You were adding tomato paste."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i11:r2",
+            "text": "We were adding tomato paste."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i11:r3",
+            "text": "She was adding tomato paste."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i11:audio",
+            "transcript": "You were adding tomato paste."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i11:r1",
+              "targetText": "You were adding tomato paste.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i11:r2",
+              "targetText": "We were adding tomato paste.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i11:r3",
+              "targetText": "She was adding tomato paste.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding tomato paste.",
+                "uk": "У записі звучить You were adding tomato paste."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding tomato paste.",
+                "uk": "У записі звучить You were adding tomato paste."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ adding tomato paste.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-22:i13:p1",
+              "target": "soy sauce",
+              "meaningByLocale": {
+                "ru": "соевый соус",
+                "uk": "соєвий соус"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-22:i13:p2",
+              "target": "sesame oil",
+              "meaningByLocale": {
+                "ru": "кунжутное масло",
+                "uk": "кунжутна олія"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-22:i13:p3",
+              "target": "sunflower oil",
+              "meaningByLocale": {
+                "ru": "подсолнечное масло",
+                "uk": "соняшникова олія"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-22:i13:p4",
+              "target": "tomato paste",
+              "meaningByLocale": {
+                "ru": "томатная паста",
+                "uk": "томатна паста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "soy sauce",
+            "sesame oil",
+            "sunflower oil",
+            "tomato paste"
+          ],
+          "rightColumn": [
+            "соевый соус",
+            "кунжутное масло",
+            "подсолнечное масло",
+            "томатная паста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i14:audio",
+            "transcript": "Dinner was cooking."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Dinner was cooking.",
+          "orderedTokens": [
+            "Dinner",
+            "was",
+            "cooking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i15:audio",
+            "transcript": "We were working in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We were working in the kitchen.",
+          "orderedTokens": [
+            "We",
+            "were",
+            "working",
+            "in",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в шесть она добавляла соевый соус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в шесть она добавляла соевый соус",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i16:audio",
+            "transcript": "She was adding soy sauce at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was adding soy sauce at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в шесть я искал томатную пасту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в шесть я искал томатную пасту",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i17:audio",
+            "transcript": "I was looking for the tomato paste at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was looking for the tomato paste at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-22:word:soy-sauce",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soy sauce",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:soy-sauce:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soy sauce",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:soy-sauce:audio",
+            "transcript": "soy sauce"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:soy-sauce:r1",
+              "targetText": "soy sauce",
+              "meaningByLocale": {
+                "ru": "соевый соус.",
+                "uk": "соєвий соус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soy sauce",
+            "definitionByLocale": {
+              "ru": "соевый соус.",
+              "uk": "соєвий соус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я додавав соєвий соус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я додавав соєвий соус",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was adding soy sauce.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я добавлял соевый соус",
+            "uk": "Скажіть: Я додавав соєвий соус"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "adding",
+            "soy",
+            "sauce"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i02:r1",
+            "text": "You were adding soy sauce."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i02:r2",
+            "text": "I was adding soy sauce."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i02:r3",
+            "text": "They were adding soy sauce."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i02:audio",
+            "transcript": "You were adding soy sauce."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i02:r1",
+              "targetText": "You were adding soy sauce.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i02:r2",
+              "targetText": "I was adding soy sauce.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i02:r3",
+              "targetText": "They were adding soy sauce.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding soy sauce.",
+                "uk": "У записі звучить You were adding soy sauce."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding soy sauce.",
+                "uk": "У записі звучить You were adding soy sauce."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ adding soy sauce.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:word:sesame-oil",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sesame oil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:sesame-oil:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sesame oil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:sesame-oil:audio",
+            "transcript": "sesame oil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:sesame-oil:r1",
+              "targetText": "sesame oil",
+              "meaningByLocale": {
+                "ru": "кунжутное масло.",
+                "uk": "кунжутна олія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sesame oil",
+            "definitionByLocale": {
+              "ru": "кунжутное масло.",
+              "uk": "кунжутна олія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона використовувала кунжутну олію",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона використовувала кунжутну олію",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was using sesame oil.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она использовала кунжутное масло",
+            "uk": "Скажіть: Вона використовувала кунжутну олію"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "using",
+            "sesame",
+            "oil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i05:r1",
+            "text": "You were using sesame oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i05:r2",
+            "text": "She was using sesame oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i05:r3",
+            "text": "They were using sesame oil."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i05:audio",
+            "transcript": "You were using sesame oil."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i05:r1",
+              "targetText": "You were using sesame oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i05:r2",
+              "targetText": "She was using sesame oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i05:r3",
+              "targetText": "They were using sesame oil.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sesame oil.",
+                "uk": "У записі звучить You were using sesame oil."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sesame oil.",
+                "uk": "У записі звучить You were using sesame oil."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ using sesame oil.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:word:sunflower-oil",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sunflower oil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:sunflower-oil:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sunflower oil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:sunflower-oil:audio",
+            "transcript": "sunflower oil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:sunflower-oil:r1",
+              "targetText": "sunflower oil",
+              "meaningByLocale": {
+                "ru": "подсолнечное масло.",
+                "uk": "соняшникова олія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunflower oil",
+            "definitionByLocale": {
+              "ru": "подсолнечное масло.",
+              "uk": "соняшникова олія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони використовували соняшникову олію",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони використовували соняшникову олію",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were using sunflower oil.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они использовали подсолнечное масло",
+            "uk": "Скажіть: Вони використовували соняшникову олію"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "using",
+            "sunflower",
+            "oil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i08:r1",
+            "text": "You were using sunflower oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i08:r2",
+            "text": "They were using sunflower oil."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i08:r3",
+            "text": "She was using sunflower oil."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i08:audio",
+            "transcript": "You were using sunflower oil."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i08:r1",
+              "targetText": "You were using sunflower oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i08:r2",
+              "targetText": "They were using sunflower oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i08:r3",
+              "targetText": "She was using sunflower oil.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sunflower oil.",
+                "uk": "У записі звучить You were using sunflower oil."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using sunflower oil.",
+                "uk": "У записі звучить You were using sunflower oil."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ using sunflower oil.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:word:tomato-paste",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tomato paste",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:word:tomato-paste:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tomato paste",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:word:tomato-paste:audio",
+            "transcript": "tomato paste"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:word:tomato-paste:r1",
+              "targetText": "tomato paste",
+              "meaningByLocale": {
+                "ru": "томатная паста.",
+                "uk": "томатна паста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tomato paste",
+            "definitionByLocale": {
+              "ru": "томатная паста.",
+              "uk": "томатна паста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми додавали томатну пасту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми додавали томатну пасту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were adding tomato paste.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы добавляли томатную пасту",
+            "uk": "Скажіть: Ми додавали томатну пасту"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "adding",
+            "tomato",
+            "paste"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i11:r1",
+            "text": "You were adding tomato paste."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i11:r2",
+            "text": "We were adding tomato paste."
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i11:r3",
+            "text": "She was adding tomato paste."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i11:audio",
+            "transcript": "You were adding tomato paste."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-22:i11:r1",
+              "targetText": "You were adding tomato paste.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i11:r2",
+              "targetText": "We were adding tomato paste.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i11:r3",
+              "targetText": "She was adding tomato paste.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding tomato paste.",
+                "uk": "У записі звучить You were adding tomato paste."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding tomato paste.",
+                "uk": "У записі звучить You were adding tomato paste."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-22:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-22:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ adding tomato paste.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-22:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-22:i13:p1",
+              "target": "soy sauce",
+              "meaningByLocale": {
+                "ru": "соевый соус",
+                "uk": "соєвий соус"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-22:i13:p2",
+              "target": "sesame oil",
+              "meaningByLocale": {
+                "ru": "кунжутное масло",
+                "uk": "кунжутна олія"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-22:i13:p3",
+              "target": "sunflower oil",
+              "meaningByLocale": {
+                "ru": "подсолнечное масло",
+                "uk": "соняшникова олія"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-22:i13:p4",
+              "target": "tomato paste",
+              "meaningByLocale": {
+                "ru": "томатная паста",
+                "uk": "томатна паста"
+              }
+            }
+          ],
+          "leftColumn": [
+            "soy sauce",
+            "sesame oil",
+            "sunflower oil",
+            "tomato paste"
+          ],
+          "rightColumn": [
+            "соєвий соус",
+            "кунжутна олія",
+            "соняшникова олія",
+            "томатна паста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i14:audio",
+            "transcript": "Dinner was cooking."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Dinner was cooking.",
+          "orderedTokens": [
+            "Dinner",
+            "was",
+            "cooking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i15:audio",
+            "transcript": "We were working in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We were working in the kitchen.",
+          "orderedTokens": [
+            "We",
+            "were",
+            "working",
+            "in",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о шостій вона додавала соєвий соус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о шостій вона додавала соєвий соус",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i16:audio",
+            "transcript": "She was adding soy sauce at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was adding soy sauce at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о шостій я шукав томатну пасту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о шостій я шукав томатну пасту",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-22:i17:audio",
+            "transcript": "I was looking for the tomato paste at six yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was looking for the tomato paste at six yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-22:word:soy-sauce",
+      "correctText": "soy sauce",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i01",
+      "correctText": "I was adding soy sauce.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i02",
+      "correctText": "You were adding soy sauce.",
+      "correctResponseId": "en:lesson-14:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:word:sesame-oil",
+      "correctText": "sesame oil",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i04",
+      "correctText": "She was using sesame oil.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i05",
+      "correctText": "You were using sesame oil.",
+      "correctResponseId": "en:lesson-14:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:word:sunflower-oil",
+      "correctText": "sunflower oil",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i07",
+      "correctText": "They were using sunflower oil.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i08",
+      "correctText": "You were using sunflower oil.",
+      "correctResponseId": "en:lesson-14:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:word:tomato-paste",
+      "correctText": "tomato paste",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i10",
+      "correctText": "We were adding tomato paste.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i11",
+      "correctText": "You were adding tomato paste.",
+      "correctResponseId": "en:lesson-14:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i14",
+      "correctText": "Dinner was cooking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i15",
+      "correctText": "We were working in the kitchen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i16",
+      "correctText": "She was adding soy sauce at six yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-22:i17",
+      "correctText": "I was looking for the tomato paste at six yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

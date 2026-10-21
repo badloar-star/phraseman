@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-24:word:brown-sugar",
+    "correctText": "brown sugar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i01",
+    "correctText": "I was adding brown sugar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i02",
+    "correctText": "You were adding brown sugar.",
+    "correctResponseId": "en:lesson-14:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:word:caster-sugar",
+    "correctText": "caster sugar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i04",
+    "correctText": "They were measuring caster sugar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i05",
+    "correctText": "You were measuring caster sugar.",
+    "correctResponseId": "en:lesson-14:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:word:icing-sugar",
+    "correctText": "icing sugar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i07",
+    "correctText": "She was using icing sugar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i08",
+    "correctText": "You were using icing sugar.",
+    "correctResponseId": "en:lesson-14:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:word:breadcrumbs",
+    "correctText": "breadcrumbs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i10",
+    "correctText": "We were using breadcrumbs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i11",
+    "correctText": "You were using breadcrumbs.",
+    "correctResponseId": "en:lesson-14:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i13",
+    "correctText": "en:lesson-14:session-24:i13:p1=brown sugar\nen:lesson-14:session-24:i13:p2=caster sugar\nen:lesson-14:session-24:i13:p3=icing sugar\nen:lesson-14:session-24:i13:p4=breadcrumbs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i14",
+    "correctText": "I was reading the recipe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i15",
+    "correctText": "They were cooking lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i16",
+    "correctText": "She was measuring brown sugar at noon yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-24:i17",
+    "correctText": "I was looking for the breadcrumbs at noon yesterday.",
+    "correctResponseId": null
+  }
+]

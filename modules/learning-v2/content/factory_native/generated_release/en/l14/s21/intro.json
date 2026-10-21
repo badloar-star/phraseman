@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous as background",
+    "uk": "review: Past Continuous as background"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ватный диск",
+        "uk": "Ватний диск"
+      },
+      "bodyByLocale": {
+        "ru": "Cotton pad — ватный диск. I was using a cotton pad. — Я пользовался ватным диском. Это процесс в тот момент прошлого, фон рассказа. Выберите прошлый процесс.",
+        "uk": "Cotton pad — ватний диск. I was using a cotton pad. — Я користувався ватним диском. Це процес у той момент минулого, тло розповіді. Виберіть минулий процес."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-21:intro1:r1",
+              "text": "I was using a cotton pad."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro1:r2",
+              "text": "I am using a cotton pad."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro1:r3",
+              "text": "I were using a cotton pad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-21:intro1:r1",
+              "text": "I was using a cotton pad."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro1:r2",
+              "text": "I am using a cotton pad."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro1:r3",
+              "text": "I were using a cotton pad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Салфетка и зубная нить",
+        "uk": "Серветка й зубна нитка"
+      },
+      "bodyByLocale": {
+        "ru": "Face cloth — небольшая тканевая салфетка для умывания; dental floss — зубная нить. She was washing a face cloth. — Она стирала салфетку для умывания. Выберите салфетку.",
+        "uk": "Face cloth — невелика тканинна серветка для вмивання; dental floss — зубна нитка. She was washing a face cloth. — Вона прала серветку для вмивання. Виберіть серветку."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-21:intro2:r1",
+              "text": "She was washing a face cloth."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro2:r2",
+              "text": "She was using dental floss."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro2:r3",
+              "text": "She were washing a face cloth."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-21:intro2:r1",
+              "text": "She was washing a face cloth."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro2:r2",
+              "text": "She was using dental floss."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro2:r3",
+              "text": "She were washing a face cloth."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ополаскиватель",
+        "uk": "Ополіскувач"
+      },
+      "bodyByLocale": {
+        "ru": "Mouthwash — ополаскиватель для рта. We were looking for the mouthwash. — Мы искали ополаскиватель. Выберите действие, которое уже шло в тот момент.",
+        "uk": "Mouthwash — ополіскувач для рота. We were looking for the mouthwash. — Ми шукали ополіскувач. Виберіть дію, яка вже тривала в той момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-21:intro3:r1",
+              "text": "We were looking for the mouthwash."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro3:r2",
+              "text": "We are looking for the mouthwash."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro3:r3",
+              "text": "We was looking for the mouthwash."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-21:intro3:r1",
+              "text": "We were looking for the mouthwash."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro3:r2",
+              "text": "We are looking for the mouthwash."
+            },
+            {
+              "responseId": "en:lesson-14:session-21:intro3:r3",
+              "text": "We was looking for the mouthwash."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ccf0594a6d1e41bb41bb031fb3198d1fa063c8159343755f5edbffcabf5aa63"
+}

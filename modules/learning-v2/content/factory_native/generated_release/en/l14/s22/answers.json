@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-22:word:soy-sauce",
+    "correctText": "soy sauce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i01",
+    "correctText": "I was adding soy sauce.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i02",
+    "correctText": "You were adding soy sauce.",
+    "correctResponseId": "en:lesson-14:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:word:sesame-oil",
+    "correctText": "sesame oil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i04",
+    "correctText": "She was using sesame oil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i05",
+    "correctText": "You were using sesame oil.",
+    "correctResponseId": "en:lesson-14:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:word:sunflower-oil",
+    "correctText": "sunflower oil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i07",
+    "correctText": "They were using sunflower oil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i08",
+    "correctText": "You were using sunflower oil.",
+    "correctResponseId": "en:lesson-14:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:word:tomato-paste",
+    "correctText": "tomato paste",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i10",
+    "correctText": "We were adding tomato paste.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i11",
+    "correctText": "You were adding tomato paste.",
+    "correctResponseId": "en:lesson-14:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i13",
+    "correctText": "en:lesson-14:session-22:i13:p1=soy sauce\nen:lesson-14:session-22:i13:p2=sesame oil\nen:lesson-14:session-22:i13:p3=sunflower oil\nen:lesson-14:session-22:i13:p4=tomato paste",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i14",
+    "correctText": "Dinner was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i15",
+    "correctText": "We were working in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i16",
+    "correctText": "She was adding soy sauce at six yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-22:i17",
+    "correctText": "I was looking for the tomato paste at six yesterday.",
+    "correctResponseId": null
+  }
+]

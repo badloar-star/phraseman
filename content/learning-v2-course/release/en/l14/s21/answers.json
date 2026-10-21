@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-21:word:cotton-pad",
+    "correctText": "cotton pad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i01",
+    "correctText": "I was using a cotton pad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i02",
+    "correctText": "You were using a cotton pad.",
+    "correctResponseId": "en:lesson-14:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:word:face-cloth",
+    "correctText": "face cloth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i04",
+    "correctText": "She was washing a face cloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i05",
+    "correctText": "You were washing a face cloth.",
+    "correctResponseId": "en:lesson-14:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:word:dental-floss",
+    "correctText": "dental floss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i07",
+    "correctText": "He was using dental floss.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i08",
+    "correctText": "You were using dental floss.",
+    "correctResponseId": "en:lesson-14:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:word:mouthwash",
+    "correctText": "mouthwash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i10",
+    "correctText": "We were looking for the mouthwash.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i11",
+    "correctText": "You were looking for the mouthwash.",
+    "correctResponseId": "en:lesson-14:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i13",
+    "correctText": "en:lesson-14:session-21:i13:p1=cotton pad\nen:lesson-14:session-21:i13:p2=face cloth\nen:lesson-14:session-21:i13:p3=dental floss\nen:lesson-14:session-21:i13:p4=mouthwash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i14",
+    "correctText": "Everyone was getting ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i15",
+    "correctText": "She was washing her face.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i16",
+    "correctText": "I was looking for the dental floss at eight yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-21:i17",
+    "correctText": "She was using a cotton pad at eight yesterday.",
+    "correctResponseId": null
+  }
+]

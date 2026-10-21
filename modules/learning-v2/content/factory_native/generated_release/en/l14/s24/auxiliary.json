@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-24:intro1:r2": {
+          "ru": "Am adding — сейчас.",
+          "uk": "Am adding — зараз."
+        },
+        "en:lesson-14:session-24:intro1:r3": {
+          "ru": "Нужна форма adding.",
+          "uk": "Потрібна форма adding."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-24:intro2:r2": {
+          "ru": "Caster sugar — мелкий сахарный песок, не пудра.",
+          "uk": "Caster sugar — дрібний цукровий пісок, не пудра."
+        },
+        "en:lesson-14:session-24:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-24:intro3:r2": {
+          "ru": "Are using — сейчас.",
+          "uk": "Are using — зараз."
+        },
+        "en:lesson-14:session-24:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a3ed57920de4299e4c5f2fbf48f2a36cc3441bd349f140b3501f8a437efc2dd7"
+}

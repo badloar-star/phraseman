@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-23:word:baking-powder",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baking powder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:baking-powder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baking powder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:baking-powder:audio",
+            "transcript": "baking powder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:baking-powder:r1",
+              "targetText": "baking powder",
+              "meaningByLocale": {
+                "ru": "разрыхлитель для выпечки.",
+                "uk": "розпушувач для випічки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baking powder",
+            "definitionByLocale": {
+              "ru": "разрыхлитель для выпечки.",
+              "uk": "розпушувач для випічки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я добавлял разрыхлитель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я добавлял разрыхлитель",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was adding baking powder.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я добавлял разрыхлитель",
+            "uk": "Скажіть: Я додавав розпушувач"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "adding",
+            "baking",
+            "powder"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i02:r1",
+            "text": "You were adding baking powder."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i02:r2",
+            "text": "I was adding baking powder."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i02:r3",
+            "text": "They were adding baking powder."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i02:audio",
+            "transcript": "You were adding baking powder."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i02:r1",
+              "targetText": "You were adding baking powder.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i02:r2",
+              "targetText": "I was adding baking powder.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i02:r3",
+              "targetText": "They were adding baking powder.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding baking powder.",
+                "uk": "У записі звучить You were adding baking powder."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding baking powder.",
+                "uk": "У записі звучить You were adding baking powder."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ adding baking powder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:word:baking-soda",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baking soda",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:baking-soda:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baking soda",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:baking-soda:audio",
+            "transcript": "baking soda"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:baking-soda:r1",
+              "targetText": "baking soda",
+              "meaningByLocale": {
+                "ru": "пищевая сода.",
+                "uk": "харчова сода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baking soda",
+            "definitionByLocale": {
+              "ru": "пищевая сода.",
+              "uk": "харчова сода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Он искал пищевую соду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Он искал пищевую соду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He was looking for the baking soda.",
+          "localizedMeaning": {
+            "ru": "Скажите: Он искал пищевую соду",
+            "uk": "Скажіть: Він шукав харчову соду"
+          },
+          "orderedTokens": [
+            "He",
+            "was",
+            "looking",
+            "for",
+            "the",
+            "baking",
+            "soda"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i05:r1",
+            "text": "You were looking for the baking soda."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i05:r2",
+            "text": "He was looking for the baking soda."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i05:r3",
+            "text": "They were looking for the baking soda."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i05:audio",
+            "transcript": "You were looking for the baking soda."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i05:r1",
+              "targetText": "You were looking for the baking soda.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i05:r2",
+              "targetText": "He was looking for the baking soda.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i05:r3",
+              "targetText": "They were looking for the baking soda.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the baking soda.",
+                "uk": "У записі звучить You were looking for the baking soda."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the baking soda.",
+                "uk": "У записі звучить You were looking for the baking soda."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "He ___ looking for the baking soda.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:word:plain-flour",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — plain flour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:plain-flour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — plain flour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:plain-flour:audio",
+            "transcript": "plain flour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:plain-flour:r1",
+              "targetText": "plain flour",
+              "meaningByLocale": {
+                "ru": "мука без добавленного разрыхлителя.",
+                "uk": "борошно без доданого розпушувача."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plain flour",
+            "definitionByLocale": {
+              "ru": "мука без добавленного разрыхлителя.",
+              "uk": "борошно без доданого розпушувача."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она отмеряла муку без разрыхлителя",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она отмеряла муку без разрыхлителя",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was measuring plain flour.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она отмеряла муку без разрыхлителя",
+            "uk": "Скажіть: Вона відміряла борошно без розпушувача"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "measuring",
+            "plain",
+            "flour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i08:r1",
+            "text": "You were measuring plain flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i08:r2",
+            "text": "She was measuring plain flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i08:r3",
+            "text": "They were measuring plain flour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i08:audio",
+            "transcript": "You were measuring plain flour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i08:r1",
+              "targetText": "You were measuring plain flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i08:r2",
+              "targetText": "She was measuring plain flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i08:r3",
+              "targetText": "They were measuring plain flour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were measuring plain flour.",
+                "uk": "У записі звучить You were measuring plain flour."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were measuring plain flour.",
+                "uk": "У записі звучить You were measuring plain flour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ measuring plain flour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:word:self-raising-flour",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — self-raising flour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:self-raising-flour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — self-raising flour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:self-raising-flour:audio",
+            "transcript": "self-raising flour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:self-raising-flour:r1",
+              "targetText": "self-raising flour",
+              "meaningByLocale": {
+                "ru": "мука с добавленным разрыхлителем.",
+                "uk": "борошно з доданим розпушувачем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "self-raising flour",
+            "definitionByLocale": {
+              "ru": "мука с добавленным разрыхлителем.",
+              "uk": "борошно з доданим розпушувачем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы использовали муку с разрыхлителем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы использовали муку с разрыхлителем",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were using self-raising flour.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы использовали муку с разрыхлителем",
+            "uk": "Скажіть: Ми використовували борошно з розпушувачем"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "using",
+            "self-raising",
+            "flour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i11:r1",
+            "text": "You were using self-raising flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i11:r2",
+            "text": "We were using self-raising flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i11:r3",
+            "text": "She was using self-raising flour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i11:audio",
+            "transcript": "You were using self-raising flour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i11:r1",
+              "targetText": "You were using self-raising flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i11:r2",
+              "targetText": "We were using self-raising flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i11:r3",
+              "targetText": "She was using self-raising flour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using self-raising flour.",
+                "uk": "У записі звучить You were using self-raising flour."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using self-raising flour.",
+                "uk": "У записі звучить You were using self-raising flour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ using self-raising flour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-23:i13:p1",
+              "target": "baking powder",
+              "meaningByLocale": {
+                "ru": "разрыхлитель для выпечки",
+                "uk": "розпушувач для випічки"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-23:i13:p2",
+              "target": "baking soda",
+              "meaningByLocale": {
+                "ru": "пищевая сода",
+                "uk": "харчова сода"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-23:i13:p3",
+              "target": "plain flour",
+              "meaningByLocale": {
+                "ru": "мука без добавленного разрыхлителя",
+                "uk": "борошно без доданого розпушувача"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-23:i13:p4",
+              "target": "self-raising flour",
+              "meaningByLocale": {
+                "ru": "мука с добавленным разрыхлителем",
+                "uk": "борошно з доданим розпушувачем"
+              }
+            }
+          ],
+          "leftColumn": [
+            "baking powder",
+            "baking soda",
+            "plain flour",
+            "self-raising flour"
+          ],
+          "rightColumn": [
+            "разрыхлитель для выпечки",
+            "пищевая сода",
+            "мука без добавленного разрыхлителя",
+            "мука с добавленным разрыхлителем"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i14:audio",
+            "transcript": "The cake was baking."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cake was baking.",
+          "orderedTokens": [
+            "The",
+            "cake",
+            "was",
+            "baking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i15:audio",
+            "transcript": "Everyone was helping."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Everyone was helping.",
+          "orderedTokens": [
+            "Everyone",
+            "was",
+            "helping"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в три я отмерял муку без разрыхлителя",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в три я отмерял муку без разрыхлителя",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i16:audio",
+            "transcript": "I was measuring plain flour at three yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was measuring plain flour at three yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите фон: вчера в три она искала разрыхлитель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Опишите фон: вчера в три она искала разрыхлитель",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i17:audio",
+            "transcript": "She was looking for the baking powder at three yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was looking for the baking powder at three yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-23:word:baking-powder",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baking powder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:baking-powder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baking powder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:baking-powder:audio",
+            "transcript": "baking powder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:baking-powder:r1",
+              "targetText": "baking powder",
+              "meaningByLocale": {
+                "ru": "разрыхлитель для выпечки.",
+                "uk": "розпушувач для випічки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baking powder",
+            "definitionByLocale": {
+              "ru": "разрыхлитель для выпечки.",
+              "uk": "розпушувач для випічки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я додавав розпушувач",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я додавав розпушувач",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was adding baking powder.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я добавлял разрыхлитель",
+            "uk": "Скажіть: Я додавав розпушувач"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "adding",
+            "baking",
+            "powder"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i02:r1",
+            "text": "You were adding baking powder."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i02:r2",
+            "text": "I was adding baking powder."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i02:r3",
+            "text": "They were adding baking powder."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i02:audio",
+            "transcript": "You were adding baking powder."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i02:r1",
+              "targetText": "You were adding baking powder.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i02:r2",
+              "targetText": "I was adding baking powder.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i02:r3",
+              "targetText": "They were adding baking powder.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding baking powder.",
+                "uk": "У записі звучить You were adding baking powder."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding baking powder.",
+                "uk": "У записі звучить You were adding baking powder."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ adding baking powder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:word:baking-soda",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baking soda",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:baking-soda:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baking soda",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:baking-soda:audio",
+            "transcript": "baking soda"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:baking-soda:r1",
+              "targetText": "baking soda",
+              "meaningByLocale": {
+                "ru": "пищевая сода.",
+                "uk": "харчова сода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baking soda",
+            "definitionByLocale": {
+              "ru": "пищевая сода.",
+              "uk": "харчова сода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Він шукав харчову соду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Він шукав харчову соду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He was looking for the baking soda.",
+          "localizedMeaning": {
+            "ru": "Скажите: Он искал пищевую соду",
+            "uk": "Скажіть: Він шукав харчову соду"
+          },
+          "orderedTokens": [
+            "He",
+            "was",
+            "looking",
+            "for",
+            "the",
+            "baking",
+            "soda"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i05:r1",
+            "text": "You were looking for the baking soda."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i05:r2",
+            "text": "He was looking for the baking soda."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i05:r3",
+            "text": "They were looking for the baking soda."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i05:audio",
+            "transcript": "You were looking for the baking soda."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i05:r1",
+              "targetText": "You were looking for the baking soda.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i05:r2",
+              "targetText": "He was looking for the baking soda.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i05:r3",
+              "targetText": "They were looking for the baking soda.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the baking soda.",
+                "uk": "У записі звучить You were looking for the baking soda."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the baking soda.",
+                "uk": "У записі звучить You were looking for the baking soda."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "He ___ looking for the baking soda.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:word:plain-flour",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — plain flour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:plain-flour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — plain flour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:plain-flour:audio",
+            "transcript": "plain flour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:plain-flour:r1",
+              "targetText": "plain flour",
+              "meaningByLocale": {
+                "ru": "мука без добавленного разрыхлителя.",
+                "uk": "борошно без доданого розпушувача."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plain flour",
+            "definitionByLocale": {
+              "ru": "мука без добавленного разрыхлителя.",
+              "uk": "борошно без доданого розпушувача."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона відміряла борошно без розпушувача",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона відміряла борошно без розпушувача",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was measuring plain flour.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она отмеряла муку без разрыхлителя",
+            "uk": "Скажіть: Вона відміряла борошно без розпушувача"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "measuring",
+            "plain",
+            "flour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i08:r1",
+            "text": "You were measuring plain flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i08:r2",
+            "text": "She was measuring plain flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i08:r3",
+            "text": "They were measuring plain flour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i08:audio",
+            "transcript": "You were measuring plain flour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i08:r1",
+              "targetText": "You were measuring plain flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i08:r2",
+              "targetText": "She was measuring plain flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i08:r3",
+              "targetText": "They were measuring plain flour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were measuring plain flour.",
+                "uk": "У записі звучить You were measuring plain flour."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were measuring plain flour.",
+                "uk": "У записі звучить You were measuring plain flour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ measuring plain flour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:word:self-raising-flour",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — self-raising flour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:word:self-raising-flour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — self-raising flour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:word:self-raising-flour:audio",
+            "transcript": "self-raising flour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:word:self-raising-flour:r1",
+              "targetText": "self-raising flour",
+              "meaningByLocale": {
+                "ru": "мука с добавленным разрыхлителем.",
+                "uk": "борошно з доданим розпушувачем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "self-raising flour",
+            "definitionByLocale": {
+              "ru": "мука с добавленным разрыхлителем.",
+              "uk": "борошно з доданим розпушувачем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми використовували борошно з розпушувачем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми використовували борошно з розпушувачем",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were using self-raising flour.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы использовали муку с разрыхлителем",
+            "uk": "Скажіть: Ми використовували борошно з розпушувачем"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "using",
+            "self-raising",
+            "flour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i11:r1",
+            "text": "You were using self-raising flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i11:r2",
+            "text": "We were using self-raising flour."
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i11:r3",
+            "text": "She was using self-raising flour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i11:audio",
+            "transcript": "You were using self-raising flour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-23:i11:r1",
+              "targetText": "You were using self-raising flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i11:r2",
+              "targetText": "We were using self-raising flour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i11:r3",
+              "targetText": "She was using self-raising flour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using self-raising flour.",
+                "uk": "У записі звучить You were using self-raising flour."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were using self-raising flour.",
+                "uk": "У записі звучить You were using self-raising flour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-23:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-23:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ using self-raising flour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-23:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-23:i13:p1",
+              "target": "baking powder",
+              "meaningByLocale": {
+                "ru": "разрыхлитель для выпечки",
+                "uk": "розпушувач для випічки"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-23:i13:p2",
+              "target": "baking soda",
+              "meaningByLocale": {
+                "ru": "пищевая сода",
+                "uk": "харчова сода"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-23:i13:p3",
+              "target": "plain flour",
+              "meaningByLocale": {
+                "ru": "мука без добавленного разрыхлителя",
+                "uk": "борошно без доданого розпушувача"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-23:i13:p4",
+              "target": "self-raising flour",
+              "meaningByLocale": {
+                "ru": "мука с добавленным разрыхлителем",
+                "uk": "борошно з доданим розпушувачем"
+              }
+            }
+          ],
+          "leftColumn": [
+            "baking powder",
+            "baking soda",
+            "plain flour",
+            "self-raising flour"
+          ],
+          "rightColumn": [
+            "розпушувач для випічки",
+            "харчова сода",
+            "борошно без доданого розпушувача",
+            "борошно з доданим розпушувачем"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i14:audio",
+            "transcript": "The cake was baking."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cake was baking.",
+          "orderedTokens": [
+            "The",
+            "cake",
+            "was",
+            "baking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i15:audio",
+            "transcript": "Everyone was helping."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Everyone was helping.",
+          "orderedTokens": [
+            "Everyone",
+            "was",
+            "helping"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о третій я відміряв борошно без розпушувача",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о третій я відміряв борошно без розпушувача",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i16:audio",
+            "transcript": "I was measuring plain flour at three yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was measuring plain flour at three yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть тло: учора о третій вона шукала розпушувач",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Опишіть тло: учора о третій вона шукала розпушувач",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-23:i17:audio",
+            "transcript": "She was looking for the baking powder at three yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was looking for the baking powder at three yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-23:word:baking-powder",
+      "correctText": "baking powder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i01",
+      "correctText": "I was adding baking powder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i02",
+      "correctText": "You were adding baking powder.",
+      "correctResponseId": "en:lesson-14:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:word:baking-soda",
+      "correctText": "baking soda",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i04",
+      "correctText": "He was looking for the baking soda.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i05",
+      "correctText": "You were looking for the baking soda.",
+      "correctResponseId": "en:lesson-14:session-23:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-23:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:word:plain-flour",
+      "correctText": "plain flour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i07",
+      "correctText": "She was measuring plain flour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i08",
+      "correctText": "You were measuring plain flour.",
+      "correctResponseId": "en:lesson-14:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:word:self-raising-flour",
+      "correctText": "self-raising flour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i10",
+      "correctText": "We were using self-raising flour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i11",
+      "correctText": "You were using self-raising flour.",
+      "correctResponseId": "en:lesson-14:session-23:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-23:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i14",
+      "correctText": "The cake was baking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i15",
+      "correctText": "Everyone was helping.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i16",
+      "correctText": "I was measuring plain flour at three yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-23:i17",
+      "correctText": "She was looking for the baking powder at three yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

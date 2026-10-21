@@ -5243,4 +5243,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Past Continuous as background","uk":"review: Past Continuous as background"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 21,
+    sourceFingerprint: "1f68a7135eec036ee10cc3aea6de24dbc814818adfad7626be9fa42b10dbd735",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Past Continuous as background","uk":"review: Past Continuous as background"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 22,
+    sourceFingerprint: "52b778a138234e4516ba96f970c8fe3c27d56d1ae376acdc6417524e54d2d186",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Past Continuous as background","uk":"review: Past Continuous as background"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 23,
+    sourceFingerprint: "1de50d855b57683891a3b11bbecc685d69a1f30a91fb14849d353bdc7d4b514d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Past Continuous as background","uk":"review: Past Continuous as background"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 24,
+    sourceFingerprint: "58e085bf96239ab6dc4c512d8af9962d3904ae7614d871f211f3389d330df596",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Past Continuous as background","uk":"review: Past Continuous as background"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
 ]);

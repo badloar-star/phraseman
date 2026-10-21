@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-24:word:brown-sugar",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brown sugar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:word:brown-sugar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brown sugar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:word:brown-sugar:audio",
+          "transcript": "brown sugar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:word:brown-sugar:r1",
+            "targetText": "brown sugar",
+            "meaningByLocale": {
+              "ru": "коричневый сахар.",
+              "uk": "коричневий цукор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brown sugar",
+          "definitionByLocale": {
+            "ru": "коричневый сахар.",
+            "uk": "коричневий цукор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я добавлял коричневый сахар",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я добавлял коричневый сахар",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was adding brown sugar.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я добавлял коричневый сахар",
+          "uk": "Скажіть: Я додавав коричневий цукор"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "adding",
+          "brown",
+          "sugar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i02:r1",
+          "text": "You were adding brown sugar."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i02:r2",
+          "text": "I was adding brown sugar."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i02:r3",
+          "text": "They were adding brown sugar."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i02:audio",
+          "transcript": "You were adding brown sugar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:i02:r1",
+            "targetText": "You were adding brown sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i02:r2",
+            "targetText": "I was adding brown sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i02:r3",
+            "targetText": "They were adding brown sugar.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were adding brown sugar.",
+              "uk": "У записі звучить You were adding brown sugar."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were adding brown sugar.",
+              "uk": "У записі звучить You were adding brown sugar."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ adding brown sugar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-24:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:word:caster-sugar",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — caster sugar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:word:caster-sugar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — caster sugar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:word:caster-sugar:audio",
+          "transcript": "caster sugar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:word:caster-sugar:r1",
+            "targetText": "caster sugar",
+            "meaningByLocale": {
+              "ru": "мелкий сахарный песок.",
+              "uk": "дрібний цукровий пісок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "caster sugar",
+          "definitionByLocale": {
+            "ru": "мелкий сахарный песок.",
+            "uk": "дрібний цукровий пісок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они отмеряли мелкий сахарный песок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они отмеряли мелкий сахарный песок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were measuring caster sugar.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они отмеряли мелкий сахарный песок",
+          "uk": "Скажіть: Вони відміряли дрібний цукровий пісок"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "measuring",
+          "caster",
+          "sugar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i05:r1",
+          "text": "You were measuring caster sugar."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i05:r2",
+          "text": "They were measuring caster sugar."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i05:r3",
+          "text": "She was measuring caster sugar."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i05:audio",
+          "transcript": "You were measuring caster sugar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:i05:r1",
+            "targetText": "You were measuring caster sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i05:r2",
+            "targetText": "They were measuring caster sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i05:r3",
+            "targetText": "She was measuring caster sugar.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were measuring caster sugar.",
+              "uk": "У записі звучить You were measuring caster sugar."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were measuring caster sugar.",
+              "uk": "У записі звучить You were measuring caster sugar."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ measuring caster sugar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-24:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:word:icing-sugar",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — icing sugar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:word:icing-sugar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — icing sugar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:word:icing-sugar:audio",
+          "transcript": "icing sugar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:word:icing-sugar:r1",
+            "targetText": "icing sugar",
+            "meaningByLocale": {
+              "ru": "сахарная пудра.",
+              "uk": "цукрова пудра."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "icing sugar",
+          "definitionByLocale": {
+            "ru": "сахарная пудра.",
+            "uk": "цукрова пудра."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она использовала сахарную пудру",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она использовала сахарную пудру",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was using icing sugar.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она использовала сахарную пудру",
+          "uk": "Скажіть: Вона використовувала цукрову пудру"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "using",
+          "icing",
+          "sugar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i08:r1",
+          "text": "You were using icing sugar."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i08:r2",
+          "text": "She was using icing sugar."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i08:r3",
+          "text": "They were using icing sugar."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i08:audio",
+          "transcript": "You were using icing sugar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:i08:r1",
+            "targetText": "You were using icing sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i08:r2",
+            "targetText": "She was using icing sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i08:r3",
+            "targetText": "They were using icing sugar.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using icing sugar.",
+              "uk": "У записі звучить You were using icing sugar."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using icing sugar.",
+              "uk": "У записі звучить You were using icing sugar."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ using icing sugar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-24:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:word:breadcrumbs",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — breadcrumbs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:word:breadcrumbs:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — breadcrumbs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:word:breadcrumbs:audio",
+          "transcript": "breadcrumbs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:word:breadcrumbs:r1",
+            "targetText": "breadcrumbs",
+            "meaningByLocale": {
+              "ru": "панировочные сухари в этом контексте.",
+              "uk": "панірувальні сухарі в цьому контексті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breadcrumbs",
+          "definitionByLocale": {
+            "ru": "панировочные сухари в этом контексте.",
+            "uk": "панірувальні сухарі в цьому контексті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы использовали панировочные сухари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы использовали панировочные сухари",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were using breadcrumbs.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы использовали панировочные сухари",
+          "uk": "Скажіть: Ми використовували панірувальні сухарі"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "using",
+          "breadcrumbs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i11:r1",
+          "text": "You were using breadcrumbs."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i11:r2",
+          "text": "We were using breadcrumbs."
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i11:r3",
+          "text": "She was using breadcrumbs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i11:audio",
+          "transcript": "You were using breadcrumbs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-24:i11:r1",
+            "targetText": "You were using breadcrumbs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i11:r2",
+            "targetText": "We were using breadcrumbs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i11:r3",
+            "targetText": "She was using breadcrumbs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using breadcrumbs.",
+              "uk": "У записі звучить You were using breadcrumbs."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using breadcrumbs.",
+              "uk": "У записі звучить You were using breadcrumbs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-24:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-24:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ using breadcrumbs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-24:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-24:i13:p1",
+            "target": "brown sugar",
+            "meaningByLocale": {
+              "ru": "коричневый сахар",
+              "uk": "коричневий цукор"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-24:i13:p2",
+            "target": "caster sugar",
+            "meaningByLocale": {
+              "ru": "мелкий сахарный песок",
+              "uk": "дрібний цукровий пісок"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-24:i13:p3",
+            "target": "icing sugar",
+            "meaningByLocale": {
+              "ru": "сахарная пудра",
+              "uk": "цукрова пудра"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-24:i13:p4",
+            "target": "breadcrumbs",
+            "meaningByLocale": {
+              "ru": "панировочные сухари в этом контексте",
+              "uk": "панірувальні сухарі в цьому контексті"
+            }
+          }
+        ],
+        "leftColumn": [
+          "brown sugar",
+          "caster sugar",
+          "icing sugar",
+          "breadcrumbs"
+        ],
+        "rightColumn": [
+          "коричневый сахар",
+          "мелкий сахарный песок",
+          "сахарная пудра",
+          "панировочные сухари в этом контексте"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i14:audio",
+          "transcript": "I was reading the recipe."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was reading the recipe.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "reading",
+          "the",
+          "recipe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i15:audio",
+          "transcript": "They were cooking lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were cooking lunch.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "cooking",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишите фон: вчера в полдень она отмеряла коричневый сахар",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Опишите фон: вчера в полдень она отмеряла коричневый сахар",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i16:audio",
+          "transcript": "She was measuring brown sugar at noon yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was measuring brown sugar at noon yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-24:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишите фон: вчера в полдень я искал панировочные сухари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Опишите фон: вчера в полдень я искал панировочные сухари",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-24:i17:audio",
+          "transcript": "I was looking for the breadcrumbs at noon yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was looking for the breadcrumbs at noon yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2379af184db515d416d44014d3e4ed6abdd81f8e6cf8955589a2e5a7c0eb5e09"
+}

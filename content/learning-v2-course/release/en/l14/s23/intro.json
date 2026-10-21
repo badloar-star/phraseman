@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous as background",
+    "uk": "review: Past Continuous as background"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разрыхлитель",
+        "uk": "Розпушувач"
+      },
+      "bodyByLocale": {
+        "ru": "Baking powder — разрыхлитель для выпечки. I was adding baking powder. — Я добавлял разрыхлитель. Выберите процесс в прошлом.",
+        "uk": "Baking powder — розпушувач для випічки. I was adding baking powder. — Я додавав розпушувач. Виберіть процес у минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-23:intro1:r1",
+              "text": "I was adding baking powder."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro1:r2",
+              "text": "I am adding baking powder."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro1:r3",
+              "text": "I were adding baking powder."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-23:intro1:r1",
+              "text": "I was adding baking powder."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro1:r2",
+              "text": "I am adding baking powder."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro1:r3",
+              "text": "I were adding baking powder."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сода и обычная мука",
+        "uk": "Сода й звичайне борошно"
+      },
+      "bodyByLocale": {
+        "ru": "Baking soda — пищевая сода; plain flour — мука без добавленного разрыхлителя. She was measuring plain flour. — Она отмеряла обычную муку. Выберите муку.",
+        "uk": "Baking soda — харчова сода; plain flour — борошно без доданого розпушувача. She was measuring plain flour. — Вона відміряла звичайне борошно. Виберіть борошно."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-23:intro2:r1",
+              "text": "She was measuring plain flour."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro2:r2",
+              "text": "She was adding baking soda."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro2:r3",
+              "text": "She were measuring plain flour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-23:intro2:r1",
+              "text": "She was measuring plain flour."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro2:r2",
+              "text": "She was adding baking soda."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro2:r3",
+              "text": "She were measuring plain flour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мука с разрыхлителем",
+        "uk": "Борошно з розпушувачем"
+      },
+      "bodyByLocale": {
+        "ru": "Self-raising flour — мука с уже добавленным разрыхлителем. We were using self-raising flour. — Мы использовали муку с разрыхлителем. Это название продукта на упаковке. Выберите прошлый процесс.",
+        "uk": "Self-raising flour — борошно з уже доданим розпушувачем. We were using self-raising flour. — Ми використовували борошно з розпушувачем. Це назва продукту на пакованні. Виберіть минулий процес."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-23:intro3:r1",
+              "text": "We were using self-raising flour."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro3:r2",
+              "text": "We are using self-raising flour."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro3:r3",
+              "text": "We was using self-raising flour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-23:intro3:r1",
+              "text": "We were using self-raising flour."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro3:r2",
+              "text": "We are using self-raising flour."
+            },
+            {
+              "responseId": "en:lesson-14:session-23:intro3:r3",
+              "text": "We was using self-raising flour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c10a007a829c0dededc3b449490fdace84c67732ab0a2e1ee567e02734ec93a6"
+}

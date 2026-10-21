@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-23:word:baking-powder",
+    "correctText": "baking powder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i01",
+    "correctText": "I was adding baking powder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i02",
+    "correctText": "You were adding baking powder.",
+    "correctResponseId": "en:lesson-14:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:word:baking-soda",
+    "correctText": "baking soda",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i04",
+    "correctText": "He was looking for the baking soda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i05",
+    "correctText": "You were looking for the baking soda.",
+    "correctResponseId": "en:lesson-14:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:word:plain-flour",
+    "correctText": "plain flour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i07",
+    "correctText": "She was measuring plain flour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i08",
+    "correctText": "You were measuring plain flour.",
+    "correctResponseId": "en:lesson-14:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:word:self-raising-flour",
+    "correctText": "self-raising flour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i10",
+    "correctText": "We were using self-raising flour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i11",
+    "correctText": "You were using self-raising flour.",
+    "correctResponseId": "en:lesson-14:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i13",
+    "correctText": "en:lesson-14:session-23:i13:p1=baking powder\nen:lesson-14:session-23:i13:p2=baking soda\nen:lesson-14:session-23:i13:p3=plain flour\nen:lesson-14:session-23:i13:p4=self-raising flour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i14",
+    "correctText": "The cake was baking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i15",
+    "correctText": "Everyone was helping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i16",
+    "correctText": "I was measuring plain flour at three yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-23:i17",
+    "correctText": "She was looking for the baking powder at three yesterday.",
+    "correctResponseId": null
+  }
+]

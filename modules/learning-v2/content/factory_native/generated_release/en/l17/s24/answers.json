@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-24:word:achievement",
+    "correctText": "achievement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i01",
+    "correctText": "We have a few achievements.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i02",
+    "correctText": "We have a few achievements.",
+    "correctResponseId": "en:lesson-17:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:word:setback",
+    "correctText": "setback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i04",
+    "correctText": "We had few setbacks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i05",
+    "correctText": "We had few setbacks.",
+    "correctResponseId": "en:lesson-17:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:word:courage",
+    "correctText": "courage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i07",
+    "correctText": "We found a little courage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i08",
+    "correctText": "We found a little courage.",
+    "correctResponseId": "en:lesson-17:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:word:confidence",
+    "correctText": "confidence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i10",
+    "correctText": "We have little confidence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i11",
+    "correctText": "We have little confidence.",
+    "correctResponseId": "en:lesson-17:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i13",
+    "correctText": "en:lesson-17:session-24:i13:p1=achievement\nen:lesson-17:session-24:i13:p2=setback\nen:lesson-17:session-24:i13:p3=courage\nen:lesson-17:session-24:i13:p4=confidence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i14",
+    "correctText": "We have a few achievements.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i15",
+    "correctText": "We found a little courage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i16",
+    "correctText": "We have little confidence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-24:i17",
+    "correctText": "We had few setbacks.",
+    "correctResponseId": null
+  }
+]

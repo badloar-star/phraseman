@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-23:word:kind-word",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kind word",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:word:kind-word:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kind word",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:word:kind-word:audio",
+          "transcript": "kind word"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:word:kind-word:r1",
+            "targetText": "kind word",
+            "meaningByLocale": {
+              "ru": "доброе, поддерживающее слово.",
+              "uk": "добре, підтримувальне слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kind word",
+          "definitionByLocale": {
+            "ru": "доброе, поддерживающее слово.",
+            "uk": "добре, підтримувальне слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words. Скажите: «Мы услышали несколько добрых слов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words. Скажите: «Мы услышали несколько добрых слов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We heard a few kind words.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words. Скажите: «Мы услышали несколько добрых слов».",
+          "uk": "Підкресліть, що кілька добрих слів усе ж почули. Kind word → kind words. Скажіть: «Ми почули кілька добрих слів»."
+        },
+        "orderedTokens": [
+          "We",
+          "heard",
+          "a",
+          "few",
+          "kind",
+          "words"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i02:r1",
+          "text": "We heard a few kind words."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i02:r2",
+          "text": "We heard few kind words."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i02:r3",
+          "text": "We heard a little kind words."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i02:audio",
+          "transcript": "We heard a few kind words."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:i02:r1",
+            "targetText": "We heard a few kind words.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i02:r2",
+            "targetText": "We heard few kind words.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i02:r3",
+            "targetText": "We heard a little kind words.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We heard a few kind words.",
+              "uk": "У записі звучить We heard a few kind words."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We heard a few kind words.",
+              "uk": "У записі звучить We heard a few kind words."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i03:r1",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i03:r2",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i03:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
+          "uk": "Підкресліть, що кілька добрих слів усе ж почули. Kind word → kind words."
+        },
+        "gappedTargetPhrase": "We heard ___ kind words.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-23:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:word:thank-you-note",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thank-you note",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:word:thank-you-note:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thank-you note",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:word:thank-you-note:audio",
+          "transcript": "thank-you note"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:word:thank-you-note:r1",
+            "targetText": "thank-you note",
+            "meaningByLocale": {
+              "ru": "записка с благодарностью.",
+              "uk": "записка з подякою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thank-you note",
+          "definitionByLocale": {
+            "ru": "записка с благодарностью.",
+            "uk": "записка з подякою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes. Скажите: «Мы получили мало записок с благодарностью».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes. Скажите: «Мы получили мало записок с благодарностью».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We received few thank-you notes.",
+        "localizedMeaning": {
+          "ru": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes. Скажите: «Мы получили мало записок с благодарностью».",
+          "uk": "Ви очікували більше подяк. Підкресліть, що записок мало. Thank-you note → thank-you notes. Скажіть: «Ми отримали мало записок із подякою»."
+        },
+        "orderedTokens": [
+          "We",
+          "received",
+          "few",
+          "thank-you",
+          "notes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i05:r1",
+          "text": "We received few thank-you notes."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i05:r2",
+          "text": "We received a few thank-you notes."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i05:r3",
+          "text": "We received little thank-you notes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i05:audio",
+          "transcript": "We received few thank-you notes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:i05:r1",
+            "targetText": "We received few thank-you notes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i05:r2",
+            "targetText": "We received a few thank-you notes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i05:r3",
+            "targetText": "We received little thank-you notes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We received few thank-you notes.",
+              "uk": "У записі звучить We received few thank-you notes."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We received few thank-you notes.",
+              "uk": "У записі звучить We received few thank-you notes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i06:r1",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i06:r2",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i06:r3",
+          "text": "little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
+          "uk": "Ви очікували більше подяк. Підкресліть, що записок мало. Thank-you note → thank-you notes."
+        },
+        "gappedTargetPhrase": "We received ___ thank-you notes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-23:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i06:r3",
+            "text": "little"
+          }
+        ],
+        "testedDimension": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:word:kindness",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kindness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:word:kindness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kindness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:word:kindness:audio",
+          "transcript": "kindness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:word:kindness:r1",
+            "targetText": "kindness",
+            "meaningByLocale": {
+              "ru": "доброта.",
+              "uk": "доброта."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kindness",
+          "definitionByLocale": {
+            "ru": "доброта.",
+            "uk": "доброта."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что она проявила хоть немного доброты. Скажите: «Она проявила немного доброты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что она проявила хоть немного доброты. Скажите: «Она проявила немного доброты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She showed a little kindness.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что она проявила хоть немного доброты. Скажите: «Она проявила немного доброты».",
+          "uk": "Підкресліть, що вона виявила хоч трохи доброти. Скажіть: «Вона виявила трохи доброти»."
+        },
+        "orderedTokens": [
+          "She",
+          "showed",
+          "a",
+          "little",
+          "kindness"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i08:r1",
+          "text": "She showed a little kindness."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i08:r2",
+          "text": "She showed little kindness."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i08:r3",
+          "text": "She showed a few kindness."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i08:audio",
+          "transcript": "She showed a little kindness."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:i08:r1",
+            "targetText": "She showed a little kindness.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i08:r2",
+            "targetText": "She showed little kindness.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i08:r3",
+            "targetText": "She showed a few kindness.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She showed a little kindness.",
+              "uk": "У записі звучить She showed a little kindness."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She showed a little kindness.",
+              "uk": "У записі звучить She showed a little kindness."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что она проявила хоть немного доброты.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i09:r1",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i09:r2",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i09:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что она проявила хоть немного доброты.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что она проявила хоть немного доброты.",
+          "uk": "Підкресліть, що вона виявила хоч трохи доброти."
+        },
+        "gappedTargetPhrase": "She showed ___ kindness.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-23:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Подчеркните, что она проявила хоть немного доброты.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что она проявила хоть немного доброты.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что она проявила хоть немного доброты.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:word:patience",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — patience",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:word:patience:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — patience",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:word:patience:audio",
+          "transcript": "patience"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:word:patience:r1",
+            "targetText": "patience",
+            "meaningByLocale": {
+              "ru": "терпение.",
+              "uk": "терпіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "patience",
+          "definitionByLocale": {
+            "ru": "терпение.",
+            "uk": "терпіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Она быстро раздражалась. Подчеркните нехватку терпения. Скажите: «Она проявила мало терпения».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Она быстро раздражалась. Подчеркните нехватку терпения. Скажите: «Она проявила мало терпения».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She showed little patience.",
+        "localizedMeaning": {
+          "ru": "Она быстро раздражалась. Подчеркните нехватку терпения. Скажите: «Она проявила мало терпения».",
+          "uk": "Вона швидко дратувалася. Підкресліть брак терпіння. Скажіть: «Вона виявила мало терпіння»."
+        },
+        "orderedTokens": [
+          "She",
+          "showed",
+          "little",
+          "patience"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i11:r1",
+          "text": "She showed little patience."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i11:r2",
+          "text": "She showed a little patience."
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i11:r3",
+          "text": "She showed few patience."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i11:audio",
+          "transcript": "She showed little patience."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-23:i11:r1",
+            "targetText": "She showed little patience.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i11:r2",
+            "targetText": "She showed a little patience.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i11:r3",
+            "targetText": "She showed few patience.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She showed little patience.",
+              "uk": "У записі звучить She showed little patience."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She showed little patience.",
+              "uk": "У записі звучить She showed little patience."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Она быстро раздражалась. Подчеркните нехватку терпения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-23:i12:r1",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i12:r2",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-23:i12:r3",
+          "text": "few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Она быстро раздражалась. Подчеркните нехватку терпения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Она быстро раздражалась. Подчеркните нехватку терпения.",
+          "uk": "Вона швидко дратувалася. Підкресліть брак терпіння."
+        },
+        "gappedTargetPhrase": "She showed ___ patience.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-23:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i12:r3",
+            "text": "few"
+          }
+        ],
+        "testedDimension": "Она быстро раздражалась. Подчеркните нехватку терпения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Она быстро раздражалась. Подчеркните нехватку терпения.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Она быстро раздражалась. Подчеркните нехватку терпения.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-23:i13:p1",
+            "target": "kind word",
+            "meaningByLocale": {
+              "ru": "доброе, поддерживающее слово",
+              "uk": "добре, підтримувальне слово"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-23:i13:p2",
+            "target": "thank-you note",
+            "meaningByLocale": {
+              "ru": "записка с благодарностью",
+              "uk": "записка з подякою"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-23:i13:p3",
+            "target": "kindness",
+            "meaningByLocale": {
+              "ru": "доброта",
+              "uk": "доброта"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-23:i13:p4",
+            "target": "patience",
+            "meaningByLocale": {
+              "ru": "терпение",
+              "uk": "терпіння"
+            }
+          }
+        ],
+        "leftColumn": [
+          "kind word",
+          "thank-you note",
+          "kindness",
+          "patience"
+        ],
+        "rightColumn": [
+          "доброе, поддерживающее слово",
+          "записка с благодарностью",
+          "доброта",
+          "терпение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a few",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i14:audio",
+          "transcript": "We heard a few kind words."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We heard a few kind words.",
+        "orderedTokens": [
+          "We",
+          "heard",
+          "a",
+          "few",
+          "kind",
+          "words"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a little",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i15:audio",
+          "transcript": "She showed a little kindness."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She showed a little kindness.",
+        "orderedTokens": [
+          "She",
+          "showed",
+          "a",
+          "little",
+          "kindness"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество с little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество с little",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i16:audio",
+          "transcript": "She showed little patience."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She showed little patience.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество с few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество с few",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-23:i17:audio",
+          "transcript": "We received few thank-you notes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We received few thank-you notes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "07f3f12932f5a0fb4e0853efcc5adc19f68c42c298c90f0dcc821ea4fb382b0d"
+}

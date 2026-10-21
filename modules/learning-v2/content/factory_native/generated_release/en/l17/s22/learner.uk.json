@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-22:word:fingerprint",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fingerprint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:word:fingerprint:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fingerprint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:word:fingerprint:audio",
+          "transcript": "fingerprint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:word:fingerprint:r1",
+            "targetText": "fingerprint",
+            "meaningByLocale": {
+              "ru": "отпечаток пальца.",
+              "uk": "відбиток пальця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fingerprint",
+          "definitionByLocale": {
+            "ru": "отпечаток пальца.",
+            "uk": "відбиток пальця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints. Скажіть: «Ми знайшли кілька відбитків пальців».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints. Скажіть: «Ми знайшли кілька відбитків пальців».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We found a few fingerprints.",
+        "localizedMeaning": {
+          "ru": "На стекле есть несколько следов. Подчеркните, что вы их нашли. Fingerprint → fingerprints. Скажите: «Мы нашли несколько отпечатков пальцев».",
+          "uk": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints. Скажіть: «Ми знайшли кілька відбитків пальців»."
+        },
+        "orderedTokens": [
+          "We",
+          "found",
+          "a",
+          "few",
+          "fingerprints"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i02:r1",
+          "text": "We found a few fingerprints."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i02:r2",
+          "text": "We found few fingerprints."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i02:r3",
+          "text": "We found a little fingerprints."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i02:audio",
+          "transcript": "We found a few fingerprints."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:i02:r1",
+            "targetText": "We found a few fingerprints.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i02:r2",
+            "targetText": "We found few fingerprints.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i02:r3",
+            "targetText": "We found a little fingerprints.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We found a few fingerprints.",
+              "uk": "У записі звучить We found a few fingerprints."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We found a few fingerprints.",
+              "uk": "У записі звучить We found a few fingerprints."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i03:r1",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i03:r2",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i03:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На стекле есть несколько следов. Подчеркните, что вы их нашли. Fingerprint → fingerprints.",
+          "uk": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints."
+        },
+        "gappedTargetPhrase": "We found ___ fingerprints.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-22:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:word:cobweb",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cobweb",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:word:cobweb:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cobweb",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:word:cobweb:audio",
+          "transcript": "cobweb"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:word:cobweb:r1",
+            "targetText": "cobweb",
+            "meaningByLocale": {
+              "ru": "паутина, отдельная паучья сеть.",
+              "uk": "павутина, окрема павуча сітка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cobweb",
+          "definitionByLocale": {
+            "ru": "паутина, отдельная паучья сеть.",
+            "uk": "павутина, окрема павуча сітка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs. Скажіть: «Тут мало павутиння».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs. Скажіть: «Тут мало павутиння».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are few cobwebs here.",
+        "localizedMeaning": {
+          "ru": "Вы ожидали много паутины, но отдельных паучьих сетей мало. Подчеркните малое количество. Cobweb → cobwebs. Скажите: «Здесь мало паутины».",
+          "uk": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs. Скажіть: «Тут мало павутиння»."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "few",
+          "cobwebs",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i05:r1",
+          "text": "There are few cobwebs here."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i05:r2",
+          "text": "There are a few cobwebs here."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i05:r3",
+          "text": "There are little cobwebs here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i05:audio",
+          "transcript": "There are few cobwebs here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:i05:r1",
+            "targetText": "There are few cobwebs here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i05:r2",
+            "targetText": "There are a few cobwebs here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i05:r3",
+            "targetText": "There are little cobwebs here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are few cobwebs here.",
+              "uk": "У записі звучить There are few cobwebs here."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are few cobwebs here.",
+              "uk": "У записі звучить There are few cobwebs here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i06:r1",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i06:r2",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i06:r3",
+          "text": "little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ожидали много паутины, но отдельных паучьих сетей мало. Подчеркните малое количество. Cobweb → cobwebs.",
+          "uk": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs."
+        },
+        "gappedTargetPhrase": "There are ___ cobwebs here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-22:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i06:r3",
+            "text": "little"
+          }
+        ],
+        "testedDimension": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:word:debris",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — debris",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:word:debris:audio"
+      ],
+      "accessibilityLabel": "Картка слова — debris",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:word:debris:audio",
+          "transcript": "debris"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:word:debris:r1",
+            "targetText": "debris",
+            "meaningByLocale": {
+              "ru": "обломки, осколки и остатки разрушенных предметов.",
+              "uk": "уламки, скалки й залишки зруйнованих предметів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "debris",
+          "definitionByLocale": {
+            "ru": "обломки, осколки и остатки разрушенных предметов.",
+            "uk": "уламки, скалки й залишки зруйнованих предметів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли. Скажіть: «Ми знайшли трохи уламків».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли. Скажіть: «Ми знайшли трохи уламків».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We found a little debris.",
+        "localizedMeaning": {
+          "ru": "После ремонта остались небольшие обломки. Подчеркните, что некоторое количество нашли. Скажите: «Мы нашли немного обломков».",
+          "uk": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли. Скажіть: «Ми знайшли трохи уламків»."
+        },
+        "orderedTokens": [
+          "We",
+          "found",
+          "a",
+          "little",
+          "debris"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i08:r1",
+          "text": "We found a little debris."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i08:r2",
+          "text": "We found little debris."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i08:r3",
+          "text": "We found a few debris."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i08:audio",
+          "transcript": "We found a little debris."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:i08:r1",
+            "targetText": "We found a little debris.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i08:r2",
+            "targetText": "We found little debris.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i08:r3",
+            "targetText": "We found a few debris.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We found a little debris.",
+              "uk": "У записі звучить We found a little debris."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We found a little debris.",
+              "uk": "У записі звучить We found a little debris."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i09:r1",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i09:r2",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i09:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После ремонта остались небольшие обломки. Подчеркните, что некоторое количество нашли.",
+          "uk": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли."
+        },
+        "gappedTargetPhrase": "We found ___ debris.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-22:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:word:grime",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grime",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:word:grime:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grime",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:word:grime:audio",
+          "transcript": "grime"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:word:grime:r1",
+            "targetText": "grime",
+            "meaningByLocale": {
+              "ru": "въевшаяся грязь, налёт грязи.",
+              "uk": "стійкий шар бруду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grime",
+          "definitionByLocale": {
+            "ru": "въевшаяся грязь, налёт грязи.",
+            "uk": "стійкий шар бруду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало. Скажіть: «Стійкого бруду залишилося мало».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало. Скажіть: «Стійкого бруду залишилося мало».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is little grime left.",
+        "localizedMeaning": {
+          "ru": "После уборки налёта почти нет. Подчеркните, что грязи осталось мало. Скажите: «Въевшейся грязи осталось мало».",
+          "uk": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало. Скажіть: «Стійкого бруду залишилося мало»."
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "little",
+          "grime",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i11:r1",
+          "text": "There is little grime left."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i11:r2",
+          "text": "There is a little grime left."
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i11:r3",
+          "text": "There is few grime left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i11:audio",
+          "transcript": "There is little grime left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-22:i11:r1",
+            "targetText": "There is little grime left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i11:r2",
+            "targetText": "There is a little grime left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i11:r3",
+            "targetText": "There is few grime left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is little grime left.",
+              "uk": "У записі звучить There is little grime left."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is little grime left.",
+              "uk": "У записі звучить There is little grime left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-22:i12:r1",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i12:r2",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-22:i12:r3",
+          "text": "few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После уборки налёта почти нет. Подчеркните, что грязи осталось мало.",
+          "uk": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало."
+        },
+        "gappedTargetPhrase": "There is ___ grime left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-22:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i12:r3",
+            "text": "few"
+          }
+        ],
+        "testedDimension": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-22:i13:p1",
+            "target": "fingerprint",
+            "meaningByLocale": {
+              "ru": "отпечаток пальца",
+              "uk": "відбиток пальця"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-22:i13:p2",
+            "target": "cobweb",
+            "meaningByLocale": {
+              "ru": "паутина, отдельная паучья сеть",
+              "uk": "павутина, окрема павуча сітка"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-22:i13:p3",
+            "target": "debris",
+            "meaningByLocale": {
+              "ru": "обломки, осколки и остатки разрушенных предметов",
+              "uk": "уламки, скалки й залишки зруйнованих предметів"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-22:i13:p4",
+            "target": "grime",
+            "meaningByLocale": {
+              "ru": "въевшаяся грязь, налёт грязи",
+              "uk": "стійкий шар бруду"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fingerprint",
+          "cobweb",
+          "debris",
+          "grime"
+        ],
+        "rightColumn": [
+          "відбиток пальця",
+          "павутина, окрема павуча сітка",
+          "уламки, скалки й залишки зруйнованих предметів",
+          "стійкий шар бруду"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу з a few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу з a few",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i14:audio",
+          "transcript": "We found a few fingerprints."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We found a few fingerprints.",
+        "orderedTokens": [
+          "We",
+          "found",
+          "a",
+          "few",
+          "fingerprints"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу з a little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу з a little",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i15:audio",
+          "transcript": "We found a little debris."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We found a little debris.",
+        "orderedTokens": [
+          "We",
+          "found",
+          "a",
+          "little",
+          "debris"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підкресліть малу кількість із little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i16:audio"
+      ],
+      "accessibilityLabel": "Підкресліть малу кількість із little",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i16:audio",
+          "transcript": "There is little grime left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is little grime left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-22:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підкресліть малу кількість із few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Підкресліть малу кількість із few",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-22:i17:audio",
+          "transcript": "There are few cobwebs here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are few cobwebs here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "161d8222429ac34cc25523d42a8fafcbc8e77de2eb9fc7568317a8409d3e5a68"
+}

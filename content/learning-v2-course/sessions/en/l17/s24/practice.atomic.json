@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-24:word:achievement",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — achievement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:achievement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — achievement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:achievement:audio",
+            "transcript": "achievement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:achievement:r1",
+              "targetText": "achievement",
+              "meaningByLocale": {
+                "ru": "достижение, результат усилий.",
+                "uk": "досягнення, результат зусиль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "achievement",
+            "definitionByLocale": {
+              "ru": "достижение, результат усилий.",
+              "uk": "досягнення, результат зусиль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements. Скажите: «У нас есть несколько достижений».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements. Скажите: «У нас есть несколько достижений».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a few achievements.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements. Скажите: «У нас есть несколько достижений».",
+            "uk": "Підкресліть, що певні досягнення вже є. Achievement → achievements. Скажіть: «У нас є кілька досягнень»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "achievements"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i02:r1",
+            "text": "We have a few achievements."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i02:r2",
+            "text": "We have few achievements."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i02:r3",
+            "text": "We have a little achievements."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i02:audio",
+            "transcript": "We have a few achievements."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i02:r1",
+              "targetText": "We have a few achievements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i02:r2",
+              "targetText": "We have few achievements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i02:r3",
+              "targetText": "We have a little achievements.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few achievements.",
+                "uk": "У записі звучить We have a few achievements."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few achievements.",
+                "uk": "У записі звучить We have a few achievements."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+            "uk": "Підкресліть, що певні досягнення вже є. Achievement → achievements."
+          },
+          "gappedTargetPhrase": "We have ___ achievements.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:word:setback",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — setback",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:setback:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — setback",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:setback:audio",
+            "transcript": "setback"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:setback:r1",
+              "targetText": "setback",
+              "meaningByLocale": {
+                "ru": "неудача или препятствие, задерживающее продвижение.",
+                "uk": "невдача або перешкода, яка затримує просування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "setback",
+            "definitionByLocale": {
+              "ru": "неудача или препятствие, задерживающее продвижение.",
+              "uk": "невдача або перешкода, яка затримує просування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks. Скажите: «У нас было мало неудач».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks. Скажите: «У нас было мало неудач».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had few setbacks.",
+          "localizedMeaning": {
+            "ru": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks. Скажите: «У нас было мало неудач».",
+            "uk": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks. Скажіть: «У нас було мало невдач»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "few",
+            "setbacks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i05:r1",
+            "text": "We had few setbacks."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i05:r2",
+            "text": "We had a few setbacks."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i05:r3",
+            "text": "We had little setbacks."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i05:audio",
+            "transcript": "We had few setbacks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i05:r1",
+              "targetText": "We had few setbacks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i05:r2",
+              "targetText": "We had a few setbacks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i05:r3",
+              "targetText": "We had little setbacks.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had few setbacks.",
+                "uk": "У записі звучить We had few setbacks."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had few setbacks.",
+                "uk": "У записі звучить We had few setbacks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i06:r3",
+            "text": "little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+            "uk": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks."
+          },
+          "gappedTargetPhrase": "We had ___ setbacks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i06:r3",
+              "text": "little"
+            }
+          ],
+          "testedDimension": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:word:courage",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — courage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:courage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — courage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:courage:audio",
+            "transcript": "courage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:courage:r1",
+              "targetText": "courage",
+              "meaningByLocale": {
+                "ru": "смелость, мужество.",
+                "uk": "сміливість, мужність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "courage",
+            "definitionByLocale": {
+              "ru": "смелость, мужество.",
+              "uk": "сміливість, мужність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подчеркните, что хоть немного смелости удалось найти. Скажите: «Мы набрались немного смелости».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что хоть немного смелости удалось найти. Скажите: «Мы набрались немного смелости».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We found a little courage.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что хоть немного смелости удалось найти. Скажите: «Мы набрались немного смелости».",
+            "uk": "Підкресліть, що хоч трохи сміливості вдалося знайти. Скажіть: «Ми набралися трохи сміливості»."
+          },
+          "orderedTokens": [
+            "We",
+            "found",
+            "a",
+            "little",
+            "courage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i08:r1",
+            "text": "We found a little courage."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i08:r2",
+            "text": "We found little courage."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i08:r3",
+            "text": "We found a few courage."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i08:audio",
+            "transcript": "We found a little courage."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i08:r1",
+              "targetText": "We found a little courage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i08:r2",
+              "targetText": "We found little courage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i08:r3",
+              "targetText": "We found a few courage.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a little courage.",
+                "uk": "У записі звучить We found a little courage."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a little courage.",
+                "uk": "У записі звучить We found a little courage."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните, что хоть немного смелости удалось найти.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что хоть немного смелости удалось найти.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что хоть немного смелости удалось найти.",
+            "uk": "Підкресліть, що хоч трохи сміливості вдалося знайти."
+          },
+          "gappedTargetPhrase": "We found ___ courage.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Подчеркните, что хоть немного смелости удалось найти.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните, что хоть немного смелости удалось найти.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните, что хоть немного смелости удалось найти.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:word:confidence",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — confidence",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:confidence:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — confidence",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:confidence:audio",
+            "transcript": "confidence"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:confidence:r1",
+              "targetText": "confidence",
+              "meaningByLocale": {
+                "ru": "уверенность в себе или в успехе.",
+                "uk": "упевненість у собі або в успіху."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confidence",
+            "definitionByLocale": {
+              "ru": "уверенность в себе или в успехе.",
+              "uk": "упевненість у собі або в успіху."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности. Скажите: «Нам не хватает уверенности».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности. Скажите: «Нам не хватает уверенности».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have little confidence.",
+          "localizedMeaning": {
+            "ru": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности. Скажите: «Нам не хватает уверенности».",
+            "uk": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості. Скажіть: «Нам бракує впевненості»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "little",
+            "confidence"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i11:r1",
+            "text": "We have little confidence."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i11:r2",
+            "text": "We have a little confidence."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i11:r3",
+            "text": "We have few confidence."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i11:audio",
+            "transcript": "We have little confidence."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i11:r1",
+              "targetText": "We have little confidence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i11:r2",
+              "targetText": "We have a little confidence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i11:r3",
+              "targetText": "We have few confidence.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little confidence.",
+                "uk": "У записі звучить We have little confidence."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little confidence.",
+                "uk": "У записі звучить We have little confidence."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i12:r3",
+            "text": "few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+            "uk": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості."
+          },
+          "gappedTargetPhrase": "We have ___ confidence.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i12:r3",
+              "text": "few"
+            }
+          ],
+          "testedDimension": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-24:i13:p1",
+              "target": "achievement",
+              "meaningByLocale": {
+                "ru": "достижение, результат усилий",
+                "uk": "досягнення, результат зусиль"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-24:i13:p2",
+              "target": "setback",
+              "meaningByLocale": {
+                "ru": "неудача или препятствие, задерживающее продвижение",
+                "uk": "невдача або перешкода, яка затримує просування"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-24:i13:p3",
+              "target": "courage",
+              "meaningByLocale": {
+                "ru": "смелость, мужество",
+                "uk": "сміливість, мужність"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-24:i13:p4",
+              "target": "confidence",
+              "meaningByLocale": {
+                "ru": "уверенность в себе или в успехе",
+                "uk": "упевненість у собі або в успіху"
+              }
+            }
+          ],
+          "leftColumn": [
+            "achievement",
+            "setback",
+            "courage",
+            "confidence"
+          ],
+          "rightColumn": [
+            "достижение, результат усилий",
+            "неудача или препятствие, задерживающее продвижение",
+            "смелость, мужество",
+            "уверенность в себе или в успехе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i14:audio",
+            "transcript": "We have a few achievements."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a few achievements.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "achievements"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i15:audio",
+            "transcript": "We found a little courage."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We found a little courage.",
+          "orderedTokens": [
+            "We",
+            "found",
+            "a",
+            "little",
+            "courage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество с little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество с little",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i16:audio",
+            "transcript": "We have little confidence."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have little confidence.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество с few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество с few",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i17:audio",
+            "transcript": "We had few setbacks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had few setbacks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-24:word:achievement",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — achievement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:achievement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — achievement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:achievement:audio",
+            "transcript": "achievement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:achievement:r1",
+              "targetText": "achievement",
+              "meaningByLocale": {
+                "ru": "достижение, результат усилий.",
+                "uk": "досягнення, результат зусиль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "achievement",
+            "definitionByLocale": {
+              "ru": "достижение, результат усилий.",
+              "uk": "досягнення, результат зусиль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Підкресліть, що певні досягнення вже є. Achievement → achievements. Скажіть: «У нас є кілька досягнень».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що певні досягнення вже є. Achievement → achievements. Скажіть: «У нас є кілька досягнень».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a few achievements.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements. Скажите: «У нас есть несколько достижений».",
+            "uk": "Підкресліть, що певні досягнення вже є. Achievement → achievements. Скажіть: «У нас є кілька досягнень»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "achievements"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i02:r1",
+            "text": "We have a few achievements."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i02:r2",
+            "text": "We have few achievements."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i02:r3",
+            "text": "We have a little achievements."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i02:audio",
+            "transcript": "We have a few achievements."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i02:r1",
+              "targetText": "We have a few achievements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i02:r2",
+              "targetText": "We have few achievements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i02:r3",
+              "targetText": "We have a little achievements.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few achievements.",
+                "uk": "У записі звучить We have a few achievements."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few achievements.",
+                "uk": "У записі звучить We have a few achievements."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть, що певні досягнення вже є. Achievement → achievements.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що певні досягнення вже є. Achievement → achievements.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+            "uk": "Підкресліть, що певні досягнення вже є. Achievement → achievements."
+          },
+          "gappedTargetPhrase": "We have ___ achievements.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Підкресліть, що певні досягнення вже є. Achievement → achievements.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть, що певні досягнення вже є. Achievement → achievements.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть, що певні досягнення вже є. Achievement → achievements.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:word:setback",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — setback",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:setback:audio"
+        ],
+        "accessibilityLabel": "Картка слова — setback",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:setback:audio",
+            "transcript": "setback"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:setback:r1",
+              "targetText": "setback",
+              "meaningByLocale": {
+                "ru": "неудача или препятствие, задерживающее продвижение.",
+                "uk": "невдача або перешкода, яка затримує просування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "setback",
+            "definitionByLocale": {
+              "ru": "неудача или препятствие, задерживающее продвижение.",
+              "uk": "невдача або перешкода, яка затримує просування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks. Скажіть: «У нас було мало невдач».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks. Скажіть: «У нас було мало невдач».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had few setbacks.",
+          "localizedMeaning": {
+            "ru": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks. Скажите: «У нас было мало неудач».",
+            "uk": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks. Скажіть: «У нас було мало невдач»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "few",
+            "setbacks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i05:r1",
+            "text": "We had few setbacks."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i05:r2",
+            "text": "We had a few setbacks."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i05:r3",
+            "text": "We had little setbacks."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i05:audio",
+            "transcript": "We had few setbacks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i05:r1",
+              "targetText": "We had few setbacks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i05:r2",
+              "targetText": "We had a few setbacks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i05:r3",
+              "targetText": "We had little setbacks.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had few setbacks.",
+                "uk": "У записі звучить We had few setbacks."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had few setbacks.",
+                "uk": "У записі звучить We had few setbacks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i06:r3",
+            "text": "little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
+            "uk": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks."
+          },
+          "gappedTargetPhrase": "We had ___ setbacks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i06:r3",
+              "text": "little"
+            }
+          ],
+          "testedDimension": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:word:courage",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — courage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:courage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — courage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:courage:audio",
+            "transcript": "courage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:courage:r1",
+              "targetText": "courage",
+              "meaningByLocale": {
+                "ru": "смелость, мужество.",
+                "uk": "сміливість, мужність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "courage",
+            "definitionByLocale": {
+              "ru": "смелость, мужество.",
+              "uk": "сміливість, мужність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Підкресліть, що хоч трохи сміливості вдалося знайти. Скажіть: «Ми набралися трохи сміливості».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що хоч трохи сміливості вдалося знайти. Скажіть: «Ми набралися трохи сміливості».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We found a little courage.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что хоть немного смелости удалось найти. Скажите: «Мы набрались немного смелости».",
+            "uk": "Підкресліть, що хоч трохи сміливості вдалося знайти. Скажіть: «Ми набралися трохи сміливості»."
+          },
+          "orderedTokens": [
+            "We",
+            "found",
+            "a",
+            "little",
+            "courage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i08:r1",
+            "text": "We found a little courage."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i08:r2",
+            "text": "We found little courage."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i08:r3",
+            "text": "We found a few courage."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i08:audio",
+            "transcript": "We found a little courage."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i08:r1",
+              "targetText": "We found a little courage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i08:r2",
+              "targetText": "We found little courage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i08:r3",
+              "targetText": "We found a few courage.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a little courage.",
+                "uk": "У записі звучить We found a little courage."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a little courage.",
+                "uk": "У записі звучить We found a little courage."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть, що хоч трохи сміливості вдалося знайти.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що хоч трохи сміливості вдалося знайти.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что хоть немного смелости удалось найти.",
+            "uk": "Підкресліть, що хоч трохи сміливості вдалося знайти."
+          },
+          "gappedTargetPhrase": "We found ___ courage.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Підкресліть, що хоч трохи сміливості вдалося знайти.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть, що хоч трохи сміливості вдалося знайти.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть, що хоч трохи сміливості вдалося знайти.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:word:confidence",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — confidence",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:word:confidence:audio"
+        ],
+        "accessibilityLabel": "Картка слова — confidence",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:word:confidence:audio",
+            "transcript": "confidence"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:word:confidence:r1",
+              "targetText": "confidence",
+              "meaningByLocale": {
+                "ru": "уверенность в себе или в успехе.",
+                "uk": "упевненість у собі або в успіху."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confidence",
+            "definitionByLocale": {
+              "ru": "уверенность в себе или в успехе.",
+              "uk": "упевненість у собі або в успіху."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості. Скажіть: «Нам бракує впевненості».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості. Скажіть: «Нам бракує впевненості».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have little confidence.",
+          "localizedMeaning": {
+            "ru": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности. Скажите: «Нам не хватает уверенности».",
+            "uk": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості. Скажіть: «Нам бракує впевненості»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "little",
+            "confidence"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i11:r1",
+            "text": "We have little confidence."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i11:r2",
+            "text": "We have a little confidence."
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i11:r3",
+            "text": "We have few confidence."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i11:audio",
+            "transcript": "We have little confidence."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-24:i11:r1",
+              "targetText": "We have little confidence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i11:r2",
+              "targetText": "We have a little confidence.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i11:r3",
+              "targetText": "We have few confidence.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little confidence.",
+                "uk": "У записі звучить We have little confidence."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little confidence.",
+                "uk": "У записі звучить We have little confidence."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-24:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-24:i12:r3",
+            "text": "few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+            "uk": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості."
+          },
+          "gappedTargetPhrase": "We have ___ confidence.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-24:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i12:r3",
+              "text": "few"
+            }
+          ],
+          "testedDimension": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-24:i13:p1",
+              "target": "achievement",
+              "meaningByLocale": {
+                "ru": "достижение, результат усилий",
+                "uk": "досягнення, результат зусиль"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-24:i13:p2",
+              "target": "setback",
+              "meaningByLocale": {
+                "ru": "неудача или препятствие, задерживающее продвижение",
+                "uk": "невдача або перешкода, яка затримує просування"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-24:i13:p3",
+              "target": "courage",
+              "meaningByLocale": {
+                "ru": "смелость, мужество",
+                "uk": "сміливість, мужність"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-24:i13:p4",
+              "target": "confidence",
+              "meaningByLocale": {
+                "ru": "уверенность в себе или в успехе",
+                "uk": "упевненість у собі або в успіху"
+              }
+            }
+          ],
+          "leftColumn": [
+            "achievement",
+            "setback",
+            "courage",
+            "confidence"
+          ],
+          "rightColumn": [
+            "досягнення, результат зусиль",
+            "невдача або перешкода, яка затримує просування",
+            "сміливість, мужність",
+            "упевненість у собі або в успіху"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i14:audio",
+            "transcript": "We have a few achievements."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a few achievements.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "achievements"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i15:audio",
+            "transcript": "We found a little courage."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We found a little courage.",
+          "orderedTokens": [
+            "We",
+            "found",
+            "a",
+            "little",
+            "courage"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість із little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість із little",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i16:audio",
+            "transcript": "We have little confidence."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have little confidence.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість із few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість із few",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-24:i17:audio",
+            "transcript": "We had few setbacks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had few setbacks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-24:word:achievement",
+      "correctText": "achievement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i01",
+      "correctText": "We have a few achievements.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i02",
+      "correctText": "We have a few achievements.",
+      "correctResponseId": "en:lesson-17:session-24:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i03",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-24:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:word:setback",
+      "correctText": "setback",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i04",
+      "correctText": "We had few setbacks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i05",
+      "correctText": "We had few setbacks.",
+      "correctResponseId": "en:lesson-17:session-24:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i06",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-24:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:word:courage",
+      "correctText": "courage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i07",
+      "correctText": "We found a little courage.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i08",
+      "correctText": "We found a little courage.",
+      "correctResponseId": "en:lesson-17:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i09",
+      "correctText": "a little",
+      "correctResponseId": "en:lesson-17:session-24:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:word:confidence",
+      "correctText": "confidence",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i10",
+      "correctText": "We have little confidence.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i11",
+      "correctText": "We have little confidence.",
+      "correctResponseId": "en:lesson-17:session-24:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i12",
+      "correctText": "little",
+      "correctResponseId": "en:lesson-17:session-24:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i14",
+      "correctText": "We have a few achievements.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i15",
+      "correctText": "We found a little courage.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i16",
+      "correctText": "We have little confidence.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:i17",
+      "correctText": "We had few setbacks.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-20:word:job-offer",
+    "correctText": "job offer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i01",
+    "correctText": "I have a few job offers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i02",
+    "correctText": "I have a few job offers.",
+    "correctResponseId": "en:lesson-17:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:word:job-interview",
+    "correctText": "job interview",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i04",
+    "correctText": "I have few job interviews this month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i05",
+    "correctText": "I have few job interviews this month.",
+    "correctResponseId": "en:lesson-17:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:word:work-experience",
+    "correctText": "work experience",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i07",
+    "correctText": "I have a little work experience.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i08",
+    "correctText": "I have a little work experience.",
+    "correctResponseId": "en:lesson-17:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:word:sick-leave",
+    "correctText": "sick leave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i10",
+    "correctText": "I have little sick leave left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i11",
+    "correctText": "I have little sick leave left.",
+    "correctResponseId": "en:lesson-17:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i13",
+    "correctText": "en:lesson-17:session-20:i13:p1=job offer\nen:lesson-17:session-20:i13:p2=job interview\nen:lesson-17:session-20:i13:p3=work experience\nen:lesson-17:session-20:i13:p4=sick leave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i14",
+    "correctText": "I have a few job offers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i15",
+    "correctText": "I have a little work experience.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i16",
+    "correctText": "I have little sick leave left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-20:i17",
+    "correctText": "I have few job interviews this month.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-21:word:pretzel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pretzel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:word:pretzel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pretzel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:word:pretzel:audio",
+          "transcript": "pretzel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:word:pretzel:r1",
+            "targetText": "pretzel",
+            "meaningByLocale": {
+              "ru": "крендель.",
+              "uk": "крендель."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pretzel",
+          "definitionByLocale": {
+            "ru": "крендель.",
+            "uk": "крендель."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels. Скажите: «У нас есть несколько кренделей».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels. Скажите: «У нас есть несколько кренделей».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have a few pretzels.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels. Скажите: «У нас есть несколько кренделей».",
+          "uk": "Підкресліть, що кілька кренделів є. Pretzel → pretzels. Скажіть: «У нас є кілька кренделів»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "few",
+          "pretzels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i02:r1",
+          "text": "We have a few pretzels."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i02:r2",
+          "text": "We have few pretzels."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i02:r3",
+          "text": "We have a little pretzels."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i02:audio",
+          "transcript": "We have a few pretzels."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:i02:r1",
+            "targetText": "We have a few pretzels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i02:r2",
+            "targetText": "We have few pretzels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i02:r3",
+            "targetText": "We have a little pretzels.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a few pretzels.",
+              "uk": "У записі звучить We have a few pretzels."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a few pretzels.",
+              "uk": "У записі звучить We have a few pretzels."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i03:r1",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i03:r2",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i03:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+          "uk": "Підкресліть, що кілька кренделів є. Pretzel → pretzels."
+        },
+        "gappedTargetPhrase": "We have ___ pretzels.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-21:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:word:crouton",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crouton",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:word:crouton:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crouton",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:word:crouton:audio",
+          "transcript": "crouton"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:word:crouton:r1",
+            "targetText": "crouton",
+            "meaningByLocale": {
+              "ru": "маленький сухарик для супа или салата.",
+              "uk": "маленький сухарик для супу або салату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crouton",
+          "definitionByLocale": {
+            "ru": "маленький сухарик для супа или салата.",
+            "uk": "маленький сухарик для супу або салату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons. Скажите: «У нас осталось мало сухариков».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons. Скажите: «У нас осталось мало сухариков».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have few croutons left.",
+        "localizedMeaning": {
+          "ru": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons. Скажите: «У нас осталось мало сухариков».",
+          "uk": "Для всіх порцій супу сухариків бракує. Підкресліть, що залишилося мало. Crouton → croutons. Скажіть: «У нас залишилося мало сухариків»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "few",
+          "croutons",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i05:r1",
+          "text": "We have few croutons left."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i05:r2",
+          "text": "We have a few croutons left."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i05:r3",
+          "text": "We have little croutons left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i05:audio",
+          "transcript": "We have few croutons left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:i05:r1",
+            "targetText": "We have few croutons left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i05:r2",
+            "targetText": "We have a few croutons left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i05:r3",
+            "targetText": "We have little croutons left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have few croutons left.",
+              "uk": "У записі звучить We have few croutons left."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have few croutons left.",
+              "uk": "У записі звучить We have few croutons left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i06:r1",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i06:r2",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i06:r3",
+          "text": "little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
+          "uk": "Для всіх порцій супу сухариків бракує. Підкресліть, що залишилося мало. Crouton → croutons."
+        },
+        "gappedTargetPhrase": "We have ___ croutons left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-21:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i06:r3",
+            "text": "little"
+          }
+        ],
+        "testedDimension": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:word:quinoa",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quinoa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:word:quinoa:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quinoa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:word:quinoa:audio",
+          "transcript": "quinoa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:word:quinoa:r1",
+            "targetText": "quinoa",
+            "meaningByLocale": {
+              "ru": "киноа, мелкие съедобные семена для гарниров.",
+              "uk": "кіноа, дрібне їстівне насіння для гарнірів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quinoa",
+          "definitionByLocale": {
+            "ru": "киноа, мелкие съедобные семена для гарниров.",
+            "uk": "кіноа, дрібне їстівне насіння для гарнірів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что немного киноа есть. Скажите: «У нас есть немного киноа».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что немного киноа есть. Скажите: «У нас есть немного киноа».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have a little quinoa.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что немного киноа есть. Скажите: «У нас есть немного киноа».",
+          "uk": "Підкресліть, що трохи кіноа є. Скажіть: «У нас є трохи кіноа»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "little",
+          "quinoa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i08:r1",
+          "text": "We have a little quinoa."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i08:r2",
+          "text": "We have little quinoa."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i08:r3",
+          "text": "We have a few quinoa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i08:audio",
+          "transcript": "We have a little quinoa."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:i08:r1",
+            "targetText": "We have a little quinoa.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i08:r2",
+            "targetText": "We have little quinoa.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i08:r3",
+            "targetText": "We have a few quinoa.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a little quinoa.",
+              "uk": "У записі звучить We have a little quinoa."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a little quinoa.",
+              "uk": "У записі звучить We have a little quinoa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что немного киноа есть.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i09:r1",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i09:r2",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i09:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что немного киноа есть.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что немного киноа есть.",
+          "uk": "Підкресліть, що трохи кіноа є."
+        },
+        "gappedTargetPhrase": "We have ___ quinoa.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-21:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Подчеркните, что немного киноа есть.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что немного киноа есть.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что немного киноа есть.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:word:buckwheat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — buckwheat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:word:buckwheat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — buckwheat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:word:buckwheat:audio",
+          "transcript": "buckwheat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:word:buckwheat:r1",
+            "targetText": "buckwheat",
+            "meaningByLocale": {
+              "ru": "гречка, гречневая крупа.",
+              "uk": "гречка, гречана крупа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buckwheat",
+          "definitionByLocale": {
+            "ru": "гречка, гречневая крупа.",
+            "uk": "гречка, гречана крупа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гречки не хватит на задуманный ужин. Подчеркните нехватку. Скажите: «У нас осталось мало гречки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гречки не хватит на задуманный ужин. Подчеркните нехватку. Скажите: «У нас осталось мало гречки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have little buckwheat left.",
+        "localizedMeaning": {
+          "ru": "Гречки не хватит на задуманный ужин. Подчеркните нехватку. Скажите: «У нас осталось мало гречки».",
+          "uk": "Гречки не вистачить на заплановану вечерю. Підкресліть брак. Скажіть: «У нас залишилося мало гречки»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "little",
+          "buckwheat",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i11:r1",
+          "text": "We have little buckwheat left."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i11:r2",
+          "text": "We have a little buckwheat left."
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i11:r3",
+          "text": "We have few buckwheat left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i11:audio",
+          "transcript": "We have little buckwheat left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-21:i11:r1",
+            "targetText": "We have little buckwheat left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i11:r2",
+            "targetText": "We have a little buckwheat left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i11:r3",
+            "targetText": "We have few buckwheat left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have little buckwheat left.",
+              "uk": "У записі звучить We have little buckwheat left."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have little buckwheat left.",
+              "uk": "У записі звучить We have little buckwheat left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-21:i12:r1",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i12:r2",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-21:i12:r3",
+          "text": "few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+          "uk": "Гречки не вистачить на заплановану вечерю. Підкресліть брак."
+        },
+        "gappedTargetPhrase": "We have ___ buckwheat left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-21:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i12:r3",
+            "text": "few"
+          }
+        ],
+        "testedDimension": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-21:i13:p1",
+            "target": "pretzel",
+            "meaningByLocale": {
+              "ru": "крендель",
+              "uk": "крендель"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-21:i13:p2",
+            "target": "crouton",
+            "meaningByLocale": {
+              "ru": "маленький сухарик для супа или салата",
+              "uk": "маленький сухарик для супу або салату"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-21:i13:p3",
+            "target": "quinoa",
+            "meaningByLocale": {
+              "ru": "киноа, мелкие съедобные семена для гарниров",
+              "uk": "кіноа, дрібне їстівне насіння для гарнірів"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-21:i13:p4",
+            "target": "buckwheat",
+            "meaningByLocale": {
+              "ru": "гречка, гречневая крупа",
+              "uk": "гречка, гречана крупа"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pretzel",
+          "crouton",
+          "quinoa",
+          "buckwheat"
+        ],
+        "rightColumn": [
+          "крендель",
+          "маленький сухарик для супа или салата",
+          "киноа, мелкие съедобные семена для гарниров",
+          "гречка, гречневая крупа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a few",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i14:audio",
+          "transcript": "We have a few pretzels."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have a few pretzels.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "few",
+          "pretzels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a little",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i15:audio",
+          "transcript": "We have a little quinoa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have a little quinoa.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "little",
+          "quinoa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество с little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество с little",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i16:audio",
+          "transcript": "We have little buckwheat left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have little buckwheat left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество с few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество с few",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-21:i17:audio",
+          "transcript": "We have few croutons left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have few croutons left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2cba34c693a37a1cc744354e7e3ad6dddc466f4fae98d7c2151688c47cafe07c"
+}

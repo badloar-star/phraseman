@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-23:word:kind-word",
+    "correctText": "kind word",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i01",
+    "correctText": "We heard a few kind words.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i02",
+    "correctText": "We heard a few kind words.",
+    "correctResponseId": "en:lesson-17:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:word:thank-you-note",
+    "correctText": "thank-you note",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i04",
+    "correctText": "We received few thank-you notes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i05",
+    "correctText": "We received few thank-you notes.",
+    "correctResponseId": "en:lesson-17:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:word:kindness",
+    "correctText": "kindness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i07",
+    "correctText": "She showed a little kindness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i08",
+    "correctText": "She showed a little kindness.",
+    "correctResponseId": "en:lesson-17:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:word:patience",
+    "correctText": "patience",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i10",
+    "correctText": "She showed little patience.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i11",
+    "correctText": "She showed little patience.",
+    "correctResponseId": "en:lesson-17:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i13",
+    "correctText": "en:lesson-17:session-23:i13:p1=kind word\nen:lesson-17:session-23:i13:p2=thank-you note\nen:lesson-17:session-23:i13:p3=kindness\nen:lesson-17:session-23:i13:p4=patience",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i14",
+    "correctText": "We heard a few kind words.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i15",
+    "correctText": "She showed a little kindness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i16",
+    "correctText": "She showed little patience.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-23:i17",
+    "correctText": "We received few thank-you notes.",
+    "correctResponseId": null
+  }
+]

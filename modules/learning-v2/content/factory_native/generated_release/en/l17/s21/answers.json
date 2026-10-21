@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-21:word:pretzel",
+    "correctText": "pretzel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i01",
+    "correctText": "We have a few pretzels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i02",
+    "correctText": "We have a few pretzels.",
+    "correctResponseId": "en:lesson-17:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:word:crouton",
+    "correctText": "crouton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i04",
+    "correctText": "We have few croutons left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i05",
+    "correctText": "We have few croutons left.",
+    "correctResponseId": "en:lesson-17:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:word:quinoa",
+    "correctText": "quinoa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i07",
+    "correctText": "We have a little quinoa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i08",
+    "correctText": "We have a little quinoa.",
+    "correctResponseId": "en:lesson-17:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:word:buckwheat",
+    "correctText": "buckwheat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i10",
+    "correctText": "We have little buckwheat left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i11",
+    "correctText": "We have little buckwheat left.",
+    "correctResponseId": "en:lesson-17:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i13",
+    "correctText": "en:lesson-17:session-21:i13:p1=pretzel\nen:lesson-17:session-21:i13:p2=crouton\nen:lesson-17:session-21:i13:p3=quinoa\nen:lesson-17:session-21:i13:p4=buckwheat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i14",
+    "correctText": "We have a few pretzels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i15",
+    "correctText": "We have a little quinoa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i16",
+    "correctText": "We have little buckwheat left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-21:i17",
+    "correctText": "We have few croutons left.",
+    "correctResponseId": null
+  }
+]

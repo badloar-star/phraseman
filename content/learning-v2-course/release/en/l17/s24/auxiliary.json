@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-24:intro1:r2": {
+          "ru": "Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.",
+          "uk": "Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації."
+        },
+        "en:lesson-17:session-24:intro1:r3": {
+          "ru": "С исчисляемым во множественном числе нужно few.",
+          "uk": "Із злічуваним у множині потрібне few."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-24:intro2:r2": {
+          "ru": "Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.",
+          "uk": "Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації."
+        },
+        "en:lesson-17:session-24:intro2:r3": {
+          "ru": "С неисчисляемым нужно little.",
+          "uk": "Із незлічуваним потрібне little."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-24:intro3:r2": {
+          "ru": "Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.",
+          "uk": "Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації."
+        },
+        "en:lesson-17:session-24:intro3:r3": {
+          "ru": "С неисчисляемым нужно little.",
+          "uk": "Із незлічуваним потрібне little."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "58fb1737680395aa83d44f5c689cb93acea458496d4856f12b797d7d995bd91a"
+}

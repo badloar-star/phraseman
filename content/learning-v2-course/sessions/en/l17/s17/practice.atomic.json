@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-17:word:housemate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — housemate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:housemate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — housemate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:housemate:audio",
+            "transcript": "housemate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:housemate:r1",
+              "targetText": "housemate",
+              "meaningByLocale": {
+                "ru": "человек, живущий с вами в одном доме.",
+                "uk": "людина, яка живе з вами в одному будинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "housemate",
+            "definitionByLocale": {
+              "ru": "человек, живущий с вами в одном доме.",
+              "uk": "людина, яка живе з вами в одному будинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates. Скажите: «У нас есть несколько соседей по дому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates. Скажите: «У нас есть несколько соседей по дому».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a few housemates.",
+          "localizedMeaning": {
+            "ru": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates. Скажите: «У нас есть несколько соседей по дому».",
+            "uk": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates. Скажіть: «У нас є кілька сусідів по будинку»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "housemates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i02:r1",
+            "text": "We have a few housemates."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i02:r2",
+            "text": "We have few housemates."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i02:r3",
+            "text": "We have a little housemates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i02:audio",
+            "transcript": "We have a few housemates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i02:r1",
+              "targetText": "We have a few housemates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i02:r2",
+              "targetText": "We have few housemates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i02:r3",
+              "targetText": "We have a little housemates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few housemates.",
+                "uk": "У записі звучить We have a few housemates."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few housemates.",
+                "uk": "У записі звучить We have a few housemates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+            "uk": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates."
+          },
+          "gappedTargetPhrase": "We have ___ housemates.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: a few.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: a few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+              "feedbackByLocale": {
+                "ru": "С людьми во множественном числе используйте few.",
+                "uk": "Із людьми у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:word:acquaintance",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — acquaintance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:acquaintance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — acquaintance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:acquaintance:audio",
+            "transcript": "acquaintance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:acquaintance:r1",
+              "targetText": "acquaintance",
+              "meaningByLocale": {
+                "ru": "знакомый человек, не обязательно близкий друг.",
+                "uk": "знайома людина, не обов’язково близький друг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "acquaintance",
+            "definitionByLocale": {
+              "ru": "знакомый человек, не обязательно близкий друг.",
+              "uk": "знайома людина, не обов’язково близький друг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances. Скажите: «У нас здесь мало знакомых».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances. Скажите: «У нас здесь мало знакомых».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few acquaintances here.",
+          "localizedMeaning": {
+            "ru": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances. Скажите: «У нас здесь мало знакомых».",
+            "uk": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances. Скажіть: «У нас тут мало знайомих»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "acquaintances",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i05:r1",
+            "text": "We have few acquaintances here."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i05:r2",
+            "text": "We have a few acquaintances here."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i05:r3",
+            "text": "We have little acquaintances here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i05:audio",
+            "transcript": "We have few acquaintances here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i05:r1",
+              "targetText": "We have few acquaintances here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i05:r2",
+              "targetText": "We have a few acquaintances here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i05:r3",
+              "targetText": "We have little acquaintances here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few acquaintances here.",
+                "uk": "У записі звучить We have few acquaintances here."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few acquaintances here.",
+                "uk": "У записі звучить We have few acquaintances here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i06:r3",
+            "text": "little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+            "uk": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances."
+          },
+          "gappedTargetPhrase": "We have ___ acquaintances here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i06:r3",
+              "text": "little"
+            }
+          ],
+          "testedDimension": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: few.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+              "feedbackByLocale": {
+                "ru": "С людьми во множественном числе используйте few.",
+                "uk": "Із людьми у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:word:leisure",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leisure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:leisure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leisure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:leisure:audio",
+            "transcript": "leisure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:leisure:r1",
+              "targetText": "leisure",
+              "meaningByLocale": {
+                "ru": "досуг, свободное от работы и обязанностей время.",
+                "uk": "дозвілля, вільний від роботи й обов’язків час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leisure",
+            "definitionByLocale": {
+              "ru": "досуг, свободное от работы и обязанностей время.",
+              "uk": "дозвілля, вільний від роботи й обов’язків час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть. Скажите: «У нас есть немного свободного времени».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть. Скажите: «У нас есть немного свободного времени».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a little leisure time.",
+          "localizedMeaning": {
+            "ru": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть. Скажите: «У нас есть немного свободного времени».",
+            "uk": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є. Скажіть: «У нас є трохи вільного часу»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "little",
+            "leisure",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i08:r1",
+            "text": "We have a little leisure time."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i08:r2",
+            "text": "We have little leisure time."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i08:r3",
+            "text": "We have a few leisure time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i08:audio",
+            "transcript": "We have a little leisure time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i08:r1",
+              "targetText": "We have a little leisure time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i08:r2",
+              "targetText": "We have little leisure time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i08:r3",
+              "targetText": "We have a few leisure time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a little leisure time.",
+                "uk": "У записі звучить We have a little leisure time."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a little leisure time.",
+                "uk": "У записі звучить We have a little leisure time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+            "uk": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є."
+          },
+          "gappedTargetPhrase": "We have ___ leisure time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: a little.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: a little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:word:privacy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — privacy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:privacy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — privacy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:privacy:audio",
+            "transcript": "privacy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:privacy:r1",
+              "targetText": "privacy",
+              "meaningByLocale": {
+                "ru": "уединение, отсутствие вмешательства в личную жизнь.",
+                "uk": "усамітнення, відсутність втручання в особисте життя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "privacy",
+            "definitionByLocale": {
+              "ru": "уединение, отсутствие вмешательства в личную жизнь.",
+              "uk": "усамітнення, відсутність втручання в особисте життя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения. Скажите: «Нам не хватает уединения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения. Скажите: «Нам не хватает уединения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have little privacy.",
+          "localizedMeaning": {
+            "ru": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения. Скажите: «Нам не хватает уединения».",
+            "uk": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення. Скажіть: «Нам бракує усамітнення»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "little",
+            "privacy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i11:r1",
+            "text": "We have little privacy."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i11:r2",
+            "text": "We have a little privacy."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i11:r3",
+            "text": "We have few privacy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i11:audio",
+            "transcript": "We have little privacy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i11:r1",
+              "targetText": "We have little privacy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i11:r2",
+              "targetText": "We have a little privacy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i11:r3",
+              "targetText": "We have few privacy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little privacy.",
+                "uk": "У записі звучить We have little privacy."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little privacy.",
+                "uk": "У записі звучить We have little privacy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i12:r3",
+            "text": "few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+            "uk": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення."
+          },
+          "gappedTargetPhrase": "We have ___ privacy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i12:r3",
+              "text": "few"
+            }
+          ],
+          "testedDimension": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: little.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-17:i13:p1",
+              "target": "housemate",
+              "meaningByLocale": {
+                "ru": "человек, живущий с вами в одном доме",
+                "uk": "людина, яка живе з вами в одному будинку"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-17:i13:p2",
+              "target": "acquaintance",
+              "meaningByLocale": {
+                "ru": "знакомый человек, не обязательно близкий друг",
+                "uk": "знайома людина, не обов’язково близький друг"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-17:i13:p3",
+              "target": "leisure",
+              "meaningByLocale": {
+                "ru": "досуг, свободное от работы и обязанностей время",
+                "uk": "дозвілля, вільний від роботи й обов’язків час"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-17:i13:p4",
+              "target": "privacy",
+              "meaningByLocale": {
+                "ru": "уединение, отсутствие вмешательства в личную жизнь",
+                "uk": "усамітнення, відсутність втручання в особисте життя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "housemate",
+            "acquaintance",
+            "leisure",
+            "privacy"
+          ],
+          "rightColumn": [
+            "человек, живущий с вами в одном доме",
+            "знакомый человек, не обязательно близкий друг",
+            "досуг, свободное от работы и обязанностей время",
+            "уединение, отсутствие вмешательства в личную жизнь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу о соседях",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу о соседях",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i14:audio",
+            "transcript": "We have a few housemates."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a few housemates.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "housemates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу о свободном времени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу о свободном времени",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i15:audio",
+            "transcript": "We have a little leisure time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a little leisure time.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "little",
+            "leisure",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните нехватку уединения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Подчеркните нехватку уединения",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i16:audio",
+            "transcript": "We have little privacy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have little privacy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что знакомых мало",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что знакомых мало",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i17:audio",
+            "transcript": "We have few acquaintances here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have few acquaintances here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-17:word:housemate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — housemate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:housemate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — housemate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:housemate:audio",
+            "transcript": "housemate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:housemate:r1",
+              "targetText": "housemate",
+              "meaningByLocale": {
+                "ru": "человек, живущий с вами в одном доме.",
+                "uk": "людина, яка живе з вами в одному будинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "housemate",
+            "definitionByLocale": {
+              "ru": "человек, живущий с вами в одном доме.",
+              "uk": "людина, яка живе з вами в одному будинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates. Скажіть: «У нас є кілька сусідів по будинку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates. Скажіть: «У нас є кілька сусідів по будинку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a few housemates.",
+          "localizedMeaning": {
+            "ru": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates. Скажите: «У нас есть несколько соседей по дому».",
+            "uk": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates. Скажіть: «У нас є кілька сусідів по будинку»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "housemates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i02:r1",
+            "text": "We have a few housemates."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i02:r2",
+            "text": "We have few housemates."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i02:r3",
+            "text": "We have a little housemates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i02:audio",
+            "transcript": "We have a few housemates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i02:r1",
+              "targetText": "We have a few housemates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i02:r2",
+              "targetText": "We have few housemates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i02:r3",
+              "targetText": "We have a little housemates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few housemates.",
+                "uk": "У записі звучить We have a few housemates."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a few housemates.",
+                "uk": "У записі звучить We have a few housemates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+            "uk": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates."
+          },
+          "gappedTargetPhrase": "We have ___ housemates.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: a few.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: a few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.",
+              "feedbackByLocale": {
+                "ru": "С людьми во множественном числе используйте few.",
+                "uk": "Із людьми у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:word:acquaintance",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — acquaintance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:acquaintance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — acquaintance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:acquaintance:audio",
+            "transcript": "acquaintance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:acquaintance:r1",
+              "targetText": "acquaintance",
+              "meaningByLocale": {
+                "ru": "знакомый человек, не обязательно близкий друг.",
+                "uk": "знайома людина, не обов’язково близький друг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "acquaintance",
+            "definitionByLocale": {
+              "ru": "знакомый человек, не обязательно близкий друг.",
+              "uk": "знайома людина, не обов’язково близький друг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances. Скажіть: «У нас тут мало знайомих».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances. Скажіть: «У нас тут мало знайомих».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few acquaintances here.",
+          "localizedMeaning": {
+            "ru": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances. Скажите: «У нас здесь мало знакомых».",
+            "uk": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances. Скажіть: «У нас тут мало знайомих»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "acquaintances",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i05:r1",
+            "text": "We have few acquaintances here."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i05:r2",
+            "text": "We have a few acquaintances here."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i05:r3",
+            "text": "We have little acquaintances here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i05:audio",
+            "transcript": "We have few acquaintances here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i05:r1",
+              "targetText": "We have few acquaintances here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i05:r2",
+              "targetText": "We have a few acquaintances here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i05:r3",
+              "targetText": "We have little acquaintances here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few acquaintances here.",
+                "uk": "У записі звучить We have few acquaintances here."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few acquaintances here.",
+                "uk": "У записі звучить We have few acquaintances here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i06:r3",
+            "text": "little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы недавно переехали и чувствуете нехватку общения. Подчеркните, что знакомых мало. Acquaintance → acquaintances.",
+            "uk": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances."
+          },
+          "gappedTargetPhrase": "We have ___ acquaintances here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i06:r3",
+              "text": "little"
+            }
+          ],
+          "testedDimension": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: few.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances.",
+              "feedbackByLocale": {
+                "ru": "С людьми во множественном числе используйте few.",
+                "uk": "Із людьми у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:word:leisure",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leisure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:leisure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leisure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:leisure:audio",
+            "transcript": "leisure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:leisure:r1",
+              "targetText": "leisure",
+              "meaningByLocale": {
+                "ru": "досуг, свободное от работы и обязанностей время.",
+                "uk": "дозвілля, вільний від роботи й обов’язків час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leisure",
+            "definitionByLocale": {
+              "ru": "досуг, свободное от работы и обязанностей время.",
+              "uk": "дозвілля, вільний від роботи й обов’язків час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є. Скажіть: «У нас є трохи вільного часу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є. Скажіть: «У нас є трохи вільного часу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a little leisure time.",
+          "localizedMeaning": {
+            "ru": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть. Скажите: «У нас есть немного свободного времени».",
+            "uk": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є. Скажіть: «У нас є трохи вільного часу»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "little",
+            "leisure",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i08:r1",
+            "text": "We have a little leisure time."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i08:r2",
+            "text": "We have little leisure time."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i08:r3",
+            "text": "We have a few leisure time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i08:audio",
+            "transcript": "We have a little leisure time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i08:r1",
+              "targetText": "We have a little leisure time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i08:r2",
+              "targetText": "We have little leisure time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i08:r3",
+              "targetText": "We have a few leisure time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a little leisure time.",
+                "uk": "У записі звучить We have a little leisure time."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have a little leisure time.",
+                "uk": "У записі звучить We have a little leisure time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+            "uk": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є."
+          },
+          "gappedTargetPhrase": "We have ___ leisure time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: a little.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: a little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:word:privacy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — privacy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:word:privacy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — privacy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:word:privacy:audio",
+            "transcript": "privacy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:word:privacy:r1",
+              "targetText": "privacy",
+              "meaningByLocale": {
+                "ru": "уединение, отсутствие вмешательства в личную жизнь.",
+                "uk": "усамітнення, відсутність втручання в особисте життя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "privacy",
+            "definitionByLocale": {
+              "ru": "уединение, отсутствие вмешательства в личную жизнь.",
+              "uk": "усамітнення, відсутність втручання в особисте життя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення. Скажіть: «Нам бракує усамітнення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення. Скажіть: «Нам бракує усамітнення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have little privacy.",
+          "localizedMeaning": {
+            "ru": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения. Скажите: «Нам не хватает уединения».",
+            "uk": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення. Скажіть: «Нам бракує усамітнення»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "little",
+            "privacy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i11:r1",
+            "text": "We have little privacy."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i11:r2",
+            "text": "We have a little privacy."
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i11:r3",
+            "text": "We have few privacy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i11:audio",
+            "transcript": "We have little privacy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-17:i11:r1",
+              "targetText": "We have little privacy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i11:r2",
+              "targetText": "We have a little privacy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i11:r3",
+              "targetText": "We have few privacy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little privacy.",
+                "uk": "У записі звучить We have little privacy."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have little privacy.",
+                "uk": "У записі звучить We have little privacy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-17:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-17:i12:r3",
+            "text": "few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+            "uk": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення."
+          },
+          "gappedTargetPhrase": "We have ___ privacy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-17:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i12:r3",
+              "text": "few"
+            }
+          ],
+          "testedDimension": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны; здесь нужен указанный акцент: little.",
+                "uk": "Обидві форми граматично можливі; тут потрібен указаний акцент: little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-17:i13:p1",
+              "target": "housemate",
+              "meaningByLocale": {
+                "ru": "человек, живущий с вами в одном доме",
+                "uk": "людина, яка живе з вами в одному будинку"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-17:i13:p2",
+              "target": "acquaintance",
+              "meaningByLocale": {
+                "ru": "знакомый человек, не обязательно близкий друг",
+                "uk": "знайома людина, не обов’язково близький друг"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-17:i13:p3",
+              "target": "leisure",
+              "meaningByLocale": {
+                "ru": "досуг, свободное от работы и обязанностей время",
+                "uk": "дозвілля, вільний від роботи й обов’язків час"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-17:i13:p4",
+              "target": "privacy",
+              "meaningByLocale": {
+                "ru": "уединение, отсутствие вмешательства в личную жизнь",
+                "uk": "усамітнення, відсутність втручання в особисте життя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "housemate",
+            "acquaintance",
+            "leisure",
+            "privacy"
+          ],
+          "rightColumn": [
+            "людина, яка живе з вами в одному будинку",
+            "знайома людина, не обов’язково близький друг",
+            "дозвілля, вільний від роботи й обов’язків час",
+            "усамітнення, відсутність втручання в особисте життя"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу про сусідів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу про сусідів",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i14:audio",
+            "transcript": "We have a few housemates."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a few housemates.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "few",
+            "housemates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу про вільний час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу про вільний час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i15:audio",
+            "transcript": "We have a little leisure time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have a little leisure time.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "little",
+            "leisure",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть брак усамітнення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Підкресліть брак усамітнення",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i16:audio",
+            "transcript": "We have little privacy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have little privacy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що знайомих мало",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що знайомих мало",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-17:i17:audio",
+            "transcript": "We have few acquaintances here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have few acquaintances here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-17:word:housemate",
+      "correctText": "housemate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i01",
+      "correctText": "We have a few housemates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i02",
+      "correctText": "We have a few housemates.",
+      "correctResponseId": "en:lesson-17:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i03",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:word:acquaintance",
+      "correctText": "acquaintance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i04",
+      "correctText": "We have few acquaintances here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i05",
+      "correctText": "We have few acquaintances here.",
+      "correctResponseId": "en:lesson-17:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i06",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-17:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:word:leisure",
+      "correctText": "leisure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i07",
+      "correctText": "We have a little leisure time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i08",
+      "correctText": "We have a little leisure time.",
+      "correctResponseId": "en:lesson-17:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i09",
+      "correctText": "a little",
+      "correctResponseId": "en:lesson-17:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:word:privacy",
+      "correctText": "privacy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i10",
+      "correctText": "We have little privacy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i11",
+      "correctText": "We have little privacy.",
+      "correctResponseId": "en:lesson-17:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i12",
+      "correctText": "little",
+      "correctResponseId": "en:lesson-17:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i14",
+      "correctText": "We have a few housemates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i15",
+      "correctText": "We have a little leisure time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i16",
+      "correctText": "We have little privacy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:i17",
+      "correctText": "We have few acquaintances here.",
+      "correctResponseId": null
+    }
+  ]
+}

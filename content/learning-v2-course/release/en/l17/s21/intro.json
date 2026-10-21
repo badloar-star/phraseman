@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько есть",
+        "uk": "Кілька є"
+      },
+      "bodyByLocale": {
+        "ru": "pretzel — крендель. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
+        "uk": "pretzel — крендель. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька кренделів є. Pretzel → pretzels."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-21:intro1:r1",
+              "text": "We have a few pretzels."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro1:r2",
+              "text": "We have few pretzels."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro1:r3",
+              "text": "We have a little pretzels."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-21:intro1:r1",
+              "text": "We have a few pretzels."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro1:r2",
+              "text": "We have few pretzels."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro1:r3",
+              "text": "We have a little pretzels."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного есть",
+        "uk": "Трохи є"
+      },
+      "bodyByLocale": {
+        "ru": "quinoa — киноа, мелкие съедобные семена для гарниров. crouton — маленький сухарик для супа или салата. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что немного киноа есть.",
+        "uk": "quinoa — кіноа, дрібне їстівне насіння для гарнірів. crouton — маленький сухарик для супу або салату. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що трохи кіноа є."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-21:intro2:r1",
+              "text": "We have a little quinoa."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro2:r2",
+              "text": "We have little quinoa."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro2:r3",
+              "text": "We have a few quinoa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-21:intro2:r1",
+              "text": "We have a little quinoa."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro2:r2",
+              "text": "We have little quinoa."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro2:r3",
+              "text": "We have a few quinoa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "buckwheat — гречка, гречневая крупа. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
+        "uk": "buckwheat — гречка, гречана крупа. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Гречки не вистачить на заплановану вечерю. Підкресліть брак."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-21:intro3:r1",
+              "text": "We have little buckwheat left."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro3:r2",
+              "text": "We have a little buckwheat left."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro3:r3",
+              "text": "We have few buckwheat left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-21:intro3:r1",
+              "text": "We have little buckwheat left."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro3:r2",
+              "text": "We have a little buckwheat left."
+            },
+            {
+              "responseId": "en:lesson-17:session-21:intro3:r3",
+              "text": "We have few buckwheat left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4912ad7d679daf071501504f0e193375ef794db67e0c0c8ae0209a8883184dc5"
+}

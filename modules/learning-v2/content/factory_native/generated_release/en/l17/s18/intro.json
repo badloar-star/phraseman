@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько есть",
+        "uk": "Кілька є"
+      },
+      "bodyByLocale": {
+        "ru": "compliment — комплимент, приятные слова о человеке или его работе. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+        "uk": "compliment — комплімент, приємні слова про людину або її роботу. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-18:intro1:r1",
+              "text": "We received a few compliments."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro1:r2",
+              "text": "We received few compliments."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro1:r3",
+              "text": "We received a little compliments."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-18:intro1:r1",
+              "text": "We received a few compliments."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro1:r2",
+              "text": "We received few compliments."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro1:r3",
+              "text": "We received a little compliments."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного есть",
+        "uk": "Трохи є"
+      },
+      "bodyByLocale": {
+        "ru": "praise — похвала, одобрение. suggestion — предложение, совет о том, что можно сделать. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+        "uk": "praise — похвала, схвалення. suggestion — пропозиція, порада про те, що можна зробити. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що хоч трохи похвали отримали, а не її брак."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-18:intro2:r1",
+              "text": "We received a little praise."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro2:r2",
+              "text": "We received little praise."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro2:r3",
+              "text": "We received a few praise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-18:intro2:r1",
+              "text": "We received a little praise."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro2:r2",
+              "text": "We received little praise."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro2:r3",
+              "text": "We received a few praise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "encouragement — ободрение, моральная поддержка. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+        "uk": "encouragement — підбадьорення, моральна підтримка. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Вам бракувало підбадьорення. Підкресліть, що підтримки було мало."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-18:intro3:r1",
+              "text": "We received little encouragement."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro3:r2",
+              "text": "We received a little encouragement."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro3:r3",
+              "text": "We received few encouragement."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-18:intro3:r1",
+              "text": "We received little encouragement."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro3:r2",
+              "text": "We received a little encouragement."
+            },
+            {
+              "responseId": "en:lesson-17:session-18:intro3:r3",
+              "text": "We received few encouragement."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c80a24f424c0314e13fbc74ccb1781677bcbde69d94318d86092e961729fbab3"
+}

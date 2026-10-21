@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько есть",
+        "uk": "Кілька є"
+      },
+      "bodyByLocale": {
+        "ru": "job offer — предложение работы от работодателя. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+        "uk": "job offer — пропозиція роботи від роботодавця. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька пропозицій уже є. Job offer → job offers."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-20:intro1:r1",
+              "text": "I have a few job offers."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro1:r2",
+              "text": "I have few job offers."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro1:r3",
+              "text": "I have a little job offers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-20:intro1:r1",
+              "text": "I have a few job offers."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro1:r2",
+              "text": "I have few job offers."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro1:r3",
+              "text": "I have a little job offers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного есть",
+        "uk": "Трохи є"
+      },
+      "bodyByLocale": {
+        "ru": "work experience — опыт работы. job interview — собеседование при приёме на работу. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+        "uk": "work experience — досвід роботи. job interview — співбесіда під час прийняття на роботу. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що певний досвід у вас є, а не його брак."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-20:intro2:r1",
+              "text": "I have a little work experience."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro2:r2",
+              "text": "I have little work experience."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro2:r3",
+              "text": "I have a few work experience."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-20:intro2:r1",
+              "text": "I have a little work experience."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro2:r2",
+              "text": "I have little work experience."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro2:r3",
+              "text": "I have a few work experience."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "sick leave — больничный, время отсутствия на работе из-за болезни. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+        "uk": "sick leave — лікарняний, час відсутності на роботі через хворобу. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. У цій ситуації працівник має обмежений запас днів лікарняного. Підкресліть, що залишилося мало."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-20:intro3:r1",
+              "text": "I have little sick leave left."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro3:r2",
+              "text": "I have a little sick leave left."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro3:r3",
+              "text": "I have few sick leave left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-20:intro3:r1",
+              "text": "I have little sick leave left."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro3:r2",
+              "text": "I have a little sick leave left."
+            },
+            {
+              "responseId": "en:lesson-17:session-20:intro3:r3",
+              "text": "I have few sick leave left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3228356fa0f7921f566f61d5383514a6d6c7757caae0f6e4d55139166ce067ee"
+}

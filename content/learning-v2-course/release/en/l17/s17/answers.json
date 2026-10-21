@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-17:word:housemate",
+    "correctText": "housemate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i01",
+    "correctText": "We have a few housemates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i02",
+    "correctText": "We have a few housemates.",
+    "correctResponseId": "en:lesson-17:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:word:acquaintance",
+    "correctText": "acquaintance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i04",
+    "correctText": "We have few acquaintances here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i05",
+    "correctText": "We have few acquaintances here.",
+    "correctResponseId": "en:lesson-17:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:word:leisure",
+    "correctText": "leisure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i07",
+    "correctText": "We have a little leisure time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i08",
+    "correctText": "We have a little leisure time.",
+    "correctResponseId": "en:lesson-17:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:word:privacy",
+    "correctText": "privacy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i10",
+    "correctText": "We have little privacy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i11",
+    "correctText": "We have little privacy.",
+    "correctResponseId": "en:lesson-17:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i13",
+    "correctText": "en:lesson-17:session-17:i13:p1=housemate\nen:lesson-17:session-17:i13:p2=acquaintance\nen:lesson-17:session-17:i13:p3=leisure\nen:lesson-17:session-17:i13:p4=privacy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i14",
+    "correctText": "We have a few housemates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i15",
+    "correctText": "We have a little leisure time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i16",
+    "correctText": "We have little privacy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-17:i17",
+    "correctText": "We have few acquaintances here.",
+    "correctResponseId": null
+  }
+]

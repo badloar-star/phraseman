@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-18:word:compliment",
+    "correctText": "compliment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i01",
+    "correctText": "We received a few compliments.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i02",
+    "correctText": "We received a few compliments.",
+    "correctResponseId": "en:lesson-17:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:word:suggestion",
+    "correctText": "suggestion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i04",
+    "correctText": "We received few suggestions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i05",
+    "correctText": "We received few suggestions.",
+    "correctResponseId": "en:lesson-17:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:word:praise",
+    "correctText": "praise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i07",
+    "correctText": "We received a little praise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i08",
+    "correctText": "We received a little praise.",
+    "correctResponseId": "en:lesson-17:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:word:encouragement",
+    "correctText": "encouragement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i10",
+    "correctText": "We received little encouragement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i11",
+    "correctText": "We received little encouragement.",
+    "correctResponseId": "en:lesson-17:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i13",
+    "correctText": "en:lesson-17:session-18:i13:p1=compliment\nen:lesson-17:session-18:i13:p2=suggestion\nen:lesson-17:session-18:i13:p3=praise\nen:lesson-17:session-18:i13:p4=encouragement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i14",
+    "correctText": "We received a few compliments.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i15",
+    "correctText": "We received a little praise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i16",
+    "correctText": "We received little encouragement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-18:i17",
+    "correctText": "We received few suggestions.",
+    "correctResponseId": null
+  }
+]

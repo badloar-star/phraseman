@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-18",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-18:word:compliment",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — compliment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:compliment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — compliment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:compliment:audio",
+            "transcript": "compliment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:compliment:r1",
+              "targetText": "compliment",
+              "meaningByLocale": {
+                "ru": "комплимент, приятные слова о человеке или его работе.",
+                "uk": "комплімент, приємні слова про людину або її роботу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compliment",
+            "definitionByLocale": {
+              "ru": "комплимент, приятные слова о человеке или его работе.",
+              "uk": "комплімент, приємні слова про людину або її роботу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments. Скажите: «Мы получили несколько комплиментов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments. Скажите: «Мы получили несколько комплиментов».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received a few compliments.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments. Скажите: «Мы получили несколько комплиментов».",
+            "uk": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments. Скажіть: «Ми отримали кілька компліментів»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "few",
+            "compliments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i02:r1",
+            "text": "We received a few compliments."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i02:r2",
+            "text": "We received few compliments."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i02:r3",
+            "text": "We received a little compliments."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i02:audio",
+            "transcript": "We received a few compliments."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i02:r1",
+              "targetText": "We received a few compliments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i02:r2",
+              "targetText": "We received few compliments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i02:r3",
+              "targetText": "We received a little compliments.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a few compliments.",
+                "uk": "У записі звучить We received a few compliments."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a few compliments.",
+                "uk": "У записі звучить We received a few compliments."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+            "uk": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments."
+          },
+          "gappedTargetPhrase": "We received ___ compliments.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:word:suggestion",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — suggestion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:suggestion:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — suggestion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:suggestion:audio",
+            "transcript": "suggestion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:suggestion:r1",
+              "targetText": "suggestion",
+              "meaningByLocale": {
+                "ru": "предложение, совет о том, что можно сделать.",
+                "uk": "пропозиція, порада про те, що можна зробити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suggestion",
+            "definitionByLocale": {
+              "ru": "предложение, совет о том, что можно сделать.",
+              "uk": "пропозиція, порада про те, що можна зробити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions. Скажите: «Мы получили мало предложений».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions. Скажите: «Мы получили мало предложений».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received few suggestions.",
+          "localizedMeaning": {
+            "ru": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions. Скажите: «Мы получили мало предложений».",
+            "uk": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions. Скажіть: «Ми отримали мало пропозицій»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "few",
+            "suggestions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i05:r1",
+            "text": "We received few suggestions."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i05:r2",
+            "text": "We received a few suggestions."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i05:r3",
+            "text": "We received little suggestions."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i05:audio",
+            "transcript": "We received few suggestions."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i05:r1",
+              "targetText": "We received few suggestions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i05:r2",
+              "targetText": "We received a few suggestions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i05:r3",
+              "targetText": "We received little suggestions.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received few suggestions.",
+                "uk": "У записі звучить We received few suggestions."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received few suggestions.",
+                "uk": "У записі звучить We received few suggestions."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i06:r3",
+            "text": "little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+            "uk": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions."
+          },
+          "gappedTargetPhrase": "We received ___ suggestions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i06:r3",
+              "text": "little"
+            }
+          ],
+          "testedDimension": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:word:praise",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — praise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:praise:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — praise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:praise:audio",
+            "transcript": "praise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:praise:r1",
+              "targetText": "praise",
+              "meaningByLocale": {
+                "ru": "похвала, одобрение.",
+                "uk": "похвала, схвалення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "praise",
+            "definitionByLocale": {
+              "ru": "похвала, одобрение.",
+              "uk": "похвала, схвалення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подчеркните, что хоть немного похвалы получили, а не её нехватку. Скажите: «Мы получили немного похвалы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что хоть немного похвалы получили, а не её нехватку. Скажите: «Мы получили немного похвалы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received a little praise.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что хоть немного похвалы получили, а не её нехватку. Скажите: «Мы получили немного похвалы».",
+            "uk": "Підкресліть, що хоч трохи похвали отримали, а не її брак. Скажіть: «Ми отримали трохи похвали»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "little",
+            "praise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i08:r1",
+            "text": "We received a little praise."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i08:r2",
+            "text": "We received little praise."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i08:r3",
+            "text": "We received a few praise."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i08:audio",
+            "transcript": "We received a little praise."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i08:r1",
+              "targetText": "We received a little praise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i08:r2",
+              "targetText": "We received little praise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i08:r3",
+              "targetText": "We received a few praise.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a little praise.",
+                "uk": "У записі звучить We received a little praise."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a little praise.",
+                "uk": "У записі звучить We received a little praise."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+            "uk": "Підкресліть, що хоч трохи похвали отримали, а не її брак."
+          },
+          "gappedTargetPhrase": "We received ___ praise.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:word:encouragement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — encouragement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:encouragement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — encouragement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:encouragement:audio",
+            "transcript": "encouragement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:encouragement:r1",
+              "targetText": "encouragement",
+              "meaningByLocale": {
+                "ru": "ободрение, моральная поддержка.",
+                "uk": "підбадьорення, моральна підтримка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "encouragement",
+            "definitionByLocale": {
+              "ru": "ободрение, моральная поддержка.",
+              "uk": "підбадьорення, моральна підтримка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам не хватило ободрения. Подчеркните, что поддержки было мало. Скажите: «Мы получили мало поддержки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам не хватило ободрения. Подчеркните, что поддержки было мало. Скажите: «Мы получили мало поддержки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received little encouragement.",
+          "localizedMeaning": {
+            "ru": "Вам не хватило ободрения. Подчеркните, что поддержки было мало. Скажите: «Мы получили мало поддержки».",
+            "uk": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало. Скажіть: «Ми отримали мало підтримки»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "little",
+            "encouragement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i11:r1",
+            "text": "We received little encouragement."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i11:r2",
+            "text": "We received a little encouragement."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i11:r3",
+            "text": "We received few encouragement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i11:audio",
+            "transcript": "We received little encouragement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i11:r1",
+              "targetText": "We received little encouragement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i11:r2",
+              "targetText": "We received a little encouragement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i11:r3",
+              "targetText": "We received few encouragement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received little encouragement.",
+                "uk": "У записі звучить We received little encouragement."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received little encouragement.",
+                "uk": "У записі звучить We received little encouragement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i12:r3",
+            "text": "few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+            "uk": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало."
+          },
+          "gappedTargetPhrase": "We received ___ encouragement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i12:r3",
+              "text": "few"
+            }
+          ],
+          "testedDimension": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-18:i13:p1",
+              "target": "compliment",
+              "meaningByLocale": {
+                "ru": "комплимент, приятные слова о человеке или его работе",
+                "uk": "комплімент, приємні слова про людину або її роботу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-18:i13:p2",
+              "target": "suggestion",
+              "meaningByLocale": {
+                "ru": "предложение, совет о том, что можно сделать",
+                "uk": "пропозиція, порада про те, що можна зробити"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-18:i13:p3",
+              "target": "praise",
+              "meaningByLocale": {
+                "ru": "похвала, одобрение",
+                "uk": "похвала, схвалення"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-18:i13:p4",
+              "target": "encouragement",
+              "meaningByLocale": {
+                "ru": "ободрение, моральная поддержка",
+                "uk": "підбадьорення, моральна підтримка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "compliment",
+            "suggestion",
+            "praise",
+            "encouragement"
+          ],
+          "rightColumn": [
+            "комплимент, приятные слова о человеке или его работе",
+            "предложение, совет о том, что можно сделать",
+            "похвала, одобрение",
+            "ободрение, моральная поддержка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i14:audio",
+            "transcript": "We received a few compliments."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We received a few compliments.",
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "few",
+            "compliments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i15:audio",
+            "transcript": "We received a little praise."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We received a little praise.",
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "little",
+            "praise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество с little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество с little",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i16:audio",
+            "transcript": "We received little encouragement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We received little encouragement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество с few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество с few",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i17:audio",
+            "transcript": "We received few suggestions."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We received few suggestions.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-18:word:compliment",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — compliment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:compliment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — compliment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:compliment:audio",
+            "transcript": "compliment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:compliment:r1",
+              "targetText": "compliment",
+              "meaningByLocale": {
+                "ru": "комплимент, приятные слова о человеке или его работе.",
+                "uk": "комплімент, приємні слова про людину або її роботу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compliment",
+            "definitionByLocale": {
+              "ru": "комплимент, приятные слова о человеке или его работе.",
+              "uk": "комплімент, приємні слова про людину або її роботу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments. Скажіть: «Ми отримали кілька компліментів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments. Скажіть: «Ми отримали кілька компліментів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received a few compliments.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments. Скажите: «Мы получили несколько комплиментов».",
+            "uk": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments. Скажіть: «Ми отримали кілька компліментів»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "few",
+            "compliments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i02:r1",
+            "text": "We received a few compliments."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i02:r2",
+            "text": "We received few compliments."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i02:r3",
+            "text": "We received a little compliments."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i02:audio",
+            "transcript": "We received a few compliments."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i02:r1",
+              "targetText": "We received a few compliments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i02:r2",
+              "targetText": "We received few compliments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i02:r3",
+              "targetText": "We received a little compliments.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a few compliments.",
+                "uk": "У записі звучить We received a few compliments."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a few compliments.",
+                "uk": "У записі звучить We received a few compliments."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
+            "uk": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments."
+          },
+          "gappedTargetPhrase": "We received ___ compliments.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:word:suggestion",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — suggestion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:suggestion:audio"
+        ],
+        "accessibilityLabel": "Картка слова — suggestion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:suggestion:audio",
+            "transcript": "suggestion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:suggestion:r1",
+              "targetText": "suggestion",
+              "meaningByLocale": {
+                "ru": "предложение, совет о том, что можно сделать.",
+                "uk": "пропозиція, порада про те, що можна зробити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suggestion",
+            "definitionByLocale": {
+              "ru": "предложение, совет о том, что можно сделать.",
+              "uk": "пропозиція, порада про те, що можна зробити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions. Скажіть: «Ми отримали мало пропозицій».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions. Скажіть: «Ми отримали мало пропозицій».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received few suggestions.",
+          "localizedMeaning": {
+            "ru": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions. Скажите: «Мы получили мало предложений».",
+            "uk": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions. Скажіть: «Ми отримали мало пропозицій»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "few",
+            "suggestions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i05:r1",
+            "text": "We received few suggestions."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i05:r2",
+            "text": "We received a few suggestions."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i05:r3",
+            "text": "We received little suggestions."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i05:audio",
+            "transcript": "We received few suggestions."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i05:r1",
+              "targetText": "We received few suggestions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i05:r2",
+              "targetText": "We received a few suggestions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i05:r3",
+              "targetText": "We received little suggestions.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received few suggestions.",
+                "uk": "У записі звучить We received few suggestions."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received few suggestions.",
+                "uk": "У записі звучить We received few suggestions."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i06:r3",
+            "text": "little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
+            "uk": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions."
+          },
+          "gappedTargetPhrase": "We received ___ suggestions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i06:r3",
+              "text": "little"
+            }
+          ],
+          "testedDimension": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions.",
+              "feedbackByLocale": {
+                "ru": "С исчисляемым во множественном числе используйте few.",
+                "uk": "Із злічуваним у множині використовуйте few."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:word:praise",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — praise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:praise:audio"
+        ],
+        "accessibilityLabel": "Картка слова — praise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:praise:audio",
+            "transcript": "praise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:praise:r1",
+              "targetText": "praise",
+              "meaningByLocale": {
+                "ru": "похвала, одобрение.",
+                "uk": "похвала, схвалення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "praise",
+            "definitionByLocale": {
+              "ru": "похвала, одобрение.",
+              "uk": "похвала, схвалення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Підкресліть, що хоч трохи похвали отримали, а не її брак. Скажіть: «Ми отримали трохи похвали».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що хоч трохи похвали отримали, а не її брак. Скажіть: «Ми отримали трохи похвали».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received a little praise.",
+          "localizedMeaning": {
+            "ru": "Подчеркните, что хоть немного похвалы получили, а не её нехватку. Скажите: «Мы получили немного похвалы».",
+            "uk": "Підкресліть, що хоч трохи похвали отримали, а не її брак. Скажіть: «Ми отримали трохи похвали»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "little",
+            "praise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i08:r1",
+            "text": "We received a little praise."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i08:r2",
+            "text": "We received little praise."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i08:r3",
+            "text": "We received a few praise."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i08:audio",
+            "transcript": "We received a little praise."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i08:r1",
+              "targetText": "We received a little praise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i08:r2",
+              "targetText": "We received little praise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i08:r3",
+              "targetText": "We received a few praise.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a little praise.",
+                "uk": "У записі звучить We received a little praise."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received a little praise.",
+                "uk": "У записі звучить We received a little praise."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть, що хоч трохи похвали отримали, а не її брак.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть, що хоч трохи похвали отримали, а не її брак.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
+            "uk": "Підкресліть, що хоч трохи похвали отримали, а не її брак."
+          },
+          "gappedTargetPhrase": "We received ___ praise.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Підкресліть, що хоч трохи похвали отримали, а не її брак.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть, що хоч трохи похвали отримали, а не її брак.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть, що хоч трохи похвали отримали, а не її брак.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:word:encouragement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — encouragement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:word:encouragement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — encouragement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:word:encouragement:audio",
+            "transcript": "encouragement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:word:encouragement:r1",
+              "targetText": "encouragement",
+              "meaningByLocale": {
+                "ru": "ободрение, моральная поддержка.",
+                "uk": "підбадьорення, моральна підтримка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "encouragement",
+            "definitionByLocale": {
+              "ru": "ободрение, моральная поддержка.",
+              "uk": "підбадьорення, моральна підтримка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало. Скажіть: «Ми отримали мало підтримки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало. Скажіть: «Ми отримали мало підтримки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received little encouragement.",
+          "localizedMeaning": {
+            "ru": "Вам не хватило ободрения. Подчеркните, что поддержки было мало. Скажите: «Мы получили мало поддержки».",
+            "uk": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало. Скажіть: «Ми отримали мало підтримки»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "little",
+            "encouragement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i11:r1",
+            "text": "We received little encouragement."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i11:r2",
+            "text": "We received a little encouragement."
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i11:r3",
+            "text": "We received few encouragement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i11:audio",
+            "transcript": "We received little encouragement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-18:i11:r1",
+              "targetText": "We received little encouragement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i11:r2",
+              "targetText": "We received a little encouragement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i11:r3",
+              "targetText": "We received few encouragement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received little encouragement.",
+                "uk": "У записі звучить We received little encouragement."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received little encouragement.",
+                "uk": "У записі звучить We received little encouragement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-18:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-18:i12:r3",
+            "text": "few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
+            "uk": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало."
+          },
+          "gappedTargetPhrase": "We received ___ encouragement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-18:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i12:r3",
+              "text": "few"
+            }
+          ],
+          "testedDimension": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+                "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым используйте little.",
+                "uk": "Із незлічуваним використовуйте little."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-18:i13:p1",
+              "target": "compliment",
+              "meaningByLocale": {
+                "ru": "комплимент, приятные слова о человеке или его работе",
+                "uk": "комплімент, приємні слова про людину або її роботу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-18:i13:p2",
+              "target": "suggestion",
+              "meaningByLocale": {
+                "ru": "предложение, совет о том, что можно сделать",
+                "uk": "пропозиція, порада про те, що можна зробити"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-18:i13:p3",
+              "target": "praise",
+              "meaningByLocale": {
+                "ru": "похвала, одобрение",
+                "uk": "похвала, схвалення"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-18:i13:p4",
+              "target": "encouragement",
+              "meaningByLocale": {
+                "ru": "ободрение, моральная поддержка",
+                "uk": "підбадьорення, моральна підтримка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "compliment",
+            "suggestion",
+            "praise",
+            "encouragement"
+          ],
+          "rightColumn": [
+            "комплімент, приємні слова про людину або її роботу",
+            "пропозиція, порада про те, що можна зробити",
+            "похвала, схвалення",
+            "підбадьорення, моральна підтримка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i14:audio",
+            "transcript": "We received a few compliments."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We received a few compliments.",
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "few",
+            "compliments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i15:audio",
+            "transcript": "We received a little praise."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We received a little praise.",
+          "orderedTokens": [
+            "We",
+            "received",
+            "a",
+            "little",
+            "praise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість із little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість із little",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i16:audio",
+            "transcript": "We received little encouragement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We received little encouragement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість із few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість із few",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-18:i17:audio",
+            "transcript": "We received few suggestions."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We received few suggestions.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-18:word:compliment",
+      "correctText": "compliment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i01",
+      "correctText": "We received a few compliments.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i02",
+      "correctText": "We received a few compliments.",
+      "correctResponseId": "en:lesson-17:session-18:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i03",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-18:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:word:suggestion",
+      "correctText": "suggestion",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i04",
+      "correctText": "We received few suggestions.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i05",
+      "correctText": "We received few suggestions.",
+      "correctResponseId": "en:lesson-17:session-18:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i06",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-18:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:word:praise",
+      "correctText": "praise",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i07",
+      "correctText": "We received a little praise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i08",
+      "correctText": "We received a little praise.",
+      "correctResponseId": "en:lesson-17:session-18:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i09",
+      "correctText": "a little",
+      "correctResponseId": "en:lesson-17:session-18:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:word:encouragement",
+      "correctText": "encouragement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i10",
+      "correctText": "We received little encouragement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i11",
+      "correctText": "We received little encouragement.",
+      "correctResponseId": "en:lesson-17:session-18:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i12",
+      "correctText": "little",
+      "correctResponseId": "en:lesson-17:session-18:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i14",
+      "correctText": "We received a few compliments.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i15",
+      "correctText": "We received a little praise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i16",
+      "correctText": "We received little encouragement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-18:i17",
+      "correctText": "We received few suggestions.",
+      "correctResponseId": null
+    }
+  ]
+}

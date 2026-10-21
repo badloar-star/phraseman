@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-20:word:job-offer",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — job offer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:word:job-offer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — job offer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:word:job-offer:audio",
+          "transcript": "job offer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:word:job-offer:r1",
+            "targetText": "job offer",
+            "meaningByLocale": {
+              "ru": "предложение работы от работодателя.",
+              "uk": "пропозиція роботи від роботодавця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "job offer",
+          "definitionByLocale": {
+            "ru": "предложение работы от работодателя.",
+            "uk": "пропозиція роботи від роботодавця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что несколько предложений уже есть. Job offer → job offers. Скажите: «У меня есть несколько предложений работы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что несколько предложений уже есть. Job offer → job offers. Скажите: «У меня есть несколько предложений работы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have a few job offers.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что несколько предложений уже есть. Job offer → job offers. Скажите: «У меня есть несколько предложений работы».",
+          "uk": "Підкресліть, що кілька пропозицій уже є. Job offer → job offers. Скажіть: «У мене є кілька пропозицій роботи»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "few",
+          "job",
+          "offers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i02:r1",
+          "text": "I have a few job offers."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i02:r2",
+          "text": "I have few job offers."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i02:r3",
+          "text": "I have a little job offers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i02:audio",
+          "transcript": "I have a few job offers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:i02:r1",
+            "targetText": "I have a few job offers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i02:r2",
+            "targetText": "I have few job offers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i02:r3",
+            "targetText": "I have a little job offers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a few job offers.",
+              "uk": "У записі звучить I have a few job offers."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a few job offers.",
+              "uk": "У записі звучить I have a few job offers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i03:r1",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i03:r2",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i03:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+          "uk": "Підкресліть, що кілька пропозицій уже є. Job offer → job offers."
+        },
+        "gappedTargetPhrase": "I have ___ job offers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-20:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:word:job-interview",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — job interview",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:word:job-interview:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — job interview",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:word:job-interview:audio",
+          "transcript": "job interview"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:word:job-interview:r1",
+            "targetText": "job interview",
+            "meaningByLocale": {
+              "ru": "собеседование при приёме на работу.",
+              "uk": "співбесіда під час прийняття на роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "job interview",
+          "definitionByLocale": {
+            "ru": "собеседование при приёме на работу.",
+            "uk": "співбесіда під час прийняття на роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews. Скажите: «В этом месяце у меня мало собеседований».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews. Скажите: «В этом месяце у меня мало собеседований».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have few job interviews this month.",
+        "localizedMeaning": {
+          "ru": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews. Скажите: «В этом месяце у меня мало собеседований».",
+          "uk": "Ви хотіли більше зустрічей із роботодавцями. Підкресліть, що співбесід мало. Job interview → job interviews. Скажіть: «Цього місяця в мене мало співбесід»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "few",
+          "job",
+          "interviews",
+          "this",
+          "month"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i05:r1",
+          "text": "I have few job interviews this month."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i05:r2",
+          "text": "I have a few job interviews this month."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i05:r3",
+          "text": "I have little job interviews this month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i05:audio",
+          "transcript": "I have few job interviews this month."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:i05:r1",
+            "targetText": "I have few job interviews this month.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i05:r2",
+            "targetText": "I have a few job interviews this month.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i05:r3",
+            "targetText": "I have little job interviews this month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have few job interviews this month.",
+              "uk": "У записі звучить I have few job interviews this month."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have few job interviews this month.",
+              "uk": "У записі звучить I have few job interviews this month."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i06:r1",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i06:r2",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i06:r3",
+          "text": "little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
+          "uk": "Ви хотіли більше зустрічей із роботодавцями. Підкресліть, що співбесід мало. Job interview → job interviews."
+        },
+        "gappedTargetPhrase": "I have ___ job interviews this month.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-20:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i06:r3",
+            "text": "little"
+          }
+        ],
+        "testedDimension": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: few.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: few."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
+            "feedbackByLocale": {
+              "ru": "С исчисляемым во множественном числе используйте few.",
+              "uk": "Із злічуваним у множині використовуйте few."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:word:work-experience",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — work experience",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:word:work-experience:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — work experience",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:word:work-experience:audio",
+          "transcript": "work experience"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:word:work-experience:r1",
+            "targetText": "work experience",
+            "meaningByLocale": {
+              "ru": "опыт работы.",
+              "uk": "досвід роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "work experience",
+          "definitionByLocale": {
+            "ru": "опыт работы.",
+            "uk": "досвід роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку. Скажите: «У меня есть небольшой опыт работы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку. Скажите: «У меня есть небольшой опыт работы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have a little work experience.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку. Скажите: «У меня есть небольшой опыт работы».",
+          "uk": "Підкресліть, що певний досвід у вас є, а не його брак. Скажіть: «У мене є невеликий досвід роботи»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "little",
+          "work",
+          "experience"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i08:r1",
+          "text": "I have a little work experience."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i08:r2",
+          "text": "I have little work experience."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i08:r3",
+          "text": "I have a few work experience."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i08:audio",
+          "transcript": "I have a little work experience."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:i08:r1",
+            "targetText": "I have a little work experience.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i08:r2",
+            "targetText": "I have little work experience.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i08:r3",
+            "targetText": "I have a few work experience.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a little work experience.",
+              "uk": "У записі звучить I have a little work experience."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a little work experience.",
+              "uk": "У записі звучить I have a little work experience."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i09:r1",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i09:r2",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i09:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+          "uk": "Підкресліть, що певний досвід у вас є, а не його брак."
+        },
+        "gappedTargetPhrase": "I have ___ work experience.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-20:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: a little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: a little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:word:sick-leave",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sick leave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:word:sick-leave:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sick leave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:word:sick-leave:audio",
+          "transcript": "sick leave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:word:sick-leave:r1",
+            "targetText": "sick leave",
+            "meaningByLocale": {
+              "ru": "больничный, время отсутствия на работе из-за болезни.",
+              "uk": "лікарняний, час відсутності на роботі через хворобу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sick leave",
+          "definitionByLocale": {
+            "ru": "больничный, время отсутствия на работе из-за болезни.",
+            "uk": "лікарняний, час відсутності на роботі через хворобу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало. Скажите: «У меня осталось мало дней больничного».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало. Скажите: «У меня осталось мало дней больничного».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have little sick leave left.",
+        "localizedMeaning": {
+          "ru": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало. Скажите: «У меня осталось мало дней больничного».",
+          "uk": "У цій ситуації працівник має обмежений запас днів лікарняного. Підкресліть, що залишилося мало. Скажіть: «У мене залишилося мало днів лікарняного»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "little",
+          "sick",
+          "leave",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i11:r1",
+          "text": "I have little sick leave left."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i11:r2",
+          "text": "I have a little sick leave left."
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i11:r3",
+          "text": "I have few sick leave left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i11:audio",
+          "transcript": "I have little sick leave left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-20:i11:r1",
+            "targetText": "I have little sick leave left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i11:r2",
+            "targetText": "I have a little sick leave left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i11:r3",
+            "targetText": "I have few sick leave left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have little sick leave left.",
+              "uk": "У записі звучить I have little sick leave left."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have little sick leave left.",
+              "uk": "У записі звучить I have little sick leave left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-20:i12:r1",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i12:r2",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-20:i12:r3",
+          "text": "few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+          "uk": "У цій ситуації працівник має обмежений запас днів лікарняного. Підкресліть, що залишилося мало."
+        },
+        "gappedTargetPhrase": "I have ___ sick leave left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-20:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i12:r3",
+            "text": "few"
+          }
+        ],
+        "testedDimension": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны, но ситуация требует акцента: little.",
+              "uk": "Обидві форми граматично можливі, але ситуація потребує акценту: little."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым используйте little.",
+              "uk": "Із незлічуваним використовуйте little."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-20:i13:p1",
+            "target": "job offer",
+            "meaningByLocale": {
+              "ru": "предложение работы от работодателя",
+              "uk": "пропозиція роботи від роботодавця"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-20:i13:p2",
+            "target": "job interview",
+            "meaningByLocale": {
+              "ru": "собеседование при приёме на работу",
+              "uk": "співбесіда під час прийняття на роботу"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-20:i13:p3",
+            "target": "work experience",
+            "meaningByLocale": {
+              "ru": "опыт работы",
+              "uk": "досвід роботи"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-20:i13:p4",
+            "target": "sick leave",
+            "meaningByLocale": {
+              "ru": "больничный, время отсутствия на работе из-за болезни",
+              "uk": "лікарняний, час відсутності на роботі через хворобу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "job offer",
+          "job interview",
+          "work experience",
+          "sick leave"
+        ],
+        "rightColumn": [
+          "предложение работы от работодателя",
+          "собеседование при приёме на работу",
+          "опыт работы",
+          "больничный, время отсутствия на работе из-за болезни"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a few",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i14:audio",
+          "transcript": "I have a few job offers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have a few job offers.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "few",
+          "job",
+          "offers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a little",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i15:audio",
+          "transcript": "I have a little work experience."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have a little work experience.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "little",
+          "work",
+          "experience"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество с little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество с little",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i16:audio",
+          "transcript": "I have little sick leave left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have little sick leave left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество с few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество с few",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-20:i17:audio",
+          "transcript": "I have few job interviews this month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have few job interviews this month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fa394d053d9a6781b23c64bb919238e4452416f601fdb129eeb233b8def32bab"
+}

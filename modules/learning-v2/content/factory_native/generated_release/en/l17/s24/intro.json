@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько есть",
+        "uk": "Кілька є"
+      },
+      "bodyByLocale": {
+        "ru": "achievement — достижение, результат усилий. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
+        "uk": "achievement — досягнення, результат зусиль. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що певні досягнення вже є. Achievement → achievements."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-24:intro1:r1",
+              "text": "We have a few achievements."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro1:r2",
+              "text": "We have few achievements."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro1:r3",
+              "text": "We have a little achievements."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-24:intro1:r1",
+              "text": "We have a few achievements."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro1:r2",
+              "text": "We have few achievements."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro1:r3",
+              "text": "We have a little achievements."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного есть",
+        "uk": "Трохи є"
+      },
+      "bodyByLocale": {
+        "ru": "courage — смелость, мужество. setback — неудача или препятствие, задерживающее продвижение. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что хоть немного смелости удалось найти.",
+        "uk": "courage — сміливість, мужність. setback — невдача або перешкода, яка затримує просування. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що хоч трохи сміливості вдалося знайти."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-24:intro2:r1",
+              "text": "We found a little courage."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro2:r2",
+              "text": "We found little courage."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro2:r3",
+              "text": "We found a few courage."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-24:intro2:r1",
+              "text": "We found a little courage."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro2:r2",
+              "text": "We found little courage."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro2:r3",
+              "text": "We found a few courage."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "confidence — уверенность в себе или в успехе. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
+        "uk": "confidence — упевненість у собі або в успіху. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-24:intro3:r1",
+              "text": "We have little confidence."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro3:r2",
+              "text": "We have a little confidence."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro3:r3",
+              "text": "We have few confidence."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-24:intro3:r1",
+              "text": "We have little confidence."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro3:r2",
+              "text": "We have a little confidence."
+            },
+            {
+              "responseId": "en:lesson-17:session-24:intro3:r3",
+              "text": "We have few confidence."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6107c925d273717e5f5cf74578cef03fcd35f2a880b984bc18e0718d60bef415"
+}

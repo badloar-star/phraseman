@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-19:word:camp-bed",
+    "correctText": "camp bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i01",
+    "correctText": "We have a few camp beds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i02",
+    "correctText": "We have a few camp beds.",
+    "correctResponseId": "en:lesson-17:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:word:guest-room",
+    "correctText": "guest room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i04",
+    "correctText": "We have few guest rooms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i05",
+    "correctText": "We have few guest rooms.",
+    "correctResponseId": "en:lesson-17:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:word:storage-space",
+    "correctText": "storage space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i07",
+    "correctText": "We have a little storage space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i08",
+    "correctText": "We have a little storage space.",
+    "correctResponseId": "en:lesson-17:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:word:floor-space",
+    "correctText": "floor space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i10",
+    "correctText": "We have little floor space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i11",
+    "correctText": "We have little floor space.",
+    "correctResponseId": "en:lesson-17:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i13",
+    "correctText": "en:lesson-17:session-19:i13:p1=camp bed\nen:lesson-17:session-19:i13:p2=guest room\nen:lesson-17:session-19:i13:p3=storage space\nen:lesson-17:session-19:i13:p4=floor space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i14",
+    "correctText": "We have a few camp beds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i15",
+    "correctText": "We have a little storage space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i16",
+    "correctText": "We have little floor space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-19:i17",
+    "correctText": "We have few guest rooms.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-17:intro1:r2": {
+          "ru": "Эта форма грамматически возможна, но меняет акцент. Следуйте смыслу ситуации.",
+          "uk": "Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації."
+        },
+        "en:lesson-17:session-17:intro1:r3": {
+          "ru": "Для отдельных людей нужно few, не little.",
+          "uk": "Для окремих людей потрібне few, не little."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-17:intro2:r2": {
+          "ru": "Эта форма грамматически возможна, но меняет акцент. Следуйте смыслу ситуации.",
+          "uk": "Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації."
+        },
+        "en:lesson-17:session-17:intro2:r3": {
+          "ru": "Для неисчисляемого здесь нужно little, не few.",
+          "uk": "Для незлічуваного тут потрібне little, не few."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-17:intro3:r2": {
+          "ru": "Эта форма грамматически возможна, но меняет акцент. Следуйте смыслу ситуации.",
+          "uk": "Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації."
+        },
+        "en:lesson-17:session-17:intro3:r3": {
+          "ru": "Для неисчисляемого здесь нужно little, не few.",
+          "uk": "Для незлічуваного тут потрібне little, не few."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7fb86d8d96ff16b46d9de88552766f1274f72436402de142b7ca235846d1a125"
+}

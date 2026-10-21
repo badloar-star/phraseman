@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько есть",
+        "uk": "Кілька є"
+      },
+      "bodyByLocale": {
+        "ru": "camp bed — походная раскладушка. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько раскладушек для гостей есть. Camp bed → camp beds.",
+        "uk": "camp bed — похідна розкладачка. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька розкладачок для гостей є. Camp bed → camp beds."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-19:intro1:r1",
+              "text": "We have a few camp beds."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro1:r2",
+              "text": "We have few camp beds."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro1:r3",
+              "text": "We have a little camp beds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-19:intro1:r1",
+              "text": "We have a few camp beds."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro1:r2",
+              "text": "We have few camp beds."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro1:r3",
+              "text": "We have a little camp beds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного есть",
+        "uk": "Трохи є"
+      },
+      "bodyByLocale": {
+        "ru": "storage space — место для хранения вещей. guest room — гостевая комната. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что хоть немного места для вещей есть.",
+        "uk": "storage space — місце для зберігання речей. guest room — гостьова кімната. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що хоч трохи місця для речей є."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-19:intro2:r1",
+              "text": "We have a little storage space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro2:r2",
+              "text": "We have little storage space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro2:r3",
+              "text": "We have a few storage space."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-19:intro2:r1",
+              "text": "We have a little storage space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro2:r2",
+              "text": "We have little storage space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro2:r3",
+              "text": "We have a few storage space."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "floor space — площадь пола, место в помещении. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Из-за мебели трудно поставить раскладушку. Подчеркните нехватку места.",
+        "uk": "floor space — площа підлоги, місце в приміщенні. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Через меблі важко поставити розкладачку. Підкресліть брак місця."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-19:intro3:r1",
+              "text": "We have little floor space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro3:r2",
+              "text": "We have a little floor space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro3:r3",
+              "text": "We have few floor space."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-19:intro3:r1",
+              "text": "We have little floor space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro3:r2",
+              "text": "We have a little floor space."
+            },
+            {
+              "responseId": "en:lesson-17:session-19:intro3:r3",
+              "text": "We have few floor space."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6477b4dbf57d7a990c7c3f9cb05a1825d523f7289d049a78d91b9cbf9570e2af"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько есть",
+        "uk": "Кілька є"
+      },
+      "bodyByLocale": {
+        "ru": "fingerprint — отпечаток пальца. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. На стекле есть несколько следов. Подчеркните, что вы их нашли. Fingerprint → fingerprints.",
+        "uk": "fingerprint — відбиток пальця. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-22:intro1:r1",
+              "text": "We found a few fingerprints."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro1:r2",
+              "text": "We found few fingerprints."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro1:r3",
+              "text": "We found a little fingerprints."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-22:intro1:r1",
+              "text": "We found a few fingerprints."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro1:r2",
+              "text": "We found few fingerprints."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro1:r3",
+              "text": "We found a little fingerprints."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного есть",
+        "uk": "Трохи є"
+      },
+      "bodyByLocale": {
+        "ru": "debris — обломки, осколки и остатки разрушенных предметов. cobweb — паутина, отдельная паучья сеть. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. После ремонта остались небольшие обломки. Подчеркните, что некоторое количество нашли.",
+        "uk": "debris — уламки, скалки й залишки зруйнованих предметів. cobweb — павутина, окрема павуча сітка. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-22:intro2:r1",
+              "text": "We found a little debris."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro2:r2",
+              "text": "We found little debris."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro2:r3",
+              "text": "We found a few debris."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-22:intro2:r1",
+              "text": "We found a little debris."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro2:r2",
+              "text": "We found little debris."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro2:r3",
+              "text": "We found a few debris."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "grime — въевшаяся грязь, налёт грязи. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. После уборки налёта почти нет. Подчеркните, что грязи осталось мало.",
+        "uk": "grime — стійкий шар бруду. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-22:intro3:r1",
+              "text": "There is little grime left."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro3:r2",
+              "text": "There is a little grime left."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro3:r3",
+              "text": "There is few grime left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-22:intro3:r1",
+              "text": "There is little grime left."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro3:r2",
+              "text": "There is a little grime left."
+            },
+            {
+              "responseId": "en:lesson-17:session-22:intro3:r3",
+              "text": "There is few grime left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27ebaa11d20c62bdb3f37eab77594b1f69b60d9be7cbe55b1d4f31fc89785c95"
+}

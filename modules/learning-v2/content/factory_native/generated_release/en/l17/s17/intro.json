@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun; a little / little + non-count noun",
+    "uk": "a few / few + plural count noun; a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько отдельных людей",
+        "uk": "Кілька окремих людей"
+      },
+      "bodyByLocale": {
+        "ru": "housemate — человек, живущий с вами в одном доме. С исчисляемым словом во множественном числе используем a few или few. A few сообщает, что несколько есть. Few подчёркивает малое количество, часто меньше желаемого. Вы рады, что живёте не одни. Подчеркните, что несколько соседей есть, а не то, что их мало. Housemate → housemates.",
+        "uk": "housemate — людина, яка живе з вами в одному будинку. Із злічуваним словом у множині використовуємо a few або few. A few повідомляє, що кілька є. Few підкреслює малу кількість, часто меншу за бажану. Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-17:intro1:r1",
+              "text": "We have a few housemates."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro1:r2",
+              "text": "We have few housemates."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro1:r3",
+              "text": "We have a little housemates."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-17:intro1:r1",
+              "text": "We have a few housemates."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro1:r2",
+              "text": "We have few housemates."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro1:r3",
+              "text": "We have a little housemates."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Немного времени есть",
+        "uk": "Трохи часу є"
+      },
+      "bodyByLocale": {
+        "ru": "leisure — досуг, свободное от работы и обязанностей время. Acquaintance — знакомый человек; acquaintances — знакомые. Few acquaintances: знакомых мало. С неисчисляемым выбираем a little или little. A little leisure time — немного свободного времени есть; это ещё не обещает, что его достаточно. Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
+        "uk": "leisure — дозвілля, вільний від роботи й обов’язків час. Acquaintance — знайома людина; acquaintances — знайомі. Few acquaintances: знайомих мало. Із незлічуваним вибираємо a little або little. A little leisure time — трохи вільного часу є; це ще не обіцяє, що його достатньо. Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-17:intro2:r1",
+              "text": "We have a little leisure time."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro2:r2",
+              "text": "We have little leisure time."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro2:r3",
+              "text": "We have a few leisure time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-17:intro2:r1",
+              "text": "We have a little leisure time."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro2:r2",
+              "text": "We have little leisure time."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro2:r3",
+              "text": "We have a few leisure time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть нехватку",
+        "uk": "Підкреслити брак"
+      },
+      "bodyByLocale": {
+        "ru": "privacy — уединение, отсутствие вмешательства в личную жизнь. Little без a подчёркивает малое количество. Privacy — неисчисляемое слово. Здесь речь о нехватке уединения. A little privacy тоже грамматически верно, но делает акцент на том, что хоть немного уединения есть. Вы живёте в тесном доме и недовольны тем, что почти невозможно побыть без посторонних. Подчеркните нехватку уединения.",
+        "uk": "privacy — усамітнення, відсутність втручання в особисте життя. Little без a підкреслює малу кількість. Privacy — незлічуване слово. Тут ідеться про брак усамітнення. A little privacy теж граматично правильно, але наголошує, що хоч трохи усамітнення є. Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-17:intro3:r1",
+              "text": "We have little privacy."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro3:r2",
+              "text": "We have a little privacy."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro3:r3",
+              "text": "We have few privacy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-17:intro3:r1",
+              "text": "We have little privacy."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro3:r2",
+              "text": "We have a little privacy."
+            },
+            {
+              "responseId": "en:lesson-17:session-17:intro3:r3",
+              "text": "We have few privacy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "79ede52fbe46118b71ba7a41d4e708dcc923dfd04f5e13f47d135967f72b710c"
+}

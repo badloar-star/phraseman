@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-22:word:fingerprint",
+    "correctText": "fingerprint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i01",
+    "correctText": "We found a few fingerprints.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i02",
+    "correctText": "We found a few fingerprints.",
+    "correctResponseId": "en:lesson-17:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:word:cobweb",
+    "correctText": "cobweb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i04",
+    "correctText": "There are few cobwebs here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i05",
+    "correctText": "There are few cobwebs here.",
+    "correctResponseId": "en:lesson-17:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:word:debris",
+    "correctText": "debris",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i07",
+    "correctText": "We found a little debris.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i08",
+    "correctText": "We found a little debris.",
+    "correctResponseId": "en:lesson-17:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:word:grime",
+    "correctText": "grime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i10",
+    "correctText": "There is little grime left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i11",
+    "correctText": "There is little grime left.",
+    "correctResponseId": "en:lesson-17:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i13",
+    "correctText": "en:lesson-17:session-22:i13:p1=fingerprint\nen:lesson-17:session-22:i13:p2=cobweb\nen:lesson-17:session-22:i13:p3=debris\nen:lesson-17:session-22:i13:p4=grime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i14",
+    "correctText": "We found a few fingerprints.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i15",
+    "correctText": "We found a little debris.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i16",
+    "correctText": "There is little grime left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-22:i17",
+    "correctText": "There are few cobwebs here.",
+    "correctResponseId": null
+  }
+]

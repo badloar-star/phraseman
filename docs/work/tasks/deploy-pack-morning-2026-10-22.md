@@ -50,6 +50,17 @@
 
 ### В. Признак «настоящий Plus» в публичном профиле (isPlus) — ждёт коммита Ядра
 
+> **⚠️ СБОРКУ С НОВЫМ КЛИЕНТОМ КОЛЬЦА НЕЛЬЗЯ ВЫПУСКАТЬ РАНЬШЕ ДОЗАПИСИ `backfill_public_profile_is_plus`.** Клиент без поля `isPlus` рисует «без кольца». Если сборка выйдет раньше, у всех настоящих подписчиков кольцо пропадёт до их следующего запуска.
+>
+> **Порядок:** `publicProfileProjectMine` + spire-функции → дозапись (`functions/scripts/backfill_public_profile_is_plus.ts`: 237 кандидатов, getAll пачками по 100, до 222 записей батчами, один раз, `--apply` только по «да») → контрольный сухой прогон (0 к записи) → только потом сборка с клиентом 4 · ТЕМЫ.
+>
+> **Продление подписки:** `plusUntilMs` = конец оплаченного периода. Пока профиль переписывает только приложение на старте, у подписчика, продлившегося без запуска, кольцо погасло бы. Решение Ядра (согласовано с Ревизором 22.10):
+> - обновлять `public_profiles.{isPlus, plusUntilMs}` из `writeAccessProjection` — вебхук RevenueCat, крон истечения, промо, VIP, админ;
+> - ПОСЛЕ коммита денежной транзакции, отдельной попыткой `get` → `update`, только если профиль существует, а не внутри неё;
+> - читатель кольца даёт запас 72 ч на опоздание вебхука.
+>
+> Пожизненный: `isPlus=true`, `plusUntilMs=0`. Этот коммит Ядра тоже должен пройти ревизию до выкладки: он трогает денежный вебхук.
+
 - **Зачем:** сейчас `public_profiles.isPremium` = `isPremiumAccessActive` (`public_profile_projection.ts:112`), то есть с вводным 72-часовым доступом. Поэтому кольцо Plus в сообществе и у друзей горит и у новичков — вопреки правилу владельца.
 - **Будет меняться:** серверная функция проекции профиля (`publicProfileProjectMine` и пути, что пишут `public_profiles`) + клиент кольца (4 · ТЕМЫ) читает новое поле.
 - **Вердикт:** проверю коммит, когда он появится.
@@ -68,6 +79,32 @@
 - **⚠️** Приложение показывает свою копию `app/legal/*.json` (`app/privacy_screen.tsx:9-10`), и она уже сейчас отличается от `legal/`. После применения патча прогнать `scripts/sync-legal-html.mjs`: он пишет `app/legal/*.json` и страницы `knowly-www/legal/*`.
 - **Порядок:** патч → синхронизация → коммит → `hosting:knowlywww` (страницы политики) В ТОТ ЖЕ день, что группа Б (подарок ссылкой должен быть описан до запуска).
 - **Сборка приложения:** **нужна** — экран политики в приложении обновится только с новой сборкой. Сайт обновится сразу.
+
+#### Д. Политика: синхронизация (проверка 9 · САЙТ, 22.10 ночью, ничего не применено)
+
+**Что разошлось и с какого коммита.** Расходятся только `privacy_policy_en.json` и `privacy_policy_en_ios.json`; условия (`terms_*`) совпадают байт в байт. Разница — одно предложение в разделе 5 (опросы):
+
+- `app/legal/` (копия в приложении) — правлена напрямую в **`745b7e79e`** «feat(polls): ship private bundled home poll sets»: *«If you answer a Home poll, we add your choice only to aggregate counts… the server stores an account-linked answered/not-answered marker… but does not retain your selected option…»*.
+- `legal/` (канон, из него собирается сайт) этот текст не получил и говорит старое: *«If you answer the daily poll, we store your chosen option linked to your account ID to prevent repeat voting…»* — для нынешних опросов это уже неверно, и сайт показывает именно это.
+- Поэтому **сторож уже сейчас красный**: `tests/legal_document_liquid_glass_source_contract.test.mjs` («retain exact hashes and byte-identical mirrors») — хэши `app/legal/privacy_policy_en*.json` не совпадают с ожидаемыми (`f5827d05…`/`3c1edcfb…` при ожидаемых `0ac99a3e…`/`d41b045f…`).
+- **Ловушка:** `sync-legal-html.mjs` **перезаписывает** `app/legal/*.json` из `legal/`. Запуск синхронизации БЕЗ патча вернул бы в приложение старый неверный текст про опросы.
+
+**Прогон «патч + синхронизация» на копии** (`C:/Temp/claude/legal-dryrun`, рабочее дерево не тронуто):
+
+- `git apply --check` патча — чисто; `node scripts/sync-legal-html.mjs` — «Wrote app/legal JSON, root, admin, and knowly-www legal HTML».
+- После этого `app/legal/*` и `legal/*` **совпадают байт в байт** (все 4 файла).
+- Сайт: в `knowly-www/legal/privacy/` и `privacy-ios/` есть **все 27 разделов** JSON; новые тексты на месте и в приложении, и на сайте: опросы («If you answer a poll in the App…» — смысл тот же, что в `745b7e79e`), «Друзья» («Only friends you have accepted…»), «Подарки» (без ника), «Last updated: October 21, 2026».
+- Меняются 10 файлов: `legal/privacy_policy_en.json`, `legal/privacy_policy_en_ios.json`, `app/legal/privacy_policy_en.json`, `app/legal/privacy_policy_en_ios.json`, `knowly-www/legal/privacy/index.html`, `knowly-www/legal/privacy-ios/index.html`, `knowly-www/legal/data-deletion/index.html`, `privacy.html`, `admin/oauth-privacy.html`, `admin/v2/oauth-privacy.html`.
+
+**Утренний коммит (одним коммитом, по «да» владельца):**
+
+1. `git apply C:/Temp/claude/privacy-1021-plus-gift.patch`
+2. `npm run legal:sync`
+3. В `tests/legal_document_liquid_glass_source_contract.test.mjs` (строки 67–68) новые хэши:
+   - `privacy_policy_en.json` → `0bb9fd6a687e1fd735120385c663f042c7fd28ecd31e7ff356dbaab62af8457c`
+   - `privacy_policy_en_ios.json` → `918ed89c56aca65fd5235c99ef8ed7049fea13fce61ff2344c8cfc98bb679ae8`
+   (посчитаны на результате прогона; если до утра кто-то ещё тронет политику — пересчитать).
+4. Прогнать этот тест и `tests/website_*` — должны быть зелёными; сторож станет зелёным впервые с `745b7e79e`.
 
 ## Что ещё лежит невыложенным в `functions/` (с 21.10, кроме групп выше)
 

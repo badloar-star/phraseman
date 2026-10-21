@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Теория урока — макет</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · иконки уроков и глав курса V2 + узор плашки главы ─────────
+   зачем (владелец 17.10, через координатора): у каждого урока и каждой главы на карте V2 — своя пиктограмма по смыслу, «не генерация, а именно
+   создание, как в диалогах»; плашка главы — со своим узором по теме, «чтобы они не были все одинаковые, а было интересно».
+   Система иконок — та же, что у нарисованных иконок макетов Диалогов (kit.js / dialogs.html): холст 24, линия 1,8, концы и стыки скруглены,
+   заливки нет, цвет — currentColor. Плитка — как плитка главы в коде (LearningV2ChaptersCourse.tsx: 55×55, радиус 16), значок 26.
+   Узор — SVG-pattern тонкой линией 1,2 по теме главы, низкий контраст, тает к тексту (маска слева направо): текст плашки ≥ 4,5:1.
+   У каждой главы свой оттенок акцента в пределах палитры темы (OKLCH: та же светлота и насыщенность, сдвиг тона ±50°).
+   Состояния: открыта — полным цветом; закрыта — приглушена + замок в углу плитки; пройдена — галочка в углу. Без обводок, стиль «Тень».
+   Темы по умолчанию: «Сумерки» (ink) и «Океан» (marine), токены liquidGlass. Урок 1 — первая партия; уроки 2–8 — следующими партиями. */
+.ph.th-ink, .pane.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sb: #111; --L: .52; --C: .14; --Lt: .93; --Ct: .045; --pa: .22; --pal: .09; --badge-bg: #FFFFFF; }
+.ph.th-marine, .pane.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sb: #fff; --L: .82; --C: .11; --Lt: .33; --Ct: .06; --pa: .22; --pal: .08; --badge-bg: #02242B; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+
+/* оттенок главы: --h задаётся на элементе; акцент, тон плитки и узор — из него */
+.hue { --ac: oklch(var(--L) var(--C) var(--h)); --tint: oklch(var(--Lt) var(--Ct) var(--h)); }
+.ico { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.itile { position: relative; flex: none; width: 55px; height: 55px; border-radius: 16px; background: var(--tint); color: var(--ac); display: flex; align-items: center; justify-content: center; }
+.itile.ism { width: 48px; height: 48px; border-radius: 14px; }
+.itile.ism .ico { width: 24px; height: 24px; }
+/* закрыта: значок приглушён (тон текста, низкая непрозрачность), плитка — нейтральная; замок в углу */
+.st-locked .itile { background: var(--ctl); color: var(--sec); }
+.st-locked .itile .ico { opacity: .55; }
+.bdg { position: absolute; right: -4px; bottom: -4px; width: 22px; height: 22px; border-radius: 11px; background: var(--badge-bg); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; }
+.bdg svg { width: 13px; height: 13px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.st-done .bdg svg { stroke: var(--ac); }
+.st-locked .bdg svg { stroke: var(--sec); }
+
+/* плашка главы — как в коде: карточка r22, плитка 55, «Глава N» 19/700, «Занятия a–b», счёт n/8, шеврон, дорожка прогресса */
+.chap { position: relative; overflow: hidden; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; isolation: isolate; }
+.chap .pat { position: absolute; inset: 0; z-index: -1; color: var(--ac); opacity: var(--pa);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); }
+.st-locked .pat { color: var(--sec); opacity: var(--pal); }
+.chap .crow { display: flex; align-items: center; gap: 14px; }
+.chap .cp { flex: 1; min-width: 0; }
+.chap .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap .cfr b { color: var(--tx); }
+.chap .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--ac); }
+.st-locked .tl { color: var(--sec); }
+
+/* шапка карты (код: строка «Урок N» + «Классический курс», ниже тема 22/700); иконка урока — слева от темы */
+.mh { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.mrb svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh { margin-top: 14px; }
+.lh .kr { display: flex; align-items: center; justify-content: space-between; min-height: 36px; }
+.lh .lk { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
+.lh .clc { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 13px; font-weight: 700; }
+.lh .clc svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh .tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.lh .ltt { font-size: 22px; line-height: 27px; font-weight: 700; text-wrap: balance; }
+
+/* сетка иконок вне телефона — на панели темы */
+.pane { border-radius: 28px; padding: 22px; background: var(--bg); color: var(--tx); max-width: 980px; flex: 1 1 520px; }
+.pane h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+.pane .pnote { font-size: 13px; color: var(--sec); margin-bottom: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px; }
+.cell { border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 14px 10px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.cell .cn { font-size: 12px; font-weight: 700; color: var(--sec); }
+.cell .nm { font-size: 13px; line-height: 17px; font-weight: 600; }
+.states { display: flex; gap: 14px; }
+.panes { display: flex; flex-wrap: wrap; gap: 24px; }
+.lrow2 { margin-top: 18px; }
+.lhd2 { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.lk2 { font-size: 13px; letter-spacing: 1.4px; font-weight: 700; color: var(--sec); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.lt2 { font-size: 17px; font-weight: 700; margin-top: 2px; }
+.arcflag { text-transform: none; letter-spacing: 0; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; background: var(--ctl); color: var(--sec); }
+.pane.narrow { flex: 0 1 420px; }
+.pl2 { color: #A6A6A8; font-size: 14px; margin: -6px 0 14px; }
+.blk2 { margin-top: 48px; }
+.blk2 h2 { font-size: 20px; margin: 0 0 14px; }
+.ph .t { transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+.ph .t:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) { .ph .t { transition: none; } }
+/* ───────── РЕШЕНИЕ ВЛАДЕЛЬЦА 18.10 (эталон) ─────────
+   зачем: плашки глав без узора и без оттенков; иконка главы — как в Диалогах: плитка 55×55, радиус 14, фон — цвет текста 9 %,
+   значок Ionicons 26 цветом текста; у каждой главы свой значок; замков и значков-уголков нет. Закрытая глава — тот же значок вторым цветом.
+   Плитка урока у заголовка — 46×46, радиус 12, значок 22. Дорожка прогресса — акцент темы. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.ph.th-ink, .pane.th-ink { --acc: oklch(.52 .14 282); }
+.ph.th-marine, .pane.th-marine { --acc: oklch(.82 .11 215); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: block; }
+.ich { flex: none; width: 55px; height: 55px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); color: var(--tx); display: flex; align-items: center; justify-content: center; }
+.ich .io { font-size: 26px; }
+.ich.les { width: 46px; height: 46px; border-radius: 12px; }
+.ich.les .io { font-size: 22px; }
+.st-locked .ich { color: var(--sec); }
+.chap2 { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; }
+.chap2 .crow { display: flex; align-items: center; gap: 14px; }
+.chap2 .cp { flex: 1; min-width: 0; }
+.chap2 .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap2 .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap2 .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap2 .cfr b { color: var(--tx); }
+.chap2 .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap2 .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap2 .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--acc); }
+.chap2.st-locked .tl { color: var(--sec); }
+.cell .inm { font-size: 11px; line-height: 14px; color: var(--sec); font-family: ui-monospace, Consolas, monospace; }
+.old-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(242,118,107,.16); color: #F2766B; font-size: 12px; font-weight: 700; vertical-align: middle; letter-spacing: 0; text-transform: none; }
+.new-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(110,200,140,.16); color: #4FB97A; font-size: 12px; font-weight: 700; vertical-align: middle; }
+</style>
+<style>
+/* зачем (владелец 21.10, реестр №8): экзамен внизу главы из 8 эпизодов; сдать можно сразу — откроется следующая глава.
+   Развёрнутая глава — как в коде LearningV2ChaptersCourse: узлы 64 в сетке 4×2, номер 13/700, подпись 13/17 под узлом. */
+.ses { display: flex; flex-wrap: wrap; row-gap: 18px; padding: 14px 6px 6px; }
+.s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.nd { position: relative; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--tx); }
+.nd .io { font-size: 24px; }
+.nd b { font-size: 13px; line-height: 16px; font-weight: 700; }
+.nd.cur { background: var(--tx); color: var(--card); box-shadow: 0 0 0 5px color-mix(in srgb, var(--tx) 14%, transparent); }
+.nd.lock { color: var(--sec); }
+.nd .stars { position: absolute; bottom: -10px; min-height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ctl); display: flex; align-items: center; gap: 1px; }
+.nd .stars .io { font-size: 11px; }
+.s .lb2 { width: 82px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; }
+.s .lb2.on { color: var(--tx); font-weight: 800; }
+.exb { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.exb .io { font-size: 20px; }
+.exb.wait { background: var(--ctl); color: var(--sec); }
+.exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
+.exrow { display: flex; gap: 12px; }
+.exrow > div { flex: 1; }
+.exsec { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.exdone { margin-top: 16px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.exdone .io { color: var(--acc); font-size: 20px; }
+.ph.th-ink .exdone .io { color: #4A47A8; }
+.note { margin: 30px 0 0; max-width: 900px; font-size: 15px; line-height: 23px; color: #A6A6AE; }
+.note b { color: #F2F2F4; }
+.tb { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 900px; width: 100%; color: #C9C9CF; }
+.tb td, .tb th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; }
+.tb th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+/* шторки перед экзаменом и после провала — как окна 2.0 */
+.xsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 12px 22px 40px; background: var(--card); box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); }
+.xdim { position: absolute; inset: 0; z-index: 25; background: rgba(0,0,0,.45); }
+.ph.th-ink .xdim { background: rgba(23,24,30,.38); }
+.xsh .grab { width: 42px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto; }
+.xsh .ic { width: 64px; height: 64px; border-radius: 18px; margin: 22px auto 0; background: color-mix(in srgb, var(--acc) 22%, transparent); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--acc); }
+.ph.th-ink .xsh .ic { color: #4A47A8; }
+.xsh .t { font-size: 25px; line-height: 31px; font-weight: 700; text-align: center; margin-top: 16px; }
+.facts { display: flex; gap: 10px; margin-top: 18px; }
+.facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 12px 6px; text-align: center; }
+.facts b { display: block; font-size: 22px; line-height: 26px; }
+.facts small { font-size: 13px; line-height: 17px; color: var(--sec); }
+.xsh .p { font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; margin-top: 16px; }
+.xsh .c1 { margin-top: 20px; height: 54px; border-radius: 27px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; }
+.xsh .c1 .en { display: inline-flex; align-items: center; gap: 3px; height: 28px; padding: 0 10px; border-radius: 14px; background: color-mix(in srgb, var(--card) 18%, transparent); font-size: 15px; }
+.xsh .c2 { margin-top: 12px; height: 50px; border-radius: 25px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.xsh .free { margin-top: 10px; text-align: center; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--acc); }
+.ph.th-ink .xsh .free { color: #4A47A8; }
+.score { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+.score i { width: 14px; height: 14px; border-radius: 50%; background: var(--acc); }
+.score i.x { background: var(--ctl); }
+</style>
+<style>
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.ph.th-ink { --good: #2B8A5E; --bad: #C2413B; --amber: rgba(190,118,28,.12); --edge: rgba(23,24,30,.10); --solid: #EEEFFA; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+/* ── оболочка плеера (код: верхняя панель 64, подвал из трёх действий) ── */
+.tvtop { display: flex; align-items: center; gap: 12px; min-height: 54px; margin-top: 2px; }
+.tvx { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.tvp { flex: 1; min-width: 0; }
+.tvtrk { height: 6px; border-radius: 3px; background: var(--ctl); overflow: hidden; } .tvtrk i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+.tvn { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin-top: 5px; }
+.hud { display: flex; gap: 6px; flex: none; }
+.hp { height: 34px; padding: 0 10px; border-radius: 17px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 700; }
+.hp .io { font-size: 15px; } .hp img { width: 18px; height: 18px; border-radius: 50%; }
+.tvb { padding-top: 8px; }
+.foot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; padding: 8px 10px 34px; display: flex; background: var(--solid); }
+.foot div { flex: 1; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 13px; line-height: 17px; font-weight: 600; color: var(--sec); }
+.foot .io { font-size: 26px; color: var(--tx); } .foot .off { opacity: .3; }
+/* ── блоки заданий (код: Lv2Chip, Lv2Option, Lv2Cta, Lv2Explain, лента отклика) ── */
+.lab { font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); }
+.scene { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 10px; }
+.thero { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.3px; }
+.ans { min-height: 64px; margin-top: 22px; box-shadow: inset 0 -1px 0 var(--edge); display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px; align-items: center; }
+.ans .ph2 { font-size: 16px; color: var(--sec); opacity: .8; }
+.bank { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.chip { min-height: 46px; padding: 0 18px; border-radius: 14px; background: var(--ctl); display: inline-flex; align-items: center; font-size: 16px; font-weight: 600; box-shadow: 0 3px 0 rgba(23,24,30,.12); }
+.chip.gh { opacity: .22; }
+.opts { display: flex; flex-direction: column; gap: 13px; margin-top: 26px; }
+.opt { min-height: 58px; border-radius: 14px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; padding: 0 48px; position: relative; text-align: center; }
+.opt.sel { background: color-mix(in srgb, var(--acc) 14%, var(--card)); transform: translateY(-2px); }
+.opt.ok { background: rgba(43,138,94,.12); color: var(--good); box-shadow: inset 0 0 0 1px rgba(43,138,94,.45); }
+.opt .mk { position: absolute; right: 16px; font-size: 20px; }
+.tcta { margin-top: 22px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.tcta.off { background: var(--ctl); color: var(--sec); }
+.play { width: 128px; height: 128px; border-radius: 50%; background: var(--card); box-shadow: var(--sh); margin: 26px auto 0; display: flex; align-items: center; justify-content: center; font-size: 44px; position: relative; }
+.play svg { position: absolute; inset: -2px; }
+.play.s { width: 96px; height: 96px; font-size: 36px; margin-top: 18px; }
+.psub { text-align: center; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); margin-top: 14px; }
+.gap { display: inline-flex; padding: 0 4px; border-radius: 8px; background: var(--ctl); color: var(--sec); margin: 0 2px; }
+.gtext { font-size: 28px; line-height: 44px; font-weight: 700; margin-top: 18px; }
+.spk { width: 38px; height: 38px; border-radius: 50%; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; font-size: 18px; vertical-align: middle; margin-left: 10px; }
+.sm-h { display: flex; justify-content: space-between; align-items: center; }
+.timer { min-height: 34px; padding: 0 14px; border-radius: 17px; background: var(--ctl); display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; }
+.pairs { display: flex; gap: 10px; margin-top: 4px; } .pairs > div { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.pairs .opt { min-height: 72px; font-weight: 600; padding: 0 10px; }
+.mic { width: 76px; height: 76px; border-radius: 50%; background: var(--tx); color: var(--card); margin: 26px auto 0; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 0 0 11px color-mix(in srgb, var(--tx) 10%, transparent); }
+.micl { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 18px; }
+.tphr { font-size: 30px; line-height: 36px; font-weight: 700; text-align: center; margin-top: 24px; }
+.tins { font-size: 16px; line-height: 22px; text-align: center; color: var(--sec); margin-top: 10px; }
+/* интро (код: learning_v2_session_intro.tsx) */
+.ihd { display: flex; align-items: center; gap: 10px; min-height: 42px; }
+.ihd .x { width: 42px; height: 42px; border-radius: 50%; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; }
+.ihd .st { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1px; } .ihd .st small { display: block; font-size: 13px; line-height: 18px; color: var(--sec); letter-spacing: 0; }
+.seg { display: flex; gap: 6px; margin-top: 12px; } .seg i { flex: 1; height: 4px; border-radius: 4px; background: var(--ctl); } .seg i.on { background: var(--acc); }
+.ititle { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; margin-top: 22px; }
+.know { border-radius: 16px; background: var(--card); box-shadow: var(--sh); padding: 18px 18px 20px; margin-top: 20px; font-size: 16px; line-height: 23px; }
+.know b { font-size: 17px; font-weight: 700; }
+.qeb { display: flex; justify-content: space-between; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 1.6px; margin-top: 24px; }
+.qp { font-size: 19px; line-height: 25px; font-weight: 700; margin-top: 10px; }
+.qa { display: flex; flex-direction: column; gap: 9px; margin-top: 14px; }
+.qa div { min-height: 58px; border-radius: 14px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 16px; font-weight: 600; }
+.qa b { width: 30px; height: 30px; border-radius: 9px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 13px; flex: none; }
+.ifoot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; padding: 12px 20px 34px; background: var(--solid); }
+/* оверлей нового слова (код: LearningV2NewWordEncounterOverlay) */
+.nwdim { position: absolute; inset: 0; z-index: 20; background: rgba(0,0,0,.6); }
+.nw { position: absolute; z-index: 21; left: 50%; top: 50%; width: 330px; margin-left: -165px; transform: translateY(-50%); border-radius: 22px; background: var(--card); padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.nw .h { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 4px 0; } .nw .h b { font-size: 20px; line-height: 26px; } .nw .h span { font-size: 16px; font-weight: 600; color: var(--sec); }
+.nw .fc { height: 245px; border-radius: 33px; background: linear-gradient(160deg, #2A2B45, #17182A); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; position: relative; }
+.nw .fc .w { font-size: 40px; font-weight: 800; } .nw .fc .ipa { font-size: 16px; opacity: .7; }
+.nw .hint { text-align: center; font-size: 13px; line-height: 19px; font-weight: 600; color: var(--sec); }
+.nw .tcta { margin-top: 0; }
+
+/* ── ПРЕДЛАГАЕМ: «что сделать» отдельно, ситуация отдельно ── */
+.todo { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.todo .ti { width: 40px; height: 40px; border-radius: 12px; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; font-size: 21px; flex: none; }
+.todo .tt { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; }
+.sit { margin-top: 14px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 9%, var(--card)); box-shadow: var(--sh); padding: 13px 16px 14px; }
+.sit .k { display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.sit .k .io { font-size: 15px; }
+.sit .v { font-size: 17px; line-height: 24px; margin-top: 5px; }
+.goal { margin-top: 18px; text-align: center; } .goal .k { font-size: 13px; font-weight: 700; color: var(--sec); }
+.goal .v { font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -.4px; margin-top: 4px; }
+.say { margin-top: 16px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 16px; text-align: center; }
+.say .en { font-size: 30px; line-height: 36px; font-weight: 800; } .say .ru { font-size: 17px; line-height: 23px; color: var(--sec); margin-top: 4px; }
+.parts { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.parts span { border-radius: 12px; background: var(--ctl); padding: 6px 12px; font-size: 15px; font-weight: 700; } .parts span small { font-weight: 500; color: var(--sec); margin-left: 6px; }
+.why { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 12px; text-align: center; }
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin-top: 14px; max-width: 1000px; }
+.cmp div { font-size: 14px; line-height: 21px; color: #A6A6AE; } .cmp b { color: #F2F2F4; }
+.tb { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 1000px; width: 100%; color: #C9C9CF; }
+.tb td, .tb th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; } .tb th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+</style>
+<style>
+/* зачем (№42): кнопка книги в шапке, строка на карте, шторка теории в двух вариантах. */
+.ph.th-marine { --good: #4CC98C; --amber: rgba(230,160,60,.14); --edge: rgba(255,255,255,.10); --solid: #00141B; }
+.tvbk { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 21px; flex: none; }
+.tvbk.on { background: var(--tx); color: var(--solid); }
+.throw { margin-top: 12px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; display: flex; align-items: center; gap: 14px; }
+.throw .tl { font-size: 17px; line-height: 22px; font-weight: 700; } .throw .cs { font-size: 14px; color: var(--sec); margin-top: 2px; }
+.tsh { position: absolute; left: 0; right: 0; bottom: 0; top: 74px; z-index: 30; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); display: flex; flex-direction: column; overflow: hidden; }
+.tsh .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 10px auto 0; flex: none; }
+.tsh .hd { display: flex; align-items: center; gap: 12px; padding: 10px 20px 0; flex: none; }
+.tsh .hd .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); } .tsh .hd .t { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; margin-top: 2px; }
+.tsh .hd .x { margin-left: auto; width: 36px; height: 36px; border-radius: 18px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; align-self: flex-start; }
+.tsh .bd { flex: 1; overflow: hidden; padding: 0 20px; }
+.tsh .ft { flex: none; padding: 12px 20px 34px; }
+.tsh .ft .tcta { margin-top: 0; }
+.secs { display: flex; gap: 8px; margin-top: 14px; overflow: hidden; }
+.secs span { flex: none; height: 36px; padding: 0 14px; border-radius: 18px; background: var(--ctl); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--sec); }
+.secs span b { font-weight: 800; color: var(--tx); opacity: .45; } .secs span.on { background: var(--tx); color: var(--solid); } .secs span.on b { color: var(--solid); opacity: .6; }
+.tbody { font-size: 16px; line-height: 23px; margin-top: 16px; }
+.frm { margin-top: 14px; border-radius: 18px; background: var(--ctl); padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.frm div { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 17px; line-height: 22px; font-weight: 700; }
+.frm i { font-style: normal; color: var(--sec); font-weight: 600; } .frm em { font-style: normal; color: var(--acc); font-weight: 800; }
+.ph.th-ink .frm em, .ph.th-ink .ex em { color: #4A47A8; }
+.exs { margin-top: 12px; display: flex; flex-direction: column; }
+.ex { display: flex; align-items: center; gap: 12px; padding: 10px 0; box-shadow: inset 0 -1px 0 var(--edge); }
+.ex:last-child { box-shadow: none; }
+.ex .sp { width: 36px; height: 36px; border-radius: 18px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 17px; flex: none; }
+.ex .sp.spon { background: var(--tx); color: var(--solid); }
+.ex .en { font-size: 17px; line-height: 22px; font-weight: 700; } .ex .ru { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.ex em { font-style: normal; color: var(--acc); }
+.fx { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.fx div { border-radius: 16px; background: var(--ctl); padding: 10px 14px; font-size: 16px; line-height: 22px; }
+.fx s { color: #B5651D; text-decoration-thickness: 1.5px; } .fx b { color: var(--good); }
+.tip { margin-top: 12px; border-radius: 16px; padding: 10px 14px; background: color-mix(in srgb, var(--acc) 12%, transparent); font-size: 15px; line-height: 21px; display: flex; gap: 10px; }
+.drill { margin-top: 16px; border-radius: 20px; background: var(--ctl); padding: 14px; }
+.drill .k { font-size: 13px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.drill .q { font-size: 20px; line-height: 26px; font-weight: 800; margin-top: 6px; }
+.drill .q .gp { display: inline-block; min-width: 46px; border-radius: 8px; background: var(--card); text-align: center; color: var(--sec); }
+.drill .q .gp.ok { background: rgba(43,138,94,.16); color: var(--good); padding: 0 6px; }
+.dop { display: flex; gap: 8px; margin-top: 12px; } .dop span { flex: 1; height: 44px; border-radius: 14px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.dop span.ok { background: rgba(43,138,94,.14); color: var(--good); box-shadow: none; } .dop span.dno { opacity: .4; }
+.dres { font-size: 14px; line-height: 19px; color: var(--good); font-weight: 700; margin-top: 10px; }
+.step { margin-top: 14px; border-radius: 24px; background: var(--ctl); padding: 18px 16px; }
+.step .n { font-size: 13px; font-weight: 700; color: var(--sec); } .step .h { font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.3px; margin-top: 4px; }
+.step .frm { background: var(--card); box-shadow: var(--sh); }
+.dots { display: flex; gap: 6px; justify-content: center; margin-top: 14px; } .dots i { width: 7px; height: 7px; border-radius: 4px; background: var(--ctl); } .dots i.on { width: 20px; background: var(--tx); }
+.nav2 { display: flex; gap: 10px; } .nav2 div { flex: 1; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--ctl); } .nav2 div.p { flex: 2; background: var(--tx); color: var(--solid); }
+.thm { position: sticky; top: 0; z-index: 60; background: rgba(8,8,10,.92); backdrop-filter: blur(14px); padding: 14px 0; margin-top: 12px; display: flex; gap: 8px; align-items: center; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; } .chp.on { background: #F2F1F6; color: #0B0C0E; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Теория урока — кнопка и шторка (№42)</h1>
+  <p class="page-lead">Решение владельца 21.10: теория открывается из эпизода (книга в шапке, шторкой — место в задании не теряется) и с карты (строка «Теория урока»). Теория новая, под уроки V2, по формату классики: разделы, формула, примеры со звуком, частые ошибки, мини-упражнение. Текст здесь — образец для урока 1; настоящие тексты пишет сессия «12 · ТЕОРИЯ».</p>
+  <div class="thm"><span style="font-size:13px;color:#8E8E96;font-weight:700;margin-right:6px">Тема</span><span class="chp" data-t="ink">Сумерки</span><span class="chp" data-t="marine">Океан</span></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { phone, block, col, coin } = K;
+const ION = [["briefcase-outline",["business-outline","cafe-outline","people-outline","home-outline","restaurant-outline","chatbubbles-outline","calendar-outline"]],["help-circle-outline",["bed-outline","eye-outline","navigate-outline","pricetag-outline","balloon-outline","cloudy-outline","ribbon-outline"]],["cube-outline",["archive-outline","storefront-outline","car-outline","bulb-outline","bag-handle-outline","receipt-outline","leaf-outline"]],["map-outline",["trail-sign-outline","search-outline","nutrition-outline","compass-outline","key-outline","mail-outline","gift-outline"]],["id-card-outline",["people-circle-outline","bag-outline","happy-outline","folder-open-outline","shirt-outline","images-outline","git-network-outline"]],["sunny-outline",["alarm-outline","bus-outline","laptop-outline","fast-food-outline","barbell-outline","cart-outline","moon-outline"]],["repeat-outline",["color-palette-outline","football-outline","book-outline","hourglass-outline","pizza-outline","airplane-outline","call-outline"]],["school-outline",["star-outline","bicycle-outline","hand-left-outline","list-outline","flame-outline","egg-outline","heart-outline"]]];
+const ICODE = {"briefcase-outline":61874,"business-outline":61895,"cafe-outline":61898,"people-outline":62627,"home-outline":62339,"restaurant-outline":62774,"chatbubbles-outline":61976,"calendar-outline":61910,"help-circle-outline":62334,"bed-outline":61841,"eye-outline":62186,"navigate-outline":62576,"pricetag-outline":62699,"balloon-outline":61799,"cloudy-outline":62054,"ribbon-outline":62789,"cube-outline":62105,"archive-outline":61733,"storefront-outline":62888,"car-outline":61922,"bulb-outline":61889,"bag-handle-outline":61791,"receipt-outline":62735,"leaf-outline":62387,"map-outline":62531,"trail-sign-outline":62954,"search-outline":62819,"nutrition-outline":62597,"compass-outline":62084,"key-outline":62372,"mail-outline":62516,"gift-outline":62264,"id-card-outline":62348,"people-circle-outline":62625,"bag-outline":61793,"happy-outline":62306,"folder-open-outline":62247,"shirt-outline":62849,"images-outline":62354,"git-network-outline":62279,"sunny-outline":62894,"alarm-outline":61709,"bus-outline":61892,"laptop-outline":62381,"fast-food-outline":62192,"barbell-outline":61811,"cart-outline":61955,"moon-outline":62561,"repeat-outline":62768,"color-palette-outline":62078,"football-outline":62252,"book-outline":61862,"hourglass-outline":62342,"pizza-outline":62657,"airplane-outline":61706,"call-outline":61913,"school-outline":62813,"star-outline":62873,"bicycle-outline":61847,"hand-left-outline":62300,"list-outline":62399,"flame-outline":62228,"egg-outline":62153,"heart-outline":62327};
+const io = (name) => `<i class="io" aria-hidden="true">&#x${ICODE[name].toString(16)};</i>`;
+const ich = (name, cls = '') => `<span class="ich ${cls}">${io(name)}</span>`;
+const back = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const bookI = '<svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/></svg>';
+const libI = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="6" width="4" height="14" rx="1"/><path d="M15.2 7.2l3.6-1 3 13.4-3.6 1z"/></svg>';
+const thc = (th) => th === 'ink' ? 'th-ink' : 'th-marine';
+const IC = { close: 'f24a', vol: 'f613', heart: 'f36a', flash: 'f316', book: 'f1a6', fwd: 'f23b', undo: 'f143', albums: 'f110', puzzle: 'f2e4', chat: 'f213', check: 'f21d', bulb: 'f1c1', play: 'f4c6', lock: 'f3c7', trophy: 'f601', star: 'f595', chevU: 'f241', create: 'f293' };
+const gi = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
+let TH = 'ink';
+const T = (h) => h.replace('class="ph"', `class="ph ${thc(TH)}"`);
+/* ── эпизод: шапка с книгой ── */
+const top = (n, t, on) => `<div class="tvtop"><span class="tvx">${gi('close')}</span><div class="tvp"><div class="tvtrk"><i style="width:${Math.round(n / t * 100)}%"></i></div><div class="tvn">${n} / ${t}</div></div><span class="tvbk${on ? ' on' : ''}">${gi('book')}</span><div class="hud"><span class="hp">${gi('heart', 'color:#C2413B')}3</span><span class="hp">${gi('flash')}5</span></div></div>`;
+const foot = () => `<div class="foot"><div>${gi('undo')}Назад</div><div>${gi('albums')}Слова</div><div class="off">${gi('fwd')}Дальше</div></div>`;
+const task = () => `<div class="todo"><span class="ti">${gi('puzzle')}</span><div class="tt">Собери фразу</div></div><div class="sit"><div class="k">${gi('chat')}Ситуация</div><div class="v">Коллега ищет вас, а вы уже в комнате.</div></div><div class="goal"><div class="k">Скажите по-английски</div><div class="v">Я здесь.</div></div><div class="ans"><span class="chip">I</span></div><div class="bank"><span class="chip gh">I</span><span class="chip">am</span><span class="chip">here</span><span class="chip">ready</span></div>`;
+const episode = (overlay, on) => T(phone(`${top(4, 12, on)}<div style="padding-top:6px">${task()}</div><div style="height:120px"></div>`, { time: '9:41', fixed: foot(), overlay }));
+/* ── карта: строка «Теория урока» ── */
+const plate = (ci, title, sub, done, nodes) => `<div class="chap2"><div class="crow">${ich(ION[0][1][ci])}<div class="cp"><div class="tl">${title}</div><div class="csub">${sub}</div></div><span class="cfr"><b>${done}</b>/8</span>${gi('chevU', 'font-size:20px;color:var(--sec)')}</div><div class="ses">${nodes}</div></div>`;
+const node = (n, st) => `<div class="s"><div class="nd${st === 'cur' ? ' cur' : st === 'lock' ? ' lock' : ''}">${gi({ done: 'check', cur: 'play', lock: 'lock', chk: 'trophy' }[st])}<b>${n}</b>${st === 'done' ? `<span class="stars">${gi('star')}${gi('star')}${gi('star')}</span>` : ''}</div><div class="lb2${st === 'cur' ? ' on' : ''}">${n === 8 ? 'Проверка главы' : 'Эпизод ' + n}</div></div>`;
+const map = () => T(phone(`<div class="mh"><span class="mrb">${back}</span><span class="mrb">${bookI}</span></div><div class="lh"><div class="kr"><span class="lk">Урок 1</span><span class="clc">${libI}Классический курс</span></div><div class="tr">${ich(ION[0][0], 'les')}<div class="ltt">Present be: утверждение + not</div></div></div>
+  <div class="throw"><span class="ich">${gi('book')}</span><div style="flex:1"><div class="tl">Теория урока</div><div class="cs">4 раздела · около 3 минут</div></div>${gi('fwd', 'font-size:18px;color:var(--sec)')}</div>
+  ${plate(0, 'Глава 1', 'Эпизоды 1–8', 3, [1, 2, 3].map((n) => node(n, 'done')).join('') + node(4, 'cur') + [5, 6, 7].map((n) => node(n, 'lock')).join('') + node(8, 'chk'))}`, { time: '9:41' }));
+/* ── содержание теории (образец урока 1) ── */
+const SECS = [['1', 'Кто + am / is / are'], ['2', 'Отрицание'], ['3', 'Коротко'], ['4', 'Ошибки']];
+const secs = (on) => `<div class="secs"${on === '4' ? ' style="margin-left:-150px"' : ''}>${SECS.map(([n, t]) => `<span class="${n === on ? 'on' : ''}"><b>${n}</b>${t}</span>`).join('')}</div>`;
+const ex = (en, ru, play) => `<div class="ex"><span class="sp${play ? ' spon' : ''}">${gi('vol')}</span><div><div class="en">${en}</div><div class="ru">${ru}</div></div></div>`;
+const FRM1 = `<div class="frm"><div>I <em>am</em> <i>+ где / какой</i></div><div>he · she · it <em>is</em> <i>+ где / какой</i></div><div>we · you · they <em>are</em> <i>+ где / какой</i></div></div>`;
+const EX1 = `<div class="exs">${ex('I <em>am</em> here.', 'Я здесь.', true)}${ex('She <em>is</em> ready.', 'Она готова.')}${ex('We <em>are</em> in the office.', 'Мы в офисе.')}</div>`;
+const drill = (done) => `<div class="drill"><div class="k">${gi('create', 'font-size:14px')}Проверь себя</div><div class="q">Our boss <span class="gp${done ? ' ok' : ''}">${done ? 'is' : '···'}</span> here.</div><div class="dop"><span class="${done ? 'dno' : ''}">am</span><span class="${done ? 'ok' : ''}">is</span><span class="${done ? 'dno' : ''}">are</span></div>${done ? '<div class="dres">Верно: начальник — он, значит is.</div>' : ''}</div>`;
+const shHead = () => `<div class="grab"></div><div class="hd"><div><div class="k">Теория · урок 1</div><div class="t">Present be: утверждение + not</div></div><span class="x">${gi('close')}</span></div>`;
+/* A — конспект с разделами */
+const A1 = () => episode(`<div class="xdim"></div><div class="tsh">${shHead()}<div class="bd">${secs('1')}<div class="tbody">По-русски говорим коротко: «Я здесь», «Он занят». В английском между «кто» и «где / какой» всегда стоит am, is или are.</div>${FRM1}${EX1}</div><div class="ft"><div class="tcta">Вернуться к заданию 4 из 12</div></div></div>`, true);
+const A2 = () => episode(`<div class="xdim"></div><div class="tsh">${shHead()}<div class="bd">${secs('4')}<div class="fx"><div><s>I here.</s> → <b>I am here.</b></div><div><s>We is ready.</s> → <b>We are ready.</b></div><div><s>It not booked.</s> → <b>It is not booked.</b></div></div><div class="tip">${gi('bulb', 'font-size:18px;color:var(--acc)')}<span>Не уверен — спроси себя: кто это? Один человек или предмет — is, несколько — are, я — am.</span></div>${drill(true)}</div><div class="ft"><div class="tcta">Вернуться к заданию 4 из 12</div></div></div>`, true);
+/* B — по шагам, одна мысль на карточку */
+const B1 = () => episode(`<div class="xdim"></div><div class="tsh">${shHead()}<div class="bd"><div class="step"><div class="n">Шаг 2 из 5</div><div class="h">Отрицание — просто добавь not</div><div class="frm" style="margin-top:14px"><div>am · is · are <em>+ not</em></div></div><div class="exs" style="margin-top:8px">${ex('I am <em>not</em> ready.', 'Я не готов.', true)}${ex('It is <em>not</em> booked.', 'Он не забронирован.')}</div></div><div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div></div><div class="ft"><div class="nav2"><div>Назад</div><div class="p">Дальше</div></div></div></div>`, true);
+const B2 = () => episode(`<div class="xdim"></div><div class="tsh">${shHead()}<div class="bd"><div class="step"><div class="n">Шаг 5 из 5</div><div class="h">Проверь себя</div>${drill(true).replace('<div class="drill">', '<div class="drill" style="background:var(--card);box-shadow:var(--sh)">')}</div><div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i></div></div><div class="ft"><div class="tcta">Вернуться к заданию 4 из 12</div></div></div>`, true);
+const render = () => {
+  document.getElementById('root').innerHTML =
+    block('entry', 'Где открывается', 'В эпизоде — книга в шапке рядом с прогрессом: тап открывает шторку поверх задания, закрыл — продолжаешь с того же места. На карте — строка «Теория урока» под названием урока.', [col('Эпизод · книга в шапке', episode('', false)), col('Карта · «Теория урока»', map())]) +
+    block('a', 'A · Конспект с разделами<span class="rec">рекомендую</span>', 'Все разделы урока в одной шторке, переключатель сверху. Формула, примеры со звуком (тап — слушать), частые ошибки, совет и «Проверь себя» в конце раздела. Удобно вернуться и найти нужное.', [col('Раздел 1 · формула и примеры', A1()), col('Раздел 4 · ошибки и упражнение', A2())]) +
+    block('b', 'B · По шагам', 'Одна мысль на экран, «Дальше» ведёт по 5 шагам, последний — упражнение. Проще для новичка, но искать нужное дольше.', [col('Шаг 2 · отрицание', B1()), col('Шаг 5 · проверь себя', B2())]);
+  document.querySelectorAll('.thm .chp').forEach((c) => c.classList.toggle('on', c.dataset.t === TH));
+  K.init();
+};
+document.querySelector('.thm').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { TH = c.dataset.t; render(); } });
+if (new URLSearchParams(location.search).get('t') === 'marine') TH = 'marine';
+render();
+})();
+</script>
+</body>
+</html>

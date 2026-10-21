@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-43:word:busy-day",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — busy day",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:busy-day:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — busy day",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:busy-day:audio",
+            "transcript": "busy day"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:busy-day:r1",
+              "targetText": "busy day",
+              "meaningByLocale": {
+                "ru": "насыщенный делами день.",
+                "uk": "насичений справами день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "busy day",
+            "definitionByLocale": {
+              "ru": "насыщенный делами день.",
+              "uk": "насичений справами день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «У нас был такой насыщенный день».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «У нас был такой насыщенный день».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had such a busy day.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «У нас был такой насыщенный день».",
+            "uk": "Скажіть із сильним враженням: «У нас був такий насичений день»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "such",
+            "a",
+            "busy",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i02:r1",
+            "text": "We had such a busy day."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i02:r2",
+            "text": "We had so a busy day."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i02:r3",
+            "text": "We had much a busy day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i02:audio",
+            "transcript": "We had such a busy day."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i02:r1",
+              "targetText": "We had such a busy day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i02:r2",
+              "targetText": "We had so a busy day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i02:r3",
+              "targetText": "We had much a busy day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a busy day.",
+                "uk": "У записі звучить We had such a busy day."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a busy day.",
+                "uk": "У записі звучить We had such a busy day."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "We had ___ a busy day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:word:quiet-evening",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — quiet evening",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:quiet-evening:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — quiet evening",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:quiet-evening:audio",
+            "transcript": "quiet evening"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:quiet-evening:r1",
+              "targetText": "quiet evening",
+              "meaningByLocale": {
+                "ru": "тихий, спокойный вечер.",
+                "uk": "тихий, спокійний вечір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quiet evening",
+            "definitionByLocale": {
+              "ru": "тихий, спокойный вечер.",
+              "uk": "тихий, спокійний вечір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Этот спокойный вечер такой приятный».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Этот спокойный вечер такой приятный».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This quiet evening is so nice.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Этот спокойный вечер такой приятный».",
+            "uk": "Скажіть із сильним враженням: «Цей спокійний вечір такий приємний»."
+          },
+          "orderedTokens": [
+            "This",
+            "quiet",
+            "evening",
+            "is",
+            "so",
+            "nice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i05:r1",
+            "text": "This quiet evening is so nice."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i05:r2",
+            "text": "This quiet evening is such nice."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i05:r3",
+            "text": "This quiet evening is much nice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i05:audio",
+            "transcript": "This quiet evening is so nice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i05:r1",
+              "targetText": "This quiet evening is so nice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i05:r2",
+              "targetText": "This quiet evening is such nice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i05:r3",
+              "targetText": "This quiet evening is much nice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This quiet evening is so nice.",
+                "uk": "У записі звучить This quiet evening is so nice."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This quiet evening is so nice.",
+                "uk": "У записі звучить This quiet evening is so nice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This quiet evening is ___ nice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i06:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i06:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:word:long-weekend",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — long weekend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:long-weekend:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — long weekend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:long-weekend:audio",
+            "transcript": "long weekend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:long-weekend:r1",
+              "targetText": "long weekend",
+              "meaningByLocale": {
+                "ru": "длинные выходные, включая дополнительный день.",
+                "uk": "довгі вихідні, включно з додатковим днем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "long weekend",
+            "definitionByLocale": {
+              "ru": "длинные выходные, включая дополнительный день.",
+              "uk": "довгі вихідні, включно з додатковим днем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «У нас были такие приятные длинные выходные».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «У нас были такие приятные длинные выходные».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had such a lovely long weekend.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «У нас были такие приятные длинные выходные».",
+            "uk": "Скажіть із сильним враженням: «У нас були такі приємні довгі вихідні»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "such",
+            "a",
+            "lovely",
+            "long",
+            "weekend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i08:r1",
+            "text": "We had such a lovely long weekend."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i08:r2",
+            "text": "We had so a lovely long weekend."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i08:r3",
+            "text": "We had much a lovely long weekend."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i08:audio",
+            "transcript": "We had such a lovely long weekend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i08:r1",
+              "targetText": "We had such a lovely long weekend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i08:r2",
+              "targetText": "We had so a lovely long weekend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i08:r3",
+              "targetText": "We had much a lovely long weekend.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a lovely long weekend.",
+                "uk": "У записі звучить We had such a lovely long weekend."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a lovely long weekend.",
+                "uk": "У записі звучить We had such a lovely long weekend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "We had ___ a lovely long weekend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i09:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i09:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:word:late-lunch",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — late lunch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:late-lunch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — late lunch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:late-lunch:audio",
+            "transcript": "late lunch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:late-lunch:r1",
+              "targetText": "late lunch",
+              "meaningByLocale": {
+                "ru": "поздний обед.",
+                "uk": "пізній обід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "late lunch",
+            "definitionByLocale": {
+              "ru": "поздний обед.",
+              "uk": "пізній обід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Этот поздний обед такой вкусный».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Этот поздний обед такой вкусный».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This late lunch is so tasty.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Этот поздний обед такой вкусный».",
+            "uk": "Скажіть із сильним враженням: «Цей пізній обід такий смачний»."
+          },
+          "orderedTokens": [
+            "This",
+            "late",
+            "lunch",
+            "is",
+            "so",
+            "tasty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i11:r1",
+            "text": "This late lunch is so tasty."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i11:r2",
+            "text": "This late lunch is such tasty."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i11:r3",
+            "text": "This late lunch is much tasty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i11:audio",
+            "transcript": "This late lunch is so tasty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i11:r1",
+              "targetText": "This late lunch is so tasty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i11:r2",
+              "targetText": "This late lunch is such tasty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i11:r3",
+              "targetText": "This late lunch is much tasty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This late lunch is so tasty.",
+                "uk": "У записі звучить This late lunch is so tasty."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This late lunch is so tasty.",
+                "uk": "У записі звучить This late lunch is so tasty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This late lunch is ___ tasty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i12:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i12:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-43:i13:p1",
+              "target": "busy day",
+              "meaningByLocale": {
+                "ru": "насыщенный делами день",
+                "uk": "насичений справами день"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-43:i13:p2",
+              "target": "quiet evening",
+              "meaningByLocale": {
+                "ru": "тихий, спокойный вечер",
+                "uk": "тихий, спокійний вечір"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-43:i13:p3",
+              "target": "long weekend",
+              "meaningByLocale": {
+                "ru": "длинные выходные, включая дополнительный день",
+                "uk": "довгі вихідні, включно з додатковим днем"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-43:i13:p4",
+              "target": "late lunch",
+              "meaningByLocale": {
+                "ru": "поздний обед",
+                "uk": "пізній обід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "busy day",
+            "quiet evening",
+            "long weekend",
+            "late lunch"
+          ],
+          "rightColumn": [
+            "насыщенный делами день",
+            "тихий, спокойный вечер",
+            "длинные выходные, включая дополнительный день",
+            "поздний обед"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i14:audio",
+            "transcript": "We are going to have a quiet evening."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to have a quiet evening.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "have",
+            "a",
+            "quiet",
+            "evening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i15:audio",
+            "transcript": "We are leaving for the long weekend on Friday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are leaving for the long weekend on Friday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "leaving",
+            "for",
+            "the",
+            "long",
+            "weekend",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i16:audio",
+            "transcript": "This evening is quieter than yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This evening is quieter than yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i17:audio",
+            "transcript": "We need two bags of rice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bags of rice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-43:word:busy-day",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — busy day",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:busy-day:audio"
+        ],
+        "accessibilityLabel": "Картка слова — busy day",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:busy-day:audio",
+            "transcript": "busy day"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:busy-day:r1",
+              "targetText": "busy day",
+              "meaningByLocale": {
+                "ru": "насыщенный делами день.",
+                "uk": "насичений справами день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "busy day",
+            "definitionByLocale": {
+              "ru": "насыщенный делами день.",
+              "uk": "насичений справами день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «У нас був такий насичений день».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «У нас був такий насичений день».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had such a busy day.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «У нас был такой насыщенный день».",
+            "uk": "Скажіть із сильним враженням: «У нас був такий насичений день»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "such",
+            "a",
+            "busy",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i02:r1",
+            "text": "We had such a busy day."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i02:r2",
+            "text": "We had so a busy day."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i02:r3",
+            "text": "We had much a busy day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i02:audio",
+            "transcript": "We had such a busy day."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i02:r1",
+              "targetText": "We had such a busy day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i02:r2",
+              "targetText": "We had so a busy day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i02:r3",
+              "targetText": "We had much a busy day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a busy day.",
+                "uk": "У записі звучить We had such a busy day."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a busy day.",
+                "uk": "У записі звучить We had such a busy day."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "We had ___ a busy day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:word:quiet-evening",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — quiet evening",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:quiet-evening:audio"
+        ],
+        "accessibilityLabel": "Картка слова — quiet evening",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:quiet-evening:audio",
+            "transcript": "quiet evening"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:quiet-evening:r1",
+              "targetText": "quiet evening",
+              "meaningByLocale": {
+                "ru": "тихий, спокойный вечер.",
+                "uk": "тихий, спокійний вечір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quiet evening",
+            "definitionByLocale": {
+              "ru": "тихий, спокойный вечер.",
+              "uk": "тихий, спокійний вечір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Цей спокійний вечір такий приємний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Цей спокійний вечір такий приємний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This quiet evening is so nice.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Этот спокойный вечер такой приятный».",
+            "uk": "Скажіть із сильним враженням: «Цей спокійний вечір такий приємний»."
+          },
+          "orderedTokens": [
+            "This",
+            "quiet",
+            "evening",
+            "is",
+            "so",
+            "nice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i05:r1",
+            "text": "This quiet evening is so nice."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i05:r2",
+            "text": "This quiet evening is such nice."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i05:r3",
+            "text": "This quiet evening is much nice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i05:audio",
+            "transcript": "This quiet evening is so nice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i05:r1",
+              "targetText": "This quiet evening is so nice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i05:r2",
+              "targetText": "This quiet evening is such nice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i05:r3",
+              "targetText": "This quiet evening is much nice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This quiet evening is so nice.",
+                "uk": "У записі звучить This quiet evening is so nice."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This quiet evening is so nice.",
+                "uk": "У записі звучить This quiet evening is so nice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This quiet evening is ___ nice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i06:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i06:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:word:long-weekend",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — long weekend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:long-weekend:audio"
+        ],
+        "accessibilityLabel": "Картка слова — long weekend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:long-weekend:audio",
+            "transcript": "long weekend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:long-weekend:r1",
+              "targetText": "long weekend",
+              "meaningByLocale": {
+                "ru": "длинные выходные, включая дополнительный день.",
+                "uk": "довгі вихідні, включно з додатковим днем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "long weekend",
+            "definitionByLocale": {
+              "ru": "длинные выходные, включая дополнительный день.",
+              "uk": "довгі вихідні, включно з додатковим днем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «У нас були такі приємні довгі вихідні».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «У нас були такі приємні довгі вихідні».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had such a lovely long weekend.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «У нас были такие приятные длинные выходные».",
+            "uk": "Скажіть із сильним враженням: «У нас були такі приємні довгі вихідні»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "such",
+            "a",
+            "lovely",
+            "long",
+            "weekend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i08:r1",
+            "text": "We had such a lovely long weekend."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i08:r2",
+            "text": "We had so a lovely long weekend."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i08:r3",
+            "text": "We had much a lovely long weekend."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i08:audio",
+            "transcript": "We had such a lovely long weekend."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i08:r1",
+              "targetText": "We had such a lovely long weekend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i08:r2",
+              "targetText": "We had so a lovely long weekend.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i08:r3",
+              "targetText": "We had much a lovely long weekend.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a lovely long weekend.",
+                "uk": "У записі звучить We had such a lovely long weekend."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a lovely long weekend.",
+                "uk": "У записі звучить We had such a lovely long weekend."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "We had ___ a lovely long weekend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i09:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i09:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:word:late-lunch",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — late lunch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:word:late-lunch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — late lunch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:word:late-lunch:audio",
+            "transcript": "late lunch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:word:late-lunch:r1",
+              "targetText": "late lunch",
+              "meaningByLocale": {
+                "ru": "поздний обед.",
+                "uk": "пізній обід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "late lunch",
+            "definitionByLocale": {
+              "ru": "поздний обед.",
+              "uk": "пізній обід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Цей пізній обід такий смачний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Цей пізній обід такий смачний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This late lunch is so tasty.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Этот поздний обед такой вкусный».",
+            "uk": "Скажіть із сильним враженням: «Цей пізній обід такий смачний»."
+          },
+          "orderedTokens": [
+            "This",
+            "late",
+            "lunch",
+            "is",
+            "so",
+            "tasty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i11:r1",
+            "text": "This late lunch is so tasty."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i11:r2",
+            "text": "This late lunch is such tasty."
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i11:r3",
+            "text": "This late lunch is much tasty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i11:audio",
+            "transcript": "This late lunch is so tasty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-43:i11:r1",
+              "targetText": "This late lunch is so tasty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i11:r2",
+              "targetText": "This late lunch is such tasty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i11:r3",
+              "targetText": "This late lunch is much tasty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This late lunch is so tasty.",
+                "uk": "У записі звучить This late lunch is so tasty."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This late lunch is so tasty.",
+                "uk": "У записі звучить This late lunch is so tasty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-43:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-43:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This late lunch is ___ tasty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-43:i12:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i12:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-43:i13:p1",
+              "target": "busy day",
+              "meaningByLocale": {
+                "ru": "насыщенный делами день",
+                "uk": "насичений справами день"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-43:i13:p2",
+              "target": "quiet evening",
+              "meaningByLocale": {
+                "ru": "тихий, спокойный вечер",
+                "uk": "тихий, спокійний вечір"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-43:i13:p3",
+              "target": "long weekend",
+              "meaningByLocale": {
+                "ru": "длинные выходные, включая дополнительный день",
+                "uk": "довгі вихідні, включно з додатковим днем"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-43:i13:p4",
+              "target": "late lunch",
+              "meaningByLocale": {
+                "ru": "поздний обед",
+                "uk": "пізній обід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "busy day",
+            "quiet evening",
+            "long weekend",
+            "late lunch"
+          ],
+          "rightColumn": [
+            "насичений справами день",
+            "тихий, спокійний вечір",
+            "довгі вихідні, включно з додатковим днем",
+            "пізній обід"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i14:audio",
+            "transcript": "We are going to have a quiet evening."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to have a quiet evening.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "have",
+            "a",
+            "quiet",
+            "evening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i15:audio",
+            "transcript": "We are leaving for the long weekend on Friday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are leaving for the long weekend on Friday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "leaving",
+            "for",
+            "the",
+            "long",
+            "weekend",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i16:audio",
+            "transcript": "This evening is quieter than yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This evening is quieter than yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-43:i17:audio",
+            "transcript": "We need two bags of rice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bags of rice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-43:word:busy-day",
+      "correctText": "busy day",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i01",
+      "correctText": "We had such a busy day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i02",
+      "correctText": "We had such a busy day.",
+      "correctResponseId": "en:lesson-18:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i03",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:word:quiet-evening",
+      "correctText": "quiet evening",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i04",
+      "correctText": "This quiet evening is so nice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i05",
+      "correctText": "This quiet evening is so nice.",
+      "correctResponseId": "en:lesson-18:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i06",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:word:long-weekend",
+      "correctText": "long weekend",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i07",
+      "correctText": "We had such a lovely long weekend.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i08",
+      "correctText": "We had such a lovely long weekend.",
+      "correctResponseId": "en:lesson-18:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i09",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:word:late-lunch",
+      "correctText": "late lunch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i10",
+      "correctText": "This late lunch is so tasty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i11",
+      "correctText": "This late lunch is so tasty.",
+      "correctResponseId": "en:lesson-18:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i12",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i14",
+      "correctText": "We are going to have a quiet evening.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i15",
+      "correctText": "We are leaving for the long weekend on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i16",
+      "correctText": "This evening is quieter than yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:i17",
+      "correctText": "We need two bags of rice.",
+      "correctResponseId": null
+    }
+  ]
+}

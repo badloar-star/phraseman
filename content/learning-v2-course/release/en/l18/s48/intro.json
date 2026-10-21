@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "train delay — задержка поезда. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "train delay — затримка потяга. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-48:intro1:r1",
+              "text": "The train delay is so long."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro1:r2",
+              "text": "The train delay is such long."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro1:r3",
+              "text": "The train delay is much long."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-48:intro1:r1",
+              "text": "The train delay is so long."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro1:r2",
+              "text": "The train delay is such long."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro1:r3",
+              "text": "The train delay is much long."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда называем человека или вещь",
+        "uk": "Коли називаємо людину або річ"
+      },
+      "bodyByLocale": {
+        "ru": "flight delay — задержка рейса. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "flight delay — затримка рейсу. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-48:intro2:r1",
+              "text": "This is such a long flight delay."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro2:r2",
+              "text": "This is so a long flight delay."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro2:r3",
+              "text": "This is a such long flight delay."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-48:intro2:r1",
+              "text": "This is such a long flight delay."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro2:r2",
+              "text": "This is so a long flight delay."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro2:r3",
+              "text": "This is a such long flight delay."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть впечатление",
+        "uk": "Підкреслити враження"
+      },
+      "bodyByLocale": {
+        "ru": "traffic noise — шум транспорта. background noise — фоновый шум. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "traffic noise — шум транспорту. background noise — фоновий шум. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-48:intro3:r1",
+              "text": "There is such loud background noise."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro3:r2",
+              "text": "There is so loud background noise."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro3:r3",
+              "text": "There is such a loud background noise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-48:intro3:r1",
+              "text": "There is such loud background noise."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro3:r2",
+              "text": "There is so loud background noise."
+            },
+            {
+              "responseId": "en:lesson-18:session-48:intro3:r3",
+              "text": "There is such a loud background noise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "73806e4971f4b73624b44738fa99de096381562980558e55588a4476c06f6091"
+}

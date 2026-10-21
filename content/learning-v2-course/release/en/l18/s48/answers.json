@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-48:word:train-delay",
+    "correctText": "train delay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i01",
+    "correctText": "The train delay is so long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i02",
+    "correctText": "The train delay is so long.",
+    "correctResponseId": "en:lesson-18:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:word:flight-delay",
+    "correctText": "flight delay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i04",
+    "correctText": "This is such a long flight delay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i05",
+    "correctText": "This is such a long flight delay.",
+    "correctResponseId": "en:lesson-18:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:word:traffic-noise",
+    "correctText": "traffic noise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i07",
+    "correctText": "The traffic noise is so loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i08",
+    "correctText": "The traffic noise is so loud.",
+    "correctResponseId": "en:lesson-18:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:word:background-noise",
+    "correctText": "background noise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i10",
+    "correctText": "There is such loud background noise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i11",
+    "correctText": "There is such loud background noise.",
+    "correctResponseId": "en:lesson-18:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i13",
+    "correctText": "en:lesson-18:session-48:i13:p1=train delay\nen:lesson-18:session-48:i13:p2=flight delay\nen:lesson-18:session-48:i13:p3=traffic noise\nen:lesson-18:session-48:i13:p4=background noise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i14",
+    "correctText": "We are going to ask about the train delay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i15",
+    "correctText": "We are meeting at the station at four.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i16",
+    "correctText": "This flight delay is longer than the last one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-48:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-44:word:good-mood",
+    "correctText": "good mood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i01",
+    "correctText": "I am in such a good mood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i02",
+    "correctText": "I am in such a good mood.",
+    "correctResponseId": "en:lesson-18:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:word:bad-mood",
+    "correctText": "bad mood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i04",
+    "correctText": "He is in such a bad mood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i05",
+    "correctText": "He is in such a bad mood.",
+    "correctResponseId": "en:lesson-18:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:word:high-hopes",
+    "correctText": "high hopes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i07",
+    "correctText": "We have such high hopes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i08",
+    "correctText": "We have such high hopes.",
+    "correctResponseId": "en:lesson-18:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:word:mixed-feelings",
+    "correctText": "mixed feelings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i10",
+    "correctText": "I have such mixed feelings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i11",
+    "correctText": "I have such mixed feelings.",
+    "correctResponseId": "en:lesson-18:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i13",
+    "correctText": "en:lesson-18:session-44:i13:p1=good mood\nen:lesson-18:session-44:i13:p2=bad mood\nen:lesson-18:session-44:i13:p3=high hopes\nen:lesson-18:session-44:i13:p4=mixed feelings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i14",
+    "correctText": "We are going to discuss our mixed feelings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i15",
+    "correctText": "We are meeting our friends at six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i16",
+    "correctText": "This room is quieter than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-44:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

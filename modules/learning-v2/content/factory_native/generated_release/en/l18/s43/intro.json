@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "busy day — насыщенный делами день. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "busy day — насичений справами день. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-43:intro1:r1",
+              "text": "We had such a busy day."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro1:r2",
+              "text": "We had so a busy day."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro1:r3",
+              "text": "We had a such busy day."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-43:intro1:r1",
+              "text": "We had such a busy day."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro1:r2",
+              "text": "We had so a busy day."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro1:r3",
+              "text": "We had a such busy day."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда называем человека или вещь",
+        "uk": "Коли називаємо людину або річ"
+      },
+      "bodyByLocale": {
+        "ru": "quiet evening — тихий, спокойный вечер. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "quiet evening — тихий, спокійний вечір. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-43:intro2:r1",
+              "text": "This quiet evening is so nice."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro2:r2",
+              "text": "This quiet evening is such nice."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro2:r3",
+              "text": "This quiet evening is much nice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-43:intro2:r1",
+              "text": "This quiet evening is so nice."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro2:r2",
+              "text": "This quiet evening is such nice."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro2:r3",
+              "text": "This quiet evening is much nice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть впечатление",
+        "uk": "Підкреслити враження"
+      },
+      "bodyByLocale": {
+        "ru": "long weekend — длинные выходные, включая дополнительный день. late lunch — поздний обед. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "long weekend — довгі вихідні, включно з додатковим днем. late lunch — пізній обід. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-43:intro3:r1",
+              "text": "This late lunch is so tasty."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro3:r2",
+              "text": "This late lunch is such tasty."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro3:r3",
+              "text": "This late lunch is much tasty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-43:intro3:r1",
+              "text": "This late lunch is so tasty."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro3:r2",
+              "text": "This late lunch is such tasty."
+            },
+            {
+              "responseId": "en:lesson-18:session-43:intro3:r3",
+              "text": "This late lunch is much tasty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ddecf268dbe18133b18a17b2a8764ebbec598a0e86bd429c740c2aaf0a11dc8"
+}

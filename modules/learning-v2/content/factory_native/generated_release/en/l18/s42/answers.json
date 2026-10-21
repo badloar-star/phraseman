@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-42:word:light-lunch",
+    "correctText": "light lunch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i01",
+    "correctText": "This light lunch is so fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i02",
+    "correctText": "This light lunch is so fresh.",
+    "correctResponseId": "en:lesson-18:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:word:big-breakfast",
+    "correctText": "big breakfast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i04",
+    "correctText": "We had such a big breakfast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i05",
+    "correctText": "We had such a big breakfast.",
+    "correctResponseId": "en:lesson-18:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:word:quick-snack",
+    "correctText": "quick snack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i07",
+    "correctText": "A quick snack is so useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i08",
+    "correctText": "A quick snack is so useful.",
+    "correctResponseId": "en:lesson-18:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:word:hot-drink",
+    "correctText": "hot drink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i10",
+    "correctText": "This is such a nice hot drink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i11",
+    "correctText": "This is such a nice hot drink.",
+    "correctResponseId": "en:lesson-18:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i13",
+    "correctText": "en:lesson-18:session-42:i13:p1=light lunch\nen:lesson-18:session-42:i13:p2=big breakfast\nen:lesson-18:session-42:i13:p3=quick snack\nen:lesson-18:session-42:i13:p4=hot drink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i14",
+    "correctText": "We are going to have a light lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i15",
+    "correctText": "We are having breakfast together at nine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i16",
+    "correctText": "This hot drink is sweeter than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-42:i17",
+    "correctText": "We need two cartons of milk.",
+    "correctResponseId": null
+  }
+]

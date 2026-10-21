@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-46:word:job-advert",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — job advert",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:word:job-advert:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — job advert",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:word:job-advert:audio",
+          "transcript": "job advert"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:word:job-advert:r1",
+            "targetText": "job advert",
+            "meaningByLocale": {
+              "ru": "объявление о работе.",
+              "uk": "оголошення про роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "job advert",
+          "definitionByLocale": {
+            "ru": "объявление о работе.",
+            "uk": "оголошення про роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Это объявление о работе такое понятное».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Это объявление о работе такое понятное».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This job advert is so clear.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это объявление о работе такое понятное».",
+          "uk": "Скажіть із сильним враженням: «Це оголошення про роботу таке зрозуміле»."
+        },
+        "orderedTokens": [
+          "This",
+          "job",
+          "advert",
+          "is",
+          "so",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i02:r1",
+          "text": "This job advert is so clear."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i02:r2",
+          "text": "This job advert is such clear."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i02:r3",
+          "text": "This job advert is much clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i02:audio",
+          "transcript": "This job advert is so clear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:i02:r1",
+            "targetText": "This job advert is so clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i02:r2",
+            "targetText": "This job advert is such clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i02:r3",
+            "targetText": "This job advert is much clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This job advert is so clear.",
+              "uk": "У записі звучить This job advert is so clear."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This job advert is so clear.",
+              "uk": "У записі звучить This job advert is so clear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This job advert is ___ clear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-46:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:word:job-vacancy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — job vacancy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:word:job-vacancy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — job vacancy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:word:job-vacancy:audio",
+          "transcript": "job vacancy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:word:job-vacancy:r1",
+            "targetText": "job vacancy",
+            "meaningByLocale": {
+              "ru": "свободное рабочее место, вакансия.",
+              "uk": "вільне робоче місце, вакансія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "job vacancy",
+          "definitionByLocale": {
+            "ru": "свободное рабочее место, вакансия.",
+            "uk": "вільне робоче місце, вакансія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Это такая интересная вакансия».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Это такая интересная вакансия».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is such an interesting job vacancy.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такая интересная вакансия».",
+          "uk": "Скажіть із сильним враженням: «Це така цікава вакансія»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "such",
+          "an",
+          "interesting",
+          "job",
+          "vacancy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i05:r1",
+          "text": "This is such an interesting job vacancy."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i05:r2",
+          "text": "This is so an interesting job vacancy."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i05:r3",
+          "text": "This is much an interesting job vacancy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i05:audio",
+          "transcript": "This is such an interesting job vacancy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:i05:r1",
+            "targetText": "This is such an interesting job vacancy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i05:r2",
+            "targetText": "This is so an interesting job vacancy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i05:r3",
+            "targetText": "This is much an interesting job vacancy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such an interesting job vacancy.",
+              "uk": "У записі звучить This is such an interesting job vacancy."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such an interesting job vacancy.",
+              "uk": "У записі звучить This is such an interesting job vacancy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This is ___ an interesting job vacancy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-46:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:word:working-hours",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — working hours",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:word:working-hours:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — working hours",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:word:working-hours:audio",
+          "transcript": "working hours"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:word:working-hours:r1",
+            "targetText": "working hours",
+            "meaningByLocale": {
+              "ru": "рабочие часы.",
+              "uk": "робочі години."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "working hours",
+          "definitionByLocale": {
+            "ru": "рабочие часы.",
+            "uk": "робочі години."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Рабочие часы такие долгие».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Рабочие часы такие долгие».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The working hours are so long.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Рабочие часы такие долгие».",
+          "uk": "Скажіть із сильним враженням: «Робочі години такі довгі»."
+        },
+        "orderedTokens": [
+          "The",
+          "working",
+          "hours",
+          "are",
+          "so",
+          "long"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i08:r1",
+          "text": "The working hours are so long."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i08:r2",
+          "text": "The working hours are such long."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i08:r3",
+          "text": "The working hours are much long."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i08:audio",
+          "transcript": "The working hours are so long."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:i08:r1",
+            "targetText": "The working hours are so long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i08:r2",
+            "targetText": "The working hours are such long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i08:r3",
+            "targetText": "The working hours are much long.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The working hours are so long.",
+              "uk": "У записі звучить The working hours are so long."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The working hours are so long.",
+              "uk": "У записі звучить The working hours are so long."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "The working hours are ___ long.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-46:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:word:annual-leave",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — annual leave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:word:annual-leave:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — annual leave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:word:annual-leave:audio",
+          "transcript": "annual leave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:word:annual-leave:r1",
+            "targetText": "annual leave",
+            "meaningByLocale": {
+              "ru": "ежегодный отпуск.",
+              "uk": "щорічна відпустка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "annual leave",
+          "definitionByLocale": {
+            "ru": "ежегодный отпуск.",
+            "uk": "щорічна відпустка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Мой ежегодный отпуск такой короткий».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Мой ежегодный отпуск такой короткий».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My annual leave is so short.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Мой ежегодный отпуск такой короткий».",
+          "uk": "Скажіть із сильним враженням: «Моя щорічна відпустка така коротка»."
+        },
+        "orderedTokens": [
+          "My",
+          "annual",
+          "leave",
+          "is",
+          "so",
+          "short"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i11:r1",
+          "text": "My annual leave is so short."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i11:r2",
+          "text": "My annual leave is such short."
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i11:r3",
+          "text": "My annual leave is much short."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i11:audio",
+          "transcript": "My annual leave is so short."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-46:i11:r1",
+            "targetText": "My annual leave is so short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i11:r2",
+            "targetText": "My annual leave is such short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i11:r3",
+            "targetText": "My annual leave is much short.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My annual leave is so short.",
+              "uk": "У записі звучить My annual leave is so short."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My annual leave is so short.",
+              "uk": "У записі звучить My annual leave is so short."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-46:i12:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i12:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-46:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "My annual leave is ___ short.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-46:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-46:i13:p1",
+            "target": "job advert",
+            "meaningByLocale": {
+              "ru": "объявление о работе",
+              "uk": "оголошення про роботу"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-46:i13:p2",
+            "target": "job vacancy",
+            "meaningByLocale": {
+              "ru": "свободное рабочее место, вакансия",
+              "uk": "вільне робоче місце, вакансія"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-46:i13:p3",
+            "target": "working hours",
+            "meaningByLocale": {
+              "ru": "рабочие часы",
+              "uk": "робочі години"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-46:i13:p4",
+            "target": "annual leave",
+            "meaningByLocale": {
+              "ru": "ежегодный отпуск",
+              "uk": "щорічна відпустка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "job advert",
+          "job vacancy",
+          "working hours",
+          "annual leave"
+        ],
+        "rightColumn": [
+          "объявление о работе",
+          "свободное рабочее место, вакансия",
+          "рабочие часы",
+          "ежегодный отпуск"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i14:audio",
+          "transcript": "We are going to read the job advert."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to read the job advert.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "read",
+          "the",
+          "job",
+          "advert"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i15:audio",
+          "transcript": "We are meeting at the office tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the office tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "office",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i16:audio",
+          "transcript": "My annual leave is shorter than yours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My annual leave is shorter than yours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-46:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3b49493a14533ebb700a1edffabc6073ee4e177f85496a961ce8fb83e1549b0"
+}

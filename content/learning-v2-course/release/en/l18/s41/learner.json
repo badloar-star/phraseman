@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-41:word:short-break",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — short break",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:word:short-break:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — short break",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:word:short-break:audio",
+          "transcript": "short break"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:word:short-break:r1",
+            "targetText": "short break",
+            "meaningByLocale": {
+              "ru": "короткий перерыв.",
+              "uk": "коротка перерва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "short break",
+          "definitionByLocale": {
+            "ru": "короткий перерыв.",
+            "uk": "коротка перерва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Этот короткий перерыв так кстати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Этот короткий перерыв так кстати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This short break is so welcome.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Этот короткий перерыв так кстати».",
+          "uk": "Скажіть із сильним враженням: «Ця коротка перерва така доречна»."
+        },
+        "orderedTokens": [
+          "This",
+          "short",
+          "break",
+          "is",
+          "so",
+          "welcome"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i02:r1",
+          "text": "This short break is so welcome."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i02:r2",
+          "text": "This short break is such welcome."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i02:r3",
+          "text": "This short break is much welcome."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i02:audio",
+          "transcript": "This short break is so welcome."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:i02:r1",
+            "targetText": "This short break is so welcome.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i02:r2",
+            "targetText": "This short break is such welcome.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i02:r3",
+            "targetText": "This short break is much welcome.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This short break is so welcome.",
+              "uk": "У записі звучить This short break is so welcome."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This short break is so welcome.",
+              "uk": "У записі звучить This short break is so welcome."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This short break is ___ welcome.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-41:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:word:quick-shower",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quick shower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:word:quick-shower:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quick shower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:word:quick-shower:audio",
+          "transcript": "quick shower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:word:quick-shower:r1",
+            "targetText": "quick shower",
+            "meaningByLocale": {
+              "ru": "быстрый душ.",
+              "uk": "швидкий душ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quick shower",
+          "definitionByLocale": {
+            "ru": "быстрый душ.",
+            "uk": "швидкий душ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Быстрый душ — такая хорошая идея».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Быстрый душ — такая хорошая идея».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A quick shower is such a good idea.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Быстрый душ — такая хорошая идея».",
+          "uk": "Скажіть із сильним враженням: «Швидкий душ — така добра ідея»."
+        },
+        "orderedTokens": [
+          "A",
+          "quick",
+          "shower",
+          "is",
+          "such",
+          "a",
+          "good",
+          "idea"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i05:r1",
+          "text": "A quick shower is such a good idea."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i05:r2",
+          "text": "A quick shower is so a good idea."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i05:r3",
+          "text": "A quick shower is much a good idea."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i05:audio",
+          "transcript": "A quick shower is such a good idea."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:i05:r1",
+            "targetText": "A quick shower is such a good idea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i05:r2",
+            "targetText": "A quick shower is so a good idea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i05:r3",
+            "targetText": "A quick shower is much a good idea.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A quick shower is such a good idea.",
+              "uk": "У записі звучить A quick shower is such a good idea."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A quick shower is such a good idea.",
+              "uk": "У записі звучить A quick shower is such a good idea."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "A quick shower is ___ a good idea.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-41:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:word:early-start",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — early start",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:word:early-start:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — early start",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:word:early-start:audio",
+          "transcript": "early start"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:word:early-start:r1",
+            "targetText": "early start",
+            "meaningByLocale": {
+              "ru": "раннее начало дня или дела.",
+              "uk": "ранній початок дня або справи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "early start",
+          "definitionByLocale": {
+            "ru": "раннее начало дня или дела.",
+            "uk": "ранній початок дня або справи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Раннее начало дня даётся так тяжело».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Раннее начало дня даётся так тяжело».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The early start is so difficult.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Раннее начало дня даётся так тяжело».",
+          "uk": "Скажіть із сильним враженням: «Ранній початок дня дається так важко»."
+        },
+        "orderedTokens": [
+          "The",
+          "early",
+          "start",
+          "is",
+          "so",
+          "difficult"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i08:r1",
+          "text": "The early start is so difficult."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i08:r2",
+          "text": "The early start is such difficult."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i08:r3",
+          "text": "The early start is much difficult."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i08:audio",
+          "transcript": "The early start is so difficult."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:i08:r1",
+            "targetText": "The early start is so difficult.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i08:r2",
+            "targetText": "The early start is such difficult.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i08:r3",
+            "targetText": "The early start is much difficult.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The early start is so difficult.",
+              "uk": "У записі звучить The early start is so difficult."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The early start is so difficult.",
+              "uk": "У записі звучить The early start is so difficult."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "The early start is ___ difficult.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-41:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:word:late-night",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — late night",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:word:late-night:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — late night",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:word:late-night:audio",
+          "transcript": "late night"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:word:late-night:r1",
+            "targetText": "late night",
+            "meaningByLocale": {
+              "ru": "поздний отход ко сну, вечер допоздна.",
+              "uk": "пізнє засинання, вечір допізна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "late night",
+          "definitionByLocale": {
+            "ru": "поздний отход ко сну, вечер допоздна.",
+            "uk": "пізнє засинання, вечір допізна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Мы так поздно легли».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Мы так поздно легли».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We had such a late night.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Мы так поздно легли».",
+          "uk": "Скажіть із сильним враженням: «Ми так пізно лягли»."
+        },
+        "orderedTokens": [
+          "We",
+          "had",
+          "such",
+          "a",
+          "late",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i11:r1",
+          "text": "We had such a late night."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i11:r2",
+          "text": "We had so a late night."
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i11:r3",
+          "text": "We had much a late night."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i11:audio",
+          "transcript": "We had such a late night."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-41:i11:r1",
+            "targetText": "We had such a late night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i11:r2",
+            "targetText": "We had so a late night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i11:r3",
+            "targetText": "We had much a late night.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had such a late night.",
+              "uk": "У записі звучить We had such a late night."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had such a late night.",
+              "uk": "У записі звучить We had such a late night."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-41:i12:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i12:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-41:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "We had ___ a late night.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-41:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-41:i13:p1",
+            "target": "short break",
+            "meaningByLocale": {
+              "ru": "короткий перерыв",
+              "uk": "коротка перерва"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-41:i13:p2",
+            "target": "quick shower",
+            "meaningByLocale": {
+              "ru": "быстрый душ",
+              "uk": "швидкий душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-41:i13:p3",
+            "target": "early start",
+            "meaningByLocale": {
+              "ru": "раннее начало дня или дела",
+              "uk": "ранній початок дня або справи"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-41:i13:p4",
+            "target": "late night",
+            "meaningByLocale": {
+              "ru": "поздний отход ко сну, вечер допоздна",
+              "uk": "пізнє засинання, вечір допізна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "short break",
+          "quick shower",
+          "early start",
+          "late night"
+        ],
+        "rightColumn": [
+          "короткий перерыв",
+          "быстрый душ",
+          "раннее начало дня или дела",
+          "поздний отход ко сну, вечер допоздна"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i14:audio",
+          "transcript": "We are going to take a short break."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to take a short break.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "take",
+          "a",
+          "short",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i15:audio",
+          "transcript": "We are meeting at eight tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at eight tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "eight",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i16:audio",
+          "transcript": "This break is longer than the last one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This break is longer than the last one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-41:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "546fc1ed64886c4eb316113195992295b5c46e810454eeadc1d3092e9e3cbfae"
+}

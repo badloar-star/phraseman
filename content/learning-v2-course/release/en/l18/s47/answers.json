@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-47:word:food-poisoning",
+    "correctText": "food poisoning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i01",
+    "correctText": "The food poisoning was so bad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i02",
+    "correctText": "The food poisoning was so bad.",
+    "correctResponseId": "en:lesson-18:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:word:hay-fever",
+    "correctText": "hay fever",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i04",
+    "correctText": "This hay fever is so annoying.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i05",
+    "correctText": "This hay fever is so annoying.",
+    "correctResponseId": "en:lesson-18:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:word:travel-sickness",
+    "correctText": "travel sickness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i07",
+    "correctText": "Travel sickness is such a problem for me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i08",
+    "correctText": "Travel sickness is such a problem for me.",
+    "correctResponseId": "en:lesson-18:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:word:chest-pain",
+    "correctText": "chest pain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i10",
+    "correctText": "The chest pain is so bad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i11",
+    "correctText": "The chest pain is so bad.",
+    "correctResponseId": "en:lesson-18:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i13",
+    "correctText": "en:lesson-18:session-47:i13:p1=food poisoning\nen:lesson-18:session-47:i13:p2=hay fever\nen:lesson-18:session-47:i13:p3=travel sickness\nen:lesson-18:session-47:i13:p4=chest pain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i14",
+    "correctText": "I am going to tell the doctor about the chest pain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i15",
+    "correctText": "I am seeing the doctor at ten.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i16",
+    "correctText": "This room is warmer than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-47:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

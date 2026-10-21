@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-43:intro1:r2": {
+          "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+          "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+        },
+        "en:lesson-18:session-43:intro1:r3": {
+          "ru": "Порядок: such a, не a such.",
+          "uk": "Порядок: such a, не a such."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-43:intro2:r2": {
+          "ru": "После пропуска прилагательное без существительного: so.",
+          "uk": "Після пропуску прикметник без іменника: so."
+        },
+        "en:lesson-18:session-43:intro2:r3": {
+          "ru": "Перед обычным прилагательным здесь нужно so, не much.",
+          "uk": "Перед звичайним прикметником тут потрібне so, не much."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-43:intro3:r2": {
+          "ru": "После пропуска прилагательное без существительного: so.",
+          "uk": "Після пропуску прикметник без іменника: so."
+        },
+        "en:lesson-18:session-43:intro3:r3": {
+          "ru": "Перед обычным прилагательным здесь нужно so, не much.",
+          "uk": "Перед звичайним прикметником тут потрібне so, не much."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1550cefe588b841066915a818747519ebb4ccbb94cfcb8a0ac075966134e4312"
+}

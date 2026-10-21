@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-44:word:good-mood",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — good mood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:word:good-mood:audio"
+      ],
+      "accessibilityLabel": "Картка слова — good mood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:word:good-mood:audio",
+          "transcript": "good mood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:word:good-mood:r1",
+            "targetText": "good mood",
+            "meaningByLocale": {
+              "ru": "хорошее настроение.",
+              "uk": "гарний настрій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "good mood",
+          "definitionByLocale": {
+            "ru": "хорошее настроение.",
+            "uk": "гарний настрій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «У мене такий гарний настрій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «У мене такий гарний настрій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am in such a good mood.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «У меня такое хорошее настроение».",
+          "uk": "Скажіть із сильним враженням: «У мене такий гарний настрій»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "in",
+          "such",
+          "a",
+          "good",
+          "mood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i02:r1",
+          "text": "I am in such a good mood."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i02:r2",
+          "text": "I am in so a good mood."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i02:r3",
+          "text": "I am in much a good mood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i02:audio",
+          "transcript": "I am in such a good mood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:i02:r1",
+            "targetText": "I am in such a good mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i02:r2",
+            "targetText": "I am in so a good mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i02:r3",
+            "targetText": "I am in much a good mood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am in such a good mood.",
+              "uk": "У записі звучить I am in such a good mood."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am in such a good mood.",
+              "uk": "У записі звучить I am in such a good mood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i03:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i03:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "I am in ___ a good mood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-44:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:word:bad-mood",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bad mood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:word:bad-mood:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bad mood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:word:bad-mood:audio",
+          "transcript": "bad mood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:word:bad-mood:r1",
+            "targetText": "bad mood",
+            "meaningByLocale": {
+              "ru": "плохое настроение.",
+              "uk": "поганий настрій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bad mood",
+          "definitionByLocale": {
+            "ru": "плохое настроение.",
+            "uk": "поганий настрій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «У нього такий поганий настрій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «У нього такий поганий настрій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is in such a bad mood.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «У него такое плохое настроение».",
+          "uk": "Скажіть із сильним враженням: «У нього такий поганий настрій»."
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "in",
+          "such",
+          "a",
+          "bad",
+          "mood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i05:r1",
+          "text": "He is in such a bad mood."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i05:r2",
+          "text": "He is in so a bad mood."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i05:r3",
+          "text": "He is in much a bad mood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i05:audio",
+          "transcript": "He is in such a bad mood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:i05:r1",
+            "targetText": "He is in such a bad mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i05:r2",
+            "targetText": "He is in so a bad mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i05:r3",
+            "targetText": "He is in much a bad mood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is in such a bad mood.",
+              "uk": "У записі звучить He is in such a bad mood."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is in such a bad mood.",
+              "uk": "У записі звучить He is in such a bad mood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "He is in ___ a bad mood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-44:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:word:high-hopes",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — high hopes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:word:high-hopes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — high hopes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:word:high-hopes:audio",
+          "transcript": "high hopes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:word:high-hopes:r1",
+            "targetText": "high hopes",
+            "meaningByLocale": {
+              "ru": "большие надежды.",
+              "uk": "великі надії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "high hopes",
+          "definitionByLocale": {
+            "ru": "большие надежды.",
+            "uk": "великі надії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «У нас такі великі надії».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «У нас такі великі надії».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have such high hopes.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «У нас такие большие надежды».",
+          "uk": "Скажіть із сильним враженням: «У нас такі великі надії»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "such",
+          "high",
+          "hopes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i08:r1",
+          "text": "We have such high hopes."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i08:r2",
+          "text": "We have so high hopes."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i08:r3",
+          "text": "We have much high hopes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i08:audio",
+          "transcript": "We have such high hopes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:i08:r1",
+            "targetText": "We have such high hopes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i08:r2",
+            "targetText": "We have so high hopes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i08:r3",
+            "targetText": "We have much high hopes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have such high hopes.",
+              "uk": "У записі звучить We have such high hopes."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have such high hopes.",
+              "uk": "У записі звучить We have such high hopes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i09:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i09:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "We have ___ high hopes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-44:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь множественное число: such без a.",
+              "uk": "Тут множина: such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:word:mixed-feelings",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mixed feelings",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:word:mixed-feelings:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mixed feelings",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:word:mixed-feelings:audio",
+          "transcript": "mixed feelings"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:word:mixed-feelings:r1",
+            "targetText": "mixed feelings",
+            "meaningByLocale": {
+              "ru": "смешанные чувства.",
+              "uk": "змішані почуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mixed feelings",
+          "definitionByLocale": {
+            "ru": "смешанные чувства.",
+            "uk": "змішані почуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «У мене такі змішані почуття».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «У мене такі змішані почуття».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have such mixed feelings.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «У меня такие смешанные чувства».",
+          "uk": "Скажіть із сильним враженням: «У мене такі змішані почуття»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "such",
+          "mixed",
+          "feelings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i11:r1",
+          "text": "I have such mixed feelings."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i11:r2",
+          "text": "I have so mixed feelings."
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i11:r3",
+          "text": "I have much mixed feelings."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i11:audio",
+          "transcript": "I have such mixed feelings."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-44:i11:r1",
+            "targetText": "I have such mixed feelings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i11:r2",
+            "targetText": "I have so mixed feelings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i11:r3",
+            "targetText": "I have much mixed feelings.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have such mixed feelings.",
+              "uk": "У записі звучить I have such mixed feelings."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have such mixed feelings.",
+              "uk": "У записі звучить I have such mixed feelings."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-44:i12:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i12:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-44:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "I have ___ mixed feelings.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-44:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь множественное число: such без a.",
+              "uk": "Тут множина: such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-44:i13:p1",
+            "target": "good mood",
+            "meaningByLocale": {
+              "ru": "хорошее настроение",
+              "uk": "гарний настрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-44:i13:p2",
+            "target": "bad mood",
+            "meaningByLocale": {
+              "ru": "плохое настроение",
+              "uk": "поганий настрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-44:i13:p3",
+            "target": "high hopes",
+            "meaningByLocale": {
+              "ru": "большие надежды",
+              "uk": "великі надії"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-44:i13:p4",
+            "target": "mixed feelings",
+            "meaningByLocale": {
+              "ru": "смешанные чувства",
+              "uk": "змішані почуття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "good mood",
+          "bad mood",
+          "high hopes",
+          "mixed feelings"
+        ],
+        "rightColumn": [
+          "гарний настрій",
+          "поганий настрій",
+          "великі надії",
+          "змішані почуття"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i14:audio",
+          "transcript": "We are going to discuss our mixed feelings."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to discuss our mixed feelings.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "discuss",
+          "our",
+          "mixed",
+          "feelings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i15:audio",
+          "transcript": "We are meeting our friends at six."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting our friends at six.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "our",
+          "friends",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i16:audio",
+          "transcript": "This room is quieter than that one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This room is quieter than that one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-44:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1b9e5e7513b45d1b20b36551768011cecc1e0b3886eb9a844615267295c76a27"
+}

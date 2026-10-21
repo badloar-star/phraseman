@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "good mood — хорошее настроение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "good mood — гарний настрій. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-44:intro1:r1",
+              "text": "I am in such a good mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro1:r2",
+              "text": "I am in so a good mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro1:r3",
+              "text": "I am in a such good mood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-44:intro1:r1",
+              "text": "I am in such a good mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro1:r2",
+              "text": "I am in so a good mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro1:r3",
+              "text": "I am in a such good mood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда называем человека или вещь",
+        "uk": "Коли називаємо людину або річ"
+      },
+      "bodyByLocale": {
+        "ru": "bad mood — плохое настроение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "bad mood — поганий настрій. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-44:intro2:r1",
+              "text": "He is in such a bad mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro2:r2",
+              "text": "He is in so a bad mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro2:r3",
+              "text": "He is in a such bad mood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-44:intro2:r1",
+              "text": "He is in such a bad mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro2:r2",
+              "text": "He is in so a bad mood."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro2:r3",
+              "text": "He is in a such bad mood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть впечатление",
+        "uk": "Підкреслити враження"
+      },
+      "bodyByLocale": {
+        "ru": "high hopes — большие надежды. mixed feelings — смешанные чувства. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "high hopes — великі надії. mixed feelings — змішані почуття. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-44:intro3:r1",
+              "text": "I have such mixed feelings."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro3:r2",
+              "text": "I have so mixed feelings."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro3:r3",
+              "text": "I have such a mixed feelings."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-44:intro3:r1",
+              "text": "I have such mixed feelings."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro3:r2",
+              "text": "I have so mixed feelings."
+            },
+            {
+              "responseId": "en:lesson-18:session-44:intro3:r3",
+              "text": "I have such a mixed feelings."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1bfcd54c54de7b75e34b45245ab7a9ba6ccf275e4bb455c6b5b6c53943b40cf0"
+}

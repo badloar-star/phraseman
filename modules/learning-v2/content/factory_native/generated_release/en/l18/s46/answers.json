@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-46:word:job-advert",
+    "correctText": "job advert",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i01",
+    "correctText": "This job advert is so clear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i02",
+    "correctText": "This job advert is so clear.",
+    "correctResponseId": "en:lesson-18:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:word:job-vacancy",
+    "correctText": "job vacancy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i04",
+    "correctText": "This is such an interesting job vacancy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i05",
+    "correctText": "This is such an interesting job vacancy.",
+    "correctResponseId": "en:lesson-18:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:word:working-hours",
+    "correctText": "working hours",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i07",
+    "correctText": "The working hours are so long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i08",
+    "correctText": "The working hours are so long.",
+    "correctResponseId": "en:lesson-18:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:word:annual-leave",
+    "correctText": "annual leave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i10",
+    "correctText": "My annual leave is so short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i11",
+    "correctText": "My annual leave is so short.",
+    "correctResponseId": "en:lesson-18:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i13",
+    "correctText": "en:lesson-18:session-46:i13:p1=job advert\nen:lesson-18:session-46:i13:p2=job vacancy\nen:lesson-18:session-46:i13:p3=working hours\nen:lesson-18:session-46:i13:p4=annual leave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i14",
+    "correctText": "We are going to read the job advert.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i15",
+    "correctText": "We are meeting at the office tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i16",
+    "correctText": "My annual leave is shorter than yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-46:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

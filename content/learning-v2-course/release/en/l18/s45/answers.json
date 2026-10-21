@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-45:word:first-impression",
+    "correctText": "first impression",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i01",
+    "correctText": "You made such a good first impression.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i02",
+    "correctText": "You made such a good first impression.",
+    "correctResponseId": "en:lesson-18:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:word:second-chance",
+    "correctText": "second chance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i04",
+    "correctText": "A second chance is so helpful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i05",
+    "correctText": "A second chance is so helpful.",
+    "correctResponseId": "en:lesson-18:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:word:last-chance",
+    "correctText": "last chance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i07",
+    "correctText": "This last chance is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i08",
+    "correctText": "This last chance is so important.",
+    "correctResponseId": "en:lesson-18:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:word:good-reason",
+    "correctText": "good reason",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i10",
+    "correctText": "You have such a good reason.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i11",
+    "correctText": "You have such a good reason.",
+    "correctResponseId": "en:lesson-18:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i13",
+    "correctText": "en:lesson-18:session-45:i13:p1=first impression\nen:lesson-18:session-45:i13:p2=second chance\nen:lesson-18:session-45:i13:p3=last chance\nen:lesson-18:session-45:i13:p4=good reason",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i14",
+    "correctText": "We are going to give him a second chance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i15",
+    "correctText": "We are meeting him on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i16",
+    "correctText": "This room is larger than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-45:i17",
+    "correctText": "We need two cartons of juice.",
+    "correctResponseId": null
+  }
+]

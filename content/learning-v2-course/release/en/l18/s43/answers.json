@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-43:word:busy-day",
+    "correctText": "busy day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i01",
+    "correctText": "We had such a busy day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i02",
+    "correctText": "We had such a busy day.",
+    "correctResponseId": "en:lesson-18:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:word:quiet-evening",
+    "correctText": "quiet evening",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i04",
+    "correctText": "This quiet evening is so nice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i05",
+    "correctText": "This quiet evening is so nice.",
+    "correctResponseId": "en:lesson-18:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:word:long-weekend",
+    "correctText": "long weekend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i07",
+    "correctText": "We had such a lovely long weekend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i08",
+    "correctText": "We had such a lovely long weekend.",
+    "correctResponseId": "en:lesson-18:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:word:late-lunch",
+    "correctText": "late lunch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i10",
+    "correctText": "This late lunch is so tasty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i11",
+    "correctText": "This late lunch is so tasty.",
+    "correctResponseId": "en:lesson-18:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i13",
+    "correctText": "en:lesson-18:session-43:i13:p1=busy day\nen:lesson-18:session-43:i13:p2=quiet evening\nen:lesson-18:session-43:i13:p3=long weekend\nen:lesson-18:session-43:i13:p4=late lunch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i14",
+    "correctText": "We are going to have a quiet evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i15",
+    "correctText": "We are leaving for the long weekend on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i16",
+    "correctText": "This evening is quieter than yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-43:i17",
+    "correctText": "We need two bags of rice.",
+    "correctResponseId": null
+  }
+]

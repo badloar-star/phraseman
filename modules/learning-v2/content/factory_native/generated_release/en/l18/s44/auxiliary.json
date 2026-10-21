@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-44:intro1:r2": {
+          "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+          "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+        },
+        "en:lesson-18:session-44:intro1:r3": {
+          "ru": "Порядок: such a, не a such.",
+          "uk": "Порядок: such a, не a such."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-44:intro2:r2": {
+          "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+          "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+        },
+        "en:lesson-18:session-44:intro2:r3": {
+          "ru": "Порядок: such a, не a such.",
+          "uk": "Порядок: such a, не a such."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-44:intro3:r2": {
+          "ru": "Здесь множественное число: such без a.",
+          "uk": "Тут множина: such без a."
+        },
+        "en:lesson-18:session-44:intro3:r3": {
+          "ru": "Перед существительным во множественном числе артикль a не нужен.",
+          "uk": "Перед іменником у множині артикль a не потрібен."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4de9f7ecb583369258573f565a8d521eadfb03854539303a629f9a74df414b2d"
+}

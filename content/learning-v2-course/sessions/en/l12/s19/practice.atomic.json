@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-19:word:compete",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — compete",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:compete:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — compete",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:compete:audio",
+            "transcript": "compete"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:compete:r1",
+              "targetText": "compete",
+              "meaningByLocale": {
+                "ru": "соревноваться.",
+                "uk": "змагатися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compete",
+            "definitionByLocale": {
+              "ru": "соревноваться.",
+              "uk": "змагатися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я хочу соревноваться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я хочу соревноваться",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to compete.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я хочу соревноваться",
+            "uk": "Скажіть: Я хочу змагатися"
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "compete"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i02:r1",
+            "text": "She competed yesterday."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i02:r2",
+            "text": "She competes every day."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i02:r3",
+            "text": "We competed yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i02:audio",
+            "transcript": "She competed yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i02:r1",
+              "targetText": "She competed yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i02:r2",
+              "targetText": "She competes every day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i02:r3",
+              "targetText": "We competed yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She competed yesterday.",
+                "uk": "У записі звучить She competed yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She competed yesterday.",
+                "uk": "У записі звучить She competed yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i03:r1",
+            "text": "competed"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i03:r2",
+            "text": "compete"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i03:r3",
+            "text": "competes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i03:r1",
+              "text": "competed"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i03:r2",
+              "text": "compete"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i03:r3",
+              "text": "competes"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма competed.",
+                "uk": "Для минулого потрібна форма competed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна competed.",
+                "uk": "Це не форма минулого. Потрібна competed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:word:sports-day",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sports day",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:sports-day:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sports day",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:sports-day:audio",
+            "transcript": "sports day"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:sports-day:r1",
+              "targetText": "sports day",
+              "meaningByLocale": {
+                "ru": "школьный спортивный праздник с соревнованиями.",
+                "uk": "шкільне спортивне свято зі змаганнями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports day",
+            "definitionByLocale": {
+              "ru": "школьный спортивный праздник с соревнованиями.",
+              "uk": "шкільне спортивне свято зі змаганнями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мне понравился спортивный праздник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мне понравился спортивный праздник",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoyed sports day.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мне понравился спортивный праздник",
+            "uk": "Скажіть: Мені сподобалося спортивне свято"
+          },
+          "orderedTokens": [
+            "I",
+            "enjoyed",
+            "sports",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i05:r1",
+            "text": "She enjoyed sports day."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i05:r2",
+            "text": "She enjoys sports day."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i05:r3",
+            "text": "We enjoyed sports day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i05:audio",
+            "transcript": "She enjoyed sports day."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i05:r1",
+              "targetText": "She enjoyed sports day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i05:r2",
+              "targetText": "She enjoys sports day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i05:r3",
+              "targetText": "We enjoyed sports day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She enjoyed sports day.",
+                "uk": "У записі звучить She enjoyed sports day."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She enjoyed sports day.",
+                "uk": "У записі звучить She enjoyed sports day."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i06:r1",
+            "text": "enjoyed"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i06:r2",
+            "text": "enjoy"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i06:r3",
+            "text": "enjoys"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ sports day yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i06:r1",
+              "text": "enjoyed"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i06:r2",
+              "text": "enjoy"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i06:r3",
+              "text": "enjoys"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма enjoyed.",
+                "uk": "Для минулого потрібна форма enjoyed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна enjoyed.",
+                "uk": "Це не форма минулого. Потрібна enjoyed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:word:football-pitch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — football pitch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:football-pitch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — football pitch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:football-pitch:audio",
+            "transcript": "football pitch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:football-pitch:r1",
+              "targetText": "football pitch",
+              "meaningByLocale": {
+                "ru": "футбольное поле.",
+                "uk": "футбольне поле."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "football pitch",
+            "definitionByLocale": {
+              "ru": "футбольное поле.",
+              "uk": "футбольне поле."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы пользовались футбольным полем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы пользовались футбольным полем",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used the football pitch.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы пользовались футбольным полем",
+            "uk": "Скажіть: Ми користувалися футбольним полем"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "the",
+            "football",
+            "pitch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i08:r1",
+            "text": "They used the football pitch."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i08:r2",
+            "text": "They use the football pitch."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i08:r3",
+            "text": "She used the football pitch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i08:audio",
+            "transcript": "They used the football pitch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i08:r1",
+              "targetText": "They used the football pitch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i08:r2",
+              "targetText": "They use the football pitch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i08:r3",
+              "targetText": "She used the football pitch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They used the football pitch.",
+                "uk": "У записі звучить They used the football pitch."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They used the football pitch.",
+                "uk": "У записі звучить They used the football pitch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the football pitch yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i09:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i09:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i09:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:word:running-track",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — running track",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:running-track:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — running track",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:running-track:audio",
+            "transcript": "running track"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:running-track:r1",
+              "targetText": "running track",
+              "meaningByLocale": {
+                "ru": "беговая дорожка стадиона.",
+                "uk": "бігова доріжка стадіону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "running track",
+            "definitionByLocale": {
+              "ru": "беговая дорожка стадиона.",
+              "uk": "бігова доріжка стадіону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я пользовался беговой дорожкой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я пользовался беговой дорожкой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used the running track.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я пользовался беговой дорожкой",
+            "uk": "Скажіть: Я користувався біговою доріжкою"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "the",
+            "running",
+            "track"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i11:r1",
+            "text": "We used the running track."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i11:r2",
+            "text": "We use the running track."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i11:r3",
+            "text": "He used the running track."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i11:audio",
+            "transcript": "We used the running track."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i11:r1",
+              "targetText": "We used the running track.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i11:r2",
+              "targetText": "We use the running track.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i11:r3",
+              "targetText": "He used the running track.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used the running track.",
+                "uk": "У записі звучить We used the running track."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used the running track.",
+                "uk": "У записі звучить We used the running track."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ the running track yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i12:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i12:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i12:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-19:i13:p1",
+              "target": "compete",
+              "meaningByLocale": {
+                "ru": "соревноваться",
+                "uk": "змагатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-19:i13:p2",
+              "target": "sports day",
+              "meaningByLocale": {
+                "ru": "школьный спортивный праздник с соревнованиями",
+                "uk": "шкільне спортивне свято зі змаганнями"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-19:i13:p3",
+              "target": "football pitch",
+              "meaningByLocale": {
+                "ru": "футбольное поле",
+                "uk": "футбольне поле"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-19:i13:p4",
+              "target": "running track",
+              "meaningByLocale": {
+                "ru": "беговая дорожка стадиона",
+                "uk": "бігова доріжка стадіону"
+              }
+            }
+          ],
+          "leftColumn": [
+            "compete",
+            "sports day",
+            "football pitch",
+            "running track"
+          ],
+          "rightColumn": [
+            "соревноваться",
+            "школьный спортивный праздник с соревнованиями",
+            "футбольное поле",
+            "беговая дорожка стадиона"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i14:audio",
+            "transcript": "We competed at school yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We competed at school yesterday.",
+          "orderedTokens": [
+            "We",
+            "competed",
+            "at",
+            "school",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i15:audio",
+            "transcript": "They played football after lunch."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They played football after lunch.",
+          "orderedTokens": [
+            "They",
+            "played",
+            "football",
+            "after",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера футбольное поле было мокрым",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера футбольное поле было мокрым",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i16:audio",
+            "transcript": "The football pitch was wet yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The football pitch was wet yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я пользовался беговой дорожкой после школы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я пользовался беговой дорожкой после школы",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i17:audio",
+            "transcript": "I used the running track after school."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used the running track after school.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-19:word:compete",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — compete",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:compete:audio"
+        ],
+        "accessibilityLabel": "Картка слова — compete",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:compete:audio",
+            "transcript": "compete"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:compete:r1",
+              "targetText": "compete",
+              "meaningByLocale": {
+                "ru": "соревноваться.",
+                "uk": "змагатися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "compete",
+            "definitionByLocale": {
+              "ru": "соревноваться.",
+              "uk": "змагатися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я хочу змагатися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я хочу змагатися",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to compete.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я хочу соревноваться",
+            "uk": "Скажіть: Я хочу змагатися"
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "compete"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i02:r1",
+            "text": "She competed yesterday."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i02:r2",
+            "text": "She competes every day."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i02:r3",
+            "text": "We competed yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i02:audio",
+            "transcript": "She competed yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i02:r1",
+              "targetText": "She competed yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i02:r2",
+              "targetText": "She competes every day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i02:r3",
+              "targetText": "We competed yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She competed yesterday.",
+                "uk": "У записі звучить She competed yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She competed yesterday.",
+                "uk": "У записі звучить She competed yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i03:r1",
+            "text": "competed"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i03:r2",
+            "text": "compete"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i03:r3",
+            "text": "competes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i03:r1",
+              "text": "competed"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i03:r2",
+              "text": "compete"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i03:r3",
+              "text": "competes"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма competed.",
+                "uk": "Для минулого потрібна форма competed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна competed.",
+                "uk": "Це не форма минулого. Потрібна competed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:word:sports-day",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sports day",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:sports-day:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sports day",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:sports-day:audio",
+            "transcript": "sports day"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:sports-day:r1",
+              "targetText": "sports day",
+              "meaningByLocale": {
+                "ru": "школьный спортивный праздник с соревнованиями.",
+                "uk": "шкільне спортивне свято зі змаганнями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports day",
+            "definitionByLocale": {
+              "ru": "школьный спортивный праздник с соревнованиями.",
+              "uk": "шкільне спортивне свято зі змаганнями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Мені сподобалося спортивне свято",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Мені сподобалося спортивне свято",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I enjoyed sports day.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мне понравился спортивный праздник",
+            "uk": "Скажіть: Мені сподобалося спортивне свято"
+          },
+          "orderedTokens": [
+            "I",
+            "enjoyed",
+            "sports",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i05:r1",
+            "text": "She enjoyed sports day."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i05:r2",
+            "text": "She enjoys sports day."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i05:r3",
+            "text": "We enjoyed sports day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i05:audio",
+            "transcript": "She enjoyed sports day."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i05:r1",
+              "targetText": "She enjoyed sports day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i05:r2",
+              "targetText": "She enjoys sports day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i05:r3",
+              "targetText": "We enjoyed sports day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She enjoyed sports day.",
+                "uk": "У записі звучить She enjoyed sports day."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She enjoyed sports day.",
+                "uk": "У записі звучить She enjoyed sports day."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i06:r1",
+            "text": "enjoyed"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i06:r2",
+            "text": "enjoy"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i06:r3",
+            "text": "enjoys"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ sports day yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i06:r1",
+              "text": "enjoyed"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i06:r2",
+              "text": "enjoy"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i06:r3",
+              "text": "enjoys"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма enjoyed.",
+                "uk": "Для минулого потрібна форма enjoyed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна enjoyed.",
+                "uk": "Це не форма минулого. Потрібна enjoyed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:word:football-pitch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — football pitch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:football-pitch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — football pitch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:football-pitch:audio",
+            "transcript": "football pitch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:football-pitch:r1",
+              "targetText": "football pitch",
+              "meaningByLocale": {
+                "ru": "футбольное поле.",
+                "uk": "футбольне поле."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "football pitch",
+            "definitionByLocale": {
+              "ru": "футбольное поле.",
+              "uk": "футбольне поле."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми користувалися футбольним полем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми користувалися футбольним полем",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used the football pitch.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы пользовались футбольным полем",
+            "uk": "Скажіть: Ми користувалися футбольним полем"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "the",
+            "football",
+            "pitch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i08:r1",
+            "text": "They used the football pitch."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i08:r2",
+            "text": "They use the football pitch."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i08:r3",
+            "text": "She used the football pitch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i08:audio",
+            "transcript": "They used the football pitch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i08:r1",
+              "targetText": "They used the football pitch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i08:r2",
+              "targetText": "They use the football pitch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i08:r3",
+              "targetText": "She used the football pitch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They used the football pitch.",
+                "uk": "У записі звучить They used the football pitch."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They used the football pitch.",
+                "uk": "У записі звучить They used the football pitch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the football pitch yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i09:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i09:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i09:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:word:running-track",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — running track",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:word:running-track:audio"
+        ],
+        "accessibilityLabel": "Картка слова — running track",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:word:running-track:audio",
+            "transcript": "running track"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:word:running-track:r1",
+              "targetText": "running track",
+              "meaningByLocale": {
+                "ru": "беговая дорожка стадиона.",
+                "uk": "бігова доріжка стадіону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "running track",
+            "definitionByLocale": {
+              "ru": "беговая дорожка стадиона.",
+              "uk": "бігова доріжка стадіону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я користувався біговою доріжкою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я користувався біговою доріжкою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used the running track.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я пользовался беговой дорожкой",
+            "uk": "Скажіть: Я користувався біговою доріжкою"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "the",
+            "running",
+            "track"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i11:r1",
+            "text": "We used the running track."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i11:r2",
+            "text": "We use the running track."
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i11:r3",
+            "text": "He used the running track."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i11:audio",
+            "transcript": "We used the running track."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-19:i11:r1",
+              "targetText": "We used the running track.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i11:r2",
+              "targetText": "We use the running track.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i11:r3",
+              "targetText": "He used the running track.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used the running track.",
+                "uk": "У записі звучить We used the running track."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used the running track.",
+                "uk": "У записі звучить We used the running track."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-19:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-19:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ the running track yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-19:i12:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i12:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i12:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-19:i13:p1",
+              "target": "compete",
+              "meaningByLocale": {
+                "ru": "соревноваться",
+                "uk": "змагатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-19:i13:p2",
+              "target": "sports day",
+              "meaningByLocale": {
+                "ru": "школьный спортивный праздник с соревнованиями",
+                "uk": "шкільне спортивне свято зі змаганнями"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-19:i13:p3",
+              "target": "football pitch",
+              "meaningByLocale": {
+                "ru": "футбольное поле",
+                "uk": "футбольне поле"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-19:i13:p4",
+              "target": "running track",
+              "meaningByLocale": {
+                "ru": "беговая дорожка стадиона",
+                "uk": "бігова доріжка стадіону"
+              }
+            }
+          ],
+          "leftColumn": [
+            "compete",
+            "sports day",
+            "football pitch",
+            "running track"
+          ],
+          "rightColumn": [
+            "змагатися",
+            "шкільне спортивне свято зі змаганнями",
+            "футбольне поле",
+            "бігова доріжка стадіону"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i14:audio",
+            "transcript": "We competed at school yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We competed at school yesterday.",
+          "orderedTokens": [
+            "We",
+            "competed",
+            "at",
+            "school",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i15:audio",
+            "transcript": "They played football after lunch."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They played football after lunch.",
+          "orderedTokens": [
+            "They",
+            "played",
+            "football",
+            "after",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора футбольне поле було мокре",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора футбольне поле було мокре",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i16:audio",
+            "transcript": "The football pitch was wet yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The football pitch was wet yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я користувався біговою доріжкою після школи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я користувався біговою доріжкою після школи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-19:i17:audio",
+            "transcript": "I used the running track after school."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used the running track after school.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-19:word:compete",
+      "correctText": "compete",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i01",
+      "correctText": "I want to compete.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i02",
+      "correctText": "She competed yesterday.",
+      "correctResponseId": "en:lesson-12:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i03",
+      "correctText": "competed",
+      "correctResponseId": "en:lesson-12:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:word:sports-day",
+      "correctText": "sports day",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i04",
+      "correctText": "I enjoyed sports day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i05",
+      "correctText": "She enjoyed sports day.",
+      "correctResponseId": "en:lesson-12:session-19:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i06",
+      "correctText": "enjoyed",
+      "correctResponseId": "en:lesson-12:session-19:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:word:football-pitch",
+      "correctText": "football pitch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i07",
+      "correctText": "We used the football pitch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i08",
+      "correctText": "They used the football pitch.",
+      "correctResponseId": "en:lesson-12:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i09",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:word:running-track",
+      "correctText": "running track",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i10",
+      "correctText": "I used the running track.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i11",
+      "correctText": "We used the running track.",
+      "correctResponseId": "en:lesson-12:session-19:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i12",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i14",
+      "correctText": "We competed at school yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i15",
+      "correctText": "They played football after lunch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i16",
+      "correctText": "The football pitch was wet yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:i17",
+      "correctText": "I used the running track after school.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "review: cleaned, used, packed; was/were",
+    "uk": "review: cleaned, used, packed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Для ногтей",
+        "uk": "Для нігтів"
+      },
+      "bodyByLocale": {
+        "ru": "Nail clippers — «щипчики для ногтей», nail file — «пилочка для ногтей». I cleaned the nail clippers — я почистил щипчики. Nail clippers — множественное число, но cleaned не меняется. Выберите сообщение о чистке.",
+        "uk": "Nail clippers — «щипчики для нігтів», nail file — «пилочка для нігтів». I cleaned the nail clippers — я почистив щипчики. Nail clippers — множина, але cleaned не змінюється. Виберіть повідомлення про чищення."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-24:intro1:r1",
+              "text": "I cleaned the nail clippers."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro1:r2",
+              "text": "I clean the nail clippers yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro1:r3",
+              "text": "I cleans the nail clippers yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-24:intro1:r1",
+              "text": "I cleaned the nail clippers."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro1:r2",
+              "text": "I clean the nail clippers yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro1:r3",
+              "text": "I cleans the nail clippers yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ватная палочка",
+        "uk": "Ватна паличка"
+      },
+      "bodyByLocale": {
+        "ru": "Cotton bud — «ватная палочка», британское название. We packed the cotton buds — мы упаковали ватные палочки. Pack → packed. Выберите действие в прошлом.",
+        "uk": "Cotton bud — «ватна паличка», британська назва. We packed the cotton buds — ми запакували ватні палички. Pack → packed. Виберіть дію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-24:intro2:r1",
+              "text": "We packed the cotton buds."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro2:r2",
+              "text": "We pack the cotton buds yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro2:r3",
+              "text": "We packs the cotton buds yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-24:intro2:r1",
+              "text": "We packed the cotton buds."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro2:r2",
+              "text": "We pack the cotton buds yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro2:r3",
+              "text": "We packs the cotton buds yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вата",
+        "uk": "Вата"
+      },
+      "bodyByLocale": {
+        "ru": "Cotton wool — «вата», британское название. I packed some cotton wool — я упаковал немного ваты. Это вещество: говорим some cotton wool, без a. Выберите сообщение о вате.",
+        "uk": "Cotton wool — «вата», британська назва. I packed some cotton wool — я запакував трохи вати. Це речовина: кажемо some cotton wool, без a. Виберіть повідомлення про вату."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-24:intro3:r1",
+              "text": "I packed some cotton wool."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro3:r2",
+              "text": "I packed a cotton wool."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro3:r3",
+              "text": "I pack some cotton wool yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-24:intro3:r1",
+              "text": "I packed some cotton wool."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro3:r2",
+              "text": "I packed a cotton wool."
+            },
+            {
+              "responseId": "en:lesson-12:session-24:intro3:r3",
+              "text": "I pack some cotton wool yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fb39c60534315d9b53e887204d5fbcc920b521d40b8ef1a7db948ac63e559762"
+}

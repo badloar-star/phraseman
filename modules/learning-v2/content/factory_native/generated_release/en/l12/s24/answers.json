@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-24:word:nail-clippers",
+    "correctText": "nail clippers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i01",
+    "correctText": "I cleaned the nail clippers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i02",
+    "correctText": "She cleaned the nail clippers.",
+    "correctResponseId": "en:lesson-12:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i03",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:word:nail-file",
+    "correctText": "nail file",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i04",
+    "correctText": "I used a nail file.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i05",
+    "correctText": "We used a nail file.",
+    "correctResponseId": "en:lesson-12:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i06",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:word:cotton-bud",
+    "correctText": "cotton bud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i07",
+    "correctText": "I packed a cotton bud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i08",
+    "correctText": "She packed the cotton buds.",
+    "correctResponseId": "en:lesson-12:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i09",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:word:cotton-wool",
+    "correctText": "cotton wool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i10",
+    "correctText": "We packed some cotton wool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i11",
+    "correctText": "I packed some cotton wool.",
+    "correctResponseId": "en:lesson-12:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i12",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i13",
+    "correctText": "en:lesson-12:session-24:i13:p1=nail clippers\nen:lesson-12:session-24:i13:p2=nail file\nen:lesson-12:session-24:i13:p3=cotton bud\nen:lesson-12:session-24:i13:p4=cotton wool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i14",
+    "correctText": "She cleaned the bathroom mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i15",
+    "correctText": "We packed the hand cream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i16",
+    "correctText": "The nail file was in my bag yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-24:i17",
+    "correctText": "I cleaned the nail clippers after lunch.",
+    "correctResponseId": null
+  }
+]

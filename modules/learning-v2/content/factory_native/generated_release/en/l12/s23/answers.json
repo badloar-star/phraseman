@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-23:word:graduate",
+    "correctText": "graduate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i01",
+    "correctText": "I want to graduate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i02",
+    "correctText": "She graduated last year.",
+    "correctResponseId": "en:lesson-12:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i03",
+    "correctText": "graduated",
+    "correctResponseId": "en:lesson-12:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:word:university-degree",
+    "correctText": "university degree",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i04",
+    "correctText": "She completed a university degree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i05",
+    "correctText": "I completed a university degree.",
+    "correctResponseId": "en:lesson-12:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i06",
+    "correctText": "completed",
+    "correctResponseId": "en:lesson-12:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:word:final-exam",
+    "correctText": "final exam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i07",
+    "correctText": "I finished my final exam.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i08",
+    "correctText": "She finished her final exam.",
+    "correctResponseId": "en:lesson-12:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i09",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-12:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:word:graduation-day",
+    "correctText": "graduation day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i10",
+    "correctText": "We celebrated her graduation day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i11",
+    "correctText": "I celebrated my graduation day.",
+    "correctResponseId": "en:lesson-12:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i12",
+    "correctText": "celebrated",
+    "correctResponseId": "en:lesson-12:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i13",
+    "correctText": "en:lesson-12:session-23:i13:p1=graduate\nen:lesson-12:session-23:i13:p2=university degree\nen:lesson-12:session-23:i13:p3=final exam\nen:lesson-12:session-23:i13:p4=graduation day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i14",
+    "correctText": "She graduated from university last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i15",
+    "correctText": "We had dinner with her family.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i16",
+    "correctText": "The final exam was difficult.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-23:i17",
+    "correctText": "I celebrated my graduation day with my family.",
+    "correctResponseId": null
+  }
+]

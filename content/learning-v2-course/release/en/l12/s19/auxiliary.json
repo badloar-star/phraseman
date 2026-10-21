@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-19:intro1:r2": {
+          "ru": "Для прошлого нужна competed.",
+          "uk": "Для минулого потрібна competed."
+        },
+        "en:lesson-12:session-19:intro1:r3": {
+          "ru": "Competes — не прошлое и не форма с we.",
+          "uk": "Competes — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-19:intro2:r2": {
+          "ru": "Нужна форма прошлого enjoyed.",
+          "uk": "Потрібна форма минулого enjoyed."
+        },
+        "en:lesson-12:session-19:intro2:r3": {
+          "ru": "Enjoys — не прошлое и не форма с I.",
+          "uk": "Enjoys — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-19:intro3:r2": {
+          "ru": "Здесь футбольное поле, а нужна дорожка.",
+          "uk": "Тут футбольне поле, а потрібна доріжка."
+        },
+        "en:lesson-12:session-19:intro3:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92983b6237f29c04ffd8c12288fd4bf500448a17590d38e664009271f95de995"
+}

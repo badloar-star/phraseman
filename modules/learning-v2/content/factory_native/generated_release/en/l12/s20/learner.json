@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-20:word:cycle-lane",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cycle lane",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:word:cycle-lane:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cycle lane",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:word:cycle-lane:audio",
+          "transcript": "cycle lane"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:word:cycle-lane:r1",
+            "targetText": "cycle lane",
+            "meaningByLocale": {
+              "ru": "велосипедная полоса на дороге.",
+              "uk": "велосипедна смуга на дорозі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cycle lane",
+          "definitionByLocale": {
+            "ru": "велосипедная полоса на дороге.",
+            "uk": "велосипедна смуга на дорозі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я заметил велосипедную полосу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я заметил велосипедную полосу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I noticed a cycle lane.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я заметил велосипедную полосу",
+          "uk": "Скажіть: Я помітив велосипедну смугу"
+        },
+        "orderedTokens": [
+          "I",
+          "noticed",
+          "a",
+          "cycle",
+          "lane"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i02:r1",
+          "text": "She noticed a cycle lane."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i02:r2",
+          "text": "She notices a cycle lane."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i02:r3",
+          "text": "We noticed a cycle lane."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i02:audio",
+          "transcript": "She noticed a cycle lane."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:i02:r1",
+            "targetText": "She noticed a cycle lane.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i02:r2",
+            "targetText": "She notices a cycle lane.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i02:r3",
+            "targetText": "We noticed a cycle lane.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She noticed a cycle lane.",
+              "uk": "У записі звучить She noticed a cycle lane."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She noticed a cycle lane.",
+              "uk": "У записі звучить She noticed a cycle lane."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i03:r1",
+          "text": "noticed"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i03:r2",
+          "text": "notice"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i03:r3",
+          "text": "notices"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a cycle lane yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-20:i03:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i03:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i03:r3",
+            "text": "notices"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма noticed.",
+              "uk": "Для минулого потрібна форма noticed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна noticed.",
+              "uk": "Це не форма минулого. Потрібна noticed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:word:speed-limit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — speed limit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:word:speed-limit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — speed limit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:word:speed-limit:audio",
+          "transcript": "speed limit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:word:speed-limit:r1",
+            "targetText": "speed limit",
+            "meaningByLocale": {
+              "ru": "ограничение скорости.",
+              "uk": "обмеження швидкості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speed limit",
+          "definitionByLocale": {
+            "ru": "ограничение скорости.",
+            "uk": "обмеження швидкості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я проверил ограничение скорости",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я проверил ограничение скорости",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the speed limit.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я проверил ограничение скорости",
+          "uk": "Скажіть: Я перевірив обмеження швидкості"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "speed",
+          "limit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i05:r1",
+          "text": "We checked the speed limit."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i05:r2",
+          "text": "We check the speed limit."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i05:r3",
+          "text": "She checked the speed limit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i05:audio",
+          "transcript": "We checked the speed limit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:i05:r1",
+            "targetText": "We checked the speed limit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i05:r2",
+            "targetText": "We check the speed limit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i05:r3",
+            "targetText": "She checked the speed limit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We checked the speed limit.",
+              "uk": "У записі звучить We checked the speed limit."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We checked the speed limit.",
+              "uk": "У записі звучить We checked the speed limit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i06:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i06:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i06:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the speed limit yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-20:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна checked.",
+              "uk": "Це не форма минулого. Потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:word:zebra-crossing",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — zebra crossing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:word:zebra-crossing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — zebra crossing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:word:zebra-crossing:audio",
+          "transcript": "zebra crossing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:word:zebra-crossing:r1",
+            "targetText": "zebra crossing",
+            "meaningByLocale": {
+              "ru": "пешеходный переход с полосами, зебра.",
+              "uk": "пішохідний перехід зі смугами, зебра."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "zebra crossing",
+          "definitionByLocale": {
+            "ru": "пешеходный переход с полосами, зебра.",
+            "uk": "пішохідний перехід зі смугами, зебра."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы перешли дорогу по зебре",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы перешли дорогу по зебре",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used the zebra crossing.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы перешли дорогу по зебре",
+          "uk": "Скажіть: Ми перейшли дорогу по зебрі"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "the",
+          "zebra",
+          "crossing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i08:r1",
+          "text": "He used the zebra crossing."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i08:r2",
+          "text": "He uses the zebra crossing."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i08:r3",
+          "text": "I used the zebra crossing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i08:audio",
+          "transcript": "He used the zebra crossing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:i08:r1",
+            "targetText": "He used the zebra crossing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i08:r2",
+            "targetText": "He uses the zebra crossing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i08:r3",
+            "targetText": "I used the zebra crossing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used the zebra crossing.",
+              "uk": "У записі звучить He used the zebra crossing."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used the zebra crossing.",
+              "uk": "У записі звучить He used the zebra crossing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i09:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i09:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i09:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the zebra crossing yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-20:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:word:parking-meter",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — parking meter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:word:parking-meter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — parking meter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:word:parking-meter:audio",
+          "transcript": "parking meter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:word:parking-meter:r1",
+            "targetText": "parking meter",
+            "meaningByLocale": {
+              "ru": "паркомат, автомат для оплаты парковки.",
+              "uk": "паркомат, автомат для оплати паркування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parking meter",
+          "definitionByLocale": {
+            "ru": "паркомат, автомат для оплаты парковки.",
+            "uk": "паркомат, автомат для оплати паркування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я воспользовался паркоматом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я воспользовался паркоматом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used the parking meter.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я воспользовался паркоматом",
+          "uk": "Скажіть: Я скористався паркоматом"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "the",
+          "parking",
+          "meter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i11:r1",
+          "text": "They used the parking meter."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i11:r2",
+          "text": "They use the parking meter."
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i11:r3",
+          "text": "She used the parking meter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i11:audio",
+          "transcript": "They used the parking meter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-20:i11:r1",
+            "targetText": "They used the parking meter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i11:r2",
+            "targetText": "They use the parking meter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i11:r3",
+            "targetText": "She used the parking meter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They used the parking meter.",
+              "uk": "У записі звучить They used the parking meter."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They used the parking meter.",
+              "uk": "У записі звучить They used the parking meter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-20:i12:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i12:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-20:i12:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the parking meter yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-20:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-20:i13:p1",
+            "target": "cycle lane",
+            "meaningByLocale": {
+              "ru": "велосипедная полоса на дороге",
+              "uk": "велосипедна смуга на дорозі"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-20:i13:p2",
+            "target": "speed limit",
+            "meaningByLocale": {
+              "ru": "ограничение скорости",
+              "uk": "обмеження швидкості"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-20:i13:p3",
+            "target": "zebra crossing",
+            "meaningByLocale": {
+              "ru": "пешеходный переход с полосами, зебра",
+              "uk": "пішохідний перехід зі смугами, зебра"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-20:i13:p4",
+            "target": "parking meter",
+            "meaningByLocale": {
+              "ru": "паркомат, автомат для оплаты парковки",
+              "uk": "паркомат, автомат для оплати паркування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cycle lane",
+          "speed limit",
+          "zebra crossing",
+          "parking meter"
+        ],
+        "rightColumn": [
+          "велосипедная полоса на дороге",
+          "ограничение скорости",
+          "пешеходный переход с полосами, зебра",
+          "паркомат, автомат для оплаты парковки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i14:audio",
+          "transcript": "She noticed a road sign."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She noticed a road sign.",
+        "orderedTokens": [
+          "She",
+          "noticed",
+          "a",
+          "road",
+          "sign"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i15:audio",
+          "transcript": "We parked near the station."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We parked near the station.",
+        "orderedTokens": [
+          "We",
+          "parked",
+          "near",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера велосипедная полоса была пустой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера велосипедная полоса была пустой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i16:audio",
+          "transcript": "The cycle lane was empty yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cycle lane was empty yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я воспользовался паркоматом возле магазина",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я воспользовался паркоматом возле магазина",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-20:i17:audio",
+          "transcript": "I used the parking meter near the shop."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I used the parking meter near the shop.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aea40686650b4af8dcbd5c241320a165b4403beceac9f522a40a3f5aed74d4ef"
+}

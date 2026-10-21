@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-22:word:fail",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:fail:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:fail:audio",
+            "transcript": "fail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:fail:r1",
+              "targetText": "fail",
+              "meaningByLocale": {
+                "ru": "не сдать экзамен, потерпеть неудачу.",
+                "uk": "не скласти іспит, зазнати невдачі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fail",
+            "definitionByLocale": {
+              "ru": "не сдать экзамен, потерпеть неудачу.",
+              "uk": "не скласти іспит, зазнати невдачі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Любой может не сдать экзамен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Любой может не сдать экзамен",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Anyone can fail a test.",
+          "localizedMeaning": {
+            "ru": "Скажите: Любой может не сдать экзамен",
+            "uk": "Скажіть: Будь-хто може не скласти іспит"
+          },
+          "orderedTokens": [
+            "Anyone",
+            "can",
+            "fail",
+            "a",
+            "test"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i02:r1",
+            "text": "She failed the test."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i02:r2",
+            "text": "She fails the test."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i02:r3",
+            "text": "We failed the test."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i02:audio",
+            "transcript": "She failed the test."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i02:r1",
+              "targetText": "She failed the test.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i02:r2",
+              "targetText": "She fails the test.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i02:r3",
+              "targetText": "We failed the test.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She failed the test.",
+                "uk": "У записі звучить She failed the test."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She failed the test.",
+                "uk": "У записі звучить She failed the test."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i03:r1",
+            "text": "failed"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i03:r2",
+            "text": "fail"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i03:r3",
+            "text": "fails"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the test yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i03:r1",
+              "text": "failed"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i03:r2",
+              "text": "fail"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i03:r3",
+              "text": "fails"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма failed.",
+                "uk": "Для минулого потрібна форма failed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна failed.",
+                "uk": "Це не форма минулого. Потрібна failed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:word:driving-test",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — driving test",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:driving-test:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — driving test",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:driving-test:audio",
+            "transcript": "driving test"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:driving-test:r1",
+              "targetText": "driving test",
+              "meaningByLocale": {
+                "ru": "экзамен по вождению.",
+                "uk": "іспит із водіння."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "driving test",
+            "definitionByLocale": {
+              "ru": "экзамен по вождению.",
+              "uk": "іспит із водіння."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: У меня вчера был экзамен по вождению",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: У меня вчера был экзамен по вождению",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had a driving test yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: У меня вчера был экзамен по вождению",
+            "uk": "Скажіть: У мене вчора був іспит із водіння"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "a",
+            "driving",
+            "test",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i05:r1",
+            "text": "She had a driving test yesterday."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i05:r2",
+            "text": "She has a driving test today."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i05:r3",
+            "text": "We had a driving test yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i05:audio",
+            "transcript": "She had a driving test yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i05:r1",
+              "targetText": "She had a driving test yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i05:r2",
+              "targetText": "She has a driving test today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i05:r3",
+              "targetText": "We had a driving test yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a driving test yesterday.",
+                "uk": "У записі звучить She had a driving test yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a driving test yesterday.",
+                "uk": "У записі звучить She had a driving test yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i06:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i06:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a driving test last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i06:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i06:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:word:theory-test",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — theory test",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:theory-test:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — theory test",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:theory-test:audio",
+            "transcript": "theory test"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:theory-test:r1",
+              "targetText": "theory test",
+              "meaningByLocale": {
+                "ru": "теоретический экзамен.",
+                "uk": "теоретичний іспит."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "theory test",
+            "definitionByLocale": {
+              "ru": "теоретический экзамен.",
+              "uk": "теоретичний іспит."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: У неё вчера был теоретический экзамен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: У неё вчера был теоретический экзамен",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had a theory test yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: У неё вчера был теоретический экзамен",
+            "uk": "Скажіть: У неї вчора був теоретичний іспит"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "a",
+            "theory",
+            "test",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i08:r1",
+            "text": "I had a theory test yesterday."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i08:r2",
+            "text": "I have a theory test today."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i08:r3",
+            "text": "They had a theory test yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i08:audio",
+            "transcript": "I had a theory test yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i08:r1",
+              "targetText": "I had a theory test yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i08:r2",
+              "targetText": "I have a theory test today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i08:r3",
+              "targetText": "They had a theory test yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had a theory test yesterday.",
+                "uk": "У записі звучить I had a theory test yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had a theory test yesterday.",
+                "uk": "У записі звучить I had a theory test yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i09:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ a theory test last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i09:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i09:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i09:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:word:test-result",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — test result",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:test-result:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — test result",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:test-result:audio",
+            "transcript": "test result"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:test-result:r1",
+              "targetText": "test result",
+              "meaningByLocale": {
+                "ru": "результат экзамена или теста.",
+                "uk": "результат іспиту або тесту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "test result",
+            "definitionByLocale": {
+              "ru": "результат экзамена или теста.",
+              "uk": "результат іспиту або тесту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я проверил свой результат экзамена",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я проверил свой результат экзамена",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked my test result.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил свой результат экзамена",
+            "uk": "Скажіть: Я перевірив свій результат іспиту"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "my",
+            "test",
+            "result"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i11:r1",
+            "text": "She checked her test result."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i11:r2",
+            "text": "She checks her test result."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i11:r3",
+            "text": "He checked his test result."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i11:audio",
+            "transcript": "She checked her test result."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i11:r1",
+              "targetText": "She checked her test result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i11:r2",
+              "targetText": "She checks her test result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i11:r3",
+              "targetText": "He checked his test result.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her test result.",
+                "uk": "У записі звучить She checked her test result."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her test result.",
+                "uk": "У записі звучить She checked her test result."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i12:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i12:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i12:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ their test result yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i12:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i12:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i12:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-22:i13:p1",
+              "target": "fail",
+              "meaningByLocale": {
+                "ru": "не сдать экзамен, потерпеть неудачу",
+                "uk": "не скласти іспит, зазнати невдачі"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-22:i13:p2",
+              "target": "driving test",
+              "meaningByLocale": {
+                "ru": "экзамен по вождению",
+                "uk": "іспит із водіння"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-22:i13:p3",
+              "target": "theory test",
+              "meaningByLocale": {
+                "ru": "теоретический экзамен",
+                "uk": "теоретичний іспит"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-22:i13:p4",
+              "target": "test result",
+              "meaningByLocale": {
+                "ru": "результат экзамена или теста",
+                "uk": "результат іспиту або тесту"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fail",
+            "driving test",
+            "theory test",
+            "test result"
+          ],
+          "rightColumn": [
+            "не сдать экзамен, потерпеть неудачу",
+            "экзамен по вождению",
+            "теоретический экзамен",
+            "результат экзамена или теста"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i14:audio",
+            "transcript": "I had another lesson yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I had another lesson yesterday.",
+          "orderedTokens": [
+            "I",
+            "had",
+            "another",
+            "lesson",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i15:audio",
+            "transcript": "She checked her driving licence."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She checked her driving licence.",
+          "orderedTokens": [
+            "She",
+            "checked",
+            "her",
+            "driving",
+            "licence"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: теоретический экзамен был трудным",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: теоретический экзамен был трудным",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i16:audio",
+            "transcript": "The theory test was difficult."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The theory test was difficult.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я проверил свой результат после обеда",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я проверил свой результат после обеда",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i17:audio",
+            "transcript": "I checked my test result after lunch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I checked my test result after lunch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-22:word:fail",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:fail:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:fail:audio",
+            "transcript": "fail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:fail:r1",
+              "targetText": "fail",
+              "meaningByLocale": {
+                "ru": "не сдать экзамен, потерпеть неудачу.",
+                "uk": "не скласти іспит, зазнати невдачі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fail",
+            "definitionByLocale": {
+              "ru": "не сдать экзамен, потерпеть неудачу.",
+              "uk": "не скласти іспит, зазнати невдачі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Будь-хто може не скласти іспит",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Будь-хто може не скласти іспит",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Anyone can fail a test.",
+          "localizedMeaning": {
+            "ru": "Скажите: Любой может не сдать экзамен",
+            "uk": "Скажіть: Будь-хто може не скласти іспит"
+          },
+          "orderedTokens": [
+            "Anyone",
+            "can",
+            "fail",
+            "a",
+            "test"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i02:r1",
+            "text": "She failed the test."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i02:r2",
+            "text": "She fails the test."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i02:r3",
+            "text": "We failed the test."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i02:audio",
+            "transcript": "She failed the test."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i02:r1",
+              "targetText": "She failed the test.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i02:r2",
+              "targetText": "She fails the test.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i02:r3",
+              "targetText": "We failed the test.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She failed the test.",
+                "uk": "У записі звучить She failed the test."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She failed the test.",
+                "uk": "У записі звучить She failed the test."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i03:r1",
+            "text": "failed"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i03:r2",
+            "text": "fail"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i03:r3",
+            "text": "fails"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the test yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i03:r1",
+              "text": "failed"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i03:r2",
+              "text": "fail"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i03:r3",
+              "text": "fails"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма failed.",
+                "uk": "Для минулого потрібна форма failed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна failed.",
+                "uk": "Це не форма минулого. Потрібна failed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:word:driving-test",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — driving test",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:driving-test:audio"
+        ],
+        "accessibilityLabel": "Картка слова — driving test",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:driving-test:audio",
+            "transcript": "driving test"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:driving-test:r1",
+              "targetText": "driving test",
+              "meaningByLocale": {
+                "ru": "экзамен по вождению.",
+                "uk": "іспит із водіння."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "driving test",
+            "definitionByLocale": {
+              "ru": "экзамен по вождению.",
+              "uk": "іспит із водіння."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: У мене вчора був іспит із водіння",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: У мене вчора був іспит із водіння",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had a driving test yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: У меня вчера был экзамен по вождению",
+            "uk": "Скажіть: У мене вчора був іспит із водіння"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "a",
+            "driving",
+            "test",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i05:r1",
+            "text": "She had a driving test yesterday."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i05:r2",
+            "text": "She has a driving test today."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i05:r3",
+            "text": "We had a driving test yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i05:audio",
+            "transcript": "She had a driving test yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i05:r1",
+              "targetText": "She had a driving test yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i05:r2",
+              "targetText": "She has a driving test today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i05:r3",
+              "targetText": "We had a driving test yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a driving test yesterday.",
+                "uk": "У записі звучить She had a driving test yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a driving test yesterday.",
+                "uk": "У записі звучить She had a driving test yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i06:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i06:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a driving test last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i06:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i06:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:word:theory-test",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — theory test",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:theory-test:audio"
+        ],
+        "accessibilityLabel": "Картка слова — theory test",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:theory-test:audio",
+            "transcript": "theory test"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:theory-test:r1",
+              "targetText": "theory test",
+              "meaningByLocale": {
+                "ru": "теоретический экзамен.",
+                "uk": "теоретичний іспит."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "theory test",
+            "definitionByLocale": {
+              "ru": "теоретический экзамен.",
+              "uk": "теоретичний іспит."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: У неї вчора був теоретичний іспит",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: У неї вчора був теоретичний іспит",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had a theory test yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: У неё вчера был теоретический экзамен",
+            "uk": "Скажіть: У неї вчора був теоретичний іспит"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "a",
+            "theory",
+            "test",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i08:r1",
+            "text": "I had a theory test yesterday."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i08:r2",
+            "text": "I have a theory test today."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i08:r3",
+            "text": "They had a theory test yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i08:audio",
+            "transcript": "I had a theory test yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i08:r1",
+              "targetText": "I had a theory test yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i08:r2",
+              "targetText": "I have a theory test today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i08:r3",
+              "targetText": "They had a theory test yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had a theory test yesterday.",
+                "uk": "У записі звучить I had a theory test yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had a theory test yesterday.",
+                "uk": "У записі звучить I had a theory test yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i09:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ a theory test last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i09:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i09:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i09:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:word:test-result",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — test result",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:word:test-result:audio"
+        ],
+        "accessibilityLabel": "Картка слова — test result",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:word:test-result:audio",
+            "transcript": "test result"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:word:test-result:r1",
+              "targetText": "test result",
+              "meaningByLocale": {
+                "ru": "результат экзамена или теста.",
+                "uk": "результат іспиту або тесту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "test result",
+            "definitionByLocale": {
+              "ru": "результат экзамена или теста.",
+              "uk": "результат іспиту або тесту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я перевірив свій результат іспиту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я перевірив свій результат іспиту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked my test result.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил свой результат экзамена",
+            "uk": "Скажіть: Я перевірив свій результат іспиту"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "my",
+            "test",
+            "result"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i11:r1",
+            "text": "She checked her test result."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i11:r2",
+            "text": "She checks her test result."
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i11:r3",
+            "text": "He checked his test result."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i11:audio",
+            "transcript": "She checked her test result."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-22:i11:r1",
+              "targetText": "She checked her test result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i11:r2",
+              "targetText": "She checks her test result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i11:r3",
+              "targetText": "He checked his test result.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her test result.",
+                "uk": "У записі звучить She checked her test result."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her test result.",
+                "uk": "У записі звучить She checked her test result."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-22:i12:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i12:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-22:i12:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ their test result yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-22:i12:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i12:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i12:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-22:i13:p1",
+              "target": "fail",
+              "meaningByLocale": {
+                "ru": "не сдать экзамен, потерпеть неудачу",
+                "uk": "не скласти іспит, зазнати невдачі"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-22:i13:p2",
+              "target": "driving test",
+              "meaningByLocale": {
+                "ru": "экзамен по вождению",
+                "uk": "іспит із водіння"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-22:i13:p3",
+              "target": "theory test",
+              "meaningByLocale": {
+                "ru": "теоретический экзамен",
+                "uk": "теоретичний іспит"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-22:i13:p4",
+              "target": "test result",
+              "meaningByLocale": {
+                "ru": "результат экзамена или теста",
+                "uk": "результат іспиту або тесту"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fail",
+            "driving test",
+            "theory test",
+            "test result"
+          ],
+          "rightColumn": [
+            "не скласти іспит, зазнати невдачі",
+            "іспит із водіння",
+            "теоретичний іспит",
+            "результат іспиту або тесту"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i14:audio",
+            "transcript": "I had another lesson yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I had another lesson yesterday.",
+          "orderedTokens": [
+            "I",
+            "had",
+            "another",
+            "lesson",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i15:audio",
+            "transcript": "She checked her driving licence."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She checked her driving licence.",
+          "orderedTokens": [
+            "She",
+            "checked",
+            "her",
+            "driving",
+            "licence"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: теоретичний іспит був складний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: теоретичний іспит був складний",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i16:audio",
+            "transcript": "The theory test was difficult."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The theory test was difficult.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я перевірив свій результат після обіду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я перевірив свій результат після обіду",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-22:i17:audio",
+            "transcript": "I checked my test result after lunch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I checked my test result after lunch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-22:word:fail",
+      "correctText": "fail",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i01",
+      "correctText": "Anyone can fail a test.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i02",
+      "correctText": "She failed the test.",
+      "correctResponseId": "en:lesson-12:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i03",
+      "correctText": "failed",
+      "correctResponseId": "en:lesson-12:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:word:driving-test",
+      "correctText": "driving test",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i04",
+      "correctText": "I had a driving test yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i05",
+      "correctText": "She had a driving test yesterday.",
+      "correctResponseId": "en:lesson-12:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i06",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-12:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:word:theory-test",
+      "correctText": "theory test",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i07",
+      "correctText": "She had a theory test yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i08",
+      "correctText": "I had a theory test yesterday.",
+      "correctResponseId": "en:lesson-12:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i09",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-12:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:word:test-result",
+      "correctText": "test result",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i10",
+      "correctText": "I checked my test result.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i11",
+      "correctText": "She checked her test result.",
+      "correctResponseId": "en:lesson-12:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i12",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-12:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i14",
+      "correctText": "I had another lesson yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i15",
+      "correctText": "She checked her driving licence.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i16",
+      "correctText": "The theory test was difficult.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:i17",
+      "correctText": "I checked my test result after lunch.",
+      "correctResponseId": null
+    }
+  ]
+}

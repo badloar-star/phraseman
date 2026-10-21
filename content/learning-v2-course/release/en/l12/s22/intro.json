@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "fail → failed; checked, had",
+    "uk": "fail → failed; checked, had"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не сдали экзамен",
+        "uk": "Не склали іспит"
+      },
+      "bodyByLocale": {
+        "ru": "Fail — «не сдать экзамен, потерпеть неудачу». I failed the test — я не сдал экзамен. Fail → failed; по форме это утвердительное прошедшее предложение: слово fail уже передаёт неудачу. Выберите сообщение о прошлом результате.",
+        "uk": "Fail — «не скласти іспит, зазнати невдачі». I failed the test — я не склав іспит. Fail → failed; за формою це стверджувальне минуле речення: слово fail уже передає невдачу. Виберіть повідомлення про минулий результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-22:intro1:r1",
+              "text": "I failed the test."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro1:r2",
+              "text": "I fail the test yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro1:r3",
+              "text": "I fails the test yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-22:intro1:r1",
+              "text": "I failed the test."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro1:r2",
+              "text": "I fail the test yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro1:r3",
+              "text": "I fails the test yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Практика и теория",
+        "uk": "Практика й теорія"
+      },
+      "bodyByLocale": {
+        "ru": "Driving test — «экзамен по вождению», theory test — «теоретический экзамен», здесь по правилам дорожного движения. She had a driving test yesterday — у неё вчера был экзамен по вождению. Эта фраза ещё не сообщает результат. Выберите сообщение именно о таком экзамене.",
+        "uk": "Driving test — «іспит із водіння», theory test — «теоретичний іспит», тут із правил дорожнього руху. She had a driving test yesterday — у неї вчора був іспит із водіння. Ця фраза ще не повідомляє результат. Виберіть повідомлення саме про такий іспит."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-22:intro2:r1",
+              "text": "She had a driving test yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro2:r2",
+              "text": "She had a theory test yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro2:r3",
+              "text": "She has a driving test yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-22:intro2:r1",
+              "text": "She had a driving test yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro2:r2",
+              "text": "She had a theory test yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro2:r3",
+              "text": "She has a driving test yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверили результат",
+        "uk": "Перевірили результат"
+      },
+      "bodyByLocale": {
+        "ru": "Test result — «результат экзамена или теста». I checked my test result — я проверил свой результат. Check → checked. Выберите действие, не оценку результата.",
+        "uk": "Test result — «результат іспиту або тесту». I checked my test result — я перевірив свій результат. Check → checked. Виберіть дію, не оцінку результату."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-22:intro3:r1",
+              "text": "I checked my test result."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro3:r2",
+              "text": "My test result was good."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro3:r3",
+              "text": "I check my test result yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-22:intro3:r1",
+              "text": "I checked my test result."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro3:r2",
+              "text": "My test result was good."
+            },
+            {
+              "responseId": "en:lesson-12:session-22:intro3:r3",
+              "text": "I check my test result yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f702f3d2d28e570b17d3b57ffd4a2c55dad82bc10112696d81bb4507f6fbdd4a"
+}

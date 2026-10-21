@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "escape → escaped; checked, cleaned, chose",
+    "uk": "escape → escaped; checked, cleaned, chose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбежал из дома",
+        "uk": "Вибіг із дому"
+      },
+      "bodyByLocale": {
+        "ru": "Escape — «сбежать, выбраться». The cat escaped — кот сбежал. Escape → escaped: к конечной e добавляем d. В этой сцене кот выбежал из дома во двор. Выберите сообщение о прошлом.",
+        "uk": "Escape — «утекти, вибратися». The cat escaped — кіт утік. Escape → escaped: до кінцевої e додаємо d. У цій сцені кіт вибіг із дому у двір. Виберіть повідомлення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-21:intro1:r1",
+              "text": "The cat escaped yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro1:r2",
+              "text": "The cat escape yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro1:r3",
+              "text": "The cat escapes yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-21:intro1:r1",
+              "text": "The cat escaped yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro1:r2",
+              "text": "The cat escape yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro1:r3",
+              "text": "The cat escapes yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дверца и переноска",
+        "uk": "Дверцята й переноска"
+      },
+      "bodyByLocale": {
+        "ru": "Cat flap — «маленькая дверца для кота», pet carrier — «переноска для питомца». I checked the cat flap — я проверил дверцу для кота. Выберите проверку дверцы.",
+        "uk": "Cat flap — «маленькі дверцята для кота», pet carrier — «переноска для улюбленця». I checked the cat flap — я перевірив дверцята для кота. Виберіть перевірку дверцят."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-21:intro2:r1",
+              "text": "I checked the cat flap."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro2:r2",
+              "text": "I cleaned the pet carrier."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro2:r3",
+              "text": "I check the cat flap yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-21:intro2:r1",
+              "text": "I checked the cat flap."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro2:r2",
+              "text": "I cleaned the pet carrier."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro2:r3",
+              "text": "I check the cat flap yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ошейник для собаки",
+        "uk": "Нашийник для собаки"
+      },
+      "bodyByLocale": {
+        "ru": "Dog collar — «собачий ошейник». She chose a dog collar — она выбрала ошейник для собаки. Choose → chose повторяет знакомую неправильную форму. Выберите сообщение о выборе.",
+        "uk": "Dog collar — «собачий нашийник». She chose a dog collar — вона вибрала нашийник для собаки. Choose → chose повторює знайому неправильну форму. Виберіть повідомлення про вибір."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-21:intro3:r1",
+              "text": "She chose a dog collar."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro3:r2",
+              "text": "She choosed a dog collar."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro3:r3",
+              "text": "She chooses a dog collar yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-21:intro3:r1",
+              "text": "She chose a dog collar."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro3:r2",
+              "text": "She choosed a dog collar."
+            },
+            {
+              "responseId": "en:lesson-12:session-21:intro3:r3",
+              "text": "She chooses a dog collar yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f943908af3391985b48750c3a244e0af837fe6fa02222146deb57735fcabbfe"
+}

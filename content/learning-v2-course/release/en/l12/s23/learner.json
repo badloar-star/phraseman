@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-23:word:graduate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — graduate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:word:graduate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — graduate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:word:graduate:audio",
+          "transcript": "graduate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:word:graduate:r1",
+            "targetText": "graduate",
+            "meaningByLocale": {
+              "ru": "окончить университет и получить степень.",
+              "uk": "закінчити університет і здобути ступінь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "graduate",
+          "definitionByLocale": {
+            "ru": "окончить университет и получить степень.",
+            "uk": "закінчити університет і здобути ступінь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я хочу окончить университет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я хочу окончить университет",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to graduate.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я хочу окончить университет",
+          "uk": "Скажіть: Я хочу закінчити університет"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "graduate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i02:r1",
+          "text": "She graduated last year."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i02:r2",
+          "text": "She graduates this year."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i02:r3",
+          "text": "We graduated last year."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i02:audio",
+          "transcript": "She graduated last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:i02:r1",
+            "targetText": "She graduated last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i02:r2",
+            "targetText": "She graduates this year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i02:r3",
+            "targetText": "We graduated last year.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She graduated last year.",
+              "uk": "У записі звучить She graduated last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She graduated last year.",
+              "uk": "У записі звучить She graduated last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i03:r1",
+          "text": "graduated"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i03:r2",
+          "text": "graduate"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i03:r3",
+          "text": "graduates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-23:i03:r1",
+            "text": "graduated"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i03:r2",
+            "text": "graduate"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i03:r3",
+            "text": "graduates"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма graduated.",
+              "uk": "Для минулого потрібна форма graduated."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна graduated.",
+              "uk": "Це не форма минулого. Потрібна graduated."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:word:university-degree",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — university degree",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:word:university-degree:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — university degree",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:word:university-degree:audio",
+          "transcript": "university degree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:word:university-degree:r1",
+            "targetText": "university degree",
+            "meaningByLocale": {
+              "ru": "университетская степень.",
+              "uk": "університетський ступінь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "university degree",
+          "definitionByLocale": {
+            "ru": "университетская степень.",
+            "uk": "університетський ступінь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она завершила обучение по университетской программе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она завершила обучение по университетской программе",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She completed a university degree.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она завершила обучение по университетской программе",
+          "uk": "Скажіть: Вона завершила навчання за університетською програмою"
+        },
+        "orderedTokens": [
+          "She",
+          "completed",
+          "a",
+          "university",
+          "degree"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i05:r1",
+          "text": "I completed a university degree."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i05:r2",
+          "text": "I complete a university degree."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i05:r3",
+          "text": "He completed a university degree."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i05:audio",
+          "transcript": "I completed a university degree."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:i05:r1",
+            "targetText": "I completed a university degree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i05:r2",
+            "targetText": "I complete a university degree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i05:r3",
+            "targetText": "He completed a university degree.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I completed a university degree.",
+              "uk": "У записі звучить I completed a university degree."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I completed a university degree.",
+              "uk": "У записі звучить I completed a university degree."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i06:r1",
+          "text": "completed"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i06:r2",
+          "text": "complete"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i06:r3",
+          "text": "completes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a university degree last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-23:i06:r1",
+            "text": "completed"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i06:r2",
+            "text": "complete"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i06:r3",
+            "text": "completes"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма completed.",
+              "uk": "Для минулого потрібна форма completed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна completed.",
+              "uk": "Це не форма минулого. Потрібна completed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:word:final-exam",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — final exam",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:word:final-exam:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — final exam",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:word:final-exam:audio",
+          "transcript": "final exam"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:word:final-exam:r1",
+            "targetText": "final exam",
+            "meaningByLocale": {
+              "ru": "итоговый экзамен.",
+              "uk": "підсумковий іспит."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "final exam",
+          "definitionByLocale": {
+            "ru": "итоговый экзамен.",
+            "uk": "підсумковий іспит."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я закончил свой итоговый экзамен",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я закончил свой итоговый экзамен",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I finished my final exam.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я закончил свой итоговый экзамен",
+          "uk": "Скажіть: Я закінчив свій підсумковий іспит"
+        },
+        "orderedTokens": [
+          "I",
+          "finished",
+          "my",
+          "final",
+          "exam"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i08:r1",
+          "text": "She finished her final exam."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i08:r2",
+          "text": "She finishes her final exam."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i08:r3",
+          "text": "He finished his final exam."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i08:audio",
+          "transcript": "She finished her final exam."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:i08:r1",
+            "targetText": "She finished her final exam.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i08:r2",
+            "targetText": "She finishes her final exam.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i08:r3",
+            "targetText": "He finished his final exam.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She finished her final exam.",
+              "uk": "У записі звучить She finished her final exam."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She finished her final exam.",
+              "uk": "У записі звучить She finished her final exam."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i09:r1",
+          "text": "finished"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i09:r2",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i09:r3",
+          "text": "finishes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ our final exam yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-23:i09:r1",
+            "text": "finished"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i09:r2",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i09:r3",
+            "text": "finishes"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма finished.",
+              "uk": "Для минулого потрібна форма finished."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна finished.",
+              "uk": "Це не форма минулого. Потрібна finished."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:word:graduation-day",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — graduation day",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:word:graduation-day:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — graduation day",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:word:graduation-day:audio",
+          "transcript": "graduation day"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:word:graduation-day:r1",
+            "targetText": "graduation day",
+            "meaningByLocale": {
+              "ru": "день выпуска.",
+              "uk": "день випуску."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "graduation day",
+          "definitionByLocale": {
+            "ru": "день выпуска.",
+            "uk": "день випуску."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы отпраздновали день её выпуска",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы отпраздновали день её выпуска",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We celebrated her graduation day.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы отпраздновали день её выпуска",
+          "uk": "Скажіть: Ми відсвяткували день її випуску"
+        },
+        "orderedTokens": [
+          "We",
+          "celebrated",
+          "her",
+          "graduation",
+          "day"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i11:r1",
+          "text": "I celebrated my graduation day."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i11:r2",
+          "text": "I celebrate my graduation day."
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i11:r3",
+          "text": "She celebrated her graduation day."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i11:audio",
+          "transcript": "I celebrated my graduation day."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-23:i11:r1",
+            "targetText": "I celebrated my graduation day.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i11:r2",
+            "targetText": "I celebrate my graduation day.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i11:r3",
+            "targetText": "She celebrated her graduation day.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I celebrated my graduation day.",
+              "uk": "У записі звучить I celebrated my graduation day."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I celebrated my graduation day.",
+              "uk": "У записі звучить I celebrated my graduation day."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-23:i12:r1",
+          "text": "celebrated"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i12:r2",
+          "text": "celebrate"
+        },
+        {
+          "responseId": "en:lesson-12:session-23:i12:r3",
+          "text": "celebrates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ their graduation day yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-23:i12:r1",
+            "text": "celebrated"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i12:r2",
+            "text": "celebrate"
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i12:r3",
+            "text": "celebrates"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма celebrated.",
+              "uk": "Для минулого потрібна форма celebrated."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна celebrated.",
+              "uk": "Це не форма минулого. Потрібна celebrated."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-23:i13:p1",
+            "target": "graduate",
+            "meaningByLocale": {
+              "ru": "окончить университет и получить степень",
+              "uk": "закінчити університет і здобути ступінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-23:i13:p2",
+            "target": "university degree",
+            "meaningByLocale": {
+              "ru": "университетская степень",
+              "uk": "університетський ступінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-23:i13:p3",
+            "target": "final exam",
+            "meaningByLocale": {
+              "ru": "итоговый экзамен",
+              "uk": "підсумковий іспит"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-23:i13:p4",
+            "target": "graduation day",
+            "meaningByLocale": {
+              "ru": "день выпуска",
+              "uk": "день випуску"
+            }
+          }
+        ],
+        "leftColumn": [
+          "graduate",
+          "university degree",
+          "final exam",
+          "graduation day"
+        ],
+        "rightColumn": [
+          "окончить университет и получить степень",
+          "университетская степень",
+          "итоговый экзамен",
+          "день выпуска"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i14:audio",
+          "transcript": "She graduated from university last year."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She graduated from university last year.",
+        "orderedTokens": [
+          "She",
+          "graduated",
+          "from",
+          "university",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i15:audio",
+          "transcript": "We had dinner with her family."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had dinner with her family.",
+        "orderedTokens": [
+          "We",
+          "had",
+          "dinner",
+          "with",
+          "her",
+          "family"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: итоговый экзамен был трудным",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: итоговый экзамен был трудным",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i16:audio",
+          "transcript": "The final exam was difficult."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The final exam was difficult.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я отпраздновал день своего выпуска с семьёй",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я отпраздновал день своего выпуска с семьёй",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-23:i17:audio",
+          "transcript": "I celebrated my graduation day with my family."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I celebrated my graduation day with my family.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "81d8c5605adcbcafb515d8a9ecff9d1ffb5878cca83bc483bc5a7ac9cc702e0a"
+}

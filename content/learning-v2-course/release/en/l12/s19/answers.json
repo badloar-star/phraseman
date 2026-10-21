@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-19:word:compete",
+    "correctText": "compete",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i01",
+    "correctText": "I want to compete.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i02",
+    "correctText": "She competed yesterday.",
+    "correctResponseId": "en:lesson-12:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i03",
+    "correctText": "competed",
+    "correctResponseId": "en:lesson-12:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:word:sports-day",
+    "correctText": "sports day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i04",
+    "correctText": "I enjoyed sports day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i05",
+    "correctText": "She enjoyed sports day.",
+    "correctResponseId": "en:lesson-12:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i06",
+    "correctText": "enjoyed",
+    "correctResponseId": "en:lesson-12:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:word:football-pitch",
+    "correctText": "football pitch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i07",
+    "correctText": "We used the football pitch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i08",
+    "correctText": "They used the football pitch.",
+    "correctResponseId": "en:lesson-12:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:word:running-track",
+    "correctText": "running track",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i10",
+    "correctText": "I used the running track.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i11",
+    "correctText": "We used the running track.",
+    "correctResponseId": "en:lesson-12:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i12",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i13",
+    "correctText": "en:lesson-12:session-19:i13:p1=compete\nen:lesson-12:session-19:i13:p2=sports day\nen:lesson-12:session-19:i13:p3=football pitch\nen:lesson-12:session-19:i13:p4=running track",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i14",
+    "correctText": "We competed at school yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i15",
+    "correctText": "They played football after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i16",
+    "correctText": "The football pitch was wet yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-19:i17",
+    "correctText": "I used the running track after school.",
+    "correctResponseId": null
+  }
+]

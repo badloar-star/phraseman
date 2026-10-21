@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-22:intro1:r2": {
+          "ru": "Для прошлого нужна failed.",
+          "uk": "Для минулого потрібна failed."
+        },
+        "en:lesson-12:session-22:intro1:r3": {
+          "ru": "Fails — не прошлое и не форма с I.",
+          "uk": "Fails — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-22:intro2:r2": {
+          "ru": "Здесь теоретический экзамен, а нужен экзамен по вождению.",
+          "uk": "Тут теоретичний іспит, а потрібен іспит із водіння."
+        },
+        "en:lesson-12:session-22:intro2:r3": {
+          "ru": "Для прошлого нужна had.",
+          "uk": "Для минулого потрібна had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-22:intro3:r2": {
+          "ru": "Это оценка результата, не действие проверки.",
+          "uk": "Це оцінка результату, не дія перевірки."
+        },
+        "en:lesson-12:session-22:intro3:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3e3fb6d705fba92071fdc66e424f4989b65147f99e581613051c0afb464d1680"
+}

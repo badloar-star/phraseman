@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-21:word:escape",
+    "correctText": "escape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i01",
+    "correctText": "The cat can escape.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i02",
+    "correctText": "The cat escaped yesterday.",
+    "correctResponseId": "en:lesson-12:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i03",
+    "correctText": "escaped",
+    "correctResponseId": "en:lesson-12:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:word:cat-flap",
+    "correctText": "cat flap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i04",
+    "correctText": "I checked the cat flap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i05",
+    "correctText": "She checked the cat flap.",
+    "correctResponseId": "en:lesson-12:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:word:pet-carrier",
+    "correctText": "pet carrier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i07",
+    "correctText": "We cleaned the pet carrier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i08",
+    "correctText": "I cleaned the pet carrier.",
+    "correctResponseId": "en:lesson-12:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:word:dog-collar",
+    "correctText": "dog collar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i10",
+    "correctText": "I chose a dog collar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i11",
+    "correctText": "He chose a dog collar.",
+    "correctResponseId": "en:lesson-12:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i12",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i13",
+    "correctText": "en:lesson-12:session-21:i13:p1=escape\nen:lesson-12:session-21:i13:p2=cat flap\nen:lesson-12:session-21:i13:p3=pet carrier\nen:lesson-12:session-21:i13:p4=dog collar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i14",
+    "correctText": "I saw the cat in the garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i15",
+    "correctText": "She checked the garden gate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i16",
+    "correctText": "The pet carrier was in the car yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-21:i17",
+    "correctText": "I chose a blue dog collar.",
+    "correctResponseId": null
+  }
+]

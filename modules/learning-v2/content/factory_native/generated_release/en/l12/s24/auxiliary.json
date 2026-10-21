@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-24:intro1:r2": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        },
+        "en:lesson-12:session-24:intro1:r3": {
+          "ru": "Cleans — не прошлое и не форма с I.",
+          "uk": "Cleans — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-24:intro2:r2": {
+          "ru": "Для прошлого нужна packed.",
+          "uk": "Для минулого потрібна packed."
+        },
+        "en:lesson-12:session-24:intro2:r3": {
+          "ru": "Packs — не прошлое и не форма с we.",
+          "uk": "Packs — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-24:intro3:r2": {
+          "ru": "Cotton wool — вещество, не отдельный предмет с a.",
+          "uk": "Cotton wool — речовина, не окремий предмет з a."
+        },
+        "en:lesson-12:session-24:intro3:r3": {
+          "ru": "Для прошлого нужна packed.",
+          "uk": "Для минулого потрібна packed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dfaf0669c621cc70e77dafbcb8098d6d34364140f14c33a6a2bcb04ac5f5618c"
+}

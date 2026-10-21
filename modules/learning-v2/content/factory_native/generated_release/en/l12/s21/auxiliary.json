@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-21:intro1:r2": {
+          "ru": "Для прошлого нужна escaped.",
+          "uk": "Для минулого потрібна escaped."
+        },
+        "en:lesson-12:session-21:intro1:r3": {
+          "ru": "Escapes — настоящее; нужна escaped.",
+          "uk": "Escapes — теперішній час; потрібна escaped."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-21:intro2:r2": {
+          "ru": "Здесь уборка переноски, не проверка дверцы.",
+          "uk": "Тут прибирання переноски, не перевірка дверцят."
+        },
+        "en:lesson-12:session-21:intro2:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-21:intro3:r2": {
+          "ru": "Нужна chose, не choosed.",
+          "uk": "Потрібна chose, не choosed."
+        },
+        "en:lesson-12:session-21:intro3:r3": {
+          "ru": "Chooses — настоящее; нужна chose.",
+          "uk": "Chooses — теперішній час; потрібна chose."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "01c21bf0e2ed4202964691f93b26f86421f627b0da82da9c5302b3487b4d53eb"
+}

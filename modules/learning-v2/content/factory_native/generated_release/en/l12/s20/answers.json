@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-20:word:cycle-lane",
+    "correctText": "cycle lane",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i01",
+    "correctText": "I noticed a cycle lane.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i02",
+    "correctText": "She noticed a cycle lane.",
+    "correctResponseId": "en:lesson-12:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i03",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:word:speed-limit",
+    "correctText": "speed limit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i04",
+    "correctText": "I checked the speed limit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i05",
+    "correctText": "We checked the speed limit.",
+    "correctResponseId": "en:lesson-12:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:word:zebra-crossing",
+    "correctText": "zebra crossing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i07",
+    "correctText": "We used the zebra crossing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i08",
+    "correctText": "He used the zebra crossing.",
+    "correctResponseId": "en:lesson-12:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:word:parking-meter",
+    "correctText": "parking meter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i10",
+    "correctText": "I used the parking meter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i11",
+    "correctText": "They used the parking meter.",
+    "correctResponseId": "en:lesson-12:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i12",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i13",
+    "correctText": "en:lesson-12:session-20:i13:p1=cycle lane\nen:lesson-12:session-20:i13:p2=speed limit\nen:lesson-12:session-20:i13:p3=zebra crossing\nen:lesson-12:session-20:i13:p4=parking meter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i14",
+    "correctText": "She noticed a road sign.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i15",
+    "correctText": "We parked near the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i16",
+    "correctText": "The cycle lane was empty yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-20:i17",
+    "correctText": "I used the parking meter near the shop.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-20:intro1:r2": {
+          "ru": "Для прошлого нужна noticed.",
+          "uk": "Для минулого потрібна noticed."
+        },
+        "en:lesson-12:session-20:intro1:r3": {
+          "ru": "Notices — не прошлое и не форма с I.",
+          "uk": "Notices — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-20:intro2:r2": {
+          "ru": "Здесь проверка ограничения скорости, не переход.",
+          "uk": "Тут перевірка обмеження швидкості, не перехід."
+        },
+        "en:lesson-12:session-20:intro2:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-20:intro3:r2": {
+          "ru": "Это местонахождение, не действие.",
+          "uk": "Це місце, не дія."
+        },
+        "en:lesson-12:session-20:intro3:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6bc66ceb6880775c83dbc76394286011c223ce87684b51725ca6a642c10753cd"
+}

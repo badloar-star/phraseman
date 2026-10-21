@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-21:word:escape",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — escape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:word:escape:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — escape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:word:escape:audio",
+          "transcript": "escape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:word:escape:r1",
+            "targetText": "escape",
+            "meaningByLocale": {
+              "ru": "сбежать, выбраться.",
+              "uk": "утекти, вибратися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "escape",
+          "definitionByLocale": {
+            "ru": "сбежать, выбраться.",
+            "uk": "утекти, вибратися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Кот может сбежать",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Кот может сбежать",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cat can escape.",
+        "localizedMeaning": {
+          "ru": "Скажите: Кот может сбежать",
+          "uk": "Скажіть: Кіт може втекти"
+        },
+        "orderedTokens": [
+          "The",
+          "cat",
+          "can",
+          "escape"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i02:r1",
+          "text": "The cat escaped yesterday."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i02:r2",
+          "text": "The cat escapes every day."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i02:r3",
+          "text": "The dog escaped yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i02:audio",
+          "transcript": "The cat escaped yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:i02:r1",
+            "targetText": "The cat escaped yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i02:r2",
+            "targetText": "The cat escapes every day.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i02:r3",
+            "targetText": "The dog escaped yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat escaped yesterday.",
+              "uk": "У записі звучить The cat escaped yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat escaped yesterday.",
+              "uk": "У записі звучить The cat escaped yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i03:r1",
+          "text": "escaped"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i03:r2",
+          "text": "escape"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i03:r3",
+          "text": "escapes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The dog ___ yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-21:i03:r1",
+            "text": "escaped"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i03:r2",
+            "text": "escape"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i03:r3",
+            "text": "escapes"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма escaped.",
+              "uk": "Для минулого потрібна форма escaped."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна escaped.",
+              "uk": "Це не форма минулого. Потрібна escaped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:word:cat-flap",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cat flap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:word:cat-flap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cat flap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:word:cat-flap:audio",
+          "transcript": "cat flap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:word:cat-flap:r1",
+            "targetText": "cat flap",
+            "meaningByLocale": {
+              "ru": "маленькая дверца для кота.",
+              "uk": "маленькі дверцята для кота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cat flap",
+          "definitionByLocale": {
+            "ru": "маленькая дверца для кота.",
+            "uk": "маленькі дверцята для кота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я проверил дверцу для кота",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я проверил дверцу для кота",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the cat flap.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я проверил дверцу для кота",
+          "uk": "Скажіть: Я перевірив дверцята для кота"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "cat",
+          "flap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i05:r1",
+          "text": "She checked the cat flap."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i05:r2",
+          "text": "She checks the cat flap."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i05:r3",
+          "text": "We checked the cat flap."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i05:audio",
+          "transcript": "She checked the cat flap."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:i05:r1",
+            "targetText": "She checked the cat flap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i05:r2",
+            "targetText": "She checks the cat flap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i05:r3",
+            "targetText": "We checked the cat flap.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She checked the cat flap.",
+              "uk": "У записі звучить She checked the cat flap."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She checked the cat flap.",
+              "uk": "У записі звучить She checked the cat flap."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i06:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i06:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i06:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the cat flap yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-21:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна checked.",
+              "uk": "Це не форма минулого. Потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:word:pet-carrier",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pet carrier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:word:pet-carrier:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pet carrier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:word:pet-carrier:audio",
+          "transcript": "pet carrier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:word:pet-carrier:r1",
+            "targetText": "pet carrier",
+            "meaningByLocale": {
+              "ru": "переноска для питомца.",
+              "uk": "переноска для улюбленця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pet carrier",
+          "definitionByLocale": {
+            "ru": "переноска для питомца.",
+            "uk": "переноска для улюбленця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы почистили переноску",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы почистили переноску",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We cleaned the pet carrier.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы почистили переноску",
+          "uk": "Скажіть: Ми почистили переноску"
+        },
+        "orderedTokens": [
+          "We",
+          "cleaned",
+          "the",
+          "pet",
+          "carrier"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i08:r1",
+          "text": "I cleaned the pet carrier."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i08:r2",
+          "text": "I clean the pet carrier."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i08:r3",
+          "text": "They cleaned the pet carrier."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i08:audio",
+          "transcript": "I cleaned the pet carrier."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:i08:r1",
+            "targetText": "I cleaned the pet carrier.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i08:r2",
+            "targetText": "I clean the pet carrier.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i08:r3",
+            "targetText": "They cleaned the pet carrier.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the pet carrier.",
+              "uk": "У записі звучить I cleaned the pet carrier."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the pet carrier.",
+              "uk": "У записі звучить I cleaned the pet carrier."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i09:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i09:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i09:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the pet carrier yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-21:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i09:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i09:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:word:dog-collar",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dog collar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:word:dog-collar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dog collar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:word:dog-collar:audio",
+          "transcript": "dog collar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:word:dog-collar:r1",
+            "targetText": "dog collar",
+            "meaningByLocale": {
+              "ru": "собачий ошейник.",
+              "uk": "собачий нашийник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dog collar",
+          "definitionByLocale": {
+            "ru": "собачий ошейник.",
+            "uk": "собачий нашийник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я выбрал ошейник для собаки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я выбрал ошейник для собаки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a dog collar.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал ошейник для собаки",
+          "uk": "Скажіть: Я вибрав нашийник для собаки"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "dog",
+          "collar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i11:r1",
+          "text": "He chose a dog collar."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i11:r2",
+          "text": "He chooses a dog collar."
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i11:r3",
+          "text": "We chose a dog collar."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i11:audio",
+          "transcript": "He chose a dog collar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-21:i11:r1",
+            "targetText": "He chose a dog collar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i11:r2",
+            "targetText": "He chooses a dog collar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i11:r3",
+            "targetText": "We chose a dog collar.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He chose a dog collar.",
+              "uk": "У записі звучить He chose a dog collar."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He chose a dog collar.",
+              "uk": "У записі звучить He chose a dog collar."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-21:i12:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i12:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-21:i12:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a dog collar yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-21:i12:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i12:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i12:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-21:i13:p1",
+            "target": "escape",
+            "meaningByLocale": {
+              "ru": "сбежать, выбраться",
+              "uk": "утекти, вибратися"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-21:i13:p2",
+            "target": "cat flap",
+            "meaningByLocale": {
+              "ru": "маленькая дверца для кота",
+              "uk": "маленькі дверцята для кота"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-21:i13:p3",
+            "target": "pet carrier",
+            "meaningByLocale": {
+              "ru": "переноска для питомца",
+              "uk": "переноска для улюбленця"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-21:i13:p4",
+            "target": "dog collar",
+            "meaningByLocale": {
+              "ru": "собачий ошейник",
+              "uk": "собачий нашийник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "escape",
+          "cat flap",
+          "pet carrier",
+          "dog collar"
+        ],
+        "rightColumn": [
+          "сбежать, выбраться",
+          "маленькая дверца для кота",
+          "переноска для питомца",
+          "собачий ошейник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i14:audio",
+          "transcript": "I saw the cat in the garden."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I saw the cat in the garden.",
+        "orderedTokens": [
+          "I",
+          "saw",
+          "the",
+          "cat",
+          "in",
+          "the",
+          "garden"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i15:audio",
+          "transcript": "She checked the garden gate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She checked the garden gate.",
+        "orderedTokens": [
+          "She",
+          "checked",
+          "the",
+          "garden",
+          "gate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера переноска была в машине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера переноска была в машине",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i16:audio",
+          "transcript": "The pet carrier was in the car yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pet carrier was in the car yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я выбрал синий ошейник для собаки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я выбрал синий ошейник для собаки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-21:i17:audio",
+          "transcript": "I chose a blue dog collar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I chose a blue dog collar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9cbf7d373895f2f9781d1566a3a239b1f1a89de6f190aea446f49a3a3701d98d"
+}

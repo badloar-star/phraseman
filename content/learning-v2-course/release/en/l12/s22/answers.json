@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-22:word:fail",
+    "correctText": "fail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i01",
+    "correctText": "Anyone can fail a test.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i02",
+    "correctText": "She failed the test.",
+    "correctResponseId": "en:lesson-12:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i03",
+    "correctText": "failed",
+    "correctResponseId": "en:lesson-12:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:word:driving-test",
+    "correctText": "driving test",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i04",
+    "correctText": "I had a driving test yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i05",
+    "correctText": "She had a driving test yesterday.",
+    "correctResponseId": "en:lesson-12:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i06",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:word:theory-test",
+    "correctText": "theory test",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i07",
+    "correctText": "She had a theory test yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i08",
+    "correctText": "I had a theory test yesterday.",
+    "correctResponseId": "en:lesson-12:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:word:test-result",
+    "correctText": "test result",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i10",
+    "correctText": "I checked my test result.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i11",
+    "correctText": "She checked her test result.",
+    "correctResponseId": "en:lesson-12:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i13",
+    "correctText": "en:lesson-12:session-22:i13:p1=fail\nen:lesson-12:session-22:i13:p2=driving test\nen:lesson-12:session-22:i13:p3=theory test\nen:lesson-12:session-22:i13:p4=test result",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i14",
+    "correctText": "I had another lesson yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i15",
+    "correctText": "She checked her driving licence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i16",
+    "correctText": "The theory test was difficult.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-22:i17",
+    "correctText": "I checked my test result after lunch.",
+    "correctResponseId": null
+  }
+]

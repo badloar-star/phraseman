@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-24:word:nail-clippers",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nail clippers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:word:nail-clippers:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nail clippers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:word:nail-clippers:audio",
+          "transcript": "nail clippers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:word:nail-clippers:r1",
+            "targetText": "nail clippers",
+            "meaningByLocale": {
+              "ru": "щипчики для ногтей.",
+              "uk": "щипчики для нігтів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nail clippers",
+          "definitionByLocale": {
+            "ru": "щипчики для ногтей.",
+            "uk": "щипчики для нігтів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я почистил щипчики для ногтей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я почистил щипчики для ногтей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cleaned the nail clippers.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я почистил щипчики для ногтей",
+          "uk": "Скажіть: Я почистив щипчики для нігтів"
+        },
+        "orderedTokens": [
+          "I",
+          "cleaned",
+          "the",
+          "nail",
+          "clippers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i02:r1",
+          "text": "She cleaned the nail clippers."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i02:r2",
+          "text": "She cleans the nail clippers."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i02:r3",
+          "text": "We cleaned the nail clippers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i02:audio",
+          "transcript": "She cleaned the nail clippers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:i02:r1",
+            "targetText": "She cleaned the nail clippers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i02:r2",
+            "targetText": "She cleans the nail clippers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i02:r3",
+            "targetText": "We cleaned the nail clippers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the nail clippers.",
+              "uk": "У записі звучить She cleaned the nail clippers."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the nail clippers.",
+              "uk": "У записі звучить She cleaned the nail clippers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i03:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i03:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i03:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the nail clippers yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-24:i03:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i03:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i03:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:word:nail-file",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nail file",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:word:nail-file:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nail file",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:word:nail-file:audio",
+          "transcript": "nail file"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:word:nail-file:r1",
+            "targetText": "nail file",
+            "meaningByLocale": {
+              "ru": "пилочка для ногтей.",
+              "uk": "пилочка для нігтів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nail file",
+          "definitionByLocale": {
+            "ru": "пилочка для ногтей.",
+            "uk": "пилочка для нігтів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я пользовался пилочкой для ногтей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я пользовался пилочкой для ногтей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used a nail file.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пользовался пилочкой для ногтей",
+          "uk": "Скажіть: Я користувався пилочкою для нігтів"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "a",
+          "nail",
+          "file"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i05:r1",
+          "text": "We used a nail file."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i05:r2",
+          "text": "We use a nail file."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i05:r3",
+          "text": "She used a nail file."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i05:audio",
+          "transcript": "We used a nail file."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:i05:r1",
+            "targetText": "We used a nail file.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i05:r2",
+            "targetText": "We use a nail file.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i05:r3",
+            "targetText": "She used a nail file.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used a nail file.",
+              "uk": "У записі звучить We used a nail file."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used a nail file.",
+              "uk": "У записі звучить We used a nail file."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i06:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i06:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i06:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a nail file yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-24:i06:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i06:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i06:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:word:cotton-bud",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cotton bud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:word:cotton-bud:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cotton bud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:word:cotton-bud:audio",
+          "transcript": "cotton bud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:word:cotton-bud:r1",
+            "targetText": "cotton bud",
+            "meaningByLocale": {
+              "ru": "ватная палочка.",
+              "uk": "ватна паличка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cotton bud",
+          "definitionByLocale": {
+            "ru": "ватная палочка.",
+            "uk": "ватна паличка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я упаковал ватную палочку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я упаковал ватную палочку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I packed a cotton bud.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я упаковал ватную палочку",
+          "uk": "Скажіть: Я запакував ватну паличку"
+        },
+        "orderedTokens": [
+          "I",
+          "packed",
+          "a",
+          "cotton",
+          "bud"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i08:r1",
+          "text": "She packed the cotton buds."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i08:r2",
+          "text": "She packs the cotton buds."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i08:r3",
+          "text": "We packed the cotton buds."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i08:audio",
+          "transcript": "She packed the cotton buds."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:i08:r1",
+            "targetText": "She packed the cotton buds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i08:r2",
+            "targetText": "She packs the cotton buds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i08:r3",
+            "targetText": "We packed the cotton buds.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She packed the cotton buds.",
+              "uk": "У записі звучить She packed the cotton buds."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She packed the cotton buds.",
+              "uk": "У записі звучить She packed the cotton buds."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i09:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i09:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i09:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the cotton buds yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-24:i09:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i09:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i09:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:word:cotton-wool",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cotton wool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:word:cotton-wool:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cotton wool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:word:cotton-wool:audio",
+          "transcript": "cotton wool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:word:cotton-wool:r1",
+            "targetText": "cotton wool",
+            "meaningByLocale": {
+              "ru": "вата.",
+              "uk": "вата."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cotton wool",
+          "definitionByLocale": {
+            "ru": "вата.",
+            "uk": "вата."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы упаковали немного ваты",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы упаковали немного ваты",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We packed some cotton wool.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы упаковали немного ваты",
+          "uk": "Скажіть: Ми запакували трохи вати"
+        },
+        "orderedTokens": [
+          "We",
+          "packed",
+          "some",
+          "cotton",
+          "wool"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i11:r1",
+          "text": "I packed some cotton wool."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i11:r2",
+          "text": "I pack some cotton wool."
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i11:r3",
+          "text": "She packed some cotton wool."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i11:audio",
+          "transcript": "I packed some cotton wool."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-24:i11:r1",
+            "targetText": "I packed some cotton wool.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i11:r2",
+            "targetText": "I pack some cotton wool.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i11:r3",
+            "targetText": "She packed some cotton wool.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I packed some cotton wool.",
+              "uk": "У записі звучить I packed some cotton wool."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I packed some cotton wool.",
+              "uk": "У записі звучить I packed some cotton wool."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-24:i12:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i12:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-24:i12:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ some cotton wool yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-24:i12:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i12:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i12:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-24:i13:p1",
+            "target": "nail clippers",
+            "meaningByLocale": {
+              "ru": "щипчики для ногтей",
+              "uk": "щипчики для нігтів"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-24:i13:p2",
+            "target": "nail file",
+            "meaningByLocale": {
+              "ru": "пилочка для ногтей",
+              "uk": "пилочка для нігтів"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-24:i13:p3",
+            "target": "cotton bud",
+            "meaningByLocale": {
+              "ru": "ватная палочка",
+              "uk": "ватна паличка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-24:i13:p4",
+            "target": "cotton wool",
+            "meaningByLocale": {
+              "ru": "вата",
+              "uk": "вата"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nail clippers",
+          "nail file",
+          "cotton bud",
+          "cotton wool"
+        ],
+        "rightColumn": [
+          "щипчики для ногтей",
+          "пилочка для ногтей",
+          "ватная палочка",
+          "вата"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i14:audio",
+          "transcript": "She cleaned the bathroom mirror."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She cleaned the bathroom mirror.",
+        "orderedTokens": [
+          "She",
+          "cleaned",
+          "the",
+          "bathroom",
+          "mirror"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i15:audio",
+          "transcript": "We packed the hand cream."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We packed the hand cream.",
+        "orderedTokens": [
+          "We",
+          "packed",
+          "the",
+          "hand",
+          "cream"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера пилочка для ногтей была в сумке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера пилочка для ногтей была в сумке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i16:audio",
+          "transcript": "The nail file was in my bag yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The nail file was in my bag yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-24:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я почистил щипчики для ногтей после обеда",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я почистил щипчики для ногтей после обеда",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-24:i17:audio",
+          "transcript": "I cleaned the nail clippers after lunch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I cleaned the nail clippers after lunch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0e6921c63aaf2c9ad7712fe122fe4b8642a2f470053a79c4b9c66c335b156632"
+}

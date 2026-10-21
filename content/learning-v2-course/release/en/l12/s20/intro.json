@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "finished event: noticed, checked, used; was/were",
+    "uk": "finished event: noticed, checked, used; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Велосипедная полоса",
+        "uk": "Велосипедна смуга"
+      },
+      "bodyByLocale": {
+        "ru": "Cycle lane — «велосипедная полоса на дороге». Notice → noticed: I noticed a cycle lane — я заметил велосипедную полосу. Это завершённое наблюдение. Выберите сообщение о вчерашнем наблюдении.",
+        "uk": "Cycle lane — «велосипедна смуга на дорозі». Notice → noticed: I noticed a cycle lane — я помітив велосипедну смугу. Це завершене спостереження. Виберіть повідомлення про вчорашнє спостереження."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-20:intro1:r1",
+              "text": "I noticed a cycle lane yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro1:r2",
+              "text": "I notice a cycle lane yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro1:r3",
+              "text": "I notices a cycle lane yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-20:intro1:r1",
+              "text": "I noticed a cycle lane yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro1:r2",
+              "text": "I notice a cycle lane yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro1:r3",
+              "text": "I notices a cycle lane yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Скорость и переход",
+        "uk": "Швидкість і перехід"
+      },
+      "bodyByLocale": {
+        "ru": "Speed limit — «ограничение скорости», zebra crossing — «пешеходный переход с полосами, зебра». She used the zebra crossing — она перешла дорогу по зебре. Выберите сообщение о переходе.",
+        "uk": "Speed limit — «обмеження швидкості», zebra crossing — «пішохідний перехід зі смугами, зебра». She used the zebra crossing — вона перейшла дорогу по зебрі. Виберіть повідомлення про перехід."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-20:intro2:r1",
+              "text": "She used the zebra crossing."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro2:r2",
+              "text": "She checked the speed limit."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro2:r3",
+              "text": "She use the zebra crossing yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-20:intro2:r1",
+              "text": "She used the zebra crossing."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro2:r2",
+              "text": "She checked the speed limit."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro2:r3",
+              "text": "She use the zebra crossing yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оплата парковки",
+        "uk": "Оплата паркування"
+      },
+      "bodyByLocale": {
+        "ru": "Parking meter — «паркомат, автомат для оплаты парковки». We used the parking meter — мы воспользовались паркоматом. Выберите действие, не местонахождение паркомата.",
+        "uk": "Parking meter — «паркомат, автомат для оплати паркування». We used the parking meter — ми скористалися паркоматом. Виберіть дію, не місце паркомата."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-20:intro3:r1",
+              "text": "We used the parking meter."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro3:r2",
+              "text": "The parking meter was near the shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro3:r3",
+              "text": "We use the parking meter yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-20:intro3:r1",
+              "text": "We used the parking meter."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro3:r2",
+              "text": "The parking meter was near the shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-20:intro3:r3",
+              "text": "We use the parking meter yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0a520a5b7cff4aecf47c0f2ce04118ecb75d83257618e8f52635527d78a8c887"
+}

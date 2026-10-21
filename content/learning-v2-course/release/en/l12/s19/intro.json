@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "finished event: competed, enjoyed, used; was/were",
+    "uk": "finished event: competed, enjoyed, used; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Участвовали в соревновании",
+        "uk": "Брали участь у змаганні"
+      },
+      "bodyByLocale": {
+        "ru": "Compete — «соревноваться». Compete → competed: We competed yesterday — мы соревновались вчера. К конечной e добавляем d. Выберите сообщение о завершённом событии.",
+        "uk": "Compete — «змагатися». Compete → competed: We competed yesterday — ми змагалися вчора. До кінцевої e додаємо d. Виберіть повідомлення про завершену подію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-19:intro1:r1",
+              "text": "We competed yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro1:r2",
+              "text": "We compete yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro1:r3",
+              "text": "We competes yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-19:intro1:r1",
+              "text": "We competed yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro1:r2",
+              "text": "We compete yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro1:r3",
+              "text": "We competes yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Школьный спортивный праздник",
+        "uk": "Шкільне спортивне свято"
+      },
+      "bodyByLocale": {
+        "ru": "Sports day — «школьный спортивный праздник с соревнованиями». I enjoyed sports day — мне понравился спортивный праздник. Enjoy → enjoyed. Выберите впечатление от прошедшего праздника.",
+        "uk": "Sports day — «шкільне спортивне свято зі змаганнями». I enjoyed sports day — мені сподобалося спортивне свято. Enjoy → enjoyed. Виберіть враження від минулого свята."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-19:intro2:r1",
+              "text": "I enjoyed sports day."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro2:r2",
+              "text": "I enjoy sports day yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro2:r3",
+              "text": "I enjoys sports day yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-19:intro2:r1",
+              "text": "I enjoyed sports day."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro2:r2",
+              "text": "I enjoy sports day yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro2:r3",
+              "text": "I enjoys sports day yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где занимались",
+        "uk": "Де займалися"
+      },
+      "bodyByLocale": {
+        "ru": "Football pitch — «футбольное поле», running track — «беговая дорожка стадиона». We used the running track — мы пользовались беговой дорожкой. Выберите действие на дорожке, не на футбольном поле.",
+        "uk": "Football pitch — «футбольне поле», running track — «бігова доріжка стадіону». We used the running track — ми користувалися біговою доріжкою. Виберіть дію на доріжці, не на футбольному полі."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-19:intro3:r1",
+              "text": "We used the running track."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro3:r2",
+              "text": "We used the football pitch."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro3:r3",
+              "text": "We use the running track yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-19:intro3:r1",
+              "text": "We used the running track."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro3:r2",
+              "text": "We used the football pitch."
+            },
+            {
+              "responseId": "en:lesson-12:session-19:intro3:r3",
+              "text": "We use the running track yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "69a46f6342ba9d7b9367334541f300ea738e9a7a348933020b020479cf925766"
+}

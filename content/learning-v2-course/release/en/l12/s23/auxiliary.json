@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-23:intro1:r2": {
+          "ru": "Для прошлого нужна graduated.",
+          "uk": "Для минулого потрібна graduated."
+        },
+        "en:lesson-12:session-23:intro1:r3": {
+          "ru": "Graduates — настоящее; нужна graduated.",
+          "uk": "Graduates — теперішній час; потрібна graduated."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-23:intro2:r2": {
+          "ru": "Для прошлого нужна finished.",
+          "uk": "Для минулого потрібна finished."
+        },
+        "en:lesson-12:session-23:intro2:r3": {
+          "ru": "Finishes — не прошлое и не форма с I.",
+          "uk": "Finishes — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-23:intro3:r2": {
+          "ru": "Это погода, не празднование.",
+          "uk": "Це погода, не святкування."
+        },
+        "en:lesson-12:session-23:intro3:r3": {
+          "ru": "Для прошлого нужна celebrated.",
+          "uk": "Для минулого потрібна celebrated."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "346dfd8fe693d1a7dd7518be1e3c99ab41a558f710c98bce125cb7a5cb4152f5"
+}

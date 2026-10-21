@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-28:word:definitely",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — definitely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:definitely:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — definitely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:definitely:audio",
+            "transcript": "definitely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:definitely:r1",
+              "targetText": "definitely",
+              "meaningByLocale": {
+                "ru": "точно, определённо.",
+                "uk": "точно, безперечно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "definitely",
+            "definitionByLocale": {
+              "ru": "точно, определённо.",
+              "uk": "точно, безперечно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я точно звонил вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я точно звонил вчера",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I definitely called yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я точно звонил вчера",
+            "uk": "Скажіть: Я точно телефонував учора"
+          },
+          "orderedTokens": [
+            "I",
+            "definitely",
+            "called",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i02:r1",
+            "text": "She definitely called yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i02:r2",
+            "text": "I definitely called yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i02:r3",
+            "text": "She probably called yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i02:audio",
+            "transcript": "She definitely called yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i02:r1",
+              "targetText": "She definitely called yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i02:r2",
+              "targetText": "I definitely called yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i02:r3",
+              "targetText": "She probably called yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She definitely called yesterday.",
+                "uk": "У записі звучить She definitely called yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She definitely called yesterday.",
+                "uk": "У записі звучить She definitely called yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you call yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:word:certainly",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — certainly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:certainly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — certainly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:certainly:audio",
+            "transcript": "certainly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:certainly:r1",
+              "targetText": "certainly",
+              "meaningByLocale": {
+                "ru": "безусловно, несомненно.",
+                "uk": "безумовно, безсумнівно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "certainly",
+            "definitionByLocale": {
+              "ru": "безусловно, несомненно.",
+              "uk": "безумовно, безсумнівно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я несомненно заплатил вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я несомненно заплатил вчера",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I certainly paid yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я несомненно заплатил вчера",
+            "uk": "Скажіть: Я безсумнівно заплатив учора"
+          },
+          "orderedTokens": [
+            "I",
+            "certainly",
+            "paid",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i05:r1",
+            "text": "She certainly paid yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i05:r2",
+            "text": "I certainly paid yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i05:r3",
+            "text": "She certainly pays every day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i05:audio",
+            "transcript": "She certainly paid yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i05:r1",
+              "targetText": "She certainly paid yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i05:r2",
+              "targetText": "I certainly paid yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i05:r3",
+              "targetText": "She certainly pays every day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She certainly paid yesterday.",
+                "uk": "У записі звучить She certainly paid yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She certainly paid yesterday.",
+                "uk": "У записі звучить She certainly paid yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you pay yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:word:luckily",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — luckily",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:luckily:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — luckily",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:luckily:audio",
+            "transcript": "luckily"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:luckily:r1",
+              "targetText": "luckily",
+              "meaningByLocale": {
+                "ru": "к счастью.",
+                "uk": "на щастя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "luckily",
+            "definitionByLocale": {
+              "ru": "к счастью.",
+              "uk": "на щастя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: К счастью, я успел на автобус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: К счастью, я успел на автобус",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Luckily, I caught the bus.",
+          "localizedMeaning": {
+            "ru": "Скажите: К счастью, я успел на автобус",
+            "uk": "Скажіть: На щастя, я встиг на автобус"
+          },
+          "orderedTokens": [
+            "Luckily,",
+            "I",
+            "caught",
+            "the",
+            "bus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i08:r1",
+            "text": "Luckily, she caught the bus."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i08:r2",
+            "text": "Luckily, I caught the bus."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i08:r3",
+            "text": "Luckily, she caught the train."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i08:audio",
+            "transcript": "Luckily, she caught the bus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i08:r1",
+              "targetText": "Luckily, she caught the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i08:r2",
+              "targetText": "Luckily, I caught the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i08:r3",
+              "targetText": "Luckily, she caught the train.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Luckily, she caught the bus.",
+                "uk": "У записі звучить Luckily, she caught the bus."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Luckily, she caught the bus.",
+                "uk": "У записі звучить Luckily, she caught the bus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you catch the bus yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:word:unfortunately",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unfortunately",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:unfortunately:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unfortunately",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:unfortunately:audio",
+            "transcript": "unfortunately"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:unfortunately:r1",
+              "targetText": "unfortunately",
+              "meaningByLocale": {
+                "ru": "к сожалению.",
+                "uk": "на жаль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unfortunately",
+            "definitionByLocale": {
+              "ru": "к сожалению.",
+              "uk": "на жаль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: К сожалению, я опоздал на поезд",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: К сожалению, я опоздал на поезд",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Unfortunately, I missed the train.",
+          "localizedMeaning": {
+            "ru": "Скажите: К сожалению, я опоздал на поезд",
+            "uk": "Скажіть: На жаль, я запізнився на поїзд"
+          },
+          "orderedTokens": [
+            "Unfortunately,",
+            "I",
+            "missed",
+            "the",
+            "train"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i11:r1",
+            "text": "Unfortunately, she missed the train."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i11:r2",
+            "text": "Unfortunately, I missed the train."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i11:r3",
+            "text": "Unfortunately, she missed the bus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i11:audio",
+            "transcript": "Unfortunately, she missed the train."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i11:r1",
+              "targetText": "Unfortunately, she missed the train.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i11:r2",
+              "targetText": "Unfortunately, I missed the train.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i11:r3",
+              "targetText": "Unfortunately, she missed the bus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Unfortunately, she missed the train.",
+                "uk": "У записі звучить Unfortunately, she missed the train."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Unfortunately, she missed the train.",
+                "uk": "У записі звучить Unfortunately, she missed the train."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you miss the train yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-28:i13:p1",
+              "target": "definitely",
+              "meaningByLocale": {
+                "ru": "точно, определённо",
+                "uk": "точно, безперечно"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-28:i13:p2",
+              "target": "certainly",
+              "meaningByLocale": {
+                "ru": "безусловно, несомненно",
+                "uk": "безумовно, безсумнівно"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-28:i13:p3",
+              "target": "luckily",
+              "meaningByLocale": {
+                "ru": "к счастью",
+                "uk": "на щастя"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-28:i13:p4",
+              "target": "unfortunately",
+              "meaningByLocale": {
+                "ru": "к сожалению",
+                "uk": "на жаль"
+              }
+            }
+          ],
+          "leftColumn": [
+            "definitely",
+            "certainly",
+            "luckily",
+            "unfortunately"
+          ],
+          "rightColumn": [
+            "точно, определённо",
+            "безусловно, несомненно",
+            "к счастью",
+            "к сожалению"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i14:audio",
+            "transcript": "Did they pay last week?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did they pay last week?",
+          "orderedTokens": [
+            "Did",
+            "they",
+            "pay",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i15:audio",
+            "transcript": "He didn't miss the bus yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He didn't miss the bus yesterday.",
+          "orderedTokens": [
+            "He",
+            "didn't",
+            "miss",
+            "the",
+            "bus",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я точно звонил на прошлой неделе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: я точно звонил на прошлой неделе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i16:audio",
+            "transcript": "I definitely called last week."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I definitely called last week.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: к счастью, она вчера успела на автобус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: к счастью, она вчера успела на автобус",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i17:audio",
+            "transcript": "Luckily, she caught the bus yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Luckily, she caught the bus yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-28:word:definitely",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — definitely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:definitely:audio"
+        ],
+        "accessibilityLabel": "Картка слова — definitely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:definitely:audio",
+            "transcript": "definitely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:definitely:r1",
+              "targetText": "definitely",
+              "meaningByLocale": {
+                "ru": "точно, определённо.",
+                "uk": "точно, безперечно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "definitely",
+            "definitionByLocale": {
+              "ru": "точно, определённо.",
+              "uk": "точно, безперечно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я точно телефонував учора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я точно телефонував учора",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I definitely called yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я точно звонил вчера",
+            "uk": "Скажіть: Я точно телефонував учора"
+          },
+          "orderedTokens": [
+            "I",
+            "definitely",
+            "called",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i02:r1",
+            "text": "She definitely called yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i02:r2",
+            "text": "I definitely called yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i02:r3",
+            "text": "She probably called yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i02:audio",
+            "transcript": "She definitely called yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i02:r1",
+              "targetText": "She definitely called yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i02:r2",
+              "targetText": "I definitely called yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i02:r3",
+              "targetText": "She probably called yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She definitely called yesterday.",
+                "uk": "У записі звучить She definitely called yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She definitely called yesterday.",
+                "uk": "У записі звучить She definitely called yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you call yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:word:certainly",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — certainly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:certainly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — certainly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:certainly:audio",
+            "transcript": "certainly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:certainly:r1",
+              "targetText": "certainly",
+              "meaningByLocale": {
+                "ru": "безусловно, несомненно.",
+                "uk": "безумовно, безсумнівно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "certainly",
+            "definitionByLocale": {
+              "ru": "безусловно, несомненно.",
+              "uk": "безумовно, безсумнівно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я безсумнівно заплатив учора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я безсумнівно заплатив учора",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I certainly paid yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я несомненно заплатил вчера",
+            "uk": "Скажіть: Я безсумнівно заплатив учора"
+          },
+          "orderedTokens": [
+            "I",
+            "certainly",
+            "paid",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i05:r1",
+            "text": "She certainly paid yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i05:r2",
+            "text": "I certainly paid yesterday."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i05:r3",
+            "text": "She certainly pays every day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i05:audio",
+            "transcript": "She certainly paid yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i05:r1",
+              "targetText": "She certainly paid yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i05:r2",
+              "targetText": "I certainly paid yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i05:r3",
+              "targetText": "She certainly pays every day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She certainly paid yesterday.",
+                "uk": "У записі звучить She certainly paid yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She certainly paid yesterday.",
+                "uk": "У записі звучить She certainly paid yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you pay yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:word:luckily",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — luckily",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:luckily:audio"
+        ],
+        "accessibilityLabel": "Картка слова — luckily",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:luckily:audio",
+            "transcript": "luckily"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:luckily:r1",
+              "targetText": "luckily",
+              "meaningByLocale": {
+                "ru": "к счастью.",
+                "uk": "на щастя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "luckily",
+            "definitionByLocale": {
+              "ru": "к счастью.",
+              "uk": "на щастя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: На щастя, я встиг на автобус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: На щастя, я встиг на автобус",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Luckily, I caught the bus.",
+          "localizedMeaning": {
+            "ru": "Скажите: К счастью, я успел на автобус",
+            "uk": "Скажіть: На щастя, я встиг на автобус"
+          },
+          "orderedTokens": [
+            "Luckily,",
+            "I",
+            "caught",
+            "the",
+            "bus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i08:r1",
+            "text": "Luckily, she caught the bus."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i08:r2",
+            "text": "Luckily, I caught the bus."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i08:r3",
+            "text": "Luckily, she caught the train."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i08:audio",
+            "transcript": "Luckily, she caught the bus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i08:r1",
+              "targetText": "Luckily, she caught the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i08:r2",
+              "targetText": "Luckily, I caught the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i08:r3",
+              "targetText": "Luckily, she caught the train.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Luckily, she caught the bus.",
+                "uk": "У записі звучить Luckily, she caught the bus."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Luckily, she caught the bus.",
+                "uk": "У записі звучить Luckily, she caught the bus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you catch the bus yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:word:unfortunately",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unfortunately",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:word:unfortunately:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unfortunately",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:word:unfortunately:audio",
+            "transcript": "unfortunately"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:word:unfortunately:r1",
+              "targetText": "unfortunately",
+              "meaningByLocale": {
+                "ru": "к сожалению.",
+                "uk": "на жаль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unfortunately",
+            "definitionByLocale": {
+              "ru": "к сожалению.",
+              "uk": "на жаль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: На жаль, я запізнився на поїзд",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: На жаль, я запізнився на поїзд",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Unfortunately, I missed the train.",
+          "localizedMeaning": {
+            "ru": "Скажите: К сожалению, я опоздал на поезд",
+            "uk": "Скажіть: На жаль, я запізнився на поїзд"
+          },
+          "orderedTokens": [
+            "Unfortunately,",
+            "I",
+            "missed",
+            "the",
+            "train"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i11:r1",
+            "text": "Unfortunately, she missed the train."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i11:r2",
+            "text": "Unfortunately, I missed the train."
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i11:r3",
+            "text": "Unfortunately, she missed the bus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i11:audio",
+            "transcript": "Unfortunately, she missed the train."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-28:i11:r1",
+              "targetText": "Unfortunately, she missed the train.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i11:r2",
+              "targetText": "Unfortunately, I missed the train.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i11:r3",
+              "targetText": "Unfortunately, she missed the bus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Unfortunately, she missed the train.",
+                "uk": "У записі звучить Unfortunately, she missed the train."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Unfortunately, she missed the train.",
+                "uk": "У записі звучить Unfortunately, she missed the train."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-28:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-28:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you miss the train yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-28:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-28:i13:p1",
+              "target": "definitely",
+              "meaningByLocale": {
+                "ru": "точно, определённо",
+                "uk": "точно, безперечно"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-28:i13:p2",
+              "target": "certainly",
+              "meaningByLocale": {
+                "ru": "безусловно, несомненно",
+                "uk": "безумовно, безсумнівно"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-28:i13:p3",
+              "target": "luckily",
+              "meaningByLocale": {
+                "ru": "к счастью",
+                "uk": "на щастя"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-28:i13:p4",
+              "target": "unfortunately",
+              "meaningByLocale": {
+                "ru": "к сожалению",
+                "uk": "на жаль"
+              }
+            }
+          ],
+          "leftColumn": [
+            "definitely",
+            "certainly",
+            "luckily",
+            "unfortunately"
+          ],
+          "rightColumn": [
+            "точно, безперечно",
+            "безумовно, безсумнівно",
+            "на щастя",
+            "на жаль"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i14:audio",
+            "transcript": "Did they pay last week?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did they pay last week?",
+          "orderedTokens": [
+            "Did",
+            "they",
+            "pay",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i15:audio",
+            "transcript": "He didn't miss the bus yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He didn't miss the bus yesterday.",
+          "orderedTokens": [
+            "He",
+            "didn't",
+            "miss",
+            "the",
+            "bus",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я точно телефонував минулого тижня",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я точно телефонував минулого тижня",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i16:audio",
+            "transcript": "I definitely called last week."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I definitely called last week.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: на щастя, вона вчора встигла на автобус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: на щастя, вона вчора встигла на автобус",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-28:i17:audio",
+            "transcript": "Luckily, she caught the bus yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Luckily, she caught the bus yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-28:word:definitely",
+      "correctText": "definitely",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i01",
+      "correctText": "I definitely called yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i02",
+      "correctText": "She definitely called yesterday.",
+      "correctResponseId": "en:lesson-13:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:word:certainly",
+      "correctText": "certainly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i04",
+      "correctText": "I certainly paid yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i05",
+      "correctText": "She certainly paid yesterday.",
+      "correctResponseId": "en:lesson-13:session-28:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:word:luckily",
+      "correctText": "luckily",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i07",
+      "correctText": "Luckily, I caught the bus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i08",
+      "correctText": "Luckily, she caught the bus.",
+      "correctResponseId": "en:lesson-13:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:word:unfortunately",
+      "correctText": "unfortunately",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i10",
+      "correctText": "Unfortunately, I missed the train.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i11",
+      "correctText": "Unfortunately, she missed the train.",
+      "correctResponseId": "en:lesson-13:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i14",
+      "correctText": "Did they pay last week?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i15",
+      "correctText": "He didn't miss the bus yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i16",
+      "correctText": "I definitely called last week.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:i17",
+      "correctText": "Luckily, she caught the bus yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

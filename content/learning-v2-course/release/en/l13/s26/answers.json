@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-26:word:garden-shed",
+    "correctText": "garden shed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i01",
+    "correctText": "Did you clean the garden shed yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i02",
+    "correctText": "Did she clean the garden shed yesterday?",
+    "correctResponseId": "en:lesson-13:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:word:doorframe",
+    "correctText": "doorframe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i04",
+    "correctText": "Did you paint the doorframe last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i05",
+    "correctText": "Did she paint the doorframe last week?",
+    "correctResponseId": "en:lesson-13:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:word:window-frame",
+    "correctText": "window frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i07",
+    "correctText": "Did you clean the window frame yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i08",
+    "correctText": "Did she clean the window frame yesterday?",
+    "correctResponseId": "en:lesson-13:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:word:curtain-rail",
+    "correctText": "curtain rail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i10",
+    "correctText": "Did you clean the curtain rail yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i11",
+    "correctText": "Did she clean the curtain rail yesterday?",
+    "correctResponseId": "en:lesson-13:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i13",
+    "correctText": "en:lesson-13:session-26:i13:p1=garden shed\nen:lesson-13:session-26:i13:p2=doorframe\nen:lesson-13:session-26:i13:p3=window frame\nen:lesson-13:session-26:i13:p4=curtain rail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i14",
+    "correctText": "We didn't paint the room last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i15",
+    "correctText": "Did he wash the windows yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i16",
+    "correctText": "Did you clean the garden shed last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-26:i17",
+    "correctText": "She didn't clean the window frame yesterday.",
+    "correctResponseId": null
+  }
+]

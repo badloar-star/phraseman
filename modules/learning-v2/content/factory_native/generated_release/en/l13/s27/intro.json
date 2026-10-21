@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "review: finished time anchors with did/did not",
+    "uk": "review: finished time anchors with did/did not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Батат",
+        "uk": "Батат"
+      },
+      "bodyByLocale": {
+        "ru": "Sweet potato — батат, сладкий корнеплод. Did you cook a sweet potato yesterday? — Ты вчера приготовил батат? Выберите вопрос о вчерашнем действии.",
+        "uk": "Sweet potato — батат, солодкий коренеплід. Did you cook a sweet potato yesterday? — Ти вчора приготував батат? Виберіть запитання про вчорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-27:intro1:r1",
+              "text": "Did you cook a sweet potato yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro1:r2",
+              "text": "Do you cook a sweet potato yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro1:r3",
+              "text": "Did you cooked a sweet potato yesterday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-27:intro1:r1",
+              "text": "Did you cook a sweet potato yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro1:r2",
+              "text": "Do you cook a sweet potato yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro1:r3",
+              "text": "Did you cooked a sweet potato yesterday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Репа и пастернак",
+        "uk": "Ріпа й пастернак"
+      },
+      "bodyByLocale": {
+        "ru": "Turnip — репа; parsnip — пастернак, светлый корнеплод, похожий по форме на морковь. Did you peel the parsnip? — Ты почистил пастернак? Выберите пастернак.",
+        "uk": "Turnip — ріпа; parsnip — пастернак, світлий коренеплід, схожий формою на моркву. Did you peel the parsnip? — Ти почистив пастернак? Виберіть пастернак."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-27:intro2:r1",
+              "text": "Did you peel the parsnip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro2:r2",
+              "text": "Did you peel the turnip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro2:r3",
+              "text": "Did you peeled the parsnip?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-27:intro2:r1",
+              "text": "Did you peel the parsnip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro2:r2",
+              "text": "Did you peel the turnip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro2:r3",
+              "text": "Did you peeled the parsnip?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Тыква для супа",
+        "uk": "Гарбуз для супу"
+      },
+      "bodyByLocale": {
+        "ru": "Butternut squash — мускатная тыква грушевидной формы. Did you buy a butternut squash last week? — Ты купил такую тыкву на прошлой неделе? Выберите last week без предлога.",
+        "uk": "Butternut squash — мускатний гарбуз грушоподібної форми. Did you buy a butternut squash last week? — Ти купив такий гарбуз минулого тижня? Виберіть last week без прийменника."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-27:intro3:r1",
+              "text": "Did you buy a butternut squash last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro3:r2",
+              "text": "Did you buy a butternut squash in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro3:r3",
+              "text": "Did you bought a butternut squash last week?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-27:intro3:r1",
+              "text": "Did you buy a butternut squash last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro3:r2",
+              "text": "Did you buy a butternut squash in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:intro3:r3",
+              "text": "Did you bought a butternut squash last week?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f733d99da996784e3e1ebb96faf73177892c9affa651c1aee56c269a2c02bbe5"
+}

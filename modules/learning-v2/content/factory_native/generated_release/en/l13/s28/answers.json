@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-28:word:definitely",
+    "correctText": "definitely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i01",
+    "correctText": "I definitely called yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i02",
+    "correctText": "She definitely called yesterday.",
+    "correctResponseId": "en:lesson-13:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:word:certainly",
+    "correctText": "certainly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i04",
+    "correctText": "I certainly paid yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i05",
+    "correctText": "She certainly paid yesterday.",
+    "correctResponseId": "en:lesson-13:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:word:luckily",
+    "correctText": "luckily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i07",
+    "correctText": "Luckily, I caught the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i08",
+    "correctText": "Luckily, she caught the bus.",
+    "correctResponseId": "en:lesson-13:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:word:unfortunately",
+    "correctText": "unfortunately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i10",
+    "correctText": "Unfortunately, I missed the train.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i11",
+    "correctText": "Unfortunately, she missed the train.",
+    "correctResponseId": "en:lesson-13:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i13",
+    "correctText": "en:lesson-13:session-28:i13:p1=definitely\nen:lesson-13:session-28:i13:p2=certainly\nen:lesson-13:session-28:i13:p3=luckily\nen:lesson-13:session-28:i13:p4=unfortunately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i14",
+    "correctText": "Did they pay last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i15",
+    "correctText": "He didn't miss the bus yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i16",
+    "correctText": "I definitely called last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-28:i17",
+    "correctText": "Luckily, she caught the bus yesterday.",
+    "correctResponseId": null
+  }
+]

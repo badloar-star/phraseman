@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-26:intro1:r2": {
+          "ru": "Это вопрос о привычке.",
+          "uk": "Це запитання про звичку."
+        },
+        "en:lesson-13:session-26:intro1:r3": {
+          "ru": "После did нужна clean.",
+          "uk": "Після did потрібна clean."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-26:intro2:r2": {
+          "ru": "Перед last week здесь не нужна in.",
+          "uk": "Перед last week тут не потрібна in."
+        },
+        "en:lesson-13:session-26:intro2:r3": {
+          "ru": "После did нужна paint.",
+          "uk": "Після did потрібна paint."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-26:intro3:r2": {
+          "ru": "Это оконная рама.",
+          "uk": "Це віконна рама."
+        },
+        "en:lesson-13:session-26:intro3:r3": {
+          "ru": "После did нужна clean.",
+          "uk": "Після did потрібна clean."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e4045c1a97b68716e4b0d54526809d8375b99c492af6eb4ff07b6445147b1418"
+}

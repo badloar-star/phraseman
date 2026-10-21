@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "review: finished time anchors with did/did not",
+    "uk": "review: finished time anchors with did/did not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сарай в саду",
+        "uk": "Сарай у саду"
+      },
+      "bodyByLocale": {
+        "ru": "Garden shed — небольшой сарай в саду для инструментов и вещей. Did you clean the garden shed yesterday? — Ты вчера убрал садовый сарай? Выберите вчера, не каждый день.",
+        "uk": "Garden shed — невеликий сарай у саду для інструментів і речей. Did you clean the garden shed yesterday? — Ти вчора прибрав садовий сарай? Виберіть учора, не щодня."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-26:intro1:r1",
+              "text": "Did you clean the garden shed yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro1:r2",
+              "text": "Do you clean the garden shed every day?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro1:r3",
+              "text": "Did you cleaned the garden shed yesterday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-26:intro1:r1",
+              "text": "Did you clean the garden shed yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro1:r2",
+              "text": "Do you clean the garden shed every day?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro1:r3",
+              "text": "Did you cleaned the garden shed yesterday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вокруг двери",
+        "uk": "Навколо дверей"
+      },
+      "bodyByLocale": {
+        "ru": "Doorframe — дверная рама. Did she paint the doorframe last week? — Она покрасила дверную раму на прошлой неделе? Перед last week не ставим in. Выберите правильный вопрос.",
+        "uk": "Doorframe — дверна рама. Did she paint the doorframe last week? — Вона пофарбувала дверну раму минулого тижня? Перед last week не ставимо in. Виберіть правильне запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-26:intro2:r1",
+              "text": "Did she paint the doorframe last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro2:r2",
+              "text": "Did she paint the doorframe in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro2:r3",
+              "text": "Did she painted the doorframe last week?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-26:intro2:r1",
+              "text": "Did she paint the doorframe last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro2:r2",
+              "text": "Did she paint the doorframe in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro2:r3",
+              "text": "Did she painted the doorframe last week?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Окно и шторы",
+        "uk": "Вікно й штори"
+      },
+      "bodyByLocale": {
+        "ru": "Window frame — оконная рама; curtain rail — карниз для штор, по которому двигаются крепления шторы. Выберите: ты вчера почистил карниз?",
+        "uk": "Window frame — віконна рама; curtain rail — карниз для штор, яким рухаються кріплення штори. Виберіть: ти вчора почистив карниз?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-26:intro3:r1",
+              "text": "Did you clean the curtain rail yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro3:r2",
+              "text": "Did you clean the window frame yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro3:r3",
+              "text": "Did you cleaned the curtain rail yesterday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-26:intro3:r1",
+              "text": "Did you clean the curtain rail yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro3:r2",
+              "text": "Did you clean the window frame yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-26:intro3:r3",
+              "text": "Did you cleaned the curtain rail yesterday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4e713c620420d7b5a394dbd65718207d075f5255fbf33418cc334e30a1d607e2"
+}

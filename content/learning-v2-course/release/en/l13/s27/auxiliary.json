@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-27:intro1:r2": {
+          "ru": "С yesterday нужен вопрос о прошлом: did.",
+          "uk": "З yesterday потрібне запитання про минуле: did."
+        },
+        "en:lesson-13:session-27:intro1:r3": {
+          "ru": "После did нужна cook.",
+          "uk": "Після did потрібна cook."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-27:intro2:r2": {
+          "ru": "Это репа.",
+          "uk": "Це ріпа."
+        },
+        "en:lesson-13:session-27:intro2:r3": {
+          "ru": "После did нужна peel.",
+          "uk": "Після did потрібна peel."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-27:intro3:r2": {
+          "ru": "Перед last week здесь не нужна in.",
+          "uk": "Перед last week тут не потрібна in."
+        },
+        "en:lesson-13:session-27:intro3:r3": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "924e4dca284c3857f5b2f807dd644ec07dbe98cf1107dbfb163f5b4b5ee18413"
+}

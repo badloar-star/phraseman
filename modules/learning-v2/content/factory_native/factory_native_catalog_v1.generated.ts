@@ -4879,4 +4879,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: base form after did","uk":"review: base form after did"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 25,
+    sourceFingerprint: "dda91771b57e3db75edaaef5fc9b664fa8eda5c1be06c43eed52cd6c774074bf",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"new focus: finished time anchors with did/did not","uk":"new focus: finished time anchors with did/did not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 26,
+    sourceFingerprint: "7b70ebc44f486f62ebd3e822e707ce5d65cbd341de714db2c8309d3ec7ca71a4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: finished time anchors with did/did not","uk":"review: finished time anchors with did/did not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 27,
+    sourceFingerprint: "d604d897914776abfc69f4109cc0940ae44de526ff3d10041030fee6fb0ac9a1",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: finished time anchors with did/did not","uk":"review: finished time anchors with did/did not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 28,
+    sourceFingerprint: "a090ad690ef50ec2d1d61995ba746dd3caef0937b9df453ebba768c0994173e9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: finished time anchors with past statements/questions","uk":"review: finished time anchors with past statements/questions"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
 ]);

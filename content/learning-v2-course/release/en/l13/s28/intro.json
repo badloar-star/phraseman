@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "review: finished time anchors with past statements/questions",
+    "uk": "review: finished time anchors with past statements/questions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Точно",
+        "uk": "Точно"
+      },
+      "bodyByLocale": {
+        "ru": "Definitely — точно, определённо. I definitely called yesterday — я точно звонил вчера. Говорящий уверен в действии. Выберите уверенность, не предположение.",
+        "uk": "Definitely — точно, безперечно. I definitely called yesterday — я точно телефонував учора. Мовець упевнений у дії. Виберіть упевненість, не припущення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-28:intro1:r1",
+              "text": "I definitely called yesterday."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro1:r2",
+              "text": "I probably called yesterday."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro1:r3",
+              "text": "I definitely call yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-28:intro1:r1",
+              "text": "I definitely called yesterday."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro1:r2",
+              "text": "I probably called yesterday."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro1:r3",
+              "text": "I definitely call yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Безусловно",
+        "uk": "Безумовно"
+      },
+      "bodyByLocale": {
+        "ru": "Certainly — безусловно, несомненно. I certainly paid yesterday — я несомненно заплатил вчера. Это ещё один способ подчеркнуть уверенность. Выберите сообщение о вчерашней оплате.",
+        "uk": "Certainly — безумовно, безсумнівно. I certainly paid yesterday — я безсумнівно заплатив учора. Це ще один спосіб підкреслити впевненість. Виберіть повідомлення про вчорашню оплату."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-28:intro2:r1",
+              "text": "I certainly paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro2:r2",
+              "text": "I certainly pay every day."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro2:r3",
+              "text": "I certainly pay yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-28:intro2:r1",
+              "text": "I certainly paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro2:r2",
+              "text": "I certainly pay every day."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro2:r3",
+              "text": "I certainly pay yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "К счастью и к сожалению",
+        "uk": "На щастя й на жаль"
+      },
+      "bodyByLocale": {
+        "ru": "Luckily — к счастью; unfortunately — к сожалению. Luckily, I caught the bus — к счастью, я успел на автобус. Unfortunately, I missed the train — к сожалению, я опоздал на поезд. Выберите удачную поездку на автобусе.",
+        "uk": "Luckily — на щастя; unfortunately — на жаль. Luckily, I caught the bus — на щастя, я встиг на автобус. Unfortunately, I missed the train — на жаль, я запізнився на поїзд. Виберіть вдалу поїздку автобусом."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-28:intro3:r1",
+              "text": "Luckily, I caught the bus."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro3:r2",
+              "text": "Unfortunately, I missed the train."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro3:r3",
+              "text": "Luckily, I catch the bus yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-28:intro3:r1",
+              "text": "Luckily, I caught the bus."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro3:r2",
+              "text": "Unfortunately, I missed the train."
+            },
+            {
+              "responseId": "en:lesson-13:session-28:intro3:r3",
+              "text": "Luckily, I catch the bus yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c065285a7bc154fe803e8244252524c91a7caa1339c4fe6fbfa17c98b8047957"
+}

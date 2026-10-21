@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-25:word:recently",
+    "correctText": "recently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i01",
+    "correctText": "Did you call recently?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i02",
+    "correctText": "Did she call recently?",
+    "correctResponseId": "en:lesson-13:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:word:afterwards",
+    "correctText": "afterwards",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i04",
+    "correctText": "Did you call afterwards?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i05",
+    "correctText": "Did she call afterwards?",
+    "correctResponseId": "en:lesson-13:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:word:beforehand",
+    "correctText": "beforehand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i07",
+    "correctText": "Did you buy the tickets beforehand?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i08",
+    "correctText": "Did she buy the tickets beforehand?",
+    "correctResponseId": "en:lesson-13:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:word:immediately",
+    "correctText": "immediately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i10",
+    "correctText": "Did you answer immediately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i11",
+    "correctText": "Did she answer immediately?",
+    "correctResponseId": "en:lesson-13:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i13",
+    "correctText": "en:lesson-13:session-25:i13:p1=recently\nen:lesson-13:session-25:i13:p2=afterwards\nen:lesson-13:session-25:i13:p3=beforehand\nen:lesson-13:session-25:i13:p4=immediately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i14",
+    "correctText": "Did they travel last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i15",
+    "correctText": "He didn't call yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i16",
+    "correctText": "Did you answer immediately yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-25:i17",
+    "correctText": "She didn't buy the tickets beforehand.",
+    "correctResponseId": null
+  }
+]

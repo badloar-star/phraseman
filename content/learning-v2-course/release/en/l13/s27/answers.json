@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-27:word:sweet-potato",
+    "correctText": "sweet potato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i01",
+    "correctText": "Did you cook a sweet potato yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i02",
+    "correctText": "Did she cook a sweet potato yesterday?",
+    "correctResponseId": "en:lesson-13:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:word:turnip",
+    "correctText": "turnip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i04",
+    "correctText": "Did you wash the turnip yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i05",
+    "correctText": "Did she wash the turnip yesterday?",
+    "correctResponseId": "en:lesson-13:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:word:parsnip",
+    "correctText": "parsnip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i07",
+    "correctText": "Did you peel the parsnip yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i08",
+    "correctText": "Did she peel the parsnip yesterday?",
+    "correctResponseId": "en:lesson-13:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:word:butternut-squash",
+    "correctText": "butternut squash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i10",
+    "correctText": "Did you buy a butternut squash last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i11",
+    "correctText": "Did she buy a butternut squash last week?",
+    "correctResponseId": "en:lesson-13:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i13",
+    "correctText": "en:lesson-13:session-27:i13:p1=sweet potato\nen:lesson-13:session-27:i13:p2=turnip\nen:lesson-13:session-27:i13:p3=parsnip\nen:lesson-13:session-27:i13:p4=butternut squash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i14",
+    "correctText": "We didn't make soup yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i15",
+    "correctText": "Did he buy vegetables last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i16",
+    "correctText": "Did you buy a sweet potato last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-27:i17",
+    "correctText": "She didn't peel the parsnip yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "new focus: finished time anchors with did/did not",
+    "uk": "new focus: finished time anchors with did/did not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вчера и на прошлой неделе",
+        "uk": "Учора й минулого тижня"
+      },
+      "bodyByLocale": {
+        "ru": "Did you call yesterday? — Ты звонил вчера? I didn't call last week — я не звонил на прошлой неделе. Yesterday и last week называют уже закончившееся время; перед ними здесь не нужны in или on. Выберите вопрос о вчерашнем звонке.",
+        "uk": "Did you call yesterday? — Ти телефонував учора? I didn't call last week — я не телефонував минулого тижня. Yesterday і last week називають уже завершений час; перед ними тут не потрібні in або on. Виберіть запитання про вчорашній дзвінок."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-25:intro1:r1",
+              "text": "Did you call yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro1:r2",
+              "text": "Did you call on yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro1:r3",
+              "text": "Do you call yesterday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-25:intro1:r1",
+              "text": "Did you call yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro1:r2",
+              "text": "Did you call on yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro1:r3",
+              "text": "Do you call yesterday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Недавно и после этого",
+        "uk": "Нещодавно й після цього"
+      },
+      "bodyByLocale": {
+        "ru": "Recently — недавно, без точной даты; afterwards — после этого. Друг вчера закончил работу и затем позвонил. Спросите именно о звонке после работы: Did you call afterwards?",
+        "uk": "Recently — нещодавно, без точної дати; afterwards — після цього. Друг учора закінчив роботу й потім зателефонував. Запитайте саме про дзвінок після роботи: Did you call afterwards?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-25:intro2:r1",
+              "text": "Did you call afterwards?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro2:r2",
+              "text": "Did you call recently?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro2:r3",
+              "text": "Did you called afterwards?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-25:intro2:r1",
+              "text": "Did you call afterwards?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro2:r2",
+              "text": "Did you call recently?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro2:r3",
+              "text": "Did you called afterwards?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заранее или сразу",
+        "uk": "Заздалегідь чи відразу"
+      },
+      "bodyByLocale": {
+        "ru": "Beforehand — заранее, до события; immediately — сразу, без ожидания. Поездка была вчера. Did you buy the tickets beforehand? — Ты купил билеты заранее? Выберите заранее, не сразу.",
+        "uk": "Beforehand — заздалегідь, до події; immediately — відразу, без очікування. Поїздка була вчора. Did you buy the tickets beforehand? — Ти купив квитки заздалегідь? Виберіть заздалегідь, не відразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-25:intro3:r1",
+              "text": "Did you buy the tickets beforehand?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro3:r2",
+              "text": "Did you buy the tickets immediately?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro3:r3",
+              "text": "Did you bought the tickets beforehand?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-25:intro3:r1",
+              "text": "Did you buy the tickets beforehand?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro3:r2",
+              "text": "Did you buy the tickets immediately?"
+            },
+            {
+              "responseId": "en:lesson-13:session-25:intro3:r3",
+              "text": "Did you bought the tickets beforehand?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c9d24c59ecc590278408ef4225bfdce08e762868334be96bcd0add2f24a95329"
+}

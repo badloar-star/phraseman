@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-27",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-27:word:sweet-potato",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sweet potato",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:sweet-potato:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sweet potato",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:sweet-potato:audio",
+            "transcript": "sweet potato"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:sweet-potato:r1",
+              "targetText": "sweet potato",
+              "meaningByLocale": {
+                "ru": "батат.",
+                "uk": "батат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweet potato",
+            "definitionByLocale": {
+              "ru": "батат.",
+              "uk": "батат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вчера приготовил батат?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вчера приготовил батат?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you cook a sweet potato yesterday?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вчера приготовил батат?",
+            "uk": "Скажіть: Ти вчора приготував батат?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "cook",
+            "a",
+            "sweet",
+            "potato",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i02:r1",
+            "text": "Did she cook a sweet potato yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i02:r2",
+            "text": "Did you cook a sweet potato yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i02:r3",
+            "text": "Did they cook a sweet potato yesterday?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i02:audio",
+            "transcript": "Did she cook a sweet potato yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i02:r1",
+              "targetText": "Did she cook a sweet potato yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i02:r2",
+              "targetText": "Did you cook a sweet potato yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i02:r3",
+              "targetText": "Did they cook a sweet potato yesterday?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she cook a sweet potato yesterday?",
+                "uk": "У записі звучить Did she cook a sweet potato yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she cook a sweet potato yesterday?",
+                "uk": "У записі звучить Did she cook a sweet potato yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you cook a sweet potato yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:word:turnip",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — turnip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:turnip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — turnip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:turnip:audio",
+            "transcript": "turnip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:turnip:r1",
+              "targetText": "turnip",
+              "meaningByLocale": {
+                "ru": "репа.",
+                "uk": "ріпа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turnip",
+            "definitionByLocale": {
+              "ru": "репа.",
+              "uk": "ріпа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вчера помыл репу?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вчера помыл репу?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you wash the turnip yesterday?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вчера помыл репу?",
+            "uk": "Скажіть: Ти вчора помив ріпу?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "wash",
+            "the",
+            "turnip",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i05:r1",
+            "text": "Did she wash the turnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i05:r2",
+            "text": "Did you wash the turnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i05:r3",
+            "text": "Did they wash the turnip yesterday?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i05:audio",
+            "transcript": "Did she wash the turnip yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i05:r1",
+              "targetText": "Did she wash the turnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i05:r2",
+              "targetText": "Did you wash the turnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i05:r3",
+              "targetText": "Did they wash the turnip yesterday?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she wash the turnip yesterday?",
+                "uk": "У записі звучить Did she wash the turnip yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she wash the turnip yesterday?",
+                "uk": "У записі звучить Did she wash the turnip yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you wash the turnip yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:word:parsnip",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — parsnip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:parsnip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — parsnip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:parsnip:audio",
+            "transcript": "parsnip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:parsnip:r1",
+              "targetText": "parsnip",
+              "meaningByLocale": {
+                "ru": "пастернак.",
+                "uk": "пастернак."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parsnip",
+            "definitionByLocale": {
+              "ru": "пастернак.",
+              "uk": "пастернак."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вчера почистил пастернак?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вчера почистил пастернак?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you peel the parsnip yesterday?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вчера почистил пастернак?",
+            "uk": "Скажіть: Ти вчора почистив пастернак?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "peel",
+            "the",
+            "parsnip",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i08:r1",
+            "text": "Did she peel the parsnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i08:r2",
+            "text": "Did you peel the parsnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i08:r3",
+            "text": "Did they peel the parsnip yesterday?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i08:audio",
+            "transcript": "Did she peel the parsnip yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i08:r1",
+              "targetText": "Did she peel the parsnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i08:r2",
+              "targetText": "Did you peel the parsnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i08:r3",
+              "targetText": "Did they peel the parsnip yesterday?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she peel the parsnip yesterday?",
+                "uk": "У записі звучить Did she peel the parsnip yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she peel the parsnip yesterday?",
+                "uk": "У записі звучить Did she peel the parsnip yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you peel the parsnip yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:word:butternut-squash",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — butternut squash",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:butternut-squash:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — butternut squash",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:butternut-squash:audio",
+            "transcript": "butternut squash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:butternut-squash:r1",
+              "targetText": "butternut squash",
+              "meaningByLocale": {
+                "ru": "мускатная тыква грушевидной формы.",
+                "uk": "мускатний гарбуз грушоподібної форми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "butternut squash",
+            "definitionByLocale": {
+              "ru": "мускатная тыква грушевидной формы.",
+              "uk": "мускатний гарбуз грушоподібної форми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты купил грушевидную мускатную тыкву на прошлой неделе?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты купил грушевидную мускатную тыкву на прошлой неделе?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you buy a butternut squash last week?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты купил грушевидную мускатную тыкву на прошлой неделе?",
+            "uk": "Скажіть: Ти купив грушоподібний мускатний гарбуз минулого тижня?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "buy",
+            "a",
+            "butternut",
+            "squash",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i11:r1",
+            "text": "Did she buy a butternut squash last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i11:r2",
+            "text": "Did you buy a butternut squash last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i11:r3",
+            "text": "Did they buy a butternut squash last week?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i11:audio",
+            "transcript": "Did she buy a butternut squash last week?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i11:r1",
+              "targetText": "Did she buy a butternut squash last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i11:r2",
+              "targetText": "Did you buy a butternut squash last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i11:r3",
+              "targetText": "Did they buy a butternut squash last week?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she buy a butternut squash last week?",
+                "uk": "У записі звучить Did she buy a butternut squash last week?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she buy a butternut squash last week?",
+                "uk": "У записі звучить Did she buy a butternut squash last week?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you buy a butternut squash last week?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-27:i13:p1",
+              "target": "sweet potato",
+              "meaningByLocale": {
+                "ru": "батат",
+                "uk": "батат"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-27:i13:p2",
+              "target": "turnip",
+              "meaningByLocale": {
+                "ru": "репа",
+                "uk": "ріпа"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-27:i13:p3",
+              "target": "parsnip",
+              "meaningByLocale": {
+                "ru": "пастернак",
+                "uk": "пастернак"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-27:i13:p4",
+              "target": "butternut squash",
+              "meaningByLocale": {
+                "ru": "мускатная тыква грушевидной формы",
+                "uk": "мускатний гарбуз грушоподібної форми"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweet potato",
+            "turnip",
+            "parsnip",
+            "butternut squash"
+          ],
+          "rightColumn": [
+            "батат",
+            "репа",
+            "пастернак",
+            "мускатная тыква грушевидной формы"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i14:audio",
+            "transcript": "We didn't make soup yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't make soup yesterday.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "make",
+            "soup",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i15:audio",
+            "transcript": "Did he buy vegetables last week?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did he buy vegetables last week?",
+          "orderedTokens": [
+            "Did",
+            "he",
+            "buy",
+            "vegetables",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга: ты купил батат на прошлой неделе?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите друга: ты купил батат на прошлой неделе?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i16:audio",
+            "transcript": "Did you buy a sweet potato last week?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you buy a sweet potato last week?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она не почистила пастернак вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: она не почистила пастернак вчера",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i17:audio",
+            "transcript": "She didn't peel the parsnip yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She didn't peel the parsnip yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-27:word:sweet-potato",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sweet potato",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:sweet-potato:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sweet potato",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:sweet-potato:audio",
+            "transcript": "sweet potato"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:sweet-potato:r1",
+              "targetText": "sweet potato",
+              "meaningByLocale": {
+                "ru": "батат.",
+                "uk": "батат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweet potato",
+            "definitionByLocale": {
+              "ru": "батат.",
+              "uk": "батат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вчора приготував батат?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти вчора приготував батат?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you cook a sweet potato yesterday?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вчера приготовил батат?",
+            "uk": "Скажіть: Ти вчора приготував батат?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "cook",
+            "a",
+            "sweet",
+            "potato",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i02:r1",
+            "text": "Did she cook a sweet potato yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i02:r2",
+            "text": "Did you cook a sweet potato yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i02:r3",
+            "text": "Did they cook a sweet potato yesterday?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i02:audio",
+            "transcript": "Did she cook a sweet potato yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i02:r1",
+              "targetText": "Did she cook a sweet potato yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i02:r2",
+              "targetText": "Did you cook a sweet potato yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i02:r3",
+              "targetText": "Did they cook a sweet potato yesterday?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she cook a sweet potato yesterday?",
+                "uk": "У записі звучить Did she cook a sweet potato yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she cook a sweet potato yesterday?",
+                "uk": "У записі звучить Did she cook a sweet potato yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you cook a sweet potato yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:word:turnip",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — turnip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:turnip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — turnip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:turnip:audio",
+            "transcript": "turnip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:turnip:r1",
+              "targetText": "turnip",
+              "meaningByLocale": {
+                "ru": "репа.",
+                "uk": "ріпа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turnip",
+            "definitionByLocale": {
+              "ru": "репа.",
+              "uk": "ріпа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вчора помив ріпу?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти вчора помив ріпу?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you wash the turnip yesterday?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вчера помыл репу?",
+            "uk": "Скажіть: Ти вчора помив ріпу?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "wash",
+            "the",
+            "turnip",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i05:r1",
+            "text": "Did she wash the turnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i05:r2",
+            "text": "Did you wash the turnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i05:r3",
+            "text": "Did they wash the turnip yesterday?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i05:audio",
+            "transcript": "Did she wash the turnip yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i05:r1",
+              "targetText": "Did she wash the turnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i05:r2",
+              "targetText": "Did you wash the turnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i05:r3",
+              "targetText": "Did they wash the turnip yesterday?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she wash the turnip yesterday?",
+                "uk": "У записі звучить Did she wash the turnip yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she wash the turnip yesterday?",
+                "uk": "У записі звучить Did she wash the turnip yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you wash the turnip yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:word:parsnip",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — parsnip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:parsnip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — parsnip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:parsnip:audio",
+            "transcript": "parsnip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:parsnip:r1",
+              "targetText": "parsnip",
+              "meaningByLocale": {
+                "ru": "пастернак.",
+                "uk": "пастернак."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parsnip",
+            "definitionByLocale": {
+              "ru": "пастернак.",
+              "uk": "пастернак."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вчора почистив пастернак?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти вчора почистив пастернак?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you peel the parsnip yesterday?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вчера почистил пастернак?",
+            "uk": "Скажіть: Ти вчора почистив пастернак?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "peel",
+            "the",
+            "parsnip",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i08:r1",
+            "text": "Did she peel the parsnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i08:r2",
+            "text": "Did you peel the parsnip yesterday?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i08:r3",
+            "text": "Did they peel the parsnip yesterday?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i08:audio",
+            "transcript": "Did she peel the parsnip yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i08:r1",
+              "targetText": "Did she peel the parsnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i08:r2",
+              "targetText": "Did you peel the parsnip yesterday?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i08:r3",
+              "targetText": "Did they peel the parsnip yesterday?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she peel the parsnip yesterday?",
+                "uk": "У записі звучить Did she peel the parsnip yesterday?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she peel the parsnip yesterday?",
+                "uk": "У записі звучить Did she peel the parsnip yesterday?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you peel the parsnip yesterday?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:word:butternut-squash",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — butternut squash",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:word:butternut-squash:audio"
+        ],
+        "accessibilityLabel": "Картка слова — butternut squash",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:word:butternut-squash:audio",
+            "transcript": "butternut squash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:word:butternut-squash:r1",
+              "targetText": "butternut squash",
+              "meaningByLocale": {
+                "ru": "мускатная тыква грушевидной формы.",
+                "uk": "мускатний гарбуз грушоподібної форми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "butternut squash",
+            "definitionByLocale": {
+              "ru": "мускатная тыква грушевидной формы.",
+              "uk": "мускатний гарбуз грушоподібної форми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти купив грушоподібний мускатний гарбуз минулого тижня?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти купив грушоподібний мускатний гарбуз минулого тижня?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you buy a butternut squash last week?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты купил грушевидную мускатную тыкву на прошлой неделе?",
+            "uk": "Скажіть: Ти купив грушоподібний мускатний гарбуз минулого тижня?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "buy",
+            "a",
+            "butternut",
+            "squash",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i11:r1",
+            "text": "Did she buy a butternut squash last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i11:r2",
+            "text": "Did you buy a butternut squash last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i11:r3",
+            "text": "Did they buy a butternut squash last week?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i11:audio",
+            "transcript": "Did she buy a butternut squash last week?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-27:i11:r1",
+              "targetText": "Did she buy a butternut squash last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i11:r2",
+              "targetText": "Did you buy a butternut squash last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i11:r3",
+              "targetText": "Did they buy a butternut squash last week?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she buy a butternut squash last week?",
+                "uk": "У записі звучить Did she buy a butternut squash last week?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she buy a butternut squash last week?",
+                "uk": "У записі звучить Did she buy a butternut squash last week?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-27:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-27:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you buy a butternut squash last week?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-27:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-27:i13:p1",
+              "target": "sweet potato",
+              "meaningByLocale": {
+                "ru": "батат",
+                "uk": "батат"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-27:i13:p2",
+              "target": "turnip",
+              "meaningByLocale": {
+                "ru": "репа",
+                "uk": "ріпа"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-27:i13:p3",
+              "target": "parsnip",
+              "meaningByLocale": {
+                "ru": "пастернак",
+                "uk": "пастернак"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-27:i13:p4",
+              "target": "butternut squash",
+              "meaningByLocale": {
+                "ru": "мускатная тыква грушевидной формы",
+                "uk": "мускатний гарбуз грушоподібної форми"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweet potato",
+            "turnip",
+            "parsnip",
+            "butternut squash"
+          ],
+          "rightColumn": [
+            "батат",
+            "ріпа",
+            "пастернак",
+            "мускатний гарбуз грушоподібної форми"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i14:audio",
+            "transcript": "We didn't make soup yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't make soup yesterday.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "make",
+            "soup",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i15:audio",
+            "transcript": "Did he buy vegetables last week?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did he buy vegetables last week?",
+          "orderedTokens": [
+            "Did",
+            "he",
+            "buy",
+            "vegetables",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга: ти купив батат минулого тижня?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга: ти купив батат минулого тижня?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i16:audio",
+            "transcript": "Did you buy a sweet potato last week?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you buy a sweet potato last week?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-27:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона не почистила пастернак учора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона не почистила пастернак учора",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-27:i17:audio",
+            "transcript": "She didn't peel the parsnip yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She didn't peel the parsnip yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-27:word:sweet-potato",
+      "correctText": "sweet potato",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i01",
+      "correctText": "Did you cook a sweet potato yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i02",
+      "correctText": "Did she cook a sweet potato yesterday?",
+      "correctResponseId": "en:lesson-13:session-27:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-27:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:word:turnip",
+      "correctText": "turnip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i04",
+      "correctText": "Did you wash the turnip yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i05",
+      "correctText": "Did she wash the turnip yesterday?",
+      "correctResponseId": "en:lesson-13:session-27:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-27:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:word:parsnip",
+      "correctText": "parsnip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i07",
+      "correctText": "Did you peel the parsnip yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i08",
+      "correctText": "Did she peel the parsnip yesterday?",
+      "correctResponseId": "en:lesson-13:session-27:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-27:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:word:butternut-squash",
+      "correctText": "butternut squash",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i10",
+      "correctText": "Did you buy a butternut squash last week?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i11",
+      "correctText": "Did she buy a butternut squash last week?",
+      "correctResponseId": "en:lesson-13:session-27:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-27:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i14",
+      "correctText": "We didn't make soup yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i15",
+      "correctText": "Did he buy vegetables last week?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i16",
+      "correctText": "Did you buy a sweet potato last week?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-27:i17",
+      "correctText": "She didn't peel the parsnip yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-28:intro1:r2": {
+          "ru": "Probably — вероятно, без полной уверенности.",
+          "uk": "Probably — ймовірно, без цілковитої впевненості."
+        },
+        "en:lesson-13:session-28:intro1:r3": {
+          "ru": "Для прошлого нужна called.",
+          "uk": "Для минулого потрібна called."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-28:intro2:r2": {
+          "ru": "Здесь речь о каждом дне.",
+          "uk": "Тут ідеться про кожен день."
+        },
+        "en:lesson-13:session-28:intro2:r3": {
+          "ru": "Для прошлого нужна paid.",
+          "uk": "Для минулого потрібна paid."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-28:intro3:r2": {
+          "ru": "Это неудача с поездом.",
+          "uk": "Це невдача з поїздом."
+        },
+        "en:lesson-13:session-28:intro3:r3": {
+          "ru": "Для прошлого нужна caught.",
+          "uk": "Для минулого потрібна caught."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ac6cc98cc59f9f679904c7c0a83f6f60b734fe57fc59da289ba7ea63bbea6a1a"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-49:intro1:r2": {
+          "ru": "С we нужна check без s.",
+          "uk": "З we потрібна check без s."
+        },
+        "en:lesson-10:session-49:intro1:r3": {
+          "ru": "Здесь нужна личная форма check.",
+          "uk": "Тут потрібна особова форма check."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-49:intro2:r2": {
+          "ru": "Правильно rising, без e.",
+          "uk": "Правильно rising, без e."
+        },
+        "en:lesson-10:session-49:intro2:r3": {
+          "ru": "Перед rising нужна is.",
+          "uk": "Перед rising потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-49:intro3:r2": {
+          "ru": "Перед checking нужна are.",
+          "uk": "Перед checking потрібна are."
+        },
+        "en:lesson-10:session-49:intro3:r3": {
+          "ru": "После are нужна checking.",
+          "uk": "Після are потрібна checking."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "baf2f181f95a8a4dd8be15e288b106e579f0c7787f07ae9940c3c3f817b29178"
+}

@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-49:word:forecast",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — forecast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:forecast:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — forecast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:forecast:audio",
+            "transcript": "forecast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:forecast:r1",
+              "targetText": "forecast",
+              "meaningByLocale": {
+                "ru": "«прогноз». We check the forecast every morning. — «Мы проверяем прогноз каждое утро». Здесь прогноз погоды.",
+                "uk": "«прогноз». We check the forecast every morning. — «Ми перевіряємо прогноз щоранку». Тут прогноз погоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "forecast",
+            "definitionByLocale": {
+              "ru": "«прогноз». We check the forecast every morning. — «Мы проверяем прогноз каждое утро». Здесь прогноз погоды.",
+              "uk": "«прогноз». We check the forecast every morning. — «Ми перевіряємо прогноз щоранку». Тут прогноз погоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите о привычке команды: «Мы проверяем прогноз каждое утро». Поставьте every morning в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о привычке команды: «Мы проверяем прогноз каждое утро». Поставьте every morning в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We check the forecast every morning.",
+          "localizedMeaning": {
+            "ru": "Скажите о привычке команды: «Мы проверяем прогноз каждое утро». Поставьте every morning в конце",
+            "uk": "Скажіть про звичку команди: «Ми перевіряємо прогноз щоранку». Поставте every morning у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "check",
+            "the",
+            "forecast",
+            "every",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i02:r1",
+            "text": "The forecast is on the website."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i02:r2",
+            "text": "The forecast is in the email."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i02:r3",
+            "text": "The changelog is on the website."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i02:audio",
+            "transcript": "The forecast is on the website."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i02:r1",
+              "targetText": "The forecast is on the website.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i02:r2",
+              "targetText": "The forecast is in the email.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i02:r3",
+              "targetText": "The changelog is on the website.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The forecast is on the website.",
+                "uk": "У записі звучить The forecast is on the website."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The forecast is on the website.",
+                "uk": "У записі звучить The forecast is on the website."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это утренняя привычка. Выберите форму check",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i03:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это утренняя привычка. Выберите форму check",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это утренняя привычка. Выберите форму check",
+            "uk": "Це ранкова звичка. Виберіть форму check"
+          },
+          "gappedTargetPhrase": "We ___ the forecast every morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i03:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i03:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i03:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Это утренняя привычка. Выберите форму check",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Это утренняя привычка. Выберите форму check",
+              "feedbackByLocale": {
+                "ru": "С we нужна check без s.",
+                "uk": "З we потрібна check без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Это утренняя привычка. Выберите форму check",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна check.",
+                "uk": "Тут потрібна check."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:word:humidity",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — humidity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:humidity:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — humidity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:humidity:audio",
+            "transcript": "humidity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:humidity:r1",
+              "targetText": "humidity",
+              "meaningByLocale": {
+                "ru": "«влажность воздуха». The humidity is rising. — «Влажность растёт». Здесь содержание водяного пара в воздухе.",
+                "uk": "«вологість повітря». The humidity is rising. — «Вологість зростає». Тут вміст водяної пари в повітрі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humidity",
+            "definitionByLocale": {
+              "ru": "«влажность воздуха». The humidity is rising. — «Влажность растёт». Здесь содержание водяного пара в воздухе.",
+              "uk": "«вологість повітря». The humidity is rising. — «Вологість зростає». Тут вміст водяної пари в повітрі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Показатель влажности повышается прямо сейчас. Скажите: «Влажность растёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Показатель влажности повышается прямо сейчас. Скажите: «Влажность растёт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The humidity is rising.",
+          "localizedMeaning": {
+            "ru": "Показатель влажности повышается прямо сейчас. Скажите: «Влажность растёт»",
+            "uk": "Показник вологості підвищується саме зараз. Скажіть: «Вологість зростає»"
+          },
+          "orderedTokens": [
+            "The",
+            "humidity",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i05:r1",
+            "text": "The humidity is high."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i05:r2",
+            "text": "The humidity is low."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i05:r3",
+            "text": "The temperature is high."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i05:audio",
+            "transcript": "The humidity is high."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i05:r1",
+              "targetText": "The humidity is high.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i05:r2",
+              "targetText": "The humidity is low.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i05:r3",
+              "targetText": "The temperature is high.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The humidity is high.",
+                "uk": "У записі звучить The humidity is high."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The humidity is high.",
+                "uk": "У записі звучить The humidity is high."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильное написание формы rise",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i06:r1",
+            "text": "rising"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i06:r2",
+            "text": "riseing"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i06:r3",
+            "text": "rise"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильное написание формы rise",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы rise",
+            "uk": "Виберіть правильне написання форми rise"
+          },
+          "gappedTargetPhrase": "The humidity is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i06:r1",
+              "text": "rising"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i06:r2",
+              "text": "riseing"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i06:r3",
+              "text": "rise"
+            }
+          ],
+          "testedDimension": "Выберите правильное написание формы rise",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы rise",
+              "feedbackByLocale": {
+                "ru": "Перед ing убираем e: rising.",
+                "uk": "Перед ing прибираємо e: rising."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы rise",
+              "feedbackByLocale": {
+                "ru": "После is для текущего изменения нужна rising.",
+                "uk": "Після is для поточної зміни потрібна rising."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:word:barometer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — barometer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:barometer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — barometer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:barometer:audio",
+            "transcript": "barometer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:barometer:r1",
+              "targetText": "barometer",
+              "meaningByLocale": {
+                "ru": "«барометр». We are checking the barometer. — «Мы проверяем барометр». Прибор для измерения атмосферного давления.",
+                "uk": "«барометр». We are checking the barometer. — «Ми перевіряємо барометр». Прилад для вимірювання атмосферного тиску."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "barometer",
+            "definitionByLocale": {
+              "ru": "«барометр». We are checking the barometer. — «Мы проверяем барометр». Прибор для измерения атмосферного давления.",
+              "uk": "«барометр». We are checking the barometer. — «Ми перевіряємо барометр». Прилад для вимірювання атмосферного тиску."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с коллегой сейчас проверяете прибор. Скажите: «Мы проверяем барометр»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с коллегой сейчас проверяете прибор. Скажите: «Мы проверяем барометр»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are checking the barometer.",
+          "localizedMeaning": {
+            "ru": "Вы с коллегой сейчас проверяете прибор. Скажите: «Мы проверяем барометр»",
+            "uk": "Ви з колегою зараз перевіряєте прилад. Скажіть: «Ми перевіряємо барометр»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "checking",
+            "the",
+            "barometer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i08:r1",
+            "text": "The barometer is on the wall."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i08:r2",
+            "text": "The barometer is on the table."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i08:r3",
+            "text": "The clock is on the wall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i08:audio",
+            "transcript": "The barometer is on the wall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i08:r1",
+              "targetText": "The barometer is on the wall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i08:r2",
+              "targetText": "The barometer is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i08:r3",
+              "targetText": "The clock is on the wall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The barometer is on the wall.",
+                "uk": "У записі звучить The barometer is on the wall."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The barometer is on the wall.",
+                "uk": "У записі звучить The barometer is on the wall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+            "uk": "Перевірка триває зараз. Виберіть допоміжне дієслово"
+          },
+          "gappedTargetPhrase": "We ___ checking the barometer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+              "feedbackByLocale": {
+                "ru": "С we нужна are.",
+                "uk": "З we потрібна are."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+              "feedbackByLocale": {
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:word:precipitation",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — precipitation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:precipitation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — precipitation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:precipitation:audio",
+            "transcript": "precipitation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:precipitation:r1",
+              "targetText": "precipitation",
+              "meaningByLocale": {
+                "ru": "«осадки». We measure precipitation every day. — «Мы измеряем количество осадков каждый день». Общее название дождя, снега и других форм воды, выпадающих из атмосферы.",
+                "uk": "«опади». We measure precipitation every day. — «Ми вимірюємо кількість опадів щодня». Загальна назва дощу, снігу та інших форм води, що випадають з атмосфери."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "precipitation",
+            "definitionByLocale": {
+              "ru": "«осадки». We measure precipitation every day. — «Мы измеряем количество осадков каждый день». Общее название дождя, снега и других форм воды, выпадающих из атмосферы.",
+              "uk": "«опади». We measure precipitation every day. — «Ми вимірюємо кількість опадів щодня». Загальна назва дощу, снігу та інших форм води, що випадають з атмосфери."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На станции ежедневно измеряют количество осадков. Скажите: «Мы измеряем количество осадков каждый день». Поставьте every day в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На станции ежедневно измеряют количество осадков. Скажите: «Мы измеряем количество осадков каждый день». Поставьте every day в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We measure precipitation every day.",
+          "localizedMeaning": {
+            "ru": "На станции ежедневно измеряют количество осадков. Скажите: «Мы измеряем количество осадков каждый день». Поставьте every day в конце",
+            "uk": "На станції щодня вимірюють кількість опадів. Скажіть: «Ми вимірюємо кількість опадів щодня». Поставте every day у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "measure",
+            "precipitation",
+            "every",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i11:r1",
+            "text": "The precipitation is heavy."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i11:r2",
+            "text": "The precipitation is light."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i11:r3",
+            "text": "The traffic is heavy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i11:audio",
+            "transcript": "The precipitation is heavy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i11:r1",
+              "targetText": "The precipitation is heavy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i11:r2",
+              "targetText": "The precipitation is light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i11:r3",
+              "targetText": "The traffic is heavy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The precipitation is heavy.",
+                "uk": "У записі звучить The precipitation is heavy."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The precipitation is heavy.",
+                "uk": "У записі звучить The precipitation is heavy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это ежедневная работа. Выберите форму measure",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i12:r1",
+            "text": "measure"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i12:r2",
+            "text": "measures"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i12:r3",
+            "text": "measuring"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это ежедневная работа. Выберите форму measure",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это ежедневная работа. Выберите форму measure",
+            "uk": "Це щоденна робота. Виберіть форму measure"
+          },
+          "gappedTargetPhrase": "We ___ precipitation every day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i12:r1",
+              "text": "measure"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i12:r2",
+              "text": "measures"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i12:r3",
+              "text": "measuring"
+            }
+          ],
+          "testedDimension": "Это ежедневная работа. Выберите форму measure",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Это ежедневная работа. Выберите форму measure",
+              "feedbackByLocale": {
+                "ru": "С we нужна measure без s.",
+                "uk": "З we потрібна measure без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Это ежедневная работа. Выберите форму measure",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна measure.",
+                "uk": "Тут потрібна measure."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-49:i13:p1",
+              "target": "forecast",
+              "meaningByLocale": {
+                "ru": "прогноз",
+                "uk": "прогноз"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-49:i13:p2",
+              "target": "humidity",
+              "meaningByLocale": {
+                "ru": "влажность воздуха",
+                "uk": "вологість повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-49:i13:p3",
+              "target": "barometer",
+              "meaningByLocale": {
+                "ru": "барометр",
+                "uk": "барометр"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-49:i13:p4",
+              "target": "precipitation",
+              "meaningByLocale": {
+                "ru": "осадки",
+                "uk": "опади"
+              }
+            }
+          ],
+          "leftColumn": [
+            "forecast",
+            "humidity",
+            "barometer",
+            "precipitation"
+          ],
+          "rightColumn": [
+            "прогноз",
+            "влажность воздуха",
+            "барометр",
+            "осадки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i14:audio",
+            "transcript": "The humidity is rising."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The humidity is rising.",
+          "orderedTokens": [
+            "The",
+            "humidity",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, как часто вы смотрите прогноз. Скажите: «Мы проверяем прогноз каждое утро»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, как часто вы смотрите прогноз. Скажите: «Мы проверяем прогноз каждое утро»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i15:audio",
+            "transcript": "We check the forecast every morning."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We check the forecast every morning.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы наблюдаете повышение влажности прямо сейчас. Скажите: «Влажность растёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы наблюдаете повышение влажности прямо сейчас. Скажите: «Влажность растёт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The humidity is rising.",
+          "localizedMeaning": {
+            "ru": "Вы наблюдаете повышение влажности прямо сейчас. Скажите: «Влажность растёт»",
+            "uk": "Ви спостерігаєте підвищення вологості саме зараз. Скажіть: «Вологість зростає»"
+          },
+          "orderedTokens": [
+            "The",
+            "humidity",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с коллегой проверяете прибор для измерения давления. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы проверяем барометр»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с коллегой проверяете прибор для измерения давления. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы проверяем барометр»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i17:audio",
+            "transcript": "We are checking the barometer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are checking the barometer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-49:word:forecast",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — forecast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:forecast:audio"
+        ],
+        "accessibilityLabel": "Картка слова — forecast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:forecast:audio",
+            "transcript": "forecast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:forecast:r1",
+              "targetText": "forecast",
+              "meaningByLocale": {
+                "ru": "«прогноз». We check the forecast every morning. — «Мы проверяем прогноз каждое утро». Здесь прогноз погоды.",
+                "uk": "«прогноз». We check the forecast every morning. — «Ми перевіряємо прогноз щоранку». Тут прогноз погоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "forecast",
+            "definitionByLocale": {
+              "ru": "«прогноз». We check the forecast every morning. — «Мы проверяем прогноз каждое утро». Здесь прогноз погоды.",
+              "uk": "«прогноз». We check the forecast every morning. — «Ми перевіряємо прогноз щоранку». Тут прогноз погоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть про звичку команди: «Ми перевіряємо прогноз щоранку». Поставте every morning у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про звичку команди: «Ми перевіряємо прогноз щоранку». Поставте every morning у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We check the forecast every morning.",
+          "localizedMeaning": {
+            "ru": "Скажите о привычке команды: «Мы проверяем прогноз каждое утро». Поставьте every morning в конце",
+            "uk": "Скажіть про звичку команди: «Ми перевіряємо прогноз щоранку». Поставте every morning у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "check",
+            "the",
+            "forecast",
+            "every",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i02:r1",
+            "text": "The forecast is on the website."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i02:r2",
+            "text": "The forecast is in the email."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i02:r3",
+            "text": "The changelog is on the website."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i02:audio",
+            "transcript": "The forecast is on the website."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i02:r1",
+              "targetText": "The forecast is on the website.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i02:r2",
+              "targetText": "The forecast is in the email.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i02:r3",
+              "targetText": "The changelog is on the website.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The forecast is on the website.",
+                "uk": "У записі звучить The forecast is on the website."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The forecast is on the website.",
+                "uk": "У записі звучить The forecast is on the website."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це ранкова звичка. Виберіть форму check",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i03:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це ранкова звичка. Виберіть форму check",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это утренняя привычка. Выберите форму check",
+            "uk": "Це ранкова звичка. Виберіть форму check"
+          },
+          "gappedTargetPhrase": "We ___ the forecast every morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i03:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i03:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i03:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Це ранкова звичка. Виберіть форму check",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Це ранкова звичка. Виберіть форму check",
+              "feedbackByLocale": {
+                "ru": "С we нужна check без s.",
+                "uk": "З we потрібна check без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Це ранкова звичка. Виберіть форму check",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна check.",
+                "uk": "Тут потрібна check."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:word:humidity",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — humidity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:humidity:audio"
+        ],
+        "accessibilityLabel": "Картка слова — humidity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:humidity:audio",
+            "transcript": "humidity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:humidity:r1",
+              "targetText": "humidity",
+              "meaningByLocale": {
+                "ru": "«влажность воздуха». The humidity is rising. — «Влажность растёт». Здесь содержание водяного пара в воздухе.",
+                "uk": "«вологість повітря». The humidity is rising. — «Вологість зростає». Тут вміст водяної пари в повітрі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humidity",
+            "definitionByLocale": {
+              "ru": "«влажность воздуха». The humidity is rising. — «Влажность растёт». Здесь содержание водяного пара в воздухе.",
+              "uk": "«вологість повітря». The humidity is rising. — «Вологість зростає». Тут вміст водяної пари в повітрі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Показник вологості підвищується саме зараз. Скажіть: «Вологість зростає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Показник вологості підвищується саме зараз. Скажіть: «Вологість зростає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The humidity is rising.",
+          "localizedMeaning": {
+            "ru": "Показатель влажности повышается прямо сейчас. Скажите: «Влажность растёт»",
+            "uk": "Показник вологості підвищується саме зараз. Скажіть: «Вологість зростає»"
+          },
+          "orderedTokens": [
+            "The",
+            "humidity",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i05:r1",
+            "text": "The humidity is high."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i05:r2",
+            "text": "The humidity is low."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i05:r3",
+            "text": "The temperature is high."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i05:audio",
+            "transcript": "The humidity is high."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i05:r1",
+              "targetText": "The humidity is high.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i05:r2",
+              "targetText": "The humidity is low.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i05:r3",
+              "targetText": "The temperature is high.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The humidity is high.",
+                "uk": "У записі звучить The humidity is high."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The humidity is high.",
+                "uk": "У записі звучить The humidity is high."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильне написання форми rise",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i06:r1",
+            "text": "rising"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i06:r2",
+            "text": "riseing"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i06:r3",
+            "text": "rise"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильне написання форми rise",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы rise",
+            "uk": "Виберіть правильне написання форми rise"
+          },
+          "gappedTargetPhrase": "The humidity is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i06:r1",
+              "text": "rising"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i06:r2",
+              "text": "riseing"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i06:r3",
+              "text": "rise"
+            }
+          ],
+          "testedDimension": "Виберіть правильне написання форми rise",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми rise",
+              "feedbackByLocale": {
+                "ru": "Перед ing убираем e: rising.",
+                "uk": "Перед ing прибираємо e: rising."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми rise",
+              "feedbackByLocale": {
+                "ru": "После is для текущего изменения нужна rising.",
+                "uk": "Після is для поточної зміни потрібна rising."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:word:barometer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — barometer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:barometer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — barometer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:barometer:audio",
+            "transcript": "barometer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:barometer:r1",
+              "targetText": "barometer",
+              "meaningByLocale": {
+                "ru": "«барометр». We are checking the barometer. — «Мы проверяем барометр». Прибор для измерения атмосферного давления.",
+                "uk": "«барометр». We are checking the barometer. — «Ми перевіряємо барометр». Прилад для вимірювання атмосферного тиску."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "barometer",
+            "definitionByLocale": {
+              "ru": "«барометр». We are checking the barometer. — «Мы проверяем барометр». Прибор для измерения атмосферного давления.",
+              "uk": "«барометр». We are checking the barometer. — «Ми перевіряємо барометр». Прилад для вимірювання атмосферного тиску."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з колегою зараз перевіряєте прилад. Скажіть: «Ми перевіряємо барометр»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з колегою зараз перевіряєте прилад. Скажіть: «Ми перевіряємо барометр»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are checking the barometer.",
+          "localizedMeaning": {
+            "ru": "Вы с коллегой сейчас проверяете прибор. Скажите: «Мы проверяем барометр»",
+            "uk": "Ви з колегою зараз перевіряєте прилад. Скажіть: «Ми перевіряємо барометр»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "checking",
+            "the",
+            "barometer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i08:r1",
+            "text": "The barometer is on the wall."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i08:r2",
+            "text": "The barometer is on the table."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i08:r3",
+            "text": "The clock is on the wall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i08:audio",
+            "transcript": "The barometer is on the wall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i08:r1",
+              "targetText": "The barometer is on the wall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i08:r2",
+              "targetText": "The barometer is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i08:r3",
+              "targetText": "The clock is on the wall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The barometer is on the wall.",
+                "uk": "У записі звучить The barometer is on the wall."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The barometer is on the wall.",
+                "uk": "У записі звучить The barometer is on the wall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+            "uk": "Перевірка триває зараз. Виберіть допоміжне дієслово"
+          },
+          "gappedTargetPhrase": "We ___ checking the barometer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+              "feedbackByLocale": {
+                "ru": "С we нужна are.",
+                "uk": "З we потрібна are."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+              "feedbackByLocale": {
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:word:precipitation",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — precipitation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:word:precipitation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — precipitation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:word:precipitation:audio",
+            "transcript": "precipitation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:word:precipitation:r1",
+              "targetText": "precipitation",
+              "meaningByLocale": {
+                "ru": "«осадки». We measure precipitation every day. — «Мы измеряем количество осадков каждый день». Общее название дождя, снега и других форм воды, выпадающих из атмосферы.",
+                "uk": "«опади». We measure precipitation every day. — «Ми вимірюємо кількість опадів щодня». Загальна назва дощу, снігу та інших форм води, що випадають з атмосфери."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "precipitation",
+            "definitionByLocale": {
+              "ru": "«осадки». We measure precipitation every day. — «Мы измеряем количество осадков каждый день». Общее название дождя, снега и других форм воды, выпадающих из атмосферы.",
+              "uk": "«опади». We measure precipitation every day. — «Ми вимірюємо кількість опадів щодня». Загальна назва дощу, снігу та інших форм води, що випадають з атмосфери."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На станції щодня вимірюють кількість опадів. Скажіть: «Ми вимірюємо кількість опадів щодня». Поставте every day у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На станції щодня вимірюють кількість опадів. Скажіть: «Ми вимірюємо кількість опадів щодня». Поставте every day у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We measure precipitation every day.",
+          "localizedMeaning": {
+            "ru": "На станции ежедневно измеряют количество осадков. Скажите: «Мы измеряем количество осадков каждый день». Поставьте every day в конце",
+            "uk": "На станції щодня вимірюють кількість опадів. Скажіть: «Ми вимірюємо кількість опадів щодня». Поставте every day у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "measure",
+            "precipitation",
+            "every",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i11:r1",
+            "text": "The precipitation is heavy."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i11:r2",
+            "text": "The precipitation is light."
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i11:r3",
+            "text": "The traffic is heavy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i11:audio",
+            "transcript": "The precipitation is heavy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-49:i11:r1",
+              "targetText": "The precipitation is heavy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i11:r2",
+              "targetText": "The precipitation is light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i11:r3",
+              "targetText": "The traffic is heavy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The precipitation is heavy.",
+                "uk": "У записі звучить The precipitation is heavy."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The precipitation is heavy.",
+                "uk": "У записі звучить The precipitation is heavy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це щоденна робота. Виберіть форму measure",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-49:i12:r1",
+            "text": "measure"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i12:r2",
+            "text": "measures"
+          },
+          {
+            "responseId": "en:lesson-10:session-49:i12:r3",
+            "text": "measuring"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це щоденна робота. Виберіть форму measure",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это ежедневная работа. Выберите форму measure",
+            "uk": "Це щоденна робота. Виберіть форму measure"
+          },
+          "gappedTargetPhrase": "We ___ precipitation every day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-49:i12:r1",
+              "text": "measure"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i12:r2",
+              "text": "measures"
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i12:r3",
+              "text": "measuring"
+            }
+          ],
+          "testedDimension": "Це щоденна робота. Виберіть форму measure",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Це щоденна робота. Виберіть форму measure",
+              "feedbackByLocale": {
+                "ru": "С we нужна measure без s.",
+                "uk": "З we потрібна measure без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Це щоденна робота. Виберіть форму measure",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна measure.",
+                "uk": "Тут потрібна measure."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-49:i13:p1",
+              "target": "forecast",
+              "meaningByLocale": {
+                "ru": "прогноз",
+                "uk": "прогноз"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-49:i13:p2",
+              "target": "humidity",
+              "meaningByLocale": {
+                "ru": "влажность воздуха",
+                "uk": "вологість повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-49:i13:p3",
+              "target": "barometer",
+              "meaningByLocale": {
+                "ru": "барометр",
+                "uk": "барометр"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-49:i13:p4",
+              "target": "precipitation",
+              "meaningByLocale": {
+                "ru": "осадки",
+                "uk": "опади"
+              }
+            }
+          ],
+          "leftColumn": [
+            "forecast",
+            "humidity",
+            "barometer",
+            "precipitation"
+          ],
+          "rightColumn": [
+            "прогноз",
+            "вологість повітря",
+            "барометр",
+            "опади"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i14:audio",
+            "transcript": "The humidity is rising."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The humidity is rising.",
+          "orderedTokens": [
+            "The",
+            "humidity",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега запитує, як часто ви дивитеся прогноз. Скажіть: «Ми перевіряємо прогноз щоранку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Колега запитує, як часто ви дивитеся прогноз. Скажіть: «Ми перевіряємо прогноз щоранку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i15:audio",
+            "transcript": "We check the forecast every morning."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We check the forecast every morning.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви спостерігаєте підвищення вологості саме зараз. Скажіть: «Вологість зростає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви спостерігаєте підвищення вологості саме зараз. Скажіть: «Вологість зростає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The humidity is rising.",
+          "localizedMeaning": {
+            "ru": "Вы наблюдаете повышение влажности прямо сейчас. Скажите: «Влажность растёт»",
+            "uk": "Ви спостерігаєте підвищення вологості саме зараз. Скажіть: «Вологість зростає»"
+          },
+          "orderedTokens": [
+            "The",
+            "humidity",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з колегою перевіряєте прилад для вимірювання тиску. Керівник запитує, чим ви зараз зайняті. Скажіть: «Ми перевіряємо барометр»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з колегою перевіряєте прилад для вимірювання тиску. Керівник запитує, чим ви зараз зайняті. Скажіть: «Ми перевіряємо барометр»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-49:i17:audio",
+            "transcript": "We are checking the barometer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are checking the barometer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-49:word:forecast",
+      "correctText": "forecast",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i01",
+      "correctText": "We check the forecast every morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i02",
+      "correctText": "The forecast is on the website.",
+      "correctResponseId": "en:lesson-10:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i03",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-10:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:word:humidity",
+      "correctText": "humidity",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i04",
+      "correctText": "The humidity is rising.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i05",
+      "correctText": "The humidity is high.",
+      "correctResponseId": "en:lesson-10:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i06",
+      "correctText": "rising",
+      "correctResponseId": "en:lesson-10:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:word:barometer",
+      "correctText": "barometer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i07",
+      "correctText": "We are checking the barometer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i08",
+      "correctText": "The barometer is on the wall.",
+      "correctResponseId": "en:lesson-10:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i09",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-10:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:word:precipitation",
+      "correctText": "precipitation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i10",
+      "correctText": "We measure precipitation every day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i11",
+      "correctText": "The precipitation is heavy.",
+      "correctResponseId": "en:lesson-10:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i12",
+      "correctText": "measure",
+      "correctResponseId": "en:lesson-10:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i14",
+      "correctText": "The humidity is rising.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i15",
+      "correctText": "We check the forecast every morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i16",
+      "correctText": "The humidity is rising.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-49:i17",
+      "correctText": "We are checking the barometer.",
+      "correctResponseId": null
+    }
+  ]
+}

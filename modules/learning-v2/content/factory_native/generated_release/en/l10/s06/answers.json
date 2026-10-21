@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-06:word:brew",
-    "correctText": "brew",
+    "interactionId": "en:lesson-10:session-06:word:decaf",
+    "correctText": "decaf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i01",
-    "correctText": "I brew coffee every morning.",
+    "correctText": "I usually drink decaf coffee.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i02",
-    "correctText": "She brews coffee every morning.",
+    "correctText": "She drinks decaf coffee.",
     "correctResponseId": "en:lesson-10:session-06:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-06:i03",
-    "correctText": "brews",
+    "correctText": "drink",
     "correctResponseId": "en:lesson-10:session-06:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-06:word:infuser",
-    "correctText": "infuser",
+    "interactionId": "en:lesson-10:session-06:word:herbal",
+    "correctText": "herbal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i04",
-    "correctText": "I am using an infuser.",
+    "correctText": "I am making herbal tea.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i05",
-    "correctText": "The infuser is in the cup.",
+    "correctText": "We are drinking herbal tea.",
     "correctResponseId": "en:lesson-10:session-06:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-06:i06",
-    "correctText": "an",
+    "correctText": "making",
     "correctResponseId": "en:lesson-10:session-06:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-06:word:strainer",
-    "correctText": "strainer",
+    "interactionId": "en:lesson-10:session-06:word:sparkling",
+    "correctText": "sparkling",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i07",
-    "correctText": "The strainer is clean.",
+    "correctText": "I would like some sparkling water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i08",
-    "correctText": "I am washing the strainer.",
+    "correctText": "She would like some sparkling water.",
     "correctResponseId": "en:lesson-10:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-06:i09",
-    "correctText": "washing",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-06:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-06:word:chamomile",
-    "correctText": "chamomile",
+    "interactionId": "en:lesson-10:session-06:word:teaspoon",
+    "correctText": "teaspoon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i10",
-    "correctText": "I am brewing chamomile tea.",
+    "correctText": "I need a teaspoon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i11",
-    "correctText": "The chamomile tea is hot.",
+    "correctText": "I need a teaspoon.",
     "correctResponseId": "en:lesson-10:session-06:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-06:i12",
-    "correctText": "brewing",
+    "correctText": "a",
     "correctResponseId": "en:lesson-10:session-06:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-06:i13",
-    "correctText": "en:lesson-10:session-06:i13:p1=brew\nen:lesson-10:session-06:i13:p2=infuser\nen:lesson-10:session-06:i13:p3=strainer\nen:lesson-10:session-06:i13:p4=chamomile",
+    "correctText": "en:lesson-10:session-06:i13:p1=decaf\nen:lesson-10:session-06:i13:p2=herbal\nen:lesson-10:session-06:i13:p3=sparkling\nen:lesson-10:session-06:i13:p4=teaspoon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i14",
-    "correctText": "Are you brewing chamomile tea?",
+    "correctText": "I am making herbal tea.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i15",
-    "correctText": "I brew coffee every morning.",
+    "correctText": "I need a teaspoon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i16",
-    "correctText": "I am not brewing coffee.",
+    "correctText": "I would like some sparkling water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-06:i17",
-    "correctText": "I am brewing chamomile tea.",
+    "correctText": "I am making herbal tea.",
     "correctResponseId": null
   }
 ]

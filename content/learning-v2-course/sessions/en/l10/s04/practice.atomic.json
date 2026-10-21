@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-04:word:craft",
+        "interactionId": "en:lesson-10:session-04:word:air-conditioning",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — craft",
+        "prompt": "Карточка слова — air conditioning",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:craft:audio"
+          "en:lesson-10:session-04:word:air-conditioning:audio"
         ],
-        "accessibilityLabel": "Карточка слова — craft",
+        "accessibilityLabel": "Карточка слова — air conditioning",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:craft:audio",
-            "transcript": "craft"
+            "audioTargetId": "en:lesson-10:session-04:word:air-conditioning:audio",
+            "transcript": "air conditioning"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:craft:r1",
-              "targetText": "craft",
+              "responseId": "en:lesson-10:session-04:word:air-conditioning:r1",
+              "targetText": "air conditioning",
               "meaningByLocale": {
-                "ru": "«мастерить, создавать вручную». I craft bags by hand. — «Я мастерю сумки вручную». Здесь глагол о создании вещей с умением и вниманием.",
-                "uk": "«майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно."
+                "ru": "«кондиционирование воздуха». The air conditioning is working. — «Кондиционер работает».",
+                "uk": "«кондиціонування повітря». The air conditioning is working. — «Кондиціонер працює»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "craft",
+            "word": "air conditioning",
             "definitionByLocale": {
-              "ru": "«мастерить, создавать вручную». I craft bags by hand. — «Я мастерю сумки вручную». Здесь глагол о создании вещей с умением и вниманием.",
-              "uk": "«майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно."
+              "ru": "«кондиционирование воздуха». The air conditioning is working. — «Кондиционер работает».",
+              "uk": "«кондиціонування повітря». The air conditioning is working. — «Кондиціонер працює»."
             }
           }
         },
@@ -52,24 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Посетитель спрашивает о вашей работе. Скажите: «Я мастерю сумки вручную»",
+        "prompt": "Система сейчас охлаждает комнату. Скажите: «Кондиционер работает»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Посетитель спрашивает о вашей работе. Скажите: «Я мастерю сумки вручную»",
+        "accessibilityLabel": "Система сейчас охлаждает комнату. Скажите: «Кондиционер работает»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I craft bags by hand.",
+          "targetPhrase": "The air conditioning is working.",
           "localizedMeaning": {
-            "ru": "Посетитель спрашивает о вашей работе. Скажите: «Я мастерю сумки вручную»",
-            "uk": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»"
+            "ru": "Система сейчас охлаждает комнату. Скажите: «Кондиционер работает»",
+            "uk": "Система зараз охолоджує кімнату. Скажіть: «Кондиціонер працює»"
           },
           "orderedTokens": [
-            "I",
-            "craft",
-            "bags",
-            "by",
-            "hand"
+            "The",
+            "air",
+            "conditioning",
+            "is",
+            "working"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +90,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i02:r1",
-            "text": "She crafts bags by hand."
+            "text": "The air conditioning is noisy."
           },
           {
             "responseId": "en:lesson-10:session-04:i02:r2",
-            "text": "She crafts toys by hand."
+            "text": "The air conditioning is working."
           },
           {
             "responseId": "en:lesson-10:session-04:i02:r3",
-            "text": "He crafts bags by hand."
+            "text": "The heating is noisy."
           }
         ],
         "mediaIds": [],
@@ -110,23 +110,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i02:audio",
-            "transcript": "She crafts bags by hand."
+            "transcript": "The air conditioning is noisy."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i02:r1",
-              "targetText": "She crafts bags by hand.",
+              "targetText": "The air conditioning is noisy.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i02:r2",
-              "targetText": "She crafts toys by hand.",
+              "targetText": "The air conditioning is working.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i02:r3",
-              "targetText": "He crafts bags by hand.",
+              "targetText": "The heating is noisy.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +137,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She crafts bags by hand.",
-                "uk": "У записі звучить She crafts bags by hand."
+                "ru": "В записи звучит The air conditioning is noisy.",
+                "uk": "У записі звучить The air conditioning is noisy."
               }
             },
             {
@@ -146,8 +146,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She crafts bags by hand.",
-                "uk": "У записі звучить She crafts bags by hand."
+                "ru": "В записи звучит The air conditioning is noisy.",
+                "uk": "У записі звучить The air conditioning is noisy."
               }
             }
           ],
@@ -162,63 +162,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму craft для обычной работы с she",
+        "prompt": "Опишите работу системы сейчас. Выберите форму work",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i03:r1",
-            "text": "crafts"
+            "text": "working"
           },
           {
             "responseId": "en:lesson-10:session-04:i03:r2",
-            "text": "craft"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-10:session-04:i03:r3",
-            "text": "crafting"
+            "text": "works"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму craft для обычной работы с she",
+        "accessibilityLabel": "Опишите работу системы сейчас. Выберите форму work",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму craft для обычной работы с she",
-            "uk": "Виберіть форму craft для звичайної роботи з she"
+            "ru": "Опишите работу системы сейчас. Выберите форму work",
+            "uk": "Опишіть роботу системи зараз. Виберіть форму work"
           },
-          "gappedTargetPhrase": "She ___ bags by hand.",
+          "gappedTargetPhrase": "The air conditioning is ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i03:r1",
-              "text": "crafts"
+              "text": "working"
             },
             {
               "responseId": "en:lesson-10:session-04:i03:r2",
-              "text": "craft"
+              "text": "work"
             },
             {
               "responseId": "en:lesson-10:session-04:i03:r3",
-              "text": "crafting"
+              "text": "works"
             }
           ],
-          "testedDimension": "Выберите форму craft для обычной работы с she",
+          "testedDimension": "Опишите работу системы сейчас. Выберите форму work",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i03:r2",
               "correct": false,
-              "testedDimension": "Выберите форму craft для обычной работы с she",
+              "testedDimension": "Опишите работу системы сейчас. Выберите форму work",
               "feedbackByLocale": {
-                "ru": "С she в Present Simple добавляем -s.",
-                "uk": "З she у Present Simple додаємо -s."
+                "ru": "После is нужна working.",
+                "uk": "Після is потрібна working."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i03:r3",
               "correct": false,
-              "testedDimension": "Выберите форму craft для обычной работы с she",
+              "testedDimension": "Опишите работу системы сейчас. Выберите форму work",
               "feedbackByLocale": {
-                "ru": "Crafting без is не образует сказуемое.",
-                "uk": "Crafting без is не утворює присудок."
+                "ru": "После is нужна working, не works.",
+                "uk": "Після is потрібна working, не works."
               }
             }
           ]
@@ -226,32 +226,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:word:bobbin",
+        "interactionId": "en:lesson-10:session-04:word:light-bulb",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — bobbin",
+        "prompt": "Карточка слова — light bulb",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:bobbin:audio"
+          "en:lesson-10:session-04:word:light-bulb:audio"
         ],
-        "accessibilityLabel": "Карточка слова — bobbin",
+        "accessibilityLabel": "Карточка слова — light bulb",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:bobbin:audio",
-            "transcript": "bobbin"
+            "audioTargetId": "en:lesson-10:session-04:word:light-bulb:audio",
+            "transcript": "light bulb"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:bobbin:r1",
-              "targetText": "bobbin",
+              "responseId": "en:lesson-10:session-04:word:light-bulb:r1",
+              "targetText": "light bulb",
               "meaningByLocale": {
-                "ru": "«шпулька». I am checking the bobbin. — «Я проверяю шпульку». Маленькая катушка для нити в швейной машинке.",
-                "uk": "«шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці."
+                "ru": "«лампочка». I need a light bulb. — «Мне нужна лампочка».",
+                "uk": "«лампочка». I need a light bulb. — «Мені потрібна лампочка»."
               }
             }
           ],
@@ -259,10 +259,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "bobbin",
+            "word": "light bulb",
             "definitionByLocale": {
-              "ru": "«шпулька». I am checking the bobbin. — «Я проверяю шпульку». Маленькая катушка для нити в швейной машинке.",
-              "uk": "«шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці."
+              "ru": "«лампочка». I need a light bulb. — «Мне нужна лампочка».",
+              "uk": "«лампочка». I need a light bulb. — «Мені потрібна лампочка»."
             }
           }
         },
@@ -274,24 +274,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, что вы осматриваете. Скажите: «Я проверяю шпульку»",
+        "prompt": "Лампочка перегорела. Скажите продавцу: «Мне нужна лампочка»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, что вы осматриваете. Скажите: «Я проверяю шпульку»",
+        "accessibilityLabel": "Лампочка перегорела. Скажите продавцу: «Мне нужна лампочка»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am checking the bobbin.",
+          "targetPhrase": "I need a light bulb.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, что вы осматриваете. Скажите: «Я проверяю шпульку»",
-            "uk": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»"
+            "ru": "Лампочка перегорела. Скажите продавцу: «Мне нужна лампочка»",
+            "uk": "Лампочка перегоріла. Скажіть продавцеві: «Мені потрібна лампочка»"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "checking",
-            "the",
-            "bobbin"
+            "need",
+            "a",
+            "light",
+            "bulb"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -312,15 +312,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i05:r1",
-            "text": "The bobbin is on the table."
+            "text": "She needs a light bulb."
           },
           {
             "responseId": "en:lesson-10:session-04:i05:r2",
-            "text": "The bobbin is under the table."
+            "text": "He needs a light bulb."
           },
           {
             "responseId": "en:lesson-10:session-04:i05:r3",
-            "text": "The button is on the table."
+            "text": "She has a light bulb."
           }
         ],
         "mediaIds": [],
@@ -332,23 +332,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i05:audio",
-            "transcript": "The bobbin is on the table."
+            "transcript": "She needs a light bulb."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i05:r1",
-              "targetText": "The bobbin is on the table.",
+              "targetText": "She needs a light bulb.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i05:r2",
-              "targetText": "The bobbin is under the table.",
+              "targetText": "He needs a light bulb.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i05:r3",
-              "targetText": "The button is on the table.",
+              "targetText": "She has a light bulb.",
               "meaningByLocale": null
             }
           ],
@@ -359,8 +359,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bobbin is on the table.",
-                "uk": "У записі звучить The bobbin is on the table."
+                "ru": "В записи звучит She needs a light bulb.",
+                "uk": "У записі звучить She needs a light bulb."
               }
             },
             {
@@ -368,8 +368,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bobbin is on the table.",
-                "uk": "У записі звучить The bobbin is on the table."
+                "ru": "В записи звучит She needs a light bulb.",
+                "uk": "У записі звучить She needs a light bulb."
               }
             }
           ],
@@ -384,63 +384,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одной шпульки",
+        "prompt": "Выберите форму need после I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i06:r1",
-            "text": "is"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-04:i06:r2",
-            "text": "are"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-04:i06:r3",
-            "text": "am"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одной шпульки",
+        "accessibilityLabel": "Выберите форму need после I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной шпульки",
-            "uk": "Виберіть зв’язку для однієї шпульки"
+            "ru": "Выберите форму need после I",
+            "uk": "Виберіть форму need після I"
           },
-          "gappedTargetPhrase": "The bobbin ___ on the table.",
+          "gappedTargetPhrase": "I ___ a light bulb.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i06:r1",
-              "text": "is"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-04:i06:r2",
-              "text": "are"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-04:i06:r3",
-              "text": "am"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Выберите связку для одной шпульки",
+          "testedDimension": "Выберите форму need после I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите связку для одной шпульки",
+              "testedDimension": "Выберите форму need после I",
               "feedbackByLocale": {
-                "ru": "Bobbin в единственном числе: is.",
-                "uk": "Bobbin в однині: is."
+                "ru": "После I нужна need.",
+                "uk": "Після I потрібна need."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите связку для одной шпульки",
+              "testedDimension": "Выберите форму need после I",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Потребность выражаем формой need.",
+                "uk": "Потребу виражаємо формою need."
               }
             }
           ]
@@ -448,32 +448,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:word:pincushion",
+        "interactionId": "en:lesson-10:session-04:word:power-cut",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — pincushion",
+        "prompt": "Карточка слова — power cut",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:pincushion:audio"
+          "en:lesson-10:session-04:word:power-cut:audio"
         ],
-        "accessibilityLabel": "Карточка слова — pincushion",
+        "accessibilityLabel": "Карточка слова — power cut",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:pincushion:audio",
-            "transcript": "pincushion"
+            "audioTargetId": "en:lesson-10:session-04:word:power-cut:audio",
+            "transcript": "power cut"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:pincushion:r1",
-              "targetText": "pincushion",
+              "responseId": "en:lesson-10:session-04:word:power-cut:r1",
+              "targetText": "power cut",
               "meaningByLocale": {
-                "ru": "«подушечка для булавок». I am making a pincushion. — «Я делаю подушечку для булавок». Небольшая мягкая подушечка, в которую втыкают булавки.",
-                "uk": "«подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки."
+                "ru": "«отключение электричества». There is a power cut. — «Отключили электричество».",
+                "uk": "«відключення електроенергії». There is a power cut. — «Відключили електроенергію»."
               }
             }
           ],
@@ -481,10 +481,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "pincushion",
+            "word": "power cut",
             "definitionByLocale": {
-              "ru": "«подушечка для булавок». I am making a pincushion. — «Я делаю подушечку для булавок». Небольшая мягкая подушечка, в которую втыкают булавки.",
-              "uk": "«подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки."
+              "ru": "«отключение электричества». There is a power cut. — «Отключили электричество».",
+              "uk": "«відключення електроенергії». There is a power cut. — «Відключили електроенергію»."
             }
           }
         },
@@ -496,24 +496,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, что вы шьёте сейчас. Скажите: «Я делаю подушечку для булавок»",
+        "prompt": "Во всём доме нет электричества. Сообщите: «Отключили электричество»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, что вы шьёте сейчас. Скажите: «Я делаю подушечку для булавок»",
+        "accessibilityLabel": "Во всём доме нет электричества. Сообщите: «Отключили электричество»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am making a pincushion.",
+          "targetPhrase": "There is a power cut.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, что вы шьёте сейчас. Скажите: «Я делаю подушечку для булавок»",
-            "uk": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»"
+            "ru": "Во всём доме нет электричества. Сообщите: «Отключили электричество»",
+            "uk": "У всьому будинку немає електрики. Повідомте: «Відключили електроенергію»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "making",
+            "There",
+            "is",
             "a",
-            "pincushion"
+            "power",
+            "cut"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +534,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i08:r1",
-            "text": "She is making a pincushion."
+            "text": "There is a power cut."
           },
           {
             "responseId": "en:lesson-10:session-04:i08:r2",
-            "text": "She is not making a pincushion."
+            "text": "There is a problem."
           },
           {
             "responseId": "en:lesson-10:session-04:i08:r3",
-            "text": "He is making a pincushion."
+            "text": "There is a light bulb."
           }
         ],
         "mediaIds": [],
@@ -554,23 +554,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i08:audio",
-            "transcript": "She is making a pincushion."
+            "transcript": "There is a power cut."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i08:r1",
-              "targetText": "She is making a pincushion.",
+              "targetText": "There is a power cut.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i08:r2",
-              "targetText": "She is not making a pincushion.",
+              "targetText": "There is a problem.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i08:r3",
-              "targetText": "He is making a pincushion.",
+              "targetText": "There is a light bulb.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +581,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She is making a pincushion.",
-                "uk": "У записі звучить She is making a pincushion."
+                "ru": "В записи звучит There is a power cut.",
+                "uk": "У записі звучить There is a power cut."
               }
             },
             {
@@ -590,8 +590,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She is making a pincushion.",
-                "uk": "У записі звучить She is making a pincushion."
+                "ru": "В записи звучит There is a power cut.",
+                "uk": "У записі звучить There is a power cut."
               }
             }
           ],
@@ -606,63 +606,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите написание make с -ing",
+        "prompt": "Выберите связку в there is для одной ситуации",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i09:r1",
-            "text": "making"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-04:i09:r2",
-            "text": "makeing"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-04:i09:r3",
-            "text": "make"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите написание make с -ing",
+        "accessibilityLabel": "Выберите связку в there is для одной ситуации",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите написание make с -ing",
-            "uk": "Виберіть написання make з -ing"
+            "ru": "Выберите связку в there is для одной ситуации",
+            "uk": "Виберіть зв’язку в there is для однієї ситуації"
           },
-          "gappedTargetPhrase": "I am ___ a pincushion.",
+          "gappedTargetPhrase": "There ___ a power cut.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i09:r1",
-              "text": "making"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-04:i09:r2",
-              "text": "makeing"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-04:i09:r3",
-              "text": "make"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите написание make с -ing",
+          "testedDimension": "Выберите связку в there is для одной ситуации",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите написание make с -ing",
+              "testedDimension": "Выберите связку в there is для одной ситуации",
               "feedbackByLocale": {
-                "ru": "Конечная e исчезает: making.",
-                "uk": "Кінцева e зникає: making."
+                "ru": "С a power cut нужна is.",
+                "uk": "З a power cut потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите написание make с -ing",
+              "testedDimension": "Выберите связку в there is для одной ситуации",
               "feedbackByLocale": {
-                "ru": "После am нужна форма making.",
-                "uk": "Після am потрібна форма making."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -670,32 +670,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:word:offcut",
+        "interactionId": "en:lesson-10:session-04:word:tap-water",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — offcut",
+        "prompt": "Карточка слова — tap water",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:offcut:audio"
+          "en:lesson-10:session-04:word:tap-water:audio"
         ],
-        "accessibilityLabel": "Карточка слова — offcut",
+        "accessibilityLabel": "Карточка слова — tap water",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:offcut:audio",
-            "transcript": "offcut"
+            "audioTargetId": "en:lesson-10:session-04:word:tap-water:audio",
+            "transcript": "tap water"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:offcut:r1",
-              "targetText": "offcut",
+              "responseId": "en:lesson-10:session-04:word:tap-water:r1",
+              "targetText": "tap water",
               "meaningByLocale": {
-                "ru": "«обрезок материала». I am using an offcut. — «Я использую обрезок». Здесь кусок ткани, оставшийся после раскроя.",
-                "uk": "«обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою."
+                "ru": "«вода из-под крана». some tap water — «немного воды из-под крана».",
+                "uk": "«вода з-під крана». some tap water — «трохи води з-під крана»."
               }
             }
           ],
@@ -703,10 +703,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "offcut",
+            "word": "tap water",
             "definitionByLocale": {
-              "ru": "«обрезок материала». I am using an offcut. — «Я использую обрезок». Здесь кусок ткани, оставшийся после раскроя.",
-              "uk": "«обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою."
+              "ru": "«вода из-под крана». some tap water — «немного воды из-под крана».",
+              "uk": "«вода з-під крана». some tap water — «трохи води з-під крана»."
             }
           }
         },
@@ -718,24 +718,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, откуда ткань для маленькой подушечки. Скажите: «Я использую обрезок»",
+        "prompt": "Хозяин предлагает питьевую воду. Вежливо попросите немного воды из-под крана",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, откуда ткань для маленькой подушечки. Скажите: «Я использую обрезок»",
+        "accessibilityLabel": "Хозяин предлагает питьевую воду. Вежливо попросите немного воды из-под крана",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am using an offcut.",
+          "targetPhrase": "I would like some tap water.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, откуда ткань для маленькой подушечки. Скажите: «Я использую обрезок»",
-            "uk": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»"
+            "ru": "Хозяин предлагает питьевую воду. Вежливо попросите немного воды из-под крана",
+            "uk": "Господар пропонує питну воду. Ввічливо попросіть трохи води з-під крана"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "using",
-            "an",
-            "offcut"
+            "would",
+            "like",
+            "some",
+            "tap",
+            "water"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -756,15 +757,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i11:r1",
-            "text": "The offcut is small."
+            "text": "I would like some tap water."
           },
           {
             "responseId": "en:lesson-10:session-04:i11:r2",
-            "text": "The offcut is large."
+            "text": "I would like some cold milk."
           },
           {
             "responseId": "en:lesson-10:session-04:i11:r3",
-            "text": "The button is small."
+            "text": "We would like some tap water."
           }
         ],
         "mediaIds": [],
@@ -776,23 +777,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i11:audio",
-            "transcript": "The offcut is small."
+            "transcript": "I would like some tap water."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i11:r1",
-              "targetText": "The offcut is small.",
+              "targetText": "I would like some tap water.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i11:r2",
-              "targetText": "The offcut is large.",
+              "targetText": "I would like some cold milk.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i11:r3",
-              "targetText": "The button is small.",
+              "targetText": "We would like some tap water.",
               "meaningByLocale": null
             }
           ],
@@ -803,8 +804,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The offcut is small.",
-                "uk": "У записі звучить The offcut is small."
+                "ru": "В записи звучит I would like some tap water.",
+                "uk": "У записі звучить I would like some tap water."
               }
             },
             {
@@ -812,8 +813,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The offcut is small.",
-                "uk": "У записі звучить The offcut is small."
+                "ru": "В записи звучит I would like some tap water.",
+                "uk": "У записі звучить I would like some tap water."
               }
             }
           ],
@@ -828,63 +829,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед offcut",
+        "prompt": "Выберите форму like после would",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i12:r1",
-            "text": "an"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-04:i12:r2",
-            "text": "a"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-04:i12:r3",
-            "text": "are"
+            "text": "liking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед offcut",
+        "accessibilityLabel": "Выберите форму like после would",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед offcut",
-            "uk": "Виберіть артикль перед offcut"
+            "ru": "Выберите форму like после would",
+            "uk": "Виберіть форму like після would"
           },
-          "gappedTargetPhrase": "I am using ___ offcut.",
+          "gappedTargetPhrase": "I would ___ some tap water.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i12:r1",
-              "text": "an"
+              "text": "like"
             },
             {
               "responseId": "en:lesson-10:session-04:i12:r2",
-              "text": "a"
+              "text": "likes"
             },
             {
               "responseId": "en:lesson-10:session-04:i12:r3",
-              "text": "are"
+              "text": "liking"
             }
           ],
-          "testedDimension": "Выберите артикль перед offcut",
+          "testedDimension": "Выберите форму like после would",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите артикль перед offcut",
+              "testedDimension": "Выберите форму like после would",
               "feedbackByLocale": {
-                "ru": "Offcut начинается с гласного звука: an.",
-                "uk": "Offcut починається з голосного звука: an."
+                "ru": "После would нужна like без s.",
+                "uk": "Після would потрібна like без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите артикль перед offcut",
+              "testedDimension": "Выберите форму like после would",
               "feedbackByLocale": {
-                "ru": "Are не артикль; здесь нужен an.",
-                "uk": "Are не артикль; тут потрібний an."
+                "ru": "После would нужна like, не liking.",
+                "uk": "Після would потрібна like, не liking."
               }
             }
           ]
@@ -897,58 +898,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините названия с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините названия с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-04:i13:p1",
-              "target": "craft",
+              "target": "air conditioning",
               "meaningByLocale": {
-                "ru": "мастерить",
-                "uk": "майструвати"
+                "ru": "кондиционирование воздуха",
+                "uk": "кондиціонування повітря"
               }
             },
             {
               "pairId": "en:lesson-10:session-04:i13:p2",
-              "target": "bobbin",
+              "target": "light bulb",
               "meaningByLocale": {
-                "ru": "шпулька",
-                "uk": "шпулька"
+                "ru": "лампочка",
+                "uk": "лампочка"
               }
             },
             {
               "pairId": "en:lesson-10:session-04:i13:p3",
-              "target": "pincushion",
+              "target": "power cut",
               "meaningByLocale": {
-                "ru": "подушечка для булавок",
-                "uk": "подушечка для шпильок"
+                "ru": "отключение электричества",
+                "uk": "відключення електроенергії"
               }
             },
             {
               "pairId": "en:lesson-10:session-04:i13:p4",
-              "target": "offcut",
+              "target": "tap water",
               "meaningByLocale": {
-                "ru": "обрезок материала",
-                "uk": "обрізок матеріалу"
+                "ru": "вода из-под крана",
+                "uk": "вода з-під крана"
               }
             }
           ],
           "leftColumn": [
-            "craft",
-            "bobbin",
-            "pincushion",
-            "offcut"
+            "air conditioning",
+            "light bulb",
+            "power cut",
+            "tap water"
           ],
           "rightColumn": [
-            "мастерить",
-            "шпулька",
-            "подушечка для булавок",
-            "обрезок материала"
+            "кондиционирование воздуха",
+            "лампочка",
+            "отключение электричества",
+            "вода из-под крана"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -970,27 +971,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите вопрос о действии сейчас",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-04:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i14:audio",
-            "transcript": "Are you making a pincushion?"
+            "transcript": "There is a power cut."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Are you making a pincushion?",
+          "hiddenTargetPhrase": "There is a power cut.",
           "orderedTokens": [
-            "Are",
-            "you",
-            "making",
+            "There",
+            "is",
             "a",
-            "pincushion"
+            "power",
+            "cut"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1004,24 +1005,61 @@
       {
         "interactionId": "en:lesson-10:session-04:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Посетитель спрашивает о вашем обычном занятии. Скажите: «Я мастерю сумки вручную»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-04:i15:audio"
         ],
-        "accessibilityLabel": "Посетитель спрашивает о вашем обычном занятии. Скажите: «Я мастерю сумки вручную»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-04:i15:audio",
+            "transcript": "I need a light bulb."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need a light bulb.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "light",
+            "bulb"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, почему в доме темно. Скажите: «Отключили электричество»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, почему в доме темно. Скажите: «Отключили электричество»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:i15:audio",
-            "transcript": "I craft bags by hand."
+            "audioTargetId": "en:lesson-10:session-04:i16:audio",
+            "transcript": "There is a power cut."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I craft bags by hand.",
+          "targetPhrase": "There is a power cut.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1035,72 +1073,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Коллега думает, что вы сейчас делаете сумку. Но сегодня вы шьёте подушечку. Скажите: «Я не делаю сумку»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Коллега думает, что вы сейчас делаете сумку. Но сегодня вы шьёте подушечку. Скажите: «Я не делаю сумку»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I am not making a bag.",
-          "localizedMeaning": {
-            "ru": "Коллега думает, что вы сейчас делаете сумку. Но сегодня вы шьёте подушечку. Скажите: «Я не делаю сумку»",
-            "uk": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»"
-          },
-          "orderedTokens": [
-            "I",
-            "am",
-            "not",
-            "making",
-            "a",
-            "bag"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-04:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Обычно вы мастерите сумки, но сейчас шьёте подушечку для булавок из остатка ткани. Посетитель спрашивает, над чем вы работаете. Ответьте: «Я делаю подушечку для булавок»",
+        "prompt": "В гостях вам предлагают питьевую воду. Скажите: «Я бы хотел немного воды из-под крана»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-04:i17:audio"
         ],
-        "accessibilityLabel": "Обычно вы мастерите сумки, но сейчас шьёте подушечку для булавок из остатка ткани. Посетитель спрашивает, над чем вы работаете. Ответьте: «Я делаю подушечку для булавок»",
+        "accessibilityLabel": "В гостях вам предлагают питьевую воду. Скажите: «Я бы хотел немного воды из-под крана»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i17:audio",
-            "transcript": "I am making a pincushion."
+            "transcript": "I would like some tap water."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am making a pincushion.",
+          "targetPhrase": "I would like some tap water.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1113,32 +1108,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-04:word:craft",
+        "interactionId": "en:lesson-10:session-04:word:air-conditioning",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — craft",
+        "prompt": "Картка слова — air conditioning",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:craft:audio"
+          "en:lesson-10:session-04:word:air-conditioning:audio"
         ],
-        "accessibilityLabel": "Картка слова — craft",
+        "accessibilityLabel": "Картка слова — air conditioning",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:craft:audio",
-            "transcript": "craft"
+            "audioTargetId": "en:lesson-10:session-04:word:air-conditioning:audio",
+            "transcript": "air conditioning"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:craft:r1",
-              "targetText": "craft",
+              "responseId": "en:lesson-10:session-04:word:air-conditioning:r1",
+              "targetText": "air conditioning",
               "meaningByLocale": {
-                "ru": "«мастерить, создавать вручную». I craft bags by hand. — «Я мастерю сумки вручную». Здесь глагол о создании вещей с умением и вниманием.",
-                "uk": "«майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно."
+                "ru": "«кондиционирование воздуха». The air conditioning is working. — «Кондиционер работает».",
+                "uk": "«кондиціонування повітря». The air conditioning is working. — «Кондиціонер працює»."
               }
             }
           ],
@@ -1146,10 +1141,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "craft",
+            "word": "air conditioning",
             "definitionByLocale": {
-              "ru": "«мастерить, создавать вручную». I craft bags by hand. — «Я мастерю сумки вручную». Здесь глагол о создании вещей с умением и вниманием.",
-              "uk": "«майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно."
+              "ru": "«кондиционирование воздуха». The air conditioning is working. — «Кондиционер работает».",
+              "uk": "«кондиціонування повітря». The air conditioning is working. — «Кондиціонер працює»."
             }
           }
         },
@@ -1161,24 +1156,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»",
+        "prompt": "Система зараз охолоджує кімнату. Скажіть: «Кондиціонер працює»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»",
+        "accessibilityLabel": "Система зараз охолоджує кімнату. Скажіть: «Кондиціонер працює»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I craft bags by hand.",
+          "targetPhrase": "The air conditioning is working.",
           "localizedMeaning": {
-            "ru": "Посетитель спрашивает о вашей работе. Скажите: «Я мастерю сумки вручную»",
-            "uk": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»"
+            "ru": "Система сейчас охлаждает комнату. Скажите: «Кондиционер работает»",
+            "uk": "Система зараз охолоджує кімнату. Скажіть: «Кондиціонер працює»"
           },
           "orderedTokens": [
-            "I",
-            "craft",
-            "bags",
-            "by",
-            "hand"
+            "The",
+            "air",
+            "conditioning",
+            "is",
+            "working"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1199,15 +1194,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i02:r1",
-            "text": "She crafts bags by hand."
+            "text": "The air conditioning is noisy."
           },
           {
             "responseId": "en:lesson-10:session-04:i02:r2",
-            "text": "She crafts toys by hand."
+            "text": "The air conditioning is working."
           },
           {
             "responseId": "en:lesson-10:session-04:i02:r3",
-            "text": "He crafts bags by hand."
+            "text": "The heating is noisy."
           }
         ],
         "mediaIds": [],
@@ -1219,23 +1214,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i02:audio",
-            "transcript": "She crafts bags by hand."
+            "transcript": "The air conditioning is noisy."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i02:r1",
-              "targetText": "She crafts bags by hand.",
+              "targetText": "The air conditioning is noisy.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i02:r2",
-              "targetText": "She crafts toys by hand.",
+              "targetText": "The air conditioning is working.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i02:r3",
-              "targetText": "He crafts bags by hand.",
+              "targetText": "The heating is noisy.",
               "meaningByLocale": null
             }
           ],
@@ -1246,8 +1241,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She crafts bags by hand.",
-                "uk": "У записі звучить She crafts bags by hand."
+                "ru": "В записи звучит The air conditioning is noisy.",
+                "uk": "У записі звучить The air conditioning is noisy."
               }
             },
             {
@@ -1255,8 +1250,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She crafts bags by hand.",
-                "uk": "У записі звучить She crafts bags by hand."
+                "ru": "В записи звучит The air conditioning is noisy.",
+                "uk": "У записі звучить The air conditioning is noisy."
               }
             }
           ],
@@ -1271,63 +1266,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму craft для звичайної роботи з she",
+        "prompt": "Опишіть роботу системи зараз. Виберіть форму work",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i03:r1",
-            "text": "crafts"
+            "text": "working"
           },
           {
             "responseId": "en:lesson-10:session-04:i03:r2",
-            "text": "craft"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-10:session-04:i03:r3",
-            "text": "crafting"
+            "text": "works"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму craft для звичайної роботи з she",
+        "accessibilityLabel": "Опишіть роботу системи зараз. Виберіть форму work",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму craft для обычной работы с she",
-            "uk": "Виберіть форму craft для звичайної роботи з she"
+            "ru": "Опишите работу системы сейчас. Выберите форму work",
+            "uk": "Опишіть роботу системи зараз. Виберіть форму work"
           },
-          "gappedTargetPhrase": "She ___ bags by hand.",
+          "gappedTargetPhrase": "The air conditioning is ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i03:r1",
-              "text": "crafts"
+              "text": "working"
             },
             {
               "responseId": "en:lesson-10:session-04:i03:r2",
-              "text": "craft"
+              "text": "work"
             },
             {
               "responseId": "en:lesson-10:session-04:i03:r3",
-              "text": "crafting"
+              "text": "works"
             }
           ],
-          "testedDimension": "Виберіть форму craft для звичайної роботи з she",
+          "testedDimension": "Опишіть роботу системи зараз. Виберіть форму work",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i03:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму craft для звичайної роботи з she",
+              "testedDimension": "Опишіть роботу системи зараз. Виберіть форму work",
               "feedbackByLocale": {
-                "ru": "С she в Present Simple добавляем -s.",
-                "uk": "З she у Present Simple додаємо -s."
+                "ru": "После is нужна working.",
+                "uk": "Після is потрібна working."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i03:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму craft для звичайної роботи з she",
+              "testedDimension": "Опишіть роботу системи зараз. Виберіть форму work",
               "feedbackByLocale": {
-                "ru": "Crafting без is не образует сказуемое.",
-                "uk": "Crafting без is не утворює присудок."
+                "ru": "После is нужна working, не works.",
+                "uk": "Після is потрібна working, не works."
               }
             }
           ]
@@ -1335,32 +1330,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:word:bobbin",
+        "interactionId": "en:lesson-10:session-04:word:light-bulb",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — bobbin",
+        "prompt": "Картка слова — light bulb",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:bobbin:audio"
+          "en:lesson-10:session-04:word:light-bulb:audio"
         ],
-        "accessibilityLabel": "Картка слова — bobbin",
+        "accessibilityLabel": "Картка слова — light bulb",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:bobbin:audio",
-            "transcript": "bobbin"
+            "audioTargetId": "en:lesson-10:session-04:word:light-bulb:audio",
+            "transcript": "light bulb"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:bobbin:r1",
-              "targetText": "bobbin",
+              "responseId": "en:lesson-10:session-04:word:light-bulb:r1",
+              "targetText": "light bulb",
               "meaningByLocale": {
-                "ru": "«шпулька». I am checking the bobbin. — «Я проверяю шпульку». Маленькая катушка для нити в швейной машинке.",
-                "uk": "«шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці."
+                "ru": "«лампочка». I need a light bulb. — «Мне нужна лампочка».",
+                "uk": "«лампочка». I need a light bulb. — «Мені потрібна лампочка»."
               }
             }
           ],
@@ -1368,10 +1363,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "bobbin",
+            "word": "light bulb",
             "definitionByLocale": {
-              "ru": "«шпулька». I am checking the bobbin. — «Я проверяю шпульку». Маленькая катушка для нити в швейной машинке.",
-              "uk": "«шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці."
+              "ru": "«лампочка». I need a light bulb. — «Мне нужна лампочка».",
+              "uk": "«лампочка». I need a light bulb. — «Мені потрібна лампочка»."
             }
           }
         },
@@ -1383,24 +1378,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»",
+        "prompt": "Лампочка перегоріла. Скажіть продавцеві: «Мені потрібна лампочка»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»",
+        "accessibilityLabel": "Лампочка перегоріла. Скажіть продавцеві: «Мені потрібна лампочка»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am checking the bobbin.",
+          "targetPhrase": "I need a light bulb.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, что вы осматриваете. Скажите: «Я проверяю шпульку»",
-            "uk": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»"
+            "ru": "Лампочка перегорела. Скажите продавцу: «Мне нужна лампочка»",
+            "uk": "Лампочка перегоріла. Скажіть продавцеві: «Мені потрібна лампочка»"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "checking",
-            "the",
-            "bobbin"
+            "need",
+            "a",
+            "light",
+            "bulb"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1421,15 +1416,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i05:r1",
-            "text": "The bobbin is on the table."
+            "text": "She needs a light bulb."
           },
           {
             "responseId": "en:lesson-10:session-04:i05:r2",
-            "text": "The bobbin is under the table."
+            "text": "He needs a light bulb."
           },
           {
             "responseId": "en:lesson-10:session-04:i05:r3",
-            "text": "The button is on the table."
+            "text": "She has a light bulb."
           }
         ],
         "mediaIds": [],
@@ -1441,23 +1436,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i05:audio",
-            "transcript": "The bobbin is on the table."
+            "transcript": "She needs a light bulb."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i05:r1",
-              "targetText": "The bobbin is on the table.",
+              "targetText": "She needs a light bulb.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i05:r2",
-              "targetText": "The bobbin is under the table.",
+              "targetText": "He needs a light bulb.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i05:r3",
-              "targetText": "The button is on the table.",
+              "targetText": "She has a light bulb.",
               "meaningByLocale": null
             }
           ],
@@ -1468,8 +1463,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bobbin is on the table.",
-                "uk": "У записі звучить The bobbin is on the table."
+                "ru": "В записи звучит She needs a light bulb.",
+                "uk": "У записі звучить She needs a light bulb."
               }
             },
             {
@@ -1477,8 +1472,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bobbin is on the table.",
-                "uk": "У записі звучить The bobbin is on the table."
+                "ru": "В записи звучит She needs a light bulb.",
+                "uk": "У записі звучить She needs a light bulb."
               }
             }
           ],
@@ -1493,63 +1488,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для однієї шпульки",
+        "prompt": "Виберіть форму need після I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i06:r1",
-            "text": "is"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-04:i06:r2",
-            "text": "are"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-04:i06:r3",
-            "text": "am"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для однієї шпульки",
+        "accessibilityLabel": "Виберіть форму need після I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной шпульки",
-            "uk": "Виберіть зв’язку для однієї шпульки"
+            "ru": "Выберите форму need после I",
+            "uk": "Виберіть форму need після I"
           },
-          "gappedTargetPhrase": "The bobbin ___ on the table.",
+          "gappedTargetPhrase": "I ___ a light bulb.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i06:r1",
-              "text": "is"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-04:i06:r2",
-              "text": "are"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-04:i06:r3",
-              "text": "am"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Виберіть зв’язку для однієї шпульки",
+          "testedDimension": "Виберіть форму need після I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для однієї шпульки",
+              "testedDimension": "Виберіть форму need після I",
               "feedbackByLocale": {
-                "ru": "Bobbin в единственном числе: is.",
-                "uk": "Bobbin в однині: is."
+                "ru": "После I нужна need.",
+                "uk": "Після I потрібна need."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для однієї шпульки",
+              "testedDimension": "Виберіть форму need після I",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Потребность выражаем формой need.",
+                "uk": "Потребу виражаємо формою need."
               }
             }
           ]
@@ -1557,32 +1552,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:word:pincushion",
+        "interactionId": "en:lesson-10:session-04:word:power-cut",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — pincushion",
+        "prompt": "Картка слова — power cut",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:pincushion:audio"
+          "en:lesson-10:session-04:word:power-cut:audio"
         ],
-        "accessibilityLabel": "Картка слова — pincushion",
+        "accessibilityLabel": "Картка слова — power cut",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:pincushion:audio",
-            "transcript": "pincushion"
+            "audioTargetId": "en:lesson-10:session-04:word:power-cut:audio",
+            "transcript": "power cut"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:pincushion:r1",
-              "targetText": "pincushion",
+              "responseId": "en:lesson-10:session-04:word:power-cut:r1",
+              "targetText": "power cut",
               "meaningByLocale": {
-                "ru": "«подушечка для булавок». I am making a pincushion. — «Я делаю подушечку для булавок». Небольшая мягкая подушечка, в которую втыкают булавки.",
-                "uk": "«подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки."
+                "ru": "«отключение электричества». There is a power cut. — «Отключили электричество».",
+                "uk": "«відключення електроенергії». There is a power cut. — «Відключили електроенергію»."
               }
             }
           ],
@@ -1590,10 +1585,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "pincushion",
+            "word": "power cut",
             "definitionByLocale": {
-              "ru": "«подушечка для булавок». I am making a pincushion. — «Я делаю подушечку для булавок». Небольшая мягкая подушечка, в которую втыкают булавки.",
-              "uk": "«подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки."
+              "ru": "«отключение электричества». There is a power cut. — «Отключили электричество».",
+              "uk": "«відключення електроенергії». There is a power cut. — «Відключили електроенергію»."
             }
           }
         },
@@ -1605,24 +1600,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»",
+        "prompt": "У всьому будинку немає електрики. Повідомте: «Відключили електроенергію»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»",
+        "accessibilityLabel": "У всьому будинку немає електрики. Повідомте: «Відключили електроенергію»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am making a pincushion.",
+          "targetPhrase": "There is a power cut.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, что вы шьёте сейчас. Скажите: «Я делаю подушечку для булавок»",
-            "uk": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»"
+            "ru": "Во всём доме нет электричества. Сообщите: «Отключили электричество»",
+            "uk": "У всьому будинку немає електрики. Повідомте: «Відключили електроенергію»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "making",
+            "There",
+            "is",
             "a",
-            "pincushion"
+            "power",
+            "cut"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1643,15 +1638,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i08:r1",
-            "text": "She is making a pincushion."
+            "text": "There is a power cut."
           },
           {
             "responseId": "en:lesson-10:session-04:i08:r2",
-            "text": "She is not making a pincushion."
+            "text": "There is a problem."
           },
           {
             "responseId": "en:lesson-10:session-04:i08:r3",
-            "text": "He is making a pincushion."
+            "text": "There is a light bulb."
           }
         ],
         "mediaIds": [],
@@ -1663,23 +1658,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i08:audio",
-            "transcript": "She is making a pincushion."
+            "transcript": "There is a power cut."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i08:r1",
-              "targetText": "She is making a pincushion.",
+              "targetText": "There is a power cut.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i08:r2",
-              "targetText": "She is not making a pincushion.",
+              "targetText": "There is a problem.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i08:r3",
-              "targetText": "He is making a pincushion.",
+              "targetText": "There is a light bulb.",
               "meaningByLocale": null
             }
           ],
@@ -1690,8 +1685,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She is making a pincushion.",
-                "uk": "У записі звучить She is making a pincushion."
+                "ru": "В записи звучит There is a power cut.",
+                "uk": "У записі звучить There is a power cut."
               }
             },
             {
@@ -1699,8 +1694,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She is making a pincushion.",
-                "uk": "У записі звучить She is making a pincushion."
+                "ru": "В записи звучит There is a power cut.",
+                "uk": "У записі звучить There is a power cut."
               }
             }
           ],
@@ -1715,63 +1710,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть написання make з -ing",
+        "prompt": "Виберіть зв’язку в there is для однієї ситуації",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i09:r1",
-            "text": "making"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-04:i09:r2",
-            "text": "makeing"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-04:i09:r3",
-            "text": "make"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть написання make з -ing",
+        "accessibilityLabel": "Виберіть зв’язку в there is для однієї ситуації",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите написание make с -ing",
-            "uk": "Виберіть написання make з -ing"
+            "ru": "Выберите связку в there is для одной ситуации",
+            "uk": "Виберіть зв’язку в there is для однієї ситуації"
           },
-          "gappedTargetPhrase": "I am ___ a pincushion.",
+          "gappedTargetPhrase": "There ___ a power cut.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i09:r1",
-              "text": "making"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-04:i09:r2",
-              "text": "makeing"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-04:i09:r3",
-              "text": "make"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть написання make з -ing",
+          "testedDimension": "Виберіть зв’язку в there is для однієї ситуації",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть написання make з -ing",
+              "testedDimension": "Виберіть зв’язку в there is для однієї ситуації",
               "feedbackByLocale": {
-                "ru": "Конечная e исчезает: making.",
-                "uk": "Кінцева e зникає: making."
+                "ru": "С a power cut нужна is.",
+                "uk": "З a power cut потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть написання make з -ing",
+              "testedDimension": "Виберіть зв’язку в there is для однієї ситуації",
               "feedbackByLocale": {
-                "ru": "После am нужна форма making.",
-                "uk": "Після am потрібна форма making."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1779,32 +1774,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:word:offcut",
+        "interactionId": "en:lesson-10:session-04:word:tap-water",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — offcut",
+        "prompt": "Картка слова — tap water",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-04:word:offcut:audio"
+          "en:lesson-10:session-04:word:tap-water:audio"
         ],
-        "accessibilityLabel": "Картка слова — offcut",
+        "accessibilityLabel": "Картка слова — tap water",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:word:offcut:audio",
-            "transcript": "offcut"
+            "audioTargetId": "en:lesson-10:session-04:word:tap-water:audio",
+            "transcript": "tap water"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-04:word:offcut:r1",
-              "targetText": "offcut",
+              "responseId": "en:lesson-10:session-04:word:tap-water:r1",
+              "targetText": "tap water",
               "meaningByLocale": {
-                "ru": "«обрезок материала». I am using an offcut. — «Я использую обрезок». Здесь кусок ткани, оставшийся после раскроя.",
-                "uk": "«обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою."
+                "ru": "«вода из-под крана». some tap water — «немного воды из-под крана».",
+                "uk": "«вода з-під крана». some tap water — «трохи води з-під крана»."
               }
             }
           ],
@@ -1812,10 +1807,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "offcut",
+            "word": "tap water",
             "definitionByLocale": {
-              "ru": "«обрезок материала». I am using an offcut. — «Я использую обрезок». Здесь кусок ткани, оставшийся после раскроя.",
-              "uk": "«обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою."
+              "ru": "«вода из-под крана». some tap water — «немного воды из-под крана».",
+              "uk": "«вода з-під крана». some tap water — «трохи води з-під крана»."
             }
           }
         },
@@ -1827,24 +1822,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»",
+        "prompt": "Господар пропонує питну воду. Ввічливо попросіть трохи води з-під крана",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»",
+        "accessibilityLabel": "Господар пропонує питну воду. Ввічливо попросіть трохи води з-під крана",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am using an offcut.",
+          "targetPhrase": "I would like some tap water.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, откуда ткань для маленькой подушечки. Скажите: «Я использую обрезок»",
-            "uk": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»"
+            "ru": "Хозяин предлагает питьевую воду. Вежливо попросите немного воды из-под крана",
+            "uk": "Господар пропонує питну воду. Ввічливо попросіть трохи води з-під крана"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "using",
-            "an",
-            "offcut"
+            "would",
+            "like",
+            "some",
+            "tap",
+            "water"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1865,15 +1861,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i11:r1",
-            "text": "The offcut is small."
+            "text": "I would like some tap water."
           },
           {
             "responseId": "en:lesson-10:session-04:i11:r2",
-            "text": "The offcut is large."
+            "text": "I would like some cold milk."
           },
           {
             "responseId": "en:lesson-10:session-04:i11:r3",
-            "text": "The button is small."
+            "text": "We would like some tap water."
           }
         ],
         "mediaIds": [],
@@ -1885,23 +1881,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i11:audio",
-            "transcript": "The offcut is small."
+            "transcript": "I would like some tap water."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-04:i11:r1",
-              "targetText": "The offcut is small.",
+              "targetText": "I would like some tap water.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i11:r2",
-              "targetText": "The offcut is large.",
+              "targetText": "I would like some cold milk.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-04:i11:r3",
-              "targetText": "The button is small.",
+              "targetText": "We would like some tap water.",
               "meaningByLocale": null
             }
           ],
@@ -1912,8 +1908,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The offcut is small.",
-                "uk": "У записі звучить The offcut is small."
+                "ru": "В записи звучит I would like some tap water.",
+                "uk": "У записі звучить I would like some tap water."
               }
             },
             {
@@ -1921,8 +1917,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The offcut is small.",
-                "uk": "У записі звучить The offcut is small."
+                "ru": "В записи звучит I would like some tap water.",
+                "uk": "У записі звучить I would like some tap water."
               }
             }
           ],
@@ -1937,63 +1933,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед offcut",
+        "prompt": "Виберіть форму like після would",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i12:r1",
-            "text": "an"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-04:i12:r2",
-            "text": "a"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-04:i12:r3",
-            "text": "are"
+            "text": "liking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед offcut",
+        "accessibilityLabel": "Виберіть форму like після would",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед offcut",
-            "uk": "Виберіть артикль перед offcut"
+            "ru": "Выберите форму like после would",
+            "uk": "Виберіть форму like після would"
           },
-          "gappedTargetPhrase": "I am using ___ offcut.",
+          "gappedTargetPhrase": "I would ___ some tap water.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-04:i12:r1",
-              "text": "an"
+              "text": "like"
             },
             {
               "responseId": "en:lesson-10:session-04:i12:r2",
-              "text": "a"
+              "text": "likes"
             },
             {
               "responseId": "en:lesson-10:session-04:i12:r3",
-              "text": "are"
+              "text": "liking"
             }
           ],
-          "testedDimension": "Виберіть артикль перед offcut",
+          "testedDimension": "Виберіть форму like після would",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-04:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть артикль перед offcut",
+              "testedDimension": "Виберіть форму like після would",
               "feedbackByLocale": {
-                "ru": "Offcut начинается с гласного звука: an.",
-                "uk": "Offcut починається з голосного звука: an."
+                "ru": "После would нужна like без s.",
+                "uk": "Після would потрібна like без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-04:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть артикль перед offcut",
+              "testedDimension": "Виберіть форму like після would",
               "feedbackByLocale": {
-                "ru": "Are не артикль; здесь нужен an.",
-                "uk": "Are не артикль; тут потрібний an."
+                "ru": "После would нужна like, не liking.",
+                "uk": "Після would потрібна like, не liking."
               }
             }
           ]
@@ -2006,58 +2002,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте назви з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте назви з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-04:i13:p1",
-              "target": "craft",
+              "target": "air conditioning",
               "meaningByLocale": {
-                "ru": "мастерить",
-                "uk": "майструвати"
+                "ru": "кондиционирование воздуха",
+                "uk": "кондиціонування повітря"
               }
             },
             {
               "pairId": "en:lesson-10:session-04:i13:p2",
-              "target": "bobbin",
+              "target": "light bulb",
               "meaningByLocale": {
-                "ru": "шпулька",
-                "uk": "шпулька"
+                "ru": "лампочка",
+                "uk": "лампочка"
               }
             },
             {
               "pairId": "en:lesson-10:session-04:i13:p3",
-              "target": "pincushion",
+              "target": "power cut",
               "meaningByLocale": {
-                "ru": "подушечка для булавок",
-                "uk": "подушечка для шпильок"
+                "ru": "отключение электричества",
+                "uk": "відключення електроенергії"
               }
             },
             {
               "pairId": "en:lesson-10:session-04:i13:p4",
-              "target": "offcut",
+              "target": "tap water",
               "meaningByLocale": {
-                "ru": "обрезок материала",
-                "uk": "обрізок матеріалу"
+                "ru": "вода из-под крана",
+                "uk": "вода з-під крана"
               }
             }
           ],
           "leftColumn": [
-            "craft",
-            "bobbin",
-            "pincushion",
-            "offcut"
+            "air conditioning",
+            "light bulb",
+            "power cut",
+            "tap water"
           ],
           "rightColumn": [
-            "майструвати",
-            "шпулька",
-            "подушечка для шпильок",
-            "обрізок матеріалу"
+            "кондиціонування повітря",
+            "лампочка",
+            "відключення електроенергії",
+            "вода з-під крана"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2079,27 +2075,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть запитання про дію зараз",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-04:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть запитання про дію зараз",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i14:audio",
-            "transcript": "Are you making a pincushion?"
+            "transcript": "There is a power cut."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Are you making a pincushion?",
+          "hiddenTargetPhrase": "There is a power cut.",
           "orderedTokens": [
-            "Are",
-            "you",
-            "making",
+            "There",
+            "is",
             "a",
-            "pincushion"
+            "power",
+            "cut"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2113,24 +2109,61 @@
       {
         "interactionId": "en:lesson-10:session-04:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Відвідувач запитує про ваше звичайне заняття. Скажіть: «Я майструю сумки вручну»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-04:i15:audio"
         ],
-        "accessibilityLabel": "Відвідувач запитує про ваше звичайне заняття. Скажіть: «Я майструю сумки вручну»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-04:i15:audio",
+            "transcript": "I need a light bulb."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need a light bulb.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "light",
+            "bulb"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чому в будинку темно. Скажіть: «Відключили електроенергію»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чому в будинку темно. Скажіть: «Відключили електроенергію»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-04:i15:audio",
-            "transcript": "I craft bags by hand."
+            "audioTargetId": "en:lesson-10:session-04:i16:audio",
+            "transcript": "There is a power cut."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I craft bags by hand.",
+          "targetPhrase": "There is a power cut.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2144,72 +2177,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-04:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I am not making a bag.",
-          "localizedMeaning": {
-            "ru": "Коллега думает, что вы сейчас делаете сумку. Но сегодня вы шьёте подушечку. Скажите: «Я не делаю сумку»",
-            "uk": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»"
-          },
-          "orderedTokens": [
-            "I",
-            "am",
-            "not",
-            "making",
-            "a",
-            "bag"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-04:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Зазвичай ви майструєте сумки, але зараз шиєте подушечку для шпильок із залишку тканини. Відвідувач запитує, над чим ви працюєте. Дайте відповідь: «Я роблю подушечку для шпильок»",
+        "prompt": "У гостях вам пропонують питну воду. Скажіть: «Я хотів би трохи води з-під крана»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-04:i17:audio"
         ],
-        "accessibilityLabel": "Зазвичай ви майструєте сумки, але зараз шиєте подушечку для шпильок із залишку тканини. Відвідувач запитує, над чим ви працюєте. Дайте відповідь: «Я роблю подушечку для шпильок»",
+        "accessibilityLabel": "У гостях вам пропонують питну воду. Скажіть: «Я хотів би трохи води з-під крана»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-04:i17:audio",
-            "transcript": "I am making a pincushion."
+            "transcript": "I would like some tap water."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am making a pincushion.",
+          "targetPhrase": "I would like some tap water.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2223,83 +2213,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-04:word:craft",
-      "correctText": "craft",
+      "interactionId": "en:lesson-10:session-04:word:air-conditioning",
+      "correctText": "air conditioning",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i01",
-      "correctText": "I craft bags by hand.",
+      "correctText": "The air conditioning is working.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i02",
-      "correctText": "She crafts bags by hand.",
+      "correctText": "The air conditioning is noisy.",
       "correctResponseId": "en:lesson-10:session-04:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-04:i03",
-      "correctText": "crafts",
+      "correctText": "working",
       "correctResponseId": "en:lesson-10:session-04:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-04:word:bobbin",
-      "correctText": "bobbin",
+      "interactionId": "en:lesson-10:session-04:word:light-bulb",
+      "correctText": "light bulb",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i04",
-      "correctText": "I am checking the bobbin.",
+      "correctText": "I need a light bulb.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i05",
-      "correctText": "The bobbin is on the table.",
+      "correctText": "She needs a light bulb.",
       "correctResponseId": "en:lesson-10:session-04:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-04:i06",
-      "correctText": "is",
+      "correctText": "need",
       "correctResponseId": "en:lesson-10:session-04:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-04:word:pincushion",
-      "correctText": "pincushion",
+      "interactionId": "en:lesson-10:session-04:word:power-cut",
+      "correctText": "power cut",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i07",
-      "correctText": "I am making a pincushion.",
+      "correctText": "There is a power cut.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i08",
-      "correctText": "She is making a pincushion.",
+      "correctText": "There is a power cut.",
       "correctResponseId": "en:lesson-10:session-04:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-04:i09",
-      "correctText": "making",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-04:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-04:word:offcut",
-      "correctText": "offcut",
+      "interactionId": "en:lesson-10:session-04:word:tap-water",
+      "correctText": "tap water",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i10",
-      "correctText": "I am using an offcut.",
+      "correctText": "I would like some tap water.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i11",
-      "correctText": "The offcut is small.",
+      "correctText": "I would like some tap water.",
       "correctResponseId": "en:lesson-10:session-04:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-04:i12",
-      "correctText": "an",
+      "correctText": "like",
       "correctResponseId": "en:lesson-10:session-04:i12:r1"
     },
     {
@@ -2309,22 +2299,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-04:i14",
-      "correctText": "Are you making a pincushion?",
+      "correctText": "There is a power cut.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i15",
-      "correctText": "I craft bags by hand.",
+      "correctText": "I need a light bulb.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i16",
-      "correctText": "I am not making a bag.",
+      "correctText": "There is a power cut.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-04:i17",
-      "correctText": "I am making a pincushion.",
+      "correctText": "I would like some tap water.",
       "correctResponseId": null
     }
   ]

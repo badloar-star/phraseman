@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-05:word:weave",
-    "correctText": "weave",
+    "interactionId": "en:lesson-10:session-05:word:porch",
+    "correctText": "porch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i01",
-    "correctText": "I weave at home.",
+    "correctText": "I am waiting on the porch.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i02",
-    "correctText": "She weaves at home.",
+    "correctText": "She is sitting on the porch.",
     "correctResponseId": "en:lesson-10:session-05:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-05:i03",
-    "correctText": "weaves",
+    "correctText": "waiting",
     "correctResponseId": "en:lesson-10:session-05:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-05:word:loom",
-    "correctText": "loom",
+    "interactionId": "en:lesson-10:session-05:word:patio",
+    "correctText": "patio",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i04",
-    "correctText": "I am using a loom.",
+    "correctText": "We are eating on the patio.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i05",
-    "correctText": "The loom is small.",
+    "correctText": "They are eating on the patio.",
     "correctResponseId": "en:lesson-10:session-05:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-05:i06",
-    "correctText": "using",
+    "correctText": "eating",
     "correctResponseId": "en:lesson-10:session-05:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-05:word:placemat",
-    "correctText": "placemat",
+    "interactionId": "en:lesson-10:session-05:word:attic",
+    "correctText": "attic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i07",
-    "correctText": "I am weaving a placemat.",
+    "correctText": "The boxes are in the attic.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i08",
-    "correctText": "She is weaving a placemat.",
+    "correctText": "The suitcase is in the attic.",
     "correctResponseId": "en:lesson-10:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-05:i09",
-    "correctText": "weaving",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-05:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-05:word:raffia",
-    "correctText": "raffia",
+    "interactionId": "en:lesson-10:session-05:word:cellar",
+    "correctText": "cellar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i10",
-    "correctText": "I am using raffia.",
+    "correctText": "The bottles are in the cellar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i11",
-    "correctText": "The raffia is in the box.",
+    "correctText": "The cellar is cool.",
     "correctResponseId": "en:lesson-10:session-05:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-05:i12",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-05:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-05:i13",
-    "correctText": "en:lesson-10:session-05:i13:p1=weave\nen:lesson-10:session-05:i13:p2=loom\nen:lesson-10:session-05:i13:p3=placemat\nen:lesson-10:session-05:i13:p4=raffia",
+    "correctText": "en:lesson-10:session-05:i13:p1=porch\nen:lesson-10:session-05:i13:p2=patio\nen:lesson-10:session-05:i13:p3=attic\nen:lesson-10:session-05:i13:p4=cellar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i14",
-    "correctText": "Are you weaving a placemat?",
+    "correctText": "The boxes are in the attic.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i15",
-    "correctText": "I usually use a loom.",
+    "correctText": "The bottles are in the cellar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i16",
-    "correctText": "I am not using a loom.",
+    "correctText": "I am waiting on the porch.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-05:i17",
-    "correctText": "I am weaving a placemat.",
+    "correctText": "The boxes are in the attic.",
     "correctResponseId": null
   }
 ]

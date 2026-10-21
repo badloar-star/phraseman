@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 6 — Чай для гостей
+# Английский · Урок 10 · Занятие 6 — Напитки для гостей
 
-**Ситуация.** Сравнить обычный утренний напиток с тем, что вы готовите для гостей сейчас.
+**Ситуация.** Предложить гостям напитки и попросить ложку.
 
-**Что вы освоите:** I brew coffee every morning; I am brewing chamomile tea
-**Новые слова:** brew, infuser, strainer, chamomile
+**Что вы освоите:** I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water
+**Новые слова:** decaf, herbal, sparkling, teaspoon
 
 ## Интро 1
 
-### Ваше утро
+### Кофе без кофеина
 
-Коллега спрашивает, как начинается ваш день. I brew coffee every morning — «Я завариваю кофе каждое утро». Brew — «заваривать», готовить чай или кофе с помощью горячей воды. Вы описываете привычку: I brew. Вы можете рассказывать об этом вечером, не готовя кофе прямо сейчас.
+Гость спрашивает, какой кофе вы обычно пьёте. Decaf — «без кофеина», когда речь о кофе: I usually drink decaf coffee — «Я обычно пью кофе без кофеина». Это привычка: drink. Вы не обязаны пить кофе прямо сейчас.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I brew coffee every morning.**
-- ❌ I brews coffee every morning. — *С I употребляем brew без -s.*
-- ❌ I am brew coffee every morning. — *Для привычки здесь I brew; am brew неверно.*
+- ✅ **I usually drink decaf coffee.**
+- ❌ I usually drinks decaf coffee. — *С I нужна drink без s.*
+- ❌ I usually drinking decaf coffee. — *Для привычки нужна drink.*
 
 ---
 
 ## Интро 2
 
-### Сегодня гости попросили другой напиток
+### Чай сейчас
 
-Обычно вы завариваете кофе. Сейчас гости попросили ромашковый чай, и вы его готовите. Chamomile — «ромашка». I am brewing chamomile tea — «Я завариваю ромашковый чай». Вы говорите о действии сейчас: am brewing. В brew ничего не убираем и просто добавляем -ing.
+Сейчас вы готовите гостю травяной чай. Herbal — «травяной»: I am making herbal tea — «Я готовлю травяной чай». Действие идёт сейчас: am making. В make перед ing убираем последнюю e.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am brewing chamomile tea.**
-- ❌ I brewing chamomile tea. — *Перед brewing с I нужно am.*
-- ❌ I am brews chamomile tea. — *После am нужна brewing, не brews.*
+- ✅ **I am making herbal tea.**
+- ❌ I making herbal tea. — *Перед making нужна am.*
+- ❌ I am make herbal tea. — *После am нужна making.*
 
 ---
 
 ## Интро 3
 
-### Заваривать и процеживать
+### Вода и ложка
 
-Infuser — заварочное ситечко: чай помещают внутрь и опускают в горячую воду. Strainer — сито для процеживания: через него пропускают напиток, задерживая листья. Сегодня вы завариваете чай в ситечке внутри чашки. I am using an infuser — «Я пользуюсь заварочным ситечком». Перед infuser нужен an: первый звук гласный.
+В гостях вам предлагают воду. Sparkling — «газированный»: sparkling water — «газированная вода». Вежливо попросите: I would like some sparkling water — «Я бы хотел немного газированной воды». К десерту вам нужна ложка. Teaspoon — «чайная ложка»: I need a teaspoon — «Мне нужна чайная ложка». Перед одной ложкой ставим a, перед неисчисляемой водой здесь some.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am using an infuser.**
-- ❌ I am using a infuser. — *Первый звук infuser гласный: an.*
-- ❌ I using an infuser. — *С I перед using нужно am.*
+- ✅ **I would like some sparkling water.**
+- ❌ I would likes some sparkling water. — *После would нужна like без s.*
+- ❌ I would liking some sparkling water. — *После would нужна like.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — brew**
-<!-- interaction_id: en:lesson-10:session-06:word:brew; family: word_card -->
-> **brew** — «заваривать». I brew coffee every morning. — «Я завариваю кофе каждое утро». Здесь о приготовлении чая или кофе с помощью горячей воды.
+**1 · Карточка слова — decaf**
+<!-- interaction_id: en:lesson-10:session-06:word:decaf; family: word_card -->
+> **decaf** — «без кофеина» — о кофе. decaf coffee — «кофе без кофеина».
 
-**2 · Коллега спрашивает о вашем утре. Скажите: «Я завариваю кофе каждое утро»**
+**2 · Скажите: «Я обычно пью кофе без кофеина». Поставьте usually перед drink**
 <!-- interaction_id: en:lesson-10:session-06:i01; family: phrase_builder -->
-Плитки: `morning` `every` `coffee` `brew` `I` → **I brew coffee every morning.**
+Плитки: `coffee` `decaf` `drink` `usually` `I` → **I usually drink decaf coffee.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-06:i02; family: listen_choose -->
-🔊 *She brews coffee every morning.* → **She brews coffee every morning.** · She brews tea every morning. · He brews coffee every morning.
-- She brews tea every morning. — *В записи звучит She brews coffee every morning.*
-- He brews coffee every morning. — *В записи звучит She brews coffee every morning.*
+🔊 *She drinks decaf coffee.* → **She drinks decaf coffee.** · He drinks decaf coffee. · She wants decaf coffee.
+- He drinks decaf coffee. — *В записи звучит She drinks decaf coffee.*
+- She wants decaf coffee. — *В записи звучит She drinks decaf coffee.*
 
-**4 · Выберите форму brew для привычки с she**
+**4 · Выберите форму drink для привычки с I**
 <!-- interaction_id: en:lesson-10:session-06:i03; family: context_gap_grammar -->
-She ___ coffee every morning. → **brews** · brew · brewing
-- brew — *С she в Present Simple добавляем -s.*
-- brewing — *Brewing без is не образует сказуемое.*
+I usually ___ decaf coffee. → **drink** · drinks · drinking
+- drinks — *С I нужна drink без s.*
+- drinking — *Для привычки нужна drink.*
 
-**5 · Карточка слова — infuser**
-<!-- interaction_id: en:lesson-10:session-06:word:infuser; family: word_card -->
-> **infuser** — «заварочное ситечко». I am using an infuser. — «Я пользуюсь заварочным ситечком». Его наполняют чаем и помещают в воду для заваривания.
+**5 · Карточка слова — herbal**
+<!-- interaction_id: en:lesson-10:session-06:word:herbal; family: word_card -->
+> **herbal** — «травяной». herbal tea — «травяной чай».
 
-**6 · Гость спрашивает, как чай заваривается внутри чашки. Скажите: «Я пользуюсь заварочным ситечком»**
+**6 · Скажите, что вы сейчас готовите травяной чай**
 <!-- interaction_id: en:lesson-10:session-06:i04; family: phrase_builder -->
-Плитки: `infuser` `an` `using` `am` `I` → **I am using an infuser.**
+Плитки: `tea` `herbal` `making` `am` `I` → **I am making herbal tea.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-06:i05; family: listen_choose -->
-🔊 *The infuser is in the cup.* → **The infuser is in the cup.** · The infuser is under the cup. · The spoon is in the cup.
-- The infuser is under the cup. — *В записи звучит The infuser is in the cup.*
-- The spoon is in the cup. — *В записи звучит The infuser is in the cup.*
+🔊 *We are drinking herbal tea.* → **We are drinking herbal tea.** · They are drinking herbal tea. · We are making herbal tea.
+- They are drinking herbal tea. — *В записи звучит We are drinking herbal tea.*
+- We are making herbal tea. — *В записи звучит We are drinking herbal tea.*
 
-**8 · Выберите артикль перед infuser**
+**8 · Чай готовят сейчас. Выберите форму make**
 <!-- interaction_id: en:lesson-10:session-06:i06; family: context_gap_grammar -->
-I am using ___ infuser. → **an** · a · are
-- a — *Первый звук гласный: an infuser.*
-- are — *Are не артикль; здесь нужен an.*
+I am ___ herbal tea. → **making** · make · makes
+- make — *После am нужна making.*
+- makes — *После am нужна making, не makes.*
 
-**9 · Карточка слова — strainer**
-<!-- interaction_id: en:lesson-10:session-06:word:strainer; family: word_card -->
-> **strainer** — «сито для процеживания». The strainer is clean. — «Сито чистое». Здесь задерживает чайные листья при наливании напитка.
+**9 · Карточка слова — sparkling**
+<!-- interaction_id: en:lesson-10:session-06:word:sparkling; family: word_card -->
+> **sparkling** — «газированный» — о воде. sparkling water — «газированная вода».
 
-**10 · Друг хочет процедить чай и спрашивает, вымыто ли сито. Скажите: «Сито чистое»**
+**10 · Вежливо попросите немного газированной воды**
 <!-- interaction_id: en:lesson-10:session-06:i07; family: phrase_builder -->
-Плитки: `clean` `is` `strainer` `The` → **The strainer is clean.**
+Плитки: `water` `sparkling` `some` `like` `would` `I` → **I would like some sparkling water.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-06:i08; family: listen_choose -->
-🔊 *I am washing the strainer.* → **I am washing the strainer.** · I am using the strainer. · She is washing the strainer.
-- I am using the strainer. — *В записи звучит I am washing the strainer.*
-- She is washing the strainer. — *В записи звучит I am washing the strainer.*
+🔊 *She would like some sparkling water.* → **She would like some sparkling water.** · He would like some sparkling water. · She would like some cold milk.
+- He would like some sparkling water. — *В записи звучит She would like some sparkling water.*
+- She would like some cold milk. — *В записи звучит She would like some sparkling water.*
 
-**12 · Выберите форму wash после am**
+**12 · Выберите форму like после would**
 <!-- interaction_id: en:lesson-10:session-06:i09; family: context_gap_grammar -->
-I am ___ the strainer. → **washing** · wash · washes
-- wash — *После am нужна washing.*
-- washes — *Washes не употребляется после am.*
+I would ___ some sparkling water. → **like** · likes · liking
+- likes — *После would нужна like.*
+- liking — *После would нужна like, не liking.*
 
-**13 · Карточка слова — chamomile**
-<!-- interaction_id: en:lesson-10:session-06:word:chamomile; family: word_card -->
-> **chamomile** — «ромашка». I am brewing chamomile tea. — «Я завариваю ромашковый чай». Здесь растение, из цветков которого делают напиток.
+**13 · Карточка слова — teaspoon**
+<!-- interaction_id: en:lesson-10:session-06:word:teaspoon; family: word_card -->
+> **teaspoon** — «чайная ложка». I need a teaspoon. — «Мне нужна чайная ложка».
 
-**14 · Гость спрашивает, какой чай вы готовите. Скажите: «Я завариваю ромашковый чай»**
+**14 · Скажите: «Мне нужна чайная ложка»**
 <!-- interaction_id: en:lesson-10:session-06:i10; family: phrase_builder -->
-Плитки: `tea` `chamomile` `brewing` `am` `I` → **I am brewing chamomile tea.**
+Плитки: `teaspoon` `a` `need` `I` → **I need a teaspoon.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-06:i11; family: listen_choose -->
-🔊 *The chamomile tea is hot.* → **The chamomile tea is hot.** · The chamomile tea is cold. · The coffee is hot.
-- The chamomile tea is cold. — *В записи звучит The chamomile tea is hot.*
-- The coffee is hot. — *В записи звучит The chamomile tea is hot.*
+🔊 *I need a teaspoon.* → **I need a teaspoon.** · We need a teaspoon. · I have a teaspoon.
+- We need a teaspoon. — *В записи звучит I need a teaspoon.*
+- I have a teaspoon. — *В записи звучит I need a teaspoon.*
 
-**16 · Выберите форму brew после am**
+**16 · Выберите артикль перед одной ложкой**
 <!-- interaction_id: en:lesson-10:session-06:i12; family: context_gap_grammar -->
-I am ___ chamomile tea. → **brewing** · brew · brews
-- brew — *После am нужна brewing.*
-- brews — *Brews не употребляется после am.*
+I need ___ teaspoon. → **a** · an · some
+- an — *Teaspoon начинается с согласного звука: a.*
+- some — *Одна исчисляемая ложка: a teaspoon.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-06:i13; family: speed_match -->
-brew — заваривать · infuser — заварочное ситечко · strainer — сито для процеживания · chamomile — ромашка
+decaf — без кофеина · herbal — травяной · sparkling — газированный · teaspoon — чайная ложка
 
-**18 · Послушайте и соберите вопрос о действии сейчас**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-06:i14; family: listen_build_dictation -->
-🔊 *Are you brewing chamomile tea?* Плитки: `tea` `chamomile` `brewing` `you` `Are` → **Are you brewing chamomile tea?**
+🔊 *I am making herbal tea.* Плитки: `tea` `herbal` `making` `am` `I` → **I am making herbal tea.**
 
-**19 · Коллега спрашивает о вашем обычном утре. Скажите: «Я завариваю кофе каждое утро»**
-<!-- interaction_id: en:lesson-10:session-06:i15; family: scripted_repeat_compare -->
-🎙 **I brew coffee every morning.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-06:i15; family: listen_build_dictation -->
+🔊 *I need a teaspoon.* Плитки: `teaspoon` `a` `need` `I` → **I need a teaspoon.**
 
-**20 · Гость думает, что вы готовите кофе, но вы завариваете чай. Скажите: «Я не завариваю кофе»**
-<!-- interaction_id: en:lesson-10:session-06:i16; family: phrase_builder -->
-Плитки: `coffee` `brewing` `not` `am` `I` → **I am not brewing coffee.**
+**20 · В гостях попросите немного газированной воды**
+<!-- interaction_id: en:lesson-10:session-06:i16; family: scripted_repeat_compare -->
+🎙 **I would like some sparkling water.**
 
-**21 · Обычно вы завариваете кофе. Сейчас вы готовите ромашковый чай для гостей. Друг звонит: «Что ты делаешь?» Ответьте: «Я завариваю ромашковый чай»**
-<!-- interaction_id: en:lesson-10:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am brewing chamomile tea.**
+**21 · Гость спрашивает, что вы готовите. Скажите: «Я готовлю травяной чай»**
+<!-- interaction_id: en:lesson-10:session-06:i17; family: scripted_repeat_compare -->
+🎙 **I am making herbal tea.**
 

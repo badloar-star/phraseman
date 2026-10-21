@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-06:intro1:r2": {
-          "ru": "С I употребляем brew без -s.",
-          "uk": "З I вживаємо brew без -s."
+          "ru": "С I нужна drink без s.",
+          "uk": "З I потрібна drink без s."
         },
         "en:lesson-10:session-06:intro1:r3": {
-          "ru": "Для привычки здесь I brew; am brew неверно.",
-          "uk": "Для звички тут I brew; am brew неправильно."
+          "ru": "Для привычки нужна drink.",
+          "uk": "Для звички потрібна drink."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-06:intro2:r2": {
-          "ru": "Перед brewing с I нужно am.",
-          "uk": "Перед brewing з I потрібне am."
+          "ru": "Перед making нужна am.",
+          "uk": "Перед making потрібна am."
         },
         "en:lesson-10:session-06:intro2:r3": {
-          "ru": "После am нужна brewing, не brews.",
-          "uk": "Після am потрібна brewing, не brews."
+          "ru": "После am нужна making.",
+          "uk": "Після am потрібна making."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-06:intro3:r2": {
-          "ru": "Первый звук infuser гласный: an.",
-          "uk": "Перший звук infuser голосний: an."
+          "ru": "После would нужна like без s.",
+          "uk": "Після would потрібна like без s."
         },
         "en:lesson-10:session-06:intro3:r3": {
-          "ru": "С I перед using нужно am.",
-          "uk": "З I перед using потрібне am."
+          "ru": "После would нужна like.",
+          "uk": "Після would потрібна like."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "06e78208abb993724764fd5662c0f11cd148b97b78a6dd0df03a3b2a2366ec38"
+  "auxiliaryFingerprint": "519c098cc6a5b3173c31b8005800101e67ffcc7398eb51fcba38d0c252e2f76b"
 }

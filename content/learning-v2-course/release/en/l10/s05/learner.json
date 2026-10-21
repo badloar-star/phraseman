@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-05:word:weave",
+      "interactionId": "en:lesson-10:session-05:word:porch",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — weave",
+      "prompt": "Карточка слова — porch",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-05:word:weave:audio"
+        "en:lesson-10:session-05:word:porch:audio"
       ],
-      "accessibilityLabel": "Карточка слова — weave",
+      "accessibilityLabel": "Карточка слова — porch",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-05:word:weave:audio",
-          "transcript": "weave"
+          "audioTargetId": "en:lesson-10:session-05:word:porch:audio",
+          "transcript": "porch"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-05:word:weave:r1",
-            "targetText": "weave",
+            "responseId": "en:lesson-10:session-05:word:porch:r1",
+            "targetText": "porch",
             "meaningByLocale": {
-              "ru": "«ткать; плести». I weave at home. — «Я тку дома». Переплетать нити или полоски материала.",
-              "uk": "«ткати; плести». I weave at home. — «Я тчу вдома». Переплітати нитки чи смужки матеріалу."
+              "ru": "«крыльцо, веранда у входа». I am waiting on the porch. — «Я жду на крыльце».",
+              "uk": "«ґанок, веранда біля входу». I am waiting on the porch. — «Я чекаю на ґанку»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "weave",
+          "word": "porch",
           "definitionByLocale": {
-            "ru": "«ткать; плести». I weave at home. — «Я тку дома». Переплетать нити или полоски материала.",
-            "uk": "«ткати; плести». I weave at home. — «Я тчу вдома». Переплітати нитки чи смужки матеріалу."
+            "ru": "«крыльцо, веранда у входа». I am waiting on the porch. — «Я жду на крыльце».",
+            "uk": "«ґанок, веранда біля входу». I am waiting on the porch. — «Я чекаю на ґанку»."
           }
         }
       },
@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Преподаватель спрашивает, занимаетесь ли вы ткачеством вне мастерской. Скажите: «Я тку дома»",
+      "prompt": "Вы ждёте гостя на крытом крыльце. Сообщите: «Я жду на крыльце»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Преподаватель спрашивает, занимаетесь ли вы ткачеством вне мастерской. Скажите: «Я тку дома»",
+      "accessibilityLabel": "Вы ждёте гостя на крытом крыльце. Сообщите: «Я жду на крыльце»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I weave at home.",
+        "targetPhrase": "I am waiting on the porch.",
         "localizedMeaning": {
-          "ru": "Преподаватель спрашивает, занимаетесь ли вы ткачеством вне мастерской. Скажите: «Я тку дома»",
-          "uk": "Викладач запитує, чи займаєтеся ви ткацтвом поза майстернею. Скажіть: «Я тчу вдома»"
+          "ru": "Вы ждёте гостя на крытом крыльце. Сообщите: «Я жду на крыльце»",
+          "uk": "Ви чекаєте на гостя на критому ґанку. Повідомте: «Я чекаю на ґанку»"
         },
         "orderedTokens": [
           "I",
-          "weave",
-          "at",
-          "home"
+          "am",
+          "waiting",
+          "on",
+          "the",
+          "porch"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +91,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i02:r1",
-          "text": "She weaves at home."
+          "text": "She is sitting on the porch."
         },
         {
           "responseId": "en:lesson-10:session-05:i02:r2",
-          "text": "She knits at home."
+          "text": "He is sitting on the porch."
         },
         {
           "responseId": "en:lesson-10:session-05:i02:r3",
-          "text": "He weaves at home."
+          "text": "She is waiting on the porch."
         }
       ],
       "mediaIds": [],
@@ -109,23 +111,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-05:i02:audio",
-          "transcript": "She weaves at home."
+          "transcript": "She is sitting on the porch."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-05:i02:r1",
-            "targetText": "She weaves at home.",
+            "targetText": "She is sitting on the porch.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i02:r2",
-            "targetText": "She knits at home.",
+            "targetText": "He is sitting on the porch.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i02:r3",
-            "targetText": "He weaves at home.",
+            "targetText": "She is waiting on the porch.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +138,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She weaves at home.",
-              "uk": "У записі звучить She weaves at home."
+              "ru": "В записи звучит She is sitting on the porch.",
+              "uk": "У записі звучить She is sitting on the porch."
             }
           },
           {
@@ -145,8 +147,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She weaves at home.",
-              "uk": "У записі звучить She weaves at home."
+              "ru": "В записи звучит She is sitting on the porch.",
+              "uk": "У записі звучить She is sitting on the porch."
             }
           }
         ],
@@ -161,63 +163,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму weave для привычного занятия с she",
+      "prompt": "Ожидание идёт сейчас. Выберите форму wait",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i03:r1",
-          "text": "weaves"
+          "text": "waiting"
         },
         {
           "responseId": "en:lesson-10:session-05:i03:r2",
-          "text": "weave"
+          "text": "wait"
         },
         {
           "responseId": "en:lesson-10:session-05:i03:r3",
-          "text": "weaving"
+          "text": "waits"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму weave для привычного занятия с she",
+      "accessibilityLabel": "Ожидание идёт сейчас. Выберите форму wait",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму weave для привычного занятия с she",
-          "uk": "Виберіть форму weave для звичного заняття з she"
+          "ru": "Ожидание идёт сейчас. Выберите форму wait",
+          "uk": "Очікування триває зараз. Виберіть форму wait"
         },
-        "gappedTargetPhrase": "She ___ at home.",
+        "gappedTargetPhrase": "I am ___ on the porch.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-05:i03:r1",
-            "text": "weaves"
+            "text": "waiting"
           },
           {
             "responseId": "en:lesson-10:session-05:i03:r2",
-            "text": "weave"
+            "text": "wait"
           },
           {
             "responseId": "en:lesson-10:session-05:i03:r3",
-            "text": "weaving"
+            "text": "waits"
           }
         ],
-        "testedDimension": "Выберите форму weave для привычного занятия с she",
+        "testedDimension": "Ожидание идёт сейчас. Выберите форму wait",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-05:i03:r2",
             "correct": false,
-            "testedDimension": "Выберите форму weave для привычного занятия с she",
+            "testedDimension": "Ожидание идёт сейчас. Выберите форму wait",
             "feedbackByLocale": {
-              "ru": "С she в Present Simple добавляем -s.",
-              "uk": "З she у Present Simple додаємо -s."
+              "ru": "После am нужна waiting.",
+              "uk": "Після am потрібна waiting."
             }
           },
           {
             "responseId": "en:lesson-10:session-05:i03:r3",
             "correct": false,
-            "testedDimension": "Выберите форму weave для привычного занятия с she",
+            "testedDimension": "Ожидание идёт сейчас. Выберите форму wait",
             "feedbackByLocale": {
-              "ru": "Weaving без is не образует сказуемое.",
-              "uk": "Weaving без is не утворює присудок."
+              "ru": "После am нужна waiting, не waits.",
+              "uk": "Після am потрібна waiting, не waits."
             }
           }
         ]
@@ -225,32 +227,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-05:word:loom",
+      "interactionId": "en:lesson-10:session-05:word:patio",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — loom",
+      "prompt": "Карточка слова — patio",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-05:word:loom:audio"
+        "en:lesson-10:session-05:word:patio:audio"
       ],
-      "accessibilityLabel": "Карточка слова — loom",
+      "accessibilityLabel": "Карточка слова — patio",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-05:word:loom:audio",
-          "transcript": "loom"
+          "audioTargetId": "en:lesson-10:session-05:word:patio:audio",
+          "transcript": "patio"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-05:word:loom:r1",
-            "targetText": "loom",
+            "responseId": "en:lesson-10:session-05:word:patio:r1",
+            "targetText": "patio",
             "meaningByLocale": {
-              "ru": "«ткацкий станок». I am using a loom. — «Я пользуюсь ткацким станком». Устройство, которое удерживает нити для ткачества.",
-              "uk": "«ткацький верстат». I am using a loom. — «Я користуюся ткацьким верстатом». Пристрій, який утримує нитки для ткацтва."
+              "ru": "«патио, открытая площадка у дома». on the patio — «на открытой площадке у дома».",
+              "uk": "«патіо, відкритий майданчик біля будинку». on the patio — «на відкритому майданчику біля будинку»."
             }
           }
         ],
@@ -258,10 +260,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "loom",
+          "word": "patio",
           "definitionByLocale": {
-            "ru": "«ткацкий станок». I am using a loom. — «Я пользуюсь ткацким станком». Устройство, которое удерживает нити для ткачества.",
-            "uk": "«ткацький верстат». I am using a loom. — «Я користуюся ткацьким верстатом». Пристрій, який утримує нитки для ткацтва."
+            "ru": "«патио, открытая площадка у дома». on the patio — «на открытой площадке у дома».",
+            "uk": "«патіо, відкритий майданчик біля будинку». on the patio — «на відкритому майданчику біля будинку»."
           }
         }
       },
@@ -273,24 +275,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, на чём вы работаете сейчас. Скажите: «Я пользуюсь ткацким станком»",
+      "prompt": "Вы сейчас обедаете за столом на открытой площадке у дома. Скажите, где вы едите",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, на чём вы работаете сейчас. Скажите: «Я пользуюсь ткацким станком»",
+      "accessibilityLabel": "Вы сейчас обедаете за столом на открытой площадке у дома. Скажите, где вы едите",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am using a loom.",
+        "targetPhrase": "We are eating on the patio.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, на чём вы работаете сейчас. Скажите: «Я пользуюсь ткацким станком»",
-          "uk": "Колега запитує, на чому ви працюєте зараз. Скажіть: «Я користуюся ткацьким верстатом»"
+          "ru": "Вы сейчас обедаете за столом на открытой площадке у дома. Скажите, где вы едите",
+          "uk": "Ви зараз обідаєте за столом на відкритому майданчику біля будинку. Скажіть, де ви їсте"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "using",
-          "a",
-          "loom"
+          "We",
+          "are",
+          "eating",
+          "on",
+          "the",
+          "patio"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +314,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i05:r1",
-          "text": "The loom is small."
+          "text": "They are eating on the patio."
         },
         {
           "responseId": "en:lesson-10:session-05:i05:r2",
-          "text": "The loom is large."
+          "text": "We are eating on the patio."
         },
         {
           "responseId": "en:lesson-10:session-05:i05:r3",
-          "text": "The room is small."
+          "text": "They are reading on the patio."
         }
       ],
       "mediaIds": [],
@@ -331,23 +334,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-05:i05:audio",
-          "transcript": "The loom is small."
+          "transcript": "They are eating on the patio."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-05:i05:r1",
-            "targetText": "The loom is small.",
+            "targetText": "They are eating on the patio.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i05:r2",
-            "targetText": "The loom is large.",
+            "targetText": "We are eating on the patio.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i05:r3",
-            "targetText": "The room is small.",
+            "targetText": "They are reading on the patio.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +361,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The loom is small.",
-              "uk": "У записі звучить The loom is small."
+              "ru": "В записи звучит They are eating on the patio.",
+              "uk": "У записі звучить They are eating on the patio."
             }
           },
           {
@@ -367,8 +370,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The loom is small.",
-              "uk": "У записі звучить The loom is small."
+              "ru": "В записи звучит They are eating on the patio.",
+              "uk": "У записі звучить They are eating on the patio."
             }
           }
         ],
@@ -383,63 +386,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму use после am",
+      "prompt": "Обед идёт сейчас. Выберите форму eat",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i06:r1",
-          "text": "using"
+          "text": "eating"
         },
         {
           "responseId": "en:lesson-10:session-05:i06:r2",
-          "text": "useing"
+          "text": "eat"
         },
         {
           "responseId": "en:lesson-10:session-05:i06:r3",
-          "text": "use"
+          "text": "eats"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму use после am",
+      "accessibilityLabel": "Обед идёт сейчас. Выберите форму eat",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму use после am",
-          "uk": "Виберіть форму use після am"
+          "ru": "Обед идёт сейчас. Выберите форму eat",
+          "uk": "Обід триває зараз. Виберіть форму eat"
         },
-        "gappedTargetPhrase": "I am ___ a loom.",
+        "gappedTargetPhrase": "We are ___ on the patio.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-05:i06:r1",
-            "text": "using"
+            "text": "eating"
           },
           {
             "responseId": "en:lesson-10:session-05:i06:r2",
-            "text": "useing"
+            "text": "eat"
           },
           {
             "responseId": "en:lesson-10:session-05:i06:r3",
-            "text": "use"
+            "text": "eats"
           }
         ],
-        "testedDimension": "Выберите форму use после am",
+        "testedDimension": "Обед идёт сейчас. Выберите форму eat",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-05:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите форму use после am",
+            "testedDimension": "Обед идёт сейчас. Выберите форму eat",
             "feedbackByLocale": {
-              "ru": "Конечная e исчезает: using.",
-              "uk": "Кінцева e зникає: using."
+              "ru": "После are нужна eating.",
+              "uk": "Після are потрібна eating."
             }
           },
           {
             "responseId": "en:lesson-10:session-05:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите форму use после am",
+            "testedDimension": "Обед идёт сейчас. Выберите форму eat",
             "feedbackByLocale": {
-              "ru": "После am нужна using.",
-              "uk": "Після am потрібна using."
+              "ru": "После are нужна eating, не eats.",
+              "uk": "Після are потрібна eating, не eats."
             }
           }
         ]
@@ -447,32 +450,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-05:word:placemat",
+      "interactionId": "en:lesson-10:session-05:word:attic",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — placemat",
+      "prompt": "Карточка слова — attic",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-05:word:placemat:audio"
+        "en:lesson-10:session-05:word:attic:audio"
       ],
-      "accessibilityLabel": "Карточка слова — placemat",
+      "accessibilityLabel": "Карточка слова — attic",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-05:word:placemat:audio",
-          "transcript": "placemat"
+          "audioTargetId": "en:lesson-10:session-05:word:attic:audio",
+          "transcript": "attic"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-05:word:placemat:r1",
-            "targetText": "placemat",
+            "responseId": "en:lesson-10:session-05:word:attic:r1",
+            "targetText": "attic",
             "meaningByLocale": {
-              "ru": "«подставка под тарелку». I am weaving a placemat. — «Я тку подставку под тарелку». Небольшая подложка для одного места за столом.",
-              "uk": "«підставка під тарілку». I am weaving a placemat. — «Я тчу підставку під тарілку». Невелика підкладка для одного місця за столом."
+              "ru": "«чердак». The boxes are in the attic. — «Коробки на чердаке».",
+              "uk": "«горище». The boxes are in the attic. — «Коробки на горищі»."
             }
           }
         ],
@@ -480,10 +483,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "placemat",
+          "word": "attic",
           "definitionByLocale": {
-            "ru": "«подставка под тарелку». I am weaving a placemat. — «Я тку подставку под тарелку». Небольшая подложка для одного места за столом.",
-            "uk": "«підставка під тарілку». I am weaving a placemat. — «Я тчу підставку під тарілку». Невелика підкладка для одного місця за столом."
+            "ru": "«чердак». The boxes are in the attic. — «Коробки на чердаке».",
+            "uk": "«горище». The boxes are in the attic. — «Коробки на горищі»."
           }
         }
       },
@@ -495,24 +498,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сосед спрашивает, что получается из ваших нитей. Скажите: «Я тку подставку под тарелку»",
+      "prompt": "Коробки отнесли под крышу. Сообщите: «Коробки на чердаке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сосед спрашивает, что получается из ваших нитей. Скажите: «Я тку подставку под тарелку»",
+      "accessibilityLabel": "Коробки отнесли под крышу. Сообщите: «Коробки на чердаке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am weaving a placemat.",
+        "targetPhrase": "The boxes are in the attic.",
         "localizedMeaning": {
-          "ru": "Сосед спрашивает, что получается из ваших нитей. Скажите: «Я тку подставку под тарелку»",
-          "uk": "Сусід запитує, що виходить із ваших ниток. Скажіть: «Я тчу підставку під тарілку»"
+          "ru": "Коробки отнесли под крышу. Сообщите: «Коробки на чердаке»",
+          "uk": "Коробки віднесли під дах. Повідомте: «Коробки на горищі»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "weaving",
-          "a",
-          "placemat"
+          "The",
+          "boxes",
+          "are",
+          "in",
+          "the",
+          "attic"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -533,15 +537,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i08:r1",
-          "text": "She is weaving a placemat."
+          "text": "The suitcase is in the attic."
         },
         {
           "responseId": "en:lesson-10:session-05:i08:r2",
-          "text": "She is not weaving a placemat."
+          "text": "The suitcase is in the bedroom."
         },
         {
           "responseId": "en:lesson-10:session-05:i08:r3",
-          "text": "He is weaving a placemat."
+          "text": "The box is in the attic."
         }
       ],
       "mediaIds": [],
@@ -553,23 +557,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-05:i08:audio",
-          "transcript": "She is weaving a placemat."
+          "transcript": "The suitcase is in the attic."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-05:i08:r1",
-            "targetText": "She is weaving a placemat.",
+            "targetText": "The suitcase is in the attic.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i08:r2",
-            "targetText": "She is not weaving a placemat.",
+            "targetText": "The suitcase is in the bedroom.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i08:r3",
-            "targetText": "He is weaving a placemat.",
+            "targetText": "The box is in the attic.",
             "meaningByLocale": null
           }
         ],
@@ -580,8 +584,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She is weaving a placemat.",
-              "uk": "У записі звучить She is weaving a placemat."
+              "ru": "В записи звучит The suitcase is in the attic.",
+              "uk": "У записі звучить The suitcase is in the attic."
             }
           },
           {
@@ -589,8 +593,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She is weaving a placemat.",
-              "uk": "У записі звучить She is weaving a placemat."
+              "ru": "В записи звучит The suitcase is in the attic.",
+              "uk": "У записі звучить The suitcase is in the attic."
             }
           }
         ],
@@ -605,63 +609,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите написание weave с -ing",
+      "prompt": "Выберите связку: несколько коробок",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i09:r1",
-          "text": "weaving"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-05:i09:r2",
-          "text": "weaveing"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-05:i09:r3",
-          "text": "weave"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите написание weave с -ing",
+      "accessibilityLabel": "Выберите связку: несколько коробок",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите написание weave с -ing",
-          "uk": "Виберіть написання weave з -ing"
+          "ru": "Выберите связку: несколько коробок",
+          "uk": "Виберіть зв’язку: кілька коробок"
         },
-        "gappedTargetPhrase": "I am ___ a placemat.",
+        "gappedTargetPhrase": "The boxes ___ in the attic.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-05:i09:r1",
-            "text": "weaving"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-05:i09:r2",
-            "text": "weaveing"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-05:i09:r3",
-            "text": "weave"
+            "text": "am"
           }
         ],
-        "testedDimension": "Выберите написание weave с -ing",
+        "testedDimension": "Выберите связку: несколько коробок",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-05:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите написание weave с -ing",
+            "testedDimension": "Выберите связку: несколько коробок",
             "feedbackByLocale": {
-              "ru": "Конечная e исчезает: weaving.",
-              "uk": "Кінцева e зникає: weaving."
+              "ru": "Boxes во множественном числе: are.",
+              "uk": "Boxes у множині: are."
             }
           },
           {
             "responseId": "en:lesson-10:session-05:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите написание weave с -ing",
+            "testedDimension": "Выберите связку: несколько коробок",
             "feedbackByLocale": {
-              "ru": "После am нужна weaving.",
-              "uk": "Після am потрібна weaving."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -669,32 +673,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-05:word:raffia",
+      "interactionId": "en:lesson-10:session-05:word:cellar",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — raffia",
+      "prompt": "Карточка слова — cellar",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-05:word:raffia:audio"
+        "en:lesson-10:session-05:word:cellar:audio"
       ],
-      "accessibilityLabel": "Карточка слова — raffia",
+      "accessibilityLabel": "Карточка слова — cellar",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-05:word:raffia:audio",
-          "transcript": "raffia"
+          "audioTargetId": "en:lesson-10:session-05:word:cellar:audio",
+          "transcript": "cellar"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-05:word:raffia:r1",
-            "targetText": "raffia",
+            "responseId": "en:lesson-10:session-05:word:cellar:r1",
+            "targetText": "cellar",
             "meaningByLocale": {
-              "ru": "«рафия». I am using raffia. — «Я использую рафию». Здесь растительное волокно для плетения.",
-              "uk": "«рафія». I am using raffia. — «Я використовую рафію». Тут рослинне волокно для плетіння."
+              "ru": "«подвал, погреб». The bottles are in the cellar. — «Бутылки в подвале».",
+              "uk": "«підвал, льох». The bottles are in the cellar. — «Пляшки в підвалі»."
             }
           }
         ],
@@ -702,10 +706,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "raffia",
+          "word": "cellar",
           "definitionByLocale": {
-            "ru": "«рафия». I am using raffia. — «Я использую рафию». Здесь растительное волокно для плетения.",
-            "uk": "«рафія». I am using raffia. — «Я використовую рафію». Тут рослинне волокно для плетіння."
+            "ru": "«подвал, погреб». The bottles are in the cellar. — «Бутылки в подвале».",
+            "uk": "«підвал, льох». The bottles are in the cellar. — «Пляшки в підвалі»."
           }
         }
       },
@@ -717,23 +721,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Преподаватель спрашивает, из какого материала вы плетёте. Скажите: «Я использую рафию»",
+      "prompt": "Бутылки хранятся внизу под домом. Сообщите: «Бутылки в подвале»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Преподаватель спрашивает, из какого материала вы плетёте. Скажите: «Я использую рафию»",
+      "accessibilityLabel": "Бутылки хранятся внизу под домом. Сообщите: «Бутылки в подвале»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am using raffia.",
+        "targetPhrase": "The bottles are in the cellar.",
         "localizedMeaning": {
-          "ru": "Преподаватель спрашивает, из какого материала вы плетёте. Скажите: «Я использую рафию»",
-          "uk": "Викладач запитує, з якого матеріалу ви плетете. Скажіть: «Я використовую рафію»"
+          "ru": "Бутылки хранятся внизу под домом. Сообщите: «Бутылки в подвале»",
+          "uk": "Пляшки зберігаються внизу під будинком. Повідомте: «Пляшки в підвалі»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "using",
-          "raffia"
+          "The",
+          "bottles",
+          "are",
+          "in",
+          "the",
+          "cellar"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -754,15 +760,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i11:r1",
-          "text": "The raffia is in the box."
+          "text": "The cellar is cool."
         },
         {
           "responseId": "en:lesson-10:session-05:i11:r2",
-          "text": "The raffia is under the box."
+          "text": "The cellar is dark."
         },
         {
           "responseId": "en:lesson-10:session-05:i11:r3",
-          "text": "The yarn is in the box."
+          "text": "The attic is cool."
         }
       ],
       "mediaIds": [],
@@ -774,23 +780,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-05:i11:audio",
-          "transcript": "The raffia is in the box."
+          "transcript": "The cellar is cool."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-05:i11:r1",
-            "targetText": "The raffia is in the box.",
+            "targetText": "The cellar is cool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i11:r2",
-            "targetText": "The raffia is under the box.",
+            "targetText": "The cellar is dark.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-05:i11:r3",
-            "targetText": "The yarn is in the box.",
+            "targetText": "The attic is cool.",
             "meaningByLocale": null
           }
         ],
@@ -801,8 +807,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The raffia is in the box.",
-              "uk": "У записі звучить The raffia is in the box."
+              "ru": "В записи звучит The cellar is cool.",
+              "uk": "У записі звучить The cellar is cool."
             }
           },
           {
@@ -810,8 +816,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The raffia is in the box.",
-              "uk": "У записі звучить The raffia is in the box."
+              "ru": "В записи звучит The cellar is cool.",
+              "uk": "У записі звучить The cellar is cool."
             }
           }
         ],
@@ -826,15 +832,15 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для материала raffia",
+      "prompt": "Выберите связку: несколько бутылок",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-05:i12:r1",
-          "text": "is"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-05:i12:r2",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-05:i12:r3",
@@ -843,45 +849,45 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для материала raffia",
+      "accessibilityLabel": "Выберите связку: несколько бутылок",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для материала raffia",
-          "uk": "Виберіть зв’язку для матеріалу raffia"
+          "ru": "Выберите связку: несколько бутылок",
+          "uk": "Виберіть зв’язку: кілька пляшок"
         },
-        "gappedTargetPhrase": "The raffia ___ in the box.",
+        "gappedTargetPhrase": "The bottles ___ in the cellar.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-05:i12:r1",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-05:i12:r2",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-05:i12:r3",
             "text": "am"
           }
         ],
-        "testedDimension": "Выберите связку для материала raffia",
+        "testedDimension": "Выберите связку: несколько бутылок",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-05:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите связку для материала raffia",
+            "testedDimension": "Выберите связку: несколько бутылок",
             "feedbackByLocale": {
-              "ru": "Raffia как материал неисчисляемое: is.",
-              "uk": "Raffia як матеріал незлічуване: is."
+              "ru": "Bottles во множественном числе: are.",
+              "uk": "Bottles у множині: are."
             }
           },
           {
             "responseId": "en:lesson-10:session-05:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите связку для материала raffia",
+            "testedDimension": "Выберите связку: несколько бутылок",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
+              "ru": "Am используется с I.",
               "uk": "Am уживається з I."
             }
           }
@@ -895,58 +901,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините названия с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините названия с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-05:i13:p1",
-            "target": "weave",
+            "target": "porch",
             "meaningByLocale": {
-              "ru": "ткать",
-              "uk": "ткати"
+              "ru": "крыльцо",
+              "uk": "ґанок"
             }
           },
           {
             "pairId": "en:lesson-10:session-05:i13:p2",
-            "target": "loom",
+            "target": "patio",
             "meaningByLocale": {
-              "ru": "ткацкий станок",
-              "uk": "ткацький верстат"
+              "ru": "открытая площадка у дома",
+              "uk": "відкритий майданчик біля будинку"
             }
           },
           {
             "pairId": "en:lesson-10:session-05:i13:p3",
-            "target": "placemat",
+            "target": "attic",
             "meaningByLocale": {
-              "ru": "подставка под тарелку",
-              "uk": "підставка під тарілку"
+              "ru": "чердак",
+              "uk": "горище"
             }
           },
           {
             "pairId": "en:lesson-10:session-05:i13:p4",
-            "target": "raffia",
+            "target": "cellar",
             "meaningByLocale": {
-              "ru": "рафия",
-              "uk": "рафія"
+              "ru": "подвал",
+              "uk": "підвал"
             }
           }
         ],
         "leftColumn": [
-          "weave",
-          "loom",
-          "placemat",
-          "raffia"
+          "porch",
+          "patio",
+          "attic",
+          "cellar"
         ],
         "rightColumn": [
-          "ткать",
-          "ткацкий станок",
-          "подставка под тарелку",
-          "рафия"
+          "крыльцо",
+          "открытая площадка у дома",
+          "чердак",
+          "подвал"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -968,27 +974,28 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос о действии сейчас",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-05:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-05:i14:audio",
-          "transcript": "Are you weaving a placemat?"
+          "transcript": "The boxes are in the attic."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Are you weaving a placemat?",
+        "hiddenTargetPhrase": "The boxes are in the attic.",
         "orderedTokens": [
-          "Are",
-          "you",
-          "weaving",
-          "a",
-          "placemat"
+          "The",
+          "boxes",
+          "are",
+          "in",
+          "the",
+          "attic"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1002,24 +1009,62 @@
     {
       "interactionId": "en:lesson-10:session-05:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Преподаватель спрашивает, каким инструментом вы обычно пользуетесь. Скажите: «Я обычно пользуюсь ткацким станком»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Преподаватель спрашивает, каким инструментом вы обычно пользуетесь. Скажите: «Я обычно пользуюсь ткацким станком»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-05:i15:audio",
+          "transcript": "The bottles are in the cellar."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bottles are in the cellar.",
+        "orderedTokens": [
+          "The",
+          "bottles",
+          "are",
+          "in",
+          "the",
+          "cellar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Гость звонит у ворот. Скажите, где вы ждёте: «Я жду на крыльце»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Гость звонит у ворот. Скажите, где вы ждёте: «Я жду на крыльце»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-05:i15:audio",
-          "transcript": "I usually use a loom."
+          "audioTargetId": "en:lesson-10:session-05:i16:audio",
+          "transcript": "I am waiting on the porch."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I usually use a loom.",
+        "targetPhrase": "I am waiting on the porch.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1033,72 +1078,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-05:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Сегодня вы плетёте вручную, без станка. Сообщите коллеге: «Я не пользуюсь ткацким станком»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Сегодня вы плетёте вручную, без станка. Сообщите коллеге: «Я не пользуюсь ткацким станком»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not using a loom.",
-        "localizedMeaning": {
-          "ru": "Сегодня вы плетёте вручную, без станка. Сообщите коллеге: «Я не пользуюсь ткацким станком»",
-          "uk": "Сьогодні ви плетете вручну, без верстата. Повідомте колезі: «Я не користуюся ткацьким верстатом»"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "using",
-          "a",
-          "loom"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-05:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы увлекаетесь ткачеством. Сейчас на вашей рамке получается подставка под тарелку. Посетитель спрашивает: «Что вы делаете?» Ответьте: «Я тку подставку под тарелку»",
+      "prompt": "Друг ищет коробки. Скажите: «Коробки на чердаке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-05:i17:audio"
       ],
-      "accessibilityLabel": "Вы увлекаетесь ткачеством. Сейчас на вашей рамке получается подставка под тарелку. Посетитель спрашивает: «Что вы делаете?» Ответьте: «Я тку подставку под тарелку»",
+      "accessibilityLabel": "Друг ищет коробки. Скажите: «Коробки на чердаке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-05:i17:audio",
-          "transcript": "I am weaving a placemat."
+          "transcript": "The boxes are in the attic."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am weaving a placemat.",
+        "targetPhrase": "The boxes are in the attic.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d09eaf875f1d78080be86c53d36780b51bb6bb7b258ddfc6bab6a38aa94d7e46"
+  "learnerFingerprint": "6aefa00338338a9c12164b087ce44b48b10ca3f990f528a94da905ece340c39f"
 }

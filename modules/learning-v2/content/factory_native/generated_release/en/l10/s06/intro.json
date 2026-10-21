@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-06",
   "learningOutcomeByLocale": {
-    "ru": "I brew coffee every morning; I am brewing chamomile tea",
-    "uk": "I brew coffee every morning; I am brewing chamomile tea"
+    "ru": "I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water",
+    "uk": "I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваше утро",
-        "uk": "Ваш ранок"
+        "ru": "Кофе без кофеина",
+        "uk": "Кава без кофеїну"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, как начинается ваш день. I brew coffee every morning — «Я завариваю кофе каждое утро». Brew — «заваривать», готовить чай или кофе с помощью горячей воды. Вы описываете привычку: I brew. Вы можете рассказывать об этом вечером, не готовя кофе прямо сейчас.",
-        "uk": "Колега запитує, як починається ваш день. I brew coffee every morning — «Я заварюю каву щоранку». Brew — «заварювати», готувати чай або каву за допомогою гарячої води. Ви описуєте звичку: I brew. Ви можете розповідати про це ввечері, не готуючи каву просто зараз."
+        "ru": "Гость спрашивает, какой кофе вы обычно пьёте. Decaf — «без кофеина», когда речь о кофе: I usually drink decaf coffee — «Я обычно пью кофе без кофеина». Это привычка: drink. Вы не обязаны пить кофе прямо сейчас.",
+        "uk": "Гість запитує, яку каву ви зазвичай п’єте. Decaf — «без кофеїну», коли йдеться про каву: I usually drink decaf coffee — «Я зазвичай п’ю каву без кофеїну». Це звичка: drink. Ви не обов’язково п’єте каву саме зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-06:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-06:intro1:r1",
-              "text": "I brew coffee every morning."
+              "text": "I usually drink decaf coffee."
             },
             {
               "responseId": "en:lesson-10:session-06:intro1:r2",
-              "text": "I brews coffee every morning."
+              "text": "I usually drinks decaf coffee."
             },
             {
               "responseId": "en:lesson-10:session-06:intro1:r3",
-              "text": "I am brew coffee every morning."
+              "text": "I usually drinking decaf coffee."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-06:intro1:r1",
-              "text": "I brew coffee every morning."
+              "text": "I usually drink decaf coffee."
             },
             {
               "responseId": "en:lesson-10:session-06:intro1:r2",
-              "text": "I brews coffee every morning."
+              "text": "I usually drinks decaf coffee."
             },
             {
               "responseId": "en:lesson-10:session-06:intro1:r3",
-              "text": "I am brew coffee every morning."
+              "text": "I usually drinking decaf coffee."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сегодня гости попросили другой напиток",
-        "uk": "Сьогодні гості попросили інший напій"
+        "ru": "Чай сейчас",
+        "uk": "Чай зараз"
       },
       "bodyByLocale": {
-        "ru": "Обычно вы завариваете кофе. Сейчас гости попросили ромашковый чай, и вы его готовите. Chamomile — «ромашка». I am brewing chamomile tea — «Я завариваю ромашковый чай». Вы говорите о действии сейчас: am brewing. В brew ничего не убираем и просто добавляем -ing.",
-        "uk": "Зазвичай ви заварюєте каву. Зараз гості попросили ромашковий чай, і ви його готуєте. Chamomile — «ромашка». I am brewing chamomile tea — «Я заварюю ромашковий чай». Ви говорите про дію зараз: am brewing. У brew нічого не прибираємо й просто додаємо -ing."
+        "ru": "Сейчас вы готовите гостю травяной чай. Herbal — «травяной»: I am making herbal tea — «Я готовлю травяной чай». Действие идёт сейчас: am making. В make перед ing убираем последнюю e.",
+        "uk": "Зараз ви готуєте гостю трав’яний чай. Herbal — «трав’яний»: I am making herbal tea — «Я готую трав’яний чай». Дія триває зараз: am making. У make перед ing прибираємо останню e."
       },
       "question": {
         "interactionId": "en:lesson-10:session-06:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-06:intro2:r1",
-              "text": "I am brewing chamomile tea."
+              "text": "I am making herbal tea."
             },
             {
               "responseId": "en:lesson-10:session-06:intro2:r2",
-              "text": "I brewing chamomile tea."
+              "text": "I making herbal tea."
             },
             {
               "responseId": "en:lesson-10:session-06:intro2:r3",
-              "text": "I am brews chamomile tea."
+              "text": "I am make herbal tea."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-06:intro2:r1",
-              "text": "I am brewing chamomile tea."
+              "text": "I am making herbal tea."
             },
             {
               "responseId": "en:lesson-10:session-06:intro2:r2",
-              "text": "I brewing chamomile tea."
+              "text": "I making herbal tea."
             },
             {
               "responseId": "en:lesson-10:session-06:intro2:r3",
-              "text": "I am brews chamomile tea."
+              "text": "I am make herbal tea."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Заваривать и процеживать",
-        "uk": "Заварювати й проціджувати"
+        "ru": "Вода и ложка",
+        "uk": "Вода й ложка"
       },
       "bodyByLocale": {
-        "ru": "Infuser — заварочное ситечко: чай помещают внутрь и опускают в горячую воду. Strainer — сито для процеживания: через него пропускают напиток, задерживая листья. Сегодня вы завариваете чай в ситечке внутри чашки. I am using an infuser — «Я пользуюсь заварочным ситечком». Перед infuser нужен an: первый звук гласный.",
-        "uk": "Infuser — заварювальне ситечко: чай кладуть усередину й опускають у гарячу воду. Strainer — сито для проціджування: через нього пропускають напій, затримуючи листя. Сьогодні ви заварюєте чай у ситечку всередині чашки. I am using an infuser — «Я користуюся заварювальним ситечком». Перед infuser потрібне an: перший звук голосний."
+        "ru": "В гостях вам предлагают воду. Sparkling — «газированный»: sparkling water — «газированная вода». Вежливо попросите: I would like some sparkling water — «Я бы хотел немного газированной воды». К десерту вам нужна ложка. Teaspoon — «чайная ложка»: I need a teaspoon — «Мне нужна чайная ложка». Перед одной ложкой ставим a, перед неисчисляемой водой здесь some.",
+        "uk": "У гостях вам пропонують воду. Sparkling — «газований»: sparkling water — «газована вода». Ввічливо попросіть: I would like some sparkling water — «Я хотів би трохи газованої води». До десерту вам потрібна ложка. Teaspoon — «чайна ложка»: I need a teaspoon — «Мені потрібна чайна ложка». Перед однією ложкою ставимо a, перед незлічуваною водою тут some."
       },
       "question": {
         "interactionId": "en:lesson-10:session-06:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-06:intro3:r1",
-              "text": "I am using an infuser."
+              "text": "I would like some sparkling water."
             },
             {
               "responseId": "en:lesson-10:session-06:intro3:r2",
-              "text": "I am using a infuser."
+              "text": "I would likes some sparkling water."
             },
             {
               "responseId": "en:lesson-10:session-06:intro3:r3",
-              "text": "I using an infuser."
+              "text": "I would liking some sparkling water."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-06:intro3:r1",
-              "text": "I am using an infuser."
+              "text": "I would like some sparkling water."
             },
             {
               "responseId": "en:lesson-10:session-06:intro3:r2",
-              "text": "I am using a infuser."
+              "text": "I would likes some sparkling water."
             },
             {
               "responseId": "en:lesson-10:session-06:intro3:r3",
-              "text": "I using an infuser."
+              "text": "I would liking some sparkling water."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "68d26004ea986b8be5e99c604dcd30e95732735b55fc1f15c2906121e7fffa12"
+  "introFingerprint": "2c50668bbc3d7b02d966160c77bb3dea3b5d8d31c4f5060372b389e003ebdc4b"
 }

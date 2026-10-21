@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-06:word:brew",
+      "interactionId": "en:lesson-10:session-06:word:decaf",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — brew",
+      "prompt": "Картка слова — decaf",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-06:word:brew:audio"
+        "en:lesson-10:session-06:word:decaf:audio"
       ],
-      "accessibilityLabel": "Картка слова — brew",
+      "accessibilityLabel": "Картка слова — decaf",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-06:word:brew:audio",
-          "transcript": "brew"
+          "audioTargetId": "en:lesson-10:session-06:word:decaf:audio",
+          "transcript": "decaf"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-06:word:brew:r1",
-            "targetText": "brew",
+            "responseId": "en:lesson-10:session-06:word:decaf:r1",
+            "targetText": "decaf",
             "meaningByLocale": {
-              "ru": "«заваривать». I brew coffee every morning. — «Я завариваю кофе каждое утро». Здесь о приготовлении чая или кофе с помощью горячей воды.",
-              "uk": "«заварювати». I brew coffee every morning. — «Я заварюю каву щоранку». Тут про приготування чаю чи кави за допомогою гарячої води."
+              "ru": "«без кофеина» — о кофе. decaf coffee — «кофе без кофеина».",
+              "uk": "«без кофеїну» — про каву. decaf coffee — «кава без кофеїну»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "brew",
+          "word": "decaf",
           "definitionByLocale": {
-            "ru": "«заваривать». I brew coffee every morning. — «Я завариваю кофе каждое утро». Здесь о приготовлении чая или кофе с помощью горячей воды.",
-            "uk": "«заварювати». I brew coffee every morning. — «Я заварюю каву щоранку». Тут про приготування чаю чи кави за допомогою гарячої води."
+            "ru": "«без кофеина» — о кофе. decaf coffee — «кофе без кофеина».",
+            "uk": "«без кофеїну» — про каву. decaf coffee — «кава без кофеїну»."
           }
         }
       },
@@ -52,24 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега запитує про ваш ранок. Скажіть: «Я заварюю каву щоранку»",
+      "prompt": "Скажіть: «Я зазвичай п’ю каву без кофеїну». Поставте usually перед drink",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега запитує про ваш ранок. Скажіть: «Я заварюю каву щоранку»",
+      "accessibilityLabel": "Скажіть: «Я зазвичай п’ю каву без кофеїну». Поставте usually перед drink",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I brew coffee every morning.",
+        "targetPhrase": "I usually drink decaf coffee.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает о вашем утре. Скажите: «Я завариваю кофе каждое утро»",
-          "uk": "Колега запитує про ваш ранок. Скажіть: «Я заварюю каву щоранку»"
+          "ru": "Скажите: «Я обычно пью кофе без кофеина». Поставьте usually перед drink",
+          "uk": "Скажіть: «Я зазвичай п’ю каву без кофеїну». Поставте usually перед drink"
         },
         "orderedTokens": [
           "I",
-          "brew",
-          "coffee",
-          "every",
-          "morning"
+          "usually",
+          "drink",
+          "decaf",
+          "coffee"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i02:r1",
-          "text": "She brews coffee every morning."
+          "text": "She drinks decaf coffee."
         },
         {
           "responseId": "en:lesson-10:session-06:i02:r2",
-          "text": "She brews tea every morning."
+          "text": "He drinks decaf coffee."
         },
         {
           "responseId": "en:lesson-10:session-06:i02:r3",
-          "text": "He brews coffee every morning."
+          "text": "She wants decaf coffee."
         }
       ],
       "mediaIds": [],
@@ -110,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-06:i02:audio",
-          "transcript": "She brews coffee every morning."
+          "transcript": "She drinks decaf coffee."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-06:i02:r1",
-            "targetText": "She brews coffee every morning.",
+            "targetText": "She drinks decaf coffee.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i02:r2",
-            "targetText": "She brews tea every morning.",
+            "targetText": "He drinks decaf coffee.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i02:r3",
-            "targetText": "He brews coffee every morning.",
+            "targetText": "She wants decaf coffee.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She brews coffee every morning.",
-              "uk": "У записі звучить She brews coffee every morning."
+              "ru": "В записи звучит She drinks decaf coffee.",
+              "uk": "У записі звучить She drinks decaf coffee."
             }
           },
           {
@@ -146,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She brews coffee every morning.",
-              "uk": "У записі звучить She brews coffee every morning."
+              "ru": "В записи звучит She drinks decaf coffee.",
+              "uk": "У записі звучить She drinks decaf coffee."
             }
           }
         ],
@@ -162,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму brew для звички з she",
+      "prompt": "Виберіть форму drink для звички з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i03:r1",
-          "text": "brews"
+          "text": "drink"
         },
         {
           "responseId": "en:lesson-10:session-06:i03:r2",
-          "text": "brew"
+          "text": "drinks"
         },
         {
           "responseId": "en:lesson-10:session-06:i03:r3",
-          "text": "brewing"
+          "text": "drinking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму brew для звички з she",
+      "accessibilityLabel": "Виберіть форму drink для звички з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму brew для привычки с she",
-          "uk": "Виберіть форму brew для звички з she"
+          "ru": "Выберите форму drink для привычки с I",
+          "uk": "Виберіть форму drink для звички з I"
         },
-        "gappedTargetPhrase": "She ___ coffee every morning.",
+        "gappedTargetPhrase": "I usually ___ decaf coffee.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-06:i03:r1",
-            "text": "brews"
+            "text": "drink"
           },
           {
             "responseId": "en:lesson-10:session-06:i03:r2",
-            "text": "brew"
+            "text": "drinks"
           },
           {
             "responseId": "en:lesson-10:session-06:i03:r3",
-            "text": "brewing"
+            "text": "drinking"
           }
         ],
-        "testedDimension": "Виберіть форму brew для звички з she",
+        "testedDimension": "Виберіть форму drink для звички з I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-06:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму brew для звички з she",
+            "testedDimension": "Виберіть форму drink для звички з I",
             "feedbackByLocale": {
-              "ru": "С she в Present Simple добавляем -s.",
-              "uk": "З she у Present Simple додаємо -s."
+              "ru": "С I нужна drink без s.",
+              "uk": "З I потрібна drink без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-06:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму brew для звички з she",
+            "testedDimension": "Виберіть форму drink для звички з I",
             "feedbackByLocale": {
-              "ru": "Brewing без is не образует сказуемое.",
-              "uk": "Brewing без is не утворює присудок."
+              "ru": "Для привычки нужна drink.",
+              "uk": "Для звички потрібна drink."
             }
           }
         ]
@@ -226,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-06:word:infuser",
+      "interactionId": "en:lesson-10:session-06:word:herbal",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — infuser",
+      "prompt": "Картка слова — herbal",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-06:word:infuser:audio"
+        "en:lesson-10:session-06:word:herbal:audio"
       ],
-      "accessibilityLabel": "Картка слова — infuser",
+      "accessibilityLabel": "Картка слова — herbal",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-06:word:infuser:audio",
-          "transcript": "infuser"
+          "audioTargetId": "en:lesson-10:session-06:word:herbal:audio",
+          "transcript": "herbal"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-06:word:infuser:r1",
-            "targetText": "infuser",
+            "responseId": "en:lesson-10:session-06:word:herbal:r1",
+            "targetText": "herbal",
             "meaningByLocale": {
-              "ru": "«заварочное ситечко». I am using an infuser. — «Я пользуюсь заварочным ситечком». Его наполняют чаем и помещают в воду для заваривания.",
-              "uk": "«заварювальне ситечко». I am using an infuser. — «Я користуюся заварювальним ситечком». Його наповнюють чаєм і поміщають у воду для заварювання."
+              "ru": "«травяной». herbal tea — «травяной чай».",
+              "uk": "«трав’яний». herbal tea — «трав’яний чай»."
             }
           }
         ],
@@ -259,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "infuser",
+          "word": "herbal",
           "definitionByLocale": {
-            "ru": "«заварочное ситечко». I am using an infuser. — «Я пользуюсь заварочным ситечком». Его наполняют чаем и помещают в воду для заваривания.",
-            "uk": "«заварювальне ситечко». I am using an infuser. — «Я користуюся заварювальним ситечком». Його наповнюють чаєм і поміщають у воду для заварювання."
+            "ru": "«травяной». herbal tea — «травяной чай».",
+            "uk": "«трав’яний». herbal tea — «трав’яний чай»."
           }
         }
       },
@@ -274,24 +274,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Гість запитує, як чай заварюється всередині чашки. Скажіть: «Я користуюся заварювальним ситечком»",
+      "prompt": "Скажіть, що ви зараз готуєте трав’яний чай",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гість запитує, як чай заварюється всередині чашки. Скажіть: «Я користуюся заварювальним ситечком»",
+      "accessibilityLabel": "Скажіть, що ви зараз готуєте трав’яний чай",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am using an infuser.",
+        "targetPhrase": "I am making herbal tea.",
         "localizedMeaning": {
-          "ru": "Гость спрашивает, как чай заваривается внутри чашки. Скажите: «Я пользуюсь заварочным ситечком»",
-          "uk": "Гість запитує, як чай заварюється всередині чашки. Скажіть: «Я користуюся заварювальним ситечком»"
+          "ru": "Скажите, что вы сейчас готовите травяной чай",
+          "uk": "Скажіть, що ви зараз готуєте трав’яний чай"
         },
         "orderedTokens": [
           "I",
           "am",
-          "using",
-          "an",
-          "infuser"
+          "making",
+          "herbal",
+          "tea"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +312,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i05:r1",
-          "text": "The infuser is in the cup."
+          "text": "We are drinking herbal tea."
         },
         {
           "responseId": "en:lesson-10:session-06:i05:r2",
-          "text": "The infuser is under the cup."
+          "text": "They are drinking herbal tea."
         },
         {
           "responseId": "en:lesson-10:session-06:i05:r3",
-          "text": "The spoon is in the cup."
+          "text": "We are making herbal tea."
         }
       ],
       "mediaIds": [],
@@ -332,23 +332,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-06:i05:audio",
-          "transcript": "The infuser is in the cup."
+          "transcript": "We are drinking herbal tea."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-06:i05:r1",
-            "targetText": "The infuser is in the cup.",
+            "targetText": "We are drinking herbal tea.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i05:r2",
-            "targetText": "The infuser is under the cup.",
+            "targetText": "They are drinking herbal tea.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i05:r3",
-            "targetText": "The spoon is in the cup.",
+            "targetText": "We are making herbal tea.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +359,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The infuser is in the cup.",
-              "uk": "У записі звучить The infuser is in the cup."
+              "ru": "В записи звучит We are drinking herbal tea.",
+              "uk": "У записі звучить We are drinking herbal tea."
             }
           },
           {
@@ -368,8 +368,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The infuser is in the cup.",
-              "uk": "У записі звучить The infuser is in the cup."
+              "ru": "В записи звучит We are drinking herbal tea.",
+              "uk": "У записі звучить We are drinking herbal tea."
             }
           }
         ],
@@ -384,63 +384,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед infuser",
+      "prompt": "Чай готують зараз. Виберіть форму make",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i06:r1",
-          "text": "an"
+          "text": "making"
         },
         {
           "responseId": "en:lesson-10:session-06:i06:r2",
-          "text": "a"
+          "text": "make"
         },
         {
           "responseId": "en:lesson-10:session-06:i06:r3",
-          "text": "are"
+          "text": "makes"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед infuser",
+      "accessibilityLabel": "Чай готують зараз. Виберіть форму make",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед infuser",
-          "uk": "Виберіть артикль перед infuser"
+          "ru": "Чай готовят сейчас. Выберите форму make",
+          "uk": "Чай готують зараз. Виберіть форму make"
         },
-        "gappedTargetPhrase": "I am using ___ infuser.",
+        "gappedTargetPhrase": "I am ___ herbal tea.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-06:i06:r1",
-            "text": "an"
+            "text": "making"
           },
           {
             "responseId": "en:lesson-10:session-06:i06:r2",
-            "text": "a"
+            "text": "make"
           },
           {
             "responseId": "en:lesson-10:session-06:i06:r3",
-            "text": "are"
+            "text": "makes"
           }
         ],
-        "testedDimension": "Виберіть артикль перед infuser",
+        "testedDimension": "Чай готують зараз. Виберіть форму make",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-06:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед infuser",
+            "testedDimension": "Чай готують зараз. Виберіть форму make",
             "feedbackByLocale": {
-              "ru": "Первый звук гласный: an infuser.",
-              "uk": "Перший звук голосний: an infuser."
+              "ru": "После am нужна making.",
+              "uk": "Після am потрібна making."
             }
           },
           {
             "responseId": "en:lesson-10:session-06:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед infuser",
+            "testedDimension": "Чай готують зараз. Виберіть форму make",
             "feedbackByLocale": {
-              "ru": "Are не артикль; здесь нужен an.",
-              "uk": "Are не артикль; тут потрібне an."
+              "ru": "После am нужна making, не makes.",
+              "uk": "Після am потрібна making, не makes."
             }
           }
         ]
@@ -448,32 +448,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-06:word:strainer",
+      "interactionId": "en:lesson-10:session-06:word:sparkling",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — strainer",
+      "prompt": "Картка слова — sparkling",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-06:word:strainer:audio"
+        "en:lesson-10:session-06:word:sparkling:audio"
       ],
-      "accessibilityLabel": "Картка слова — strainer",
+      "accessibilityLabel": "Картка слова — sparkling",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-06:word:strainer:audio",
-          "transcript": "strainer"
+          "audioTargetId": "en:lesson-10:session-06:word:sparkling:audio",
+          "transcript": "sparkling"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-06:word:strainer:r1",
-            "targetText": "strainer",
+            "responseId": "en:lesson-10:session-06:word:sparkling:r1",
+            "targetText": "sparkling",
             "meaningByLocale": {
-              "ru": "«сито для процеживания». The strainer is clean. — «Сито чистое». Здесь задерживает чайные листья при наливании напитка.",
-              "uk": "«сито для проціджування». The strainer is clean. — «Сито чисте». Тут затримує чайне листя під час наливання напою."
+              "ru": "«газированный» — о воде. sparkling water — «газированная вода».",
+              "uk": "«газований» — про воду. sparkling water — «газована вода»."
             }
           }
         ],
@@ -481,10 +481,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "strainer",
+          "word": "sparkling",
           "definitionByLocale": {
-            "ru": "«сито для процеживания». The strainer is clean. — «Сито чистое». Здесь задерживает чайные листья при наливании напитка.",
-            "uk": "«сито для проціджування». The strainer is clean. — «Сито чисте». Тут затримує чайне листя під час наливання напою."
+            "ru": "«газированный» — о воде. sparkling water — «газированная вода».",
+            "uk": "«газований» — про воду. sparkling water — «газована вода»."
           }
         }
       },
@@ -496,23 +496,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг хоче процідити чай і запитує, чи вимите сито. Скажіть: «Сито чисте»",
+      "prompt": "Ввічливо попросіть трохи газованої води",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг хоче процідити чай і запитує, чи вимите сито. Скажіть: «Сито чисте»",
+      "accessibilityLabel": "Ввічливо попросіть трохи газованої води",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The strainer is clean.",
+        "targetPhrase": "I would like some sparkling water.",
         "localizedMeaning": {
-          "ru": "Друг хочет процедить чай и спрашивает, вымыто ли сито. Скажите: «Сито чистое»",
-          "uk": "Друг хоче процідити чай і запитує, чи вимите сито. Скажіть: «Сито чисте»"
+          "ru": "Вежливо попросите немного газированной воды",
+          "uk": "Ввічливо попросіть трохи газованої води"
         },
         "orderedTokens": [
-          "The",
-          "strainer",
-          "is",
-          "clean"
+          "I",
+          "would",
+          "like",
+          "some",
+          "sparkling",
+          "water"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -533,15 +535,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i08:r1",
-          "text": "I am washing the strainer."
+          "text": "She would like some sparkling water."
         },
         {
           "responseId": "en:lesson-10:session-06:i08:r2",
-          "text": "I am using the strainer."
+          "text": "He would like some sparkling water."
         },
         {
           "responseId": "en:lesson-10:session-06:i08:r3",
-          "text": "She is washing the strainer."
+          "text": "She would like some cold milk."
         }
       ],
       "mediaIds": [],
@@ -553,23 +555,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-06:i08:audio",
-          "transcript": "I am washing the strainer."
+          "transcript": "She would like some sparkling water."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-06:i08:r1",
-            "targetText": "I am washing the strainer.",
+            "targetText": "She would like some sparkling water.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i08:r2",
-            "targetText": "I am using the strainer.",
+            "targetText": "He would like some sparkling water.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i08:r3",
-            "targetText": "She is washing the strainer.",
+            "targetText": "She would like some cold milk.",
             "meaningByLocale": null
           }
         ],
@@ -580,8 +582,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am washing the strainer.",
-              "uk": "У записі звучить I am washing the strainer."
+              "ru": "В записи звучит She would like some sparkling water.",
+              "uk": "У записі звучить She would like some sparkling water."
             }
           },
           {
@@ -589,8 +591,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am washing the strainer.",
-              "uk": "У записі звучить I am washing the strainer."
+              "ru": "В записи звучит She would like some sparkling water.",
+              "uk": "У записі звучить She would like some sparkling water."
             }
           }
         ],
@@ -605,63 +607,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму wash після am",
+      "prompt": "Виберіть форму like після would",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i09:r1",
-          "text": "washing"
+          "text": "like"
         },
         {
           "responseId": "en:lesson-10:session-06:i09:r2",
-          "text": "wash"
+          "text": "likes"
         },
         {
           "responseId": "en:lesson-10:session-06:i09:r3",
-          "text": "washes"
+          "text": "liking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму wash після am",
+      "accessibilityLabel": "Виберіть форму like після would",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму wash после am",
-          "uk": "Виберіть форму wash після am"
+          "ru": "Выберите форму like после would",
+          "uk": "Виберіть форму like після would"
         },
-        "gappedTargetPhrase": "I am ___ the strainer.",
+        "gappedTargetPhrase": "I would ___ some sparkling water.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-06:i09:r1",
-            "text": "washing"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-06:i09:r2",
-            "text": "wash"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-06:i09:r3",
-            "text": "washes"
+            "text": "liking"
           }
         ],
-        "testedDimension": "Виберіть форму wash після am",
+        "testedDimension": "Виберіть форму like після would",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-06:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму wash після am",
+            "testedDimension": "Виберіть форму like після would",
             "feedbackByLocale": {
-              "ru": "После am нужна washing.",
-              "uk": "Після am потрібна washing."
+              "ru": "После would нужна like.",
+              "uk": "Після would потрібна like."
             }
           },
           {
             "responseId": "en:lesson-10:session-06:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму wash після am",
+            "testedDimension": "Виберіть форму like після would",
             "feedbackByLocale": {
-              "ru": "Washes не употребляется после am.",
-              "uk": "Washes не вживається після am."
+              "ru": "После would нужна like, не liking.",
+              "uk": "Після would потрібна like, не liking."
             }
           }
         ]
@@ -669,32 +671,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-06:word:chamomile",
+      "interactionId": "en:lesson-10:session-06:word:teaspoon",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — chamomile",
+      "prompt": "Картка слова — teaspoon",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-06:word:chamomile:audio"
+        "en:lesson-10:session-06:word:teaspoon:audio"
       ],
-      "accessibilityLabel": "Картка слова — chamomile",
+      "accessibilityLabel": "Картка слова — teaspoon",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-06:word:chamomile:audio",
-          "transcript": "chamomile"
+          "audioTargetId": "en:lesson-10:session-06:word:teaspoon:audio",
+          "transcript": "teaspoon"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-06:word:chamomile:r1",
-            "targetText": "chamomile",
+            "responseId": "en:lesson-10:session-06:word:teaspoon:r1",
+            "targetText": "teaspoon",
             "meaningByLocale": {
-              "ru": "«ромашка». I am brewing chamomile tea. — «Я завариваю ромашковый чай». Здесь растение, из цветков которого делают напиток.",
-              "uk": "«ромашка». I am brewing chamomile tea. — «Я заварюю ромашковий чай». Тут рослина, з квіток якої роблять напій."
+              "ru": "«чайная ложка». I need a teaspoon. — «Мне нужна чайная ложка».",
+              "uk": "«чайна ложка». I need a teaspoon. — «Мені потрібна чайна ложка»."
             }
           }
         ],
@@ -702,10 +704,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "chamomile",
+          "word": "teaspoon",
           "definitionByLocale": {
-            "ru": "«ромашка». I am brewing chamomile tea. — «Я завариваю ромашковый чай». Здесь растение, из цветков которого делают напиток.",
-            "uk": "«ромашка». I am brewing chamomile tea. — «Я заварюю ромашковий чай». Тут рослина, з квіток якої роблять напій."
+            "ru": "«чайная ложка». I need a teaspoon. — «Мне нужна чайная ложка».",
+            "uk": "«чайна ложка». I need a teaspoon. — «Мені потрібна чайна ложка»."
           }
         }
       },
@@ -717,24 +719,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Гість запитує, який чай ви готуєте. Скажіть: «Я заварюю ромашковий чай»",
+      "prompt": "Скажіть: «Мені потрібна чайна ложка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гість запитує, який чай ви готуєте. Скажіть: «Я заварюю ромашковий чай»",
+      "accessibilityLabel": "Скажіть: «Мені потрібна чайна ложка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am brewing chamomile tea.",
+        "targetPhrase": "I need a teaspoon.",
         "localizedMeaning": {
-          "ru": "Гость спрашивает, какой чай вы готовите. Скажите: «Я завариваю ромашковый чай»",
-          "uk": "Гість запитує, який чай ви готуєте. Скажіть: «Я заварюю ромашковий чай»"
+          "ru": "Скажите: «Мне нужна чайная ложка»",
+          "uk": "Скажіть: «Мені потрібна чайна ложка»"
         },
         "orderedTokens": [
           "I",
-          "am",
-          "brewing",
-          "chamomile",
-          "tea"
+          "need",
+          "a",
+          "teaspoon"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -755,15 +756,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i11:r1",
-          "text": "The chamomile tea is hot."
+          "text": "I need a teaspoon."
         },
         {
           "responseId": "en:lesson-10:session-06:i11:r2",
-          "text": "The chamomile tea is cold."
+          "text": "We need a teaspoon."
         },
         {
           "responseId": "en:lesson-10:session-06:i11:r3",
-          "text": "The coffee is hot."
+          "text": "I have a teaspoon."
         }
       ],
       "mediaIds": [],
@@ -775,23 +776,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-06:i11:audio",
-          "transcript": "The chamomile tea is hot."
+          "transcript": "I need a teaspoon."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-06:i11:r1",
-            "targetText": "The chamomile tea is hot.",
+            "targetText": "I need a teaspoon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i11:r2",
-            "targetText": "The chamomile tea is cold.",
+            "targetText": "We need a teaspoon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-06:i11:r3",
-            "targetText": "The coffee is hot.",
+            "targetText": "I have a teaspoon.",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +803,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The chamomile tea is hot.",
-              "uk": "У записі звучить The chamomile tea is hot."
+              "ru": "В записи звучит I need a teaspoon.",
+              "uk": "У записі звучить I need a teaspoon."
             }
           },
           {
@@ -811,8 +812,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The chamomile tea is hot.",
-              "uk": "У записі звучить The chamomile tea is hot."
+              "ru": "В записи звучит I need a teaspoon.",
+              "uk": "У записі звучить I need a teaspoon."
             }
           }
         ],
@@ -827,63 +828,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму brew після am",
+      "prompt": "Виберіть артикль перед однією ложкою",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i12:r1",
-          "text": "brewing"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-10:session-06:i12:r2",
-          "text": "brew"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-10:session-06:i12:r3",
-          "text": "brews"
+          "text": "some"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму brew після am",
+      "accessibilityLabel": "Виберіть артикль перед однією ложкою",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму brew после am",
-          "uk": "Виберіть форму brew після am"
+          "ru": "Выберите артикль перед одной ложкой",
+          "uk": "Виберіть артикль перед однією ложкою"
         },
-        "gappedTargetPhrase": "I am ___ chamomile tea.",
+        "gappedTargetPhrase": "I need ___ teaspoon.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-06:i12:r1",
-            "text": "brewing"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-10:session-06:i12:r2",
-            "text": "brew"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-10:session-06:i12:r3",
-            "text": "brews"
+            "text": "some"
           }
         ],
-        "testedDimension": "Виберіть форму brew після am",
+        "testedDimension": "Виберіть артикль перед однією ложкою",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-06:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму brew після am",
+            "testedDimension": "Виберіть артикль перед однією ложкою",
             "feedbackByLocale": {
-              "ru": "После am нужна brewing.",
-              "uk": "Після am потрібна brewing."
+              "ru": "Teaspoon начинается с согласного звука: a.",
+              "uk": "Teaspoon починається з приголосного звука: a."
             }
           },
           {
             "responseId": "en:lesson-10:session-06:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму brew після am",
+            "testedDimension": "Виберіть артикль перед однією ложкою",
             "feedbackByLocale": {
-              "ru": "Brews не употребляется после am.",
-              "uk": "Brews не вживається після am."
+              "ru": "Одна исчисляемая ложка: a teaspoon.",
+              "uk": "Одна злічувана ложка: a teaspoon."
             }
           }
         ]
@@ -896,58 +897,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте слова з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-06:i13:p1",
-            "target": "brew",
+            "target": "decaf",
             "meaningByLocale": {
-              "ru": "заваривать",
-              "uk": "заварювати"
+              "ru": "без кофеина",
+              "uk": "без кофеїну"
             }
           },
           {
             "pairId": "en:lesson-10:session-06:i13:p2",
-            "target": "infuser",
+            "target": "herbal",
             "meaningByLocale": {
-              "ru": "заварочное ситечко",
-              "uk": "заварювальне ситечко"
+              "ru": "травяной",
+              "uk": "трав’яний"
             }
           },
           {
             "pairId": "en:lesson-10:session-06:i13:p3",
-            "target": "strainer",
+            "target": "sparkling",
             "meaningByLocale": {
-              "ru": "сито для процеживания",
-              "uk": "сито для проціджування"
+              "ru": "газированный",
+              "uk": "газований"
             }
           },
           {
             "pairId": "en:lesson-10:session-06:i13:p4",
-            "target": "chamomile",
+            "target": "teaspoon",
             "meaningByLocale": {
-              "ru": "ромашка",
-              "uk": "ромашка"
+              "ru": "чайная ложка",
+              "uk": "чайна ложка"
             }
           }
         ],
         "leftColumn": [
-          "brew",
-          "infuser",
-          "strainer",
-          "chamomile"
+          "decaf",
+          "herbal",
+          "sparkling",
+          "teaspoon"
         ],
         "rightColumn": [
-          "заварювати",
-          "заварювальне ситечко",
-          "сито для проціджування",
-          "ромашка"
+          "без кофеїну",
+          "трав’яний",
+          "газований",
+          "чайна ложка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -969,26 +970,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання про дію зараз",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-06:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання про дію зараз",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-06:i14:audio",
-          "transcript": "Are you brewing chamomile tea?"
+          "transcript": "I am making herbal tea."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Are you brewing chamomile tea?",
+        "hiddenTargetPhrase": "I am making herbal tea.",
         "orderedTokens": [
-          "Are",
-          "you",
-          "brewing",
-          "chamomile",
+          "I",
+          "am",
+          "making",
+          "herbal",
           "tea"
         ],
         "authoredDistractorTokens": [],
@@ -1003,24 +1004,60 @@
     {
       "interactionId": "en:lesson-10:session-06:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Колега запитує про ваш звичний ранок. Скажіть: «Я заварюю каву щоранку»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-06:i15:audio"
       ],
-      "accessibilityLabel": "Колега запитує про ваш звичний ранок. Скажіть: «Я заварюю каву щоранку»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-06:i15:audio",
+          "transcript": "I need a teaspoon."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need a teaspoon.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "a",
+          "teaspoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У гостях попросіть трохи газованої води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "У гостях попросіть трохи газованої води",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-06:i15:audio",
-          "transcript": "I brew coffee every morning."
+          "audioTargetId": "en:lesson-10:session-06:i16:audio",
+          "transcript": "I would like some sparkling water."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I brew coffee every morning.",
+        "targetPhrase": "I would like some sparkling water.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1034,71 +1071,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-06:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Гість думає, що ви готуєте каву, але ви заварюєте чай. Скажіть: «Я не заварюю каву»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Гість думає, що ви готуєте каву, але ви заварюєте чай. Скажіть: «Я не заварюю каву»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not brewing coffee.",
-        "localizedMeaning": {
-          "ru": "Гость думает, что вы готовите кофе, но вы завариваете чай. Скажите: «Я не завариваю кофе»",
-          "uk": "Гість думає, що ви готуєте каву, але ви заварюєте чай. Скажіть: «Я не заварюю каву»"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "brewing",
-          "coffee"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-06:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Зазвичай ви заварюєте каву. Зараз ви готуєте ромашковий чай для гостей. Друг телефонує: «Що ти робиш?» Дайте відповідь: «Я заварюю ромашковий чай»",
+      "prompt": "Гість запитує, що ви готуєте. Скажіть: «Я готую трав’яний чай»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-06:i17:audio"
       ],
-      "accessibilityLabel": "Зазвичай ви заварюєте каву. Зараз ви готуєте ромашковий чай для гостей. Друг телефонує: «Що ти робиш?» Дайте відповідь: «Я заварюю ромашковий чай»",
+      "accessibilityLabel": "Гість запитує, що ви готуєте. Скажіть: «Я готую трав’яний чай»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-06:i17:audio",
-          "transcript": "I am brewing chamomile tea."
+          "transcript": "I am making herbal tea."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am brewing chamomile tea.",
+        "targetPhrase": "I am making herbal tea.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "97fe38d95125bc313875d9432d9d9740f4a0aa77022617b3a457ae6f798b26b1"
+  "learnerFingerprint": "fa3b2f89d3215366b0fa508b1f9bf9456b090c4d64c0b27036e254ab92a949fc"
 }

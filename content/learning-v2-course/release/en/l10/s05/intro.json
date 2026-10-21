@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-05",
   "learningOutcomeByLocale": {
-    "ru": "I weave at home; I am weaving a placemat",
-    "uk": "I weave at home; I am weaving a placemat"
+    "ru": "I am waiting on the porch; We are eating on the patio; The boxes are in the attic",
+    "uk": "I am waiting on the porch; We are eating on the patio; The boxes are in the attic"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваше увлечение",
-        "uk": "Ваше захоплення"
+        "ru": "Жду у входа",
+        "uk": "Чекаю біля входу"
       },
       "bodyByLocale": {
-        "ru": "На занятии в мастерской преподаватель спрашивает, занимаетесь ли вы этим дома. Weave — «ткать; плести», переплетать нити или полоски материала. I weave at home — «Я тку дома». Вы рассказываете об обычном занятии, а не о том, что происходит в эту секунду. Поэтому I weave, без am.",
-        "uk": "На занятті в майстерні викладач запитує, чи займаєтеся ви цим удома. Weave — «ткати; плести», переплітати нитки або смужки матеріалу. I weave at home — «Я тчу вдома». Ви розповідаєте про звичайне заняття, а не про те, що відбувається цієї секунди. Тому I weave, без am."
+        "ru": "Вы ждёте гостя на крытом крыльце у входной двери. Porch — «крыльцо, веранда у входа»: I am waiting on the porch — «Я жду на крыльце». Вы ждёте сейчас: am waiting. В этой ситуации porch — крытая площадка перед входом.",
+        "uk": "Ви чекаєте на гостя на критому ґанку біля вхідних дверей. Porch — «ґанок, веранда біля входу»: I am waiting on the porch — «Я чекаю на ґанку». Ви чекаєте зараз: am waiting. У цій ситуації porch — критий майданчик перед входом."
       },
       "question": {
         "interactionId": "en:lesson-10:session-05:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-05:intro1:r1",
-              "text": "I weave at home."
+              "text": "I am waiting on the porch."
             },
             {
               "responseId": "en:lesson-10:session-05:intro1:r2",
-              "text": "I weaves at home."
+              "text": "I waiting on the porch."
             },
             {
               "responseId": "en:lesson-10:session-05:intro1:r3",
-              "text": "I am weave at home."
+              "text": "I am wait on the porch."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-05:intro1:r1",
-              "text": "I weave at home."
+              "text": "I am waiting on the porch."
             },
             {
               "responseId": "en:lesson-10:session-05:intro1:r2",
-              "text": "I weaves at home."
+              "text": "I waiting on the porch."
             },
             {
               "responseId": "en:lesson-10:session-05:intro1:r3",
-              "text": "I am weave at home."
+              "text": "I am wait on the porch."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что получается сейчас",
-        "uk": "Що виходить зараз"
+        "ru": "Обед на открытой площадке",
+        "uk": "Обід на відкритому майданчику"
       },
       "bodyByLocale": {
-        "ru": "Placemat — «подставка под тарелку»: её кладут на стол под одну тарелку. Вы переплетаете нити на небольшой рамке. Сосед спрашивает, что вы делаете. I am weaving a placemat — «Я тку подставку под тарелку». Это действие сейчас: am weaving. В weave перед -ing убираем конечную e.",
-        "uk": "Placemat — «підставка під тарілку»: її кладуть на стіл під одну тарілку. Ви переплітаєте нитки на невеликій рамці. Сусід запитує, що ви робите. I am weaving a placemat — «Я тчу підставку під тарілку». Це дія зараз: am weaving. У weave перед -ing прибираємо кінцеву e."
+        "ru": "За домом есть мощёная открытая площадка со столом. Patio — «патио, открытая площадка у дома»: We are eating on the patio — «Мы едим на площадке у дома». Обед идёт сейчас: are eating. Patio здесь не крытая комната и не балкон верхнего этажа.",
+        "uk": "За будинком є вимощений відкритий майданчик зі столом. Patio — «патіо, відкритий майданчик біля будинку»: We are eating on the patio — «Ми їмо на майданчику біля будинку». Обід триває зараз: are eating. Patio тут не крита кімната й не балкон верхнього поверху."
       },
       "question": {
         "interactionId": "en:lesson-10:session-05:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-05:intro2:r1",
-              "text": "I am weaving a placemat."
+              "text": "We are eating on the patio."
             },
             {
               "responseId": "en:lesson-10:session-05:intro2:r2",
-              "text": "I am weaveing a placemat."
+              "text": "We eating on the patio."
             },
             {
               "responseId": "en:lesson-10:session-05:intro2:r3",
-              "text": "I weaving a placemat."
+              "text": "We are eat on the patio."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-05:intro2:r1",
-              "text": "I am weaving a placemat."
+              "text": "We are eating on the patio."
             },
             {
               "responseId": "en:lesson-10:session-05:intro2:r2",
-              "text": "I am weaveing a placemat."
+              "text": "We eating on the patio."
             },
             {
               "responseId": "en:lesson-10:session-05:intro2:r3",
-              "text": "I weaving a placemat."
+              "text": "We are eat on the patio."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обычный инструмент и работа сегодня",
-        "uk": "Звичний інструмент і робота сьогодні"
+        "ru": "Вещи наверху и внизу",
+        "uk": "Речі нагорі й унизу"
       },
       "bodyByLocale": {
-        "ru": "Loom — «ткацкий станок», устройство, которое удерживает нити для ткачества; оно может быть небольшой рамкой. Обычно вы пользуетесь им: I usually use a loom. Но сегодня рамка лежит в стороне, а вы плетёте вручную из волокна рафии — raffia. I am using raffia — «Я использую рафию». Usually use описывает привычку; am using — материал, с которым вы работаете сейчас.",
-        "uk": "Loom — «ткацький верстат», пристрій, який утримує нитки для ткацтва; він може бути невеликою рамкою. Зазвичай ви користуєтеся ним: I usually use a loom. Але сьогодні рамка лежить осторонь, а ви плетете вручну з волокна рафії — raffia. I am using raffia — «Я використовую рафію». Usually use описує звичку; am using — матеріал, з яким ви працюєте зараз."
+        "ru": "После переезда вы объясняете, где лежат вещи. Attic — «чердак»: The boxes are in the attic — «Коробки на чердаке». Cellar — «подвал, погреб»: The bottles are in the cellar — «Бутылки в подвале». Attic находится под крышей, cellar — под первым этажом. Вы описываете расположение вещей, поэтому are без действия с ing.",
+        "uk": "Після переїзду ви пояснюєте, де лежать речі. Attic — «горище»: The boxes are in the attic — «Коробки на горищі». Cellar — «підвал, льох»: The bottles are in the cellar — «Пляшки в підвалі». Attic розташований під дахом, cellar — під першим поверхом. Ви описуєте розташування речей, тому are без дії з ing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-05:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-05:intro3:r1",
-              "text": "I am using raffia."
+              "text": "The boxes are in the attic."
             },
             {
               "responseId": "en:lesson-10:session-05:intro3:r2",
-              "text": "I using raffia."
+              "text": "The boxes is in the attic."
             },
             {
               "responseId": "en:lesson-10:session-05:intro3:r3",
-              "text": "I am use raffia."
+              "text": "The boxes in the attic."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-05:intro3:r1",
-              "text": "I am using raffia."
+              "text": "The boxes are in the attic."
             },
             {
               "responseId": "en:lesson-10:session-05:intro3:r2",
-              "text": "I using raffia."
+              "text": "The boxes is in the attic."
             },
             {
               "responseId": "en:lesson-10:session-05:intro3:r3",
-              "text": "I am use raffia."
+              "text": "The boxes in the attic."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a6806933e4668567f077cf3bffa2846b5a3bde613af15f10724ca375cb9d65fa"
+  "introFingerprint": "a4477cddf225608b96aca101a40b9f7d208d61725711a3fbe4557f88f2828d17"
 }

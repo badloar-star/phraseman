@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-04",
   "learningOutcomeByLocale": {
-    "ru": "I craft bags by hand; I am making a pincushion",
-    "uk": "I craft bags by hand; I am making a pincushion"
+    "ru": "The air conditioning is working; There is a power cut; I would like some tap water",
+    "uk": "The air conditioning is working; There is a power cut; I would like some tap water"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что вы делаете на заказ",
-        "uk": "Що ви робите на замовлення"
+        "ru": "В комнате прохладнее",
+        "uk": "У кімнаті прохолодніше"
       },
       "bodyByLocale": {
-        "ru": "Посетитель мастерской спрашивает, чем вы занимаетесь. Вы вручную создаёте сумки: I craft bags by hand — «Я мастерю сумки вручную». Craft здесь глагол: делать вещи умело, с вниманием к работе. Вы описываете своё обычное занятие, поэтому I craft, без am.",
-        "uk": "Відвідувач майстерні запитує, чим ви займаєтеся. Ви вручну створюєте сумки: I craft bags by hand — «Я майструю сумки вручну». Craft тут дієслово: робити речі майстерно, з увагою до роботи. Ви описуєте своє звичайне заняття, тому I craft, без am."
+        "ru": "В квартире жарко, но кондиционер уже включён. Air conditioning — «кондиционирование воздуха, кондиционер» в разговоре о системе: The air conditioning is working — «Кондиционер работает». Вы описываете работу системы сейчас: is working. Air conditioning здесь не требует a.",
+        "uk": "У квартирі спекотно, але кондиціонер уже ввімкнений. Air conditioning — «кондиціонування повітря, кондиціонер» у розмові про систему: The air conditioning is working — «Кондиціонер працює». Ви описуєте роботу системи зараз: is working. Air conditioning тут не потребує a."
       },
       "question": {
         "interactionId": "en:lesson-10:session-04:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-04:intro1:r1",
-              "text": "I craft bags by hand."
+              "text": "The air conditioning is working."
             },
             {
               "responseId": "en:lesson-10:session-04:intro1:r2",
-              "text": "I crafts bags by hand."
+              "text": "The air conditioning working."
             },
             {
               "responseId": "en:lesson-10:session-04:intro1:r3",
-              "text": "I am craft bags by hand."
+              "text": "The air conditioning is work."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-04:intro1:r1",
-              "text": "I craft bags by hand."
+              "text": "The air conditioning is working."
             },
             {
               "responseId": "en:lesson-10:session-04:intro1:r2",
-              "text": "I crafts bags by hand."
+              "text": "The air conditioning working."
             },
             {
               "responseId": "en:lesson-10:session-04:intro1:r3",
-              "text": "I am craft bags by hand."
+              "text": "The air conditioning is work."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сегодня другая вещь",
-        "uk": "Сьогодні інша річ"
+        "ru": "Одна лампа или весь дом",
+        "uk": "Одна лампа чи весь будинок"
       },
       "bodyByLocale": {
-        "ru": "Обычно вы мастерите сумки, но сейчас шьёте маленькую подушечку для булавок — pincushion. Коллега спрашивает, что получится. I am making a pincushion — «Я делаю подушечку для булавок». Это работа сейчас: am making. У make конечная e исчезает перед -ing.",
-        "uk": "Зазвичай ви майструєте сумки, але зараз шиєте маленьку подушечку для шпильок — pincushion. Колега запитує, що вийде. I am making a pincushion — «Я роблю подушечку для шпильок». Це робота зараз: am making. У make кінцева e зникає перед -ing."
+        "ru": "Вчера перегорела лампочка в настольной лампе. Light bulb — «лампочка»: I need a light bulb — «Мне нужна лампочка». Но сейчас вдруг погас свет во всей квартире. Power cut — «отключение электричества»: There is a power cut — «Отключили электричество». Это описание ситуации, поэтому there is. Не путайте отдельную лампочку и отсутствие электричества в доме.",
+        "uk": "Учора перегоріла лампочка в настільній лампі. Light bulb — «лампочка»: I need a light bulb — «Мені потрібна лампочка». Але зараз раптом згасло світло в усій квартирі. Power cut — «відключення електроенергії»: There is a power cut — «Відключили електроенергію». Це опис ситуації, тому there is. Не плутайте окрему лампочку й відсутність електрики в будинку."
       },
       "question": {
         "interactionId": "en:lesson-10:session-04:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-04:intro2:r1",
-              "text": "I am making a pincushion."
+              "text": "There is a power cut."
             },
             {
               "responseId": "en:lesson-10:session-04:intro2:r2",
-              "text": "I am makeing a pincushion."
+              "text": "There are a power cut."
             },
             {
               "responseId": "en:lesson-10:session-04:intro2:r3",
-              "text": "I making a pincushion."
+              "text": "There a power cut."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-04:intro2:r1",
-              "text": "I am making a pincushion."
+              "text": "There is a power cut."
             },
             {
               "responseId": "en:lesson-10:session-04:intro2:r2",
-              "text": "I am makeing a pincushion."
+              "text": "There are a power cut."
             },
             {
               "responseId": "en:lesson-10:session-04:intro2:r3",
-              "text": "I making a pincushion."
+              "text": "There a power cut."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Машинка пока не работает",
-        "uk": "Машинка поки не працює"
+        "ru": "Вода из-под крана",
+        "uk": "Вода з-під крана"
       },
       "bodyByLocale": {
-        "ru": "Bobbin — «шпулька», маленькая катушка для нити в швейной машинке. Обычно вы проверяете её перед работой: I check the bobbin before work. Сейчас коллега думает, что вы уже шьёте. Но машинка выключена, а вы осматриваете шпульку: I am checking the bobbin — «Я проверяю шпульку». Check описывает привычный порядок, am checking — то, что вы делаете сейчас.",
-        "uk": "Bobbin — «шпулька», маленька котушка для нитки у швейній машинці. Зазвичай ви перевіряєте її перед роботою: I check the bobbin before work. Зараз колега думає, що ви вже шиєте. Але машинка вимкнена, а ви оглядаєте шпульку: I am checking the bobbin — «Я перевіряю шпульку». Check описує звичний порядок, am checking — те, що ви робите зараз."
+        "ru": "Вы в гостях. Хозяин предлагает питьевую воду из-под крана или бутылки. Tap water — «водопроводная вода, вода из-под крана». Вы выбираете первый вариант: I would like some tap water — «Я бы хотел немного воды из-под крана». Would like — вежливая просьба. Water здесь неисчисляемое, поэтому some, не a.",
+        "uk": "Ви в гостях. Господар пропонує питну воду з-під крана або з пляшки. Tap water — «водопровідна вода, вода з-під крана». Ви вибираєте перший варіант: I would like some tap water — «Я хотів би трохи води з-під крана». Would like — ввічливе прохання. Water тут незлічуване, тому some, не a."
       },
       "question": {
         "interactionId": "en:lesson-10:session-04:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-04:intro3:r1",
-              "text": "I am checking the bobbin."
+              "text": "I would like some tap water."
             },
             {
               "responseId": "en:lesson-10:session-04:intro3:r2",
-              "text": "I checking the bobbin."
+              "text": "I would likes some tap water."
             },
             {
               "responseId": "en:lesson-10:session-04:intro3:r3",
-              "text": "I am check the bobbin."
+              "text": "I would liking some tap water."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-04:intro3:r1",
-              "text": "I am checking the bobbin."
+              "text": "I would like some tap water."
             },
             {
               "responseId": "en:lesson-10:session-04:intro3:r2",
-              "text": "I checking the bobbin."
+              "text": "I would likes some tap water."
             },
             {
               "responseId": "en:lesson-10:session-04:intro3:r3",
-              "text": "I am check the bobbin."
+              "text": "I would liking some tap water."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "057020f8630f665e6c97bc93bd44fda9a864d4ca470986af6edc9b59c460c246"
+  "introFingerprint": "bdcc449f4f1c97e0db75b3dd99439527c0e60e8c9571e85ef5d0a57e44e07be5"
 }

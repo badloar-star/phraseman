@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 5 — Ткачество в мастерской
+# Английский · Урок 10 · Занятие 5 — В доме и во дворе
 
-**Ситуация.** Объяснить своё увлечение и рассказать о работе, которую вы делаете сейчас.
+**Ситуация.** Встретить гостя, пообедать во дворе и объяснить, где хранятся вещи.
 
-**Что вы освоите:** I weave at home; I am weaving a placemat
-**Новые слова:** weave, loom, placemat, raffia
+**Что вы освоите:** I am waiting on the porch; We are eating on the patio; The boxes are in the attic
+**Новые слова:** porch, patio, attic, cellar
 
 ## Интро 1
 
-### Ваше увлечение
+### Жду у входа
 
-На занятии в мастерской преподаватель спрашивает, занимаетесь ли вы этим дома. Weave — «ткать; плести», переплетать нити или полоски материала. I weave at home — «Я тку дома». Вы рассказываете об обычном занятии, а не о том, что происходит в эту секунду. Поэтому I weave, без am.
+Вы ждёте гостя на крытом крыльце у входной двери. Porch — «крыльцо, веранда у входа»: I am waiting on the porch — «Я жду на крыльце». Вы ждёте сейчас: am waiting. В этой ситуации porch — крытая площадка перед входом.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I weave at home.**
-- ❌ I weaves at home. — *С I не добавляем -s.*
-- ❌ I am weave at home. — *Для обычного занятия здесь I weave; am weave неверно.*
+- ✅ **I am waiting on the porch.**
+- ❌ I waiting on the porch. — *Перед waiting нужна am.*
+- ❌ I am wait on the porch. — *После am нужна waiting.*
 
 ---
 
 ## Интро 2
 
-### Что получается сейчас
+### Обед на открытой площадке
 
-Placemat — «подставка под тарелку»: её кладут на стол под одну тарелку. Вы переплетаете нити на небольшой рамке. Сосед спрашивает, что вы делаете. I am weaving a placemat — «Я тку подставку под тарелку». Это действие сейчас: am weaving. В weave перед -ing убираем конечную e.
+За домом есть мощёная открытая площадка со столом. Patio — «патио, открытая площадка у дома»: We are eating on the patio — «Мы едим на площадке у дома». Обед идёт сейчас: are eating. Patio здесь не крытая комната и не балкон верхнего этажа.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am weaving a placemat.**
-- ❌ I am weaveing a placemat. — *Правильное написание: weaving.*
-- ❌ I weaving a placemat. — *С I перед weaving нужно am.*
+- ✅ **We are eating on the patio.**
+- ❌ We eating on the patio. — *Перед eating нужна are.*
+- ❌ We are eat on the patio. — *После are нужна eating.*
 
 ---
 
 ## Интро 3
 
-### Обычный инструмент и работа сегодня
+### Вещи наверху и внизу
 
-Loom — «ткацкий станок», устройство, которое удерживает нити для ткачества; оно может быть небольшой рамкой. Обычно вы пользуетесь им: I usually use a loom. Но сегодня рамка лежит в стороне, а вы плетёте вручную из волокна рафии — raffia. I am using raffia — «Я использую рафию». Usually use описывает привычку; am using — материал, с которым вы работаете сейчас.
+После переезда вы объясняете, где лежат вещи. Attic — «чердак»: The boxes are in the attic — «Коробки на чердаке». Cellar — «подвал, погреб»: The bottles are in the cellar — «Бутылки в подвале». Attic находится под крышей, cellar — под первым этажом. Вы описываете расположение вещей, поэтому are без действия с ing.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am using raffia.**
-- ❌ I using raffia. — *С I перед using нужно am.*
-- ❌ I am use raffia. — *После am нужна using.*
+- ✅ **The boxes are in the attic.**
+- ❌ The boxes is in the attic. — *Boxes во множественном числе: are.*
+- ❌ The boxes in the attic. — *Перед in нужна связка are.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — weave**
-<!-- interaction_id: en:lesson-10:session-05:word:weave; family: word_card -->
-> **weave** — «ткать; плести». I weave at home. — «Я тку дома». Переплетать нити или полоски материала.
+**1 · Карточка слова — porch**
+<!-- interaction_id: en:lesson-10:session-05:word:porch; family: word_card -->
+> **porch** — «крыльцо, веранда у входа». I am waiting on the porch. — «Я жду на крыльце».
 
-**2 · Преподаватель спрашивает, занимаетесь ли вы ткачеством вне мастерской. Скажите: «Я тку дома»**
+**2 · Вы ждёте гостя на крытом крыльце. Сообщите: «Я жду на крыльце»**
 <!-- interaction_id: en:lesson-10:session-05:i01; family: phrase_builder -->
-Плитки: `home` `at` `weave` `I` → **I weave at home.**
+Плитки: `porch` `the` `on` `waiting` `am` `I` → **I am waiting on the porch.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-05:i02; family: listen_choose -->
-🔊 *She weaves at home.* → **She weaves at home.** · She knits at home. · He weaves at home.
-- She knits at home. — *В записи звучит She weaves at home.*
-- He weaves at home. — *В записи звучит She weaves at home.*
+🔊 *She is sitting on the porch.* → **She is sitting on the porch.** · He is sitting on the porch. · She is waiting on the porch.
+- He is sitting on the porch. — *В записи звучит She is sitting on the porch.*
+- She is waiting on the porch. — *В записи звучит She is sitting on the porch.*
 
-**4 · Выберите форму weave для привычного занятия с she**
+**4 · Ожидание идёт сейчас. Выберите форму wait**
 <!-- interaction_id: en:lesson-10:session-05:i03; family: context_gap_grammar -->
-She ___ at home. → **weaves** · weave · weaving
-- weave — *С she в Present Simple добавляем -s.*
-- weaving — *Weaving без is не образует сказуемое.*
+I am ___ on the porch. → **waiting** · wait · waits
+- wait — *После am нужна waiting.*
+- waits — *После am нужна waiting, не waits.*
 
-**5 · Карточка слова — loom**
-<!-- interaction_id: en:lesson-10:session-05:word:loom; family: word_card -->
-> **loom** — «ткацкий станок». I am using a loom. — «Я пользуюсь ткацким станком». Устройство, которое удерживает нити для ткачества.
+**5 · Карточка слова — patio**
+<!-- interaction_id: en:lesson-10:session-05:word:patio; family: word_card -->
+> **patio** — «патио, открытая площадка у дома». on the patio — «на открытой площадке у дома».
 
-**6 · Коллега спрашивает, на чём вы работаете сейчас. Скажите: «Я пользуюсь ткацким станком»**
+**6 · Вы сейчас обедаете за столом на открытой площадке у дома. Скажите, где вы едите**
 <!-- interaction_id: en:lesson-10:session-05:i04; family: phrase_builder -->
-Плитки: `loom` `a` `using` `am` `I` → **I am using a loom.**
+Плитки: `patio` `the` `on` `eating` `are` `We` → **We are eating on the patio.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-05:i05; family: listen_choose -->
-🔊 *The loom is small.* → **The loom is small.** · The loom is large. · The room is small.
-- The loom is large. — *В записи звучит The loom is small.*
-- The room is small. — *В записи звучит The loom is small.*
+🔊 *They are eating on the patio.* → **They are eating on the patio.** · We are eating on the patio. · They are reading on the patio.
+- We are eating on the patio. — *В записи звучит They are eating on the patio.*
+- They are reading on the patio. — *В записи звучит They are eating on the patio.*
 
-**8 · Выберите форму use после am**
+**8 · Обед идёт сейчас. Выберите форму eat**
 <!-- interaction_id: en:lesson-10:session-05:i06; family: context_gap_grammar -->
-I am ___ a loom. → **using** · useing · use
-- useing — *Конечная e исчезает: using.*
-- use — *После am нужна using.*
+We are ___ on the patio. → **eating** · eat · eats
+- eat — *После are нужна eating.*
+- eats — *После are нужна eating, не eats.*
 
-**9 · Карточка слова — placemat**
-<!-- interaction_id: en:lesson-10:session-05:word:placemat; family: word_card -->
-> **placemat** — «подставка под тарелку». I am weaving a placemat. — «Я тку подставку под тарелку». Небольшая подложка для одного места за столом.
+**9 · Карточка слова — attic**
+<!-- interaction_id: en:lesson-10:session-05:word:attic; family: word_card -->
+> **attic** — «чердак». The boxes are in the attic. — «Коробки на чердаке».
 
-**10 · Сосед спрашивает, что получается из ваших нитей. Скажите: «Я тку подставку под тарелку»**
+**10 · Коробки отнесли под крышу. Сообщите: «Коробки на чердаке»**
 <!-- interaction_id: en:lesson-10:session-05:i07; family: phrase_builder -->
-Плитки: `placemat` `a` `weaving` `am` `I` → **I am weaving a placemat.**
+Плитки: `attic` `the` `in` `are` `boxes` `The` → **The boxes are in the attic.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-05:i08; family: listen_choose -->
-🔊 *She is weaving a placemat.* → **She is weaving a placemat.** · She is not weaving a placemat. · He is weaving a placemat.
-- She is not weaving a placemat. — *В записи звучит She is weaving a placemat.*
-- He is weaving a placemat. — *В записи звучит She is weaving a placemat.*
+🔊 *The suitcase is in the attic.* → **The suitcase is in the attic.** · The suitcase is in the bedroom. · The box is in the attic.
+- The suitcase is in the bedroom. — *В записи звучит The suitcase is in the attic.*
+- The box is in the attic. — *В записи звучит The suitcase is in the attic.*
 
-**12 · Выберите написание weave с -ing**
+**12 · Выберите связку: несколько коробок**
 <!-- interaction_id: en:lesson-10:session-05:i09; family: context_gap_grammar -->
-I am ___ a placemat. → **weaving** · weaveing · weave
-- weaveing — *Конечная e исчезает: weaving.*
-- weave — *После am нужна weaving.*
+The boxes ___ in the attic. → **are** · is · am
+- is — *Boxes во множественном числе: are.*
+- am — *Am используется с I.*
 
-**13 · Карточка слова — raffia**
-<!-- interaction_id: en:lesson-10:session-05:word:raffia; family: word_card -->
-> **raffia** — «рафия». I am using raffia. — «Я использую рафию». Здесь растительное волокно для плетения.
+**13 · Карточка слова — cellar**
+<!-- interaction_id: en:lesson-10:session-05:word:cellar; family: word_card -->
+> **cellar** — «подвал, погреб». The bottles are in the cellar. — «Бутылки в подвале».
 
-**14 · Преподаватель спрашивает, из какого материала вы плетёте. Скажите: «Я использую рафию»**
+**14 · Бутылки хранятся внизу под домом. Сообщите: «Бутылки в подвале»**
 <!-- interaction_id: en:lesson-10:session-05:i10; family: phrase_builder -->
-Плитки: `raffia` `using` `am` `I` → **I am using raffia.**
+Плитки: `cellar` `the` `in` `are` `bottles` `The` → **The bottles are in the cellar.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-05:i11; family: listen_choose -->
-🔊 *The raffia is in the box.* → **The raffia is in the box.** · The raffia is under the box. · The yarn is in the box.
-- The raffia is under the box. — *В записи звучит The raffia is in the box.*
-- The yarn is in the box. — *В записи звучит The raffia is in the box.*
+🔊 *The cellar is cool.* → **The cellar is cool.** · The cellar is dark. · The attic is cool.
+- The cellar is dark. — *В записи звучит The cellar is cool.*
+- The attic is cool. — *В записи звучит The cellar is cool.*
 
-**16 · Выберите связку для материала raffia**
+**16 · Выберите связку: несколько бутылок**
 <!-- interaction_id: en:lesson-10:session-05:i12; family: context_gap_grammar -->
-The raffia ___ in the box. → **is** · are · am
-- are — *Raffia как материал неисчисляемое: is.*
-- am — *Am употребляется с I.*
+The bottles ___ in the cellar. → **are** · is · am
+- is — *Bottles во множественном числе: are.*
+- am — *Am используется с I.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините названия с переводом**
 <!-- interaction_id: en:lesson-10:session-05:i13; family: speed_match -->
-weave — ткать · loom — ткацкий станок · placemat — подставка под тарелку · raffia — рафия
+porch — крыльцо · patio — открытая площадка у дома · attic — чердак · cellar — подвал
 
-**18 · Послушайте и соберите вопрос о действии сейчас**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-05:i14; family: listen_build_dictation -->
-🔊 *Are you weaving a placemat?* Плитки: `placemat` `a` `weaving` `you` `Are` → **Are you weaving a placemat?**
+🔊 *The boxes are in the attic.* Плитки: `attic` `the` `in` `are` `boxes` `The` → **The boxes are in the attic.**
 
-**19 · Преподаватель спрашивает, каким инструментом вы обычно пользуетесь. Скажите: «Я обычно пользуюсь ткацким станком»**
-<!-- interaction_id: en:lesson-10:session-05:i15; family: scripted_repeat_compare -->
-🎙 **I usually use a loom.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-05:i15; family: listen_build_dictation -->
+🔊 *The bottles are in the cellar.* Плитки: `cellar` `the` `in` `are` `bottles` `The` → **The bottles are in the cellar.**
 
-**20 · Сегодня вы плетёте вручную, без станка. Сообщите коллеге: «Я не пользуюсь ткацким станком»**
-<!-- interaction_id: en:lesson-10:session-05:i16; family: phrase_builder -->
-Плитки: `loom` `a` `using` `not` `am` `I` → **I am not using a loom.**
+**20 · Гость звонит у ворот. Скажите, где вы ждёте: «Я жду на крыльце»**
+<!-- interaction_id: en:lesson-10:session-05:i16; family: scripted_repeat_compare -->
+🎙 **I am waiting on the porch.**
 
-**21 · Вы увлекаетесь ткачеством. Сейчас на вашей рамке получается подставка под тарелку. Посетитель спрашивает: «Что вы делаете?» Ответьте: «Я тку подставку под тарелку»**
-<!-- interaction_id: en:lesson-10:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am weaving a placemat.**
+**21 · Друг ищет коробки. Скажите: «Коробки на чердаке»**
+<!-- interaction_id: en:lesson-10:session-05:i17; family: scripted_repeat_compare -->
+🎙 **The boxes are in the attic.**
 

@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 4 — Робота у швейній майстерні
+# Англійська · Урок 10 · Заняття 4 — У квартирі
 
-**Ситуація.** Розповісти, що ви зазвичай майструєте, й описати сьогоднішню роботу.
+**Ситуація.** Повідомити про кондиціонер та освітлення, попросити воду.
 
-**Що ви опануєте:** I craft bags by hand; I am making a pincushion
-**Нові слова:** craft, bobbin, pincushion, offcut
+**Що ви опануєте:** The air conditioning is working; There is a power cut; I would like some tap water
+**Нові слова:** air conditioning, light bulb, power cut, tap water
 
 ## Інтро 1
 
-### Що ви робите на замовлення
+### У кімнаті прохолодніше
 
-Відвідувач майстерні запитує, чим ви займаєтеся. Ви вручну створюєте сумки: I craft bags by hand — «Я майструю сумки вручну». Craft тут дієслово: робити речі майстерно, з увагою до роботи. Ви описуєте своє звичайне заняття, тому I craft, без am.
+У квартирі спекотно, але кондиціонер уже ввімкнений. Air conditioning — «кондиціонування повітря, кондиціонер» у розмові про систему: The air conditioning is working — «Кондиціонер працює». Ви описуєте роботу системи зараз: is working. Air conditioning тут не потребує a.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I craft bags by hand.**
-- ❌ I crafts bags by hand. — *З I не додаємо -s.*
-- ❌ I am craft bags by hand. — *Для звичайного заняття тут I craft; am craft неправильно.*
+- ✅ **The air conditioning is working.**
+- ❌ The air conditioning working. — *Перед working потрібна is.*
+- ❌ The air conditioning is work. — *Після is потрібна working.*
 
 ---
 
 ## Інтро 2
 
-### Сьогодні інша річ
+### Одна лампа чи весь будинок
 
-Зазвичай ви майструєте сумки, але зараз шиєте маленьку подушечку для шпильок — pincushion. Колега запитує, що вийде. I am making a pincushion — «Я роблю подушечку для шпильок». Це робота зараз: am making. У make кінцева e зникає перед -ing.
+Учора перегоріла лампочка в настільній лампі. Light bulb — «лампочка»: I need a light bulb — «Мені потрібна лампочка». Але зараз раптом згасло світло в усій квартирі. Power cut — «відключення електроенергії»: There is a power cut — «Відключили електроенергію». Це опис ситуації, тому there is. Не плутайте окрему лампочку й відсутність електрики в будинку.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am making a pincushion.**
-- ❌ I am makeing a pincushion. — *Правильне написання: making.*
-- ❌ I making a pincushion. — *Перед making з I потрібне am.*
+- ✅ **There is a power cut.**
+- ❌ There are a power cut. — *Одна ситуація: there is.*
+- ❌ There a power cut. — *Після there потрібна is.*
 
 ---
 
 ## Інтро 3
 
-### Машинка поки не працює
+### Вода з-під крана
 
-Bobbin — «шпулька», маленька котушка для нитки у швейній машинці. Зазвичай ви перевіряєте її перед роботою: I check the bobbin before work. Зараз колега думає, що ви вже шиєте. Але машинка вимкнена, а ви оглядаєте шпульку: I am checking the bobbin — «Я перевіряю шпульку». Check описує звичний порядок, am checking — те, що ви робите зараз.
+Ви в гостях. Господар пропонує питну воду з-під крана або з пляшки. Tap water — «водопровідна вода, вода з-під крана». Ви вибираєте перший варіант: I would like some tap water — «Я хотів би трохи води з-під крана». Would like — ввічливе прохання. Water тут незлічуване, тому some, не a.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am checking the bobbin.**
-- ❌ I checking the bobbin. — *Перед checking з I потрібне am.*
-- ❌ I am check the bobbin. — *Після am потрібна checking.*
+- ✅ **I would like some tap water.**
+- ❌ I would likes some tap water. — *Після would потрібна like без s.*
+- ❌ I would liking some tap water. — *Після would потрібна like, не liking.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — craft**
-<!-- interaction_id: en:lesson-10:session-04:word:craft; family: word_card -->
-> **craft** — «майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно.
+**1 · Картка слова — air conditioning**
+<!-- interaction_id: en:lesson-10:session-04:word:air-conditioning; family: word_card -->
+> **air conditioning** — «кондиціонування повітря». The air conditioning is working. — «Кондиціонер працює».
 
-**2 · Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»**
+**2 · Система зараз охолоджує кімнату. Скажіть: «Кондиціонер працює»**
 <!-- interaction_id: en:lesson-10:session-04:i01; family: phrase_builder -->
-Плитки: `hand` `by` `bags` `craft` `I` → **I craft bags by hand.**
+Плитки: `working` `is` `conditioning` `air` `The` → **The air conditioning is working.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-04:i02; family: listen_choose -->
-🔊 *She crafts bags by hand.* → **She crafts bags by hand.** · She crafts toys by hand. · He crafts bags by hand.
-- She crafts toys by hand. — *У записі звучить She crafts bags by hand.*
-- He crafts bags by hand. — *У записі звучить She crafts bags by hand.*
+🔊 *The air conditioning is noisy.* → **The air conditioning is noisy.** · The air conditioning is working. · The heating is noisy.
+- The air conditioning is working. — *У записі звучить The air conditioning is noisy.*
+- The heating is noisy. — *У записі звучить The air conditioning is noisy.*
 
-**4 · Виберіть форму craft для звичайної роботи з she**
+**4 · Опишіть роботу системи зараз. Виберіть форму work**
 <!-- interaction_id: en:lesson-10:session-04:i03; family: context_gap_grammar -->
-She ___ bags by hand. → **crafts** · craft · crafting
-- craft — *З she у Present Simple додаємо -s.*
-- crafting — *Crafting без is не утворює присудок.*
+The air conditioning is ___. → **working** · work · works
+- work — *Після is потрібна working.*
+- works — *Після is потрібна working, не works.*
 
-**5 · Картка слова — bobbin**
-<!-- interaction_id: en:lesson-10:session-04:word:bobbin; family: word_card -->
-> **bobbin** — «шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці.
+**5 · Картка слова — light bulb**
+<!-- interaction_id: en:lesson-10:session-04:word:light-bulb; family: word_card -->
+> **light bulb** — «лампочка». I need a light bulb. — «Мені потрібна лампочка».
 
-**6 · Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»**
+**6 · Лампочка перегоріла. Скажіть продавцеві: «Мені потрібна лампочка»**
 <!-- interaction_id: en:lesson-10:session-04:i04; family: phrase_builder -->
-Плитки: `bobbin` `the` `checking` `am` `I` → **I am checking the bobbin.**
+Плитки: `bulb` `light` `a` `need` `I` → **I need a light bulb.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-04:i05; family: listen_choose -->
-🔊 *The bobbin is on the table.* → **The bobbin is on the table.** · The bobbin is under the table. · The button is on the table.
-- The bobbin is under the table. — *У записі звучить The bobbin is on the table.*
-- The button is on the table. — *У записі звучить The bobbin is on the table.*
+🔊 *She needs a light bulb.* → **She needs a light bulb.** · He needs a light bulb. · She has a light bulb.
+- He needs a light bulb. — *У записі звучить She needs a light bulb.*
+- She has a light bulb. — *У записі звучить She needs a light bulb.*
 
-**8 · Виберіть зв’язку для однієї шпульки**
+**8 · Виберіть форму need після I**
 <!-- interaction_id: en:lesson-10:session-04:i06; family: context_gap_grammar -->
-The bobbin ___ on the table. → **is** · are · am
-- are — *Bobbin в однині: is.*
-- am — *Am уживається з I.*
+I ___ a light bulb. → **need** · needs · needing
+- needs — *Після I потрібна need.*
+- needing — *Потребу виражаємо формою need.*
 
-**9 · Картка слова — pincushion**
-<!-- interaction_id: en:lesson-10:session-04:word:pincushion; family: word_card -->
-> **pincushion** — «подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки.
+**9 · Картка слова — power cut**
+<!-- interaction_id: en:lesson-10:session-04:word:power-cut; family: word_card -->
+> **power cut** — «відключення електроенергії». There is a power cut. — «Відключили електроенергію».
 
-**10 · Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»**
+**10 · У всьому будинку немає електрики. Повідомте: «Відключили електроенергію»**
 <!-- interaction_id: en:lesson-10:session-04:i07; family: phrase_builder -->
-Плитки: `pincushion` `a` `making` `am` `I` → **I am making a pincushion.**
+Плитки: `cut` `power` `a` `is` `There` → **There is a power cut.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-04:i08; family: listen_choose -->
-🔊 *She is making a pincushion.* → **She is making a pincushion.** · She is not making a pincushion. · He is making a pincushion.
-- She is not making a pincushion. — *У записі звучить She is making a pincushion.*
-- He is making a pincushion. — *У записі звучить She is making a pincushion.*
+🔊 *There is a power cut.* → **There is a power cut.** · There is a problem. · There is a light bulb.
+- There is a problem. — *У записі звучить There is a power cut.*
+- There is a light bulb. — *У записі звучить There is a power cut.*
 
-**12 · Виберіть написання make з -ing**
+**12 · Виберіть зв’язку в there is для однієї ситуації**
 <!-- interaction_id: en:lesson-10:session-04:i09; family: context_gap_grammar -->
-I am ___ a pincushion. → **making** · makeing · make
-- makeing — *Кінцева e зникає: making.*
-- make — *Після am потрібна форма making.*
+There ___ a power cut. → **is** · are · am
+- are — *З a power cut потрібна is.*
+- am — *Am уживається з I.*
 
-**13 · Картка слова — offcut**
-<!-- interaction_id: en:lesson-10:session-04:word:offcut; family: word_card -->
-> **offcut** — «обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою.
+**13 · Картка слова — tap water**
+<!-- interaction_id: en:lesson-10:session-04:word:tap-water; family: word_card -->
+> **tap water** — «вода з-під крана». some tap water — «трохи води з-під крана».
 
-**14 · Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»**
+**14 · Господар пропонує питну воду. Ввічливо попросіть трохи води з-під крана**
 <!-- interaction_id: en:lesson-10:session-04:i10; family: phrase_builder -->
-Плитки: `offcut` `an` `using` `am` `I` → **I am using an offcut.**
+Плитки: `water` `tap` `some` `like` `would` `I` → **I would like some tap water.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-04:i11; family: listen_choose -->
-🔊 *The offcut is small.* → **The offcut is small.** · The offcut is large. · The button is small.
-- The offcut is large. — *У записі звучить The offcut is small.*
-- The button is small. — *У записі звучить The offcut is small.*
+🔊 *I would like some tap water.* → **I would like some tap water.** · I would like some cold milk. · We would like some tap water.
+- I would like some cold milk. — *У записі звучить I would like some tap water.*
+- We would like some tap water. — *У записі звучить I would like some tap water.*
 
-**16 · Виберіть артикль перед offcut**
+**16 · Виберіть форму like після would**
 <!-- interaction_id: en:lesson-10:session-04:i12; family: context_gap_grammar -->
-I am using ___ offcut. → **an** · a · are
-- a — *Offcut починається з голосного звука: an.*
-- are — *Are не артикль; тут потрібний an.*
+I would ___ some tap water. → **like** · likes · liking
+- likes — *Після would потрібна like без s.*
+- liking — *Після would потрібна like, не liking.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте назви з перекладом**
 <!-- interaction_id: en:lesson-10:session-04:i13; family: speed_match -->
-craft — майструвати · bobbin — шпулька · pincushion — подушечка для шпильок · offcut — обрізок матеріалу
+air conditioning — кондиціонування повітря · light bulb — лампочка · power cut — відключення електроенергії · tap water — вода з-під крана
 
-**18 · Послухайте й складіть запитання про дію зараз**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-04:i14; family: listen_build_dictation -->
-🔊 *Are you making a pincushion?* Плитки: `pincushion` `a` `making` `you` `Are` → **Are you making a pincushion?**
+🔊 *There is a power cut.* Плитки: `cut` `power` `a` `is` `There` → **There is a power cut.**
 
-**19 · Відвідувач запитує про ваше звичайне заняття. Скажіть: «Я майструю сумки вручну»**
-<!-- interaction_id: en:lesson-10:session-04:i15; family: scripted_repeat_compare -->
-🎙 **I craft bags by hand.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-04:i15; family: listen_build_dictation -->
+🔊 *I need a light bulb.* Плитки: `bulb` `light` `a` `need` `I` → **I need a light bulb.**
 
-**20 · Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»**
-<!-- interaction_id: en:lesson-10:session-04:i16; family: phrase_builder -->
-Плитки: `bag` `a` `making` `not` `am` `I` → **I am not making a bag.**
+**20 · Друг запитує, чому в будинку темно. Скажіть: «Відключили електроенергію»**
+<!-- interaction_id: en:lesson-10:session-04:i16; family: scripted_repeat_compare -->
+🎙 **There is a power cut.**
 
-**21 · Зазвичай ви майструєте сумки, але зараз шиєте подушечку для шпильок із залишку тканини. Відвідувач запитує, над чим ви працюєте. Дайте відповідь: «Я роблю подушечку для шпильок»**
-<!-- interaction_id: en:lesson-10:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am making a pincushion.**
+**21 · У гостях вам пропонують питну воду. Скажіть: «Я хотів би трохи води з-під крана»**
+<!-- interaction_id: en:lesson-10:session-04:i17; family: scripted_repeat_compare -->
+🎙 **I would like some tap water.**
 

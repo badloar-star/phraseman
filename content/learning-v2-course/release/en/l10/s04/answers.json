@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-04:word:craft",
-    "correctText": "craft",
+    "interactionId": "en:lesson-10:session-04:word:air-conditioning",
+    "correctText": "air conditioning",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i01",
-    "correctText": "I craft bags by hand.",
+    "correctText": "The air conditioning is working.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i02",
-    "correctText": "She crafts bags by hand.",
+    "correctText": "The air conditioning is noisy.",
     "correctResponseId": "en:lesson-10:session-04:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-04:i03",
-    "correctText": "crafts",
+    "correctText": "working",
     "correctResponseId": "en:lesson-10:session-04:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-04:word:bobbin",
-    "correctText": "bobbin",
+    "interactionId": "en:lesson-10:session-04:word:light-bulb",
+    "correctText": "light bulb",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i04",
-    "correctText": "I am checking the bobbin.",
+    "correctText": "I need a light bulb.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i05",
-    "correctText": "The bobbin is on the table.",
+    "correctText": "She needs a light bulb.",
     "correctResponseId": "en:lesson-10:session-04:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-04:i06",
-    "correctText": "is",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-04:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-04:word:pincushion",
-    "correctText": "pincushion",
+    "interactionId": "en:lesson-10:session-04:word:power-cut",
+    "correctText": "power cut",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i07",
-    "correctText": "I am making a pincushion.",
+    "correctText": "There is a power cut.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i08",
-    "correctText": "She is making a pincushion.",
+    "correctText": "There is a power cut.",
     "correctResponseId": "en:lesson-10:session-04:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-04:i09",
-    "correctText": "making",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-04:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-04:word:offcut",
-    "correctText": "offcut",
+    "interactionId": "en:lesson-10:session-04:word:tap-water",
+    "correctText": "tap water",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i10",
-    "correctText": "I am using an offcut.",
+    "correctText": "I would like some tap water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i11",
-    "correctText": "The offcut is small.",
+    "correctText": "I would like some tap water.",
     "correctResponseId": "en:lesson-10:session-04:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-04:i12",
-    "correctText": "an",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-04:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-04:i13",
-    "correctText": "en:lesson-10:session-04:i13:p1=craft\nen:lesson-10:session-04:i13:p2=bobbin\nen:lesson-10:session-04:i13:p3=pincushion\nen:lesson-10:session-04:i13:p4=offcut",
+    "correctText": "en:lesson-10:session-04:i13:p1=air conditioning\nen:lesson-10:session-04:i13:p2=light bulb\nen:lesson-10:session-04:i13:p3=power cut\nen:lesson-10:session-04:i13:p4=tap water",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i14",
-    "correctText": "Are you making a pincushion?",
+    "correctText": "There is a power cut.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i15",
-    "correctText": "I craft bags by hand.",
+    "correctText": "I need a light bulb.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i16",
-    "correctText": "I am not making a bag.",
+    "correctText": "There is a power cut.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-04:i17",
-    "correctText": "I am making a pincushion.",
+    "correctText": "I would like some tap water.",
     "correctResponseId": null
   }
 ]

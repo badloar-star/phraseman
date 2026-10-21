@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-05:word:parking-space",
+    "correctText": "parking space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i01",
+    "correctText": "I parked in the parking space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i02",
+    "correctText": "She parked in the parking space.",
+    "correctResponseId": "en:lesson-12:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i03",
+    "correctText": "parked",
+    "correctResponseId": "en:lesson-12:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:word:car-wash",
+    "correctText": "car wash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i04",
+    "correctText": "We visited the car wash.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i05",
+    "correctText": "I visited the car wash.",
+    "correctResponseId": "en:lesson-12:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i06",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:word:car-keys",
+    "correctText": "car keys",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i07",
+    "correctText": "I used my car keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i08",
+    "correctText": "He used his car keys.",
+    "correctResponseId": "en:lesson-12:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:word:driving-licence",
+    "correctText": "driving licence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i10",
+    "correctText": "I checked my driving licence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i11",
+    "correctText": "She checked her driving licence.",
+    "correctResponseId": "en:lesson-12:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i13",
+    "correctText": "en:lesson-12:session-05:i13:p1=parking space\nen:lesson-12:session-05:i13:p2=car wash\nen:lesson-12:session-05:i13:p3=car keys\nen:lesson-12:session-05:i13:p4=driving licence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i14",
+    "correctText": "I parked near the bank yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i15",
+    "correctText": "She waited in the car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i16",
+    "correctText": "We visited the car wash yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-05:i17",
+    "correctText": "The car keys were in my bag yesterday.",
+    "correctResponseId": null
+  }
+]

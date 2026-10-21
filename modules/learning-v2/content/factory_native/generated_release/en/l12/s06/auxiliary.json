@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-06:intro1:r2": {
+          "ru": "Это состояние сапог, а нужно действие уборки.",
+          "uk": "Це стан чобіт, а потрібна дія очищення."
+        },
+        "en:lesson-12:session-06:intro1:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-06:intro2:r2": {
+          "ru": "Для прошлого добавляем -ed: packed.",
+          "uk": "Для минулого додаємо -ed: packed."
+        },
+        "en:lesson-12:session-06:intro2:r3": {
+          "ru": "Packs — не прошлое и не форма с I.",
+          "uk": "Packs — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-06:intro3:r2": {
+          "ru": "Washes — настоящее; нужна washed.",
+          "uk": "Washes — теперішній час; потрібна washed."
+        },
+        "en:lesson-12:session-06:intro3:r3": {
+          "ru": "Для прошлого нужна washed.",
+          "uk": "Для минулого потрібна washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7bf171d14764abfcf6eac01b9b7c018deedaa2e767746e521585e6742ead0381"
+}

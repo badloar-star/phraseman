@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-08:word:windscreen",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — windscreen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:word:windscreen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — windscreen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:word:windscreen:audio",
+          "transcript": "windscreen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:word:windscreen:r1",
+            "targetText": "windscreen",
+            "meaningByLocale": {
+              "ru": "лобовое стекло машины. Британское название.",
+              "uk": "лобове скло машини. Британська назва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "windscreen",
+          "definitionByLocale": {
+            "ru": "лобовое стекло машины. Британское название.",
+            "uk": "лобове скло машини. Британська назва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я помив лобове скло",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я помив лобове скло",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I washed the windscreen.",
+        "localizedMeaning": {
+          "ru": "Скажите: я помыл лобовое стекло",
+          "uk": "Скажіть: я помив лобове скло"
+        },
+        "orderedTokens": [
+          "I",
+          "washed",
+          "the",
+          "windscreen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i02:r1",
+          "text": "He washed the windscreen."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i02:r2",
+          "text": "He washes the windscreen."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i02:r3",
+          "text": "We washed the windscreen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i02:audio",
+          "transcript": "He washed the windscreen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:i02:r1",
+            "targetText": "He washed the windscreen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i02:r2",
+            "targetText": "He washes the windscreen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i02:r3",
+            "targetText": "We washed the windscreen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He washed the windscreen.",
+              "uk": "У записі звучить He washed the windscreen."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He washed the windscreen.",
+              "uk": "У записі звучить He washed the windscreen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора вона помила лобове скло. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i03:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i03:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i03:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора вона помила лобове скло. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она помыла лобовое стекло. Выберите форму",
+          "uk": "Учора вона помила лобове скло. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the windscreen yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-08:i03:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i03:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i03:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Учора вона помила лобове скло. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора вона помила лобове скло. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна washed.",
+              "uk": "Для минулого потрібна washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора вона помила лобове скло. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Washes — настоящее; нужна washed.",
+              "uk": "Washes — теперішній час; потрібна washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:word:steering-wheel",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — steering wheel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:word:steering-wheel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — steering wheel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:word:steering-wheel:audio",
+          "transcript": "steering wheel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:word:steering-wheel:r1",
+            "targetText": "steering wheel",
+            "meaningByLocale": {
+              "ru": "руль автомобиля.",
+              "uk": "кермо автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "steering wheel",
+          "definitionByLocale": {
+            "ru": "руль автомобиля.",
+            "uk": "кермо автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я почистив кермо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я почистив кермо",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cleaned the steering wheel.",
+        "localizedMeaning": {
+          "ru": "Скажите: я почистил руль",
+          "uk": "Скажіть: я почистив кермо"
+        },
+        "orderedTokens": [
+          "I",
+          "cleaned",
+          "the",
+          "steering",
+          "wheel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i05:r1",
+          "text": "She cleaned the steering wheel."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i05:r2",
+          "text": "She cleans the steering wheel."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i05:r3",
+          "text": "They cleaned the steering wheel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i05:audio",
+          "transcript": "She cleaned the steering wheel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:i05:r1",
+            "targetText": "She cleaned the steering wheel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i05:r2",
+            "targetText": "She cleans the steering wheel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i05:r3",
+            "targetText": "They cleaned the steering wheel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the steering wheel.",
+              "uk": "У записі звучить She cleaned the steering wheel."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the steering wheel.",
+              "uk": "У записі звучить She cleaned the steering wheel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ми почистили кермо. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i06:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i06:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i06:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ми почистили кермо. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мы почистили руль. Выберите форму",
+          "uk": "Учора ми почистили кермо. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the steering wheel yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-08:i06:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i06:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i06:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Учора ми почистили кермо. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Учора ми почистили кермо. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна cleaned.",
+              "uk": "Для минулого потрібна cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Учора ми почистили кермо. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Cleans — не прошлое и не форма с we.",
+              "uk": "Cleans — не минуле й не форма з we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:word:number-plate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — number plate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:word:number-plate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — number plate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:word:number-plate:audio",
+          "transcript": "number plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:word:number-plate:r1",
+            "targetText": "number plate",
+            "meaningByLocale": {
+              "ru": "номерной знак автомобиля.",
+              "uk": "номерний знак автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "number plate",
+          "definitionByLocale": {
+            "ru": "номерной знак автомобиля.",
+            "uk": "номерний знак автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я перевірив номерний знак",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я перевірив номерний знак",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the number plate.",
+        "localizedMeaning": {
+          "ru": "Скажите: я проверил номерной знак",
+          "uk": "Скажіть: я перевірив номерний знак"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "number",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i08:r1",
+          "text": "He checked the number plate."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i08:r2",
+          "text": "He checks the number plate."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i08:r3",
+          "text": "She checked the number plate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i08:audio",
+          "transcript": "He checked the number plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:i08:r1",
+            "targetText": "He checked the number plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i08:r2",
+            "targetText": "He checks the number plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i08:r3",
+            "targetText": "She checked the number plate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He checked the number plate.",
+              "uk": "У записі звучить He checked the number plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He checked the number plate.",
+              "uk": "У записі звучить He checked the number plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора вони помили номерний знак. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i09:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i09:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i09:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора вони помили номерний знак. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера они помыли номерной знак. Выберите форму",
+          "uk": "Учора вони помили номерний знак. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the number plate yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-08:i09:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i09:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i09:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Учора вони помили номерний знак. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора вони помили номерний знак. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна washed.",
+              "uk": "Для минулого потрібна washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора вони помили номерний знак. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Washes — не прошлое и не форма с they.",
+              "uk": "Washes — не минуле й не форма з they."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:word:car-seat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — car seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:word:car-seat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — car seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:word:car-seat:audio",
+          "transcript": "car seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:word:car-seat:r1",
+            "targetText": "car seat",
+            "meaningByLocale": {
+              "ru": "сиденье в машине. Здесь обычное сиденье в салоне.",
+              "uk": "сидіння в машині. Тут звичайне сидіння в салоні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car seat",
+          "definitionByLocale": {
+            "ru": "сиденье в машине. Здесь обычное сиденье в салоне.",
+            "uk": "сидіння в машині. Тут звичайне сидіння в салоні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: ми почистили сидіння в машині",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: ми почистили сидіння в машині",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We cleaned the car seat.",
+        "localizedMeaning": {
+          "ru": "Скажите: мы почистили сиденье в машине",
+          "uk": "Скажіть: ми почистили сидіння в машині"
+        },
+        "orderedTokens": [
+          "We",
+          "cleaned",
+          "the",
+          "car",
+          "seat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i11:r1",
+          "text": "I cleaned the car seat."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i11:r2",
+          "text": "I clean the car seat."
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i11:r3",
+          "text": "She cleaned the car seat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i11:audio",
+          "transcript": "I cleaned the car seat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-08:i11:r1",
+            "targetText": "I cleaned the car seat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i11:r2",
+            "targetText": "I clean the car seat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i11:r3",
+            "targetText": "She cleaned the car seat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the car seat.",
+              "uk": "У записі звучить I cleaned the car seat."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the car seat.",
+              "uk": "У записі звучить I cleaned the car seat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора він почистив сидіння в машині. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-08:i12:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i12:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-08:i12:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора він почистив сидіння в машині. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера он почистил сиденье в машине. Выберите форму",
+          "uk": "Учора він почистив сидіння в машині. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the car seat yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-08:i12:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i12:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i12:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Учора він почистив сидіння в машині. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора він почистив сидіння в машині. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна cleaned.",
+              "uk": "Для минулого потрібна cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора він почистив сидіння в машині. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Cleans — настоящее; нужна cleaned.",
+              "uk": "Cleans — теперішній час; потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте частини машини з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте частини машини з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-08:i13:p1",
+            "target": "windscreen",
+            "meaningByLocale": {
+              "ru": "лобовое стекло",
+              "uk": "лобове скло"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-08:i13:p2",
+            "target": "steering wheel",
+            "meaningByLocale": {
+              "ru": "руль",
+              "uk": "кермо"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-08:i13:p3",
+            "target": "number plate",
+            "meaningByLocale": {
+              "ru": "номерной знак",
+              "uk": "номерний знак"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-08:i13:p4",
+            "target": "car seat",
+            "meaningByLocale": {
+              "ru": "сиденье в машине",
+              "uk": "сидіння в машині"
+            }
+          }
+        ],
+        "leftColumn": [
+          "windscreen",
+          "steering wheel",
+          "number plate",
+          "car seat"
+        ],
+        "rightColumn": [
+          "лобове скло",
+          "кермо",
+          "номерний знак",
+          "сидіння в машині"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i14:audio",
+          "transcript": "I washed the car yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I washed the car yesterday.",
+        "orderedTokens": [
+          "I",
+          "washed",
+          "the",
+          "car",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i15:audio",
+          "transcript": "She checked the car keys."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She checked the car keys.",
+        "orderedTokens": [
+          "She",
+          "checked",
+          "the",
+          "car",
+          "keys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вчора лобове скло було брудне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вчора лобове скло було брудне",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i16:audio",
+          "transcript": "The windscreen was dirty yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The windscreen was dirty yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора ви почистили кермо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора ви почистили кермо",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-08:i17:audio",
+          "transcript": "I cleaned the steering wheel yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I cleaned the steering wheel yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "93cde055c2dba9381e5329f07e97ff540f5c26bf291fda86d5548b538066853f"
+}

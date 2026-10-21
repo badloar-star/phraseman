@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-07:intro1:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-07:intro1:r3": {
+          "ru": "Uses — не прошлое и не форма с I.",
+          "uk": "Uses — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-07:intro2:r2": {
+          "ru": "Cleans — настоящее; нужна cleaned.",
+          "uk": "Cleans — теперішній час; потрібна cleaned."
+        },
+        "en:lesson-12:session-07:intro2:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-07:intro3:r2": {
+          "ru": "Это действие с диваном, а нужно со стулом.",
+          "uk": "Це дія з диваном, а потрібна зі стільцем."
+        },
+        "en:lesson-12:session-07:intro3:r3": {
+          "ru": "Для прошлого нужна unfolded.",
+          "uk": "Для минулого потрібна unfolded."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dbf1d7e2af74b648f07ca10d152e36daf79958bf8d1e4326ea006a19d2ee2a6f"
+}

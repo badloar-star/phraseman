@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "regular past: cleaned, washed, checked; was/were",
+    "uk": "regular past: cleaned, washed, checked; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Лобовое стекло",
+        "uk": "Лобове скло"
+      },
+      "bodyByLocale": {
+        "ru": "Windscreen — «лобовое стекло машины», британское название. Вчера стекло было грязным: The windscreen was dirty. Вы его помыли: I washed the windscreen. Выберите действие мытья, а не описание состояния.",
+        "uk": "Windscreen — «лобове скло машини», британська назва. Учора скло було брудне: The windscreen was dirty. Ви його помили: I washed the windscreen. Виберіть дію миття, а не опис стану."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-08:intro1:r1",
+              "text": "I washed the windscreen."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro1:r2",
+              "text": "The windscreen was dirty."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro1:r3",
+              "text": "I wash the windscreen yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-08:intro1:r1",
+              "text": "I washed the windscreen."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro1:r2",
+              "text": "The windscreen was dirty."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro1:r3",
+              "text": "I wash the windscreen yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Руль",
+        "uk": "Кермо"
+      },
+      "bodyByLocale": {
+        "ru": "Steering wheel — «руль автомобиля». Вчера она его почистила: She cleaned the steering wheel. Clean → cleaned; в прошлом после she не добавляем -s. Выберите эту фразу.",
+        "uk": "Steering wheel — «кермо автомобіля». Учора вона його почистила: She cleaned the steering wheel. Clean → cleaned; у минулому після she не додаємо -s. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-08:intro2:r1",
+              "text": "She cleaned the steering wheel."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro2:r2",
+              "text": "She cleans the steering wheel yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro2:r3",
+              "text": "She clean the steering wheel yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-08:intro2:r1",
+              "text": "She cleaned the steering wheel."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro2:r2",
+              "text": "She cleans the steering wheel yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro2:r3",
+              "text": "She clean the steering wheel yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Номер и сиденье",
+        "uk": "Номер і сидіння"
+      },
+      "bodyByLocale": {
+        "ru": "Number plate — «номерной знак автомобиля». Car seat — «сиденье в машине»; в этой сцене говорим об обычном сиденье в салоне. Вчера мы почистили сиденье: We cleaned the car seat. Выберите действие с сиденьем, не с номерным знаком.",
+        "uk": "Number plate — «номерний знак автомобіля». Car seat — «сидіння в машині»; у цій сцені йдеться про звичайне сидіння в салоні. Учора ми почистили сидіння: We cleaned the car seat. Виберіть дію із сидінням, не з номерним знаком."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-08:intro3:r1",
+              "text": "We cleaned the car seat."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro3:r2",
+              "text": "We checked the number plate."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro3:r3",
+              "text": "We clean the car seat yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-08:intro3:r1",
+              "text": "We cleaned the car seat."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro3:r2",
+              "text": "We checked the number plate."
+            },
+            {
+              "responseId": "en:lesson-12:session-08:intro3:r3",
+              "text": "We clean the car seat yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1f2979f78f22c1c579262e5e9971929297177d21db861d2d7e450c4cae893bc7"
+}

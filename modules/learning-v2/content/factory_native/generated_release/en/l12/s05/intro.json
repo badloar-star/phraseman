@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "regular past: parked, visited, used, checked",
+    "uk": "regular past: parked, visited, used, checked"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для парковки",
+        "uk": "Місце для паркування"
+      },
+      "bodyByLocale": {
+        "ru": "Parking space — «место для парковки одной машины». Вчера вы припарковались на этом месте: I parked in the parking space. Park → parked. Выберите сообщение о завершённом действии вчера.",
+        "uk": "Parking space — «місце для паркування однієї машини». Учора ви припаркувалися на цьому місці: I parked in the parking space. Park → parked. Виберіть повідомлення про завершену дію вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-05:intro1:r1",
+              "text": "I parked in the parking space yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro1:r2",
+              "text": "I park in the parking space yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro1:r3",
+              "text": "I parks in the parking space yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-05:intro1:r1",
+              "text": "I parked in the parking space yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro1:r2",
+              "text": "I park in the parking space yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro1:r3",
+              "text": "I parks in the parking space yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Автомойка",
+        "uk": "Автомийка"
+      },
+      "bodyByLocale": {
+        "ru": "Car wash — «автомойка», место, где моют машины. Вчера мы побывали на автомойке: We visited the car wash. Visit → visited. Форма одна и с we, и с he: He visited the car wash. Выберите его вчерашнее действие.",
+        "uk": "Car wash — «автомийка», місце, де миють машини. Учора ми побували на автомийці: We visited the car wash. Visit → visited. Форма одна і з we, і з he: He visited the car wash. Виберіть його вчорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-05:intro2:r1",
+              "text": "He visited the car wash yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro2:r2",
+              "text": "He visits the car wash yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro2:r3",
+              "text": "He visit the car wash yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-05:intro2:r1",
+              "text": "He visited the car wash yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro2:r2",
+              "text": "He visits the car wash yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro2:r3",
+              "text": "He visit the car wash yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключи и права",
+        "uk": "Ключі й посвідчення"
+      },
+      "bodyByLocale": {
+        "ru": "Car keys — «ключи от машины». Driving licence — «водительское удостоверение», британское написание названия. Вчера вы проверили своё удостоверение: I checked my driving licence. Check → checked. Выберите эту фразу.",
+        "uk": "Car keys — «ключі від машини». Driving licence — «посвідчення водія», британське написання назви. Учора ви перевірили своє посвідчення: I checked my driving licence. Check → checked. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-05:intro3:r1",
+              "text": "I checked my driving licence."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro3:r2",
+              "text": "I check my driving licence yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro3:r3",
+              "text": "I checks my driving licence yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-05:intro3:r1",
+              "text": "I checked my driving licence."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro3:r2",
+              "text": "I check my driving licence yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-05:intro3:r3",
+              "text": "I checks my driving licence yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "661f571011496d03b8882f44ba297d935cb542624f17eeda61007ec541a1938b"
+}

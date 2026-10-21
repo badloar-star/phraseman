@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-07:word:spare-key",
+    "correctText": "spare key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i01",
+    "correctText": "I used the spare key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i02",
+    "correctText": "She used the spare key.",
+    "correctResponseId": "en:lesson-12:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i03",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:word:spare-room",
+    "correctText": "spare room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i04",
+    "correctText": "We cleaned the spare room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i05",
+    "correctText": "I cleaned the spare room.",
+    "correctResponseId": "en:lesson-12:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i06",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:word:sofa-bed",
+    "correctText": "sofa bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i07",
+    "correctText": "We moved the sofa bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i08",
+    "correctText": "He moved the sofa bed.",
+    "correctResponseId": "en:lesson-12:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i09",
+    "correctText": "moved",
+    "correctResponseId": "en:lesson-12:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:word:folding-chair",
+    "correctText": "folding chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i10",
+    "correctText": "I unfolded the folding chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i11",
+    "correctText": "She unfolded the folding chair.",
+    "correctResponseId": "en:lesson-12:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i12",
+    "correctText": "unfolded",
+    "correctResponseId": "en:lesson-12:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i13",
+    "correctText": "en:lesson-12:session-07:i13:p1=spare key\nen:lesson-12:session-07:i13:p2=spare room\nen:lesson-12:session-07:i13:p3=sofa bed\nen:lesson-12:session-07:i13:p4=folding chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i14",
+    "correctText": "I cleaned the room yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i15",
+    "correctText": "We moved the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i16",
+    "correctText": "I used the spare key yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-07:i17",
+    "correctText": "The folding chair was near the window yesterday.",
+    "correctResponseId": null
+  }
+]

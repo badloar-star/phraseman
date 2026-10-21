@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-06:word:rain-boots",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rain boots",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:rain-boots:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rain boots",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:rain-boots:audio",
+            "transcript": "rain boots"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:rain-boots:r1",
+              "targetText": "rain boots",
+              "meaningByLocale": {
+                "ru": "резиновые сапоги для дождя.",
+                "uk": "гумові чоботи для дощу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rain boots",
+            "definitionByLocale": {
+              "ru": "резиновые сапоги для дождя.",
+              "uk": "гумові чоботи для дощу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: я почистил сапоги для дождя",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: я почистил сапоги для дождя",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned the rain boots.",
+          "localizedMeaning": {
+            "ru": "Скажите: я почистил сапоги для дождя",
+            "uk": "Скажіть: я почистив чоботи для дощу"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "the",
+            "rain",
+            "boots"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i02:r1",
+            "text": "She cleaned her rain boots."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i02:r2",
+            "text": "She cleans her rain boots."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i02:r3",
+            "text": "He cleaned his rain boots."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i02:audio",
+            "transcript": "She cleaned her rain boots."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i02:r1",
+              "targetText": "She cleaned her rain boots.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i02:r2",
+              "targetText": "She cleans her rain boots.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i02:r3",
+              "targetText": "He cleaned his rain boots.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She cleaned her rain boots.",
+                "uk": "У записі звучить She cleaned her rain boots."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She cleaned her rain boots.",
+                "uk": "У записі звучить She cleaned her rain boots."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера мы почистили сапоги для дождя. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i03:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i03:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i03:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера мы почистили сапоги для дождя. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера мы почистили сапоги для дождя. Выберите форму",
+            "uk": "Учора ми почистили чоботи для дощу. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ our rain boots yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i03:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i03:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i03:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Вчера мы почистили сапоги для дождя. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера мы почистили сапоги для дождя. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна cleaned.",
+                "uk": "Для минулого потрібна cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера мы почистили сапоги для дождя. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Cleans — не прошлое и не форма с we.",
+                "uk": "Cleans — не минуле й не форма з we."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:word:baseball-cap",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baseball cap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:baseball-cap:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baseball cap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:baseball-cap:audio",
+            "transcript": "baseball cap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:baseball-cap:r1",
+              "targetText": "baseball cap",
+              "meaningByLocale": {
+                "ru": "бейсболка, кепка с козырьком.",
+                "uk": "бейсболка, кепка з козирком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baseball cap",
+            "definitionByLocale": {
+              "ru": "бейсболка, кепка с козырьком.",
+              "uk": "бейсболка, кепка з козирком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: я упаковал свою бейсболку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: я упаковал свою бейсболку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I packed my baseball cap.",
+          "localizedMeaning": {
+            "ru": "Скажите: я упаковал свою бейсболку",
+            "uk": "Скажіть: я спакував свою бейсболку"
+          },
+          "orderedTokens": [
+            "I",
+            "packed",
+            "my",
+            "baseball",
+            "cap"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i05:r1",
+            "text": "He packed his baseball cap."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i05:r2",
+            "text": "He packs his baseball cap."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i05:r3",
+            "text": "She packed her baseball cap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i05:audio",
+            "transcript": "He packed his baseball cap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i05:r1",
+              "targetText": "He packed his baseball cap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i05:r2",
+              "targetText": "He packs his baseball cap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i05:r3",
+              "targetText": "She packed her baseball cap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He packed his baseball cap.",
+                "uk": "У записі звучить He packed his baseball cap."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He packed his baseball cap.",
+                "uk": "У записі звучить He packed his baseball cap."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера она упаковала свою бейсболку. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i06:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i06:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i06:r3",
+            "text": "packs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера она упаковала свою бейсболку. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера она упаковала свою бейсболку. Выберите форму",
+            "uk": "Учора вона спакувала свою бейсболку. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ her baseball cap yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i06:r1",
+              "text": "packed"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i06:r2",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i06:r3",
+              "text": "packs"
+            }
+          ],
+          "testedDimension": "Вчера она упаковала свою бейсболку. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Вчера она упаковала свою бейсболку. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна packed.",
+                "uk": "Для минулого потрібна packed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Вчера она упаковала свою бейсболку. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Packs — настоящее; нужна packed.",
+                "uk": "Packs — теперішній час; потрібна packed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:word:underpants",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — underpants",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:underpants:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — underpants",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:underpants:audio",
+            "transcript": "underpants"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:underpants:r1",
+              "targetText": "underpants",
+              "meaningByLocale": {
+                "ru": "трусы. Множественное число.",
+                "uk": "труси. Множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underpants",
+            "definitionByLocale": {
+              "ru": "трусы. Множественное число.",
+              "uk": "труси. Множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: я постирал своё бельё — трусы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: я постирал своё бельё — трусы",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I washed my underpants.",
+          "localizedMeaning": {
+            "ru": "Скажите: я постирал своё бельё — трусы",
+            "uk": "Скажіть: я виправ свою білизну — труси"
+          },
+          "orderedTokens": [
+            "I",
+            "washed",
+            "my",
+            "underpants"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i08:r1",
+            "text": "He washed his underpants."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i08:r2",
+            "text": "He washes his underpants."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i08:r3",
+            "text": "She washed her underpants."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i08:audio",
+            "transcript": "He washed his underpants."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i08:r1",
+              "targetText": "He washed his underpants.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i08:r2",
+              "targetText": "He washes his underpants.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i08:r3",
+              "targetText": "She washed her underpants.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He washed his underpants.",
+                "uk": "У записі звучить He washed his underpants."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He washed his underpants.",
+                "uk": "У записі звучить He washed his underpants."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i09:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i09:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i09:r3",
+            "text": "packs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+            "uk": "Учора я спакував свої труси в подорож. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ my underpants yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i09:r1",
+              "text": "packed"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i09:r2",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i09:r3",
+              "text": "packs"
+            }
+          ],
+          "testedDimension": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна packed.",
+                "uk": "Для минулого потрібна packed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Packs — не прошлое и не форма с I.",
+                "uk": "Packs — не минуле й не форма з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:word:sports-bra",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sports bra",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:sports-bra:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sports bra",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:sports-bra:audio",
+            "transcript": "sports bra"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:sports-bra:r1",
+              "targetText": "sports bra",
+              "meaningByLocale": {
+                "ru": "спортивный бюстгальтер.",
+                "uk": "спортивний бюстгальтер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports bra",
+            "definitionByLocale": {
+              "ru": "спортивный бюстгальтер.",
+              "uk": "спортивний бюстгальтер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: она постирала свой спортивный бюстгальтер",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: она постирала свой спортивный бюстгальтер",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She washed her sports bra.",
+          "localizedMeaning": {
+            "ru": "Скажите: она постирала свой спортивный бюстгальтер",
+            "uk": "Скажіть: вона випрала свій спортивний бюстгальтер"
+          },
+          "orderedTokens": [
+            "She",
+            "washed",
+            "her",
+            "sports",
+            "bra"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i11:r1",
+            "text": "I packed my sports bra."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i11:r2",
+            "text": "I pack my sports bra."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i11:r3",
+            "text": "She packed her sports bra."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i11:audio",
+            "transcript": "I packed my sports bra."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i11:r1",
+              "targetText": "I packed my sports bra.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i11:r2",
+              "targetText": "I pack my sports bra.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i11:r3",
+              "targetText": "She packed her sports bra.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I packed my sports bra.",
+                "uk": "У записі звучить I packed my sports bra."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I packed my sports bra.",
+                "uk": "У записі звучить I packed my sports bra."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i12:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i12:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i12:r3",
+            "text": "washes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+            "uk": "Учора я випрала спортивний бюстгальтер. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ my sports bra yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i12:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i12:r2",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i12:r3",
+              "text": "washes"
+            }
+          ],
+          "testedDimension": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна washed.",
+                "uk": "Для минулого потрібна washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Washes — не прошлое и не форма с I.",
+                "uk": "Washes — не минуле й не форма з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините одежду с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините одежду с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-06:i13:p1",
+              "target": "rain boots",
+              "meaningByLocale": {
+                "ru": "сапоги для дождя",
+                "uk": "чоботи для дощу"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-06:i13:p2",
+              "target": "baseball cap",
+              "meaningByLocale": {
+                "ru": "бейсболка",
+                "uk": "бейсболка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-06:i13:p3",
+              "target": "underpants",
+              "meaningByLocale": {
+                "ru": "трусы",
+                "uk": "труси"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-06:i13:p4",
+              "target": "sports bra",
+              "meaningByLocale": {
+                "ru": "спортивный бюстгальтер",
+                "uk": "спортивний бюстгальтер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rain boots",
+            "baseball cap",
+            "underpants",
+            "sports bra"
+          ],
+          "rightColumn": [
+            "сапоги для дождя",
+            "бейсболка",
+            "трусы",
+            "спортивный бюстгальтер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i14:audio",
+            "transcript": "I washed my shirt yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I washed my shirt yesterday.",
+          "orderedTokens": [
+            "I",
+            "washed",
+            "my",
+            "shirt",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i15:audio",
+            "transcript": "She packed her bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She packed her bag.",
+          "orderedTokens": [
+            "She",
+            "packed",
+            "her",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вчера сапоги для дождя были мокрыми",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вчера сапоги для дождя были мокрыми",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i16:audio",
+            "transcript": "The rain boots were wet yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rain boots were wet yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вчера вы упаковали свою бейсболку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вчера вы упаковали свою бейсболку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i17:audio",
+            "transcript": "I packed my baseball cap yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I packed my baseball cap yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-06:word:rain-boots",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rain boots",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:rain-boots:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rain boots",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:rain-boots:audio",
+            "transcript": "rain boots"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:rain-boots:r1",
+              "targetText": "rain boots",
+              "meaningByLocale": {
+                "ru": "резиновые сапоги для дождя.",
+                "uk": "гумові чоботи для дощу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rain boots",
+            "definitionByLocale": {
+              "ru": "резиновые сапоги для дождя.",
+              "uk": "гумові чоботи для дощу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: я почистив чоботи для дощу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: я почистив чоботи для дощу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned the rain boots.",
+          "localizedMeaning": {
+            "ru": "Скажите: я почистил сапоги для дождя",
+            "uk": "Скажіть: я почистив чоботи для дощу"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "the",
+            "rain",
+            "boots"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i02:r1",
+            "text": "She cleaned her rain boots."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i02:r2",
+            "text": "She cleans her rain boots."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i02:r3",
+            "text": "He cleaned his rain boots."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i02:audio",
+            "transcript": "She cleaned her rain boots."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i02:r1",
+              "targetText": "She cleaned her rain boots.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i02:r2",
+              "targetText": "She cleans her rain boots.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i02:r3",
+              "targetText": "He cleaned his rain boots.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She cleaned her rain boots.",
+                "uk": "У записі звучить She cleaned her rain boots."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She cleaned her rain boots.",
+                "uk": "У записі звучить She cleaned her rain boots."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора ми почистили чоботи для дощу. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i03:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i03:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i03:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора ми почистили чоботи для дощу. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера мы почистили сапоги для дождя. Выберите форму",
+            "uk": "Учора ми почистили чоботи для дощу. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ our rain boots yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i03:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i03:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i03:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Учора ми почистили чоботи для дощу. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора ми почистили чоботи для дощу. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна cleaned.",
+                "uk": "Для минулого потрібна cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора ми почистили чоботи для дощу. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Cleans — не прошлое и не форма с we.",
+                "uk": "Cleans — не минуле й не форма з we."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:word:baseball-cap",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baseball cap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:baseball-cap:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baseball cap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:baseball-cap:audio",
+            "transcript": "baseball cap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:baseball-cap:r1",
+              "targetText": "baseball cap",
+              "meaningByLocale": {
+                "ru": "бейсболка, кепка с козырьком.",
+                "uk": "бейсболка, кепка з козирком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baseball cap",
+            "definitionByLocale": {
+              "ru": "бейсболка, кепка с козырьком.",
+              "uk": "бейсболка, кепка з козирком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: я спакував свою бейсболку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: я спакував свою бейсболку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I packed my baseball cap.",
+          "localizedMeaning": {
+            "ru": "Скажите: я упаковал свою бейсболку",
+            "uk": "Скажіть: я спакував свою бейсболку"
+          },
+          "orderedTokens": [
+            "I",
+            "packed",
+            "my",
+            "baseball",
+            "cap"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i05:r1",
+            "text": "He packed his baseball cap."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i05:r2",
+            "text": "He packs his baseball cap."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i05:r3",
+            "text": "She packed her baseball cap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i05:audio",
+            "transcript": "He packed his baseball cap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i05:r1",
+              "targetText": "He packed his baseball cap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i05:r2",
+              "targetText": "He packs his baseball cap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i05:r3",
+              "targetText": "She packed her baseball cap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He packed his baseball cap.",
+                "uk": "У записі звучить He packed his baseball cap."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He packed his baseball cap.",
+                "uk": "У записі звучить He packed his baseball cap."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора вона спакувала свою бейсболку. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i06:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i06:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i06:r3",
+            "text": "packs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора вона спакувала свою бейсболку. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера она упаковала свою бейсболку. Выберите форму",
+            "uk": "Учора вона спакувала свою бейсболку. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ her baseball cap yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i06:r1",
+              "text": "packed"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i06:r2",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i06:r3",
+              "text": "packs"
+            }
+          ],
+          "testedDimension": "Учора вона спакувала свою бейсболку. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Учора вона спакувала свою бейсболку. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна packed.",
+                "uk": "Для минулого потрібна packed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Учора вона спакувала свою бейсболку. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Packs — настоящее; нужна packed.",
+                "uk": "Packs — теперішній час; потрібна packed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:word:underpants",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — underpants",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:underpants:audio"
+        ],
+        "accessibilityLabel": "Картка слова — underpants",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:underpants:audio",
+            "transcript": "underpants"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:underpants:r1",
+              "targetText": "underpants",
+              "meaningByLocale": {
+                "ru": "трусы. Множественное число.",
+                "uk": "труси. Множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underpants",
+            "definitionByLocale": {
+              "ru": "трусы. Множественное число.",
+              "uk": "труси. Множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: я виправ свою білизну — труси",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: я виправ свою білизну — труси",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I washed my underpants.",
+          "localizedMeaning": {
+            "ru": "Скажите: я постирал своё бельё — трусы",
+            "uk": "Скажіть: я виправ свою білизну — труси"
+          },
+          "orderedTokens": [
+            "I",
+            "washed",
+            "my",
+            "underpants"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i08:r1",
+            "text": "He washed his underpants."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i08:r2",
+            "text": "He washes his underpants."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i08:r3",
+            "text": "She washed her underpants."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i08:audio",
+            "transcript": "He washed his underpants."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i08:r1",
+              "targetText": "He washed his underpants.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i08:r2",
+              "targetText": "He washes his underpants.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i08:r3",
+              "targetText": "She washed her underpants.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He washed his underpants.",
+                "uk": "У записі звучить He washed his underpants."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He washed his underpants.",
+                "uk": "У записі звучить He washed his underpants."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора я спакував свої труси в подорож. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i09:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i09:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i09:r3",
+            "text": "packs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора я спакував свої труси в подорож. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера я упаковал свои трусы в поездку. Выберите форму",
+            "uk": "Учора я спакував свої труси в подорож. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ my underpants yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i09:r1",
+              "text": "packed"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i09:r2",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i09:r3",
+              "text": "packs"
+            }
+          ],
+          "testedDimension": "Учора я спакував свої труси в подорож. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Учора я спакував свої труси в подорож. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна packed.",
+                "uk": "Для минулого потрібна packed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Учора я спакував свої труси в подорож. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Packs — не прошлое и не форма с I.",
+                "uk": "Packs — не минуле й не форма з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:word:sports-bra",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sports bra",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:word:sports-bra:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sports bra",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:word:sports-bra:audio",
+            "transcript": "sports bra"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:word:sports-bra:r1",
+              "targetText": "sports bra",
+              "meaningByLocale": {
+                "ru": "спортивный бюстгальтер.",
+                "uk": "спортивний бюстгальтер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports bra",
+            "definitionByLocale": {
+              "ru": "спортивный бюстгальтер.",
+              "uk": "спортивний бюстгальтер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: вона випрала свій спортивний бюстгальтер",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: вона випрала свій спортивний бюстгальтер",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She washed her sports bra.",
+          "localizedMeaning": {
+            "ru": "Скажите: она постирала свой спортивный бюстгальтер",
+            "uk": "Скажіть: вона випрала свій спортивний бюстгальтер"
+          },
+          "orderedTokens": [
+            "She",
+            "washed",
+            "her",
+            "sports",
+            "bra"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i11:r1",
+            "text": "I packed my sports bra."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i11:r2",
+            "text": "I pack my sports bra."
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i11:r3",
+            "text": "She packed her sports bra."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i11:audio",
+            "transcript": "I packed my sports bra."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-06:i11:r1",
+              "targetText": "I packed my sports bra.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i11:r2",
+              "targetText": "I pack my sports bra.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i11:r3",
+              "targetText": "She packed her sports bra.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I packed my sports bra.",
+                "uk": "У записі звучить I packed my sports bra."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I packed my sports bra.",
+                "uk": "У записі звучить I packed my sports bra."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора я випрала спортивний бюстгальтер. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-06:i12:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i12:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-06:i12:r3",
+            "text": "washes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора я випрала спортивний бюстгальтер. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера я постирала спортивный бюстгальтер. Выберите форму",
+            "uk": "Учора я випрала спортивний бюстгальтер. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ my sports bra yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-06:i12:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i12:r2",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i12:r3",
+              "text": "washes"
+            }
+          ],
+          "testedDimension": "Учора я випрала спортивний бюстгальтер. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Учора я випрала спортивний бюстгальтер. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна washed.",
+                "uk": "Для минулого потрібна washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Учора я випрала спортивний бюстгальтер. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Washes — не прошлое и не форма с I.",
+                "uk": "Washes — не минуле й не форма з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте одяг з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте одяг з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-06:i13:p1",
+              "target": "rain boots",
+              "meaningByLocale": {
+                "ru": "сапоги для дождя",
+                "uk": "чоботи для дощу"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-06:i13:p2",
+              "target": "baseball cap",
+              "meaningByLocale": {
+                "ru": "бейсболка",
+                "uk": "бейсболка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-06:i13:p3",
+              "target": "underpants",
+              "meaningByLocale": {
+                "ru": "трусы",
+                "uk": "труси"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-06:i13:p4",
+              "target": "sports bra",
+              "meaningByLocale": {
+                "ru": "спортивный бюстгальтер",
+                "uk": "спортивний бюстгальтер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rain boots",
+            "baseball cap",
+            "underpants",
+            "sports bra"
+          ],
+          "rightColumn": [
+            "чоботи для дощу",
+            "бейсболка",
+            "труси",
+            "спортивний бюстгальтер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i14:audio",
+            "transcript": "I washed my shirt yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I washed my shirt yesterday.",
+          "orderedTokens": [
+            "I",
+            "washed",
+            "my",
+            "shirt",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i15:audio",
+            "transcript": "She packed her bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She packed her bag.",
+          "orderedTokens": [
+            "She",
+            "packed",
+            "her",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вчора чоботи для дощу були мокрі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вчора чоботи для дощу були мокрі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i16:audio",
+            "transcript": "The rain boots were wet yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rain boots were wet yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вчора ви спакували свою бейсболку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вчора ви спакували свою бейсболку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-06:i17:audio",
+            "transcript": "I packed my baseball cap yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I packed my baseball cap yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-06:word:rain-boots",
+      "correctText": "rain boots",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i01",
+      "correctText": "I cleaned the rain boots.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i02",
+      "correctText": "She cleaned her rain boots.",
+      "correctResponseId": "en:lesson-12:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i03",
+      "correctText": "cleaned",
+      "correctResponseId": "en:lesson-12:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:word:baseball-cap",
+      "correctText": "baseball cap",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i04",
+      "correctText": "I packed my baseball cap.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i05",
+      "correctText": "He packed his baseball cap.",
+      "correctResponseId": "en:lesson-12:session-06:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i06",
+      "correctText": "packed",
+      "correctResponseId": "en:lesson-12:session-06:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:word:underpants",
+      "correctText": "underpants",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i07",
+      "correctText": "I washed my underpants.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i08",
+      "correctText": "He washed his underpants.",
+      "correctResponseId": "en:lesson-12:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i09",
+      "correctText": "packed",
+      "correctResponseId": "en:lesson-12:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:word:sports-bra",
+      "correctText": "sports bra",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i10",
+      "correctText": "She washed her sports bra.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i11",
+      "correctText": "I packed my sports bra.",
+      "correctResponseId": "en:lesson-12:session-06:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i12",
+      "correctText": "washed",
+      "correctResponseId": "en:lesson-12:session-06:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i14",
+      "correctText": "I washed my shirt yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i15",
+      "correctText": "She packed her bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i16",
+      "correctText": "The rain boots were wet yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-06:i17",
+      "correctText": "I packed my baseball cap yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

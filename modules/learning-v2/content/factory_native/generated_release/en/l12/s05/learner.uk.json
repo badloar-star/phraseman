@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-05:word:parking-space",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — parking space",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:word:parking-space:audio"
+      ],
+      "accessibilityLabel": "Картка слова — parking space",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:word:parking-space:audio",
+          "transcript": "parking space"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:word:parking-space:r1",
+            "targetText": "parking space",
+            "meaningByLocale": {
+              "ru": "место для парковки одной машины.",
+              "uk": "місце для паркування однієї машини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parking space",
+          "definitionByLocale": {
+            "ru": "место для парковки одной машины.",
+            "uk": "місце для паркування однієї машини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я припаркувався на цьому паркувальному місці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я припаркувався на цьому паркувальному місці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I parked in the parking space.",
+        "localizedMeaning": {
+          "ru": "Скажите: я припарковался на этом парковочном месте",
+          "uk": "Скажіть: я припаркувався на цьому паркувальному місці"
+        },
+        "orderedTokens": [
+          "I",
+          "parked",
+          "in",
+          "the",
+          "parking",
+          "space"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i02:r1",
+          "text": "She parked in the parking space."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i02:r2",
+          "text": "She parks in the parking space."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i02:r3",
+          "text": "They parked in the parking space."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i02:audio",
+          "transcript": "She parked in the parking space."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:i02:r1",
+            "targetText": "She parked in the parking space.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i02:r2",
+            "targetText": "She parks in the parking space.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i02:r3",
+            "targetText": "They parked in the parking space.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She parked in the parking space.",
+              "uk": "У записі звучить She parked in the parking space."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She parked in the parking space.",
+              "uk": "У записі звучить She parked in the parking space."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ми припаркувалися на цьому місці. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i03:r1",
+          "text": "parked"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i03:r2",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i03:r3",
+          "text": "parks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ми припаркувалися на цьому місці. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мы припарковались на этом месте. Выберите форму",
+          "uk": "Учора ми припаркувалися на цьому місці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ in the parking space yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-05:i03:r1",
+            "text": "parked"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i03:r2",
+            "text": "park"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i03:r3",
+            "text": "parks"
+          }
+        ],
+        "testedDimension": "Учора ми припаркувалися на цьому місці. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора ми припаркувалися на цьому місці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна parked.",
+              "uk": "Для минулого потрібна parked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора ми припаркувалися на цьому місці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Parks — не прошлое и не форма с we.",
+              "uk": "Parks — не минуле й не форма з we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:word:car-wash",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — car wash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:word:car-wash:audio"
+      ],
+      "accessibilityLabel": "Картка слова — car wash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:word:car-wash:audio",
+          "transcript": "car wash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:word:car-wash:r1",
+            "targetText": "car wash",
+            "meaningByLocale": {
+              "ru": "автомойка.",
+              "uk": "автомийка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car wash",
+          "definitionByLocale": {
+            "ru": "автомойка.",
+            "uk": "автомийка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: ми побували на автомийці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: ми побували на автомийці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We visited the car wash.",
+        "localizedMeaning": {
+          "ru": "Скажите: мы побывали на автомойке",
+          "uk": "Скажіть: ми побували на автомийці"
+        },
+        "orderedTokens": [
+          "We",
+          "visited",
+          "the",
+          "car",
+          "wash"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i05:r1",
+          "text": "I visited the car wash."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i05:r2",
+          "text": "I visit the car wash."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i05:r3",
+          "text": "She visited the car wash."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i05:audio",
+          "transcript": "I visited the car wash."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:i05:r1",
+            "targetText": "I visited the car wash.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i05:r2",
+            "targetText": "I visit the car wash.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i05:r3",
+            "targetText": "She visited the car wash.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visited the car wash.",
+              "uk": "У записі звучить I visited the car wash."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visited the car wash.",
+              "uk": "У записі звучить I visited the car wash."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора вона побувала на автомийці. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i06:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i06:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i06:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора вона побувала на автомийці. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она побывала на автомойке. Выберите форму",
+          "uk": "Учора вона побувала на автомийці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the car wash yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-05:i06:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i06:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i06:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Учора вона побувала на автомийці. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Учора вона побувала на автомийці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна visited.",
+              "uk": "Для минулого потрібна visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Учора вона побувала на автомийці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Visits — настоящее; нужна visited.",
+              "uk": "Visits — теперішній час; потрібна visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:word:car-keys",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — car keys",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:word:car-keys:audio"
+      ],
+      "accessibilityLabel": "Картка слова — car keys",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:word:car-keys:audio",
+          "transcript": "car keys"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:word:car-keys:r1",
+            "targetText": "car keys",
+            "meaningByLocale": {
+              "ru": "ключи от машины.",
+              "uk": "ключі від машини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car keys",
+          "definitionByLocale": {
+            "ru": "ключи от машины.",
+            "uk": "ключі від машини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я скористався ключами від машини",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я скористався ключами від машини",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used my car keys.",
+        "localizedMeaning": {
+          "ru": "Скажите: я воспользовался ключами от машины",
+          "uk": "Скажіть: я скористався ключами від машини"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "my",
+          "car",
+          "keys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i08:r1",
+          "text": "He used his car keys."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i08:r2",
+          "text": "He uses his car keys."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i08:r3",
+          "text": "She used her car keys."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i08:audio",
+          "transcript": "He used his car keys."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:i08:r1",
+            "targetText": "He used his car keys.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i08:r2",
+            "targetText": "He uses his car keys.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i08:r3",
+            "targetText": "She used her car keys.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used his car keys.",
+              "uk": "У записі звучить He used his car keys."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used his car keys.",
+              "uk": "У записі звучить He used his car keys."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора я скористався ключами від машини. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i09:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i09:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i09:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора я скористався ключами від машини. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера я воспользовался ключами от машины. Выберите форму",
+          "uk": "Учора я скористався ключами від машини. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ my car keys yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-05:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Учора я скористався ключами від машини. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора я скористався ключами від машини. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "После e добавляем d: used.",
+              "uk": "Після e додаємо d: used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора я скористався ключами від машини. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Uses — не прошлое и не форма с I.",
+              "uk": "Uses — не минуле й не форма з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:word:driving-licence",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — driving licence",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:word:driving-licence:audio"
+      ],
+      "accessibilityLabel": "Картка слова — driving licence",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:word:driving-licence:audio",
+          "transcript": "driving licence"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:word:driving-licence:r1",
+            "targetText": "driving licence",
+            "meaningByLocale": {
+              "ru": "водительское удостоверение.",
+              "uk": "посвідчення водія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "driving licence",
+          "definitionByLocale": {
+            "ru": "водительское удостоверение.",
+            "uk": "посвідчення водія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я перевірив своє посвідчення водія",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я перевірив своє посвідчення водія",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked my driving licence.",
+        "localizedMeaning": {
+          "ru": "Скажите: я проверил своё водительское удостоверение",
+          "uk": "Скажіть: я перевірив своє посвідчення водія"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "my",
+          "driving",
+          "licence"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i11:r1",
+          "text": "She checked her driving licence."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i11:r2",
+          "text": "She checks her driving licence."
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i11:r3",
+          "text": "He checked his driving licence."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i11:audio",
+          "transcript": "She checked her driving licence."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-05:i11:r1",
+            "targetText": "She checked her driving licence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i11:r2",
+            "targetText": "She checks her driving licence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i11:r3",
+            "targetText": "He checked his driving licence.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She checked her driving licence.",
+              "uk": "У записі звучить She checked her driving licence."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She checked her driving licence.",
+              "uk": "У записі звучить She checked her driving licence."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора він перевірив посвідчення водія. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-05:i12:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i12:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-05:i12:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора він перевірив посвідчення водія. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера он проверил водительское удостоверение. Выберите форму",
+          "uk": "Учора він перевірив посвідчення водія. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ his driving licence yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-05:i12:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i12:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i12:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Учора він перевірив посвідчення водія. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора він перевірив посвідчення водія. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна checked.",
+              "uk": "Для минулого потрібна checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора він перевірив посвідчення водія. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Checks — настоящее; нужна checked.",
+              "uk": "Checks — теперішній час; потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-05:i13:p1",
+            "target": "parking space",
+            "meaningByLocale": {
+              "ru": "парковочное место",
+              "uk": "паркувальне місце"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-05:i13:p2",
+            "target": "car wash",
+            "meaningByLocale": {
+              "ru": "автомойка",
+              "uk": "автомийка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-05:i13:p3",
+            "target": "car keys",
+            "meaningByLocale": {
+              "ru": "ключи от машины",
+              "uk": "ключі від машини"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-05:i13:p4",
+            "target": "driving licence",
+            "meaningByLocale": {
+              "ru": "водительское удостоверение",
+              "uk": "посвідчення водія"
+            }
+          }
+        ],
+        "leftColumn": [
+          "parking space",
+          "car wash",
+          "car keys",
+          "driving licence"
+        ],
+        "rightColumn": [
+          "паркувальне місце",
+          "автомийка",
+          "ключі від машини",
+          "посвідчення водія"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i14:audio",
+          "transcript": "I parked near the bank yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I parked near the bank yesterday.",
+        "orderedTokens": [
+          "I",
+          "parked",
+          "near",
+          "the",
+          "bank",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i15:audio",
+          "transcript": "She waited in the car."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She waited in the car.",
+        "orderedTokens": [
+          "She",
+          "waited",
+          "in",
+          "the",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора ми побували на автомийці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора ми побували на автомийці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i16:audio",
+          "transcript": "We visited the car wash yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We visited the car wash yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вчора ключі від машини були у вашій сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вчора ключі від машини були у вашій сумці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-05:i17:audio",
+          "transcript": "The car keys were in my bag yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The car keys were in my bag yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1d4635098c47581f0c8f8e7a81827c9adb8fec5ee2ee06da18c51f979ea812ca"
+}

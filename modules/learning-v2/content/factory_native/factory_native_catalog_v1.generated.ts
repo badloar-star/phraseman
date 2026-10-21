@@ -4347,4 +4347,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Past Simple: regular verb + -ed; final -e + -d","uk":"Past Simple: regular verb + -ed; final -e + -d"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 5,
+    sourceFingerprint: "06193231bf021dcdae983ba0aad34abedd03b71fb8f256f47e969be703405af5",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"regular past: parked, visited, used, checked","uk":"regular past: parked, visited, used, checked"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 6,
+    sourceFingerprint: "ea65273e0690f439c5ef417baea15f221fdf0786c9af5bd22ec062ddbe480795",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"regular past: cleaned, washed, packed; was/were","uk":"regular past: cleaned, washed, packed; was/were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 7,
+    sourceFingerprint: "8e46ecbe6e2ac0870fb40a7cdea4f127eca17d2513071d08846cbb778f43c00f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"regular past: used, cleaned, moved, unfolded","uk":"regular past: used, cleaned, moved, unfolded"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 8,
+    sourceFingerprint: "1122b226ae31d9903c45242ff6e28a13a61a864aab781b85c1967d59185b48f3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"regular past: cleaned, washed, checked; was/were","uk":"regular past: cleaned, washed, checked; was/were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
 ]);

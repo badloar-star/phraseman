@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-08:intro1:r2": {
+          "ru": "Это состояние стекла, а нужно действие.",
+          "uk": "Це стан скла, а потрібна дія."
+        },
+        "en:lesson-12:session-08:intro1:r3": {
+          "ru": "Для прошлого нужна washed.",
+          "uk": "Для минулого потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-08:intro2:r2": {
+          "ru": "Cleans — настоящее; нужна cleaned.",
+          "uk": "Cleans — теперішній час; потрібна cleaned."
+        },
+        "en:lesson-12:session-08:intro2:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-08:intro3:r2": {
+          "ru": "Это действие с номерным знаком, а нужно с сиденьем.",
+          "uk": "Це дія з номерним знаком, а потрібна із сидінням."
+        },
+        "en:lesson-12:session-08:intro3:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fdfa70560a79e30fe030c9de4d1ace387d32ba75709bfd3213267918801397cc"
+}

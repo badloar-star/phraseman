@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-08:word:windscreen",
+    "correctText": "windscreen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i01",
+    "correctText": "I washed the windscreen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i02",
+    "correctText": "He washed the windscreen.",
+    "correctResponseId": "en:lesson-12:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i03",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:word:steering-wheel",
+    "correctText": "steering wheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i04",
+    "correctText": "I cleaned the steering wheel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i05",
+    "correctText": "She cleaned the steering wheel.",
+    "correctResponseId": "en:lesson-12:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i06",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:word:number-plate",
+    "correctText": "number plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i07",
+    "correctText": "I checked the number plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i08",
+    "correctText": "He checked the number plate.",
+    "correctResponseId": "en:lesson-12:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i09",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:word:car-seat",
+    "correctText": "car seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i10",
+    "correctText": "We cleaned the car seat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i11",
+    "correctText": "I cleaned the car seat.",
+    "correctResponseId": "en:lesson-12:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i12",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i13",
+    "correctText": "en:lesson-12:session-08:i13:p1=windscreen\nen:lesson-12:session-08:i13:p2=steering wheel\nen:lesson-12:session-08:i13:p3=number plate\nen:lesson-12:session-08:i13:p4=car seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i14",
+    "correctText": "I washed the car yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i15",
+    "correctText": "She checked the car keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i16",
+    "correctText": "The windscreen was dirty yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-08:i17",
+    "correctText": "I cleaned the steering wheel yesterday.",
+    "correctResponseId": null
+  }
+]

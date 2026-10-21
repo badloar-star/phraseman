@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "regular past: used, cleaned, moved, unfolded",
+    "uk": "regular past: used, cleaned, moved, unfolded"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Запасной ключ",
+        "uk": "Запасний ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Spare key — «запасной ключ». Вчера вы воспользовались запасным ключом: I used the spare key. У use уже есть e, добавляем d: used. Выберите завершённое действие вчера.",
+        "uk": "Spare key — «запасний ключ». Учора ви скористалися запасним ключем: I used the spare key. У use вже є e, додаємо d: used. Виберіть завершену дію вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-07:intro1:r1",
+              "text": "I used the spare key yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro1:r2",
+              "text": "I use the spare key yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro1:r3",
+              "text": "I uses the spare key yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-07:intro1:r1",
+              "text": "I used the spare key yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro1:r2",
+              "text": "I use the spare key yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro1:r3",
+              "text": "I uses the spare key yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свободная комната",
+        "uk": "Вільна кімната"
+      },
+      "bodyByLocale": {
+        "ru": "Spare room — «свободная дополнительная комната», например для гостей. Вчера она убрала эту комнату: She cleaned the spare room. Clean → cleaned; с she в прошлом форма такая же, как с I. Выберите эту фразу.",
+        "uk": "Spare room — «вільна додаткова кімната», наприклад для гостей. Учора вона прибрала цю кімнату: She cleaned the spare room. Clean → cleaned; з she в минулому форма така сама, як з I. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-07:intro2:r1",
+              "text": "She cleaned the spare room."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro2:r2",
+              "text": "She cleans the spare room yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro2:r3",
+              "text": "She clean the spare room yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-07:intro2:r1",
+              "text": "She cleaned the spare room."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro2:r2",
+              "text": "She cleans the spare room yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro2:r3",
+              "text": "She clean the spare room yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мебель для гостя",
+        "uk": "Меблі для гостя"
+      },
+      "bodyByLocale": {
+        "ru": "Sofa bed — «диван-кровать». Folding chair — «складной стул». Знакомый unfold помогает рассказать, что стул разложили: We unfolded the folding chair. Вчера вы разложили стул, а не передвинули диван. Выберите это действие.",
+        "uk": "Sofa bed — «диван-ліжко». Folding chair — «складаний стілець». Знайоме unfold допомагає розповісти, що стілець розклали: We unfolded the folding chair. Учора ви розклали стілець, а не пересунули диван. Виберіть цю дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-07:intro3:r1",
+              "text": "We unfolded the folding chair."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro3:r2",
+              "text": "We moved the sofa bed."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro3:r3",
+              "text": "We unfold the folding chair yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-07:intro3:r1",
+              "text": "We unfolded the folding chair."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro3:r2",
+              "text": "We moved the sofa bed."
+            },
+            {
+              "responseId": "en:lesson-12:session-07:intro3:r3",
+              "text": "We unfold the folding chair yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "115911f89d60f7ae03c9b9a8ed7b981c7ba42cd94f068e9397b7b46b47e16a1a"
+}

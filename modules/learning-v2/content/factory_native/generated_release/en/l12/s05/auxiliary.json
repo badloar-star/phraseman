@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-05:intro1:r2": {
+          "ru": "Для прошлого нужна parked.",
+          "uk": "Для минулого потрібна parked."
+        },
+        "en:lesson-12:session-05:intro1:r3": {
+          "ru": "Parks — не прошлое и не форма с I.",
+          "uk": "Parks — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-05:intro2:r2": {
+          "ru": "Visits — настоящее; нужна visited.",
+          "uk": "Visits — теперішній час; потрібна visited."
+        },
+        "en:lesson-12:session-05:intro2:r3": {
+          "ru": "Для прошлого добавляем -ed.",
+          "uk": "Для минулого додаємо -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-05:intro3:r2": {
+          "ru": "Для вчерашнего действия нужна checked.",
+          "uk": "Для вчорашньої дії потрібна checked."
+        },
+        "en:lesson-12:session-05:intro3:r3": {
+          "ru": "Checks — не прошлое и не форма с I.",
+          "uk": "Checks — не минуле й не форма з I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ae69f61e9fe6e58a678146ee7bcda8f8b7739550b5110c2f0a1d52bcdec8024d"
+}

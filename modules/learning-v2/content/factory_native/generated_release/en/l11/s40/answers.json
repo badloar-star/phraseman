@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-40:word:roast-chicken",
+    "correctText": "roast chicken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i01",
+    "correctText": "Was the roast chicken hot?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i02",
+    "correctText": "The roast chicken was on the plate.",
+    "correctResponseId": "en:lesson-11:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:word:baked-potato",
+    "correctText": "baked potato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i04",
+    "correctText": "There was a baked potato on the plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i05",
+    "correctText": "The baked potato was hot.",
+    "correctResponseId": "en:lesson-11:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:word:chicken-soup",
+    "correctText": "chicken soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i07",
+    "correctText": "The chicken soup was not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i08",
+    "correctText": "The chicken soup was in the kitchen.",
+    "correctResponseId": "en:lesson-11:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:word:green-salad",
+    "correctText": "green salad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i10",
+    "correctText": "The green salad was in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i11",
+    "correctText": "The green salad was on the table.",
+    "correctResponseId": "en:lesson-11:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i13",
+    "correctText": "en:lesson-11:session-40:i13:p1=roast chicken\nen:lesson-11:session-40:i13:p2=baked potato\nen:lesson-11:session-40:i13:p3=chicken soup\nen:lesson-11:session-40:i13:p4=green salad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i14",
+    "correctText": "Please don't move my plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i15",
+    "correctText": "I am making lunch right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i16",
+    "correctText": "Was the chicken soup delicious?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-40:i17",
+    "correctText": "The baked potato was not cold.",
+    "correctResponseId": null
+  }
+]

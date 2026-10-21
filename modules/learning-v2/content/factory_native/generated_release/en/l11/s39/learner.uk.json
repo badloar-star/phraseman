@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-39:word:cash-machine",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cash machine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:word:cash-machine:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cash machine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:word:cash-machine:audio",
+          "transcript": "cash machine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:word:cash-machine:r1",
+            "targetText": "cash machine",
+            "meaningByLocale": {
+              "ru": "банкомат.",
+              "uk": "банкомат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cash machine",
+          "definitionByLocale": {
+            "ru": "банкомат.",
+            "uk": "банкомат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був банкомат біля банку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був банкомат біля банку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the cash machine near the bank?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли банкомат у банка",
+          "uk": "Запитайте, чи був банкомат біля банку"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "cash",
+          "machine",
+          "near",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i02:r1",
+          "text": "There were two cash machines in the station."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i02:r2",
+          "text": "There was a cash machine in the station."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i02:r3",
+          "text": "There were two cash machines near the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i02:audio",
+          "transcript": "There were two cash machines in the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:i02:r1",
+            "targetText": "There were two cash machines in the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i02:r2",
+            "targetText": "There was a cash machine in the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i02:r3",
+            "targetText": "There were two cash machines near the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two cash machines in the station.",
+              "uk": "У записі звучить There were two cash machines in the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two cash machines in the station.",
+              "uk": "У записі звучить There were two cash machines in the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора банкомат був біля дверей. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора банкомат був біля дверей. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера банкомат был у двери. Выберите форму",
+          "uk": "Учора банкомат був біля дверей. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The cash machine ___ near the door yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-39:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора банкомат був біля дверей. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора банкомат був біля дверей. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора банкомат був біля дверей. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один банкомат: was.",
+              "uk": "Один банкомат: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:word:bank-card",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bank card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:word:bank-card:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bank card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:word:bank-card:audio",
+          "transcript": "bank card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:word:bank-card:r1",
+            "targetText": "bank card",
+            "meaningByLocale": {
+              "ru": "банковская карта. Общее название.",
+              "uk": "банківська картка. Загальна назва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bank card",
+          "definitionByLocale": {
+            "ru": "банковская карта. Общее название.",
+            "uk": "банківська картка. Загальна назва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: моя банківська картка була не в сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: моя банківська картка була не в сумці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My bank card was not in my bag.",
+        "localizedMeaning": {
+          "ru": "Сообщите: моя банковская карта была не в сумке",
+          "uk": "Повідомте: моя банківська картка була не в сумці"
+        },
+        "orderedTokens": [
+          "My",
+          "bank",
+          "card",
+          "was",
+          "not",
+          "in",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i05:r1",
+          "text": "The bank card was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i05:r2",
+          "text": "The bank card is on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i05:r3",
+          "text": "The bank card was on the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i05:audio",
+          "transcript": "The bank card was on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:i05:r1",
+            "targetText": "The bank card was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i05:r2",
+            "targetText": "The bank card is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i05:r3",
+            "targetText": "The bank card was on the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bank card was on the table.",
+              "uk": "У записі звучить The bank card was on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bank card was on the table.",
+              "uk": "У записі звучить The bank card was on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз моя банківська картка тут. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз моя банківська картка тут. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас моя банковская карта здесь. Выберите форму",
+          "uk": "Зараз моя банківська картка тут. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My bank card ___ here now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-39:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз моя банківська картка тут. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Зараз моя банківська картка тут. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Зараз моя банківська картка тут. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна карта: is.",
+              "uk": "Одна картка: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:word:debit-card",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — debit card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:word:debit-card:audio"
+      ],
+      "accessibilityLabel": "Картка слова — debit card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:word:debit-card:audio",
+          "transcript": "debit card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:word:debit-card:r1",
+            "targetText": "debit card",
+            "meaningByLocale": {
+              "ru": "дебетовая карта.",
+              "uk": "дебетова картка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "debit card",
+          "definitionByLocale": {
+            "ru": "дебетовая карта.",
+            "uk": "дебетова картка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була дебетова картка в гаманці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була дебетова картка в гаманці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the debit card in the wallet?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли дебетовая карта в кошельке",
+          "uk": "Запитайте, чи була дебетова картка в гаманці"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "debit",
+          "card",
+          "in",
+          "the",
+          "wallet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i08:r1",
+          "text": "My debit card was in my pocket."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i08:r2",
+          "text": "My debit card was in my bag."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i08:r3",
+          "text": "My bank card was in my pocket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i08:audio",
+          "transcript": "My debit card was in my pocket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:i08:r1",
+            "targetText": "My debit card was in my pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i08:r2",
+            "targetText": "My debit card was in my bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i08:r3",
+            "targetText": "My bank card was in my pocket.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My debit card was in my pocket.",
+              "uk": "У записі звучить My debit card was in my pocket."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My debit card was in my pocket.",
+              "uk": "У записі звучить My debit card was in my pocket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На столі було дві дебетові картки. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столі було дві дебетові картки. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе было две дебетовые карты. Выберите форму",
+          "uk": "На столі було дві дебетові картки. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two debit cards on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-39:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "На столі було дві дебетові картки. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "На столі було дві дебетові картки. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Две карты: were.",
+              "uk": "Дві картки: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "На столі було дві дебетові картки. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:word:credit-card",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — credit card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:word:credit-card:audio"
+      ],
+      "accessibilityLabel": "Картка слова — credit card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:word:credit-card:audio",
+          "transcript": "credit card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:word:credit-card:r1",
+            "targetText": "credit card",
+            "meaningByLocale": {
+              "ru": "кредитная карта.",
+              "uk": "кредитна картка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "credit card",
+          "definitionByLocale": {
+            "ru": "кредитная карта.",
+            "uk": "кредитна картка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: кредитна картка була в моїй сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: кредитна картка була в моїй сумці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The credit card was in my bag.",
+        "localizedMeaning": {
+          "ru": "Сообщите: кредитная карта была в моей сумке",
+          "uk": "Повідомте: кредитна картка була в моїй сумці"
+        },
+        "orderedTokens": [
+          "The",
+          "credit",
+          "card",
+          "was",
+          "in",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i11:r1",
+          "text": "The credit card was under the book."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i11:r2",
+          "text": "The debit card was under the book."
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i11:r3",
+          "text": "The credit card was near the book."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i11:audio",
+          "transcript": "The credit card was under the book."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-39:i11:r1",
+            "targetText": "The credit card was under the book.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i11:r2",
+            "targetText": "The debit card was under the book.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i11:r3",
+            "targetText": "The credit card was near the book.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The credit card was under the book.",
+              "uk": "У записі звучить The credit card was under the book."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The credit card was under the book.",
+              "uk": "У записі звучить The credit card was under the book."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора кредитна картка була в гаманці. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-39:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-39:i12:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора кредитна картка була в гаманці. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера кредитная карта была в кошельке. Выберите форму",
+          "uk": "Учора кредитна картка була в гаманці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The credit card ___ in the wallet yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-39:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i12:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора кредитна картка була в гаманці. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора кредитна картка була в гаманці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора кредитна картка була в гаманці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна карта: was.",
+              "uk": "Одна картка: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-39:i13:p1",
+            "target": "cash machine",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-39:i13:p2",
+            "target": "bank card",
+            "meaningByLocale": {
+              "ru": "банковская карта",
+              "uk": "банківська картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-39:i13:p3",
+            "target": "debit card",
+            "meaningByLocale": {
+              "ru": "дебетовая карта",
+              "uk": "дебетова картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-39:i13:p4",
+            "target": "credit card",
+            "meaningByLocale": {
+              "ru": "кредитная карта",
+              "uk": "кредитна картка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cash machine",
+          "bank card",
+          "debit card",
+          "credit card"
+        ],
+        "rightColumn": [
+          "банкомат",
+          "банківська картка",
+          "дебетова картка",
+          "кредитна картка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i14:audio",
+          "transcript": "Please don't move my bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my bag.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i15:audio",
+          "transcript": "I am looking for my wallet right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am looking for my wallet right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "looking",
+          "for",
+          "my",
+          "wallet",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що банківська картка була не на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що банківська картка була не на столі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i16:audio",
+          "transcript": "The bank card was not on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bank card was not on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був банкомат на вокзалі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був банкомат на вокзалі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-39:i17:audio",
+          "transcript": "Was the cash machine in the station?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the cash machine in the station?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "60e68bfe9851088851e9da5f4d82cfe27104d544aa47a93ad3bc3bc453aba56a"
+}

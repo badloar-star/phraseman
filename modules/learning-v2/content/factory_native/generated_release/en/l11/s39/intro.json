@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; questions and negatives; yesterday / now",
+    "uk": "was/were; questions and negatives; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Банкомат",
+        "uk": "Банкомат"
+      },
+      "bodyByLocale": {
+        "ru": "Cash machine — «банкомат». Вчера у магазина был банкомат: There was a cash machine near the shop. Если их было два: There were two cash machines near the shop. Выберите сообщение об одном банкомате.",
+        "uk": "Cash machine — «банкомат». Учора біля магазину був банкомат: There was a cash machine near the shop. Якщо їх було два: There were two cash machines near the shop. Виберіть повідомлення про один банкомат."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-39:intro1:r1",
+              "text": "There was a cash machine near the shop."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro1:r2",
+              "text": "There were a cash machine near the shop."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro1:r3",
+              "text": "There were two cash machines near the shop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-39:intro1:r1",
+              "text": "There was a cash machine near the shop."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro1:r2",
+              "text": "There were a cash machine near the shop."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro1:r3",
+              "text": "There were two cash machines near the shop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Банковская карта",
+        "uk": "Банківська картка"
+      },
+      "bodyByLocale": {
+        "ru": "Bank card — общее название банковской карты. Debit card — «дебетовая карта»: при обычной оплате деньги идут с вашего счёта. Карта вчера лежала в сумке: My debit card was in my bag yesterday. Сейчас она здесь: It is here now. Выберите вчерашнее место карты.",
+        "uk": "Bank card — загальна назва банківської картки. Debit card — «дебетова картка»: за звичайної оплати гроші йдуть із вашого рахунку. Картка вчора лежала в сумці: My debit card was in my bag yesterday. Зараз вона тут: It is here now. Виберіть учорашнє місце картки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-39:intro2:r1",
+              "text": "My debit card was in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro2:r2",
+              "text": "My debit card is in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro2:r3",
+              "text": "My debit card were in my bag yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-39:intro2:r1",
+              "text": "My debit card was in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro2:r2",
+              "text": "My debit card is in my bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro2:r3",
+              "text": "My debit card were in my bag yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кредитная карта",
+        "uk": "Кредитна картка"
+      },
+      "bodyByLocale": {
+        "ru": "Credit card — «кредитная карта»: оплата использует кредит банка. Это другой тип bank card, чем debit card. Чтобы спросить, была ли кредитная карта в кошельке, поставьте was перед предметом: Was the credit card in your wallet? Выберите этот вопрос.",
+        "uk": "Credit card — «кредитна картка»: оплата використовує кредит банку. Це інший тип bank card, ніж debit card. Щоб запитати, чи була кредитна картка в гаманці, поставте was перед предметом: Was the credit card in your wallet? Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-39:intro3:r1",
+              "text": "Was the credit card in your wallet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro3:r2",
+              "text": "Were the credit card in your wallet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro3:r3",
+              "text": "Was the debit card in your wallet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-39:intro3:r1",
+              "text": "Was the credit card in your wallet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro3:r2",
+              "text": "Were the credit card in your wallet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-39:intro3:r3",
+              "text": "Was the debit card in your wallet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b4270146d24f3b89bfc6ad2b496ee1d44b35eb85adf20f0fb77d962f09c9c8d7"
+}

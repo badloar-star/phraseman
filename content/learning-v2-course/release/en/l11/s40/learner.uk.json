@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-40:word:roast-chicken",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roast chicken",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:word:roast-chicken:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roast chicken",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:word:roast-chicken:audio",
+          "transcript": "roast chicken"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:word:roast-chicken:r1",
+            "targetText": "roast chicken",
+            "meaningByLocale": {
+              "ru": "запечённая курица.",
+              "uk": "запечена курка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roast chicken",
+          "definitionByLocale": {
+            "ru": "запечённая курица.",
+            "uk": "запечена курка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була запечена курка гаряча",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була запечена курка гаряча",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the roast chicken hot?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли запечённая курица горячей",
+          "uk": "Запитайте, чи була запечена курка гаряча"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "roast",
+          "chicken",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i02:r1",
+          "text": "The roast chicken was on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i02:r2",
+          "text": "The roast chicken is on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i02:r3",
+          "text": "The roast chicken was in the fridge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i02:audio",
+          "transcript": "The roast chicken was on the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:i02:r1",
+            "targetText": "The roast chicken was on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i02:r2",
+            "targetText": "The roast chicken is on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i02:r3",
+            "targetText": "The roast chicken was in the fridge.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The roast chicken was on the plate.",
+              "uk": "У записі звучить The roast chicken was on the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The roast chicken was on the plate.",
+              "uk": "У записі звучить The roast chicken was on the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора запечена курка була смачна. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора запечена курка була смачна. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера запечённая курица была вкусной. Выберите форму",
+          "uk": "Учора запечена курка була смачна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The roast chicken ___ delicious yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-40:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора запечена курка була смачна. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора запечена курка була смачна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора запечена курка була смачна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Название блюда здесь требует was.",
+              "uk": "Назва страви тут потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:word:baked-potato",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — baked potato",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:word:baked-potato:audio"
+      ],
+      "accessibilityLabel": "Картка слова — baked potato",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:word:baked-potato:audio",
+          "transcript": "baked potato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:word:baked-potato:r1",
+            "targetText": "baked potato",
+            "meaningByLocale": {
+              "ru": "печёная картофелина.",
+              "uk": "печена картоплина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baked potato",
+          "definitionByLocale": {
+            "ru": "печёная картофелина.",
+            "uk": "печена картоплина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: на тарілці була печена картоплина. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: на тарілці була печена картоплина. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a baked potato on the plate.",
+        "localizedMeaning": {
+          "ru": "Сообщите: на тарелке была печёная картофелина. Начните с There",
+          "uk": "Повідомте: на тарілці була печена картоплина. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "baked",
+          "potato",
+          "on",
+          "the",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i05:r1",
+          "text": "The baked potato was hot."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i05:r2",
+          "text": "The baked potato is hot."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i05:r3",
+          "text": "The baked potato was cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i05:audio",
+          "transcript": "The baked potato was hot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:i05:r1",
+            "targetText": "The baked potato was hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i05:r2",
+            "targetText": "The baked potato is hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i05:r3",
+            "targetText": "The baked potato was cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The baked potato was hot.",
+              "uk": "У записі звучить The baked potato was hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The baked potato was hot.",
+              "uk": "У записі звучить The baked potato was hot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На столі було три печені картоплини. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столі було три печені картоплини. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе было три печёные картофелины. Выберите форму",
+          "uk": "На столі було три печені картоплини. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ three baked potatoes on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-40:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "На столі було три печені картоплини. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "На столі було три печені картоплини. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Три предмета: were.",
+              "uk": "Три предмети: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "На столі було три печені картоплини. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:word:chicken-soup",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chicken soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:word:chicken-soup:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chicken soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:word:chicken-soup:audio",
+          "transcript": "chicken soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:word:chicken-soup:r1",
+            "targetText": "chicken soup",
+            "meaningByLocale": {
+              "ru": "куриный суп.",
+              "uk": "курячий суп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chicken soup",
+          "definitionByLocale": {
+            "ru": "куриный суп.",
+            "uk": "курячий суп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: курячий суп був не холодний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: курячий суп був не холодний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chicken soup was not cold.",
+        "localizedMeaning": {
+          "ru": "Сообщите: куриный суп был не холодным",
+          "uk": "Повідомте: курячий суп був не холодний"
+        },
+        "orderedTokens": [
+          "The",
+          "chicken",
+          "soup",
+          "was",
+          "not",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i08:r1",
+          "text": "The chicken soup was in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i08:r2",
+          "text": "The chicken soup was in the fridge."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i08:r3",
+          "text": "The chicken soup is in the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i08:audio",
+          "transcript": "The chicken soup was in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:i08:r1",
+            "targetText": "The chicken soup was in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i08:r2",
+            "targetText": "The chicken soup was in the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i08:r3",
+            "targetText": "The chicken soup is in the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chicken soup was in the kitchen.",
+              "uk": "У записі звучить The chicken soup was in the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chicken soup was in the kitchen.",
+              "uk": "У записі звучить The chicken soup was in the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз курячий суп гарячий. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз курячий суп гарячий. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас куриный суп горячий. Выберите форму",
+          "uk": "Зараз курячий суп гарячий. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The chicken soup ___ hot now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-40:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз курячий суп гарячий. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Зараз курячий суп гарячий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Зараз курячий суп гарячий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "О супе здесь говорим is.",
+              "uk": "Про суп тут кажемо is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:word:green-salad",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — green salad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:word:green-salad:audio"
+      ],
+      "accessibilityLabel": "Картка слова — green salad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:word:green-salad:audio",
+          "transcript": "green salad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:word:green-salad:r1",
+            "targetText": "green salad",
+            "meaningByLocale": {
+              "ru": "зелёный салат.",
+              "uk": "зелений салат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "green salad",
+          "definitionByLocale": {
+            "ru": "зелёный салат.",
+            "uk": "зелений салат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: зелений салат був у холодильнику",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: зелений салат був у холодильнику",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The green salad was in the fridge.",
+        "localizedMeaning": {
+          "ru": "Сообщите: зелёный салат был в холодильнике",
+          "uk": "Повідомте: зелений салат був у холодильнику"
+        },
+        "orderedTokens": [
+          "The",
+          "green",
+          "salad",
+          "was",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i11:r1",
+          "text": "The green salad was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i11:r2",
+          "text": "The green salad is on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i11:r3",
+          "text": "The green salad was near the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i11:audio",
+          "transcript": "The green salad was on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-40:i11:r1",
+            "targetText": "The green salad was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i11:r2",
+            "targetText": "The green salad is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i11:r3",
+            "targetText": "The green salad was near the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The green salad was on the table.",
+              "uk": "У записі звучить The green salad was on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The green salad was on the table.",
+              "uk": "У записі звучить The green salad was on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора зелений салат був свіжий. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-40:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-40:i12:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора зелений салат був свіжий. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера зелёный салат был свежим. Выберите форму",
+          "uk": "Учора зелений салат був свіжий. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The green salad ___ fresh yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-40:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i12:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора зелений салат був свіжий. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора зелений салат був свіжий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора зелений салат був свіжий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один салат: was.",
+              "uk": "Один салат: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте страви з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте страви з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-40:i13:p1",
+            "target": "roast chicken",
+            "meaningByLocale": {
+              "ru": "запечённая курица",
+              "uk": "запечена курка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-40:i13:p2",
+            "target": "baked potato",
+            "meaningByLocale": {
+              "ru": "печёная картофелина",
+              "uk": "печена картоплина"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-40:i13:p3",
+            "target": "chicken soup",
+            "meaningByLocale": {
+              "ru": "куриный суп",
+              "uk": "курячий суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-40:i13:p4",
+            "target": "green salad",
+            "meaningByLocale": {
+              "ru": "зелёный салат",
+              "uk": "зелений салат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "roast chicken",
+          "baked potato",
+          "chicken soup",
+          "green salad"
+        ],
+        "rightColumn": [
+          "запечена курка",
+          "печена картоплина",
+          "курячий суп",
+          "зелений салат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i14:audio",
+          "transcript": "Please don't move my plate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my plate.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i15:audio",
+          "transcript": "I am making lunch right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am making lunch right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "making",
+          "lunch",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був курячий суп смачний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був курячий суп смачний",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i16:audio",
+          "transcript": "Was the chicken soup delicious?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the chicken soup delicious?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що печена картоплина була не холодна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що печена картоплина була не холодна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-40:i17:audio",
+          "transcript": "The baked potato was not cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The baked potato was not cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "735acc9203830ea142cf25b690c4d2bf42dae480e050cdb5b9875e6a04df1d19"
+}

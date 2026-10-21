@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-37:word:tea-bag",
+    "correctText": "tea bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i01",
+    "correctText": "There was a tea bag in the cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i02",
+    "correctText": "The tea bag was on the plate.",
+    "correctResponseId": "en:lesson-11:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:word:coffee-cup",
+    "correctText": "coffee cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i04",
+    "correctText": "Was the coffee cup clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i05",
+    "correctText": "There were two coffee cups on the table.",
+    "correctResponseId": "en:lesson-11:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:word:sugar-bowl",
+    "correctText": "sugar bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i07",
+    "correctText": "The sugar bowl was not empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i08",
+    "correctText": "The sugar bowl was near the window.",
+    "correctResponseId": "en:lesson-11:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:word:milk-jug",
+    "correctText": "milk jug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i10",
+    "correctText": "There was a milk jug in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i11",
+    "correctText": "The milk jug was full.",
+    "correctResponseId": "en:lesson-11:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i13",
+    "correctText": "en:lesson-11:session-37:i13:p1=tea bag\nen:lesson-11:session-37:i13:p2=coffee cup\nen:lesson-11:session-37:i13:p3=sugar bowl\nen:lesson-11:session-37:i13:p4=milk jug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i14",
+    "correctText": "Please don't move my cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i15",
+    "correctText": "I am making tea right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i16",
+    "correctText": "Was the sugar bowl full?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-37:i17",
+    "correctText": "The coffee cup was not in the cupboard.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-40:intro1:r2": {
+          "ru": "Две картофелины: were.",
+          "uk": "Дві картоплини: were."
+        },
+        "en:lesson-11:session-40:intro1:r3": {
+          "ru": "A baked potato — одна, а нужно две.",
+          "uk": "A baked potato — одна, а потрібно дві."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-40:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-40:intro2:r3": {
+          "ru": "О супе здесь говорим was.",
+          "uk": "Про суп тут кажемо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-40:intro3:r2": {
+          "ru": "Один салат: was.",
+          "uk": "Один салат: was."
+        },
+        "en:lesson-11:session-40:intro3:r3": {
+          "ru": "Hot — горячий, а спрашиваем о свежести.",
+          "uk": "Hot — гарячий, а запитуємо про свіжість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "54076b397b3cccbe70e96c8574da57ab9566e770caf82da690e3a92ef6c69fe4"
+}

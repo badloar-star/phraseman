@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-38:word:front-door",
+    "correctText": "front door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i01",
+    "correctText": "Was the front door open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i02",
+    "correctText": "There was a bag near the front door.",
+    "correctResponseId": "en:lesson-11:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:word:back-door",
+    "correctText": "back door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i04",
+    "correctText": "The back door was not closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i05",
+    "correctText": "The back door was near the kitchen.",
+    "correctResponseId": "en:lesson-11:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:word:ground-floor",
+    "correctText": "ground floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i07",
+    "correctText": "Was the kitchen on the ground floor?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i08",
+    "correctText": "The bathroom was on the ground floor.",
+    "correctResponseId": "en:lesson-11:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:word:first-floor",
+    "correctText": "first floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i10",
+    "correctText": "The bedroom was on the first floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i11",
+    "correctText": "There were two rooms on the first floor.",
+    "correctResponseId": "en:lesson-11:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i13",
+    "correctText": "en:lesson-11:session-38:i13:p1=front door\nen:lesson-11:session-38:i13:p2=back door\nen:lesson-11:session-38:i13:p3=ground floor\nen:lesson-11:session-38:i13:p4=first floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i14",
+    "correctText": "Please don't close the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i15",
+    "correctText": "I am waiting outside right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i16",
+    "correctText": "The back door was open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-38:i17",
+    "correctText": "Was the bathroom on the first floor?",
+    "correctResponseId": null
+  }
+]

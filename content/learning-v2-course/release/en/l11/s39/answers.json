@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-39:word:cash-machine",
+    "correctText": "cash machine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i01",
+    "correctText": "Was the cash machine near the bank?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i02",
+    "correctText": "There were two cash machines in the station.",
+    "correctResponseId": "en:lesson-11:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:word:bank-card",
+    "correctText": "bank card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i04",
+    "correctText": "My bank card was not in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i05",
+    "correctText": "The bank card was on the table.",
+    "correctResponseId": "en:lesson-11:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:word:debit-card",
+    "correctText": "debit card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i07",
+    "correctText": "Was the debit card in the wallet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i08",
+    "correctText": "My debit card was in my pocket.",
+    "correctResponseId": "en:lesson-11:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:word:credit-card",
+    "correctText": "credit card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i10",
+    "correctText": "The credit card was in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i11",
+    "correctText": "The credit card was under the book.",
+    "correctResponseId": "en:lesson-11:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i13",
+    "correctText": "en:lesson-11:session-39:i13:p1=cash machine\nen:lesson-11:session-39:i13:p2=bank card\nen:lesson-11:session-39:i13:p3=debit card\nen:lesson-11:session-39:i13:p4=credit card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i14",
+    "correctText": "Please don't move my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i15",
+    "correctText": "I am looking for my wallet right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i16",
+    "correctText": "The bank card was not on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-39:i17",
+    "correctText": "Was the cash machine in the station?",
+    "correctResponseId": null
+  }
+]

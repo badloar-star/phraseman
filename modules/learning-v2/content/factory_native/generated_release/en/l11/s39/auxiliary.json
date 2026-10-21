@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-39:intro1:r2": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        },
+        "en:lesson-11:session-39:intro1:r3": {
+          "ru": "Two — два, а нужен один.",
+          "uk": "Two — два, а потрібен один."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-39:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-39:intro2:r3": {
+          "ru": "Одна карта: was.",
+          "uk": "Одна картка: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-39:intro3:r2": {
+          "ru": "Одна карта: was.",
+          "uk": "Одна картка: was."
+        },
+        "en:lesson-11:session-39:intro3:r3": {
+          "ru": "Спрашиваем о кредитной, не дебетовой карте.",
+          "uk": "Запитуємо про кредитну, не дебетову картку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0fb599fde1405c68aeb11da2b387af7965ef539810a19faa05d6164d623d2f04"
+}

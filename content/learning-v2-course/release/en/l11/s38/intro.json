@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; questions and negatives; yesterday / now",
+    "uk": "was/were; questions and negatives; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два входа",
+        "uk": "Два входи"
+      },
+      "bodyByLocale": {
+        "ru": "Front door — «входная дверь со стороны фасада», back door — «задняя дверь». Вчера передняя входная дверь была закрыта: The front door was closed. Задняя была открыта: The back door was open. Выберите сообщение о закрытой передней двери.",
+        "uk": "Front door — «вхідні двері з боку фасаду», back door — «задні двері». Учора передні вхідні двері були зачинені: The front door was closed. Задні були відчинені: The back door was open. Виберіть повідомлення про зачинені передні двері."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-38:intro1:r1",
+              "text": "The front door was closed."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro1:r2",
+              "text": "The front door was open."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro1:r3",
+              "text": "The front door were closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-38:intro1:r1",
+              "text": "The front door was closed."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro1:r2",
+              "text": "The front door was open."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro1:r3",
+              "text": "The front door were closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этаж на уровне земли",
+        "uk": "Поверх на рівні землі"
+      },
+      "bodyByLocale": {
+        "ru": "Ground floor — «этаж на уровне земли». В британской нумерации это то, что мы обычно называем первым этажом. В этой сцене используем британские названия. Комната была на этом этаже: The room was on the ground floor. С этажом используем on. Выберите эту фразу.",
+        "uk": "Ground floor — «поверх на рівні землі». У британській нумерації це те, що ми зазвичай називаємо першим поверхом. У цій сцені використовуємо британські назви. Кімната була на цьому поверсі: The room was on the ground floor. З поверхом використовуємо on. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-38:intro2:r1",
+              "text": "The room was on the ground floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro2:r2",
+              "text": "The room were on the ground floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro2:r3",
+              "text": "The room was under the ground floor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-38:intro2:r1",
+              "text": "The room was on the ground floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro2:r2",
+              "text": "The room were on the ground floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro2:r3",
+              "text": "The room was under the ground floor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Этаж выше",
+        "uk": "Поверх вище"
+      },
+      "bodyByLocale": {
+        "ru": "First floor в британской нумерации — этаж над ground floor: по привычной нам нумерации второй. В США first floor обычно обозначает этаж на уровне земли, поэтому учитывайте страну. В нашем британском доме спальня была этажом выше: The bedroom was on the first floor. Выберите её местоположение.",
+        "uk": "First floor у британській нумерації — поверх над ground floor: за звичною нам нумерацією другий. У США first floor зазвичай означає поверх на рівні землі, тому враховуйте країну. У нашому британському будинку спальня була поверхом вище: The bedroom was on the first floor. Виберіть її розташування."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-38:intro3:r1",
+              "text": "The bedroom was on the first floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro3:r2",
+              "text": "The bedroom was on the ground floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro3:r3",
+              "text": "The bedroom were on the first floor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-38:intro3:r1",
+              "text": "The bedroom was on the first floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro3:r2",
+              "text": "The bedroom was on the ground floor."
+            },
+            {
+              "responseId": "en:lesson-11:session-38:intro3:r3",
+              "text": "The bedroom were on the first floor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e510d0ec39a8c9cdc76250ac3220cc0d0be8f95ca3d116c95d876e6b16132e3b"
+}

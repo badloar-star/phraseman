@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пакетик чая и чашка",
+        "uk": "Пакетик чаю та чашка"
+      },
+      "bodyByLocale": {
+        "ru": "Tea bag — «чайный пакетик», coffee cup — «кофейная чашка». Вчера на столе лежали два чайных пакетика: There were two tea bags on the table. Во множественном числе меняется последнее слово: bags. Выберите сообщение о двух пакетиках.",
+        "uk": "Tea bag — «чайний пакетик», coffee cup — «кавова чашка». Учора на столі лежали два чайні пакетики: There were two tea bags on the table. У множині змінюється останнє слово: bags. Виберіть повідомлення про два пакетики."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-37:intro1:r1",
+              "text": "There were two tea bags on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro1:r2",
+              "text": "There was two tea bags on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro1:r3",
+              "text": "There were a tea bag on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-37:intro1:r1",
+              "text": "There were two tea bags on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro1:r2",
+              "text": "There was two tea bags on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro1:r3",
+              "text": "There were a tea bag on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сахарница",
+        "uk": "Цукорниця"
+      },
+      "bodyByLocale": {
+        "ru": "Sugar bowl — «сахарница», посуда для сахара. Вчера сахарница была пустой: The sugar bowl was empty yesterday. Сейчас она полная: It is full now. Выберите сообщение о вчерашнем состоянии.",
+        "uk": "Sugar bowl — «цукорниця», посуд для цукру. Учора цукорниця була порожня: The sugar bowl was empty yesterday. Зараз вона повна: It is full now. Виберіть повідомлення про вчорашній стан."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-37:intro2:r1",
+              "text": "The sugar bowl was empty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro2:r2",
+              "text": "The sugar bowl is empty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro2:r3",
+              "text": "The sugar bowl were empty yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-37:intro2:r1",
+              "text": "The sugar bowl was empty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro2:r2",
+              "text": "The sugar bowl is empty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro2:r3",
+              "text": "The sugar bowl were empty yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Молочник",
+        "uk": "Молочник"
+      },
+      "bodyByLocale": {
+        "ru": "Milk jug — «молочник», небольшой кувшин для молока. Вчера он был в холодильнике. Спросите об этом: Was the milk jug in the fridge? В вопросе was стоит перед предметом. Короткий ответ: Yes, it was. Выберите вопрос о молочнике.",
+        "uk": "Milk jug — «молочник», невеликий глечик для молока. Учора він був у холодильнику. Запитайте про це: Was the milk jug in the fridge? У запитанні was стоїть перед предметом. Коротка відповідь: Yes, it was. Виберіть запитання про молочник."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-37:intro3:r1",
+              "text": "Was the milk jug in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro3:r2",
+              "text": "Were the milk jug in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro3:r3",
+              "text": "Was the milk jug in the cupboard?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-37:intro3:r1",
+              "text": "Was the milk jug in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro3:r2",
+              "text": "Were the milk jug in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-37:intro3:r3",
+              "text": "Was the milk jug in the cupboard?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "34a72a6f2c1c6ecbe7027f5e3541d0d240435e3ef91d03389d6831439725fb21"
+}

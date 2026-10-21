@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-37:word:tea-bag",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tea bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:word:tea-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tea bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:word:tea-bag:audio",
+          "transcript": "tea bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:word:tea-bag:r1",
+            "targetText": "tea bag",
+            "meaningByLocale": {
+              "ru": "чайный пакетик.",
+              "uk": "чайний пакетик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tea bag",
+          "definitionByLocale": {
+            "ru": "чайный пакетик.",
+            "uk": "чайний пакетик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: у чашці був чайний пакетик. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: у чашці був чайний пакетик. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a tea bag in the cup.",
+        "localizedMeaning": {
+          "ru": "Сообщите: в чашке был чайный пакетик. Начните с There",
+          "uk": "Повідомте: у чашці був чайний пакетик. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "tea",
+          "bag",
+          "in",
+          "the",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i02:r1",
+          "text": "The tea bag was on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i02:r2",
+          "text": "The tea bag is on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i02:r3",
+          "text": "The tea bag was in the cup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i02:audio",
+          "transcript": "The tea bag was on the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:i02:r1",
+            "targetText": "The tea bag was on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i02:r2",
+            "targetText": "The tea bag is on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i02:r3",
+            "targetText": "The tea bag was in the cup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tea bag was on the plate.",
+              "uk": "У записі звучить The tea bag was on the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tea bag was on the plate.",
+              "uk": "У записі звучить The tea bag was on the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На столі було три чайні пакетики. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столі було три чайні пакетики. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе было три чайных пакетика. Выберите форму",
+          "uk": "На столі було три чайні пакетики. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ three tea bags on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-37:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "На столі було три чайні пакетики. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "На столі було три чайні пакетики. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Три предмета: were.",
+              "uk": "Три предмети: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "На столі було три чайні пакетики. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:word:coffee-cup",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coffee cup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:word:coffee-cup:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coffee cup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:word:coffee-cup:audio",
+          "transcript": "coffee cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:word:coffee-cup:r1",
+            "targetText": "coffee cup",
+            "meaningByLocale": {
+              "ru": "кофейная чашка.",
+              "uk": "кавова чашка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coffee cup",
+          "definitionByLocale": {
+            "ru": "кофейная чашка.",
+            "uk": "кавова чашка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була кавова чашка чиста",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була кавова чашка чиста",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the coffee cup clean?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли кофейная чашка чистой",
+          "uk": "Запитайте, чи була кавова чашка чиста"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "coffee",
+          "cup",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i05:r1",
+          "text": "There were two coffee cups on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i05:r2",
+          "text": "There was a coffee cup on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i05:r3",
+          "text": "There were two coffee cups in the cupboard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i05:audio",
+          "transcript": "There were two coffee cups on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:i05:r1",
+            "targetText": "There were two coffee cups on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i05:r2",
+            "targetText": "There was a coffee cup on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i05:r3",
+            "targetText": "There were two coffee cups in the cupboard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two coffee cups on the table.",
+              "uk": "У записі звучить There were two coffee cups on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two coffee cups on the table.",
+              "uk": "У записі звучить There were two coffee cups on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз кавова чашка порожня. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз кавова чашка порожня. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас кофейная чашка пустая. Выберите форму",
+          "uk": "Зараз кавова чашка порожня. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The coffee cup ___ empty now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-37:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз кавова чашка порожня. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Зараз кавова чашка порожня. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Зараз кавова чашка порожня. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна чашка: is.",
+              "uk": "Одна чашка: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:word:sugar-bowl",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sugar bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:word:sugar-bowl:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sugar bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:word:sugar-bowl:audio",
+          "transcript": "sugar bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:word:sugar-bowl:r1",
+            "targetText": "sugar bowl",
+            "meaningByLocale": {
+              "ru": "сахарница.",
+              "uk": "цукорниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sugar bowl",
+          "definitionByLocale": {
+            "ru": "сахарница.",
+            "uk": "цукорниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: цукорниця була не порожня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: цукорниця була не порожня",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sugar bowl was not empty.",
+        "localizedMeaning": {
+          "ru": "Сообщите: сахарница была не пустой",
+          "uk": "Повідомте: цукорниця була не порожня"
+        },
+        "orderedTokens": [
+          "The",
+          "sugar",
+          "bowl",
+          "was",
+          "not",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i08:r1",
+          "text": "The sugar bowl was near the window."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i08:r2",
+          "text": "The sugar bowl was near the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i08:r3",
+          "text": "The sugar bowl is near the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i08:audio",
+          "transcript": "The sugar bowl was near the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:i08:r1",
+            "targetText": "The sugar bowl was near the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i08:r2",
+            "targetText": "The sugar bowl was near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i08:r3",
+            "targetText": "The sugar bowl is near the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sugar bowl was near the window.",
+              "uk": "У записі звучить The sugar bowl was near the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sugar bowl was near the window.",
+              "uk": "У записі звучить The sugar bowl was near the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора цукорниця була на столі. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора цукорниця була на столі. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера сахарница была на столе. Выберите форму",
+          "uk": "Учора цукорниця була на столі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The sugar bowl ___ on the table yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-37:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора цукорниця була на столі. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора цукорниця була на столі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора цукорниця була на столі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один предмет: was.",
+              "uk": "Один предмет: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:word:milk-jug",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — milk jug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:word:milk-jug:audio"
+      ],
+      "accessibilityLabel": "Картка слова — milk jug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:word:milk-jug:audio",
+          "transcript": "milk jug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:word:milk-jug:r1",
+            "targetText": "milk jug",
+            "meaningByLocale": {
+              "ru": "молочник — кувшин для молока.",
+              "uk": "молочник — глечик для молока."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milk jug",
+          "definitionByLocale": {
+            "ru": "молочник — кувшин для молока.",
+            "uk": "молочник — глечик для молока."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: у холодильнику був молочник. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: у холодильнику був молочник. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a milk jug in the fridge.",
+        "localizedMeaning": {
+          "ru": "Сообщите: в холодильнике был молочник. Начните с There",
+          "uk": "Повідомте: у холодильнику був молочник. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "milk",
+          "jug",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i11:r1",
+          "text": "The milk jug was full."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i11:r2",
+          "text": "The milk jug is full."
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i11:r3",
+          "text": "The milk jug was empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i11:audio",
+          "transcript": "The milk jug was full."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-37:i11:r1",
+            "targetText": "The milk jug was full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i11:r2",
+            "targetText": "The milk jug is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i11:r3",
+            "targetText": "The milk jug was empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The milk jug was full.",
+              "uk": "У записі звучить The milk jug was full."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The milk jug was full.",
+              "uk": "У записі звучить The milk jug was full."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора молочник був чистий. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-37:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-37:i12:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора молочник був чистий. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера молочник был чистым. Выберите форму",
+          "uk": "Учора молочник був чистий. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The milk jug ___ clean yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-37:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i12:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора молочник був чистий. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора молочник був чистий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора молочник був чистий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один молочник: was.",
+              "uk": "Один молочник: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-37:i13:p1",
+            "target": "tea bag",
+            "meaningByLocale": {
+              "ru": "чайный пакетик",
+              "uk": "чайний пакетик"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-37:i13:p2",
+            "target": "coffee cup",
+            "meaningByLocale": {
+              "ru": "кофейная чашка",
+              "uk": "кавова чашка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-37:i13:p3",
+            "target": "sugar bowl",
+            "meaningByLocale": {
+              "ru": "сахарница",
+              "uk": "цукорниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-37:i13:p4",
+            "target": "milk jug",
+            "meaningByLocale": {
+              "ru": "молочник",
+              "uk": "молочник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tea bag",
+          "coffee cup",
+          "sugar bowl",
+          "milk jug"
+        ],
+        "rightColumn": [
+          "чайний пакетик",
+          "кавова чашка",
+          "цукорниця",
+          "молочник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i14:audio",
+          "transcript": "Please don't move my cup."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my cup.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i15:audio",
+          "transcript": "I am making tea right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am making tea right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "making",
+          "tea",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи була цукорниця повна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи була цукорниця повна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i16:audio",
+          "transcript": "Was the sugar bowl full?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the sugar bowl full?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що кавова чашка була не в шафі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що кавова чашка була не в шафі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-37:i17:audio",
+          "transcript": "The coffee cup was not in the cupboard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coffee cup was not in the cupboard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d686b889d464573deba6d4f74e0979c0948d08180170c0faa7febfbbbc036bd2"
+}

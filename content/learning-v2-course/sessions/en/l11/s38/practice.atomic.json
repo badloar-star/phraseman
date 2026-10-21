@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-38:word:front-door",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — front door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:front-door:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — front door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:front-door:audio",
+            "transcript": "front door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:front-door:r1",
+              "targetText": "front door",
+              "meaningByLocale": {
+                "ru": "передняя входная дверь.",
+                "uk": "передні вхідні двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "front door",
+            "definitionByLocale": {
+              "ru": "передняя входная дверь.",
+              "uk": "передні вхідні двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, была ли передняя входная дверь открыта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, была ли передняя входная дверь открыта",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the front door open?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли передняя входная дверь открыта",
+            "uk": "Запитайте, чи були передні вхідні двері відчинені"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "front",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i02:r1",
+            "text": "There was a bag near the front door."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i02:r2",
+            "text": "There was a box near the front door."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i02:r3",
+            "text": "There is a bag near the front door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i02:audio",
+            "transcript": "There was a bag near the front door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i02:r1",
+              "targetText": "There was a bag near the front door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i02:r2",
+              "targetText": "There was a box near the front door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i02:r3",
+              "targetText": "There is a bag near the front door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a bag near the front door.",
+                "uk": "У записі звучить There was a bag near the front door."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a bag near the front door.",
+                "uk": "У записі звучить There was a bag near the front door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера передняя входная дверь была закрыта. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера передняя входная дверь была закрыта. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера передняя входная дверь была закрыта. Выберите форму",
+            "uk": "Учора передні вхідні двері були зачинені. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The front door ___ closed yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера передняя входная дверь была закрыта. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера передняя входная дверь была закрыта. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера передняя входная дверь была закрыта. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна дверь: was.",
+                "uk": "Англійське door в однині: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:word:back-door",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — back door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:back-door:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — back door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:back-door:audio",
+            "transcript": "back door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:back-door:r1",
+              "targetText": "back door",
+              "meaningByLocale": {
+                "ru": "задняя дверь.",
+                "uk": "задні двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "back door",
+            "definitionByLocale": {
+              "ru": "задняя дверь.",
+              "uk": "задні двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: задняя дверь была не закрыта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: задняя дверь была не закрыта",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The back door was not closed.",
+          "localizedMeaning": {
+            "ru": "Сообщите: задняя дверь была не закрыта",
+            "uk": "Повідомте: задні двері були не зачинені"
+          },
+          "orderedTokens": [
+            "The",
+            "back",
+            "door",
+            "was",
+            "not",
+            "closed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i05:r1",
+            "text": "The back door was near the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i05:r2",
+            "text": "The back door was near the bedroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i05:r3",
+            "text": "The back door is near the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i05:audio",
+            "transcript": "The back door was near the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i05:r1",
+              "targetText": "The back door was near the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i05:r2",
+              "targetText": "The back door was near the bedroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i05:r3",
+              "targetText": "The back door is near the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The back door was near the kitchen.",
+                "uk": "У записі звучить The back door was near the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The back door was near the kitchen.",
+                "uk": "У записі звучить The back door was near the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас задняя дверь открыта. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас задняя дверь открыта. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас задняя дверь открыта. Выберите форму",
+            "uk": "Зараз задні двері відчинені. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The back door ___ open now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сейчас задняя дверь открыта. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Сейчас задняя дверь открыта. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: is.",
+                "uk": "Now — зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Сейчас задняя дверь открыта. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна дверь по-английски: is.",
+                "uk": "Одні двері англійською — один предмет: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:word:ground-floor",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ground floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:ground-floor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ground floor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:ground-floor:audio",
+            "transcript": "ground floor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:ground-floor:r1",
+              "targetText": "ground floor",
+              "meaningByLocale": {
+                "ru": "этаж на уровне земли. В британской нумерации.",
+                "uk": "поверх на рівні землі. У британській нумерації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ground floor",
+            "definitionByLocale": {
+              "ru": "этаж на уровне земли. В британской нумерации.",
+              "uk": "поверх на рівні землі. У британській нумерації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, была ли кухня на этаже на уровне земли",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, была ли кухня на этаже на уровне земли",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the kitchen on the ground floor?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли кухня на этаже на уровне земли",
+            "uk": "Запитайте, чи була кухня на поверсі на рівні землі"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "kitchen",
+            "on",
+            "the",
+            "ground",
+            "floor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i08:r1",
+            "text": "The bathroom was on the ground floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i08:r2",
+            "text": "The kitchen was on the ground floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i08:r3",
+            "text": "The bathroom is on the ground floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i08:audio",
+            "transcript": "The bathroom was on the ground floor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i08:r1",
+              "targetText": "The bathroom was on the ground floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i08:r2",
+              "targetText": "The kitchen was on the ground floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i08:r3",
+              "targetText": "The bathroom is on the ground floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom was on the ground floor.",
+                "uk": "У записі звучить The bathroom was on the ground floor."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom was on the ground floor.",
+                "uk": "У записі звучить The bathroom was on the ground floor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера мы были на этаже на уровне земли. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера мы были на этаже на уровне земли. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера мы были на этаже на уровне земли. Выберите форму",
+            "uk": "Учора ми були на поверсі на рівні землі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ on the ground floor yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера мы были на этаже на уровне земли. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Вчера мы были на этаже на уровне земли. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С we в прошлом нужна were.",
+                "uk": "З we у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Вчера мы были на этаже на уровне земли. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера — прошлое: were.",
+                "uk": "Учора — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:word:first-floor",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — first floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:first-floor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — first floor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:first-floor:audio",
+            "transcript": "first floor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:first-floor:r1",
+              "targetText": "first floor",
+              "meaningByLocale": {
+                "ru": "этаж над нижним этажом. Здесь британская нумерация: второй этаж.",
+                "uk": "поверх над нижнім поверхом. Тут британська нумерація: другий поверх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "first floor",
+            "definitionByLocale": {
+              "ru": "этаж над нижним этажом. Здесь британская нумерация: второй этаж.",
+              "uk": "поверх над нижнім поверхом. Тут британська нумерація: другий поверх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: спальня была на британском first floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: спальня была на британском first floor",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bedroom was on the first floor.",
+          "localizedMeaning": {
+            "ru": "Сообщите: спальня была на британском first floor",
+            "uk": "Повідомте: спальня була на британському first floor"
+          },
+          "orderedTokens": [
+            "The",
+            "bedroom",
+            "was",
+            "on",
+            "the",
+            "first",
+            "floor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i11:r1",
+            "text": "There were two rooms on the first floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i11:r2",
+            "text": "There was a room on the first floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i11:r3",
+            "text": "There were two rooms on the ground floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i11:audio",
+            "transcript": "There were two rooms on the first floor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i11:r1",
+              "targetText": "There were two rooms on the first floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i11:r2",
+              "targetText": "There was a room on the first floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i11:r3",
+              "targetText": "There were two rooms on the ground floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two rooms on the first floor.",
+                "uk": "У записі звучить There were two rooms on the first floor."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two rooms on the first floor.",
+                "uk": "У записі звучить There were two rooms on the first floor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера моя комната была на британском first floor. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера моя комната была на британском first floor. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера моя комната была на британском first floor. Выберите форму",
+            "uk": "Учора моя кімната була на британському first floor. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My room ___ on the first floor yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера моя комната была на британском first floor. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Вчера моя комната была на британском first floor. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Вчера моя комната была на британском first floor. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Одна комната: was.",
+                "uk": "Одна кімната: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом — британские этажи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом — британские этажи",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-38:i13:p1",
+              "target": "front door",
+              "meaningByLocale": {
+                "ru": "передняя входная дверь",
+                "uk": "передні вхідні двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-38:i13:p2",
+              "target": "back door",
+              "meaningByLocale": {
+                "ru": "задняя дверь",
+                "uk": "задні двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-38:i13:p3",
+              "target": "ground floor",
+              "meaningByLocale": {
+                "ru": "этаж на уровне земли",
+                "uk": "поверх на рівні землі"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-38:i13:p4",
+              "target": "first floor",
+              "meaningByLocale": {
+                "ru": "этаж над ним",
+                "uk": "поверх над ним"
+              }
+            }
+          ],
+          "leftColumn": [
+            "front door",
+            "back door",
+            "ground floor",
+            "first floor"
+          ],
+          "rightColumn": [
+            "передняя входная дверь",
+            "задняя дверь",
+            "этаж на уровне земли",
+            "этаж над ним"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i14:audio",
+            "transcript": "Please don't close the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't close the door.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "close",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i15:audio",
+            "transcript": "I am waiting outside right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am waiting outside right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "waiting",
+            "outside",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что задняя дверь была открыта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что задняя дверь была открыта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i16:audio",
+            "transcript": "The back door was open."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The back door was open.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, была ли ванная на британском first floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, была ли ванная на британском first floor",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i17:audio",
+            "transcript": "Was the bathroom on the first floor?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the bathroom on the first floor?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-38:word:front-door",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — front door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:front-door:audio"
+        ],
+        "accessibilityLabel": "Картка слова — front door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:front-door:audio",
+            "transcript": "front door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:front-door:r1",
+              "targetText": "front door",
+              "meaningByLocale": {
+                "ru": "передняя входная дверь.",
+                "uk": "передні вхідні двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "front door",
+            "definitionByLocale": {
+              "ru": "передняя входная дверь.",
+              "uk": "передні вхідні двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи були передні вхідні двері відчинені",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи були передні вхідні двері відчинені",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the front door open?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли передняя входная дверь открыта",
+            "uk": "Запитайте, чи були передні вхідні двері відчинені"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "front",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i02:r1",
+            "text": "There was a bag near the front door."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i02:r2",
+            "text": "There was a box near the front door."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i02:r3",
+            "text": "There is a bag near the front door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i02:audio",
+            "transcript": "There was a bag near the front door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i02:r1",
+              "targetText": "There was a bag near the front door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i02:r2",
+              "targetText": "There was a box near the front door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i02:r3",
+              "targetText": "There is a bag near the front door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a bag near the front door.",
+                "uk": "У записі звучить There was a bag near the front door."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a bag near the front door.",
+                "uk": "У записі звучить There was a bag near the front door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора передні вхідні двері були зачинені. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора передні вхідні двері були зачинені. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера передняя входная дверь была закрыта. Выберите форму",
+            "uk": "Учора передні вхідні двері були зачинені. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The front door ___ closed yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора передні вхідні двері були зачинені. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора передні вхідні двері були зачинені. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора передні вхідні двері були зачинені. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна дверь: was.",
+                "uk": "Англійське door в однині: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:word:back-door",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — back door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:back-door:audio"
+        ],
+        "accessibilityLabel": "Картка слова — back door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:back-door:audio",
+            "transcript": "back door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:back-door:r1",
+              "targetText": "back door",
+              "meaningByLocale": {
+                "ru": "задняя дверь.",
+                "uk": "задні двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "back door",
+            "definitionByLocale": {
+              "ru": "задняя дверь.",
+              "uk": "задні двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: задні двері були не зачинені",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: задні двері були не зачинені",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The back door was not closed.",
+          "localizedMeaning": {
+            "ru": "Сообщите: задняя дверь была не закрыта",
+            "uk": "Повідомте: задні двері були не зачинені"
+          },
+          "orderedTokens": [
+            "The",
+            "back",
+            "door",
+            "was",
+            "not",
+            "closed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i05:r1",
+            "text": "The back door was near the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i05:r2",
+            "text": "The back door was near the bedroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i05:r3",
+            "text": "The back door is near the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i05:audio",
+            "transcript": "The back door was near the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i05:r1",
+              "targetText": "The back door was near the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i05:r2",
+              "targetText": "The back door was near the bedroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i05:r3",
+              "targetText": "The back door is near the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The back door was near the kitchen.",
+                "uk": "У записі звучить The back door was near the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The back door was near the kitchen.",
+                "uk": "У записі звучить The back door was near the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз задні двері відчинені. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз задні двері відчинені. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас задняя дверь открыта. Выберите форму",
+            "uk": "Зараз задні двері відчинені. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The back door ___ open now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Зараз задні двері відчинені. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Зараз задні двері відчинені. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: is.",
+                "uk": "Now — зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Зараз задні двері відчинені. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна дверь по-английски: is.",
+                "uk": "Одні двері англійською — один предмет: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:word:ground-floor",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ground floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:ground-floor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ground floor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:ground-floor:audio",
+            "transcript": "ground floor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:ground-floor:r1",
+              "targetText": "ground floor",
+              "meaningByLocale": {
+                "ru": "этаж на уровне земли. В британской нумерации.",
+                "uk": "поверх на рівні землі. У британській нумерації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ground floor",
+            "definitionByLocale": {
+              "ru": "этаж на уровне земли. В британской нумерации.",
+              "uk": "поверх на рівні землі. У британській нумерації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи була кухня на поверсі на рівні землі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи була кухня на поверсі на рівні землі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the kitchen on the ground floor?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли кухня на этаже на уровне земли",
+            "uk": "Запитайте, чи була кухня на поверсі на рівні землі"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "kitchen",
+            "on",
+            "the",
+            "ground",
+            "floor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i08:r1",
+            "text": "The bathroom was on the ground floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i08:r2",
+            "text": "The kitchen was on the ground floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i08:r3",
+            "text": "The bathroom is on the ground floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i08:audio",
+            "transcript": "The bathroom was on the ground floor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i08:r1",
+              "targetText": "The bathroom was on the ground floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i08:r2",
+              "targetText": "The kitchen was on the ground floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i08:r3",
+              "targetText": "The bathroom is on the ground floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom was on the ground floor.",
+                "uk": "У записі звучить The bathroom was on the ground floor."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom was on the ground floor.",
+                "uk": "У записі звучить The bathroom was on the ground floor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора ми були на поверсі на рівні землі. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора ми були на поверсі на рівні землі. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера мы были на этаже на уровне земли. Выберите форму",
+            "uk": "Учора ми були на поверсі на рівні землі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ on the ground floor yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора ми були на поверсі на рівні землі. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Учора ми були на поверсі на рівні землі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С we в прошлом нужна were.",
+                "uk": "З we у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Учора ми були на поверсі на рівні землі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера — прошлое: were.",
+                "uk": "Учора — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:word:first-floor",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — first floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:word:first-floor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — first floor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:word:first-floor:audio",
+            "transcript": "first floor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:word:first-floor:r1",
+              "targetText": "first floor",
+              "meaningByLocale": {
+                "ru": "этаж над нижним этажом. Здесь британская нумерация: второй этаж.",
+                "uk": "поверх над нижнім поверхом. Тут британська нумерація: другий поверх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "first floor",
+            "definitionByLocale": {
+              "ru": "этаж над нижним этажом. Здесь британская нумерация: второй этаж.",
+              "uk": "поверх над нижнім поверхом. Тут британська нумерація: другий поверх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: спальня була на британському first floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: спальня була на британському first floor",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bedroom was on the first floor.",
+          "localizedMeaning": {
+            "ru": "Сообщите: спальня была на британском first floor",
+            "uk": "Повідомте: спальня була на британському first floor"
+          },
+          "orderedTokens": [
+            "The",
+            "bedroom",
+            "was",
+            "on",
+            "the",
+            "first",
+            "floor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i11:r1",
+            "text": "There were two rooms on the first floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i11:r2",
+            "text": "There was a room on the first floor."
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i11:r3",
+            "text": "There were two rooms on the ground floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i11:audio",
+            "transcript": "There were two rooms on the first floor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-38:i11:r1",
+              "targetText": "There were two rooms on the first floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i11:r2",
+              "targetText": "There was a room on the first floor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i11:r3",
+              "targetText": "There were two rooms on the ground floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two rooms on the first floor.",
+                "uk": "У записі звучить There were two rooms on the first floor."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two rooms on the first floor.",
+                "uk": "У записі звучить There were two rooms on the first floor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора моя кімната була на британському first floor. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-38:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-38:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора моя кімната була на британському first floor. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера моя комната была на британском first floor. Выберите форму",
+            "uk": "Учора моя кімната була на британському first floor. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My room ___ on the first floor yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-38:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора моя кімната була на британському first floor. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Учора моя кімната була на британському first floor. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Учора моя кімната була на британському first floor. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Одна комната: was.",
+                "uk": "Одна кімната: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом — британські поверхи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом — британські поверхи",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-38:i13:p1",
+              "target": "front door",
+              "meaningByLocale": {
+                "ru": "передняя входная дверь",
+                "uk": "передні вхідні двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-38:i13:p2",
+              "target": "back door",
+              "meaningByLocale": {
+                "ru": "задняя дверь",
+                "uk": "задні двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-38:i13:p3",
+              "target": "ground floor",
+              "meaningByLocale": {
+                "ru": "этаж на уровне земли",
+                "uk": "поверх на рівні землі"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-38:i13:p4",
+              "target": "first floor",
+              "meaningByLocale": {
+                "ru": "этаж над ним",
+                "uk": "поверх над ним"
+              }
+            }
+          ],
+          "leftColumn": [
+            "front door",
+            "back door",
+            "ground floor",
+            "first floor"
+          ],
+          "rightColumn": [
+            "передні вхідні двері",
+            "задні двері",
+            "поверх на рівні землі",
+            "поверх над ним"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i14:audio",
+            "transcript": "Please don't close the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't close the door.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "close",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i15:audio",
+            "transcript": "I am waiting outside right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am waiting outside right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "waiting",
+            "outside",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що задні двері були відчинені",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що задні двері були відчинені",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i16:audio",
+            "transcript": "The back door was open."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The back door was open.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи була ванна кімната на британському first floor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи була ванна кімната на британському first floor",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-38:i17:audio",
+            "transcript": "Was the bathroom on the first floor?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the bathroom on the first floor?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-38:word:front-door",
+      "correctText": "front door",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i01",
+      "correctText": "Was the front door open?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i02",
+      "correctText": "There was a bag near the front door.",
+      "correctResponseId": "en:lesson-11:session-38:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-38:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:word:back-door",
+      "correctText": "back door",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i04",
+      "correctText": "The back door was not closed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i05",
+      "correctText": "The back door was near the kitchen.",
+      "correctResponseId": "en:lesson-11:session-38:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-38:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:word:ground-floor",
+      "correctText": "ground floor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i07",
+      "correctText": "Was the kitchen on the ground floor?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i08",
+      "correctText": "The bathroom was on the ground floor.",
+      "correctResponseId": "en:lesson-11:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-38:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:word:first-floor",
+      "correctText": "first floor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i10",
+      "correctText": "The bedroom was on the first floor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i11",
+      "correctText": "There were two rooms on the first floor.",
+      "correctResponseId": "en:lesson-11:session-38:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-38:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i14",
+      "correctText": "Please don't close the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i15",
+      "correctText": "I am waiting outside right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i16",
+      "correctText": "The back door was open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:i17",
+      "correctText": "Was the bathroom on the first floor?",
+      "correctResponseId": null
+    }
+  ]
+}

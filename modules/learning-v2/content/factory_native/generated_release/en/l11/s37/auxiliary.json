@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-37:intro1:r2": {
+          "ru": "Два пакетика: were.",
+          "uk": "Два пакетики: were."
+        },
+        "en:lesson-11:session-37:intro1:r3": {
+          "ru": "A tea bag — один пакетик, а нужно два.",
+          "uk": "A tea bag — один пакетик, а потрібно два."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-37:intro2:r2": {
+          "ru": "Yesterday — вчера, нужна was.",
+          "uk": "Yesterday — учора, потрібна was."
+        },
+        "en:lesson-11:session-37:intro2:r3": {
+          "ru": "Одна сахарница: was.",
+          "uk": "Одна цукорниця: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-37:intro3:r2": {
+          "ru": "Один молочник: was.",
+          "uk": "Один молочник: was."
+        },
+        "en:lesson-11:session-37:intro3:r3": {
+          "ru": "Cupboard — шкаф, а спрашиваем о холодильнике.",
+          "uk": "Cupboard — шафа, а запитуємо про холодильник."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "99e2460fbd7fc2c1bef13cbd236220c353d5ad281adf288e63c24e549ff2751f"
+}

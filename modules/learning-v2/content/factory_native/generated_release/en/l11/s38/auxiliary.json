@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-38:intro1:r2": {
+          "ru": "Open — открыта, а дверь была закрыта.",
+          "uk": "Open — відчинені, а двері були зачинені."
+        },
+        "en:lesson-11:session-38:intro1:r3": {
+          "ru": "Одна дверь по-английски: was.",
+          "uk": "Одні двері англійською — один предмет: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-38:intro2:r2": {
+          "ru": "Одна комната: was.",
+          "uk": "Одна кімната: was."
+        },
+        "en:lesson-11:session-38:intro2:r3": {
+          "ru": "Under — под, а комната на этаже.",
+          "uk": "Under — під, а кімната на поверсі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-38:intro3:r2": {
+          "ru": "В этой британской сцене ground floor ниже спальни.",
+          "uk": "У цій британській сцені ground floor нижче спальні."
+        },
+        "en:lesson-11:session-38:intro3:r3": {
+          "ru": "Одна спальня: was.",
+          "uk": "Одна спальня: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c1433cbc7af3c0c8a1e12233c2de7571f1016c31893814e5c59c5efd810b2b5d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посчитать расходы",
+        "uk": "Порахувати витрати"
+      },
+      "bodyByLocale": {
+        "ru": "Work out здесь — рассчитать: вы планируете совместную поездку и можете сложить стоимость билетов и жилья. У выражения есть и другие значения, например тренироваться; здесь речь о расчёте. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. В новых выражениях сохраняем оба слова: work out, point out, leave out, give in.",
+        "uk": "Work out тут — розрахувати: ви плануєте спільну поїздку й можете скласти вартість квитків і житла. Вираз має й інші значення, наприклад тренуватися; тут ідеться про розрахунок. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. У нових виразах зберігаємо обидва слова: work out, point out, leave out, give in."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-54:intro1:r1",
+              "text": "We can work out the cost."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro1:r2",
+              "text": "We cans work out the cost."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro1:r3",
+              "text": "We can to work out the cost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-54:intro1:r1",
+              "text": "We can work out the cost."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro1:r2",
+              "text": "We cans work out the cost."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro1:r3",
+              "text": "We can to work out the cost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Показать ошибку",
+        "uk": "Показати помилку"
+      },
+      "bodyByLocale": {
+        "ru": "Point out — указать на что-то, обратить внимание. Знакомая заметила неверную дату в приглашении и может показать ошибку. В английском после point out здесь сразу идёт the mistake, без on. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. В новых выражениях сохраняем оба слова: work out, point out, leave out, give in.",
+        "uk": "Point out — указати на щось, звернути увагу. Знайома помітила неправильну дату в запрошенні й може показати помилку. В англійській після point out тут одразу йде the mistake, без on. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. У нових виразах зберігаємо обидва слова: work out, point out, leave out, give in."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-54:intro2:r1",
+              "text": "She can point out the mistake."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro2:r2",
+              "text": "She cans point out the mistake."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro2:r3",
+              "text": "She can to point out the mistake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-54:intro2:r1",
+              "text": "She can point out the mistake."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro2:r2",
+              "text": "She cans point out the mistake."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro2:r3",
+              "text": "She can to point out the mistake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Опустить подробность и уступить",
+        "uk": "Пропустити подробицю й поступитися"
+      },
+      "bodyByLocale": {
+        "ru": "Leave out — не включать: рассказ слишком длинный, и вы можете опустить одну неважную подробность. Give in — уступить: вы с другом выбираете фильм, и в этот раз готовы согласиться на его вариант. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. В новых выражениях сохраняем оба слова: work out, point out, leave out, give in.",
+        "uk": "Leave out — не включати: розповідь задовга, і ви можете пропустити одну неважливу подробицю. Give in — поступитися: ви з другом вибираєте фільм і цього разу готові погодитися на його варіант. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. У нових виразах зберігаємо обидва слова: work out, point out, leave out, give in."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-54:intro3:r1",
+              "text": "I can give in this time."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro3:r2",
+              "text": "I cans give in this time."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro3:r3",
+              "text": "I can to give in this time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-54:intro3:r1",
+              "text": "I can give in this time."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro3:r2",
+              "text": "I cans give in this time."
+            },
+            {
+              "responseId": "en:lesson-19:session-54:intro3:r3",
+              "text": "I can to give in this time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99f99a862cfc44548ed12a5248a94bff33e1ff75da67033b17067dc64afc829d"
+}

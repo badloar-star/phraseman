@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-52:word:by-myself",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — by myself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:by-myself:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — by myself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:by-myself:audio",
+            "transcript": "by myself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:by-myself:r1",
+              "targetText": "by myself",
+              "meaningByLocale": {
+                "ru": "сам, без компании или помощи.",
+                "uk": "сам, без компанії або допомоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by myself",
+            "definitionByLocale": {
+              "ru": "сам, без компании или помощи.",
+              "uk": "сам, без компанії або допомоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу пойти один».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу пойти один».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can go by myself.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу пойти один».",
+            "uk": "Скажіть із can: «Я можу піти сам»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "go",
+            "by",
+            "myself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i02:r1",
+            "text": "I can go by myself."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i02:r2",
+            "text": "I could go by myself."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i02:r3",
+            "text": "I cannot go by myself."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i02:audio",
+            "transcript": "I can go by myself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i02:r1",
+              "targetText": "I can go by myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i02:r2",
+              "targetText": "I could go by myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i02:r3",
+              "targetText": "I cannot go by myself.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can go by myself.",
+                "uk": "У записі звучить I can go by myself."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can go by myself.",
+                "uk": "У записі звучить I can go by myself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ go by myself.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i03:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i03:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:word:for-free",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — for free",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:for-free:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — for free",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:for-free:audio",
+            "transcript": "for free"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:for-free:r1",
+              "targetText": "for free",
+              "meaningByLocale": {
+                "ru": "бесплатно.",
+                "uk": "безкоштовно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "for free",
+            "definitionByLocale": {
+              "ru": "бесплатно.",
+              "uk": "безкоштовно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Мы можем войти бесплатно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Мы можем войти бесплатно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can enter for free.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем войти бесплатно».",
+            "uk": "Скажіть із can: «Ми можемо зайти безкоштовно»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "enter",
+            "for",
+            "free"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i05:r1",
+            "text": "We can enter for free."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i05:r2",
+            "text": "We could enter for free."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i05:r3",
+            "text": "We cannot enter for free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i05:audio",
+            "transcript": "We can enter for free."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i05:r1",
+              "targetText": "We can enter for free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i05:r2",
+              "targetText": "We could enter for free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i05:r3",
+              "targetText": "We cannot enter for free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can enter for free.",
+                "uk": "У записі звучить We can enter for free."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can enter for free.",
+                "uk": "У записі звучить We can enter for free."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ enter for free.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i06:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i06:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:word:by-heart",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — by heart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:by-heart:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — by heart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:by-heart:audio",
+            "transcript": "by heart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:by-heart:r1",
+              "targetText": "by heart",
+              "meaningByLocale": {
+                "ru": "наизусть.",
+                "uk": "напам’ять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by heart",
+            "definitionByLocale": {
+              "ru": "наизусть.",
+              "uk": "напам’ять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Она может выучить это стихотворение наизусть».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Она может выучить это стихотворение наизусть».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can learn this poem by heart.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Она может выучить это стихотворение наизусть».",
+            "uk": "Скажіть із can: «Вона може вивчити цей вірш напам’ять»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "learn",
+            "this",
+            "poem",
+            "by",
+            "heart"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i08:r1",
+            "text": "She can learn this poem by heart."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i08:r2",
+            "text": "She could learn this poem by heart."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i08:r3",
+            "text": "She cannot learn this poem by heart."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i08:audio",
+            "transcript": "She can learn this poem by heart."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i08:r1",
+              "targetText": "She can learn this poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i08:r2",
+              "targetText": "She could learn this poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i08:r3",
+              "targetText": "She cannot learn this poem by heart.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can learn this poem by heart.",
+                "uk": "У записі звучить She can learn this poem by heart."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can learn this poem by heart.",
+                "uk": "У записі звучить She can learn this poem by heart."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "She ___ learn this poem by heart.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i09:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i09:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:word:in-common",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — in common",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:in-common:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — in common",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:in-common:audio",
+            "transcript": "in common"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:in-common:r1",
+              "targetText": "in common",
+              "meaningByLocale": {
+                "ru": "общего, общие интересы или черты.",
+                "uk": "спільного, спільні інтереси або риси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in common",
+            "definitionByLocale": {
+              "ru": "общего, общие интересы или черты.",
+              "uk": "спільного, спільні інтереси або риси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Мы можем найти что-то общее».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Мы можем найти что-то общее».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can find something in common.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем найти что-то общее».",
+            "uk": "Скажіть із can: «Ми можемо знайти щось спільне»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "find",
+            "something",
+            "in",
+            "common"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i11:r1",
+            "text": "We can find something in common."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i11:r2",
+            "text": "We could find something in common."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i11:r3",
+            "text": "We cannot find something in common."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i11:audio",
+            "transcript": "We can find something in common."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i11:r1",
+              "targetText": "We can find something in common.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i11:r2",
+              "targetText": "We could find something in common.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i11:r3",
+              "targetText": "We cannot find something in common.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can find something in common.",
+                "uk": "У записі звучить We can find something in common."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can find something in common.",
+                "uk": "У записі звучить We can find something in common."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ find something in common.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i12:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i12:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-52:i13:p1",
+              "target": "by myself",
+              "meaningByLocale": {
+                "ru": "сам, без компании или помощи",
+                "uk": "сам, без компанії або допомоги"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-52:i13:p2",
+              "target": "for free",
+              "meaningByLocale": {
+                "ru": "бесплатно",
+                "uk": "безкоштовно"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-52:i13:p3",
+              "target": "by heart",
+              "meaningByLocale": {
+                "ru": "наизусть",
+                "uk": "напам’ять"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-52:i13:p4",
+              "target": "in common",
+              "meaningByLocale": {
+                "ru": "общего, общие интересы или черты",
+                "uk": "спільного, спільні інтереси або риси"
+              }
+            }
+          ],
+          "leftColumn": [
+            "by myself",
+            "for free",
+            "by heart",
+            "in common"
+          ],
+          "rightColumn": [
+            "сам, без компании или помощи",
+            "бесплатно",
+            "наизусть",
+            "общего, общие интересы или черты"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: будущая возможность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: будущая возможность",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i15:audio",
+            "transcript": "We will be able to help tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will be able to help tomorrow.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "help",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите о бесплатном входе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите о бесплатном входе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i16:audio",
+            "transcript": "We can enter for free."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can enter for free.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что можно найти общие интересы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что можно найти общие интересы",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i17:audio",
+            "transcript": "We can find something in common."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can find something in common.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-52:word:by-myself",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — by myself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:by-myself:audio"
+        ],
+        "accessibilityLabel": "Картка слова — by myself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:by-myself:audio",
+            "transcript": "by myself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:by-myself:r1",
+              "targetText": "by myself",
+              "meaningByLocale": {
+                "ru": "сам, без компании или помощи.",
+                "uk": "сам, без компанії або допомоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by myself",
+            "definitionByLocale": {
+              "ru": "сам, без компании или помощи.",
+              "uk": "сам, без компанії або допомоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу піти сам».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу піти сам».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can go by myself.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу пойти один».",
+            "uk": "Скажіть із can: «Я можу піти сам»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "go",
+            "by",
+            "myself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i02:r1",
+            "text": "I can go by myself."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i02:r2",
+            "text": "I could go by myself."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i02:r3",
+            "text": "I cannot go by myself."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i02:audio",
+            "transcript": "I can go by myself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i02:r1",
+              "targetText": "I can go by myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i02:r2",
+              "targetText": "I could go by myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i02:r3",
+              "targetText": "I cannot go by myself.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can go by myself.",
+                "uk": "У записі звучить I can go by myself."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can go by myself.",
+                "uk": "У записі звучить I can go by myself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ go by myself.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i03:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i03:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:word:for-free",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — for free",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:for-free:audio"
+        ],
+        "accessibilityLabel": "Картка слова — for free",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:for-free:audio",
+            "transcript": "for free"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:for-free:r1",
+              "targetText": "for free",
+              "meaningByLocale": {
+                "ru": "бесплатно.",
+                "uk": "безкоштовно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "for free",
+            "definitionByLocale": {
+              "ru": "бесплатно.",
+              "uk": "безкоштовно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Ми можемо зайти безкоштовно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Ми можемо зайти безкоштовно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can enter for free.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем войти бесплатно».",
+            "uk": "Скажіть із can: «Ми можемо зайти безкоштовно»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "enter",
+            "for",
+            "free"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i05:r1",
+            "text": "We can enter for free."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i05:r2",
+            "text": "We could enter for free."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i05:r3",
+            "text": "We cannot enter for free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i05:audio",
+            "transcript": "We can enter for free."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i05:r1",
+              "targetText": "We can enter for free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i05:r2",
+              "targetText": "We could enter for free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i05:r3",
+              "targetText": "We cannot enter for free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can enter for free.",
+                "uk": "У записі звучить We can enter for free."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can enter for free.",
+                "uk": "У записі звучить We can enter for free."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ enter for free.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i06:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i06:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:word:by-heart",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — by heart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:by-heart:audio"
+        ],
+        "accessibilityLabel": "Картка слова — by heart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:by-heart:audio",
+            "transcript": "by heart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:by-heart:r1",
+              "targetText": "by heart",
+              "meaningByLocale": {
+                "ru": "наизусть.",
+                "uk": "напам’ять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by heart",
+            "definitionByLocale": {
+              "ru": "наизусть.",
+              "uk": "напам’ять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Вона може вивчити цей вірш напам’ять».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Вона може вивчити цей вірш напам’ять».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can learn this poem by heart.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Она может выучить это стихотворение наизусть».",
+            "uk": "Скажіть із can: «Вона може вивчити цей вірш напам’ять»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "learn",
+            "this",
+            "poem",
+            "by",
+            "heart"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i08:r1",
+            "text": "She can learn this poem by heart."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i08:r2",
+            "text": "She could learn this poem by heart."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i08:r3",
+            "text": "She cannot learn this poem by heart."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i08:audio",
+            "transcript": "She can learn this poem by heart."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i08:r1",
+              "targetText": "She can learn this poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i08:r2",
+              "targetText": "She could learn this poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i08:r3",
+              "targetText": "She cannot learn this poem by heart.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can learn this poem by heart.",
+                "uk": "У записі звучить She can learn this poem by heart."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can learn this poem by heart.",
+                "uk": "У записі звучить She can learn this poem by heart."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "She ___ learn this poem by heart.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i09:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i09:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:word:in-common",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — in common",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:word:in-common:audio"
+        ],
+        "accessibilityLabel": "Картка слова — in common",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:word:in-common:audio",
+            "transcript": "in common"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:word:in-common:r1",
+              "targetText": "in common",
+              "meaningByLocale": {
+                "ru": "общего, общие интересы или черты.",
+                "uk": "спільного, спільні інтереси або риси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in common",
+            "definitionByLocale": {
+              "ru": "общего, общие интересы или черты.",
+              "uk": "спільного, спільні інтереси або риси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Ми можемо знайти щось спільне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Ми можемо знайти щось спільне».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can find something in common.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем найти что-то общее».",
+            "uk": "Скажіть із can: «Ми можемо знайти щось спільне»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "find",
+            "something",
+            "in",
+            "common"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i11:r1",
+            "text": "We can find something in common."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i11:r2",
+            "text": "We could find something in common."
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i11:r3",
+            "text": "We cannot find something in common."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i11:audio",
+            "transcript": "We can find something in common."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-52:i11:r1",
+              "targetText": "We can find something in common.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i11:r2",
+              "targetText": "We could find something in common.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i11:r3",
+              "targetText": "We cannot find something in common.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can find something in common.",
+                "uk": "У записі звучить We can find something in common."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can find something in common.",
+                "uk": "У записі звучить We can find something in common."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-52:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-52:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ find something in common.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-52:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i12:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i12:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-52:i13:p1",
+              "target": "by myself",
+              "meaningByLocale": {
+                "ru": "сам, без компании или помощи",
+                "uk": "сам, без компанії або допомоги"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-52:i13:p2",
+              "target": "for free",
+              "meaningByLocale": {
+                "ru": "бесплатно",
+                "uk": "безкоштовно"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-52:i13:p3",
+              "target": "by heart",
+              "meaningByLocale": {
+                "ru": "наизусть",
+                "uk": "напам’ять"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-52:i13:p4",
+              "target": "in common",
+              "meaningByLocale": {
+                "ru": "общего, общие интересы или черты",
+                "uk": "спільного, спільні інтереси або риси"
+              }
+            }
+          ],
+          "leftColumn": [
+            "by myself",
+            "for free",
+            "by heart",
+            "in common"
+          ],
+          "rightColumn": [
+            "сам, без компанії або допомоги",
+            "безкоштовно",
+            "напам’ять",
+            "спільного, спільні інтереси або риси"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: майбутня можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: майбутня можливість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i15:audio",
+            "transcript": "We will be able to help tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will be able to help tomorrow.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "help",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть про безкоштовний вхід",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть про безкоштовний вхід",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i16:audio",
+            "transcript": "We can enter for free."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can enter for free.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що можна знайти спільні інтереси",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що можна знайти спільні інтереси",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-52:i17:audio",
+            "transcript": "We can find something in common."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can find something in common.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-52:word:by-myself",
+      "correctText": "by myself",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i01",
+      "correctText": "I can go by myself.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i02",
+      "correctText": "I can go by myself.",
+      "correctResponseId": "en:lesson-19:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i03",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:word:for-free",
+      "correctText": "for free",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i04",
+      "correctText": "We can enter for free.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i05",
+      "correctText": "We can enter for free.",
+      "correctResponseId": "en:lesson-19:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i06",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:word:by-heart",
+      "correctText": "by heart",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i07",
+      "correctText": "She can learn this poem by heart.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i08",
+      "correctText": "She can learn this poem by heart.",
+      "correctResponseId": "en:lesson-19:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i09",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:word:in-common",
+      "correctText": "in common",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i10",
+      "correctText": "We can find something in common.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i11",
+      "correctText": "We can find something in common.",
+      "correctResponseId": "en:lesson-19:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i12",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i15",
+      "correctText": "We will be able to help tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i16",
+      "correctText": "We can enter for free.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:i17",
+      "correctText": "We can find something in common.",
+      "correctResponseId": null
+    }
+  ]
+}

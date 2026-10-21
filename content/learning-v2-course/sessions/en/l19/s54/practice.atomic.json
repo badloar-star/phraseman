@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-54:word:work-out",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — work out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:work-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — work out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:work-out:audio",
+            "transcript": "work out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:work-out:r1",
+              "targetText": "work out",
+              "meaningByLocale": {
+                "ru": "рассчитать, разобраться.",
+                "uk": "розрахувати, розібратися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "work out",
+            "definitionByLocale": {
+              "ru": "рассчитать, разобраться.",
+              "uk": "розрахувати, розібратися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Мы можем рассчитать стоимость».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Мы можем рассчитать стоимость».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can work out the cost.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем рассчитать стоимость».",
+            "uk": "Скажіть із can: «Ми можемо розрахувати вартість»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "work",
+            "out",
+            "the",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i02:r1",
+            "text": "We can work out the cost."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i02:r2",
+            "text": "We could work out the cost."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i02:r3",
+            "text": "We cannot work out the cost."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i02:audio",
+            "transcript": "We can work out the cost."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i02:r1",
+              "targetText": "We can work out the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i02:r2",
+              "targetText": "We could work out the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i02:r3",
+              "targetText": "We cannot work out the cost.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can work out the cost.",
+                "uk": "У записі звучить We can work out the cost."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can work out the cost.",
+                "uk": "У записі звучить We can work out the cost."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ work out the cost.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i03:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i03:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:word:point-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — point out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:point-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — point out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:point-out:audio",
+            "transcript": "point out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:point-out:r1",
+              "targetText": "point out",
+              "meaningByLocale": {
+                "ru": "указать, обратить внимание на.",
+                "uk": "указати, звернути увагу на."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "point out",
+            "definitionByLocale": {
+              "ru": "указать, обратить внимание на.",
+              "uk": "указати, звернути увагу на."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Она может указать на ошибку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Она может указать на ошибку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can point out the mistake.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Она может указать на ошибку».",
+            "uk": "Скажіть із can: «Вона може вказати на помилку»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "point",
+            "out",
+            "the",
+            "mistake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i05:r1",
+            "text": "She can point out the mistake."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i05:r2",
+            "text": "She could point out the mistake."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i05:r3",
+            "text": "She cannot point out the mistake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i05:audio",
+            "transcript": "She can point out the mistake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i05:r1",
+              "targetText": "She can point out the mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i05:r2",
+              "targetText": "She could point out the mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i05:r3",
+              "targetText": "She cannot point out the mistake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can point out the mistake.",
+                "uk": "У записі звучить She can point out the mistake."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can point out the mistake.",
+                "uk": "У записі звучить She can point out the mistake."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "She ___ point out the mistake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i06:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i06:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:word:leave-out",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leave out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:leave-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leave out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:leave-out:audio",
+            "transcript": "leave out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:leave-out:r1",
+              "targetText": "leave out",
+              "meaningByLocale": {
+                "ru": "не включать, пропускать.",
+                "uk": "не включати, пропускати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leave out",
+            "definitionByLocale": {
+              "ru": "не включать, пропускать.",
+              "uk": "не включати, пропускати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу не включать эту подробность».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу не включать эту подробность».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can leave out this detail.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу не включать эту подробность».",
+            "uk": "Скажіть із can: «Я можу не включати цю подробицю»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "leave",
+            "out",
+            "this",
+            "detail"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i08:r1",
+            "text": "I can leave out this detail."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i08:r2",
+            "text": "I could leave out this detail."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i08:r3",
+            "text": "I cannot leave out this detail."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i08:audio",
+            "transcript": "I can leave out this detail."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i08:r1",
+              "targetText": "I can leave out this detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i08:r2",
+              "targetText": "I could leave out this detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i08:r3",
+              "targetText": "I cannot leave out this detail.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can leave out this detail.",
+                "uk": "У записі звучить I can leave out this detail."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can leave out this detail.",
+                "uk": "У записі звучить I can leave out this detail."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ leave out this detail.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i09:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i09:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:word:give-in",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — give in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:give-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — give in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:give-in:audio",
+            "transcript": "give in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:give-in:r1",
+              "targetText": "give in",
+              "meaningByLocale": {
+                "ru": "уступить, перестать сопротивляться.",
+                "uk": "поступитися, перестати опиратися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give in",
+            "definitionByLocale": {
+              "ru": "уступить, перестать сопротивляться.",
+              "uk": "поступитися, перестати опиратися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу уступить на этот раз».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу уступить на этот раз».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can give in this time.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу уступить на этот раз».",
+            "uk": "Скажіть із can: «Я можу поступитися цього разу»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "give",
+            "in",
+            "this",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i11:r1",
+            "text": "I can give in this time."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i11:r2",
+            "text": "I could give in this time."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i11:r3",
+            "text": "I cannot give in this time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i11:audio",
+            "transcript": "I can give in this time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i11:r1",
+              "targetText": "I can give in this time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i11:r2",
+              "targetText": "I could give in this time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i11:r3",
+              "targetText": "I cannot give in this time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can give in this time.",
+                "uk": "У записі звучить I can give in this time."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can give in this time.",
+                "uk": "У записі звучить I can give in this time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ give in this time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i12:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i12:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-54:i13:p1",
+              "target": "work out",
+              "meaningByLocale": {
+                "ru": "рассчитать, разобраться",
+                "uk": "розрахувати, розібратися"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-54:i13:p2",
+              "target": "point out",
+              "meaningByLocale": {
+                "ru": "указать, обратить внимание на",
+                "uk": "указати, звернути увагу на"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-54:i13:p3",
+              "target": "leave out",
+              "meaningByLocale": {
+                "ru": "не включать, пропускать",
+                "uk": "не включати, пропускати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-54:i13:p4",
+              "target": "give in",
+              "meaningByLocale": {
+                "ru": "уступить, перестать сопротивляться",
+                "uk": "поступитися, перестати опиратися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "work out",
+            "point out",
+            "leave out",
+            "give in"
+          ],
+          "rightColumn": [
+            "рассчитать, разобраться",
+            "указать, обратить внимание на",
+            "не включать, пропускать",
+            "уступить, перестать сопротивляться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: будущая возможность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: будущая возможность",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i15:audio",
+            "transcript": "We will be able to help tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will be able to help tomorrow.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "help",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите рассчитать стоимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите рассчитать стоимость",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i16:audio",
+            "transcript": "We can work out the cost."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can work out the cost.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что готовы уступить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что готовы уступить",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i17:audio",
+            "transcript": "I can give in this time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can give in this time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-54:word:work-out",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — work out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:work-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — work out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:work-out:audio",
+            "transcript": "work out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:work-out:r1",
+              "targetText": "work out",
+              "meaningByLocale": {
+                "ru": "рассчитать, разобраться.",
+                "uk": "розрахувати, розібратися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "work out",
+            "definitionByLocale": {
+              "ru": "рассчитать, разобраться.",
+              "uk": "розрахувати, розібратися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Ми можемо розрахувати вартість».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Ми можемо розрахувати вартість».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can work out the cost.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем рассчитать стоимость».",
+            "uk": "Скажіть із can: «Ми можемо розрахувати вартість»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "work",
+            "out",
+            "the",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i02:r1",
+            "text": "We can work out the cost."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i02:r2",
+            "text": "We could work out the cost."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i02:r3",
+            "text": "We cannot work out the cost."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i02:audio",
+            "transcript": "We can work out the cost."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i02:r1",
+              "targetText": "We can work out the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i02:r2",
+              "targetText": "We could work out the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i02:r3",
+              "targetText": "We cannot work out the cost.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can work out the cost.",
+                "uk": "У записі звучить We can work out the cost."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can work out the cost.",
+                "uk": "У записі звучить We can work out the cost."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ work out the cost.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i03:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i03:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:word:point-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — point out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:point-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — point out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:point-out:audio",
+            "transcript": "point out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:point-out:r1",
+              "targetText": "point out",
+              "meaningByLocale": {
+                "ru": "указать, обратить внимание на.",
+                "uk": "указати, звернути увагу на."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "point out",
+            "definitionByLocale": {
+              "ru": "указать, обратить внимание на.",
+              "uk": "указати, звернути увагу на."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Вона може вказати на помилку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Вона може вказати на помилку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can point out the mistake.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Она может указать на ошибку».",
+            "uk": "Скажіть із can: «Вона може вказати на помилку»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "point",
+            "out",
+            "the",
+            "mistake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i05:r1",
+            "text": "She can point out the mistake."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i05:r2",
+            "text": "She could point out the mistake."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i05:r3",
+            "text": "She cannot point out the mistake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i05:audio",
+            "transcript": "She can point out the mistake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i05:r1",
+              "targetText": "She can point out the mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i05:r2",
+              "targetText": "She could point out the mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i05:r3",
+              "targetText": "She cannot point out the mistake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can point out the mistake.",
+                "uk": "У записі звучить She can point out the mistake."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can point out the mistake.",
+                "uk": "У записі звучить She can point out the mistake."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "She ___ point out the mistake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i06:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i06:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:word:leave-out",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leave out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:leave-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leave out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:leave-out:audio",
+            "transcript": "leave out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:leave-out:r1",
+              "targetText": "leave out",
+              "meaningByLocale": {
+                "ru": "не включать, пропускать.",
+                "uk": "не включати, пропускати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leave out",
+            "definitionByLocale": {
+              "ru": "не включать, пропускать.",
+              "uk": "не включати, пропускати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу не включати цю подробицю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу не включати цю подробицю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can leave out this detail.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу не включать эту подробность».",
+            "uk": "Скажіть із can: «Я можу не включати цю подробицю»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "leave",
+            "out",
+            "this",
+            "detail"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i08:r1",
+            "text": "I can leave out this detail."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i08:r2",
+            "text": "I could leave out this detail."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i08:r3",
+            "text": "I cannot leave out this detail."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i08:audio",
+            "transcript": "I can leave out this detail."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i08:r1",
+              "targetText": "I can leave out this detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i08:r2",
+              "targetText": "I could leave out this detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i08:r3",
+              "targetText": "I cannot leave out this detail.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can leave out this detail.",
+                "uk": "У записі звучить I can leave out this detail."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can leave out this detail.",
+                "uk": "У записі звучить I can leave out this detail."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ leave out this detail.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i09:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i09:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:word:give-in",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — give in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:word:give-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — give in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:word:give-in:audio",
+            "transcript": "give in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:word:give-in:r1",
+              "targetText": "give in",
+              "meaningByLocale": {
+                "ru": "уступить, перестать сопротивляться.",
+                "uk": "поступитися, перестати опиратися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give in",
+            "definitionByLocale": {
+              "ru": "уступить, перестать сопротивляться.",
+              "uk": "поступитися, перестати опиратися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу поступитися цього разу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу поступитися цього разу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can give in this time.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу уступить на этот раз».",
+            "uk": "Скажіть із can: «Я можу поступитися цього разу»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "give",
+            "in",
+            "this",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i11:r1",
+            "text": "I can give in this time."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i11:r2",
+            "text": "I could give in this time."
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i11:r3",
+            "text": "I cannot give in this time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i11:audio",
+            "transcript": "I can give in this time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-54:i11:r1",
+              "targetText": "I can give in this time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i11:r2",
+              "targetText": "I could give in this time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i11:r3",
+              "targetText": "I cannot give in this time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can give in this time.",
+                "uk": "У записі звучить I can give in this time."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can give in this time.",
+                "uk": "У записі звучить I can give in this time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-54:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-54:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ give in this time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-54:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i12:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i12:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-54:i13:p1",
+              "target": "work out",
+              "meaningByLocale": {
+                "ru": "рассчитать, разобраться",
+                "uk": "розрахувати, розібратися"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-54:i13:p2",
+              "target": "point out",
+              "meaningByLocale": {
+                "ru": "указать, обратить внимание на",
+                "uk": "указати, звернути увагу на"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-54:i13:p3",
+              "target": "leave out",
+              "meaningByLocale": {
+                "ru": "не включать, пропускать",
+                "uk": "не включати, пропускати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-54:i13:p4",
+              "target": "give in",
+              "meaningByLocale": {
+                "ru": "уступить, перестать сопротивляться",
+                "uk": "поступитися, перестати опиратися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "work out",
+            "point out",
+            "leave out",
+            "give in"
+          ],
+          "rightColumn": [
+            "розрахувати, розібратися",
+            "указати, звернути увагу на",
+            "не включати, пропускати",
+            "поступитися, перестати опиратися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: майбутня можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: майбутня можливість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i15:audio",
+            "transcript": "We will be able to help tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will be able to help tomorrow.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "help",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте розрахувати вартість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте розрахувати вартість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i16:audio",
+            "transcript": "We can work out the cost."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can work out the cost.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що готові поступитися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що готові поступитися",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-54:i17:audio",
+            "transcript": "I can give in this time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can give in this time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-54:word:work-out",
+      "correctText": "work out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i01",
+      "correctText": "We can work out the cost.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i02",
+      "correctText": "We can work out the cost.",
+      "correctResponseId": "en:lesson-19:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i03",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:word:point-out",
+      "correctText": "point out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i04",
+      "correctText": "She can point out the mistake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i05",
+      "correctText": "She can point out the mistake.",
+      "correctResponseId": "en:lesson-19:session-54:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i06",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-54:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:word:leave-out",
+      "correctText": "leave out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i07",
+      "correctText": "I can leave out this detail.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i08",
+      "correctText": "I can leave out this detail.",
+      "correctResponseId": "en:lesson-19:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i09",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:word:give-in",
+      "correctText": "give in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i10",
+      "correctText": "I can give in this time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i11",
+      "correctText": "I can give in this time.",
+      "correctResponseId": "en:lesson-19:session-54:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i12",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-54:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i15",
+      "correctText": "We will be able to help tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i16",
+      "correctText": "We can work out the cost.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-54:i17",
+      "correctText": "I can give in this time.",
+      "correctResponseId": null
+    }
+  ]
+}

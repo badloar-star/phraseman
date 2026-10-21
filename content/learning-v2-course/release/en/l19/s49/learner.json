@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-49:word:by-chance",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — by chance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:word:by-chance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — by chance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:word:by-chance:audio",
+          "transcript": "by chance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:word:by-chance:r1",
+            "targetText": "by chance",
+            "meaningByLocale": {
+              "ru": "случайно, по совпадению.",
+              "uk": "випадково, за збігом обставин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "by chance",
+          "definitionByLocale": {
+            "ru": "случайно, по совпадению.",
+            "uk": "випадково, за збігом обставин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Люди могут встретиться случайно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Люди могут встретиться случайно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "People can meet by chance.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Люди могут встретиться случайно».",
+          "uk": "Скажіть із can: «Люди можуть зустрітися випадково»."
+        },
+        "orderedTokens": [
+          "People",
+          "can",
+          "meet",
+          "by",
+          "chance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i02:r1",
+          "text": "People can meet by chance."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i02:r2",
+          "text": "People could meet by chance."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i02:r3",
+          "text": "People cannot meet by chance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i02:audio",
+          "transcript": "People can meet by chance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:i02:r1",
+            "targetText": "People can meet by chance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i02:r2",
+            "targetText": "People could meet by chance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i02:r3",
+            "targetText": "People cannot meet by chance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит People can meet by chance.",
+              "uk": "У записі звучить People can meet by chance."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит People can meet by chance.",
+              "uk": "У записі звучить People can meet by chance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "People ___ meet by chance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-49:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:word:by-accident",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — by accident",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:word:by-accident:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — by accident",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:word:by-accident:audio",
+          "transcript": "by accident"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:word:by-accident:r1",
+            "targetText": "by accident",
+            "meaningByLocale": {
+              "ru": "случайно, ненамеренно.",
+              "uk": "випадково, ненавмисно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "by accident",
+          "definitionByLocale": {
+            "ru": "случайно, ненамеренно.",
+            "uk": "випадково, ненавмисно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Любой может случайно разбить стакан».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Любой может случайно разбить стакан».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anyone can break a glass by accident.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Любой может случайно разбить стакан».",
+          "uk": "Скажіть із can: «Будь-хто може випадково розбити склянку»."
+        },
+        "orderedTokens": [
+          "Anyone",
+          "can",
+          "break",
+          "a",
+          "glass",
+          "by",
+          "accident"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i05:r1",
+          "text": "Anyone can break a glass by accident."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i05:r2",
+          "text": "Anyone could break a glass by accident."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i05:r3",
+          "text": "Anyone cannot break a glass by accident."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i05:audio",
+          "transcript": "Anyone can break a glass by accident."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:i05:r1",
+            "targetText": "Anyone can break a glass by accident.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i05:r2",
+            "targetText": "Anyone could break a glass by accident.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i05:r3",
+            "targetText": "Anyone cannot break a glass by accident.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can break a glass by accident.",
+              "uk": "У записі звучить Anyone can break a glass by accident."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can break a glass by accident.",
+              "uk": "У записі звучить Anyone can break a glass by accident."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "Anyone ___ break a glass by accident.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-49:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:word:on-the-way",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — on the way",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:word:on-the-way:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — on the way",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:word:on-the-way:audio",
+          "transcript": "on the way"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:word:on-the-way:r1",
+            "targetText": "on the way",
+            "meaningByLocale": {
+              "ru": "по пути.",
+              "uk": "дорогою, по дорозі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on the way",
+          "definitionByLocale": {
+            "ru": "по пути.",
+            "uk": "дорогою, по дорозі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Мы можем купить хлеб по пути».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Мы можем купить хлеб по пути».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can buy bread on the way.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем купить хлеб по пути».",
+          "uk": "Скажіть із can: «Ми можемо купити хліб дорогою»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "buy",
+          "bread",
+          "on",
+          "the",
+          "way"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i08:r1",
+          "text": "We can buy bread on the way."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i08:r2",
+          "text": "We could buy bread on the way."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i08:r3",
+          "text": "We cannot buy bread on the way."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i08:audio",
+          "transcript": "We can buy bread on the way."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:i08:r1",
+            "targetText": "We can buy bread on the way.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i08:r2",
+            "targetText": "We could buy bread on the way.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i08:r3",
+            "targetText": "We cannot buy bread on the way.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can buy bread on the way.",
+              "uk": "У записі звучить We can buy bread on the way."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can buy bread on the way.",
+              "uk": "У записі звучить We can buy bread on the way."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ buy bread on the way.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-49:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:word:on-average",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — on average",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:word:on-average:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — on average",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:word:on-average:audio",
+          "transcript": "on average"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:word:on-average:r1",
+            "targetText": "on average",
+            "meaningByLocale": {
+              "ru": "в среднем.",
+              "uk": "у середньому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on average",
+          "definitionByLocale": {
+            "ru": "в среднем.",
+            "uk": "у середньому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Я могу читать в среднем двадцать страниц в день».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Я могу читать в среднем двадцать страниц в день».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can read twenty pages a day on average.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я могу читать в среднем двадцать страниц в день».",
+          "uk": "Скажіть із can: «Я можу читати в середньому двадцять сторінок на день»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "read",
+          "twenty",
+          "pages",
+          "a",
+          "day",
+          "on",
+          "average"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i11:r1",
+          "text": "I can read twenty pages a day on average."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i11:r2",
+          "text": "I could read twenty pages a day on average."
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i11:r3",
+          "text": "I cannot read twenty pages a day on average."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i11:audio",
+          "transcript": "I can read twenty pages a day on average."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-49:i11:r1",
+            "targetText": "I can read twenty pages a day on average.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i11:r2",
+            "targetText": "I could read twenty pages a day on average.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i11:r3",
+            "targetText": "I cannot read twenty pages a day on average.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can read twenty pages a day on average.",
+              "uk": "У записі звучить I can read twenty pages a day on average."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can read twenty pages a day on average.",
+              "uk": "У записі звучить I can read twenty pages a day on average."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-49:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-49:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ read twenty pages a day on average.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-49:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-49:i13:p1",
+            "target": "by chance",
+            "meaningByLocale": {
+              "ru": "случайно, по совпадению",
+              "uk": "випадково, за збігом обставин"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-49:i13:p2",
+            "target": "by accident",
+            "meaningByLocale": {
+              "ru": "случайно, ненамеренно",
+              "uk": "випадково, ненавмисно"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-49:i13:p3",
+            "target": "on the way",
+            "meaningByLocale": {
+              "ru": "по пути",
+              "uk": "дорогою, по дорозі"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-49:i13:p4",
+            "target": "on average",
+            "meaningByLocale": {
+              "ru": "в среднем",
+              "uk": "у середньому"
+            }
+          }
+        ],
+        "leftColumn": [
+          "by chance",
+          "by accident",
+          "on the way",
+          "on average"
+        ],
+        "rightColumn": [
+          "случайно, по совпадению",
+          "случайно, ненамеренно",
+          "по пути",
+          "в среднем"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите покупку по пути",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Предложите покупку по пути",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i16:audio",
+          "transcript": "We can buy bread on the way."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can buy bread on the way.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о случайной встрече",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите о случайной встрече",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-49:i17:audio",
+          "transcript": "People can meet by chance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "People can meet by chance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9438d9bf18396843d71407554723226540e9b8c79c1b726d4b249638526ce41c"
+}

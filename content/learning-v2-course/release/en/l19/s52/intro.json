@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пойти одному",
+        "uk": "Піти самому"
+      },
+      "bodyByLocale": {
+        "ru": "By myself — сам, без компании или помощи. В этой сцене вы можете пойти на выставку один. Значение близко к знакомому on my own. Для другого человека: by herself, by yourself. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Устойчивые выражения помогают уточнить условия и способ действия.",
+        "uk": "By myself — сам, без компанії або допомоги. У цій сцені ви можете піти на виставку самі. Значення близьке до знайомого on my own. Для іншої людини: by herself, by yourself. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Сталі вирази допомагають уточнити умови й спосіб дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-52:intro1:r1",
+              "text": "I can go by myself."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro1:r2",
+              "text": "I cans go by myself."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro1:r3",
+              "text": "I can to go by myself."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-52:intro1:r1",
+              "text": "I can go by myself."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro1:r2",
+              "text": "I cans go by myself."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro1:r3",
+              "text": "I can to go by myself."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не платить за вход",
+        "uk": "Не платити за вхід"
+      },
+      "bodyByLocale": {
+        "ru": "For free — бесплатно, без оплаты. На объявлении о выставке сказано, что вход свободный. Вы говорите другу, что можете войти бесплатно. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Устойчивые выражения помогают уточнить условия и способ действия.",
+        "uk": "For free — безкоштовно, без оплати. В оголошенні про виставку сказано, що вхід вільний. Ви кажете другові, що можете зайти безкоштовно. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Сталі вирази допомагають уточнити умови й спосіб дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-52:intro2:r1",
+              "text": "We can enter for free."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro2:r2",
+              "text": "We cans enter for free."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro2:r3",
+              "text": "We can to enter for free."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-52:intro2:r1",
+              "text": "We can enter for free."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro2:r2",
+              "text": "We cans enter for free."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro2:r3",
+              "text": "We can to enter for free."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Наизусть и что-то общее",
+        "uk": "Напам’ять і щось спільне"
+      },
+      "bodyByLocale": {
+        "ru": "By heart — наизусть: знакомая может запомнить короткое стихотворение и рассказать его без текста. In common — общего: при знакомстве вы можете найти общие интересы. Something in common — что-то общее. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Устойчивые выражения помогают уточнить условия и способ действия.",
+        "uk": "By heart — напам’ять: знайома може запам’ятати короткий вірш і розказати його без тексту. In common — спільного: під час знайомства ви можете знайти спільні інтереси. Something in common — щось спільне. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Сталі вирази допомагають уточнити умови й спосіб дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-52:intro3:r1",
+              "text": "We can find something in common."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro3:r2",
+              "text": "We cans find something in common."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro3:r3",
+              "text": "We can to find something in common."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-52:intro3:r1",
+              "text": "We can find something in common."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro3:r2",
+              "text": "We cans find something in common."
+            },
+            {
+              "responseId": "en:lesson-19:session-52:intro3:r3",
+              "text": "We can to find something in common."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b344cafbd571c44dc629c229a49d31bd285dae1de110da70307a3c39e25812cd"
+}

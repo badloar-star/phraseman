@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-56:word:at-risk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — at risk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:word:at-risk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — at risk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:word:at-risk:audio",
+          "transcript": "at risk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:word:at-risk:r1",
+            "targetText": "at risk",
+            "meaningByLocale": {
+              "ru": "под угрозой, в опасности.",
+              "uk": "під загрозою, у небезпеці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "at risk",
+          "definitionByLocale": {
+            "ru": "под угрозой, в опасности.",
+            "uk": "під загрозою, у небезпеці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Здесь животные могут быть под угрозой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Здесь животные могут быть под угрозой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Animals can be at risk here.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Здесь животные могут быть под угрозой».",
+          "uk": "Скажіть із can: «Тут тварини можуть бути під загрозою»."
+        },
+        "orderedTokens": [
+          "Animals",
+          "can",
+          "be",
+          "at",
+          "risk",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i02:r1",
+          "text": "Animals can be at risk here."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i02:r2",
+          "text": "Animals could be at risk here."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i02:r3",
+          "text": "Animals cannot be at risk here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i02:audio",
+          "transcript": "Animals can be at risk here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:i02:r1",
+            "targetText": "Animals can be at risk here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i02:r2",
+            "targetText": "Animals could be at risk here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i02:r3",
+            "targetText": "Animals cannot be at risk here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Animals can be at risk here.",
+              "uk": "У записі звучить Animals can be at risk here."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Animals can be at risk here.",
+              "uk": "У записі звучить Animals can be at risk here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "Animals ___ be at risk here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-56:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:word:in-doubt",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in doubt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:word:in-doubt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in doubt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:word:in-doubt:audio",
+          "transcript": "in doubt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:word:in-doubt:r1",
+            "targetText": "in doubt",
+            "meaningByLocale": {
+              "ru": "под сомнением, в сомнении.",
+              "uk": "під сумнівом, у сумніві."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in doubt",
+          "definitionByLocale": {
+            "ru": "под сомнением, в сомнении.",
+            "uk": "під сумнівом, у сумніві."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Любой человек иногда может сомневаться».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Любой человек иногда может сомневаться».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anyone can be in doubt sometimes.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Любой человек иногда может сомневаться».",
+          "uk": "Скажіть із can: «Будь-яка людина іноді може сумніватися»."
+        },
+        "orderedTokens": [
+          "Anyone",
+          "can",
+          "be",
+          "in",
+          "doubt",
+          "sometimes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i05:r1",
+          "text": "Anyone can be in doubt sometimes."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i05:r2",
+          "text": "Anyone could be in doubt sometimes."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i05:r3",
+          "text": "Anyone cannot be in doubt sometimes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i05:audio",
+          "transcript": "Anyone can be in doubt sometimes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:i05:r1",
+            "targetText": "Anyone can be in doubt sometimes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i05:r2",
+            "targetText": "Anyone could be in doubt sometimes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i05:r3",
+            "targetText": "Anyone cannot be in doubt sometimes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can be in doubt sometimes.",
+              "uk": "У записі звучить Anyone can be in doubt sometimes."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can be in doubt sometimes.",
+              "uk": "У записі звучить Anyone can be in doubt sometimes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "Anyone ___ be in doubt sometimes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-56:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:word:out-of-breath",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — out of breath",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:word:out-of-breath:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — out of breath",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:word:out-of-breath:audio",
+          "transcript": "out of breath"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:word:out-of-breath:r1",
+            "targetText": "out of breath",
+            "meaningByLocale": {
+              "ru": "запыхавшийся, с трудом переводящий дыхание.",
+              "uk": "захеканий, той, хто важко переводить подих."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "out of breath",
+          "definitionByLocale": {
+            "ru": "запыхавшийся, с трудом переводящий дыхание.",
+            "uk": "захеканий, той, хто важко переводить подих."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «После пробежки я могу запыхаться».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «После пробежки я могу запыхаться».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can be out of breath after a run.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «После пробежки я могу запыхаться».",
+          "uk": "Скажіть із can: «Після пробіжки я можу захекатися»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "be",
+          "out",
+          "of",
+          "breath",
+          "after",
+          "a",
+          "run"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i08:r1",
+          "text": "I can be out of breath after a run."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i08:r2",
+          "text": "I could be out of breath after a run."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i08:r3",
+          "text": "I cannot be out of breath after a run."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i08:audio",
+          "transcript": "I can be out of breath after a run."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:i08:r1",
+            "targetText": "I can be out of breath after a run.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i08:r2",
+            "targetText": "I could be out of breath after a run.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i08:r3",
+            "targetText": "I cannot be out of breath after a run.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can be out of breath after a run.",
+              "uk": "У записі звучить I can be out of breath after a run."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can be out of breath after a run.",
+              "uk": "У записі звучить I can be out of breath after a run."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ be out of breath after a run.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-56:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:word:take-away",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — take away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:word:take-away:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — take away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:word:take-away:audio",
+          "transcript": "take away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:word:take-away:r1",
+            "targetText": "take away",
+            "meaningByLocale": {
+              "ru": "убрать, унести.",
+              "uk": "прибрати, забрати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take away",
+          "definitionByLocale": {
+            "ru": "убрать, унести.",
+            "uk": "прибрати, забрати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Ты можешь убрать эти тарелки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Ты можешь убрать эти тарелки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can take away these plates.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Ты можешь убрать эти тарелки».",
+          "uk": "Скажіть із can: «Ти можеш прибрати ці тарілки»."
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "take",
+          "away",
+          "these",
+          "plates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i11:r1",
+          "text": "You can take away these plates."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i11:r2",
+          "text": "You could take away these plates."
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i11:r3",
+          "text": "You cannot take away these plates."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i11:audio",
+          "transcript": "You can take away these plates."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-56:i11:r1",
+            "targetText": "You can take away these plates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i11:r2",
+            "targetText": "You could take away these plates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i11:r3",
+            "targetText": "You cannot take away these plates.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can take away these plates.",
+              "uk": "У записі звучить You can take away these plates."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can take away these plates.",
+              "uk": "У записі звучить You can take away these plates."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-56:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-56:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "You ___ take away these plates.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-56:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-56:i13:p1",
+            "target": "at risk",
+            "meaningByLocale": {
+              "ru": "под угрозой, в опасности",
+              "uk": "під загрозою, у небезпеці"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-56:i13:p2",
+            "target": "in doubt",
+            "meaningByLocale": {
+              "ru": "под сомнением, в сомнении",
+              "uk": "під сумнівом, у сумніві"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-56:i13:p3",
+            "target": "out of breath",
+            "meaningByLocale": {
+              "ru": "запыхавшийся, с трудом переводящий дыхание",
+              "uk": "захеканий, той, хто важко переводить подих"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-56:i13:p4",
+            "target": "take away",
+            "meaningByLocale": {
+              "ru": "убрать, унести",
+              "uk": "прибрати, забрати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "at risk",
+          "in doubt",
+          "out of breath",
+          "take away"
+        ],
+        "rightColumn": [
+          "под угрозой, в опасности",
+          "под сомнением, в сомнении",
+          "запыхавшийся, с трудом переводящий дыхание",
+          "убрать, унести"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о возможном риске для животных",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите о возможном риске для животных",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i16:audio",
+          "transcript": "Animals can be at risk here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Animals can be at risk here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что тарелки можно убрать",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что тарелки можно убрать",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-56:i17:audio",
+          "transcript": "You can take away these plates."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You can take away these plates.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "74585d302c47462a4654c02ae34c6a94687cebcb48e9527d413f92e68d56e84b"
+}

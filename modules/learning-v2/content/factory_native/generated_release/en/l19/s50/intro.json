@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Получить письменно",
+        "uk": "Отримати письмово"
+      },
+      "bodyByLocale": {
+        "ru": "In writing — письменно, в письменном виде. Вам устно сообщили время и стоимость услуги. Вы хотите получить эти сведения письменно, чтобы потом их перечитать. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In writing — письмово, у письмовому вигляді. Вам усно повідомили час і вартість послуги. Ви хочете отримати ці відомості письмово, щоб потім їх перечитати. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-50:intro1:r1",
+              "text": "Could I have it in writing?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro1:r2",
+              "text": "Could I to have it in writing?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro1:r3",
+              "text": "I could have it in writing?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-50:intro1:r1",
+              "text": "Could I have it in writing?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro1:r2",
+              "text": "Could I to have it in writing?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro1:r3",
+              "text": "I could have it in writing?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Объяснить подробно",
+        "uk": "Пояснити докладно"
+      },
+      "bodyByLocale": {
+        "ru": "In detail — подробно, с деталями. Собеседнику непонятно, как прошла встреча, и вы просите время объяснить всё подробнее. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In detail — докладно, з подробицями. Співрозмовникові незрозуміло, як минула зустріч, і ви просите час пояснити все докладніше. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-50:intro2:r1",
+              "text": "Could I explain it in detail?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro2:r2",
+              "text": "Could I to explain it in detail?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro2:r3",
+              "text": "I could explain it in detail?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-50:intro2:r1",
+              "text": "Could I explain it in detail?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro2:r2",
+              "text": "Could I to explain it in detail?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro2:r3",
+              "text": "I could explain it in detail?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кратко и в ответ",
+        "uk": "Стисло й у відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "In brief — кратко: у собеседника мало времени, поэтому вы предлагаете короткое объяснение. In return — в ответ, взамен: сосед помог вам, и вы хотите предложить помощь ему. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In brief — стисло: співрозмовник має мало часу, тому ви пропонуєте коротке пояснення. In return — у відповідь, натомість: сусід допоміг вам, і ви хочете запропонувати допомогу йому. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-50:intro3:r1",
+              "text": "Could I help you in return?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro3:r2",
+              "text": "Could I to help you in return?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro3:r3",
+              "text": "I could help you in return?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-50:intro3:r1",
+              "text": "Could I help you in return?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro3:r2",
+              "text": "Could I to help you in return?"
+            },
+            {
+              "responseId": "en:lesson-19:session-50:intro3:r3",
+              "text": "I could help you in return?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "54e32078edb84e1b3a4ce5863a5c7a69193d157ec2555a45a0b1e7232306664a"
+}

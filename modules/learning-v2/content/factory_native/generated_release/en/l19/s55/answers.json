@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-55:word:get-over",
+    "correctText": "get over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i01",
+    "correctText": "I can get over this disappointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i02",
+    "correctText": "I can get over this disappointment.",
+    "correctResponseId": "en:lesson-19:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:word:take-over",
+    "correctText": "take over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i04",
+    "correctText": "I can take over the cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i05",
+    "correctText": "I can take over the cooking.",
+    "correctResponseId": "en:lesson-19:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:word:come-across",
+    "correctText": "come across",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i07",
+    "correctText": "You can come across old photos here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i08",
+    "correctText": "You can come across old photos here.",
+    "correctResponseId": "en:lesson-19:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:word:keep-up",
+    "correctText": "keep up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i10",
+    "correctText": "I can keep up with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i11",
+    "correctText": "I can keep up with you.",
+    "correctResponseId": "en:lesson-19:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i13",
+    "correctText": "en:lesson-19:session-55:i13:p1=get over\nen:lesson-19:session-55:i13:p2=take over\nen:lesson-19:session-55:i13:p3=come across\nen:lesson-19:session-55:i13:p4=keep up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i16",
+    "correctText": "I can take over the cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-55:i17",
+    "correctText": "I can keep up with you.",
+    "correctResponseId": null
+  }
+]

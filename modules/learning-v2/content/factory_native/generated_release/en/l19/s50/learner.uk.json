@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-50:word:in-writing",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — in writing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:word:in-writing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — in writing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:word:in-writing:audio",
+          "transcript": "in writing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:word:in-writing:r1",
+            "targetText": "in writing",
+            "meaningByLocale": {
+              "ru": "письменно, в письменном виде.",
+              "uk": "письмово, у письмовому вигляді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in writing",
+          "definitionByLocale": {
+            "ru": "письменно, в письменном виде.",
+            "uk": "письмово, у письмовому вигляді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені отримати це в письмовому вигляді?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені отримати це в письмовому вигляді?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have it in writing?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне получить это в письменном виде?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені отримати це в письмовому вигляді?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "it",
+          "in",
+          "writing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i02:r1",
+          "text": "Could I have it in writing?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i02:r2",
+          "text": "Can I have it in writing?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i02:r3",
+          "text": "Could we have it in writing?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i02:audio",
+          "transcript": "Could I have it in writing?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:i02:r1",
+            "targetText": "Could I have it in writing?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i02:r2",
+            "targetText": "Can I have it in writing?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i02:r3",
+            "targetText": "Could we have it in writing?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I have it in writing?",
+              "uk": "У записі звучить Could I have it in writing?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I have it in writing?",
+              "uk": "У записі звучить Could I have it in writing?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i03:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i03:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i03:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ have it in writing?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-50:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:word:in-detail",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — in detail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:word:in-detail:audio"
+      ],
+      "accessibilityLabel": "Картка слова — in detail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:word:in-detail:audio",
+          "transcript": "in detail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:word:in-detail:r1",
+            "targetText": "in detail",
+            "meaningByLocale": {
+              "ru": "подробно.",
+              "uk": "докладно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in detail",
+          "definitionByLocale": {
+            "ru": "подробно.",
+            "uk": "докладно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені пояснити це докладно?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені пояснити це докладно?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I explain it in detail?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне объяснить это подробно?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені пояснити це докладно?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "explain",
+          "it",
+          "in",
+          "detail"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i05:r1",
+          "text": "Could I explain it in detail?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i05:r2",
+          "text": "Can I explain it in detail?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i05:r3",
+          "text": "Could we explain it in detail?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i05:audio",
+          "transcript": "Could I explain it in detail?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:i05:r1",
+            "targetText": "Could I explain it in detail?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i05:r2",
+            "targetText": "Can I explain it in detail?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i05:r3",
+            "targetText": "Could we explain it in detail?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain it in detail?",
+              "uk": "У записі звучить Could I explain it in detail?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain it in detail?",
+              "uk": "У записі звучить Could I explain it in detail?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i06:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i06:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i06:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ explain it in detail?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-50:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:word:in-brief",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — in brief",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:word:in-brief:audio"
+      ],
+      "accessibilityLabel": "Картка слова — in brief",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:word:in-brief:audio",
+          "transcript": "in brief"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:word:in-brief:r1",
+            "targetText": "in brief",
+            "meaningByLocale": {
+              "ru": "кратко, вкратце.",
+              "uk": "коротко, стисло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in brief",
+          "definitionByLocale": {
+            "ru": "кратко, вкратце.",
+            "uk": "коротко, стисло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені пояснити це стисло?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені пояснити це стисло?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I explain it in brief?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне объяснить это вкратце?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені пояснити це стисло?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "explain",
+          "it",
+          "in",
+          "brief"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i08:r1",
+          "text": "Could I explain it in brief?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i08:r2",
+          "text": "Can I explain it in brief?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i08:r3",
+          "text": "Could we explain it in brief?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i08:audio",
+          "transcript": "Could I explain it in brief?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:i08:r1",
+            "targetText": "Could I explain it in brief?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i08:r2",
+            "targetText": "Can I explain it in brief?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i08:r3",
+            "targetText": "Could we explain it in brief?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain it in brief?",
+              "uk": "У записі звучить Could I explain it in brief?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain it in brief?",
+              "uk": "У записі звучить Could I explain it in brief?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i09:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i09:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i09:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ explain it in brief?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-50:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:word:in-return",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — in return",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:word:in-return:audio"
+      ],
+      "accessibilityLabel": "Картка слова — in return",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:word:in-return:audio",
+          "transcript": "in return"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:word:in-return:r1",
+            "targetText": "in return",
+            "meaningByLocale": {
+              "ru": "в ответ, взамен.",
+              "uk": "у відповідь, натомість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in return",
+          "definitionByLocale": {
+            "ru": "в ответ, взамен.",
+            "uk": "у відповідь, натомість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені допомогти вам у відповідь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені допомогти вам у відповідь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I help you in return?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне помочь вам в ответ?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені допомогти вам у відповідь?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "help",
+          "you",
+          "in",
+          "return"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i11:r1",
+          "text": "Could I help you in return?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i11:r2",
+          "text": "Can I help you in return?"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i11:r3",
+          "text": "Could we help you in return?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i11:audio",
+          "transcript": "Could I help you in return?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-50:i11:r1",
+            "targetText": "Could I help you in return?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i11:r2",
+            "targetText": "Can I help you in return?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i11:r3",
+            "targetText": "Could we help you in return?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I help you in return?",
+              "uk": "У записі звучить Could I help you in return?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I help you in return?",
+              "uk": "У записі звучить Could I help you in return?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-50:i12:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i12:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-50:i12:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ help you in return?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-50:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-50:i13:p1",
+            "target": "in writing",
+            "meaningByLocale": {
+              "ru": "письменно, в письменном виде",
+              "uk": "письмово, у письмовому вигляді"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-50:i13:p2",
+            "target": "in detail",
+            "meaningByLocale": {
+              "ru": "подробно",
+              "uk": "докладно"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-50:i13:p3",
+            "target": "in brief",
+            "meaningByLocale": {
+              "ru": "кратко, вкратце",
+              "uk": "коротко, стисло"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-50:i13:p4",
+            "target": "in return",
+            "meaningByLocale": {
+              "ru": "в ответ, взамен",
+              "uk": "у відповідь, натомість"
+            }
+          }
+        ],
+        "leftColumn": [
+          "in writing",
+          "in detail",
+          "in brief",
+          "in return"
+        ],
+        "rightColumn": [
+          "письмово, у письмовому вигляді",
+          "докладно",
+          "коротко, стисло",
+          "у відповідь, натомість"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почута майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почута майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i14:audio",
+          "transcript": "I will be able to explain this."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be able to explain this.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "able",
+          "to",
+          "explain",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i16:audio",
+          "transcript": "I can explain it in detail."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can explain it in detail.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть враження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть враження",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-50:i17:audio",
+          "transcript": "This is such a useful explanation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a useful explanation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c4c3f49f5efd8d3b58f7f1cbafb8b7e184c3859e00128cf95ef2e3a3a643bc6c"
+}

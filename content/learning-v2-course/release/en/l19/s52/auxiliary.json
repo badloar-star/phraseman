@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-52:intro1:r2": {
+          "ru": "Can не получает окончания -s.",
+          "uk": "Can не отримує закінчення -s."
+        },
+        "en:lesson-19:session-52:intro1:r3": {
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-52:intro2:r2": {
+          "ru": "Can не получает окончания -s.",
+          "uk": "Can не отримує закінчення -s."
+        },
+        "en:lesson-19:session-52:intro2:r3": {
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-52:intro3:r2": {
+          "ru": "Can не получает окончания -s.",
+          "uk": "Can не отримує закінчення -s."
+        },
+        "en:lesson-19:session-52:intro3:r3": {
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39f0338c5b70c81c0d8a55b7915cfe818d0ff89d9cdf3a63a476058a5a9c2dbe"
+}

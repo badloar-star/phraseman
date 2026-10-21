@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поднять настроение",
+        "uk": "Підняти настрій"
+      },
+      "bodyByLocale": {
+        "ru": "In a good mood — в хорошем настроении. Любимая песня помогает вам почувствовать себя лучше. Put me in a good mood — поднять мне настроение, привести меня в хорошее настроение. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can может показывать, что влияет на настроение или какая помощь возможна.",
+        "uk": "In a good mood — у доброму настрої. Улюблена пісня допомагає вам почуватися краще. Put me in a good mood — підняти мені настрій, налаштувати мене на добрий лад. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can може показувати, що впливає на настрій або яка допомога можлива."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-53:intro1:r1",
+              "text": "Music can put me in a good mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro1:r2",
+              "text": "Music cans put me in a good mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro1:r3",
+              "text": "Music can to put me in a good mood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-53:intro1:r1",
+              "text": "Music can put me in a good mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro1:r2",
+              "text": "Music cans put me in a good mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro1:r3",
+              "text": "Music can to put me in a good mood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бывает с каждым",
+        "uk": "Буває з кожним"
+      },
+      "bodyByLocale": {
+        "ru": "In a bad mood — в плохом настроении. Знакомый сегодня раздражён, и вы напоминаете: такое бывает с каждым. Здесь can — общая возможность, а не умение. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can может показывать, что влияет на настроение или какая помощь возможна.",
+        "uk": "In a bad mood — у поганому настрої. Знайомий сьогодні роздратований, і ви нагадуєте: таке буває з кожним. Тут can — загальна можливість, а не вміння. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can може показувати, що впливає на настрій або яка допомога можлива."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-53:intro2:r1",
+              "text": "Anyone can be in a bad mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro2:r2",
+              "text": "Anyone cans be in a bad mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro2:r3",
+              "text": "Anyone can to be in a bad mood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-53:intro2:r1",
+              "text": "Anyone can be in a bad mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro2:r2",
+              "text": "Anyone cans be in a bad mood."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro2:r3",
+              "text": "Anyone can to be in a bad mood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Беда и опасность",
+        "uk": "Біда й небезпека"
+      },
+      "bodyByLocale": {
+        "ru": "In trouble — в беде или в затруднении: друг потерял ключи и нуждается в помощи. In danger — в опасности: в истории животное застряло, и герои могут ему помочь. Trouble не всегда означает угрозу здоровью; danger подчёркивает опасность. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can может показывать, что влияет на настроение или какая помощь возможна.",
+        "uk": "In trouble — у біді або у скруті: друг загубив ключі й потребує допомоги. In danger — у небезпеці: в історії тварина застрягла, і герої можуть їй допомогти. Trouble не завжди означає загрозу здоров’ю; danger підкреслює небезпеку. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can може показувати, що впливає на настрій або яка допомога можлива."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-53:intro3:r1",
+              "text": "We can help an animal in danger."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro3:r2",
+              "text": "We cans help an animal in danger."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro3:r3",
+              "text": "We can to help an animal in danger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-53:intro3:r1",
+              "text": "We can help an animal in danger."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro3:r2",
+              "text": "We cans help an animal in danger."
+            },
+            {
+              "responseId": "en:lesson-19:session-53:intro3:r3",
+              "text": "We can to help an animal in danger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fda64db2aa4d688bb6202105f9a8e9035637ff09c308ceeaed7fcdfeb3776996"
+}

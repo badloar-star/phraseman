@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почитать без шума",
+        "uk": "Почитати без шуму"
+      },
+      "bodyByLocale": {
+        "ru": "In silence — в тишине или молча. Дома играет музыка, а вы хотите спокойно почитать и просите немного тишины. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In silence — у тиші або мовчки. Удома грає музика, а ви хочете спокійно почитати й просите трохи тиші. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-51:intro1:r1",
+              "text": "Could I read in silence?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro1:r2",
+              "text": "Could I to read in silence?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro1:r3",
+              "text": "I could read in silence?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-51:intro1:r1",
+              "text": "Could I read in silence?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro1:r2",
+              "text": "Could I to read in silence?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro1:r3",
+              "text": "I could read in silence?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подготовить сюрприз",
+        "uk": "Підготувати сюрприз"
+      },
+      "bodyByLocale": {
+        "ru": "In secret — тайно, втайне. Вы хотите устроить другу праздник-сюрприз и обсуждаете с его сестрой, можно ли готовить всё так, чтобы он пока не узнал. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In secret — таємно, потай. Ви хочете влаштувати другові свято-сюрприз і обговорюєте з його сестрою, чи можна готувати все так, щоб він поки не дізнався. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-51:intro2:r1",
+              "text": "Could I plan it in secret?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro2:r2",
+              "text": "Could I to plan it in secret?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro2:r3",
+              "text": "I could plan it in secret?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-51:intro2:r1",
+              "text": "Could I plan it in secret?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro2:r2",
+              "text": "Could I to plan it in secret?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro2:r3",
+              "text": "I could plan it in secret?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чуть позже и пока ждём",
+        "uk": "Трохи пізніше й поки чекаємо"
+      },
+      "bodyByLocale": {
+        "ru": "In a minute — через минуту; в разговоре это часто просто «очень скоро». Вы заканчиваете короткое дело и просите присоединиться чуть позже. In the meantime — тем временем, пока: ваш номер ещё готовят, и вы просите подождать здесь. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In a minute — за хвилину; у розмові це часто просто «дуже скоро». Ви закінчуєте коротку справу й просите приєднатися трохи пізніше. In the meantime — тим часом, поки: ваш номер ще готують, і ви просите зачекати тут. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-51:intro3:r1",
+              "text": "Could I wait here in the meantime?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro3:r2",
+              "text": "Could I to wait here in the meantime?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro3:r3",
+              "text": "I could wait here in the meantime?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-51:intro3:r1",
+              "text": "Could I wait here in the meantime?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro3:r2",
+              "text": "Could I to wait here in the meantime?"
+            },
+            {
+              "responseId": "en:lesson-19:session-51:intro3:r3",
+              "text": "I could wait here in the meantime?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9428a9de49351cebca7ef67ab4d15bd04033a7772b311e0b2a82df1d9ece0986"
+}

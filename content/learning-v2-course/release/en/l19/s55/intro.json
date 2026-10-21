@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пережить разочарование",
+        "uk": "Пережити розчарування"
+      },
+      "bodyByLocale": {
+        "ru": "Get over — оправиться от неприятного события. Вы не попали на концерт и говорите, что сможете пережить разочарование. Это ваша оценка ситуации, а не обещание другого человека. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. В новых выражениях сохраняем оба слова: get over, take over, come across, keep up.",
+        "uk": "Get over — оговтатися після неприємної події. Ви не потрапили на концерт і кажете, що зможете пережити розчарування. Це ваша оцінка ситуації, а не обіцянка іншої людини. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. У нових виразах зберігаємо обидва слова: get over, take over, come across, keep up."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-55:intro1:r1",
+              "text": "I can get over this disappointment."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro1:r2",
+              "text": "I cans get over this disappointment."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro1:r3",
+              "text": "I can to get over this disappointment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-55:intro1:r1",
+              "text": "I can get over this disappointment."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro1:r2",
+              "text": "I cans get over this disappointment."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro1:r3",
+              "text": "I can to get over this disappointment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подхватить дело",
+        "uk": "Підхопити справу"
+      },
+      "bodyByLocale": {
+        "ru": "Take over — взять дело на себя вместо другого человека. Друг готовил ужин, но ему нужно уйти; вы можете продолжить готовку. Come across — найти случайно: в коробке со старыми вещами могут попасться фотографии. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. В новых выражениях сохраняем оба слова: get over, take over, come across, keep up.",
+        "uk": "Take over — перебрати справу на себе замість іншої людини. Друг готував вечерю, але йому потрібно піти; ви можете продовжити готування. Come across — знайти випадково: у коробці зі старими речами можуть трапитися фотографії. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. У нових виразах зберігаємо обидва слова: get over, take over, come across, keep up."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-55:intro2:r1",
+              "text": "I can take over the cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro2:r2",
+              "text": "I cans take over the cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro2:r3",
+              "text": "I can to take over the cooking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-55:intro2:r1",
+              "text": "I can take over the cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro2:r2",
+              "text": "I cans take over the cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro2:r3",
+              "text": "I can to take over the cooking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не отставать",
+        "uk": "Не відставати"
+      },
+      "bodyByLocale": {
+        "ru": "Keep up — не отставать. На прогулке вы можете идти с другом в одном темпе. Если называем человека, добавляем with: keep up with you. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. В новых выражениях сохраняем оба слова: get over, take over, come across, keep up.",
+        "uk": "Keep up — не відставати. На прогулянці ви можете йти з другом в одному темпі. Якщо називаємо людину, додаємо with: keep up with you. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. У нових виразах зберігаємо обидва слова: get over, take over, come across, keep up."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-55:intro3:r1",
+              "text": "I can keep up with you."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro3:r2",
+              "text": "I cans keep up with you."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro3:r3",
+              "text": "I can to keep up with you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-55:intro3:r1",
+              "text": "I can keep up with you."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro3:r2",
+              "text": "I cans keep up with you."
+            },
+            {
+              "responseId": "en:lesson-19:session-55:intro3:r3",
+              "text": "I can to keep up with you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ee9b73f3d0ffb9489b9dcc228cd685e982b86c741a5c2d1f105650f551875d8"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-52:word:by-myself",
+    "correctText": "by myself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i01",
+    "correctText": "I can go by myself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i02",
+    "correctText": "I can go by myself.",
+    "correctResponseId": "en:lesson-19:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:word:for-free",
+    "correctText": "for free",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i04",
+    "correctText": "We can enter for free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i05",
+    "correctText": "We can enter for free.",
+    "correctResponseId": "en:lesson-19:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:word:by-heart",
+    "correctText": "by heart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i07",
+    "correctText": "She can learn this poem by heart.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i08",
+    "correctText": "She can learn this poem by heart.",
+    "correctResponseId": "en:lesson-19:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:word:in-common",
+    "correctText": "in common",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i10",
+    "correctText": "We can find something in common.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i11",
+    "correctText": "We can find something in common.",
+    "correctResponseId": "en:lesson-19:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i13",
+    "correctText": "en:lesson-19:session-52:i13:p1=by myself\nen:lesson-19:session-52:i13:p2=for free\nen:lesson-19:session-52:i13:p3=by heart\nen:lesson-19:session-52:i13:p4=in common",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i16",
+    "correctText": "We can enter for free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-52:i17",
+    "correctText": "We can find something in common.",
+    "correctResponseId": null
+  }
+]

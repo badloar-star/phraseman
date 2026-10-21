@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-50:word:in-writing",
+    "correctText": "in writing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i01",
+    "correctText": "Could I have it in writing?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i02",
+    "correctText": "Could I have it in writing?",
+    "correctResponseId": "en:lesson-19:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:word:in-detail",
+    "correctText": "in detail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i04",
+    "correctText": "Could I explain it in detail?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i05",
+    "correctText": "Could I explain it in detail?",
+    "correctResponseId": "en:lesson-19:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:word:in-brief",
+    "correctText": "in brief",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i07",
+    "correctText": "Could I explain it in brief?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i08",
+    "correctText": "Could I explain it in brief?",
+    "correctResponseId": "en:lesson-19:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:word:in-return",
+    "correctText": "in return",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i10",
+    "correctText": "Could I help you in return?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i11",
+    "correctText": "Could I help you in return?",
+    "correctResponseId": "en:lesson-19:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i13",
+    "correctText": "en:lesson-19:session-50:i13:p1=in writing\nen:lesson-19:session-50:i13:p2=in detail\nen:lesson-19:session-50:i13:p3=in brief\nen:lesson-19:session-50:i13:p4=in return",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i16",
+    "correctText": "I can explain it in detail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-50:i17",
+    "correctText": "This is such a useful explanation.",
+    "correctResponseId": null
+  }
+]

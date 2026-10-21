@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-49:word:by-chance",
+    "correctText": "by chance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i01",
+    "correctText": "People can meet by chance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i02",
+    "correctText": "People can meet by chance.",
+    "correctResponseId": "en:lesson-19:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:word:by-accident",
+    "correctText": "by accident",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i04",
+    "correctText": "Anyone can break a glass by accident.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i05",
+    "correctText": "Anyone can break a glass by accident.",
+    "correctResponseId": "en:lesson-19:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:word:on-the-way",
+    "correctText": "on the way",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i07",
+    "correctText": "We can buy bread on the way.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i08",
+    "correctText": "We can buy bread on the way.",
+    "correctResponseId": "en:lesson-19:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:word:on-average",
+    "correctText": "on average",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i10",
+    "correctText": "I can read twenty pages a day on average.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i11",
+    "correctText": "I can read twenty pages a day on average.",
+    "correctResponseId": "en:lesson-19:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i13",
+    "correctText": "en:lesson-19:session-49:i13:p1=by chance\nen:lesson-19:session-49:i13:p2=by accident\nen:lesson-19:session-49:i13:p3=on the way\nen:lesson-19:session-49:i13:p4=on average",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i16",
+    "correctText": "We can buy bread on the way.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-49:i17",
+    "correctText": "People can meet by chance.",
+    "correctResponseId": null
+  }
+]

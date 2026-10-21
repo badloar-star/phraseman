@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Совпадение",
+        "uk": "Збіг обставин"
+      },
+      "bodyByLocale": {
+        "ru": "By chance — случайно, по совпадению. Двое знакомых оказались в одном кафе, хотя не договаривались о встрече. Can здесь выражает общую возможность: такие встречи бывают. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can также помогает говорить о том, что иногда может случаться.",
+        "uk": "By chance — випадково, за збігом обставин. Двоє знайомих опинилися в одному кафе, хоча не домовлялися про зустріч. Can тут виражає загальну можливість: такі зустрічі бувають. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can також допомагає говорити про те, що іноді може траплятися."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-49:intro1:r1",
+              "text": "People can meet by chance."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro1:r2",
+              "text": "People cans meet by chance."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro1:r3",
+              "text": "People can to meet by chance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-49:intro1:r1",
+              "text": "People can meet by chance."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro1:r2",
+              "text": "People cans meet by chance."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro1:r3",
+              "text": "People can to meet by chance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Без намерения",
+        "uk": "Без наміру"
+      },
+      "bodyByLocale": {
+        "ru": "By accident — случайно, ненамеренно. Кто-то задел стакан, и тот разбился: человек не собирался его разбивать. By chance чаще подчёркивает совпадение, by accident — отсутствие намерения; значения могут пересекаться. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can также помогает говорить о том, что иногда может случаться.",
+        "uk": "By accident — випадково, ненавмисно. Хтось зачепив склянку, і вона розбилася: людина не збиралася її розбивати. By chance частіше підкреслює збіг, by accident — відсутність наміру; значення можуть перетинатися. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can також допомагає говорити про те, що іноді може траплятися."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-49:intro2:r1",
+              "text": "Anyone can break a glass by accident."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro2:r2",
+              "text": "Anyone cans break a glass by accident."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro2:r3",
+              "text": "Anyone can to break a glass by accident."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-49:intro2:r1",
+              "text": "Anyone can break a glass by accident."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro2:r2",
+              "text": "Anyone cans break a glass by accident."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro2:r3",
+              "text": "Anyone can to break a glass by accident."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "По пути и в среднем",
+        "uk": "Дорогою й у середньому"
+      },
+      "bodyByLocale": {
+        "ru": "On the way — по пути: возвращаясь домой, вы можете зайти за хлебом. On average — в среднем: в один день вы читаете больше, в другой меньше, а среднее — двадцать страниц в день. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can также помогает говорить о том, что иногда может случаться.",
+        "uk": "On the way — дорогою: повертаючись додому, ви можете зайти по хліб. On average — у середньому: одного дня ви читаєте більше, іншого менше, а середнє — двадцять сторінок на день. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can також допомагає говорити про те, що іноді може траплятися."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-49:intro3:r1",
+              "text": "I can read twenty pages a day on average."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro3:r2",
+              "text": "I cans read twenty pages a day on average."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro3:r3",
+              "text": "I can to read twenty pages a day on average."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-49:intro3:r1",
+              "text": "I can read twenty pages a day on average."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro3:r2",
+              "text": "I cans read twenty pages a day on average."
+            },
+            {
+              "responseId": "en:lesson-19:session-49:intro3:r3",
+              "text": "I can to read twenty pages a day on average."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ad4ccab299f693c4238e78bd3daa135a731ff0feb46800755ca852b50b4fa56e"
+}

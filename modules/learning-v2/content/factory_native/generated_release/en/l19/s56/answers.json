@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-56:word:at-risk",
+    "correctText": "at risk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i01",
+    "correctText": "Animals can be at risk here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i02",
+    "correctText": "Animals can be at risk here.",
+    "correctResponseId": "en:lesson-19:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:word:in-doubt",
+    "correctText": "in doubt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i04",
+    "correctText": "Anyone can be in doubt sometimes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i05",
+    "correctText": "Anyone can be in doubt sometimes.",
+    "correctResponseId": "en:lesson-19:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:word:out-of-breath",
+    "correctText": "out of breath",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i07",
+    "correctText": "I can be out of breath after a run.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i08",
+    "correctText": "I can be out of breath after a run.",
+    "correctResponseId": "en:lesson-19:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:word:take-away",
+    "correctText": "take away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i10",
+    "correctText": "You can take away these plates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i11",
+    "correctText": "You can take away these plates.",
+    "correctResponseId": "en:lesson-19:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i13",
+    "correctText": "en:lesson-19:session-56:i13:p1=at risk\nen:lesson-19:session-56:i13:p2=in doubt\nen:lesson-19:session-56:i13:p3=out of breath\nen:lesson-19:session-56:i13:p4=take away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i16",
+    "correctText": "Animals can be at risk here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-56:i17",
+    "correctText": "You can take away these plates.",
+    "correctResponseId": null
+  }
+]

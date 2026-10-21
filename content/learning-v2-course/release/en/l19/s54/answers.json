@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-54:word:work-out",
+    "correctText": "work out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i01",
+    "correctText": "We can work out the cost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i02",
+    "correctText": "We can work out the cost.",
+    "correctResponseId": "en:lesson-19:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:word:point-out",
+    "correctText": "point out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i04",
+    "correctText": "She can point out the mistake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i05",
+    "correctText": "She can point out the mistake.",
+    "correctResponseId": "en:lesson-19:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:word:leave-out",
+    "correctText": "leave out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i07",
+    "correctText": "I can leave out this detail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i08",
+    "correctText": "I can leave out this detail.",
+    "correctResponseId": "en:lesson-19:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:word:give-in",
+    "correctText": "give in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i10",
+    "correctText": "I can give in this time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i11",
+    "correctText": "I can give in this time.",
+    "correctResponseId": "en:lesson-19:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i13",
+    "correctText": "en:lesson-19:session-54:i13:p1=work out\nen:lesson-19:session-54:i13:p2=point out\nen:lesson-19:session-54:i13:p3=leave out\nen:lesson-19:session-54:i13:p4=give in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i16",
+    "correctText": "We can work out the cost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-54:i17",
+    "correctText": "I can give in this time.",
+    "correctResponseId": null
+  }
+]

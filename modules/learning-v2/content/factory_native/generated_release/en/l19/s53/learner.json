@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-53:word:in-a-good-mood",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in a good mood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:word:in-a-good-mood:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in a good mood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:word:in-a-good-mood:audio",
+          "transcript": "in a good mood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:word:in-a-good-mood:r1",
+            "targetText": "in a good mood",
+            "meaningByLocale": {
+              "ru": "в хорошем настроении.",
+              "uk": "у доброму настрої."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in a good mood",
+          "definitionByLocale": {
+            "ru": "в хорошем настроении.",
+            "uk": "у доброму настрої."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Музыка может поднять мне настроение».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Музыка может поднять мне настроение».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Music can put me in a good mood.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Музыка может поднять мне настроение».",
+          "uk": "Скажіть із can: «Музика може підняти мені настрій»."
+        },
+        "orderedTokens": [
+          "Music",
+          "can",
+          "put",
+          "me",
+          "in",
+          "a",
+          "good",
+          "mood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i02:r1",
+          "text": "Music can put me in a good mood."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i02:r2",
+          "text": "Music could put me in a good mood."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i02:r3",
+          "text": "Music cannot put me in a good mood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i02:audio",
+          "transcript": "Music can put me in a good mood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:i02:r1",
+            "targetText": "Music can put me in a good mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i02:r2",
+            "targetText": "Music could put me in a good mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i02:r3",
+            "targetText": "Music cannot put me in a good mood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Music can put me in a good mood.",
+              "uk": "У записі звучить Music can put me in a good mood."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Music can put me in a good mood.",
+              "uk": "У записі звучить Music can put me in a good mood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "Music ___ put me in a good mood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-53:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:word:in-a-bad-mood",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in a bad mood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:word:in-a-bad-mood:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in a bad mood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:word:in-a-bad-mood:audio",
+          "transcript": "in a bad mood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:word:in-a-bad-mood:r1",
+            "targetText": "in a bad mood",
+            "meaningByLocale": {
+              "ru": "в плохом настроении.",
+              "uk": "у поганому настрої."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in a bad mood",
+          "definitionByLocale": {
+            "ru": "в плохом настроении.",
+            "uk": "у поганому настрої."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Любой может быть в плохом настроении».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Любой может быть в плохом настроении».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anyone can be in a bad mood.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Любой может быть в плохом настроении».",
+          "uk": "Скажіть із can: «Будь-хто може бути в поганому настрої»."
+        },
+        "orderedTokens": [
+          "Anyone",
+          "can",
+          "be",
+          "in",
+          "a",
+          "bad",
+          "mood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i05:r1",
+          "text": "Anyone can be in a bad mood."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i05:r2",
+          "text": "Anyone could be in a bad mood."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i05:r3",
+          "text": "Anyone cannot be in a bad mood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i05:audio",
+          "transcript": "Anyone can be in a bad mood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:i05:r1",
+            "targetText": "Anyone can be in a bad mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i05:r2",
+            "targetText": "Anyone could be in a bad mood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i05:r3",
+            "targetText": "Anyone cannot be in a bad mood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can be in a bad mood.",
+              "uk": "У записі звучить Anyone can be in a bad mood."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can be in a bad mood.",
+              "uk": "У записі звучить Anyone can be in a bad mood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "Anyone ___ be in a bad mood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-53:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:word:in-trouble",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in trouble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:word:in-trouble:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in trouble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:word:in-trouble:audio",
+          "transcript": "in trouble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:word:in-trouble:r1",
+            "targetText": "in trouble",
+            "meaningByLocale": {
+              "ru": "в беде, в затруднении.",
+              "uk": "у біді, у скруті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in trouble",
+          "definitionByLocale": {
+            "ru": "в беде, в затруднении.",
+            "uk": "у біді, у скруті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Я могу помочь другу в беде».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Я могу помочь другу в беде».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can help a friend in trouble.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я могу помочь другу в беде».",
+          "uk": "Скажіть із can: «Я можу допомогти другові в біді»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "help",
+          "a",
+          "friend",
+          "in",
+          "trouble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i08:r1",
+          "text": "I can help a friend in trouble."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i08:r2",
+          "text": "I could help a friend in trouble."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i08:r3",
+          "text": "I cannot help a friend in trouble."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i08:audio",
+          "transcript": "I can help a friend in trouble."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:i08:r1",
+            "targetText": "I can help a friend in trouble.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i08:r2",
+            "targetText": "I could help a friend in trouble.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i08:r3",
+            "targetText": "I cannot help a friend in trouble.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can help a friend in trouble.",
+              "uk": "У записі звучить I can help a friend in trouble."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can help a friend in trouble.",
+              "uk": "У записі звучить I can help a friend in trouble."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ help a friend in trouble.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-53:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:word:in-danger",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in danger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:word:in-danger:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in danger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:word:in-danger:audio",
+          "transcript": "in danger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:word:in-danger:r1",
+            "targetText": "in danger",
+            "meaningByLocale": {
+              "ru": "в опасности.",
+              "uk": "у небезпеці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in danger",
+          "definitionByLocale": {
+            "ru": "в опасности.",
+            "uk": "у небезпеці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Мы можем помочь животному в опасности».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Мы можем помочь животному в опасности».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can help an animal in danger.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем помочь животному в опасности».",
+          "uk": "Скажіть із can: «Ми можемо допомогти тварині в небезпеці»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "help",
+          "an",
+          "animal",
+          "in",
+          "danger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i11:r1",
+          "text": "We can help an animal in danger."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i11:r2",
+          "text": "We could help an animal in danger."
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i11:r3",
+          "text": "We cannot help an animal in danger."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i11:audio",
+          "transcript": "We can help an animal in danger."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-53:i11:r1",
+            "targetText": "We can help an animal in danger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i11:r2",
+            "targetText": "We could help an animal in danger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i11:r3",
+            "targetText": "We cannot help an animal in danger.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can help an animal in danger.",
+              "uk": "У записі звучить We can help an animal in danger."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can help an animal in danger.",
+              "uk": "У записі звучить We can help an animal in danger."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-53:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-53:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ help an animal in danger.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-53:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-53:i13:p1",
+            "target": "in a good mood",
+            "meaningByLocale": {
+              "ru": "в хорошем настроении",
+              "uk": "у доброму настрої"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-53:i13:p2",
+            "target": "in a bad mood",
+            "meaningByLocale": {
+              "ru": "в плохом настроении",
+              "uk": "у поганому настрої"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-53:i13:p3",
+            "target": "in trouble",
+            "meaningByLocale": {
+              "ru": "в беде, в затруднении",
+              "uk": "у біді, у скруті"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-53:i13:p4",
+            "target": "in danger",
+            "meaningByLocale": {
+              "ru": "в опасности",
+              "uk": "у небезпеці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "in a good mood",
+          "in a bad mood",
+          "in trouble",
+          "in danger"
+        ],
+        "rightColumn": [
+          "в хорошем настроении",
+          "в плохом настроении",
+          "в беде, в затруднении",
+          "в опасности"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите помощь другу в беде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Предложите помощь другу в беде",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i16:audio",
+          "transcript": "I can help a friend in trouble."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can help a friend in trouble.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что поднимает вам настроение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что поднимает вам настроение",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-53:i17:audio",
+          "transcript": "Music can put me in a good mood."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Music can put me in a good mood.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ba00d082e692fcf94a4e662f78403735552309de486464061a0c9591d4e57f62"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-51:word:in-silence",
+    "correctText": "in silence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i01",
+    "correctText": "Could I read in silence?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i02",
+    "correctText": "Could I read in silence?",
+    "correctResponseId": "en:lesson-19:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:word:in-secret",
+    "correctText": "in secret",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i04",
+    "correctText": "Could I plan it in secret?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i05",
+    "correctText": "Could I plan it in secret?",
+    "correctResponseId": "en:lesson-19:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:word:in-a-minute",
+    "correctText": "in a minute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i07",
+    "correctText": "Could I join you in a minute?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i08",
+    "correctText": "Could I join you in a minute?",
+    "correctResponseId": "en:lesson-19:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:word:in-the-meantime",
+    "correctText": "in the meantime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i10",
+    "correctText": "Could I wait here in the meantime?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i11",
+    "correctText": "Could I wait here in the meantime?",
+    "correctResponseId": "en:lesson-19:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i13",
+    "correctText": "en:lesson-19:session-51:i13:p1=in silence\nen:lesson-19:session-51:i13:p2=in secret\nen:lesson-19:session-51:i13:p3=in a minute\nen:lesson-19:session-51:i13:p4=in the meantime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i16",
+    "correctText": "I can join you in a minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-51:i17",
+    "correctText": "This room is so quiet.",
+    "correctResponseId": null
+  }
+]

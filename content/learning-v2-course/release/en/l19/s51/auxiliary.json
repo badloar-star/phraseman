@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-51:intro1:r2": {
+          "ru": "После Could I нет to.",
+          "uk": "Після Could I немає to."
+        },
+        "en:lesson-19:session-51:intro1:r3": {
+          "ru": "В вопросе о разрешении порядок Could I, не I could.",
+          "uk": "У питанні про дозвіл порядок Could I, не I could."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-51:intro2:r2": {
+          "ru": "После Could I нет to.",
+          "uk": "Після Could I немає to."
+        },
+        "en:lesson-19:session-51:intro2:r3": {
+          "ru": "В вопросе о разрешении порядок Could I, не I could.",
+          "uk": "У питанні про дозвіл порядок Could I, не I could."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-51:intro3:r2": {
+          "ru": "После Could I нет to.",
+          "uk": "Після Could I немає to."
+        },
+        "en:lesson-19:session-51:intro3:r3": {
+          "ru": "В вопросе о разрешении порядок Could I, не I could.",
+          "uk": "У питанні про дозвіл порядок Could I, не I could."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e9a068ef3ac99b7d4605a4f9212e55f9625fa9b862d5bd89a69b1ec4c882717"
+}

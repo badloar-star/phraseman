@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-53:word:in-a-good-mood",
+    "correctText": "in a good mood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i01",
+    "correctText": "Music can put me in a good mood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i02",
+    "correctText": "Music can put me in a good mood.",
+    "correctResponseId": "en:lesson-19:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:word:in-a-bad-mood",
+    "correctText": "in a bad mood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i04",
+    "correctText": "Anyone can be in a bad mood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i05",
+    "correctText": "Anyone can be in a bad mood.",
+    "correctResponseId": "en:lesson-19:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:word:in-trouble",
+    "correctText": "in trouble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i07",
+    "correctText": "I can help a friend in trouble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i08",
+    "correctText": "I can help a friend in trouble.",
+    "correctResponseId": "en:lesson-19:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:word:in-danger",
+    "correctText": "in danger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i10",
+    "correctText": "We can help an animal in danger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i11",
+    "correctText": "We can help an animal in danger.",
+    "correctResponseId": "en:lesson-19:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i13",
+    "correctText": "en:lesson-19:session-53:i13:p1=in a good mood\nen:lesson-19:session-53:i13:p2=in a bad mood\nen:lesson-19:session-53:i13:p3=in trouble\nen:lesson-19:session-53:i13:p4=in danger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i16",
+    "correctText": "I can help a friend in trouble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-53:i17",
+    "correctText": "Music can put me in a good mood.",
+    "correctResponseId": null
+  }
+]

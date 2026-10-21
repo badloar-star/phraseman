@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможный риск",
+        "uk": "Можливий ризик"
+      },
+      "bodyByLocale": {
+        "ru": "At risk означает, что кому-то или чему-то грозит неприятность. У дороги нет ограждения, и животные могут оказаться под угрозой. Выражение называет риск, а не утверждает, что беда уже произошла. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Учим выражения целиком: at risk, in doubt, out of breath, take away.",
+        "uk": "At risk означає, що комусь або чомусь загрожує неприємність. Біля дороги немає огорожі, і тварини можуть опинитися під загрозою. Вираз називає ризик, а не стверджує, що лихо вже сталося. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Вчимо вирази цілком: at risk, in doubt, out of breath, take away."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-56:intro1:r1",
+              "text": "Animals can be at risk here."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro1:r2",
+              "text": "Animals cans be at risk here."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro1:r3",
+              "text": "Animals can to be at risk here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-56:intro1:r1",
+              "text": "Animals can be at risk here."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro1:r2",
+              "text": "Animals cans be at risk here."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro1:r3",
+              "text": "Animals can to be at risk here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поездка под вопросом",
+        "uk": "Поїздка під питанням"
+      },
+      "bodyByLocale": {
+        "ru": "In doubt — в сомнении. Вы ещё не решили, ехать ли в поездку, и напоминаете себе: любой человек иногда может сомневаться. Out of breath — запыхавшийся: после пробежки бывает трудно сразу произнести длинную фразу. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Учим выражения целиком: at risk, in doubt, out of breath, take away.",
+        "uk": "In doubt — у сумніві. Ви ще не вирішили, чи їхати в поїздку, і нагадуєте собі: будь-яка людина іноді може сумніватися. Out of breath — захеканий: після пробіжки буває важко одразу вимовити довгу фразу. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Вчимо вирази цілком: at risk, in doubt, out of breath, take away."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-56:intro2:r1",
+              "text": "Anyone can be in doubt sometimes."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro2:r2",
+              "text": "Anyone cans be in doubt sometimes."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro2:r3",
+              "text": "Anyone can to be in doubt sometimes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-56:intro2:r1",
+              "text": "Anyone can be in doubt sometimes."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro2:r2",
+              "text": "Anyone cans be in doubt sometimes."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro2:r3",
+              "text": "Anyone can to be in doubt sometimes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Убрать со стола",
+        "uk": "Прибрати зі столу"
+      },
+      "bodyByLocale": {
+        "ru": "Take away здесь — убрать, унести. Ужин закончен, и вы говорите другу, что тарелки можно убрать. Сохраняйте away: оно показывает движение прочь. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Учим выражения целиком: at risk, in doubt, out of breath, take away.",
+        "uk": "Take away тут — прибрати, забрати. Вечеря закінчилася, і ви кажете другові, що тарілки можна прибрати. Зберігайте away: воно показує рух геть. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Вчимо вирази цілком: at risk, in doubt, out of breath, take away."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-56:intro3:r1",
+              "text": "You can take away these plates."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro3:r2",
+              "text": "You cans take away these plates."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro3:r3",
+              "text": "You can to take away these plates."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-56:intro3:r1",
+              "text": "You can take away these plates."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro3:r2",
+              "text": "You cans take away these plates."
+            },
+            {
+              "responseId": "en:lesson-19:session-56:intro3:r3",
+              "text": "You can to take away these plates."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "77e4e6e194707083d1d3a9a7e5a3f21d07a521ea8af40aecc766e83901614264"
+}

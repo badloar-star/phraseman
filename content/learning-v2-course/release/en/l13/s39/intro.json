@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "review: past events and questions",
+    "uk": "review: past events and questions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вырасти",
+        "uk": "Вирости"
+      },
+      "bodyByLocale": {
+        "ru": "Grow up — вырасти, провести детство. Did you grow up here? — Ты вырос здесь? После did нужна grow, не grew. Выберите вопрос.",
+        "uk": "Grow up — вирости, провести дитинство. Did you grow up here? — Ти виріс тут? Після did потрібна grow, не grew. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-39:intro1:r1",
+              "text": "Did you grow up here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro1:r2",
+              "text": "Did you grew up here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro1:r3",
+              "text": "You grew up here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-39:intro1:r1",
+              "text": "Did you grow up here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro1:r2",
+              "text": "Did you grew up here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro1:r3",
+              "text": "You grew up here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Воспитать",
+        "uk": "Виховати"
+      },
+      "bodyByLocale": {
+        "ru": "Bring up здесь — воспитать ребёнка. Did you bring up your children here? — Ты воспитал своих детей здесь? Выберите вопрос о воспитании детей.",
+        "uk": "Bring up тут — виховати дитину. Did you bring up your children here? — Ти виховав своїх дітей тут? Виберіть запитання про виховання дітей."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-39:intro2:r1",
+              "text": "Did you bring up your children here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro2:r2",
+              "text": "Did you grow up here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro2:r3",
+              "text": "Did you brought up your children here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-39:intro2:r1",
+              "text": "Did you bring up your children here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro2:r2",
+              "text": "Did you grow up here?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro2:r3",
+              "text": "Did you brought up your children here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ладить и поссориться",
+        "uk": "Ладнати й посваритися"
+      },
+      "bodyByLocale": {
+        "ru": "Get along — ладить, иметь хорошие отношения. Fall out — поссориться. Did you get along with your brother? — Ты ладил с братом? Выберите хорошие отношения.",
+        "uk": "Get along — ладнати, мати добрі стосунки. Fall out — посваритися. Did you get along with your brother? — Ти ладнав із братом? Виберіть добрі стосунки."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-39:intro3:r1",
+              "text": "Did you get along with your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro3:r2",
+              "text": "Did you fall out with your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro3:r3",
+              "text": "Did you got along with your brother?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-39:intro3:r1",
+              "text": "Did you get along with your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro3:r2",
+              "text": "Did you fall out with your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:intro3:r3",
+              "text": "Did you got along with your brother?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fdb6a3a48ff0cae48cfa4989291d61b0b212b0d08b813c8fd6e3908469d650fb"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-39:intro1:r2": {
+          "ru": "После did нужна grow.",
+          "uk": "Після did потрібна grow."
+        },
+        "en:lesson-13:session-39:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-39:intro2:r2": {
+          "ru": "Это вопрос о детстве самого друга.",
+          "uk": "Це запитання про дитинство самого друга."
+        },
+        "en:lesson-13:session-39:intro2:r3": {
+          "ru": "После did нужна bring.",
+          "uk": "Після did потрібна bring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-39:intro3:r2": {
+          "ru": "Fall out — поссориться.",
+          "uk": "Fall out — посваритися."
+        },
+        "en:lesson-13:session-39:intro3:r3": {
+          "ru": "После did нужна get.",
+          "uk": "Після did потрібна get."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4125b4c34f658c41031f7b40422220bc832312ebe42282b4057a35b006c3a0fb"
+}

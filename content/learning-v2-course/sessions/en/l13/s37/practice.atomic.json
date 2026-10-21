@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-37:word:come-in",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — come in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:come-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — come in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:come-in:audio",
+            "transcript": "come in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:come-in:r1",
+              "targetText": "come in",
+              "meaningByLocale": {
+                "ru": "войти внутрь к говорящему.",
+                "uk": "увійти всередину до мовця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "come in",
+            "definitionByLocale": {
+              "ru": "войти внутрь к говорящему.",
+              "uk": "увійти всередину до мовця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вошёл сюда первым?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вошёл сюда первым?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you come in first?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вошёл сюда первым?",
+            "uk": "Скажіть: Ти увійшов сюди першим?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "come",
+            "in",
+            "first"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i02:r1",
+            "text": "Did she come in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i02:r2",
+            "text": "Did you come in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i02:r3",
+            "text": "Did they come in first?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i02:audio",
+            "transcript": "Did she come in first?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i02:r1",
+              "targetText": "Did she come in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i02:r2",
+              "targetText": "Did you come in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i02:r3",
+              "targetText": "Did they come in first?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she come in first?",
+                "uk": "У записі звучить Did she come in first?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she come in first?",
+                "uk": "У записі звучить Did she come in first?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you come in first?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:word:go-in",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — go in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:go-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — go in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:go-in:audio",
+            "transcript": "go in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:go-in:r1",
+              "targetText": "go in",
+              "meaningByLocale": {
+                "ru": "войти внутрь другого места.",
+                "uk": "увійти всередину іншого місця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "go in",
+            "definitionByLocale": {
+              "ru": "войти внутрь другого места.",
+              "uk": "увійти всередину іншого місця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вошёл туда первым?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вошёл туда первым?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you go in first?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вошёл туда первым?",
+            "uk": "Скажіть: Ти увійшов туди першим?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "go",
+            "in",
+            "first"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i05:r1",
+            "text": "Did she go in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i05:r2",
+            "text": "Did you go in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i05:r3",
+            "text": "Did they go in first?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i05:audio",
+            "transcript": "Did she go in first?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i05:r1",
+              "targetText": "Did she go in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i05:r2",
+              "targetText": "Did you go in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i05:r3",
+              "targetText": "Did they go in first?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go in first?",
+                "uk": "У записі звучить Did she go in first?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go in first?",
+                "uk": "У записі звучить Did she go in first?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you go in first?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:word:let-in",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — let in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:let-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — let in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:let-in:audio",
+            "transcript": "let in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:let-in:r1",
+              "targetText": "let in",
+              "meaningByLocale": {
+                "ru": "впустить внутрь.",
+                "uk": "впустити всередину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let in",
+            "definitionByLocale": {
+              "ru": "впустить внутрь.",
+              "uk": "впустити всередину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты впустил собаку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты впустил собаку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you let in the dog?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты впустил собаку?",
+            "uk": "Скажіть: Ти впустив собаку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "let",
+            "in",
+            "the",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i08:r1",
+            "text": "Did she let in the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i08:r2",
+            "text": "Did you let in the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i08:r3",
+            "text": "Did they let in the dog?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i08:audio",
+            "transcript": "Did she let in the dog?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i08:r1",
+              "targetText": "Did she let in the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i08:r2",
+              "targetText": "Did you let in the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i08:r3",
+              "targetText": "Did they let in the dog?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let in the dog?",
+                "uk": "У записі звучить Did she let in the dog?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let in the dog?",
+                "uk": "У записі звучить Did she let in the dog?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you let in the dog?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:word:let-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — let out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:let-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — let out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:let-out:audio",
+            "transcript": "let out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:let-out:r1",
+              "targetText": "let out",
+              "meaningByLocale": {
+                "ru": "выпустить наружу.",
+                "uk": "випустити надвір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let out",
+            "definitionByLocale": {
+              "ru": "выпустить наружу.",
+              "uk": "випустити надвір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты выпустил собаку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты выпустил собаку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you let out the dog?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты выпустил собаку?",
+            "uk": "Скажіть: Ти випустив собаку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "let",
+            "out",
+            "the",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i11:r1",
+            "text": "Did she let out the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i11:r2",
+            "text": "Did you let out the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i11:r3",
+            "text": "Did they let out the dog?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i11:audio",
+            "transcript": "Did she let out the dog?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i11:r1",
+              "targetText": "Did she let out the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i11:r2",
+              "targetText": "Did you let out the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i11:r3",
+              "targetText": "Did they let out the dog?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let out the dog?",
+                "uk": "У записі звучить Did she let out the dog?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let out the dog?",
+                "uk": "У записі звучить Did she let out the dog?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you let out the dog?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-37:i13:p1",
+              "target": "come in",
+              "meaningByLocale": {
+                "ru": "войти внутрь к говорящему",
+                "uk": "увійти всередину до мовця"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-37:i13:p2",
+              "target": "go in",
+              "meaningByLocale": {
+                "ru": "войти внутрь другого места",
+                "uk": "увійти всередину іншого місця"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-37:i13:p3",
+              "target": "let in",
+              "meaningByLocale": {
+                "ru": "впустить внутрь",
+                "uk": "впустити всередину"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-37:i13:p4",
+              "target": "let out",
+              "meaningByLocale": {
+                "ru": "выпустить наружу",
+                "uk": "випустити надвір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "come in",
+            "go in",
+            "let in",
+            "let out"
+          ],
+          "rightColumn": [
+            "войти внутрь к говорящему",
+            "войти внутрь другого места",
+            "впустить внутрь",
+            "выпустить наружу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i14:audio",
+            "transcript": "First I opened the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "First I opened the door.",
+          "orderedTokens": [
+            "First",
+            "I",
+            "opened",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i15:audio",
+            "transcript": "Then I let in the dog."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I let in the dog.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "let",
+            "in",
+            "the",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга: ты вчера выпустил собаку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите друга: ты вчера выпустил собаку?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i16:audio",
+            "transcript": "Did you let out the dog yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you let out the dog yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: затем она вошла сюда",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: затем она вошла сюда",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i17:audio",
+            "transcript": "Then she came in."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then she came in.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-37:word:come-in",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — come in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:come-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — come in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:come-in:audio",
+            "transcript": "come in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:come-in:r1",
+              "targetText": "come in",
+              "meaningByLocale": {
+                "ru": "войти внутрь к говорящему.",
+                "uk": "увійти всередину до мовця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "come in",
+            "definitionByLocale": {
+              "ru": "войти внутрь к говорящему.",
+              "uk": "увійти всередину до мовця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти увійшов сюди першим?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти увійшов сюди першим?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you come in first?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вошёл сюда первым?",
+            "uk": "Скажіть: Ти увійшов сюди першим?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "come",
+            "in",
+            "first"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i02:r1",
+            "text": "Did she come in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i02:r2",
+            "text": "Did you come in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i02:r3",
+            "text": "Did they come in first?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i02:audio",
+            "transcript": "Did she come in first?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i02:r1",
+              "targetText": "Did she come in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i02:r2",
+              "targetText": "Did you come in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i02:r3",
+              "targetText": "Did they come in first?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she come in first?",
+                "uk": "У записі звучить Did she come in first?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she come in first?",
+                "uk": "У записі звучить Did she come in first?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you come in first?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:word:go-in",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — go in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:go-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — go in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:go-in:audio",
+            "transcript": "go in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:go-in:r1",
+              "targetText": "go in",
+              "meaningByLocale": {
+                "ru": "войти внутрь другого места.",
+                "uk": "увійти всередину іншого місця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "go in",
+            "definitionByLocale": {
+              "ru": "войти внутрь другого места.",
+              "uk": "увійти всередину іншого місця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти увійшов туди першим?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти увійшов туди першим?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you go in first?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вошёл туда первым?",
+            "uk": "Скажіть: Ти увійшов туди першим?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "go",
+            "in",
+            "first"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i05:r1",
+            "text": "Did she go in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i05:r2",
+            "text": "Did you go in first?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i05:r3",
+            "text": "Did they go in first?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i05:audio",
+            "transcript": "Did she go in first?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i05:r1",
+              "targetText": "Did she go in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i05:r2",
+              "targetText": "Did you go in first?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i05:r3",
+              "targetText": "Did they go in first?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go in first?",
+                "uk": "У записі звучить Did she go in first?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go in first?",
+                "uk": "У записі звучить Did she go in first?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you go in first?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:word:let-in",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — let in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:let-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — let in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:let-in:audio",
+            "transcript": "let in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:let-in:r1",
+              "targetText": "let in",
+              "meaningByLocale": {
+                "ru": "впустить внутрь.",
+                "uk": "впустити всередину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let in",
+            "definitionByLocale": {
+              "ru": "впустить внутрь.",
+              "uk": "впустити всередину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти впустив собаку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти впустив собаку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you let in the dog?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты впустил собаку?",
+            "uk": "Скажіть: Ти впустив собаку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "let",
+            "in",
+            "the",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i08:r1",
+            "text": "Did she let in the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i08:r2",
+            "text": "Did you let in the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i08:r3",
+            "text": "Did they let in the dog?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i08:audio",
+            "transcript": "Did she let in the dog?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i08:r1",
+              "targetText": "Did she let in the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i08:r2",
+              "targetText": "Did you let in the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i08:r3",
+              "targetText": "Did they let in the dog?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let in the dog?",
+                "uk": "У записі звучить Did she let in the dog?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let in the dog?",
+                "uk": "У записі звучить Did she let in the dog?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you let in the dog?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:word:let-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — let out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:word:let-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — let out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:word:let-out:audio",
+            "transcript": "let out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:word:let-out:r1",
+              "targetText": "let out",
+              "meaningByLocale": {
+                "ru": "выпустить наружу.",
+                "uk": "випустити надвір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let out",
+            "definitionByLocale": {
+              "ru": "выпустить наружу.",
+              "uk": "випустити надвір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти випустив собаку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти випустив собаку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you let out the dog?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты выпустил собаку?",
+            "uk": "Скажіть: Ти випустив собаку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "let",
+            "out",
+            "the",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i11:r1",
+            "text": "Did she let out the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i11:r2",
+            "text": "Did you let out the dog?"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i11:r3",
+            "text": "Did they let out the dog?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i11:audio",
+            "transcript": "Did she let out the dog?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-37:i11:r1",
+              "targetText": "Did she let out the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i11:r2",
+              "targetText": "Did you let out the dog?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i11:r3",
+              "targetText": "Did they let out the dog?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let out the dog?",
+                "uk": "У записі звучить Did she let out the dog?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she let out the dog?",
+                "uk": "У записі звучить Did she let out the dog?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-37:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-37:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you let out the dog?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-37:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-37:i13:p1",
+              "target": "come in",
+              "meaningByLocale": {
+                "ru": "войти внутрь к говорящему",
+                "uk": "увійти всередину до мовця"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-37:i13:p2",
+              "target": "go in",
+              "meaningByLocale": {
+                "ru": "войти внутрь другого места",
+                "uk": "увійти всередину іншого місця"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-37:i13:p3",
+              "target": "let in",
+              "meaningByLocale": {
+                "ru": "впустить внутрь",
+                "uk": "впустити всередину"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-37:i13:p4",
+              "target": "let out",
+              "meaningByLocale": {
+                "ru": "выпустить наружу",
+                "uk": "випустити надвір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "come in",
+            "go in",
+            "let in",
+            "let out"
+          ],
+          "rightColumn": [
+            "увійти всередину до мовця",
+            "увійти всередину іншого місця",
+            "впустити всередину",
+            "випустити надвір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i14:audio",
+            "transcript": "First I opened the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "First I opened the door.",
+          "orderedTokens": [
+            "First",
+            "I",
+            "opened",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i15:audio",
+            "transcript": "Then I let in the dog."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I let in the dog.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "let",
+            "in",
+            "the",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга: ти вчора випустив собаку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга: ти вчора випустив собаку?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i16:audio",
+            "transcript": "Did you let out the dog yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you let out the dog yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: потім вона увійшла сюди",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: потім вона увійшла сюди",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-37:i17:audio",
+            "transcript": "Then she came in."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then she came in.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-37:word:come-in",
+      "correctText": "come in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i01",
+      "correctText": "Did you come in first?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i02",
+      "correctText": "Did she come in first?",
+      "correctResponseId": "en:lesson-13:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:word:go-in",
+      "correctText": "go in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i04",
+      "correctText": "Did you go in first?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i05",
+      "correctText": "Did she go in first?",
+      "correctResponseId": "en:lesson-13:session-37:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-37:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:word:let-in",
+      "correctText": "let in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i07",
+      "correctText": "Did you let in the dog?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i08",
+      "correctText": "Did she let in the dog?",
+      "correctResponseId": "en:lesson-13:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:word:let-out",
+      "correctText": "let out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i10",
+      "correctText": "Did you let out the dog?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i11",
+      "correctText": "Did she let out the dog?",
+      "correctResponseId": "en:lesson-13:session-37:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-37:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i14",
+      "correctText": "First I opened the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i15",
+      "correctText": "Then I let in the dog.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i16",
+      "correctText": "Did you let out the dog yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:i17",
+      "correctText": "Then she came in.",
+      "correctResponseId": null
+    }
+  ]
+}

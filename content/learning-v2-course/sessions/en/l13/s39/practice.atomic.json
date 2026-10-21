@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-39:word:grow-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — grow up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:grow-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — grow up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:grow-up:audio",
+            "transcript": "grow up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:grow-up:r1",
+              "targetText": "grow up",
+              "meaningByLocale": {
+                "ru": "вырасти, провести детство.",
+                "uk": "вирости, провести дитинство."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grow up",
+            "definitionByLocale": {
+              "ru": "вырасти, провести детство.",
+              "uk": "вирости, провести дитинство."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вырос здесь?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вырос здесь?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you grow up here?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вырос здесь?",
+            "uk": "Скажіть: Ти виріс тут?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "grow",
+            "up",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i02:r1",
+            "text": "Did she grow up here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i02:r2",
+            "text": "Did you grow up here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i02:r3",
+            "text": "Did they grow up here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i02:audio",
+            "transcript": "Did she grow up here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i02:r1",
+              "targetText": "Did she grow up here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i02:r2",
+              "targetText": "Did you grow up here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i02:r3",
+              "targetText": "Did they grow up here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she grow up here?",
+                "uk": "У записі звучить Did she grow up here?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she grow up here?",
+                "uk": "У записі звучить Did she grow up here?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you grow up here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:word:bring-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bring up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:bring-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bring up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:bring-up:audio",
+            "transcript": "bring up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:bring-up:r1",
+              "targetText": "bring up",
+              "meaningByLocale": {
+                "ru": "воспитать ребёнка.",
+                "uk": "виховати дитину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bring up",
+            "definitionByLocale": {
+              "ru": "воспитать ребёнка.",
+              "uk": "виховати дитину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты воспитал своих детей здесь?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты воспитал своих детей здесь?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you bring up your children here?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты воспитал своих детей здесь?",
+            "uk": "Скажіть: Ти виховав своїх дітей тут?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "bring",
+            "up",
+            "your",
+            "children",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i05:r1",
+            "text": "Did she bring up your children here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i05:r2",
+            "text": "Did you bring up your children here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i05:r3",
+            "text": "Did they bring up your children here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i05:audio",
+            "transcript": "Did she bring up your children here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i05:r1",
+              "targetText": "Did she bring up your children here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i05:r2",
+              "targetText": "Did you bring up your children here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i05:r3",
+              "targetText": "Did they bring up your children here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she bring up your children here?",
+                "uk": "У записі звучить Did she bring up your children here?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she bring up your children here?",
+                "uk": "У записі звучить Did she bring up your children here?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you bring up your children here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:word:get-along",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get along",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:get-along:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get along",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:get-along:audio",
+            "transcript": "get along"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:get-along:r1",
+              "targetText": "get along",
+              "meaningByLocale": {
+                "ru": "ладить, иметь хорошие отношения.",
+                "uk": "ладнати, мати добрі стосунки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get along",
+            "definitionByLocale": {
+              "ru": "ладить, иметь хорошие отношения.",
+              "uk": "ладнати, мати добрі стосунки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты ладил с братом?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты ладил с братом?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you get along with your brother?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ладил с братом?",
+            "uk": "Скажіть: Ти ладнав із братом?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "get",
+            "along",
+            "with",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i08:r1",
+            "text": "Did she get along with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i08:r2",
+            "text": "Did you get along with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i08:r3",
+            "text": "Did they get along with your brother?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i08:audio",
+            "transcript": "Did she get along with your brother?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i08:r1",
+              "targetText": "Did she get along with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i08:r2",
+              "targetText": "Did you get along with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i08:r3",
+              "targetText": "Did they get along with your brother?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she get along with your brother?",
+                "uk": "У записі звучить Did she get along with your brother?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she get along with your brother?",
+                "uk": "У записі звучить Did she get along with your brother?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you get along with your brother?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:word:fall-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fall out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:fall-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fall out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:fall-out:audio",
+            "transcript": "fall out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:fall-out:r1",
+              "targetText": "fall out",
+              "meaningByLocale": {
+                "ru": "поссориться.",
+                "uk": "посваритися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fall out",
+            "definitionByLocale": {
+              "ru": "поссориться.",
+              "uk": "посваритися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты поссорился с братом?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты поссорился с братом?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you fall out with your brother?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты поссорился с братом?",
+            "uk": "Скажіть: Ти посварився з братом?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "fall",
+            "out",
+            "with",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i11:r1",
+            "text": "Did she fall out with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i11:r2",
+            "text": "Did you fall out with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i11:r3",
+            "text": "Did they fall out with your brother?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i11:audio",
+            "transcript": "Did she fall out with your brother?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i11:r1",
+              "targetText": "Did she fall out with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i11:r2",
+              "targetText": "Did you fall out with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i11:r3",
+              "targetText": "Did they fall out with your brother?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she fall out with your brother?",
+                "uk": "У записі звучить Did she fall out with your brother?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she fall out with your brother?",
+                "uk": "У записі звучить Did she fall out with your brother?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you fall out with your brother?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-39:i13:p1",
+              "target": "grow up",
+              "meaningByLocale": {
+                "ru": "вырасти, провести детство",
+                "uk": "вирости, провести дитинство"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-39:i13:p2",
+              "target": "bring up",
+              "meaningByLocale": {
+                "ru": "воспитать ребёнка",
+                "uk": "виховати дитину"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-39:i13:p3",
+              "target": "get along",
+              "meaningByLocale": {
+                "ru": "ладить, иметь хорошие отношения",
+                "uk": "ладнати, мати добрі стосунки"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-39:i13:p4",
+              "target": "fall out",
+              "meaningByLocale": {
+                "ru": "поссориться",
+                "uk": "посваритися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "grow up",
+            "bring up",
+            "get along",
+            "fall out"
+          ],
+          "rightColumn": [
+            "вырасти, провести детство",
+            "воспитать ребёнка",
+            "ладить, иметь хорошие отношения",
+            "поссориться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i14:audio",
+            "transcript": "Then we moved to another town."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then we moved to another town.",
+          "orderedTokens": [
+            "Then",
+            "we",
+            "moved",
+            "to",
+            "another",
+            "town"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i15:audio",
+            "transcript": "We didn't fall out in the end."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't fall out in the end.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "fall",
+            "out",
+            "in",
+            "the",
+            "end"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она выросла здесь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: она выросла здесь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i16:audio",
+            "transcript": "She grew up here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She grew up here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: в итоге мы хорошо поладили",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: в итоге мы хорошо поладили",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i17:audio",
+            "transcript": "In the end, we got along well."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "In the end, we got along well.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-39:word:grow-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — grow up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:grow-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — grow up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:grow-up:audio",
+            "transcript": "grow up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:grow-up:r1",
+              "targetText": "grow up",
+              "meaningByLocale": {
+                "ru": "вырасти, провести детство.",
+                "uk": "вирости, провести дитинство."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grow up",
+            "definitionByLocale": {
+              "ru": "вырасти, провести детство.",
+              "uk": "вирости, провести дитинство."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти виріс тут?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти виріс тут?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you grow up here?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вырос здесь?",
+            "uk": "Скажіть: Ти виріс тут?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "grow",
+            "up",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i02:r1",
+            "text": "Did she grow up here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i02:r2",
+            "text": "Did you grow up here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i02:r3",
+            "text": "Did they grow up here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i02:audio",
+            "transcript": "Did she grow up here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i02:r1",
+              "targetText": "Did she grow up here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i02:r2",
+              "targetText": "Did you grow up here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i02:r3",
+              "targetText": "Did they grow up here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she grow up here?",
+                "uk": "У записі звучить Did she grow up here?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she grow up here?",
+                "uk": "У записі звучить Did she grow up here?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you grow up here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:word:bring-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bring up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:bring-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bring up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:bring-up:audio",
+            "transcript": "bring up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:bring-up:r1",
+              "targetText": "bring up",
+              "meaningByLocale": {
+                "ru": "воспитать ребёнка.",
+                "uk": "виховати дитину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bring up",
+            "definitionByLocale": {
+              "ru": "воспитать ребёнка.",
+              "uk": "виховати дитину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти виховав своїх дітей тут?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти виховав своїх дітей тут?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you bring up your children here?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты воспитал своих детей здесь?",
+            "uk": "Скажіть: Ти виховав своїх дітей тут?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "bring",
+            "up",
+            "your",
+            "children",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i05:r1",
+            "text": "Did she bring up your children here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i05:r2",
+            "text": "Did you bring up your children here?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i05:r3",
+            "text": "Did they bring up your children here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i05:audio",
+            "transcript": "Did she bring up your children here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i05:r1",
+              "targetText": "Did she bring up your children here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i05:r2",
+              "targetText": "Did you bring up your children here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i05:r3",
+              "targetText": "Did they bring up your children here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she bring up your children here?",
+                "uk": "У записі звучить Did she bring up your children here?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she bring up your children here?",
+                "uk": "У записі звучить Did she bring up your children here?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you bring up your children here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:word:get-along",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get along",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:get-along:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get along",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:get-along:audio",
+            "transcript": "get along"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:get-along:r1",
+              "targetText": "get along",
+              "meaningByLocale": {
+                "ru": "ладить, иметь хорошие отношения.",
+                "uk": "ладнати, мати добрі стосунки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get along",
+            "definitionByLocale": {
+              "ru": "ладить, иметь хорошие отношения.",
+              "uk": "ладнати, мати добрі стосунки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти ладнав із братом?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти ладнав із братом?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you get along with your brother?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ладил с братом?",
+            "uk": "Скажіть: Ти ладнав із братом?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "get",
+            "along",
+            "with",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i08:r1",
+            "text": "Did she get along with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i08:r2",
+            "text": "Did you get along with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i08:r3",
+            "text": "Did they get along with your brother?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i08:audio",
+            "transcript": "Did she get along with your brother?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i08:r1",
+              "targetText": "Did she get along with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i08:r2",
+              "targetText": "Did you get along with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i08:r3",
+              "targetText": "Did they get along with your brother?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she get along with your brother?",
+                "uk": "У записі звучить Did she get along with your brother?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she get along with your brother?",
+                "uk": "У записі звучить Did she get along with your brother?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you get along with your brother?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:word:fall-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fall out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:word:fall-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fall out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:word:fall-out:audio",
+            "transcript": "fall out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:word:fall-out:r1",
+              "targetText": "fall out",
+              "meaningByLocale": {
+                "ru": "поссориться.",
+                "uk": "посваритися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fall out",
+            "definitionByLocale": {
+              "ru": "поссориться.",
+              "uk": "посваритися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти посварився з братом?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти посварився з братом?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you fall out with your brother?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты поссорился с братом?",
+            "uk": "Скажіть: Ти посварився з братом?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "fall",
+            "out",
+            "with",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i11:r1",
+            "text": "Did she fall out with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i11:r2",
+            "text": "Did you fall out with your brother?"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i11:r3",
+            "text": "Did they fall out with your brother?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i11:audio",
+            "transcript": "Did she fall out with your brother?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-39:i11:r1",
+              "targetText": "Did she fall out with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i11:r2",
+              "targetText": "Did you fall out with your brother?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i11:r3",
+              "targetText": "Did they fall out with your brother?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she fall out with your brother?",
+                "uk": "У записі звучить Did she fall out with your brother?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she fall out with your brother?",
+                "uk": "У записі звучить Did she fall out with your brother?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-39:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-39:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you fall out with your brother?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-39:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-39:i13:p1",
+              "target": "grow up",
+              "meaningByLocale": {
+                "ru": "вырасти, провести детство",
+                "uk": "вирости, провести дитинство"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-39:i13:p2",
+              "target": "bring up",
+              "meaningByLocale": {
+                "ru": "воспитать ребёнка",
+                "uk": "виховати дитину"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-39:i13:p3",
+              "target": "get along",
+              "meaningByLocale": {
+                "ru": "ладить, иметь хорошие отношения",
+                "uk": "ладнати, мати добрі стосунки"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-39:i13:p4",
+              "target": "fall out",
+              "meaningByLocale": {
+                "ru": "поссориться",
+                "uk": "посваритися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "grow up",
+            "bring up",
+            "get along",
+            "fall out"
+          ],
+          "rightColumn": [
+            "вирости, провести дитинство",
+            "виховати дитину",
+            "ладнати, мати добрі стосунки",
+            "посваритися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i14:audio",
+            "transcript": "Then we moved to another town."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then we moved to another town.",
+          "orderedTokens": [
+            "Then",
+            "we",
+            "moved",
+            "to",
+            "another",
+            "town"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i15:audio",
+            "transcript": "We didn't fall out in the end."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't fall out in the end.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "fall",
+            "out",
+            "in",
+            "the",
+            "end"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона виросла тут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона виросла тут",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i16:audio",
+            "transcript": "She grew up here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She grew up here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: зрештою ми добре поладнали",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: зрештою ми добре поладнали",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-39:i17:audio",
+            "transcript": "In the end, we got along well."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "In the end, we got along well.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-39:word:grow-up",
+      "correctText": "grow up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i01",
+      "correctText": "Did you grow up here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i02",
+      "correctText": "Did she grow up here?",
+      "correctResponseId": "en:lesson-13:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:word:bring-up",
+      "correctText": "bring up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i04",
+      "correctText": "Did you bring up your children here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i05",
+      "correctText": "Did she bring up your children here?",
+      "correctResponseId": "en:lesson-13:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:word:get-along",
+      "correctText": "get along",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i07",
+      "correctText": "Did you get along with your brother?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i08",
+      "correctText": "Did she get along with your brother?",
+      "correctResponseId": "en:lesson-13:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:word:fall-out",
+      "correctText": "fall out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i10",
+      "correctText": "Did you fall out with your brother?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i11",
+      "correctText": "Did she fall out with your brother?",
+      "correctResponseId": "en:lesson-13:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i14",
+      "correctText": "Then we moved to another town.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i15",
+      "correctText": "We didn't fall out in the end.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i16",
+      "correctText": "She grew up here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-39:i17",
+      "correctText": "In the end, we got along well.",
+      "correctResponseId": null
+    }
+  ]
+}

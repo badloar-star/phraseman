@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-38:word:come-over",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — come over",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:word:come-over:audio"
+      ],
+      "accessibilityLabel": "Картка слова — come over",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:word:come-over:audio",
+          "transcript": "come over"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:word:come-over:r1",
+            "targetText": "come over",
+            "meaningByLocale": {
+              "ru": "прийти в гости.",
+              "uk": "прийти в гості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "come over",
+          "definitionByLocale": {
+            "ru": "прийти в гости.",
+            "uk": "прийти в гості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора заходив у гості?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора заходив у гості?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you come over yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера заходил в гости?",
+          "uk": "Скажіть: Ти вчора заходив у гості?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "come",
+          "over",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i02:r1",
+          "text": "Did she come over yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i02:r2",
+          "text": "Did you come over yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i02:r3",
+          "text": "Did they come over yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i02:audio",
+          "transcript": "Did she come over yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:i02:r1",
+            "targetText": "Did she come over yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i02:r2",
+            "targetText": "Did you come over yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i02:r3",
+            "targetText": "Did they come over yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she come over yesterday?",
+              "uk": "У записі звучить Did she come over yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she come over yesterday?",
+              "uk": "У записі звучить Did she come over yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you come over yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-38:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:word:go-away",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — go away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:word:go-away:audio"
+      ],
+      "accessibilityLabel": "Картка слова — go away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:word:go-away:audio",
+          "transcript": "go away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:word:go-away:r1",
+            "targetText": "go away",
+            "meaningByLocale": {
+              "ru": "уйти из этого места.",
+              "uk": "піти геть із цього місця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go away",
+          "definitionByLocale": {
+            "ru": "уйти из этого места.",
+            "uk": "піти геть із цього місця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти тоді пішов геть?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти тоді пішов геть?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you go away then?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты тогда ушёл?",
+          "uk": "Скажіть: Ти тоді пішов геть?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "go",
+          "away",
+          "then"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i05:r1",
+          "text": "Did she go away then?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i05:r2",
+          "text": "Did you go away then?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i05:r3",
+          "text": "Did they go away then?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i05:audio",
+          "transcript": "Did she go away then?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:i05:r1",
+            "targetText": "Did she go away then?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i05:r2",
+            "targetText": "Did you go away then?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i05:r3",
+            "targetText": "Did they go away then?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she go away then?",
+              "uk": "У записі звучить Did she go away then?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she go away then?",
+              "uk": "У записі звучить Did she go away then?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you go away then?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-38:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:word:go-ahead",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — go ahead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:word:go-ahead:audio"
+      ],
+      "accessibilityLabel": "Картка слова — go ahead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:word:go-ahead:audio",
+          "transcript": "go ahead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:word:go-ahead:r1",
+            "targetText": "go ahead",
+            "meaningByLocale": {
+              "ru": "приступить к намеченному действию.",
+              "uk": "розпочати заплановану дію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go ahead",
+          "definitionByLocale": {
+            "ru": "приступить к намеченному действию.",
+            "uk": "розпочати заплановану дію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти розпочав заплановану гру?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти розпочав заплановану гру?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you go ahead with the game?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты приступил к намеченной игре?",
+          "uk": "Скажіть: Ти розпочав заплановану гру?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "go",
+          "ahead",
+          "with",
+          "the",
+          "game"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i08:r1",
+          "text": "Did she go ahead with the game?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i08:r2",
+          "text": "Did you go ahead with the game?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i08:r3",
+          "text": "Did they go ahead with the game?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i08:audio",
+          "transcript": "Did she go ahead with the game?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:i08:r1",
+            "targetText": "Did she go ahead with the game?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i08:r2",
+            "targetText": "Did you go ahead with the game?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i08:r3",
+            "targetText": "Did they go ahead with the game?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she go ahead with the game?",
+              "uk": "У записі звучить Did she go ahead with the game?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she go ahead with the game?",
+              "uk": "У записі звучить Did she go ahead with the game?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you go ahead with the game?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-38:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:word:come-out",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — come out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:word:come-out:audio"
+      ],
+      "accessibilityLabel": "Картка слова — come out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:word:come-out:audio",
+          "transcript": "come out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:word:come-out:r1",
+            "targetText": "come out",
+            "meaningByLocale": {
+              "ru": "выйти наружу к говорящему.",
+              "uk": "вийти надвір до мовця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "come out",
+          "definitionByLocale": {
+            "ru": "выйти наружу к говорящему.",
+            "uk": "вийти надвір до мовця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вийшов до нас після обіду?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вийшов до нас після обіду?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you come out after lunch?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вышел к нам после обеда?",
+          "uk": "Скажіть: Ти вийшов до нас після обіду?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "come",
+          "out",
+          "after",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i11:r1",
+          "text": "Did she come out after lunch?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i11:r2",
+          "text": "Did you come out after lunch?"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i11:r3",
+          "text": "Did they come out after lunch?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i11:audio",
+          "transcript": "Did she come out after lunch?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-38:i11:r1",
+            "targetText": "Did she come out after lunch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i11:r2",
+            "targetText": "Did you come out after lunch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i11:r3",
+            "targetText": "Did they come out after lunch?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she come out after lunch?",
+              "uk": "У записі звучить Did she come out after lunch?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she come out after lunch?",
+              "uk": "У записі звучить Did she come out after lunch?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-38:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-38:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you come out after lunch?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-38:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-38:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-38:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-38:i13:p1",
+            "target": "come over",
+            "meaningByLocale": {
+              "ru": "прийти в гости",
+              "uk": "прийти в гості"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-38:i13:p2",
+            "target": "go away",
+            "meaningByLocale": {
+              "ru": "уйти из этого места",
+              "uk": "піти геть із цього місця"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-38:i13:p3",
+            "target": "go ahead",
+            "meaningByLocale": {
+              "ru": "приступить к намеченному действию",
+              "uk": "розпочати заплановану дію"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-38:i13:p4",
+            "target": "come out",
+            "meaningByLocale": {
+              "ru": "выйти наружу к говорящему",
+              "uk": "вийти надвір до мовця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "come over",
+          "go away",
+          "go ahead",
+          "come out"
+        ],
+        "rightColumn": [
+          "прийти в гості",
+          "піти геть із цього місця",
+          "розпочати заплановану дію",
+          "вийти надвір до мовця"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i14:audio",
+          "transcript": "First we had lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we had lunch.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "had",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i15:audio",
+          "transcript": "Then she came out."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then she came out.",
+        "orderedTokens": [
+          "Then",
+          "she",
+          "came",
+          "out"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: потім вона зайшла в гості",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: потім вона зайшла в гості",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i16:audio",
+          "transcript": "Then she came over."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then she came over.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: зрештою ми розпочали заплановану гру",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: зрештою ми розпочали заплановану гру",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-38:i17:audio",
+          "transcript": "In the end, we went ahead with the game."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "In the end, we went ahead with the game.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4945981d0d84bb934c13fdd91175c4748d8257b5c2a03a25445d5ede379c0218"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-40:intro1:r2": {
+          "ru": "После did нужна meet.",
+          "uk": "Після did потрібна meet."
+        },
+        "en:lesson-13:session-40:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-40:intro2:r2": {
+          "ru": "После did нужна catch.",
+          "uk": "Після did потрібна catch."
+        },
+        "en:lesson-13:session-40:intro2:r3": {
+          "ru": "Это звонок сестре.",
+          "uk": "Це дзвінок сестрі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-40:intro3:r2": {
+          "ru": "Это вопрос о еде.",
+          "uk": "Це запитання про їжу."
+        },
+        "en:lesson-13:session-40:intro3:r3": {
+          "ru": "После did нужна join.",
+          "uk": "Після did потрібна join."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a114197f6814d9d51c77874cd3068a8d6f87df8d3b1e8f5ec633c496cd0491b7"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-37:intro1:r2": {
+          "ru": "После did нужна come.",
+          "uk": "Після did потрібна come."
+        },
+        "en:lesson-13:session-37:intro1:r3": {
+          "ru": "Это вопрос о привычке.",
+          "uk": "Це запитання про звичку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-37:intro2:r2": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        },
+        "en:lesson-13:session-37:intro2:r3": {
+          "ru": "После did нужна go.",
+          "uk": "Після did потрібна go."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-37:intro3:r2": {
+          "ru": "Let out — выпустить наружу.",
+          "uk": "Let out — випустити надвір."
+        },
+        "en:lesson-13:session-37:intro3:r3": {
+          "ru": "Это вопрос о привычке, не о вчерашнем действии.",
+          "uk": "Це запитання про звичку, не про вчорашню дію."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f0042b4d6af02664424f294e34d46e1d85fa005f53bd9f2ed6af19565e09e373"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-37:word:come-in",
+    "correctText": "come in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i01",
+    "correctText": "Did you come in first?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i02",
+    "correctText": "Did she come in first?",
+    "correctResponseId": "en:lesson-13:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:word:go-in",
+    "correctText": "go in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i04",
+    "correctText": "Did you go in first?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i05",
+    "correctText": "Did she go in first?",
+    "correctResponseId": "en:lesson-13:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:word:let-in",
+    "correctText": "let in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i07",
+    "correctText": "Did you let in the dog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i08",
+    "correctText": "Did she let in the dog?",
+    "correctResponseId": "en:lesson-13:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:word:let-out",
+    "correctText": "let out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i10",
+    "correctText": "Did you let out the dog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i11",
+    "correctText": "Did she let out the dog?",
+    "correctResponseId": "en:lesson-13:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i13",
+    "correctText": "en:lesson-13:session-37:i13:p1=come in\nen:lesson-13:session-37:i13:p2=go in\nen:lesson-13:session-37:i13:p3=let in\nen:lesson-13:session-37:i13:p4=let out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i14",
+    "correctText": "First I opened the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i15",
+    "correctText": "Then I let in the dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i16",
+    "correctText": "Did you let out the dog yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-37:i17",
+    "correctText": "Then she came in.",
+    "correctResponseId": null
+  }
+]

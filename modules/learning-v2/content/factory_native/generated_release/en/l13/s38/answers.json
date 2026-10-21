@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-38:word:come-over",
+    "correctText": "come over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i01",
+    "correctText": "Did you come over yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i02",
+    "correctText": "Did she come over yesterday?",
+    "correctResponseId": "en:lesson-13:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:word:go-away",
+    "correctText": "go away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i04",
+    "correctText": "Did you go away then?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i05",
+    "correctText": "Did she go away then?",
+    "correctResponseId": "en:lesson-13:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:word:go-ahead",
+    "correctText": "go ahead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i07",
+    "correctText": "Did you go ahead with the game?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i08",
+    "correctText": "Did she go ahead with the game?",
+    "correctResponseId": "en:lesson-13:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:word:come-out",
+    "correctText": "come out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i10",
+    "correctText": "Did you come out after lunch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i11",
+    "correctText": "Did she come out after lunch?",
+    "correctResponseId": "en:lesson-13:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i13",
+    "correctText": "en:lesson-13:session-38:i13:p1=come over\nen:lesson-13:session-38:i13:p2=go away\nen:lesson-13:session-38:i13:p3=go ahead\nen:lesson-13:session-38:i13:p4=come out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i14",
+    "correctText": "First we had lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i15",
+    "correctText": "Then she came out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i16",
+    "correctText": "Then she came over.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-38:i17",
+    "correctText": "In the end, we went ahead with the game.",
+    "correctResponseId": null
+  }
+]

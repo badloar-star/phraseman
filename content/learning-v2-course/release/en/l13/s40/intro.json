@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Встретиться",
+        "uk": "Зустрітися"
+      },
+      "bodyByLocale": {
+        "ru": "Meet up — встретиться по договорённости. First we met up at the café — сначала мы встретились в кафе. Выберите вопрос о встрече.",
+        "uk": "Meet up — зустрітися за домовленістю. First we met up at the café — спершу ми зустрілися в кафе. Виберіть запитання про зустріч."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-40:intro1:r1",
+              "text": "Did you meet up at the café?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro1:r2",
+              "text": "Did you met up at the café?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro1:r3",
+              "text": "You met up at the café."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-40:intro1:r1",
+              "text": "Did you meet up at the café?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro1:r2",
+              "text": "Did you met up at the café?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro1:r3",
+              "text": "You met up at the café."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обменяться новостями",
+        "uk": "Обмінятися новинами"
+      },
+      "bodyByLocale": {
+        "ru": "Catch up здесь — пообщаться после перерыва и обменяться новостями. Did you catch up with your friend? — Ты пообщался с другом о последних новостях? Выберите этот разговор.",
+        "uk": "Catch up тут — поспілкуватися після перерви й обмінятися новинами. Did you catch up with your friend? — Ти поспілкувався з другом про останні новини? Виберіть цю розмову."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-40:intro2:r1",
+              "text": "Did you catch up with your friend?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro2:r2",
+              "text": "Did you caught up with your friend?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro2:r3",
+              "text": "Did you call your sister?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-40:intro2:r1",
+              "text": "Did you catch up with your friend?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro2:r2",
+              "text": "Did you caught up with your friend?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro2:r3",
+              "text": "Did you call your sister?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Присоединиться и доесть",
+        "uk": "Долучитися й доїсти"
+      },
+      "bodyByLocale": {
+        "ru": "Join in — присоединиться к общему занятию; eat up — доесть всё. Did you join in the game? — Ты присоединился к игре? Выберите игру, не еду.",
+        "uk": "Join in — долучитися до спільного заняття; eat up — доїсти все. Did you join in the game? — Ти долучився до гри? Виберіть гру, не їжу."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-40:intro3:r1",
+              "text": "Did you join in the game?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro3:r2",
+              "text": "Did you eat up your lunch?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro3:r3",
+              "text": "Did you joined in the game?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-40:intro3:r1",
+              "text": "Did you join in the game?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro3:r2",
+              "text": "Did you eat up your lunch?"
+            },
+            {
+              "responseId": "en:lesson-13:session-40:intro3:r3",
+              "text": "Did you joined in the game?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3dbbc712b855c6c07e34d676652b17a75a65520068706144e2d53fb823522d50"
+}

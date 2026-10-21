@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-40:word:meet-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — meet up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:word:meet-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — meet up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:word:meet-up:audio",
+          "transcript": "meet up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:word:meet-up:r1",
+            "targetText": "meet up",
+            "meaningByLocale": {
+              "ru": "встретиться по договорённости.",
+              "uk": "зустрітися за домовленістю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meet up",
+          "definitionByLocale": {
+            "ru": "встретиться по договорённости.",
+            "uk": "зустрітися за домовленістю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты встретился с друзьями в кафе?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты встретился с друзьями в кафе?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you meet up at the café?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты встретился с друзьями в кафе?",
+          "uk": "Скажіть: Ти зустрівся з друзями в кафе?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "meet",
+          "up",
+          "at",
+          "the",
+          "café"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i02:r1",
+          "text": "Did she meet up at the café?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i02:r2",
+          "text": "Did you meet up at the café?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i02:r3",
+          "text": "Did they meet up at the café?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i02:audio",
+          "transcript": "Did she meet up at the café?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:i02:r1",
+            "targetText": "Did she meet up at the café?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i02:r2",
+            "targetText": "Did you meet up at the café?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i02:r3",
+            "targetText": "Did they meet up at the café?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she meet up at the café?",
+              "uk": "У записі звучить Did she meet up at the café?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she meet up at the café?",
+              "uk": "У записі звучить Did she meet up at the café?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you meet up at the café?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-40:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:word:catch-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — catch up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:word:catch-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — catch up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:word:catch-up:audio",
+          "transcript": "catch up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:word:catch-up:r1",
+            "targetText": "catch up",
+            "meaningByLocale": {
+              "ru": "пообщаться и обменяться новостями после перерыва.",
+              "uk": "поспілкуватися й обмінятися новинами після перерви."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "catch up",
+          "definitionByLocale": {
+            "ru": "пообщаться и обменяться новостями после перерыва.",
+            "uk": "поспілкуватися й обмінятися новинами після перерви."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты пообщался с другом о последних новостях?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты пообщался с другом о последних новостях?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you catch up with your friend?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты пообщался с другом о последних новостях?",
+          "uk": "Скажіть: Ти поспілкувався з другом про останні новини?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "catch",
+          "up",
+          "with",
+          "your",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i05:r1",
+          "text": "Did she catch up with your friend?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i05:r2",
+          "text": "Did you catch up with your friend?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i05:r3",
+          "text": "Did they catch up with your friend?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i05:audio",
+          "transcript": "Did she catch up with your friend?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:i05:r1",
+            "targetText": "Did she catch up with your friend?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i05:r2",
+            "targetText": "Did you catch up with your friend?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i05:r3",
+            "targetText": "Did they catch up with your friend?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she catch up with your friend?",
+              "uk": "У записі звучить Did she catch up with your friend?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she catch up with your friend?",
+              "uk": "У записі звучить Did she catch up with your friend?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you catch up with your friend?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-40:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:word:join-in",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — join in",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:word:join-in:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — join in",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:word:join-in:audio",
+          "transcript": "join in"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:word:join-in:r1",
+            "targetText": "join in",
+            "meaningByLocale": {
+              "ru": "присоединиться к общему занятию.",
+              "uk": "долучитися до спільного заняття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "join in",
+          "definitionByLocale": {
+            "ru": "присоединиться к общему занятию.",
+            "uk": "долучитися до спільного заняття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты присоединился к игре?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты присоединился к игре?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you join in the game?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты присоединился к игре?",
+          "uk": "Скажіть: Ти долучився до гри?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "join",
+          "in",
+          "the",
+          "game"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i08:r1",
+          "text": "Did she join in the game?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i08:r2",
+          "text": "Did you join in the game?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i08:r3",
+          "text": "Did they join in the game?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i08:audio",
+          "transcript": "Did she join in the game?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:i08:r1",
+            "targetText": "Did she join in the game?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i08:r2",
+            "targetText": "Did you join in the game?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i08:r3",
+            "targetText": "Did they join in the game?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she join in the game?",
+              "uk": "У записі звучить Did she join in the game?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she join in the game?",
+              "uk": "У записі звучить Did she join in the game?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you join in the game?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-40:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:word:eat-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eat up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:word:eat-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eat up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:word:eat-up:audio",
+          "transcript": "eat up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:word:eat-up:r1",
+            "targetText": "eat up",
+            "meaningByLocale": {
+              "ru": "доесть всё.",
+              "uk": "доїсти все."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eat up",
+          "definitionByLocale": {
+            "ru": "доесть всё.",
+            "uk": "доїсти все."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты доел весь обед?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты доел весь обед?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you eat up your lunch?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты доел весь обед?",
+          "uk": "Скажіть: Ти доїв увесь обід?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "eat",
+          "up",
+          "your",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i11:r1",
+          "text": "Did she eat up your lunch?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i11:r2",
+          "text": "Did you eat up your lunch?"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i11:r3",
+          "text": "Did they eat up your lunch?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i11:audio",
+          "transcript": "Did she eat up your lunch?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-40:i11:r1",
+            "targetText": "Did she eat up your lunch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i11:r2",
+            "targetText": "Did you eat up your lunch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i11:r3",
+            "targetText": "Did they eat up your lunch?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she eat up your lunch?",
+              "uk": "У записі звучить Did she eat up your lunch?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she eat up your lunch?",
+              "uk": "У записі звучить Did she eat up your lunch?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-40:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-40:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you eat up your lunch?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-40:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-40:i13:p1",
+            "target": "meet up",
+            "meaningByLocale": {
+              "ru": "встретиться по договорённости",
+              "uk": "зустрітися за домовленістю"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-40:i13:p2",
+            "target": "catch up",
+            "meaningByLocale": {
+              "ru": "пообщаться и обменяться новостями после перерыва",
+              "uk": "поспілкуватися й обмінятися новинами після перерви"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-40:i13:p3",
+            "target": "join in",
+            "meaningByLocale": {
+              "ru": "присоединиться к общему занятию",
+              "uk": "долучитися до спільного заняття"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-40:i13:p4",
+            "target": "eat up",
+            "meaningByLocale": {
+              "ru": "доесть всё",
+              "uk": "доїсти все"
+            }
+          }
+        ],
+        "leftColumn": [
+          "meet up",
+          "catch up",
+          "join in",
+          "eat up"
+        ],
+        "rightColumn": [
+          "встретиться по договорённости",
+          "пообщаться и обменяться новостями после перерыва",
+          "присоединиться к общему занятию",
+          "доесть всё"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i14:audio",
+          "transcript": "First we met up at the café."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we met up at the café.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "met",
+          "up",
+          "at",
+          "the",
+          "café"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i15:audio",
+          "transcript": "Then she joined in the game."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then she joined in the game.",
+        "orderedTokens": [
+          "Then",
+          "she",
+          "joined",
+          "in",
+          "the",
+          "game"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем мы обменялись новостями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем мы обменялись новостями",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i16:audio",
+          "transcript": "Then we caught up."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then we caught up.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: в итоге она доела весь обед",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: в итоге она доела весь обед",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-40:i17:audio",
+          "transcript": "In the end, she ate up her lunch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "In the end, she ate up her lunch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b2b2989fc830ff857167495d7a124b434d81e5651d3ad40b482c152c8b8b4762"
+}

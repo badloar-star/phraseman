@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-39:word:grow-up",
+    "correctText": "grow up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i01",
+    "correctText": "Did you grow up here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i02",
+    "correctText": "Did she grow up here?",
+    "correctResponseId": "en:lesson-13:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:word:bring-up",
+    "correctText": "bring up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i04",
+    "correctText": "Did you bring up your children here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i05",
+    "correctText": "Did she bring up your children here?",
+    "correctResponseId": "en:lesson-13:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:word:get-along",
+    "correctText": "get along",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i07",
+    "correctText": "Did you get along with your brother?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i08",
+    "correctText": "Did she get along with your brother?",
+    "correctResponseId": "en:lesson-13:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:word:fall-out",
+    "correctText": "fall out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i10",
+    "correctText": "Did you fall out with your brother?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i11",
+    "correctText": "Did she fall out with your brother?",
+    "correctResponseId": "en:lesson-13:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i13",
+    "correctText": "en:lesson-13:session-39:i13:p1=grow up\nen:lesson-13:session-39:i13:p2=bring up\nen:lesson-13:session-39:i13:p3=get along\nen:lesson-13:session-39:i13:p4=fall out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i14",
+    "correctText": "Then we moved to another town.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i15",
+    "correctText": "We didn't fall out in the end.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i16",
+    "correctText": "She grew up here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-39:i17",
+    "correctText": "In the end, we got along well.",
+    "correctResponseId": null
+  }
+]

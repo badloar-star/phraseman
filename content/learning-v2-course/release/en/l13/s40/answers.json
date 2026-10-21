@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-40:word:meet-up",
+    "correctText": "meet up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i01",
+    "correctText": "Did you meet up at the café?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i02",
+    "correctText": "Did she meet up at the café?",
+    "correctResponseId": "en:lesson-13:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:word:catch-up",
+    "correctText": "catch up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i04",
+    "correctText": "Did you catch up with your friend?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i05",
+    "correctText": "Did she catch up with your friend?",
+    "correctResponseId": "en:lesson-13:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:word:join-in",
+    "correctText": "join in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i07",
+    "correctText": "Did you join in the game?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i08",
+    "correctText": "Did she join in the game?",
+    "correctResponseId": "en:lesson-13:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:word:eat-up",
+    "correctText": "eat up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i10",
+    "correctText": "Did you eat up your lunch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i11",
+    "correctText": "Did she eat up your lunch?",
+    "correctResponseId": "en:lesson-13:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i13",
+    "correctText": "en:lesson-13:session-40:i13:p1=meet up\nen:lesson-13:session-40:i13:p2=catch up\nen:lesson-13:session-40:i13:p3=join in\nen:lesson-13:session-40:i13:p4=eat up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i14",
+    "correctText": "First we met up at the café.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i15",
+    "correctText": "Then she joined in the game.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i16",
+    "correctText": "Then we caught up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-40:i17",
+    "correctText": "In the end, she ate up her lunch.",
+    "correctResponseId": null
+  }
+]

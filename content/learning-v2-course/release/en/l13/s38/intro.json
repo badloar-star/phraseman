@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Зайти в гости",
+        "uk": "Зайти в гості"
+      },
+      "bodyByLocale": {
+        "ru": "Come over — прийти в гости, обычно ненадолго. Did you come over yesterday? — Ты вчера заходил в гости? Выберите вчерашний визит.",
+        "uk": "Come over — прийти в гості, зазвичай ненадовго. Did you come over yesterday? — Ти вчора заходив у гості? Виберіть учорашній візит."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-38:intro1:r1",
+              "text": "Did you come over yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro1:r2",
+              "text": "Did you came over yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro1:r3",
+              "text": "Do you come over every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-38:intro1:r1",
+              "text": "Did you come over yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro1:r2",
+              "text": "Did you came over yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro1:r3",
+              "text": "Do you come over every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уйти",
+        "uk": "Піти геть"
+      },
+      "bodyByLocale": {
+        "ru": "Go away — уйти, удалиться из этого места. Then he went away — затем он ушёл. Выберите вопрос об уходе.",
+        "uk": "Go away — піти геть, віддалитися з цього місця. Then he went away — потім він пішов геть. Виберіть запитання про відхід."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-38:intro2:r1",
+              "text": "Did you go away then?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro2:r2",
+              "text": "Did you went away then?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro2:r3",
+              "text": "You went away then."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-38:intro2:r1",
+              "text": "Did you go away then?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro2:r2",
+              "text": "Did you went away then?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro2:r3",
+              "text": "You went away then."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начать и выйти наружу",
+        "uk": "Розпочати й вийти надвір"
+      },
+      "bodyByLocale": {
+        "ru": "Go ahead здесь — приступить к намеченному действию. Come out — выйти наружу к говорящему. Друг вчера ждал вас во дворе: Did you come out after lunch? — Ты вышел после обеда? Выберите выход во двор.",
+        "uk": "Go ahead тут — розпочати заплановану дію. Come out — вийти надвір до мовця. Друг учора чекав на вас у дворі: Did you come out after lunch? — Ти вийшов після обіду? Виберіть вихід у двір."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-38:intro3:r1",
+              "text": "Did you come out after lunch?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro3:r2",
+              "text": "Did you go ahead with the game?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro3:r3",
+              "text": "Did you came out after lunch?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-38:intro3:r1",
+              "text": "Did you come out after lunch?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro3:r2",
+              "text": "Did you go ahead with the game?"
+            },
+            {
+              "responseId": "en:lesson-13:session-38:intro3:r3",
+              "text": "Did you came out after lunch?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f8c68532c94b570322e0b5a68e843481173fe38733ce9434652781a22a0bf8c1"
+}

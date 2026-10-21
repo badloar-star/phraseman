@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-38:intro1:r2": {
+          "ru": "После did нужна come.",
+          "uk": "Після did потрібна come."
+        },
+        "en:lesson-13:session-38:intro1:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-38:intro2:r2": {
+          "ru": "После did нужна go.",
+          "uk": "Після did потрібна go."
+        },
+        "en:lesson-13:session-38:intro2:r3": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-38:intro3:r2": {
+          "ru": "Это вопрос о начале игры.",
+          "uk": "Це запитання про початок гри."
+        },
+        "en:lesson-13:session-38:intro3:r3": {
+          "ru": "После did нужна come.",
+          "uk": "Після did потрібна come."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6b5ab4200a9484c461e451732f5d54caa72c29cae51c77d911de3c7818b8f1c3"
+}

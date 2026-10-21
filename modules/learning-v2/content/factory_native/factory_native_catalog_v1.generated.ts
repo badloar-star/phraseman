@@ -4963,4 +4963,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 37,
+    sourceFingerprint: "0f7dcdb2faea19c061cb0fccfb613d38035082d16720466aa2b4362c4495da1c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 38,
+    sourceFingerprint: "9b78f0c4577cac66ccf447f357de1fb1afae28cb2e045f3dea117bf28af43a91",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 39,
+    sourceFingerprint: "7173537f802e18480059ed48cb45e861e816330bd908dbc8845d7825936bf1a3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past events and questions","uk":"review: past events and questions"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 40,
+    sourceFingerprint: "12ba6c67fa96c5e856838eb9957f776e6f675e048625ff1b73651c2ac5fc1d9b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
 ]);
